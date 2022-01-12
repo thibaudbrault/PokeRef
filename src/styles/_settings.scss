@@ -1,0 +1,271 @@
+/*fonts start*/
+
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/*fonts end*/
+
+/*variables start*/
+
+$font-sans: 'Karla', sans-serif;
+$font-game: 'Press Start 2P', cursive;
+
+$light: #c4c4c4;
+$dark: #111111;
+$red: #cc0000;
+
+/*variables end*/
+
+/*type styles start*/
+
+a#normal {
+	background-color: #969592;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/normal.png);
+	}
+}
+
+a#fire {
+	background-color: #db4249;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/fire.png);
+	}
+}
+
+a#water {
+	background-color: #55b8e2;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/water.png);
+	}
+}
+
+a#grass {
+	background-color: #459f4d;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/grass.png);
+	}
+}
+
+a#electric {
+	background-color: #dbb508;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/electric.png);
+	}
+}
+
+a#ice {
+	background-color: #6db5ba;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/ice.png);
+	}
+}
+
+a#fighting {
+	background-color: #d77a49;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/fighting.png);
+	}
+}
+
+a#poison {
+	background-color: #82549a;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/poison.png);
+	}
+}
+
+a#ground {
+	background-color: #9a5e41;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/ground.png);
+	}
+}
+
+a#flying {
+	background-color: #5983ef;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/flying.png);
+	}
+}
+
+a#psychic {
+	background-color: #e76e9a;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/psychic.png);
+	}
+}
+
+a#bug {
+	background-color: #9eb559;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/bug.png);
+	}
+}
+
+a#rock {
+	background-color: #a28d79;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/rock.png);
+	}
+}
+
+a#ghost {
+	background-color: #a2729a;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/ghost.png);
+	}
+}
+
+a#dark {
+	background-color: #555461;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/dark.png);
+	}
+}
+
+a#dragon {
+	background-color: #1085a2;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/dragon.png);
+	}
+}
+
+a#steel {
+	background-color: #5a8ea2;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/steel.png);
+	}
+}
+
+a#fairy {
+	background-color: #fb89eb;
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/fairy.png);
+	}
+}
+
+a#physical {
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/seals/home/move-physical.png);
+	}
+}
+
+a#special {
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/seals/home/move-special.png);
+	}
+}
+
+a#status {
+	img {
+		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/seals/home/move-status.png);
+	}
+}
+
+/*type styles end*/
+
+/* css reset start*/
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+    cursor: default;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+	cursor: pointer;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1.5;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html {
+    font-size: 10px;
+}
+
+/*css reset end*/
+
+/*dark theme start*/
+
+.wrapper {
+	background: $light;
+	color: $dark;
+	font-family: $font-sans;
+	scroll-behavior: smooth;
+}
+
+.dark {
+	background: $dark;
+	color: $light;
+	select {
+		color: $light;
+		background-color: $dark;
+		border-color: $light;
+	}
+	a::before {
+		background: $light;
+	}
+	a::after {
+		background: $light;
+	}
+	.header_inner h1 {
+		color: $dark;
+		text-shadow: $light -2px -2px 0px, $light 2px -2px 0px, $light -2px 2px 0px, $light 2px 2px 0px;
+	}
+	.footer {
+		color: $dark;
+	}
+}
+
+/*dark theme end*/
