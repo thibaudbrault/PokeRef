@@ -7,7 +7,7 @@ function themeFunction() {
 
 export default function Header() {
     return (
-        <header className='header'>
+        <header className='header' id='header'>
             <div className="header_progress">
                 <div className="header_progress_container">
                     <div className="header_progress_container_inner" id="progressBar"></div>
