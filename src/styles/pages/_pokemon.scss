@@ -15,10 +15,35 @@
 			border-radius: 10px;
             text-align: center;
             transition: 0.3s ease-in-out;
+            &_image {
+                width: 96px;
+                height: 96px;
+                position: relative;
+                margin: 0 auto;
+                &:hover .pokedex_container_inner_image_shiny {
+                    opacity: 1;
+                }
+                &_sprite {
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    transition: 0.3s ease-in-out;
+                }
+                &_shiny {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    opacity: 0;
+                    transition: 0.3s ease-in-out;
+                }
+            }
             h2 {
                 font-size: 2.3rem;
                 font-weight: 700;
                 text-transform: capitalize;
+            }
+            p {
+                font-size: 1.3rem;
             }
             &:hover {
                 transform: translateY(-5px);

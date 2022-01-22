@@ -10,8 +10,8 @@ export default function Nav() {
                     <li className="nav_inner_ul_li"><Link className="nav_inner_ul_li_link" to="/">Pokemon</Link></li>
                     <li className="nav_inner_ul_li"><Link className="nav_inner_ul_li_link" to="/moves">Moves</Link></li>
                     <li className="nav_inner_ul_li"><Link className="nav_inner_ul_li_link" to="/abilities">Abilities</Link></li>
-                    <li className="nav_inner_ul_li"><Link className="nav_inner_ul_li_link" to="types">Types</Link></li>
-                    <li className="nav_inner_ul_li"><Link className="nav_inner_ul_li_link" to="items">Items</Link></li>
+                    <li className="nav_inner_ul_li"><Link className="nav_inner_ul_li_link" to="/types">Types</Link></li>
+                    <li className="nav_inner_ul_li"><Link className="nav_inner_ul_li_link" to="/items">Items</Link></li>
                     <li className="nav_inner_ul_li"><Link className="nav_inner_ul_li_link" to="/locations">Locations</Link></li>
                 </ul>
             </div>

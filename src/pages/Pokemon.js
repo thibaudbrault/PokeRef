@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import BarWave from "react-cssfx-loading/lib/BarWave";
 
 export default function Pokemon() {
 
@@ -28,12 +29,15 @@ export default function Pokemon() {
         <main className='pokedex'>
             <ol className='pokedex_container'>
                 {loading ? (
-                    <h2>Loading...</h2>
+                    <BarWave width="100px" color="#cc0000" />
                 ) : (
                     pokemon.map((p) => (
                     <li key={p.name} className='pokedex_container_inner'>
-                        <img src={p.sprites.front_default} alt={p.name} loading="lazy" />
-                        <p>{p.id}</p>
+                        <div className='pokedex_container_inner_image'>
+                            <img className='pokedex_container_inner_image_sprite' src={p.sprites.front_default} alt={p.name} loading="lazy" />
+                            <img className='pokedex_container_inner_image_shiny' src={p.sprites.front_shiny} alt={p.name} loading="lazy" />
+                        </div>
+                        <p>#{p.id.toString().padStart(3, '0')}</p>
                         <h2>{p.name}</h2>
                     </li>
                     ))
