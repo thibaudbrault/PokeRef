@@ -41,16 +41,28 @@ export default function Moves() {
                   <thead className='moves_table_head'>
                       <tr className='moves_table_head_row'>
                           <th className='moves_table_head_row_element'>Name</th>
-                          <th className='moves_table_head_row_element'>Effect</th>
+                          <th className='moves_table_head_row_element'>Category</th>
+                          <th className='moves_table_head_row_element'>Type</th>
                       </tr>
                   </thead>
                   <tbody className='moves_table_body'>
-                          {moves.map((m) => (
-                          <tr key={m.name} className='moves_table_body_row'>
-                              <td className='moves_table_body_row_name'>{m.name}</td>
-                              <td className='moves_table_body_row_effect'>{m.id}</td>
-                          </tr>
-                          ))}
+                        {moves.map((m) => (
+                        <tr key={m.name} className='moves_table_body_row'>
+                            <td className='moves_table_body_row_name'>{m.name}</td>
+                            <td>
+                                <div className='moves_table_body_row_category' id={m.damage_class.name}>
+                                    <img alt={m.damage_class.name} />
+                                    <span>{m.damage_class.name}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div className='moves_table_body_row_type' id={m.type.name}>
+                                    <img alt={m.type.name} />
+                                    <span>{m.type.name}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        ))}
                   </tbody>
               </table>
             )}

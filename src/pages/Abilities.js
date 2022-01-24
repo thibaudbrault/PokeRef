@@ -14,7 +14,7 @@ export default function Abilities() {
     useEffect(() => {
         setLoading(true);
         axios
-        .get("https://pokeapi.co/api/v2/ability?limit=327")
+        .get("https://pokeapi.co/api/v2/ability?limit=267")
         .then((res) => {
             return res.data.results;
         })
@@ -35,24 +35,24 @@ export default function Abilities() {
         <Nav />
         <main className='abilities'>
             {loading ? (
-              <BarWave width="40px" height="20px" color="#cc0000" />
+                <BarWave width="40px" height="20px" color="#cc0000" />
             ) : (
-              <table className='abilities_table'>
-                  <thead className='abilities_table_head'>
-                      <tr className='abilities_table_head_row'>
-                          <th className='abilities_table_head_row_element'>Name</th>
-                          <th className='abilities_table_head_row_element'>Effect</th>
-                      </tr>
-                  </thead>
-                  <tbody className='abilities_table_body'>
-                          {abilities.map((a) => (
-                          <tr key={a.name} className='abilities_table_body_row'>
-                              <td className='abilities_table_body_row_name'>{a.name}</td>
-                              <td className='abilities_table_body_row_effect'>{a.id}</td>
-                          </tr>
-                          ))}
-                  </tbody>
-              </table>
+                <table className='abilities_table'>
+                    <thead className='abilities_table_head'>
+                        <tr className='abilities_table_head_row'>
+                            <th className='abilities_table_head_row_element'>Name</th>
+                            <th className='abilities_table_head_row_element'>Effect</th>
+                        </tr>
+                    </thead>
+                    <tbody className='abilities_table_body'>
+                            {abilities.map((a) => (
+                            <tr key={a.name} className='abilities_table_body_row'>
+                                <td className='abilities_table_body_row_name'>{a.name}</td>
+                                <td className='abilities_table_body_row_effect'>{a.id}</td>
+                            </tr>
+                            ))}
+                    </tbody>
+                </table>
             )}
         </main>
         <Footer />
