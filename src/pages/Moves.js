@@ -35,7 +35,7 @@ export default function Moves() {
           <Nav />
           <main className='moves'>
             {loading ? (
-              <BarWave width="100px" color="#cc0000" />
+              <BarWave width="40px" height="20px" color="#cc0000" />
             ) : (
               <table className='moves_table'>
                   <thead className='moves_table_head'>

@@ -29,7 +29,7 @@ export default function Pokemon() {
         <main className='pokedex'>
             <ol className='pokedex_container'>
                 {loading ? (
-                    <BarWave width="100px" color="#cc0000" />
+                    <BarWave width="40px" height="20px" color="#cc0000" />
                 ) : (
                     pokemon.map((p) => (
                     <li key={p.name} className='pokedex_container_inner'>
