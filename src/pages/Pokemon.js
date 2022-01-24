@@ -10,7 +10,7 @@ export default function Pokemon() {
     useEffect(() => {
         setLoading(true);
         axios
-        .get("https://pokeapi.co/api/v2/pokemon?limit=807")
+        .get("https://pokeapi.co/api/v2/pokemon?limit=20")
         .then((res) => {
             return res.data.results;
         })
@@ -39,6 +39,14 @@ export default function Pokemon() {
                         </div>
                         <p>#{p.id.toString().padStart(3, '0')}</p>
                         <h2>{p.name}</h2>
+                        <div id={p.types[0].type.name} className='pokedex_container_inner_types'>
+                            <img alt={p.types[0].type.name} />
+                            <span>{p.types[0].type.name}</span>
+                        </div>
+                        {(p.types.length === '2') 
+                            ? <div>{p.types[1].type.name}</div>
+                            : null
+                        }
                     </li>
                     ))
                 )}

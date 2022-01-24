@@ -1,7 +1,7 @@
 import React from 'react';
 
 function themeFunction() {
-    var element = document.getElementById('wrapper');
+    var element = document.getElementById('root');
     element.classList.toggle("dark");
 };
 
