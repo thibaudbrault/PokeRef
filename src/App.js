@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Wrapper from './Wrapper';
 import Moves from './pages/Moves';
 import Abilities from './pages/Abilities';
+import Types from './pages/Types';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Wrapper />} />
         <Route path="/moves" element={<Moves />} />
         <Route path="/abilities" element={<Abilities />} />
+        <Route path="/types" element={<Types />} />
       </Routes>
     </BrowserRouter>
   );

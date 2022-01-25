@@ -27,30 +27,30 @@ export default function Pokemon() {
 
     return (
         <main className='pokedex'>
-            <ol className='pokedex_container'>
-                {loading ? (
-                    <BarWave width="40px" height="20px" color="#cc0000" />
-                ) : (
-                    pokemon.map((p) => (
-                    <li key={p.name} className='pokedex_container_inner'>
-                        <div className='pokedex_container_inner_image'>
-                            <img className='pokedex_container_inner_image_sprite' src={p.sprites.front_default} alt={p.name} loading="lazy" />
-                            <img className='pokedex_container_inner_image_shiny' src={p.sprites.front_shiny} alt={p.name} loading="lazy" />
-                        </div>
-                        <p>#{p.id.toString().padStart(3, '0')}</p>
-                        <h2>{p.name}</h2>
-                        <div id={p.types[0].type.name} className='pokedex_container_inner_types'>
-                            <img alt={p.types[0].type.name} />
-                            <span>{p.types[0].type.name}</span>
-                        </div>
-                        {(p.types.length === '2') 
-                            ? <div>{p.types[1].type.name}</div>
-                            : null
-                        }
-                    </li>
-                    ))
-                )}
-            </ol>
+            {loading ? (
+                <BarWave width="40px" height="20px" color="#cc0000" />
+            ) : (
+                <ol className='pokedex_container'>
+                    {pokemon.map((p) => (
+                        <li key={p.name} className='pokedex_container_inner'>
+                            <div className='pokedex_container_inner_image'>
+                                <img className='pokedex_container_inner_image_sprite' src={p.sprites.front_default} alt={p.name} loading="lazy" />
+                                <img className='pokedex_container_inner_image_shiny' src={p.sprites.front_shiny} alt={p.name} loading="lazy" />
+                            </div>
+                            <p>#{p.id.toString().padStart(3, '0')}</p>
+                            <h2>{p.name}</h2>
+                            <div id={p.types[0].type.name} className='pokedex_container_inner_types'>
+                                <img alt={p.types[0].type.name} />
+                                <span>{p.types[0].type.name}</span>
+                            </div>
+                            {(p.types.length === '2') 
+                                ? <div>{p.types[1].type.name}</div>
+                                : null
+                            }
+                        </li>
+                    ))}
+                </ol>
+            )}
         </main>
     )
 }

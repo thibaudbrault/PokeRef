@@ -29,33 +29,39 @@ export default function Abilities() {
 
     console.log(abilities);
 
-  return (
-    <>
-        <Header />
-        <Nav />
-        <main className='abilities'>
-            {loading ? (
-                <BarWave width="40px" height="20px" color="#cc0000" />
-            ) : (
-                <table className='abilities_table'>
-                    <thead className='abilities_table_head'>
-                        <tr className='abilities_table_head_row'>
-                            <th className='abilities_table_head_row_element'>Name</th>
-                            <th className='abilities_table_head_row_element'>Effect</th>
-                        </tr>
-                    </thead>
-                    <tbody className='abilities_table_body'>
-                            {abilities.map((a) => (
-                            <tr key={a.name} className='abilities_table_body_row'>
-                                <td className='abilities_table_body_row_name'>{a.name}</td>
-                                <td className='abilities_table_body_row_effect'>{a.id}</td>
+    return (
+        <>
+            <Header />
+            <Nav />
+            <main className='abilities'>
+                {loading ? (
+                    <BarWave width="40px" height="20px" color="#cc0000" />
+                ) : (
+                    <table className='abilities_table'>
+                        <thead className='abilities_table_head'>
+                            <tr className='abilities_table_head_row'>
+                                <th className='abilities_table_head_row_element'>Name</th>
+                                <th className='abilities_table_head_row_element'>Effect</th>
                             </tr>
-                            ))}
-                    </tbody>
-                </table>
-            )}
-        </main>
-        <Footer />
-    </>
-  )
+                        </thead>
+                        <tbody className='abilities_table_body'>
+                                {abilities.map((a) => (
+                                <tr key={a.name} className='abilities_table_body_row'>
+                                    <td className='abilities_table_body_row_name'>{a.name}</td>
+                                    <td className='abilities_table_body_row_effect'>
+                                        {a.flavor_text_entries[1].language === "en" ? (
+                                            <span>{a.flavor_text_entries[1].flavor_text}</span>
+                                            ) : (
+                                            null
+                                        )}
+                                    </td>
+                                </tr>
+                                ))}
+                        </tbody>
+                    </table>
+                )}
+            </main>
+            <Footer />
+        </>
+    )
 }
