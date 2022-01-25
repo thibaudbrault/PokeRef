@@ -240,6 +240,21 @@ main {
 
 /*css reset end*/
 
+/*td style start */
+
+td {
+	padding: 1.5rem;
+	font-size: 1.5rem;
+	border: 1px solid $dark;
+	border-collapse: collapse;
+	border-color: rgba(130, 130, 130, 0.2);
+	border-left: none;
+	border-right: none;
+	vertical-align: middle;
+}
+
+/*td style end*/
+
 /*dark theme start*/
 
 body {

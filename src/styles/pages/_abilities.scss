@@ -33,27 +33,15 @@
                     background: rgba(130, 130, 130, 0.2);
                 }
                 &_name {
-                    padding: 1.5rem;
-                    font-size: 1.5rem;
+                    font-size: 1.8rem;
                     font-weight: 700;
                     color: $red;
-                    border: 1px solid $dark;
-                    border-collapse: collapse;
-                    border-color: rgba(130, 130, 130, 0.2);
-                    border-left: none;
-                    border-right: none;
-                    vertical-align: middle;
                     cursor: pointer;
                 }
-                &_effect {
-                    padding: 1.5rem;
-                    font-size: 1.5rem;
-                    border: 1px solid $dark;
-                    border-collapse: collapse;
-                    border-color: rgba(130, 130, 130, 0.2);
-                    border-left: none;
-                    border-right: none;
-                    vertical-align: middle;
+                &_pokemon {
+                    p {
+                        padding: 0.5rem;
+                    }
                 }
             }
         }

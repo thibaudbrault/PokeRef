@@ -27,7 +27,25 @@ export default function Moves() {
         });
     }, []);
 
-    console.log(moves);
+    const [status, setStatus] = useState([]);
+
+    useEffect(() => {
+        setLoading(true);
+        axios
+        .get("https://pokeapi.co/api/v2/move-ailment?limit=22")
+        .then((res) => {
+            return res.data.results;
+        })
+        .then((results) => {
+            return Promise.all(results.map((res) => axios.get(res.url)));
+        })
+        .then((results) => {
+            setLoading(false);
+            setStatus(results.map((res) => res.data));
+        });
+    }, []);
+
+    console.log(status);
 
     return (
         <>
@@ -37,34 +55,58 @@ export default function Moves() {
                 {loading ? (
                 <BarWave width="40px" height="20px" color="#cc0000" />
                 ) : (
-                <table className='moves_table'>
-                    <thead className='moves_table_head'>
-                        <tr className='moves_table_head_row'>
-                            <th className='moves_table_head_row_element'>Name</th>
-                            <th className='moves_table_head_row_element'>Category</th>
-                            <th className='moves_table_head_row_element'>Type</th>
-                        </tr>
-                    </thead>
-                    <tbody className='moves_table_body'>
-                            {moves.map((m) => (
-                            <tr key={m.name} className='moves_table_body_row'>
-                                <td className='moves_table_body_row_name'>{m.name}</td>
-                                <td>
-                                    <div className='moves_table_body_row_category' id={m.damage_class.name}>
-                                        <img alt={m.damage_class.name} />
-                                        <span>{m.damage_class.name}</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className='moves_table_body_row_type' id={m.type.name}>
-                                        <img alt={m.type.name} />
-                                        <span>{m.type.name}</span>
-                                    </div>
-                                </td>
-                            </tr>
-                            ))}
-                    </tbody>
-                </table>
+                    <>
+                        <h2 className='moves_title'>Moves</h2>
+                        <table className='moves_table'>
+                            <thead className='moves_table_head'>
+                                <tr className='moves_table_head_row'>
+                                    <th className='moves_table_head_row_element'>Name</th>
+                                    <th className='moves_table_head_row_element'>Category</th>
+                                    <th className='moves_table_head_row_element'>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody className='moves_table_body'>
+                                    {moves.map((m) => (
+                                    <tr key={m.name} className='moves_table_body_row'>
+                                        <td className='moves_table_body_row_name'>{m.name}</td>
+                                        <td>
+                                            <div className='moves_table_body_row_category' id={m.damage_class.name}>
+                                                <img alt={m.damage_class.name} />
+                                                <span>{m.damage_class.name}</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div className='moves_table_body_row_type' id={m.type.name}>
+                                                <img alt={m.type.name} />
+                                                <span>{m.type.name}</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    ))}
+                            </tbody>
+                        </table>
+                        <h2 className='status_title'>Status</h2>
+                        <table className="status_table">
+                            <thead className='status_table_head'>
+                                <tr className='status_table_head_row'>
+                                    <th className='status_table_head_row_element'>Status</th>
+                                    <th className='status_table_head_row_element'>Moves</th>
+                                </tr>
+                            </thead>
+                            <tbody className='status_table_body'>
+                                {status.filter(s => s.name !== 'none') 
+                                    .map((s) => (
+                                        <tr key={s.name} className='status_table_body_row'>
+                                            <td className='status_table_body_row_name'>{s.name}</td>
+                                            <td className='status_table_body_row_moves'>{s.moves.map((sm) => (
+                                                <p>{sm.name}</p>
+                                            ))}</td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </>
                 )}
             </main>
             <Footer />

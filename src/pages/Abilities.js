@@ -48,12 +48,10 @@ export default function Abilities() {
                                 {abilities.map((a) => (
                                 <tr key={a.name} className='abilities_table_body_row'>
                                     <td className='abilities_table_body_row_name'>{a.name}</td>
-                                    <td className='abilities_table_body_row_effect'>
-                                        {a.flavor_text_entries[1].language === "en" ? (
-                                            <span>{a.flavor_text_entries[1].flavor_text}</span>
-                                            ) : (
-                                            null
-                                        )}
+                                    <td className='abilities_table_body_row_pokemon'>
+                                        {a.pokemon.map((ap) => (
+                                            <p>{ap.pokemon.name}</p>
+                                        ))}
                                     </td>
                                 </tr>
                                 ))}

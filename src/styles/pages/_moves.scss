@@ -2,6 +2,11 @@
     width: 90%;
     margin: 0 auto;
     padding: 5rem 0;
+    &_title {
+        margin-bottom: 2rem;
+        text-align: center;
+        font-size: 3rem;
+    }
     &_table {
         width: 100%;
         text-align: center;
@@ -32,17 +37,8 @@
                 &:hover {
                     background: rgba(130, 130, 130, 0.2);
                 }
-                td {
-                    padding: 1.5rem;
-                    font-size: 1.5rem;
-                    border: 1px solid $dark;
-                    border-collapse: collapse;
-                    border-color: rgba(130, 130, 130, 0.2);
-                    border-left: none;
-                    border-right: none;
-                    vertical-align: middle;
-                }
                 &_name {
+                    font-size: 1.8rem;
                     font-weight: 700;
                     color: $red;
                     cursor: pointer;
@@ -70,6 +66,56 @@
                     border: 1px solid rgba($color: #111111, $alpha: 0.2);
                     img {
                         width: 1.3rem;
+                    }
+                }
+            }
+        }
+    }
+    .status_title {
+        margin-top: 5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        font-size: 3rem;
+    }
+    .status_table {
+        width: 100%;
+        text-align: center;
+        border: 1px solid $dark;
+		border-collapse: collapse;
+		border-left: none;
+		border-right: none;
+		table-layout: fixed;
+        &_head {
+            background: rgba(130, 130, 130, 0.2);
+            &_row {
+                text-transform: capitalize;
+                &_element {
+                    padding: 1.5rem;
+                    border: 1px solid $dark;
+                    border-collapse: collapse;
+                    border-color: rgba(130, 130, 130, 0.2);
+                    font-weight: 700;
+                    font-size: 1.8rem;
+                    vertical-align: middle;
+                    cursor: pointer;
+                }
+            }
+        }
+        &_body {
+            &_row {
+                text-transform: capitalize;
+                &:hover {
+                    background: rgba(130, 130, 130, 0.2);
+                }
+                &_name {
+                    font-size: 1.8rem;
+                    font-weight: 700;
+                    color: $red;
+                }
+                &_moves {
+                    p {
+                        padding: 0.5rem;
+                        text-transform: capitalize;
                     }
                 }
             }
