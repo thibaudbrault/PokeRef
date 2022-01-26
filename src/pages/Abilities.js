@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 import BarWave from "react-cssfx-loading/lib/BarWave";
 
@@ -47,7 +48,14 @@ export default function Abilities() {
                         <tbody className='abilities_table_body'>
                                 {abilities.map((a) => (
                                 <tr key={a.name} className='abilities_table_body_row'>
-                                    <td className='abilities_table_body_row_name'>{a.name}</td>
+                                    <td className='abilities_table_body_row_name'>
+                                    <Link
+                                        to={`/moves/${a.name}`}
+                                        key={a.name}
+                                    >
+                                        {a.name}
+                                    </Link>
+                                    </td>
                                     <td className='abilities_table_body_row_pokemon'>
                                         {a.pokemon.map((ap) => (
                                             <p>{ap.pokemon.name}</p>

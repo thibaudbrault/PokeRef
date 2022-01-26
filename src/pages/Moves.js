@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from "react-cssfx-loading/lib/BarWave";
 
@@ -68,7 +69,14 @@ export default function Moves() {
                             <tbody className='moves_table_body'>
                                     {moves.map((m) => (
                                     <tr key={m.name} className='moves_table_body_row'>
-                                        <td className='moves_table_body_row_name'>{m.name}</td>
+                                        <td className='moves_table_body_row_name'>
+                                        <Link
+                                            to={`/moves/${m.name}`}
+                                            key={m.name}
+                                        >
+                                            {m.name}
+                                        </Link>
+                                        </td>
                                         <td>
                                             <div className='moves_table_body_row_category' id={m.damage_class.name}>
                                                 <img alt={m.damage_class.name} />
@@ -96,8 +104,15 @@ export default function Moves() {
                             <tbody className='status_table_body'>
                                 {status.filter(s => s.name !== 'none') 
                                     .map((s) => (
-                                        <tr key={s.name} className='status_table_body_row'>
-                                            <td className='status_table_body_row_name'>{s.name}</td>
+                                        <tr key={s.id} className='status_table_body_row'>
+                                            <td className='status_table_body_row_name'>
+                                                <Link
+                                                    to={`/moves/${s.name}`}
+                                                    key={s.name}
+                                                >
+                                                    {s.name}
+                                                </Link>
+                                            </td>
                                             <td className='status_table_body_row_moves'>{s.moves.map((sm) => (
                                                 <p>{sm.name}</p>
                                             ))}</td>

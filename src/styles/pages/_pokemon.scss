@@ -1,12 +1,8 @@
 .pokedex {
-    width: 75%;
-    margin: 0 auto;
-    padding: 5rem 0;
+    @include size-main-small;
     &_container {
-        display: flex;
+        @include flex;
         flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
         &_inner {
             width: 20rem;
             margin: 3rem;
@@ -47,9 +43,7 @@
             }
             &_types {
                 position: relative;
-				display: flex;
-				justify-content: center;
-				align-items: center;
+				@include flex;
 				padding: 0.5rem;
 				margin: 1rem auto;
 				border-radius: 5px;

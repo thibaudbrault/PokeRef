@@ -1,0 +1,15 @@
+.games {
+    @include size-main-big;
+    &_container {
+        display: flex;
+        flex-direction: column;
+        &_inner {
+            text-transform: capitalize;
+            h2 {
+                font-size: 2rem;
+                font-family: $font-game;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

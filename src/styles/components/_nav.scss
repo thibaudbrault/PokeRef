@@ -1,9 +1,7 @@
-/*nav start*/
-
 .nav {
 	&_inner {
-		width: 90%;
-		margin: 0 auto;
+		@include size-main-big;
+		padding: 0;
 		&_ul {
 			display: flex;
 			justify-content: space-around;
@@ -75,5 +73,3 @@
 		}
 	}
 }
-
-/*nav end*/

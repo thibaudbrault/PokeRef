@@ -16,6 +16,58 @@ $red: #cc0000;
 
 /*variables end*/
 
+/*mixin start*/
+
+@mixin flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@mixin size-main-big {
+	width: 90%;
+    margin: 0 auto;
+    padding: 5rem 0;
+}
+
+@mixin size-main-small {
+    width: 75%;
+    margin: 0 auto;
+    padding: 5rem 0;
+}
+
+@mixin table {
+	width: 100%;
+	text-align: center;
+	border: 1px solid $dark;
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+	table-layout: fixed;
+}
+
+@mixin head {
+	background: rgba(130, 130, 130, 0.2);
+	&_row {
+		text-transform: capitalize;
+	}
+}
+
+@mixin row {
+	text-transform: capitalize;
+	&:hover {
+		background: rgba(130, 130, 130, 0.2);
+	}
+}
+
+@mixin name {
+	font-size: 1.8rem;
+	font-weight: 700;
+	color: $red;
+}
+
+/*mixin end*/
+
 /*type styles start*/
 
 #normal {
@@ -241,6 +293,17 @@ main {
 /*css reset end*/
 
 /*td style start */
+
+th {
+	padding: 1.5rem;
+	border: 1px solid $dark;
+	border-collapse: collapse;
+	border-color: rgba(130, 130, 130, 0.2);
+	font-weight: 700;
+	font-size: 1.8rem;
+	vertical-align: middle;
+	cursor: pointer;
+}
 
 td {
 	padding: 1.5rem;

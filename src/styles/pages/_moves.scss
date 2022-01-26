@@ -1,52 +1,25 @@
 .moves {
-    width: 90%;
-    margin: 0 auto;
-    padding: 5rem 0;
+    @include size-main-big;
     &_title {
         margin-bottom: 2rem;
         text-align: center;
         font-size: 3rem;
+        font-family: $font-game
     }
     &_table {
-        width: 100%;
-        text-align: center;
-        border: 1px solid $dark;
-		border-collapse: collapse;
-		border-left: none;
-		border-right: none;
-		table-layout: fixed;
+        @include table;
         &_head {
-            background: rgba(130, 130, 130, 0.2);
-            &_row {
-                text-transform: capitalize;
-                &_element {
-                    padding: 1.5rem;
-                    border: 1px solid $dark;
-                    border-collapse: collapse;
-                    border-color: rgba(130, 130, 130, 0.2);
-                    font-weight: 700;
-                    font-size: 1.8rem;
-                    vertical-align: middle;
-                    cursor: pointer;
-                }
-            }
+            @include head;
         }
         &_body {
             &_row {
-                text-transform: capitalize;
-                &:hover {
-                    background: rgba(130, 130, 130, 0.2);
-                }
+                @include row;
                 &_name {
-                    font-size: 1.8rem;
-                    font-weight: 700;
-                    color: $red;
+                    @include name;
                     cursor: pointer;
                 }
                 &_category {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    @include flex;
                     img {
                         width: 2rem;
                     }
@@ -55,7 +28,7 @@
                     display: flex;
                     justify-content: space-around;
                     align-items: center;
-                    width: 10rem;
+                    width: 50%;
                     margin: 0 auto;
                     padding: 0.5rem 1rem;
                     border-radius: 5px;
@@ -65,7 +38,12 @@
                     color: #f3f3f3;
                     border: 1px solid rgba($color: #111111, $alpha: 0.2);
                     img {
-                        width: 1.3rem;
+                        width: 1.5rem;
+                    }
+                    span {
+                        font-family: $font-game;
+                        font-size: 1rem;
+                        padding-left: 0.5rem;
                     }
                 }
             }
@@ -76,41 +54,18 @@
         margin-bottom: 2rem;
         text-align: center;
         font-size: 3rem;
+        font-family: $font-game
     }
     .status_table {
-        width: 100%;
-        text-align: center;
-        border: 1px solid $dark;
-		border-collapse: collapse;
-		border-left: none;
-		border-right: none;
-		table-layout: fixed;
+        @include table;
         &_head {
-            background: rgba(130, 130, 130, 0.2);
-            &_row {
-                text-transform: capitalize;
-                &_element {
-                    padding: 1.5rem;
-                    border: 1px solid $dark;
-                    border-collapse: collapse;
-                    border-color: rgba(130, 130, 130, 0.2);
-                    font-weight: 700;
-                    font-size: 1.8rem;
-                    vertical-align: middle;
-                    cursor: pointer;
-                }
-            }
+            @include head;
         }
         &_body {
             &_row {
-                text-transform: capitalize;
-                &:hover {
-                    background: rgba(130, 130, 130, 0.2);
-                }
+                @include row;
                 &_name {
-                    font-size: 1.8rem;
-                    font-weight: 700;
-                    color: $red;
+                    @include name;
                 }
                 &_moves {
                     p {

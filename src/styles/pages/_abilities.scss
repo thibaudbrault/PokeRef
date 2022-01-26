@@ -1,41 +1,15 @@
 .abilities {
-    width: 90%;
-    margin: 0 auto;
-    padding: 5rem 0;
+    @include size-main-big;
     &_table {
-        width: 100%;
-        text-align: center;
-        border: 1px solid $dark;
-		border-collapse: collapse;
-		border-left: none;
-		border-right: none;
-		table-layout: fixed;
+        @include table;
         &_head {
-            background: rgba(130, 130, 130, 0.2);
-            &_row {
-                text-transform: capitalize;
-                &_element {
-                    padding: 1.5rem;
-                    border: 1px solid $dark;
-                    border-collapse: collapse;
-                    border-color: rgba(130, 130, 130, 0.2);
-                    font-weight: 700;
-                    font-size: 1.8rem;
-                    vertical-align: middle;
-                    cursor: pointer;
-                }
-            }
+            @include head;
         }
         &_body {
             &_row {
-                text-transform: capitalize;
-                &:hover {
-                    background: rgba(130, 130, 130, 0.2);
-                }
+                @include row;
                 &_name {
-                    font-size: 1.8rem;
-                    font-weight: 700;
-                    color: $red;
+                    @include name;
                     cursor: pointer;
                 }
                 &_pokemon {
