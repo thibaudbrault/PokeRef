@@ -31,7 +31,6 @@ export default function Moves() {
     const [status, setStatus] = useState([]);
 
     useEffect(() => {
-        setLoading(true);
         axios
         .get("https://pokeapi.co/api/v2/move-ailment?limit=22")
         .then((res) => {
@@ -41,7 +40,6 @@ export default function Moves() {
             return Promise.all(results.map((res) => axios.get(res.url)));
         })
         .then((results) => {
-            setLoading(false);
             setStatus(results.map((res) => res.data));
         });
     }, []);

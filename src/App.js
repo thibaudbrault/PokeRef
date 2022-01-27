@@ -7,7 +7,6 @@ import Abilities from './pages/Abilities';
 import Types from './pages/Types';
 import Items from './pages/Items';
 import Locations from './pages/Locations';
-import Games from './pages/Games';
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
         <Route path="/types" element={<Types />} />
         <Route path="/items" element={<Items />} />
         <Route path="/locations" element={<Locations />} />
-        <Route path="/games" element={<Games />} />
       </Routes>
     </BrowserRouter>
   );

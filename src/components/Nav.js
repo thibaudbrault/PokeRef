@@ -67,16 +67,6 @@ export default function Nav() {
                             Locations
                         </NavLink>
                     </li>
-                    <li className="nav_inner_ul_li">
-                        <NavLink className="nav_inner_ul_li_link" to="/games"
-                            style={({ isActive }) => {
-                                return {
-                                    color: isActive ? "#cc0000" : ""
-                                };
-                            }}>
-                            Games
-                        </NavLink>
-                    </li>
                 </ul>
             </div>
         </nav>
