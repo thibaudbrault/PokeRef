@@ -33,7 +33,7 @@ export default function Pokemon() {
 
     useEffect(() => {
         axios
-        .get("https://pokeapi.co/api/v2/pokemon?limit=135&offset=251")
+        .get("https://pokeapi.co/api/v2/pokemon?limit=100&offset=151")
         .then((res) => {
             return res.data.results;
         })
@@ -153,7 +153,7 @@ export default function Pokemon() {
 
     useEffect(() => {
         axios
-        .get("https://pokeapi.co/api/v2/pokemon?limit=180&offset=809")
+        .get("https://pokeapi.co/api/v2/pokemon?limit=89&offset=809")
         .then((res) => {
             return res.data.results;
         })
@@ -184,7 +184,7 @@ export default function Pokemon() {
                                             <img className='pokedex_container_inner_image_shiny' src={p1.sprites.front_shiny} alt={p1.name} loading="lazy" />
                                         </div>
                                         <p>#{p1.id.toString().padStart(3, '0')}</p>
-                                        <h2>{p1.name}</h2>
+                                        <h2>{p1.name.replace(/-/g, ' ')}</h2>
                                         <div className="pokedex_container_inner_types">
                                             {p1.types.map((pt) => (
                                                 <div id={pt.type.name} className='pokedex_container_inner_types_element'>
@@ -208,7 +208,7 @@ export default function Pokemon() {
                                             <img className='pokedex_container_inner_image_shiny' src={p2.sprites.front_shiny} alt={p2.name} loading="lazy" />
                                         </div>
                                         <p>#{p2.id.toString().padStart(3, '0')}</p>
-                                        <h2>{p2.name}</h2>
+                                        <h2>{p2.name.replace(/-/g, ' ')}</h2>
                                         <div className="pokedex_container_inner_types">
                                             {p2.types.map((pt) => (
                                                 <div id={pt.type.name} className='pokedex_container_inner_types_element'>
@@ -232,7 +232,7 @@ export default function Pokemon() {
                                             <img className='pokedex_container_inner_image_shiny' src={p3.sprites.front_shiny} alt={p3.name} loading="lazy" />
                                         </div>
                                         <p>#{p3.id.toString().padStart(3, '0')}</p>
-                                        <h2>{p3.name}</h2>
+                                        <h2>{p3.name.replace(/-/g, ' ')}</h2>
                                         <div className="pokedex_container_inner_types">
                                             {p3.types.map((pt) => (
                                                 <div id={pt.type.name} className='pokedex_container_inner_types_element'>
@@ -256,7 +256,7 @@ export default function Pokemon() {
                                             <img className='pokedex_container_inner_image_shiny' src={p4.sprites.front_shiny} alt={p4.name} loading="lazy" />
                                         </div>
                                         <p>#{p4.id.toString().padStart(3, '0')}</p>
-                                        <h2>{p4.name}</h2>
+                                        <h2>{p4.name.replace(/-/g, ' ')}</h2>
                                         <div className="pokedex_container_inner_types">
                                             {p4.types.map((pt) => (
                                                 <div id={pt.type.name} className='pokedex_container_inner_types_element'>
@@ -280,7 +280,7 @@ export default function Pokemon() {
                                             <img className='pokedex_container_inner_image_shiny' src={p5.sprites.front_shiny} alt={p5.name} loading="lazy" />
                                         </div>
                                         <p>#{p5.id.toString().padStart(3, '0')}</p>
-                                        <h2>{p5.name}</h2>
+                                        <h2>{p5.name.replace(/-/g, ' ')}</h2>
                                         <div className="pokedex_container_inner_types">
                                             {p5.types.map((pt) => (
                                                 <div id={pt.type.name} className='pokedex_container_inner_types_element'>
@@ -304,7 +304,7 @@ export default function Pokemon() {
                                             <img className='pokedex_container_inner_image_shiny' src={p6.sprites.front_shiny} alt={p6.name} loading="lazy" />
                                         </div>
                                         <p>#{p6.id.toString().padStart(3, '0')}</p>
-                                        <h2>{p6.name}</h2>
+                                        <h2>{p6.name.replace(/-/g, ' ')}</h2>
                                         <div className="pokedex_container_inner_types">
                                             {p6.types.map((pt) => (
                                                 <div id={pt.type.name} className='pokedex_container_inner_types_element'>
@@ -328,7 +328,7 @@ export default function Pokemon() {
                                             <img className='pokedex_container_inner_image_shiny' src={p7.sprites.front_shiny} alt={p7.name} loading="lazy" />
                                         </div>
                                         <p>#{p7.id.toString().padStart(3, '0')}</p>
-                                        <h2>{p7.name}</h2>
+                                        <h2>{p7.name.replace(/-/g, ' ')}</h2>
                                         <div className="pokedex_container_inner_types">
                                             {p7.types.map((pt) => (
                                                 <div id={pt.type.name} className='pokedex_container_inner_types_element'>
@@ -352,7 +352,7 @@ export default function Pokemon() {
                                             <img className='pokedex_container_inner_image_shiny' src={p8.sprites.front_shiny} alt={p8.name} loading="lazy" />
                                         </div>
                                         <p>#{p8.id.toString().padStart(3, '0')}</p>
-                                        <h2>{p8.name}</h2>
+                                        <h2>{p8.name.replace(/-/g, ' ')}</h2>
                                         <div className="pokedex_container_inner_types">
                                             {p8.types.map((pt) => (
                                                 <div id={pt.type.name} className='pokedex_container_inner_types_element'>

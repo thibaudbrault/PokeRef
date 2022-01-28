@@ -1,0 +1,19 @@
+.locations {
+    @include size-main-big;
+    &_title {
+        @include title;
+    }
+    &_container {
+        padding: 5rem 0;
+        &_inner {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            p {
+                align-self: center;
+	            font-size: 1.5rem;
+                text-transform: capitalize;
+            }
+        }
+    }
+}

@@ -27,8 +27,6 @@ export default function Types() {
         });
     }, []);
 
-    console.log(types);
-
     return (
         <>
             <Header />

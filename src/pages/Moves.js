@@ -44,8 +44,6 @@ export default function Moves() {
         });
     }, []);
 
-    console.log(status);
-
     return (
         <>
             <Header />
@@ -65,14 +63,14 @@ export default function Moves() {
                                 </tr>
                             </thead>
                             <tbody className='moves_table_body'>
-                                    {moves.map((m) => (
+                                    {moves.sort((a, b) => a.name.localeCompare(b.name)).map((m) => (
                                     <tr key={m.name} className='moves_table_body_row'>
                                         <td className='moves_table_body_row_name'>
                                         <Link
                                             to={`/moves/${m.name}`}
                                             key={m.name}
                                         >
-                                            {m.name}
+                                            {m.name.replace(/-/g, ' ')}
                                         </Link>
                                         </td>
                                         <td>
@@ -101,14 +99,14 @@ export default function Moves() {
                             </thead>
                             <tbody className='status_table_body'>
                                 {status.filter(s => s.name !== 'none') 
-                                    .map((s) => (
+                                    .sort((a, b) => a.name.localeCompare(b.name)).map((s) => (
                                         <tr key={s.id} className='status_table_body_row'>
                                             <td className='status_table_body_row_name'>
                                                 <Link
                                                     to={`/moves/${s.name}`}
                                                     key={s.name}
                                                 >
-                                                    {s.name}
+                                                    {s.name.replace(/-/g, ' ')}
                                                 </Link>
                                             </td>
                                             <td className='status_table_body_row_moves'>{s.moves.map((sm) => (

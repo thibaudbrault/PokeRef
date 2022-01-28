@@ -28,8 +28,6 @@ export default function Abilities() {
         });
     }, []);
 
-    console.log(abilities);
-
     return (
         <>
             <Header />
@@ -46,14 +44,14 @@ export default function Abilities() {
                             </tr>
                         </thead>
                         <tbody className='abilities_table_body'>
-                                {abilities.map((a) => (
+                                {abilities.sort((a, b) => a.name.localeCompare(b.name)).map((a) => (
                                 <tr key={a.name} className='abilities_table_body_row'>
                                     <td className='abilities_table_body_row_name'>
                                     <Link
                                         to={`/moves/${a.name}`}
                                         key={a.name}
                                     >
-                                        {a.name}
+                                        {a.name.replace(/-/g, ' ')}
                                     </Link>
                                     </td>
                                     <td className='abilities_table_body_row_pokemon'>

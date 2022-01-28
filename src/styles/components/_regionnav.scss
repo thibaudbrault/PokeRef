@@ -1,0 +1,10 @@
+.regionnav {
+    @include size-main-big;
+    padding: 3rem 0 0;
+    &_container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 1.5rem;
+    }
+}

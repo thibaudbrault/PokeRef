@@ -1,0 +1,34 @@
+.items {
+    @include size-main-big;
+    &_title {
+        @include title;
+    }
+    &_container {
+        padding: 5rem 0;
+    }
+    &_table {
+        @include table;
+        &_head {
+            @include head;
+        }
+        &_body {
+            &_row {
+                @include row;
+                &_name {
+                    @include name;
+                    display: table-cell;
+                    cursor: pointer;
+                    &_inner {
+                        @include flex;
+                        span {
+                            padding-left: 0.5rem;
+                        }
+                    }
+                }
+                &_effect {
+                    text-transform: none;
+                }
+            }
+        }
+    }
+}
