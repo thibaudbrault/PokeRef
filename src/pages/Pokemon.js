@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from "react-cssfx-loading/lib/BarWave";
 
-export default function Pokemon() {
+function Pokemon() {
 
     // gen 1 start
 
@@ -175,7 +176,7 @@ export default function Pokemon() {
                 ) : (
                     <>
                         <div className="pokedex_generation" id='gen1'>
-                        <h2 className="pokedex_title">Generation 1</h2>
+                            <h2 className="pokedex_title">Generation 1</h2>
                             <ol className='pokedex_container'>
                                 {pokemon1.map((p1) => (
                                     <li key={p1.name} className='pokedex_container_inner'>
@@ -371,3 +372,5 @@ export default function Pokemon() {
         </>
     )
 }
+
+export default Pokemon;

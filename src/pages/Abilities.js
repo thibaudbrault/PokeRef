@@ -28,6 +28,8 @@ export default function Abilities() {
         });
     }, []);
 
+    console.log(abilities);
+
     return (
         <>
             <Header />
@@ -48,16 +50,14 @@ export default function Abilities() {
                                 <tr key={a.name} className='abilities_table_body_row'>
                                     <td className='abilities_table_body_row_name'>
                                     <Link
-                                        to={`/moves/${a.name}`}
+                                        to={`/abilities/${a.name}`}
                                         key={a.name}
                                     >
                                         {a.name.replace(/-/g, ' ')}
                                     </Link>
                                     </td>
                                     <td className='abilities_table_body_row_pokemon'>
-                                        {a.pokemon.map((ap) => (
-                                            <p>{ap.pokemon.name}</p>
-                                        ))}
+                                        {a?.flavor_text_entries?.[1]?.flavor_text ?? ""}
                                     </td>
                                 </tr>
                                 ))}

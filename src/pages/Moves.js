@@ -7,7 +7,7 @@ import Header from '../components/Header';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 
-export default function Moves() {
+function Moves() {
 
     const [moves, setMoves] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -124,3 +124,5 @@ export default function Moves() {
         </>
     )
 }
+
+export default Moves;

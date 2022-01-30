@@ -1,0 +1,7 @@
+.ability {
+    @include size-main-small;
+    &_title {
+        @include title;
+        font-size: 2.5rem;
+    }
+}
