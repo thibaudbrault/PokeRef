@@ -45,6 +45,12 @@ $red: #cc0000;
 	text-shadow: rgb(22, 22, 22) -1px -1px 0px, rgb(22, 22, 22) 1px -1px 0px, rgb(22, 22, 22) -1px 1px 0px, rgb(22, 22, 22) 1px 1px 0px;
 }
 
+@mixin subtitle {
+	font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
 @mixin type {
 	border-radius: 5px;
 	text-transform: uppercase;
@@ -201,7 +207,7 @@ $red: #cc0000;
 }
 
 #steel {
-	background-color: #5a8ea2;
+	background-color: #7d879a;
 	img {
 		content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/steel.png);
 	}

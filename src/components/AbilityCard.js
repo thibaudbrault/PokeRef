@@ -69,9 +69,7 @@ const AbilityCard = () => {
                                                     <td className='ability_table_body_row_abilities'>aaaaaaaaaaa</td>
                                                 </tr>
                                             ) : (
-                                                <tr className='ability_error'>
-                                                    <td colSpan={3}>No pokemon has <span>{ability?.name?.replace(/-/g, ' ')?? ""}</span></td>
-                                                </tr>
+                                                null
                                             )
                                         )}
                                     </tbody>
@@ -104,9 +102,7 @@ const AbilityCard = () => {
                                                     <td className='ability_table_body_row_ability'>aaaaaaaaaaa</td>
                                                 </tr>
                                             ) : (
-                                                <tr className='ability_error'>
-                                                    <td colSpan={3}>No pokemon has <span>{ability?.name?.replace(/-/g, ' ')?? ""}</span> as a hidden ability</td>
-                                                </tr>
+                                                null
                                             )
                                         )}
                                     </tbody>

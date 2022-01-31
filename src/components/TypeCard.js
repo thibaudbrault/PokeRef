@@ -29,6 +29,26 @@ const TypeCard = () => {
 
     console.log(type);
 
+    const [pokemon, setPokemon] = useState([]);
+
+    useEffect(() => {
+        setLoading(true);
+        axios
+        .get("https://pokeapi.co/api/v2/pokemon?limit=2000")
+        .then((res) => {
+            return res.data.results;
+        })
+        .then((results) => {
+            return Promise.all(results.map((res) => axios.get(res.url)));
+        })
+        .then((results) => {
+            setLoading(false);
+            setPokemon(results.map((res) => res.data));
+        });
+    }, []);
+
+    const nbPokemon = type?.pokemon?.length;
+
     return (
         <>
             <Header />
@@ -39,6 +59,21 @@ const TypeCard = () => {
                 ) : (
                     <>
                         <h2 className='type_title'>{type.name}</h2>
+                        <h3 className='type_subtitle'>{nbPokemon} Pokémon are <span>{type.name}</span> type</h3>
+                        <div className="type_pokemon">
+                            {type?.pokemon?.map((tp) => (
+                                <div className='type_pokemon_inner'>
+                                    {pokemon?.map((p) =>
+                                        p.name === tp.pokemon.name ? (
+                                            <img className='type_pokemon_inner_img' src={p.sprites.front_default} alt={pokemon.name} loading="lazy" />
+                                        ) :(
+                                            null
+                                        )
+                                    )}
+                                    <p className='type_pokemon_inner_name'>{tp.pokemon.name}</p>
+                                </div>
+                            ))}
+                        </div>
                         <button onClick={() => navigate("/types")}>Go back</button>
                     </>
                 )}

@@ -5,6 +5,11 @@
     }
     &_title {
         @include title;
+        margin-bottom: 0.5rem
+    }
+    &_subtitle {
+        @include subtitle;
+        margin-bottom: 2rem;
     }
     &_container {
         @include flex;

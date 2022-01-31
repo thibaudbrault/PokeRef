@@ -3,4 +3,45 @@
     &_title {
         @include title;
     }
+    &_subtitle {
+        @include subtitle;
+        text-transform: none;
+    }
+    &_pokemon {
+        @include flex;
+        flex-wrap: wrap;
+        &_inner {
+            width: 14rem;
+            height: 21rem;
+            margin: 3rem;
+            padding: 2rem 3rem;
+            @include flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.4);
+			border-radius: 10px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: 0.3s ease-in-out;
+            &_img {
+                width: 96px;
+                height: 96px;
+                margin: 0 auto;
+            }
+            &_name {
+                font-size: 1.5rem;
+                font-weight: 700;
+                transition: 0.3s ease-in-out;
+            }
+            &:hover {
+                border: 1px solid $red;
+            }
+            &:hover > &_name {
+                color: $red;
+            }
+        }
+    }
+}
+
+span, p {
+    text-transform: capitalize;
 }

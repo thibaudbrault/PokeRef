@@ -5,9 +5,7 @@
         margin-bottom: 0.5rem;
     }
     &_gen {
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        letter-spacing: 0.2rem;
+        @include subtitle;
     }
     &_container {
         &_inner {
@@ -31,12 +29,6 @@
                     @include name;
                     cursor: pointer;
                 }
-            }
-        }
-        .ability_error {
-            display: none;
-            &:first-child {
-                display: table-row;
             }
         }
     }

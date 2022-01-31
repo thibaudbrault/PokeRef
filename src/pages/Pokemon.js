@@ -168,6 +168,15 @@ function Pokemon() {
 
     // gen 8 end
 
+    const nbPokemon1 = pokemon1.length;
+    const nbPokemon2 = pokemon2.length;
+    const nbPokemon3 = pokemon3.length;
+    const nbPokemon4 = pokemon4.length;
+    const nbPokemon5 = pokemon5.length;
+    const nbPokemon6 = pokemon6.length;
+    const nbPokemon7 = pokemon7.length;
+    const nbPokemon8 = pokemon8.length;
+
     return (
         <>
             <main className='pokedex'>
@@ -177,6 +186,7 @@ function Pokemon() {
                     <>
                         <div className="pokedex_generation" id='gen1'>
                             <h2 className="pokedex_title">Generation 1</h2>
+                            <h3 className='pokedex_subtitle'>{nbPokemon1} Pokémon</h3>
                             <ol className='pokedex_container'>
                                 {pokemon1.map((p1) => (
                                     <li key={p1.name} className='pokedex_container_inner'>
@@ -201,6 +211,7 @@ function Pokemon() {
 
                         <div className="pokedex_generation" id='gen2'>
                             <h2 className="pokedex_title">Generation 2</h2>
+                            <h3 className='pokedex_subtitle'>{nbPokemon2} Pokémon</h3>
                             <ol className='pokedex_container'>
                                 {pokemon2.map((p2) => (
                                     <li key={p2.name} className='pokedex_container_inner'>
@@ -225,6 +236,7 @@ function Pokemon() {
                         
                         <div className="pokedex_generation" id='gen3'>
                             <h2 className="pokedex_title">Generation 3</h2>
+                            <h3 className='pokedex_subtitle'>{nbPokemon3} Pokémon</h3>
                             <ol className='pokedex_container'>
                                 {pokemon3.map((p3) => (
                                     <li key={p3.name} className='pokedex_container_inner'>
@@ -249,6 +261,7 @@ function Pokemon() {
 
                         <div className="pokedex_generation" id='gen4'>
                             <h2 className="pokedex_title">Generation 4</h2>
+                            <h3 className='pokedex_subtitle'>{nbPokemon4} Pokémon</h3>
                             <ol className='pokedex_container'>
                                 {pokemon4.map((p4) => (
                                     <li key={p4.name} className='pokedex_container_inner'>
@@ -273,6 +286,7 @@ function Pokemon() {
 
                         <div className="pokedex_generation" id='gen5'>
                             <h2 className="pokedex_title">Generation 5</h2>
+                            <h3 className='pokedex_subtitle'>{nbPokemon5} Pokémon</h3>
                             <ol className='pokedex_container'>
                                 {pokemon5.map((p5) => (
                                     <li key={p5.name} className='pokedex_container_inner'>
@@ -297,6 +311,7 @@ function Pokemon() {
 
                         <div className="pokedex_generation" id='gen6'>
                             <h2 className="pokedex_title">Generation 6</h2>
+                            <h3 className='pokedex_subtitle'>{nbPokemon6} Pokémon</h3>
                             <ol className='pokedex_container'>
                                 {pokemon6.map((p6) => (
                                     <li key={p6.name} className='pokedex_container_inner'>
@@ -321,6 +336,7 @@ function Pokemon() {
 
                         <div className="pokedex_generation" id='gen7'>
                             <h2 className="pokedex_title">Generation 7</h2>
+                            <h3 className='pokedex_subtitle'>{nbPokemon7} Pokémon</h3>
                             <ol className='pokedex_container'>
                                 {pokemon7.map((p7) => (
                                     <li key={p7.name} className='pokedex_container_inner'>
@@ -345,6 +361,7 @@ function Pokemon() {
 
                         <div className="pokedex_generation" id='gen8'>
                             <h2 className="pokedex_title">Generation 8</h2>
+                            <h3 className='pokedex_subtitle'>{nbPokemon8} Pokémon</h3>
                             <ol className='pokedex_container'>
                                 {pokemon8.map((p8) => (
                                     <li key={p8.name} className='pokedex_container_inner'>
