@@ -60,6 +60,7 @@ function Moves() {
                                     <th className='moves_table_head_row_element'>Name</th>
                                     <th className='moves_table_head_row_element'>Category</th>
                                     <th className='moves_table_head_row_element'>Type</th>
+                                    <th className='moves_table_head_row_element'>Effect</th>
                                 </tr>
                             </thead>
                             <tbody className='moves_table_body'>
@@ -85,10 +86,22 @@ function Moves() {
                                                 <span>{m.type.name}</span>
                                             </div>
                                         </td>
+                                        <td className='moves_table_body_row_effect'>
+                                            {m?.flavor_text_entries?.map((mf) => 
+                                                mf.language.name === 'en' && mf.flavor_text !== 'Dummy Data' ? (
+                                                    <span>
+                                                        {mf.flavor_text}
+                                                    </span>
+                                                ) : (
+                                                    null
+                                                )
+                                            )}
+                                        </td>
                                     </tr>
                                     ))}
                             </tbody>
                         </table>
+
                         <h2 className='status_title'>Status</h2>
                         <table className="status_table">
                             <thead className='status_table_head'>
@@ -102,16 +115,17 @@ function Moves() {
                                     .sort((a, b) => a.name.localeCompare(b.name)).map((s) => (
                                         <tr key={s.id} className='status_table_body_row'>
                                             <td className='status_table_body_row_name'>
-                                                <Link
-                                                    to={`/moves/${s.name}`}
-                                                    key={s.name}
-                                                >
-                                                    {s.name.replace(/-/g, ' ')}
-                                                </Link>
+                                                {s.name.replace(/-/g, ' ')}
                                             </td>
-                                            <td className='status_table_body_row_moves'>{s.moves.map((sm) => (
-                                                <p>{sm.name}</p>
-                                            ))}</td>
+                                            <td className='status_table_body_row_moves'>
+                                                {s.moves.map((sm) => (
+                                                    <Link
+                                                    to={`/moves/${moves.name}`}
+                                                    className='status_table_body_row_moves_link'
+                                                    >
+                                                        {sm.name.replace(/-/g, ' ')}
+                                                    </Link>
+                                                ))}</td>
                                         </tr>
                                     ))
                                 }

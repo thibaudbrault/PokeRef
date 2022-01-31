@@ -12,9 +12,13 @@
                     @include name;
                     cursor: pointer;
                 }
-                &_pokemon {
-                    p {
-                        padding: 0.5rem;
+                &_effect {
+                    text-align: center;
+                    span {
+                        display: none;
+                        &:first-child {
+                            display: inline;
+                        }
                     }
                 }
             }

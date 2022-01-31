@@ -19,7 +19,7 @@ const PokemonCard = props => {
             setLoading(false);
             setPokemon(results);
         });
-    }, []);
+    }, [name]);
 
     console.log(pokemon);
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from "react-cssfx-loading/lib/BarWave";
 
@@ -27,6 +28,8 @@ export default function Types() {
         });
     }, []);
 
+    console.log(types);
+
     return (
         <>
             <Header />
@@ -38,10 +41,13 @@ export default function Types() {
                     <ul className='types_container'>
                         {types.map((t) => (
                             <li id={t.name} key={t.name} className='types_container_element'>
-                                <a href="/types">
+                                <Link
+                                    to={`/types/${t.name}`}
+                                    key={t.name}
+                                >
                                     <img alt={t.name} />
                                     <h2>{t.name}</h2>
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>

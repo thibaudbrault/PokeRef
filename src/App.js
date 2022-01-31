@@ -10,6 +10,7 @@ import Locations from './pages/Locations';
 
 import MoveCard from './components/MoveCard';
 import AbilityCard from './components/AbilityCard';
+import TypeCard from './components/TypeCard';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/abilities" element={<Abilities />} />
         <Route path="/abilities/:name" element={<AbilityCard />} />
         <Route path="/types" element={<Types />} />
+        <Route path ="/types/:name" element={<TypeCard />} />
         <Route path="/items" element={<Items />} />
         <Route path="/locations" element={<Locations />} />
       </Routes>

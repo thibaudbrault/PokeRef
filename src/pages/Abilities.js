@@ -56,8 +56,16 @@ export default function Abilities() {
                                         {a.name.replace(/-/g, ' ')}
                                     </Link>
                                     </td>
-                                    <td className='abilities_table_body_row_pokemon'>
-                                        {a?.flavor_text_entries?.[1]?.flavor_text ?? ""}
+                                    <td className='abilities_table_body_row_effect'>
+                                        {a?.flavor_text_entries?.map((af) => 
+                                            af.language.name === 'en' ? (
+                                                <span>
+                                                    {af.flavor_text}
+                                                </span>
+                                            ) : (
+                                                null
+                                            )
+                                        )}
                                     </td>
                                 </tr>
                                 ))}

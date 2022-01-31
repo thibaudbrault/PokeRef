@@ -1,7 +1,47 @@
 .ability {
-    @include size-main-small;
+    @include size-main-big;
     &_title {
         @include title;
-        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
     }
+    &_gen {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+    }
+    &_container {
+        &_inner {
+            padding: 5rem 0;
+            h3 {
+                padding-bottom: 1rem;
+                font-size: 2rem;
+                font-weight: 700;
+            }
+        }
+    }
+    &_table {
+        @include table;
+        &_head {
+            @include head;
+        }
+        &_body {
+            &_row {
+                @include row;
+                &_name {
+                    @include name;
+                    cursor: pointer;
+                }
+            }
+        }
+        .ability_error {
+            display: none;
+            &:first-child {
+                display: table-row;
+            }
+        }
+    }
+}
+
+span {
+    text-transform: capitalize
 }

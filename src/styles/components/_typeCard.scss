@@ -1,0 +1,6 @@
+.type {
+    @include size-main-big;
+    &_title {
+        @include title;
+    }
+}
