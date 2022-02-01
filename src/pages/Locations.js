@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import BarWave from "react-cssfx-loading/lib/BarWave";
+import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import Header from '../components/Header';
 import Nav from '../components/Nav';
@@ -16,7 +16,7 @@ export default function Locations() {
     useEffect(() => {
         setLoading(true);
         axios
-        .get("https://pokeapi.co/api/v2/region?limit=7")
+        .get('https://pokeapi.co/api/v2/region?limit=7')
         .then((res) => {
             return res.data.results;
         })
@@ -34,14 +34,14 @@ export default function Locations() {
             <Header />
             <Nav />
             <RegionNav />
-            <main className="locations">
+            <main className='locations'>
             {loading ? (
-                    <BarWave width="40px" height="20px" color="#cc0000" />
+                    <BarWave width='40px' height='20px' color='#cc0000' />
                     ) : (
                     locations.map((l) => (
                         <div className='locations_container' id={l.name}>
                             <h2 className='locations_title'>{l.name}</h2>
-                            <div className="locations_container_inner">
+                            <div className='locations_container_inner'>
                                 {l.locations.sort((a, b) => a.name.localeCompare(b.name)).map((ln) => (
                                     <p>{ln.name.replace(/-/g, ' ')}</p>
                                 ))}

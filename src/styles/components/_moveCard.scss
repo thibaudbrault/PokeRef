@@ -1,0 +1,60 @@
+.move {
+    @include size-main-big;
+    &_title {
+        @include title;
+        margin-bottom: 5rem;
+    }
+    &_container {
+
+    }
+    &_table {
+        @include table;
+        width: 75%;
+        margin: 0.5rem auto 5rem;
+        &_row {
+            &_head {
+                width: 33%;
+                background: rgba(130, 130, 130, 0.2);
+                font-size: 1.8rem;
+                font-weight: 700;
+            }
+            &_element {
+                text-align: center;
+                text-transform: capitalize;
+                &_type {
+                    display: inline;
+                    padding: 0.5rem 1.5rem;
+                    border-radius: 5px;
+                    img {
+                        height: 2rem;
+                        vertical-align: middle;
+                    }
+                    span {
+                        padding-left: 0.5rem;
+                        font-size: 1.5rem;
+                        font-family: $font-game;
+                        vertical-align: middle;
+                    }
+                }
+                &_category {
+                    display: inline;
+                    padding: 0.5rem 1.5rem;
+                    border-radius: 5px;
+                    img {
+                        height: 2.5rem;
+                        vertical-align: middle;
+                    }
+                    span {
+                        padding-left: 0.5rem;
+                        font-size: 1.5rem;
+                        font-family: $font-game;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+    }
+    &_button {
+        @include button;
+    }
+}

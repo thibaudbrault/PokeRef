@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import BarWave from "react-cssfx-loading/lib/BarWave";
+import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import Header from '../components/Header';
 import Nav from '../components/Nav';
@@ -15,7 +15,7 @@ export default function Types() {
     useEffect(() => {
         setLoading(true);
         axios
-        .get("https://pokeapi.co/api/v2/type?limit=18")
+        .get('https://pokeapi.co/api/v2/type?limit=18')
         .then((res) => {
             return res.data.results;
         })
@@ -36,7 +36,7 @@ export default function Types() {
             <Nav />
             <main className='types'>
                 {loading ? (
-                    <BarWave width="40px" height="20px" color="#cc0000" />
+                    <BarWave width='40px' height='20px' color='#cc0000' />
                     ) : (
                     <ul className='types_container'>
                         {types.sort((a, b) => a.name.localeCompare(b.name)).map((t) => (

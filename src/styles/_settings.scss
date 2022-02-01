@@ -90,6 +90,23 @@ $red: #cc0000;
 	color: $red;
 }
 
+@mixin button {
+	padding: 1rem 1.5rem;
+	font-size: 1.5rem;
+	font-weight: 700;
+	background: none;
+	color: $dark;
+	border: 1px solid $dark;
+	border-radius: 5px;
+	transition: 0.3s ease-in-out;
+	cursor: pointer;
+	&:hover {
+		background: $dark;
+		color: $light;
+		border: 1px solid $light;
+	}
+}
+
 /*mixin end*/
 
 /*type styles start*/
@@ -372,7 +389,7 @@ body {
 	.footer {
 		color: $dark;
 	}
-	.moves_title, .status_title, .pokedex_title, .ability_title {
+	.moves_title, .status_title, .pokedex_title, .ability_title, .type_title, .move_title {
 		color: $dark;
 		text-shadow: $light -1px -1px 0px, $light 1px -1px 0px, $light -1px 1px 0px, $light 1px 1px 0px;
 	}

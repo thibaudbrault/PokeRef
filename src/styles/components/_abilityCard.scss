@@ -8,14 +8,12 @@
         @include subtitle;
     }
     &_container {
-        &_inner {
-            padding: 5rem 0;
-            h3 {
+        padding: 5rem 0;
+            &_subtitle {
                 padding-bottom: 1rem;
                 font-size: 2rem;
                 font-weight: 700;
             }
-        }
     }
     &_table {
         @include table;

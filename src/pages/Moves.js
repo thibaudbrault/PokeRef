@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import BarWave from "react-cssfx-loading/lib/BarWave";
+import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import Header from '../components/Header';
 import Nav from '../components/Nav';
@@ -15,7 +15,7 @@ function Moves() {
     useEffect(() => {
         setLoading(true);
         axios
-        .get("https://pokeapi.co/api/v2/move?limit=826")
+        .get('https://pokeapi.co/api/v2/move?limit=826')
         .then((res) => {
             return res.data.results;
         })
@@ -32,7 +32,7 @@ function Moves() {
 
     useEffect(() => {
         axios
-        .get("https://pokeapi.co/api/v2/move-ailment?limit=22")
+        .get('https://pokeapi.co/api/v2/move-ailment?limit=22')
         .then((res) => {
             return res.data.results;
         })
@@ -50,7 +50,7 @@ function Moves() {
             <Nav />
             <main className='moves'>
                 {loading ? (
-                <BarWave width="40px" height="20px" color="#cc0000" />
+                <BarWave width='40px' height='20px' color='#cc0000' />
                 ) : (
                     <>
                         <h2 className='moves_title'>Moves</h2>
@@ -65,7 +65,7 @@ function Moves() {
                             </thead>
                             <tbody className='moves_table_body'>
                                     {moves.sort((a, b) => a.name.localeCompare(b.name)).map((m) => (
-                                    <tr key={m.name} className='moves_table_body_row'>
+                                    <tr key={m.id} className='moves_table_body_row'>
                                         <td className='moves_table_body_row_name'>
                                         <Link
                                             to={`/moves/${m.name}`}
@@ -103,7 +103,7 @@ function Moves() {
                         </table>
 
                         <h2 className='status_title'>Status</h2>
-                        <table className="status_table">
+                        <table className='status_table'>
                             <thead className='status_table_head'>
                                 <tr className='status_table_head_row'>
                                     <th className='status_table_head_row_element'>Status</th>

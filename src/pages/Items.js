@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import BarWave from "react-cssfx-loading/lib/BarWave";
+import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import Header from '../components/Header';
 import Nav from '../components/Nav';
@@ -15,7 +15,7 @@ export default function Items() {
     useEffect(() => {
         setLoading(true);
         axios
-        .get("https://pokeapi.co/api/v2/item?limit=1608")
+        .get('https://pokeapi.co/api/v2/item?limit=1608')
         .then((res) => {
             return res.data.results;
         })
@@ -32,9 +32,9 @@ export default function Items() {
         <>
             <Header />
             <Nav />
-            <main className="items">
+            <main className='items'>
                 {loading ? (
-                    <BarWave width="40px" height="20px" color="#cc0000" />
+                    <BarWave width='40px' height='20px' color='#cc0000' />
                     ) : (
                         <div className='items_container'>
                             <table className='items_table'>
@@ -50,7 +50,7 @@ export default function Items() {
                                         <tr key={i.name} className='items_table_body_row'>
                                             <td className='items_table_body_row_name'>
                                                 <div className='items_table_body_row_name_inner'>
-                                                    <img src={i.sprites.default} alt="" />
+                                                    <img src={i.sprites.default} alt='' />
                                                     <span>{i.name.replace(/-/g, ' ')}</span>
                                                 </div>
                                             </td>
