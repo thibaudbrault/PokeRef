@@ -39,7 +39,7 @@ export default function Types() {
                     <BarWave width="40px" height="20px" color="#cc0000" />
                     ) : (
                     <ul className='types_container'>
-                        {types.map((t) => (
+                        {types.sort((a, b) => a.name.localeCompare(b.name)).map((t) => (
                             <li id={t.name} key={t.name} className='types_container_element'>
                                 <Link
                                     to={`/types/${t.name}`}

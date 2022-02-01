@@ -2,46 +2,99 @@
     @include size-main-big;
     &_title {
         @include title;
+        margin-bottom: 5rem;
     }
-    &_subtitle {
-        @include subtitle;
-        text-transform: none;
+    &_damage {
+        &_title {
+            @include subtitle;
+        }
+        &_table {
+            @include table;
+            margin: 0.5rem 0 5rem;
+            &_row {
+                text-transform: capitalize;
+                &_head {
+                    background: rgba(130, 130, 130, 0.2);
+                }
+                &_element {
+                    text-align: center;
+                    &:hover {
+                        background: rgba(130, 130, 130, 0.2);
+                    }
+                }
+            }
+        }
     }
-    &_pokemon {
-        @include flex;
-        flex-wrap: wrap;
-        &_inner {
-            width: 14rem;
-            height: 21rem;
-            margin: 3rem;
-            padding: 2rem 3rem;
+    &_container {
+        padding: 5rem 0;
+        &_subtitle {
+            @include subtitle;
+            text-transform: none;
+        }
+        &_pokemon {
             @include flex;
-            flex-direction: column;
-            background: rgba(255, 255, 255, 0.4);
-			border-radius: 10px;
-            text-align: center;
-            border: 1px solid transparent;
-            transition: 0.3s ease-in-out;
-            &_img {
-                width: 96px;
-                height: 96px;
-                margin: 0 auto;
-            }
-            &_name {
-                font-size: 1.5rem;
-                font-weight: 700;
+            flex-wrap: wrap;
+            &_inner {
+                width: 14rem;
+                height: 21rem;
+                margin: 3rem;
+                padding: 2rem 3rem;
+                @include flex;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.4);
+                border-radius: 10px;
+                text-align: center;
+                border: 1px solid transparent;
                 transition: 0.3s ease-in-out;
+                &_img {
+                    width: 96px;
+                    height: 96px;
+                    margin: 0 auto;
+                }
+                &_id {
+                    font-size: 1.3rem;
+                }
+                &_name {
+                    font-size: 1.7rem;
+                    font-weight: 700;
+                    text-transform: capitalize;
+                    transition: 0.3s ease-in-out;
+                }
+                &:hover {
+                    border: 1px solid $red;
+                }
+                &:hover > &_name {
+                    color: $red;
+                }
             }
-            &:hover {
-                border: 1px solid $red;
+        }
+        &_table {
+            @include table;
+            margin-top: 3rem;
+            &_head {
+                @include head;
             }
-            &:hover > &_name {
-                color: $red;
+            &_body {
+                &_row {
+                    @include row;
+                    &_name {
+                        @include name;
+                        cursor: pointer;
+                    }
+                    &_element {
+                        text-align: center;
+                    }
+                }
             }
+        }
+        &_comment {
+            text-align: center;
+            font-size: 1.3rem;
+            margin: 0.75rem 0 0;
         }
     }
 }
 
-span, p {
+span {
     text-transform: capitalize;
 }
