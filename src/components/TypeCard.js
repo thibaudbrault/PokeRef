@@ -73,58 +73,58 @@ const TypeCard = () => {
                     <>
                         <h2 className='type_title'>{type.name}</h2>
                         <section className='type_damage'>
-                            <h3 className='type_damage_title'>Damage to</h3>
+                            <h3 className='type_damage_title'>Attack</h3>
                             <table className='type_damage_table'>
                                 <tr className='type_damage_table_row'>
-                                    <th className="type_damage_table_row_head">No damage</th>
+                                    <th className="type_damage_table_row_head">No damage to</th>
                                     {type?.damage_relations?.no_damage_to?.map((ndt) => (
-                                        <td className='type_damage_table_row_element'>
-                                            {ndt.name}
+                                        <td className='type_damage_table_row_element' id={ndt.name}>
+                                            <img alt={ndt.name} />
                                         </td>
                                     ))}
                                 </tr>
                                 <tr className='type_damage_table_row'>
-                                    <th className="type_damage_table_row_head">Half damage</th>
+                                    <th className="type_damage_table_row_head">Half damage to</th>
                                     {type?.damage_relations?.half_damage_to?.map((hdt) => (
-                                        <td className='type_damage_table_row_element'>
-                                            {hdt.name}
+                                        <td className='type_damage_table_row_element' id={hdt.name}>
+                                            <img alt={hdt.name} />
                                         </td>
                                     ))}
                                 </tr>
                                 <tr className='type_damage_table_row'>
-                                    <th className="type_damage_table_row_head">Double damage</th>
+                                    <th className="type_damage_table_row_head">Double damage to</th>
                                     {type?.damage_relations?.double_damage_to?.map((ddt) => (
-                                        <td className='type_damage_table_row_element'>
-                                            {ddt.name}
+                                        <td className='type_damage_table_row_element' id={ddt.name}>
+                                            <img alt={ddt.name} />
                                         </td>
                                     ))}
                                 </tr>
                             </table>
                         </section>
                         <section className='type_damage'>
-                            <h3 className='type_damage_title'>Damage from</h3>
+                            <h3 className='type_damage_title'>Defense</h3>
                             <table className='type_damage_table'>
                                 <tr className='type_damage_table_row'>
-                                    <th className="type_damage_table_row_head">No damage</th>
+                                    <th className="type_damage_table_row_head">No damage from</th>
                                     {type?.damage_relations?.no_damage_from?.map((ndf) => (
-                                        <td className='type_damage_table_row_element'>
-                                            {ndf.name}
+                                        <td className='type_damage_table_row_element' id={ndf.name}>
+                                            <img alt={ndf.name} />
                                         </td>
                                     ))}
                                 </tr>
                                 <tr className='type_damage_table_row'>
-                                    <th className="type_damage_table_row_head">Half damage</th>
+                                    <th className="type_damage_table_row_head">Half damage from</th>
                                     {type?.damage_relations?.half_damage_from?.map((hdf) => (
-                                        <td className='type_damage_table_row_element'>
-                                            {hdf.name}
+                                        <td className='type_damage_table_row_element' id={hdf.name}>
+                                            <img alt={hdf.name} />
                                         </td>
                                     ))}
                                 </tr>
                                 <tr className='type_damage_table_row'>
-                                    <th className="type_damage_table_row_head">Double damage</th>
+                                    <th className="type_damage_table_row_head">Double damage from</th>
                                     {type?.damage_relations?.double_damage_from?.map((ddf) => (
-                                        <td className='type_damage_table_row_element'>
-                                            {ddf.name}
+                                        <td className='type_damage_table_row_element' id={ddf.name}>
+                                            <img alt={ddf.name} />
                                         </td>
                                     ))}
                                 </tr>
@@ -184,7 +184,7 @@ const TypeCard = () => {
                             </div>
                             <p className='type_container_comment'><span>{type.name}</span> attacks were <span>{type?.move_damage_class?.name}</span> before the Gen IV</p>
                         </section>
-                        <button onClick={() => navigate('/types')}>Back to types</button>
+                        <button className='type_button' onClick={() => navigate('/types')}> ᐸ Back to types</button>
                     </>
                 )}
             </main>

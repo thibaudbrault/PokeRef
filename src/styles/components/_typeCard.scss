@@ -12,12 +12,22 @@
             @include table;
             margin: 0.5rem 0 5rem;
             &_row {
-                text-transform: capitalize;
                 &_head {
+                    width: 25%;
                     background: rgba(130, 130, 130, 0.2);
+                    font-size: 1.5rem;
                 }
                 &_element {
+                    background: none !important;
                     text-align: center;
+                    img {
+                        width: 32px;
+                        height: 32px;
+                        transition: 0.3s ease-in-out;
+                        &:hover {
+                            transform: scale(1.05);
+                        }
+                    }
                     &:hover {
                         background: rgba(130, 130, 130, 0.2);
                     }
@@ -91,6 +101,22 @@
             text-align: center;
             font-size: 1.3rem;
             margin: 0.75rem 0 0;
+        }
+    }
+    &_button {
+        padding: 1rem 1.5rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: none;
+        color: $dark;
+        border: 1px solid $dark;
+        border-radius: 5px;
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+        &:hover {
+            background: $dark;
+            color: $light;
+            border: 1px solid $light;
         }
     }
 }
