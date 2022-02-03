@@ -22,18 +22,18 @@
                     }
                 }
                 &_type {
-                    @include flex;
-                    width: 75%;
-                    margin: 0 auto;
-                    padding: 0.5rem 1rem;
+                    display: inline;
+                    padding: 0.5rem 1.5rem;
                     @include type;
                     img {
                         width: 1.5rem;
+                        vertical-align: middle;
                     }
                     span {
                         font-family: $font-game;
                         font-size: 1rem;
-                        padding-left: 0.3rem;
+                        padding-left: 0.5rem;
+                        vertical-align: middle;
                     }
                 }
                 &_effect {

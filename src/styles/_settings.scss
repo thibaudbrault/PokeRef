@@ -88,6 +88,13 @@ $red: #cc0000;
 	font-size: 1.8rem;
 	font-weight: 700;
 	color: $red;
+	border-bottom: 1px solid transparent;
+	a {
+		transition: 0.3s ease-in-out;
+	}
+	a:hover {
+		border-bottom: 1px solid $red;
+	}
 }
 
 @mixin button {
@@ -300,10 +307,6 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 
-body {
-	line-height: 1.5;
-}
-
 ol, ul {
 	list-style: none;
 }
@@ -325,6 +328,7 @@ table {
 
 html {
     font-size: 10px;
+	line-height: 1.5;
 }
 
 main {

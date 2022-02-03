@@ -27,6 +27,8 @@ const MoveCard = () => {
         });
     }, [name]);
 
+    console.log(move);
+
     const maxPp = move?.pp * '1.6';
 
     return (
@@ -82,10 +84,41 @@ const MoveCard = () => {
                                     </tr>
                                     <tr className='move_table_row'>
                                         <th className='move_table_row_head'>Introduced</th>
-                                        <td className='move_table_row_element'>{move?.generation?.name.replace(/-/g, ' ')}</td>
+                                        <td className='move_table_row_generation'>{move?.generation?.name.replace(/-/g, ' ')}</td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <div className='move_effect'>
+                                <h3 className='move_effect_subtitle'>Effects</h3>
+                                <p className='move_effect_text'>
+                                    <span>{move?.name?.replace(/-/g, ' ').toUpperCase()} </span>
+                                    {move?.effect_entries?.map((me) => 
+                                        me.language.name === 'en'  ? (
+                                            <>
+                                                {me.effect}
+                                            </>
+                                        ) : (
+                                            null
+                                        )
+                                    )}
+                                </p>
+                                <ul className='move_effect_changes'>
+                                    <h4 className='move_effect_changes_title'>Changes</h4>
+                                    {move?.past_values?.map((mp) => 
+                                        <>
+                                            {mp?.power !== null && 
+                                            <li className='move_effect_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} has {mp?.power} base power</li>}
+                                            {mp?.accuracy !== null && 
+                                            <li className='move_effect_changes_element'>Before <span>{mp?.version_group?.name.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} has {mp?.accuracy} accuracy</li>}
+                                            {mp?.pp !== null && 
+                                            <li className='move_effect_changes_element'>Before <span>{mp?.version_group?.name.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} has {mp?.pp} accuracy</li>}
+                                            {mp?.type !== null && 
+                                            <li className='move_effect_changes_element'>Before <span>{mp?.version_group?.name.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} has {mp?.type} accuracy</li>}
+                                            
+                                        </>
+                                    )}
+                                </ul>
+                            </div>
                         </section>
                         <button className='move_button' onClick={() => navigate("/moves")}> ᐸ Back to moves</button>
                     </>
