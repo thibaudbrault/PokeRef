@@ -2,16 +2,15 @@
     @include size-main-big;
     &_title {
         @include title;
-        margin-bottom: 5rem;
     }
-    &_container {
+    &_data {
+        margin: 5rem 0;
         display: grid;
         grid-template-columns: 1fr 1.3fr;
         column-gap: 3rem;
     }
     &_table {
         @include table;
-        margin: 0.5rem 0 5rem;
         &_row {
             &_head {
                 background: rgba(130, 130, 130, 0.2);
@@ -54,25 +53,60 @@
         }
     }
     &_effect {
-        &_subtitle {
+        margin-top: 2rem;
+        &_container {
+            margin: 0 0 2rem;
+        }
+        &_title {
             margin: 0 0 1rem;
             font-size: 3rem;
             font-weight: 700;
         }
-        &_text {
+        &_subtitle {
             margin: 0 0 1rem;
-            font-size: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: capitalize;
+        }
+        &_text {
+            font-size: 1.7rem;
             text-transform: lowercase;
         }
+        &_meta {
+            margin-top: 1rem;
+            font-size: 1.5rem;
+        }
+        &_stat {
+            @include moveData;
+        }
         &_changes {
-            &_title {
-                margin: 0 0 1rem;
-                font-size: 2.5rem;
-                font-weight: 700;
-            }
-            &_element {
-                margin-left: 2rem;
-                font-size: 1.5rem;
+            @include moveData;
+        }
+        &_target {
+            margin-left: 2rem;
+            font-size: 1.5rem;
+            text-transform: capitalize;
+        }
+    }
+    &_desc {
+        margin: 5rem 0;
+        &_title {
+            margin: 0 0 2rem;
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        &_table {
+            @include table;
+            &_row {
+                &_head {
+                    background: rgba(130, 130, 130, 0.2);
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    text-transform: capitalize;
+                }
+                &_element {
+                    text-align: center;
+                }
             }
         }
     }

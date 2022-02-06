@@ -9,6 +9,7 @@
     }
     &_subtitle {
         @include subtitle;
+        margin-left: 2rem;
         margin-bottom: 2rem;
     }
     &_container {
@@ -26,8 +27,6 @@
             text-align: center;
             transition: 0.3s ease-in-out;
             &_image {
-                width: 96px;
-                height: 96px;
                 position: relative;
                 margin: 0 auto;
                 &:hover .pokedex_container_inner_image_shiny {

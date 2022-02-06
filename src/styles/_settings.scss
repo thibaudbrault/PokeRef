@@ -38,7 +38,7 @@ $red: #cc0000;
 
 @mixin title {
 	margin-bottom: 2rem;
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-family: $font-game;
 	text-transform: capitalize;
 	color: $light;
@@ -111,6 +111,13 @@ $red: #cc0000;
 		background: $dark;
 		color: $light;
 		border: 1px solid $light;
+	}
+}
+
+@mixin moveData {
+	&_element {
+		margin-left: 2rem;
+		font-size: 1.5rem;
 	}
 }
 

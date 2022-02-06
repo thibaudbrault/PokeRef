@@ -41,7 +41,7 @@ const MoveCard = () => {
                 ) : (
                     <>
                         <h2 className='move_title'>{move?.name?.replace(/-/g, ' ') ?? ""}</h2>
-                        <section className='move_container'>
+                        <section className='move_data'>
                             <table className='move_table'>
                                 <tbody>
                                     <tr className='move_table_row'>
@@ -88,36 +88,106 @@ const MoveCard = () => {
                                     </tr>
                                 </tbody>
                             </table>
-                            <div className='move_effect'>
-                                <h3 className='move_effect_subtitle'>Effects</h3>
-                                <p className='move_effect_text'>
-                                    <span>{move?.name?.replace(/-/g, ' ').toUpperCase()} </span>
-                                    {move?.effect_entries?.map((me) => 
-                                        me.language.name === 'en'  ? (
-                                            <>
-                                                {me.effect}
-                                            </>
-                                        ) : (
-                                            null
-                                        )
-                                    )}
-                                </p>
-                                <ul className='move_effect_changes'>
-                                    <h4 className='move_effect_changes_title'>Changes</h4>
-                                    {move?.past_values?.map((mp) => 
+                            <ul className='move_effect'>
+                                <li className='move_effect_container'>
+                                    <h3 className='move_effect_title'>Effects</h3>
+                                    <p className='move_effect_text'>
+                                        <span>{move?.name?.replace(/-/g, ' ').toUpperCase()} </span>
+                                        {move?.effect_entries?.map((me) => 
+                                            me.language.name === 'en'  ? (
+                                                <>
+                                                    {me.effect}
+                                                </>
+                                            ) : (
+                                                null
+                                            )
+                                        )}
+                                    </p>
+                                    <ul className='move_effect_meta'>
+                                        {move?.meta?.ailment?.name !== 'none' && 
+                                        <li className='move_effect_meta_element'>Status : {move?.meta?.ailment?.name}</li>}
+                                        {move?.meta?.ailment_chance !== 0 && 
+                                        <li className='move_effect_meta_element'>Has a {move?.meta?.ailment_chance}% chance to {move?.meta?.ailment?.name} the target</li>}
+                                        {move?.meta?.crit_rate !== 0 && 
+                                        <li className='move_effect_meta_element'>Increase the chance of landing a critical hit by {move?.meta?.crit_rate} stage</li>}
+                                        {move?.meta?.drain !== 0 && 
+                                        <li className='move_effect_meta_element'>Drains {move?.meta?.drain}% of the damage inflicted to heal the user</li>}
+                                        {move?.meta?.flinch_chance !== 0 && 
+                                        <li className='move_effect_meta_element'>Has a {move?.meta?.flinch_chance}% of causing the target to flinch</li>}
+                                        {move?.meta?.healing !== 0 && 
+                                        <li className='move_effect_meta_element'>Recovers {move?.meta?.flinch_chance}% of the user's maximum HP</li>}
+                                        {move?.meta?.min_hits !== null && 
+                                        <li className='move_effect_meta_element'>This move hits between {move?.meta?.min_hits} and {move?.meta?.max_hits} times</li>}
+                                        {move?.meta?.min_turns !== null && 
+                                        <li className='move_effect_meta_element'>This move last between {move?.meta?.min_turns} and {move?.meta?.max_turns} turns</li>}
+                                    </ul>
+                                </li>
+                                <li className='move_effect_container'>
+                                    {move?.stat_changes?.length > 0 ? (
                                         <>
-                                            {mp?.power !== null && 
-                                            <li className='move_effect_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} has {mp?.power} base power</li>}
-                                            {mp?.accuracy !== null && 
-                                            <li className='move_effect_changes_element'>Before <span>{mp?.version_group?.name.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} has {mp?.accuracy} accuracy</li>}
-                                            {mp?.pp !== null && 
-                                            <li className='move_effect_changes_element'>Before <span>{mp?.version_group?.name.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} has {mp?.pp} accuracy</li>}
-                                            {mp?.type !== null && 
-                                            <li className='move_effect_changes_element'>Before <span>{mp?.version_group?.name.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} has {mp?.type} accuracy</li>}
-                                            
+                                            <h4 className='move_effect_subtitle'>Stat modification</h4>
+                                            <ul className='move_effect_stat'>
+                                                {move?.stat_changes?.map((ms) => 
+                                                    ms?.change < 0 ? (
+                                                        <li className='move_effect_stat_element'>This move lower the target's <span>{ms?.stat?.name}</span> by {ms?.change} stage</li>
+                                                    ) : (
+                                                        <li className='move_effect_stat_element'>This move raises the target's <span>{ms?.stat?.name}</span> by {ms?.change} stage</li>
+                                                    )
+                                                )}
+                                            </ul>
                                         </>
+                                    ) : (
+                                        null
+                                    )
+                                    }
+                                </li>
+                                <li className='move_effect_container'>
+                                    {move?.past_values?.length > 0 ? (
+                                        <>
+                                            <h4 className='move_effect_subtitle'>Changes</h4>
+                                            <ul className='move_effect_changes'>
+                                                    {move?.past_values?.map((mp) => 
+                                                        <>
+                                                            {mp?.power !== null && 
+                                                            <li className='move_effect_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} had {mp?.power} base power</li>}
+                                                            {mp?.accuracy !== null && 
+                                                            <li className='move_effect_changes_element'>Before <span>{mp?.version_group?.name.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} had {mp?.accuracy} accuracy</li>}
+                                                            {mp?.pp !== null && 
+                                                            <li className='move_effect_changes_element'>Before <span>{mp?.version_group?.name.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} had {mp?.pp} accuracy</li>}
+                                                            {mp?.type !== null && 
+                                                            <li className='move_effect_changes_element'>Before <span>{mp?.version_group?.name.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} had {mp?.type} accuracy</li>}
+                                                            
+                                                        </>
+                                                    )}
+                                            </ul>
+                                        </>
+                                    ) : (
+                                        null
                                     )}
-                                </ul>
+                                </li>
+                                <li className='move_effect_container'>
+                                    <h4 className='move_effect_subtitle'>Target</h4>
+                                    <p className='move_effect_target'>{move?.target?.name.replace(/-/g, ' ')}</p>
+                                </li>
+                            </ul>
+                        </section>
+                        <section className='move_desc'>
+                            <div className='move_desc_container'>
+                                <h3 className='move_desc_title'>Game descriptions</h3>
+                                <table className='move_desc_table'>
+                                    <tbody>
+                                        {move?.flavor_text_entries?.map((mf) => 
+                                            mf?.language?.name === 'en' ? (
+                                                <tr className='move_desc_table_row'>
+                                                    <th className='move_desc_table_row_head'>{mf?.version_group?.name?.replace(/-/g, ' ')}</th>
+                                                    <td className='move_desc_table_row_element'>{mf?.flavor_text}</td>
+                                                </tr>
+                                            ) : (
+                                                ''
+                                            )
+                                        )}
+                                    </tbody>
+                                </table>
                             </div>
                         </section>
                         <button className='move_button' onClick={() => navigate("/moves")}> ᐸ Back to moves</button>
