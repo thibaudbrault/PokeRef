@@ -8,47 +8,47 @@
         display: grid;
         grid-template-columns: 1fr 1.3fr;
         column-gap: 3rem;
-    }
-    &_table {
-        @include table;
-        &_row {
-            &_head {
-                background: rgba(130, 130, 130, 0.2);
-                font-size: 1.5rem;
-                font-weight: 700;
-            }
-            &_element {
-                text-align: center;
-                text-transform: capitalize;
-                &_type {
-                    display: inline;
-                    padding: 0.5rem 1.5rem;
-                    border-radius: 5px;
-                    img {
-                        height: 2rem;
-                        vertical-align: middle;
+        &_table {
+            @include table;
+            &_row {
+                &_head {
+                    background: rgba(130, 130, 130, 0.2);
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                }
+                &_element {
+                    text-align: center;
+                    text-transform: capitalize;
+                    &_type {
+                        display: inline;
+                        padding: 0.5rem 1.5rem;
+                        border-radius: 5px;
+                        img {
+                            height: 2rem;
+                            vertical-align: middle;
+                        }
+                        span {
+                            padding-left: 0.5rem;
+                            vertical-align: middle;
+                        }
                     }
-                    span {
-                        padding-left: 0.5rem;
-                        vertical-align: middle;
+                    &_category {
+                        display: inline;
+                        padding: 0.5rem 1.5rem;
+                        border-radius: 5px;
+                        img {
+                            height: 3.5rem;
+                            vertical-align: middle;
+                        }
+                        span {
+                            padding-left: 0.5rem;
+                            vertical-align: middle;
+                        }
                     }
                 }
-                &_category {
-                    display: inline;
-                    padding: 0.5rem 1.5rem;
-                    border-radius: 5px;
-                    img {
-                        height: 3.5rem;
-                        vertical-align: middle;
-                    }
-                    span {
-                        padding-left: 0.5rem;
-                        vertical-align: middle;
-                    }
+                &_generation {
+                    text-transform: uppercase;
                 }
-            }
-            &_generation {
-                text-transform: uppercase;
             }
         }
     }
@@ -56,36 +56,36 @@
         margin-top: 2rem;
         &_container {
             margin: 0 0 2rem;
-        }
-        &_title {
-            margin: 0 0 1rem;
-            font-size: 3rem;
-            font-weight: 700;
-        }
-        &_subtitle {
-            margin: 0 0 1rem;
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-transform: capitalize;
-        }
-        &_text {
-            font-size: 1.7rem;
-            text-transform: lowercase;
-        }
-        &_meta {
-            margin-top: 1rem;
-            font-size: 1.5rem;
-        }
-        &_stat {
-            @include moveData;
-        }
-        &_changes {
-            @include moveData;
-        }
-        &_target {
-            margin-left: 2rem;
-            font-size: 1.5rem;
-            text-transform: capitalize;
+            &_title {
+                margin: 0 0 1rem;
+                font-size: 3rem;
+                font-weight: 700;
+            }
+            &_subtitle {
+                margin: 0 0 1rem;
+                font-size: 2.5rem;
+                font-weight: 700;
+                text-transform: capitalize;
+            }
+            &_text {
+                font-size: 1.7rem;
+                text-transform: lowercase;
+            }
+            &_meta {
+                margin-top: 1rem;
+                font-size: 1.5rem;
+            }
+            &_stat {
+                @include moveData;
+            }
+            &_changes {
+                @include moveData;
+            }
+            &_target {
+                margin-left: 2rem;
+                font-size: 1.5rem;
+                text-transform: capitalize;
+            }
         }
     }
     &_desc {

@@ -8,6 +8,7 @@ import Types from './pages/Types';
 import Items from './pages/Items';
 import Locations from './pages/Locations';
 
+import PokemonCard from './components/PokemonCard';
 import MoveCard from './components/MoveCard';
 import AbilityCard from './components/AbilityCard';
 import TypeCard from './components/TypeCard';
@@ -17,6 +18,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Wrapper />} />
+        <Route path="/pokemon/:name" element={<PokemonCard />} />
         <Route path="/moves" element={<Moves />} />
         <Route path="/moves/:name" element={<MoveCard />} />
         <Route path="/abilities" element={<Abilities />} />

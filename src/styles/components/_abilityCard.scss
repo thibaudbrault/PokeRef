@@ -8,27 +8,39 @@
         @include subtitle;
     }
     &_container {
-        padding: 5rem 0;
-            &_subtitle {
-                padding-bottom: 1rem;
-                font-size: 2rem;
-                font-weight: 700;
-            }
-    }
-    &_table {
-        @include table;
-        &_head {
-            @include head;
+        margin: 5rem 0;
+        &_title {
+            margin: 0 0 1rem;
+            font-size: 2.5rem;
+            font-weight: 700;
         }
-        &_body {
-            &_row {
-                @include row;
-                &_name {
-                    @include name;
-                    cursor: pointer;
+        &_effect {
+            font-size: 1.5rem;
+        }
+        &_table {
+            @include table;
+            &_head {
+                @include head;
+            }
+            &_body {
+                &_row {
+                    @include row;
+                    &_sprite {
+                        img {
+                            width: 64px;
+                            height: 64px;
+                        }
+                    }
+                    &_name {
+                        @include name;
+                        cursor: pointer;
+                    }
                 }
             }
         }
+    }
+    &_button {
+        @include button;
     }
 }
 

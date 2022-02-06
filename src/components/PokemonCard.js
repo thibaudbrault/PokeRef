@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const PokemonCard = props => {
+import Header from './Header';
+import Nav from './Nav';
+import Footer from './Footer';
+
+const PokemonCard = () => {
 
     const { name } = useParams();
+    const navigate = useNavigate();
     const [pokemon, setPokemon] = useState([])
     const [loading, setLoading] = useState(false);
 
@@ -24,7 +29,16 @@ const PokemonCard = props => {
     console.log(pokemon);
 
     return (
-        <h2>{pokemon.name}</h2>
+        <>
+            <Header />
+            <Nav />
+                <main className='pokemon'>
+                    <h2>{pokemon.name}</h2>
+
+                    <button className='pokemon_button' onClick={() => navigate("/")}> ᐸ Back to pokemon</button>
+                </main>
+            <Footer />
+        </>
     )
 }
 

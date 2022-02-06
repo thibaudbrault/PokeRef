@@ -5,7 +5,7 @@ import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 function Pokemon() {
 
-    const [pokemon, setPokemon] = useState([]);
+    const [pokedex, setPokedex] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ function Pokemon() {
         })
         .then((results) => {
             setLoading(false);
-            setPokemon(results.map((res) => res.data));
+            setPokedex(results.map((res) => res.data));
         });
     }, []);
 
@@ -33,7 +33,7 @@ function Pokemon() {
                 ) : (
                     <div className='pokedex_generation' id='gen2'>
                         <ol className='pokedex_container'>
-                            {pokemon.map((p) => (
+                            {pokedex.map((p) => (
                                 <li key={p.name} className='pokedex_container_inner'>
                                     <div className='pokedex_container_inner_image'>
                                         {p.id < 152 ? (
@@ -68,7 +68,14 @@ function Pokemon() {
                                         </>}
                                     </div>
                                     <p>#{p.id.toString().padStart(3, '0')}</p>
-                                    <h2>{p.name.replace(/-/g, ' ')}</h2>
+                                    <Link
+                                        to={`/pokemon/${p.name}`}
+                                        key={p.name}
+                                    >
+                                        <h2>
+                                            {p.name.replace(/-/g, ' ')}
+                                        </h2>
+                                    </Link>
                                     <div className='pokedex_container_inner_types'>
                                         {p.types.map((pt) => (
                                             <div id={pt.type.name} className='pokedex_container_inner_types_element'>

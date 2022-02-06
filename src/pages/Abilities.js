@@ -58,13 +58,10 @@ export default function Abilities() {
                                     </td>
                                     <td className='abilities_table_body_row_effect'>
                                         {a?.flavor_text_entries?.map((af) => 
-                                            af.language.name === 'en' ? (
+                                            af.language.name === 'en' &&
                                                 <span>
                                                     {af.flavor_text}
                                                 </span>
-                                            ) : (
-                                                null
-                                            )
                                         )}
                                     </td>
                                 </tr>

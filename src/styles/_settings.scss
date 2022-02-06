@@ -88,9 +88,9 @@ $red: #cc0000;
 	font-size: 1.8rem;
 	font-weight: 700;
 	color: $red;
-	border-bottom: 1px solid transparent;
 	a {
 		transition: 0.3s ease-in-out;
+		border-bottom: 1px solid transparent;
 	}
 	a:hover {
 		border-bottom: 1px solid $red;

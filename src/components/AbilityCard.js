@@ -30,6 +30,22 @@ const AbilityCard = () => {
 
     console.log(ability);
 
+    const [pokemon, setPokemon] = useState([]);
+
+    useEffect(() => {
+        axios
+        .get('https://pokeapi.co/api/v2/pokemon?limit=1300')
+        .then((res) => {
+            return res.data.results;
+        })
+        .then((results) => {
+            return Promise.all(results.map((res) => axios.get(res.url)));
+        })
+        .then((results) => {
+            setPokemon(results.map((res) => res.data));
+        });
+    }, []);
+
     return (
         <>
             <Header />
@@ -43,21 +59,55 @@ const AbilityCard = () => {
                         <p className='ability_gen'>{ability?.generation?.name?.replace(/-/g, ' ') ?? ''}</p>
 
                         <section className='ability_container'>
-                            <h3 className='ability_subtitle'>Pokemon with <span>{ability?.name?.replace(/-/g, ' ')?? ''}</span></h3>
-                            <table className='ability_table'>
-                                <thead className='ability_table_head'>
-                                    <tr className='ability_table_head_row'>
-                                        <th className='ability_table_head_row_element'>#</th>
-                                        <th className='ability_table_head_row_element'>Name</th>
-                                        <th className='ability_table_head_row_element'>Other ability</th>
+                            <h3 className='ability_container_title'>Effect</h3>
+                            {ability?.effect_entries?.map((ae) => 
+                                ae?.language.name === 'en' &&
+                                    <p className='ability_container_effect'>
+                                        {ae.short_effect}
+                                    </p>
+                            )}
+                            <h4 className='ability_container_subtitle'>Changes</h4>
+                        </section>
+
+                        <section className='ability_container'>
+                            <h3 className='ability_container_title'>Game descriptions</h3>
+                            <table className='ability_container_desc_table'>
+                                    <tbody>
+                                        {ability?.flavor_text_entries?.map((af) => 
+                                            af?.language?.name === 'en' ? (
+                                                <tr className='ability_container_desc_table_row'>
+                                                    <th className='ability_container_desc_table_row_head'>{af?.version_group?.name?.replace(/-/g, ' ')}</th>
+                                                    <td className='ability_container_desc_table_row_element'>{af?.flavor_text}</td>
+                                                </tr>
+                                            ) : (
+                                                ''
+                                            )
+                                        )}
+                                    </tbody>
+                                </table>
+                        </section>
+
+                        <section className='ability_container'>
+                            <h3 className='ability_container_title'>Pokemon with <span>{ability?.name?.replace(/-/g, ' ')?? ''}</span></h3>
+                            <table className='ability_container_table'>
+                                <thead className='ability_container_table_head'>
+                                    <tr className='ability_container_table_head_row'>
+                                        <th className='ability_container_table_head_row_element'>#</th>
+                                        <th className='ability_container_table_head_row_element'>Name</th>
+                                        <th className='ability_container_table_head_row_element'>Other abilities</th>
                                     </tr>
                                 </thead>
-                                <tbody className='ability_table_body'>
+                                <tbody className='ability_container_table_body'>
                                     {ability?.pokemon?.map((ap) => 
                                         ap.is_hidden === false ? (
-                                            <tr key={ap.pokemon.name} className='ability_table_body_row'>
-                                                <td className='ability_table_row_id'>aaaaaaaaaa</td>
-                                                <td className='ability_table_body_row_name'>
+                                            <tr key={ap.pokemon.name} className='ability_container_table_body_row'>
+                                                <td className='ability_container_table_body_row_sprite'>
+                                                    {pokemon?.map((p) =>
+                                                        p.name === ap.pokemon.name &&
+                                                            <img src={p.sprites.front_default} alt={p.name} loading="lazy" />
+                                                    )}
+                                                </td>
+                                                <td className='ability_container_table_body_row_name'>
                                                     <Link
                                                         to={`/ability/${ability.name}`}
                                                         key={ap.pokemon.name}
@@ -65,7 +115,14 @@ const AbilityCard = () => {
                                                         {ap.pokemon.name.replace(/-/g, ' ')}
                                                     </Link>
                                                 </td>
-                                                <td className='ability_table_body_row_abilities'>aaaaaaaaaaa</td>
+                                                <td className='ability_container_table_body_row_abilities'>
+                                                    {pokemon?.map((p) => 
+                                                        p?.abilities?.map((pa) => 
+                                                            pa?.ability?.name === ability?.name &&
+                                                            <span>{pa?.ability?.name}</span>
+                                                        )
+                                                    )}
+                                                </td>
                                             </tr>
                                         ) : (
                                             null
@@ -76,21 +133,26 @@ const AbilityCard = () => {
                         </section>
 
                         <section className='ability_container'>
-                            <h3 className='ability_subtitle'><span>{ability?.name?.replace(/-/g, ' ')?? ''}</span> as a <span>hidden ability</span></h3>
-                            <table className='ability_table'>
-                                <thead className='ability_table_head'>
-                                    <tr className='ability_table_head_row'>
-                                        <th className='ability_table_head_row_element'>#</th>
-                                        <th className='ability_table_head_row_element'>Name</th>
-                                        <th className='ability_table_head_row_element'>Other ability</th>
+                            <h3 className='ability_container_title'><span>{ability?.name?.replace(/-/g, ' ')?? ''}</span> as a <span>hidden ability</span></h3>
+                            <table className='ability_container_table'>
+                                <thead className='ability_container_table_head'>
+                                    <tr className='ability_container_table_head_row'>
+                                        <th className='ability_container_table_head_row_element'>#</th>
+                                        <th className='ability_container_table_head_row_element'>Name</th>
+                                        <th className='ability_container_table_head_row_element'>Other abilities</th>
                                     </tr>
                                 </thead>
-                                <tbody className='ability_table_body'>
+                                <tbody className='ability_container_table_body'>
                                     {ability?.pokemon?.map((ap) => 
                                         ap.is_hidden === true ? (
-                                            <tr key={ap.pokemon.name} className='ability_table_body_row'>
-                                                <td className='ability_table_row_id'>aaaaaaaaaa</td>
-                                                <td className='ability_table_body_row_name'>
+                                            <tr key={ap.pokemon.name} className='ability_container_table_body_row'>
+                                                <td className='ability_container_table_body_row_sprite'>
+                                                    {pokemon?.map((p) =>
+                                                        p.name === ap.pokemon.name &&
+                                                            <img src={p.sprites.front_default} alt={p.name} loading="lazy" />
+                                                    )}
+                                                </td>
+                                                <td className='ability_container_table_body_row_name'>
                                                     <Link
                                                         to={`/ability/${ability.name}`}
                                                         key={ap.pokemon.name}
@@ -98,7 +160,7 @@ const AbilityCard = () => {
                                                         {ap.pokemon.name.replace(/-/g, ' ')}
                                                     </Link>
                                                 </td>
-                                                <td className='ability_table_body_row_ability'>aaaaaaaaaaa</td>
+                                                <td className='ability_container_table_body_row_ability'>aaaaaaaaaaa</td>
                                             </tr>
                                         ) : (
                                             null
@@ -107,7 +169,8 @@ const AbilityCard = () => {
                                 </tbody>
                             </table>
                         </section>
-                        <button onClick={() => navigate('/abilities')}>Go back</button>
+                        
+                        <button className='ability_button' onClick={() => navigate('/abilities')}> ᐸ Back to abilities</button>
                     </>
                 )}
             </main>
