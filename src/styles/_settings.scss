@@ -404,6 +404,12 @@ body {
 		color: $dark;
 		text-shadow: $light -1px -1px 0px, $light 1px -1px 0px, $light -1px 1px 0px, $light 1px 1px 0px;
 	}
+	input {
+		border: 1px solid $light !important;
+		&::placeholder {
+			color: $light !important;
+		}
+	}
 }
 
 /*dark theme end*/

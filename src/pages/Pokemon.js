@@ -24,23 +24,7 @@ function Pokemon() {
         });
     }, []);
 
-    const [species, setSpecies] = useState([]);
-
-    useEffect(() => {
-        axios
-        .get(`https://pokeapi.co/api/v2/pokemon-species/${pokedex.name}`)
-        .then((res) => {
-            return res.data.results;
-        })
-        .then((results) => {
-            return Promise.all(results.map((res) => axios.get(res.url)));
-        })
-        .then((results) => {
-            setSpecies(results.map((res) => res.data));
-        });
-    }, []);
-
-    console.log(species);
+    const[search, setSearch] = useState('');
 
     return (
         <>
@@ -48,9 +32,19 @@ function Pokemon() {
                 {loading ? (
                     <BarWave width='40px' height='20px' color='#cc0000' />
                 ) : (
-                    <div className='pokedex_generation' id='gen2'>
+                    <>
+                        <div className='pokedex_search'>
+                            <label htmlFor="searchBar">Name</label>
+                            <input type="text" placeholder='Search pokémon' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
+                        </div>
                         <ol className='pokedex_container'>
-                            {pokedex.map((p) => (
+                            {pokedex.filter((pokedex) => {
+                                if (search === "") {
+                                    return pokedex
+                                } else if (pokedex.name.toLowerCase().includes(search.toLowerCase())) {
+                                    return pokedex
+                                }
+                            }).map((p) => (
                                 <li key={p.name} className='pokedex_container_inner'>
                                     <div className='pokedex_container_inner_image'>
                                         {p.id < 152 ? (
@@ -104,7 +98,7 @@ function Pokemon() {
                                 </li>
                             ))}
                         </ol>
-                    </div>
+                    </>
                 )}
             </main>
         </>
