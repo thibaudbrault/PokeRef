@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
@@ -139,7 +139,12 @@ const TypeCard = () => {
                                             <div className='type_container_pokemon_inner'>
                                                 <img className='type_container_pokemon_inner_img' src={p.sprites.front_default} alt={pokemon.name} loading='lazy' />
                                                 <p className='type_container_pokemon_inner_id'>#{p.id}</p>
-                                                <p className='type_container_pokemon_inner_name'>{tp.pokemon.name.replace(/-/g, ' ')}</p>
+                                                <Link
+                                                to={`/pokemon/${p.name}`}
+                                                key={p.name}
+                                                className='type_container_pokemon_inner_name'>
+                                                    {tp.pokemon.name.replace(/-/g, ' ')}
+                                                </Link>
                                             </div>
                                         ) :(
                                             null
@@ -167,7 +172,14 @@ const TypeCard = () => {
                                             moves?.map((m) =>
                                                 m.name === tm.name ? (
                                                     <tr className='type_container_table_body_row'>
-                                                        <td className='type_container_table_body_row_name'>{tm.name.replace(/-/g, ' ')}</td>
+                                                        <td className='type_container_table_body_row_name'>
+                                                            <Link
+                                                            to={`/moves/${m.name}`}
+                                                            key={m.name}
+                                                            >
+                                                            {tm.name.replace(/-/g, ' ')}
+                                                            </Link>
+                                                        </td>
                                                         <td className='type_container_table_body_row_element'>{m.damage_class.name}</td>
                                                         <td className='type_container_table_body_row_element'>{m.power}</td>
                                                         <td className='type_container_table_body_row_element'>{m.pp}</td>

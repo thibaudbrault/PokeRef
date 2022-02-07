@@ -23,6 +23,7 @@
             @include flex;
             flex-direction: column;
             background: rgba(255, 255, 255, 0.4);
+            border: 1px solid transparent;
 			border-radius: 10px;
             text-align: center;
             transition: 0.3s ease-in-out;
@@ -80,4 +81,8 @@
             }
         }
     }
+}
+
+.legendary {
+    border: 1px solid purple;
 }
