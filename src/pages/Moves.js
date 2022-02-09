@@ -9,6 +9,8 @@ import Footer from '../components/Footer';
 
 function Moves() {
 
+    const[search, setSearch] = useState('');
+
     const [moves, setMoves] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -54,6 +56,9 @@ function Moves() {
                 ) : (
                     <>
                         <h2 className='moves_title'>Moves</h2>
+                        <div className='moves_search'>
+                            <input className='moves_search_input' type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
+                        </div>
                         <table className='moves_table'>
                             <thead className='moves_table_head'>
                                 <tr className='moves_table_head_row'>
@@ -64,7 +69,14 @@ function Moves() {
                                 </tr>
                             </thead>
                             <tbody className='moves_table_body'>
-                                    {moves.sort((a, b) => a.name.localeCompare(b.name)).map((m) => (
+                                    {moves.filter((moves) => {
+                                        if (search === "") {
+                                            return moves
+                                        } else if (moves.name.toLowerCase().includes(search.toLowerCase())) {
+                                            return moves
+                                        }
+                                    })
+                                    .sort((a, b) => a.name.localeCompare(b.name)).map((m) => (
                                     <tr key={m.id} className='moves_table_body_row'>
                                         <td className='moves_table_body_row_name'>
                                         <Link

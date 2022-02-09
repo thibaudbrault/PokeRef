@@ -5,6 +5,8 @@ import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 function Pokemon() {
 
+    const[search, setSearch] = useState('');
+
     const [pokedex, setPokedex] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -24,8 +26,6 @@ function Pokemon() {
         });
     }, []);
 
-    const[search, setSearch] = useState('');
-
     return (
         <>
             <main className='pokedex'>
@@ -34,8 +34,7 @@ function Pokemon() {
                 ) : (
                     <>
                         <div className='pokedex_search'>
-                            <label htmlFor="searchBar">Name</label>
-                            <input type="text" placeholder='Search pokémon' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
+                            <input className='pokedex_search_input' type="text" placeholder='Pokémon name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
                         </div>
                         <ol className='pokedex_container'>
                             {pokedex.filter((pokedex) => {

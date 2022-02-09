@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
@@ -27,7 +27,25 @@ const MoveCard = () => {
         });
     }, [name]);
 
-    console.log(move);
+    const [pokemon, setPokemon] = useState([])
+
+    useEffect(() => {
+        setLoading(true);
+        axios
+        .get('https://pokeapi.co/api/v2/pokemon?limit=898')
+        .then((res) => {
+            return res.data.results;
+        })
+        .then((results) => {
+            return Promise.all(results.map((res) => axios.get(res.url)));
+        })
+        .then((results) => {
+            setLoading(false);
+            setPokemon(results.map((res) => res.data));
+        });
+    }, []);
+
+    console.log(pokemon);
 
     const maxPp = move?.pp * '1.6';
 
@@ -129,7 +147,7 @@ const MoveCard = () => {
                                             <ul className='move_effect_container_stat'>
                                                 {move?.stat_changes?.map((ms) => 
                                                     ms?.change < 0 ? (
-                                                        <li className='move_effect_container_stat_element'>This move lower the target's <span>{ms?.stat?.name}</span> by {ms?.change} stage</li>
+                                                        <li className='move_effect_container_stat_element'>This move lower the target's <span>{ms?.stat?.name?.replace(/-/g, ' ')}</span> by {ms?.change} stage</li>
                                                     ) : (
                                                         <li className='move_effect_container_stat_element'>This move raises the target's <span>{ms?.stat?.name}</span> by {ms?.change} stage</li>
                                                     )
@@ -149,13 +167,13 @@ const MoveCard = () => {
                                                     {move?.past_values?.map((mp) => 
                                                         <>
                                                             {mp?.power !== null && 
-                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} had {mp?.power} base power</li>}
+                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : {move?.name?.replace(/-/g, ' ')?.toUpperCase()} had {mp?.power} base power</li>}
                                                             {mp?.accuracy !== null && 
-                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} had {mp?.accuracy} accuracy</li>}
+                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : {move?.name?.replace(/-/g, ' ')?.toUpperCase()} had {mp?.accuracy} accuracy</li>}
                                                             {mp?.pp !== null && 
-                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} had {mp?.pp} accuracy</li>}
+                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : {move?.name?.replace(/-/g, ' ')?.toUpperCase()} had {mp?.pp} PP</li>}
                                                             {mp?.type !== null && 
-                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name.replace(/-/g, ' ')}</span> : {move?.name.toUpperCase()} had {mp?.type} accuracy</li>}
+                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : {move?.name?.replace(/-/g, ' ')?.toUpperCase()} was {mp?.type} type</li>}
                                                             
                                                         </>
                                                     )}
@@ -190,6 +208,131 @@ const MoveCard = () => {
                                     </tbody>
                                 </table>
                             </div>
+                        </section>
+
+                        <section className='move_learn'>
+                            <h3 className='move_learn_title'>Learned by level up</h3>
+                            <p className='move_learn_txt'>Learned when the pokémon reach a ceratin level. Data from Pokémon Ultra Sun & Ultra Moon. These informations may vary in other games. Check the respective pokédex pages for details.</p>
+                            <ul className='move_learn_list'>
+                                {pokemon?.map((p) => 
+                                    p?.moves?.map((pm) => 
+                                        pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
+                                        pmv?.version_group?.name === 'ultra-sun-ultra-moon' && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at > 1 &&
+                                            <li className='move_learn_list_element'>
+                                                <img src={p?.sprites?.front_default} alt={p?.name} />
+                                                <Link
+                                                to={`/pokemon/${p?.name}`}
+                                                key={p?.name}
+                                                className='move_learn_list_element_name'>
+                                                    {p?.name.replace(/-/g, ' ')}
+                                                </Link>
+                                                <p className='move_learn_list_element_lvl'>Level {pmv?.level_learned_at}</p>
+                                                <div className='move_learn_list_element_types'>
+                                                    {p?.types?.map((pt) =>
+                                                        <div id={pt.type.name} className='move_learn_list_element_types_element'>
+                                                            <img alt={pt?.type?.name} />
+                                                            <span>{pt?.type?.name}</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </li>
+                                        )
+                                    )
+                                )}
+                            </ul>
+                        </section>
+
+                        <section className='move_learn'>
+                            <h3 className='move_learn_title'>Learned from the Move Relearner / by breeding</h3>
+                            <p className='move_learn_txt'>Learned at level 1 which means that the only way to learn this move is via the move relearner or through breeeding. Data from Pokémon Ultra Sun & Ultra Moon. These informations may vary in other games. Check the respective pokédex pages for details.</p>
+                            <ul className='move_learn_list'>
+                                {pokemon?.map((p) => 
+                                    p?.moves?.map((pm) => 
+                                        pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
+                                        pmv?.version_group?.name === 'ultra-sun-ultra-moon' && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 1 &&
+                                            <li className='move_learn_list_element'>
+                                                <img src={p?.sprites?.front_default} alt={p?.name} />
+                                                <Link
+                                                to={`/pokemon/${p?.name}`}
+                                                key={p?.name}
+                                                className='move_learn_list_element_name'>
+                                                    {p?.name.replace(/-/g, ' ')}
+                                                </Link>
+                                                <div className='move_learn_list_element_types'>
+                                                    {p?.types?.map((pt) =>
+                                                        <div id={pt.type.name} className='move_learn_list_element_types_element'>
+                                                            <img alt={pt?.type?.name} />
+                                                            <span>{pt?.type?.name}</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </li>
+                                        )
+                                    )
+                                )}
+                            </ul>
+                        </section>
+
+                        <section className='move_learn'>
+                            <h3 className='move_learn_title'>Learned when evolving</h3>
+                            <p className='move_learn_txt'>Learned when the pokémon is evolving no matter its level. Data from Pokémon Ultra Sun & Ultra Moon. These informations may vary in other games. Check the respective pokédex pages for details.</p>
+                            <ul className='move_learn_list'>
+                                {pokemon?.map((p) => 
+                                    p?.moves?.map((pm) => 
+                                        pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
+                                        pmv?.version_group?.name === 'ultra-sun-ultra-moon' && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 0 && 
+                                            <li className='move_learn_list_element'>
+                                                <img src={p?.sprites?.front_default} alt={p?.name} />
+                                                <Link
+                                                to={`/pokemon/${p?.name}`}
+                                                key={p?.name}
+                                                className='move_learn_list_element_name'>
+                                                    {p?.name.replace(/-/g, ' ')}
+                                                </Link>
+                                                <div className='move_learn_list_element_types'>
+                                                    {p?.types?.map((pt) =>
+                                                        <div id={pt.type.name} className='move_learn_list_element_types_element'>
+                                                            <img alt={pt?.type?.name} />
+                                                            <span>{pt?.type?.name}</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </li>
+                                        )
+                                    )
+                                )}
+                            </ul>
+                        </section>
+
+                        <section className='move_learn'>
+                            <h3 className='move_learn_title'>Learned by TM</h3>
+                            <p className='move_learn_txt'>Learned by using a TM. Data from Pokémon Ultra Sun & Ultra Moon. These informations may vary in other games. Check the respective pokédex pages for details.</p>
+                            <ul className='move_learn_list'>
+                                {pokemon?.map((p) => 
+                                    p?.moves?.map((pm) => 
+                                        pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
+                                        pmv?.version_group?.name === 'ultra-sun-ultra-moon' && pmv?.move_learn_method?.name === 'machine' && pmv?.level_learned_at === 0 &&
+                                            <li className='move_learn_list_element'>
+                                                <img src={p?.sprites?.front_default} alt={p?.name} />
+                                                <Link
+                                                to={`/pokemon/${p?.name}`}
+                                                key={p?.name}
+                                                className='move_learn_list_element_name'>
+                                                    {p?.name.replace(/-/g, ' ')}
+                                                </Link>
+                                                <div className='move_learn_list_element_types'>
+                                                    {p?.types?.map((pt) =>
+                                                        <div id={pt.type.name} className='move_learn_list_element_types_element'>
+                                                            <img alt={pt?.type?.name} />
+                                                            <span>{pt?.type?.name}</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </li>
+                                        )
+                                    )
+                                )}
+                            </ul>
                         </section>
 
                         <button className='move_button' onClick={() => navigate("/moves")}> ᐸ Back to moves</button>
