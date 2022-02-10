@@ -100,8 +100,12 @@ const AbilityCard = () => {
                                     </tr>
                                 </thead>
                                 <tbody className='ability_container_table_body'>
-                                    {ability?.pokemon?.map((ap) => 
-                                        ap.is_hidden === false &&
+                                    {ability?.pokemon?.every(ap => ap.is_hidden) ? (
+                                        <tr>
+                                            <td colSpan={5}>No Pokémon has <span>{ability?.name?.replace(/-/g, ' ')}</span> as a regular ability</td>
+                                        </tr>
+                                    ) : (
+                                        ability?.pokemon?.map((ap) => (
                                             <tr key={ap.pokemon.name} className='ability_container_table_body_row'>
                                                 <td className='ability_container_table_body_row_sprite'>
                                                     {pokemon?.map((p) =>
@@ -148,6 +152,7 @@ const AbilityCard = () => {
                                                     )}
                                                 </td>
                                             </tr>
+                                        ))
                                     )}
                                 </tbody>
                             </table>
@@ -166,8 +171,8 @@ const AbilityCard = () => {
                                     </tr>
                                 </thead>
                                 <tbody className='ability_container_table_body'>
-                                    {ability?.pokemon?.map((ap) => 
-                                        ap.is_hidden === true &&
+                                    {ability?.pokemon?.every(ap => ap.is_hidden) ? (
+                                        ability?.pokemon?.map((ap) => (
                                             <tr key={ap.pokemon.name} className='ability_container_table_body_row'>
                                                 <td className='ability_container_table_body_row_sprite'>
                                                     {pokemon?.map((p) =>
@@ -214,6 +219,11 @@ const AbilityCard = () => {
                                                     )}
                                                 </td>
                                             </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan={5}>No pokémon has <span>{ability?.name?.replace(/-/g, ' ')}</span> as a hidden ability</td>
+                                        </tr>
                                     )}
                                 </tbody>
                             </table>
