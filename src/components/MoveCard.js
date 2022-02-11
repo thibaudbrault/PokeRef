@@ -214,31 +214,31 @@ const MoveCard = () => {
                             <h3 className='move_learn_title'>Learned by level up</h3>
                             <p className='move_learn_txt'>Learned when the pokémon reach a ceratin level. Data from Pokémon Ultra Sun & Ultra Moon. These informations may vary in other games. Check the respective pokédex pages for details.</p>
                             <ul className='move_learn_list'>
-                                {pokemon?.map((p) => 
-                                    p?.moves?.map((pm) => 
-                                        pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
-                                        pmv?.version_group?.name === 'ultra-sun-ultra-moon' && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at > 1 &&
-                                            <li className='move_learn_list_element'>
-                                                <img src={p?.sprites?.front_default} alt={p?.name} />
-                                                <Link
-                                                to={`/pokemon/${p?.name}`}
-                                                key={p?.name}
-                                                className='move_learn_list_element_name'>
-                                                    {p?.name.replace(/-/g, ' ')}
-                                                </Link>
-                                                <p className='move_learn_list_element_lvl'>Level {pmv?.level_learned_at}</p>
-                                                <div className='move_learn_list_element_types'>
-                                                    {p?.types?.map((pt) =>
-                                                        <div id={pt.type.name} className='move_learn_list_element_types_element'>
-                                                            <img alt={pt?.type?.name} />
-                                                            <span>{pt?.type?.name}</span>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </li>
+                                    {pokemon?.map((p) => 
+                                        p?.moves?.map((pm) => 
+                                            pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
+                                            pmv?.version_group?.name === 'ultra-sun-ultra-moon' && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at > 1 &&
+                                                <li className='move_learn_list_element'>
+                                                    <img src={p?.sprites?.front_default} alt={p?.name} />
+                                                    <Link
+                                                    to={`/pokemon/${p?.name}`}
+                                                    key={p?.name}
+                                                    className='move_learn_list_element_name'>
+                                                        {p?.name.replace(/-/g, ' ')}
+                                                    </Link>
+                                                    <p className='move_learn_list_element_lvl'>Level {pmv?.level_learned_at}</p>
+                                                    <div className='move_learn_list_element_types'>
+                                                        {p?.types?.map((pt) =>
+                                                            <div id={pt.type.name} className='move_learn_list_element_types_element'>
+                                                                <img alt={pt?.type?.name} />
+                                                                <span>{pt?.type?.name}</span>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </li>
+                                            )
                                         )
-                                    )
-                                )}
+                                    )}
                             </ul>
                         </section>
 

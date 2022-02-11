@@ -46,24 +46,25 @@ export default function Items() {
                                     </tr>
                                 </thead>
                                 <tbody className='items_table_body'>
-                                    {items.sort((a, b) => a.name.localeCompare(b.name)).map((i) => (
-                                        <tr key={i.name} className='items_table_body_row'>
-                                            <td className='items_table_body_row_name'>
-                                                <div className='items_table_body_row_name_inner'>
-                                                    <img src={i.sprites.default} alt='' />
-                                                    <span>{i.name.replace(/-/g, ' ')}</span>
-                                                </div>
-                                            </td>
-                                            <td className='items_table_body_row_element'>
-                                                {i.category.name}
-                                            </td>
-                                            <td className='items_table_body_row_effect'>
-                                                {i.effect_entries.map((ie) => (
-                                                    <span>{ie.effect}</span>
-                                                ))}
-                                            </td>
-                                        </tr>
-                                    ))}
+                                    {items.sort((a, b) => a.name.localeCompare(b.name)).map((i) => 
+                                        i?.category?.name !== 'dynamax-crystals' && i?.category?.name !== 'all-machines' && i?.category?.name !== 'all-mail' && i?.category?.name !== 'unused' && i?.category?.name !== 'data-cards' && i?.category?.name !== 'plot-advancement' &&
+                                            <tr key={i.name} className='items_table_body_row'>
+                                                <td className='items_table_body_row_name'>
+                                                    <div className='items_table_body_row_name_inner'>
+                                                        <img src={i.sprites.default} alt='' />
+                                                        <span>{i.name.replace(/-/g, ' ')}</span>
+                                                    </div>
+                                                </td>
+                                                <td className='items_table_body_row_element'>
+                                                    {i.category.name.replace(/-/g, ' ')}
+                                                </td>
+                                                <td className='items_table_body_row_effect'>
+                                                    {i.effect_entries.map((ie) => (
+                                                        <span>{ie.short_effect}</span>
+                                                    ))}
+                                                </td>
+                                            </tr>
+                                    )}
                                 </tbody>
                             </table>
                         </div>

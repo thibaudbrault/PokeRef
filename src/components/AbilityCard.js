@@ -32,7 +32,7 @@ const AbilityCard = () => {
 
     useEffect(() => {
         axios
-        .get('https://pokeapi.co/api/v2/pokemon?limit=1150')
+        .get('https://pokeapi.co/api/v2/pokemon?limit=1300')
         .then((res) => {
             return res.data.results;
         })

@@ -34,7 +34,7 @@ function Pokemon() {
                 ) : (
                     <>
                         <div className='pokedex_search'>
-                            <input className='pokedex_search_input' type="text" placeholder='Pokémon name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
+                            <input className='pokedex_search_input' type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
                         </div>
                         <ol className='pokedex_container'>
                             {pokedex.filter((pokedex) => {
