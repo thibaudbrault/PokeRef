@@ -63,12 +63,12 @@ export default function Abilities() {
                                     .sort((a, b) => a.name.localeCompare(b.name)).map((a) => (
                                     <tr key={a.name} className='abilities_table_body_row'>
                                         <td className='abilities_table_body_row_name'>
-                                        <Link
-                                            to={`/abilities/${a.name}`}
-                                            key={a.name}
-                                        >
-                                            {a.name.replace(/-/g, ' ')}
-                                        </Link>
+                                            <Link
+                                                to={`/abilities/${a.name}`}
+                                                key={a.name}
+                                            >
+                                                {a.name.replace(/-/g, ' ')}
+                                            </Link>
                                         </td>
                                         <td className='abilities_table_body_row_effect'>
                                             {a?.flavor_text_entries?.map((af) => 

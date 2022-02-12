@@ -60,8 +60,8 @@ const AbilityCard = () => {
                             <div className='ability_container_effect'>
                                 <h3 className='ability_container_effect_title'>Effect</h3>
                                 {ability?.effect_entries?.map((ae) => 
-                                    ae?.language.name === 'en' &&
-                                        <p className='ability_container_effect_txt'>
+                                    ae?.language?.name === 'en' &&
+                                        <p className='ability_container_effect_text'>
                                             {ae?.effect}
                                         </p>
                                 )}
@@ -84,7 +84,7 @@ const AbilityCard = () => {
                                             )
                                         )}
                                     </tbody>
-                                </table>
+                            </table>
                         </section>
 
                         <section className='ability_container'>

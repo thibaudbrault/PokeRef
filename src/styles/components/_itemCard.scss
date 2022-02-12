@@ -1,10 +1,10 @@
-.ability {
+.item {
     @include size-main-big;
     &_title {
         @include title;
         margin-bottom: 0.5rem;
     }
-    &_gen {
+    &_category {
         @include subtitle;
     }
     &_container {
@@ -20,17 +20,17 @@
                 font-size: 1.7rem;
             }
         }
+        &_cost {
+            margin: 0 0 1rem;
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+        &_fling {
+            font-size: 1.7rem;
+        }
         &_title {
             margin: 0 0 2rem;
             font-size: 3rem;
-            font-weight: 700;
-        }
-        &_effect {
-            font-size: 1.7rem;
-        }
-        &_subtitle {
-            margin: 0 0 1rem;
-            font-size: 2.5rem;
             font-weight: 700;
         }
         &_desc {
@@ -45,31 +45,6 @@
                     }
                     &_element {
                         text-align: center;
-                    }
-                }
-            }
-        }
-        &_table {
-            @include table;
-            &_head {
-                @include head;
-                sup {
-                    vertical-align: super;
-                    font-size: smaller;
-                }
-            }
-            &_body {
-                &_row {
-                    @include row;
-                    &_sprite {
-                        img {
-                            width: 64px;
-                            height: 64px;
-                        }
-                    }
-                    &_name {
-                        @include name;
-                        cursor: pointer;
                     }
                 }
             }

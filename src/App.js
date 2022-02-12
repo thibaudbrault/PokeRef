@@ -12,6 +12,7 @@ import PokemonCard from './components/PokemonCard';
 import MoveCard from './components/MoveCard';
 import AbilityCard from './components/AbilityCard';
 import TypeCard from './components/TypeCard';
+import ItemCard from './components/ItemCard';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/types" element={<Types />} />
         <Route path ="/types/:name" element={<TypeCard />} />
         <Route path="/items" element={<Items />} />
+        <Route path="/items/:name" element={<ItemCard />} />
         <Route path="/locations" element={<Locations />} />
       </Routes>
     </BrowserRouter>

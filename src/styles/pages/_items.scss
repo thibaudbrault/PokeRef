@@ -17,7 +17,6 @@
                 &_name {
                     @include name;
                     display: table-cell;
-                    cursor: pointer;
                     &_inner {
                         @include flex;
                         span {

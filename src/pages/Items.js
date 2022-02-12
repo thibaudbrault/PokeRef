@@ -47,12 +47,17 @@ export default function Items() {
                                 </thead>
                                 <tbody className='items_table_body'>
                                     {items.sort((a, b) => a.name.localeCompare(b.name)).map((i) => 
-                                        i?.category?.name !== 'dynamax-crystals' && i?.category?.name !== 'all-machines' && i?.category?.name !== 'all-mail' && i?.category?.name !== 'unused' && i?.category?.name !== 'data-cards' && i?.category?.name !== 'plot-advancement' &&
+                                        i?.category?.name !== 'dynamax-crystals' && i?.category?.name !== 'all-machines' && i?.category?.name !== 'all-mail' && i?.category?.name !== 'unused' && i?.category?.name !== 'data-cards' && i?.category?.name !== 'plot-advancement' && i?.category?.name !== 'species-candies' && i?.category?.name !== 'gameplay' &&
                                             <tr key={i.name} className='items_table_body_row'>
                                                 <td className='items_table_body_row_name'>
                                                     <div className='items_table_body_row_name_inner'>
                                                         <img src={i.sprites.default} alt='' />
-                                                        <span>{i.name.replace(/-/g, ' ')}</span>
+                                                        <Link
+                                                            to={`/items/${i.name}`}
+                                                            key={i.name}
+                                                        >
+                                                            <span>{i.name.replace(/-/g, ' ')}</span>
+                                                        </Link>
                                                     </div>
                                                 </td>
                                                 <td className='items_table_body_row_element'>
