@@ -9,6 +9,8 @@ import Footer from '../components/Footer';
 
 export default function Items() {
 
+    const[search, setSearch] = useState('');
+
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -36,7 +38,11 @@ export default function Items() {
                 {loading ? (
                     <BarWave width='40px' height='20px' color='#cc0000' />
                     ) : (
-                        <div className='items_container'>
+                        <>
+                            <h2 className='items_title'>Abilities</h2>
+                            <div className='items_search'>
+                                <input className='items_search_input' type="text" placeholder='Item Name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
+                            </div>
                             <table className='items_table'>
                                 <thead className='items_table_head'>
                                     <tr className='items_table_head_row'>
@@ -46,7 +52,14 @@ export default function Items() {
                                     </tr>
                                 </thead>
                                 <tbody className='items_table_body'>
-                                    {items.sort((a, b) => a.name.localeCompare(b.name)).map((i) => 
+                                    {items.filter((items) => {
+                                        if (search === "") {
+                                            return items
+                                        } else if (items.name.toLowerCase().includes(search.toLowerCase())) {
+                                            return items
+                                        }
+                                    })
+                                    .sort((a, b) => a.name.localeCompare(b.name)).map((i) => 
                                         i?.category?.name !== 'dynamax-crystals' && i?.category?.name !== 'all-machines' && i?.category?.name !== 'all-mail' && i?.category?.name !== 'unused' && i?.category?.name !== 'data-cards' && i?.category?.name !== 'plot-advancement' && i?.category?.name !== 'species-candies' && i?.category?.name !== 'gameplay' &&
                                             <tr key={i.name} className='items_table_body_row'>
                                                 <td className='items_table_body_row_name'>
@@ -72,7 +85,7 @@ export default function Items() {
                                     )}
                                 </tbody>
                             </table>
-                        </div>
+                        </>
                     )}
             </main>
             <Footer />

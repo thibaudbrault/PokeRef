@@ -53,7 +53,16 @@ const ItemCard = () => {
                             {item?.cost !== 0 && 
                                 <p className='item_container_cost'>Cost : {item?.cost} Pokédollars</p>
                             }
-                            <p className='item_container_fling'>When the pokémon holds <span>{item?.name?.replace(/-/g, ' ')}</span> the move <i>Fling</i> has {item?.fling_power} power.</p>
+                            <p className='item_container_held'>Held by :
+                            {item?.held_by_pokemon.length > 0 &&
+                                item?.held_by_pokemon?.map((ih) => 
+                                    <span> {ih?.pokemon?.name.replace(/-/g, ' ')}</span>
+                                )
+                            }
+                            </p>
+                            <p className='item_container_fling'>When the pokémon holds <span>{item?.name?.replace(/-/g, ' ')}</span> the move <i>Fling</i> has {item?.fling_power} power.
+                            {item?.fling_effect?.name !== null && ` The move will ${item?.fling_effect?.name?.replace(/-/g, ' ')} the target.`}
+                            </p>
                         </section>
 
                         <section className='item_container'>
