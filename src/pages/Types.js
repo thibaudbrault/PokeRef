@@ -28,7 +28,9 @@ export default function Types() {
         });
     }, []);
 
-    console.log(types);
+    useEffect(() => {
+        document.title = `Types | PokéInfo`;
+     }, []);
 
     return (
         <>

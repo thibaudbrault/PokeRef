@@ -29,6 +29,10 @@ export default function Locations() {
         });
     }, []);
 
+    useEffect(() => {
+        document.title = `Locations | PokéInfo`;
+     }, []);
+
     return (
         <>
             <Header />

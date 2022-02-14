@@ -46,6 +46,10 @@ function Moves() {
         });
     }, []);
 
+    useEffect(() => {
+        document.title = `Moves | PokéInfo`;
+     }, []);
+
     return (
         <>
             <Header />
@@ -72,7 +76,7 @@ function Moves() {
                                     {moves.filter((moves) => {
                                         if (search === "") {
                                             return moves
-                                        } else if (moves.name.toLowerCase().includes(search.toLowerCase())) {
+                                        } else if (moves.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
                                             return moves
                                         }
                                     })

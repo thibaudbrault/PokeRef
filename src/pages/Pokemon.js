@@ -26,6 +26,10 @@ function Pokemon() {
         });
     }, []);
 
+    useEffect(() => {
+        document.title = `Pokémon | PokéInfo`;
+     }, []);
+
     return (
         <>
             <main className='pokedex'>
@@ -40,7 +44,7 @@ function Pokemon() {
                             {pokedex.filter((pokedex) => {
                                 if (search === "") {
                                     return pokedex
-                                } else if (pokedex.name.toLowerCase().includes(search.toLowerCase())) {
+                                } else if (pokedex.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
                                     return pokedex
                                 }
                             }).map((p) => (

@@ -62,6 +62,12 @@ const TypeCard = () => {
     const nbPokemon = type?.pokemon?.length;
     const nbMoves = type?.moves?.length;
 
+    const title = `${name}`;
+
+    useEffect(() => {
+        document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Types | PokéInfo`;
+     }, [title]);
+
     return (
         <>
             <Header />

@@ -30,6 +30,10 @@ export default function Items() {
         });
     }, []);
 
+    useEffect(() => {
+        document.title = `Items | PokéInfo`;
+     }, []);
+
     return (
         <>
             <Header />
@@ -55,7 +59,7 @@ export default function Items() {
                                     {items.filter((items) => {
                                         if (search === "") {
                                             return items
-                                        } else if (items.name.toLowerCase().includes(search.toLowerCase())) {
+                                        } else if (items.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
                                             return items
                                         }
                                     })

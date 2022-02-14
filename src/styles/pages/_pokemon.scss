@@ -68,6 +68,10 @@
                 font-size: 1.5rem;
                 font-family: $font-game;
                 text-transform: capitalize;
+                transition: 0.3s ease-in-out;
+                &:hover {
+                    color: $red;
+                }
             }
             p {
                 font-size: 1.3rem;
@@ -94,7 +98,7 @@
                 }
             }
             &:hover {
-                transform: translateY(-5px);
+                transform: scale(1.05);
             }
         }
     }

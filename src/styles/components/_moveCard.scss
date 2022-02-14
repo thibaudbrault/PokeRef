@@ -2,6 +2,10 @@
     @include size-main-big;
     &_title {
         @include title;
+        margin-bottom: 0.5rem;
+    }
+    &_gen {
+        @include subtitle;
     }
     &_data {
         padding: 5rem 0;
@@ -94,18 +98,19 @@
             margin: 0 0 2rem;
             font-size: 3rem;
             font-weight: 700;
+            text-transform: capitalize;
         }
         &_table {
             @include table;
-            &_row {
-                &_head {
-                    background: rgba(130, 130, 130, 0.2);
-                    font-size: 1.5rem;
-                    font-weight: 700;
+            &_body {
+                &_row {
                     text-transform: capitalize;
-                }
-                &_element {
-                    text-align: center;
+                    &_name {
+                        @include head;
+                    }
+                    &_effect {
+                        text-align: center;
+                    }
                 }
             }
         }

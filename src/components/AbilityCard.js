@@ -44,6 +44,12 @@ const AbilityCard = () => {
         });
     }, []);
 
+    const title = `${name}`;
+
+    useEffect(() => {
+        document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Abilities | PokéInfo`;
+     }, [title]);
+
     return (
         <>
             <Header />
@@ -53,8 +59,8 @@ const AbilityCard = () => {
                 <BarWave width='40px' height='20px' color='#cc0000' />
                 ) : (
                     <>
-                        <h2 className='ability_title'>{ability?.name?.replace(/-/g, ' ') ?? ''}</h2>
-                        <p className='ability_gen'>{ability?.generation?.name?.replace(/-/g, ' ') ?? ''}</p>
+                        <h2 className='ability_title'>{ability?.name?.replace(/-/g, ' ')}</h2>
+                        <p className='ability_gen'>{ability?.generation?.name?.replace(/-/g, ' ')}</p>
 
                         <section className='ability_container'>
                             <div className='ability_container_effect'>

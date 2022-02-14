@@ -14,7 +14,7 @@ export default function Nav() {
                                     color: isActive ? "#cc0000" : ""
                                 };
                             }}>
-                            Pokemon
+                            Pokémon
                         </NavLink>
                     </li>
                     <li className="nav_inner_ul_li">

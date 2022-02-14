@@ -30,7 +30,9 @@ export default function Abilities() {
         });
     }, []);
 
-    console.log(abilities);
+    useEffect(() => {
+        document.title = `Abilities | PokéInfo`;
+     }, []);
 
     return (
         <>
@@ -56,7 +58,7 @@ export default function Abilities() {
                                     {abilities.filter((abilities) => {
                                         if (search === "") {
                                             return abilities
-                                        } else if (abilities.name.toLowerCase().includes(search.toLowerCase())) {
+                                        } else if (abilities.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
                                             return abilities
                                         }
                                     })

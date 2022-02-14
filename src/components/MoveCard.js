@@ -49,6 +49,12 @@ const MoveCard = () => {
 
     const maxPp = move?.pp * '1.6';
 
+    const title = `${name}`;
+
+    useEffect(() => {
+        document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Moves | PokéInfo`;
+     }, [title]);
+
     return (
         <>
             <Header />
@@ -58,7 +64,9 @@ const MoveCard = () => {
                 <BarWave width="40px" height="20px" color="#cc0000" />
                 ) : (
                     <>
-                        <h2 className='move_title'>{move?.name?.replace(/-/g, ' ') ?? ""}</h2>
+                        <h2 className='move_title'>{move?.name?.replace(/-/g, ' ')}</h2>
+                        <p className='ability_gen'>{move?.generation?.name?.replace(/-/g, ' ')}</p>
+
                         <section className='move_data'>
                             <table className='move_data_table'>
                                 <tbody>
@@ -100,17 +108,13 @@ const MoveCard = () => {
                                         <th className='move_data_table_row_head'>Priority</th>
                                         <td className='move_data_table_row_element'>{move?.priority}</td>
                                     </tr>
-                                    <tr className='move_data_table_row'>
-                                        <th className='move_data_table_row_head'>Introduced</th>
-                                        <td className='move_data_table_row_generation'>{move?.generation?.name.replace(/-/g, ' ')}</td>
-                                    </tr>
                                 </tbody>
                             </table>
                             <ul className='move_effect'>
                                 <li className='move_effect_container'>
                                     <h3 className='move_effect_container_title'>Effects</h3>
                                     <p className='move_effect_container_text'>
-                                        <span>{move?.name?.replace(/-/g, ' ').toUpperCase()} </span>
+                                        <span><i>{move?.name?.replace(/-/g, ' ')}</i> </span>
                                         {move?.effect_entries?.map((me) => 
                                             me.language.name === 'en'  ? (
                                                 <>
@@ -123,7 +127,7 @@ const MoveCard = () => {
                                     </p>
                                     <ul className='move_effect_container_meta'>
                                         {move?.meta?.ailment?.name !== 'none' && 
-                                        <li className='move_effect_container_meta_element'>Status : {move?.meta?.ailment?.name}</li>}
+                                        <li className='move_effect_container_meta_element'>Status : <span>{move?.meta?.ailment?.name}</span></li>}
                                         {move?.meta?.ailment_chance !== 0 && 
                                         <li className='move_effect_container_meta_element'>Has a {move?.meta?.ailment_chance}% chance to {move?.meta?.ailment?.name} the target</li>}
                                         {move?.meta?.crit_rate !== 0 && 
@@ -160,28 +164,26 @@ const MoveCard = () => {
                                     }
                                 </li>
                                 <li className='move_effect_container'>
-                                    {move?.past_values?.length > 0 ? (
+                                    {move?.past_values?.length > 0 &&
                                         <>
                                             <h4 className='move_effect_container_subtitle'>Changes</h4>
                                             <ul className='move_effect_container_changes'>
                                                     {move?.past_values?.map((mp) => 
                                                         <>
                                                             {mp?.power !== null && 
-                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : {move?.name?.replace(/-/g, ' ')?.toUpperCase()} had {mp?.power} base power</li>}
+                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : <span><i>{move?.name?.replace(/-/g, ' ')}</i></span> had {mp?.power} base power</li>}
                                                             {mp?.accuracy !== null && 
-                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : {move?.name?.replace(/-/g, ' ')?.toUpperCase()} had {mp?.accuracy} accuracy</li>}
+                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : <span><i>{move?.name?.replace(/-/g, ' ')}</i></span> had {mp?.accuracy} accuracy</li>}
                                                             {mp?.pp !== null && 
-                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : {move?.name?.replace(/-/g, ' ')?.toUpperCase()} had {mp?.pp} PP</li>}
+                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : <span><i>{move?.name?.replace(/-/g, ' ')}</i></span> had {mp?.pp} PP</li>}
                                                             {mp?.type !== null && 
-                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : {move?.name?.replace(/-/g, ' ')?.toUpperCase()} was {mp?.type} type</li>}
+                                                            <li className='move_effect_container_changes_element'>Before <span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span> : <span><i>{move?.name?.replace(/-/g, ' ')}</i></span> was {mp?.type} type</li>}
                                                             
                                                         </>
                                                     )}
                                             </ul>
                                         </>
-                                    ) : (
-                                        null
-                                    )}
+                                    }
                                 </li>
                                 <li className='move_effect_container'>
                                     <h4 className='move_effect_container_subtitle'>Target</h4>
@@ -190,16 +192,33 @@ const MoveCard = () => {
                             </ul>
                         </section>
 
+                        <section className='move_machine'>
+                            <div className='move_machine_container'>
+                                <h3 className='move_machine_title'>Machine / Record</h3>
+                                <table className='move_machine_table'>
+                                    <tbody className='move_machine_table_body'>
+                                        {move?.flavor_text_entries?.map((mf) => 
+                                            mf?.language?.name === 'en' &&
+                                                <tr className='move_machine_table_body_row'>
+                                                    <th className='move_machine_table_body_row_name'>{mf?.version_group?.name?.replace(/-/g, ' ')}</th>
+                                                    <td className='move_machine_table_body_row_element'>{mf?.flavor_text}</td>
+                                                </tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
                         <section className='move_desc'>
                             <div className='move_desc_container'>
                                 <h3 className='move_desc_title'>Game descriptions</h3>
                                 <table className='move_desc_table'>
-                                    <tbody>
+                                    <tbody className='move_desc_table_body'>
                                         {move?.flavor_text_entries?.map((mf) => 
                                             mf?.language?.name === 'en' ? (
-                                                <tr className='move_desc_table_row'>
-                                                    <th className='move_desc_table_row_head'>{mf?.version_group?.name?.replace(/-/g, ' ')}</th>
-                                                    <td className='move_desc_table_row_element'>{mf?.flavor_text}</td>
+                                                <tr className='move_desc_table_body_row'>
+                                                    <th className='move_desc_table_body_row_name'>{mf?.version_group?.name?.replace(/-/g, ' ')}</th>
+                                                    <td className='move_desc_table_body_row_element'>{mf?.flavor_text}</td>
                                                 </tr>
                                             ) : (
                                                 ''

@@ -28,6 +28,12 @@ const PokemonCard = () => {
 
     console.log(pokemon);
 
+    const title = `${name}`;
+
+    useEffect(() => {
+        document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Pokémon | PokéInfo`;
+     }, [title]);
+
     return (
         <>
             <Header />

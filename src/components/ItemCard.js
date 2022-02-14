@@ -27,7 +27,11 @@ const ItemCard = () => {
         });
     }, [name]);
 
-    console.log(item)
+    const title = `${name}`;
+
+    useEffect(() => {
+        document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Items | PokéInfo`;
+     }, [title]);
 
     return (
         <>
