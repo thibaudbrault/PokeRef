@@ -30,7 +30,7 @@ const ItemCard = () => {
     const title = `${name}`;
 
     useEffect(() => {
-        document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Items | PokéInfo`;
+        document.title = `${title.charAt(0).toUpperCase() + title.slice(1).replace(/-/g, ' ')} | Items | PokéInfo`;
     }, [title]);
 
     console.log(item)
@@ -59,15 +59,20 @@ const ItemCard = () => {
                             {item?.cost !== 0 && 
                                 <p className='item_container_cost'>Cost : {item?.cost} Pokédollars</p>
                             }
-                            <p className='item_container_held'>Held by :
-                            {item?.held_by_pokemon.length > -1 &&
-                                item?.held_by_pokemon?.map((ih) => 
-                                    <span> {ih?.pokemon?.name.replace(/-/g, ' ')}</span>
-                                )
+                            {item?.held_by_pokemon?.length !== 0 &&
+                                <p className='item_container_held'>Held by :
+                                    {item?.held_by_pokemon?.map((ih) => 
+                                        <Link
+                                        to={`/pokemon/${ih?.pokemon?.name}`}
+                                        key={ih?.pokemon?.name}
+                                        >
+                                            {ih?.pokemon?.name.replace(/-/g, ' ')}
+                                        </Link>
+                                    )}
+                                </p>
                             }
-                            </p>
                             <p className='item_container_fling'>When the pokémon holds <span>{item?.name?.replace(/-/g, ' ')}</span> the move <i>Fling</i> has {item?.fling_power} power.
-                            {item?.fling_effect?.name !== null && ` The move will ${item?.fling_effect?.name?.replace(/-/g, ' ')} the target.`}
+                            {item?.fling_effect?.name !== undefined && ` The move will ${item?.fling_effect?.name?.replace(/-/g, ' ')} the target.`}
                             </p>
                         </section>
 

@@ -28,6 +28,11 @@
         &_held {
             margin: 0 0 1rem;
             font-size: 1.7rem;
+            a {
+                display: inline-block;
+                padding: 0 0.5rem;
+                text-transform: capitalize;
+            }
         }
         &_fling {
             font-size: 1.7rem;

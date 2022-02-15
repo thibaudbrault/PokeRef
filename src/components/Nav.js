@@ -58,6 +58,16 @@ export default function Nav() {
                         </NavLink>
                     </li>
                     <li className="nav_inner_ul_li">
+                        <NavLink className="nav_inner_ul_li_link" to="/machines"
+                            style={({ isActive }) => {
+                                return {
+                                    color: isActive ? "#cc0000" : ""
+                                };
+                            }}>
+                            Machines
+                        </NavLink>
+                    </li>
+                    <li className="nav_inner_ul_li">
                         <NavLink className="nav_inner_ul_li_link" to="/locations"
                             style={({ isActive }) => {
                                 return {
