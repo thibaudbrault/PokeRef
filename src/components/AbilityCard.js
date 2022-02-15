@@ -165,7 +165,7 @@ const AbilityCard = () => {
                         </section>
 
                         <section className='ability_container'>
-                            <h3 className='ability_container_title'><span>{ability?.name?.replace(/-/g, ' ')?? ''}</span> as a <span>hidden ability</span></h3>
+                            <h3 className='ability_container_title'><span>{ability?.name?.replace(/-/g, ' ')}</span> as a <span>hidden ability</span></h3>
                             <table className='ability_container_table'>
                                 <thead className='ability_container_table_head'>
                                     <tr className='ability_container_table_head_row'>

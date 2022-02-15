@@ -31,7 +31,9 @@ const ItemCard = () => {
 
     useEffect(() => {
         document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Items | PokéInfo`;
-     }, [title]);
+    }, [title]);
+
+    console.log(item)
 
     return (
         <>
@@ -50,7 +52,7 @@ const ItemCard = () => {
                                 {item?.effect_entries?.map((ie) => 
                                     ie?.language?.name === 'en' &&
                                         <p className='item_container_effect_text'>
-                                            {ie?.effect}
+                                            {ie?.short_effect}
                                         </p>
                                 )}
                             </div>
@@ -58,7 +60,7 @@ const ItemCard = () => {
                                 <p className='item_container_cost'>Cost : {item?.cost} Pokédollars</p>
                             }
                             <p className='item_container_held'>Held by :
-                            {item?.held_by_pokemon.length > 0 &&
+                            {item?.held_by_pokemon.length > -1 &&
                                 item?.held_by_pokemon?.map((ih) => 
                                     <span> {ih?.pokemon?.name.replace(/-/g, ' ')}</span>
                                 )

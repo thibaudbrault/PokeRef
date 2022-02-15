@@ -45,7 +45,25 @@ const MoveCard = () => {
         });
     }, []);
 
-    console.log(move)
+    const [machine, setMachine] = useState([])
+
+    useEffect(() => {
+        setLoading(true);
+        axios
+        .get('https://pokeapi.co/api/v2/machine?limit=1700')
+        .then((res) => {
+            return res.data.results;
+        })
+        .then((results) => {
+            return Promise.all(results.map((res) => axios.get(res.url)));
+        })
+        .then((results) => {
+            setLoading(false);
+            setMachine(results.map((res) => res.data));
+        });
+    }, []);
+
+    console.log(machine)
 
     const maxPp = move?.pp * '1.6';
 
@@ -197,11 +215,11 @@ const MoveCard = () => {
                                 <h3 className='move_machine_title'>Machine / Record</h3>
                                 <table className='move_machine_table'>
                                     <tbody className='move_machine_table_body'>
-                                        {move?.flavor_text_entries?.map((mf) => 
-                                            mf?.language?.name === 'en' &&
+                                        {machine?.map((m) => 
+                                            m?.version_group?.name !== 'xd' && m?.version_group?.name !== 'colosseum' && m?.move?.name === move?.name &&
                                                 <tr className='move_machine_table_body_row'>
-                                                    <th className='move_machine_table_body_row_name'>{mf?.version_group?.name?.replace(/-/g, ' ')}</th>
-                                                    <td className='move_machine_table_body_row_element'>{mf?.flavor_text}</td>
+                                                    <th className='move_machine_table_body_row_name'>{m?.version_group?.name?.replace(/-/g, ' ')}</th>
+                                                    <td className='move_machine_table_body_row_element'>{m?.item?.name}</td>
                                                 </tr>
                                         )}
                                     </tbody>
@@ -215,14 +233,11 @@ const MoveCard = () => {
                                 <table className='move_desc_table'>
                                     <tbody className='move_desc_table_body'>
                                         {move?.flavor_text_entries?.map((mf) => 
-                                            mf?.language?.name === 'en' ? (
+                                            mf?.language?.name === 'en' &&
                                                 <tr className='move_desc_table_body_row'>
                                                     <th className='move_desc_table_body_row_name'>{mf?.version_group?.name?.replace(/-/g, ' ')}</th>
                                                     <td className='move_desc_table_body_row_element'>{mf?.flavor_text}</td>
                                                 </tr>
-                                            ) : (
-                                                ''
-                                            )
                                         )}
                                     </tbody>
                                 </table>

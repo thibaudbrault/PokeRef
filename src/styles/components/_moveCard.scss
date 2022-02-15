@@ -92,6 +92,30 @@
             }
         }
     }
+    &_machine {
+        padding: 5rem 0;
+        &_title {
+            margin: 0 0 2rem;
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: capitalize;
+        }
+        &_table {
+            @include table;
+            &_body {
+                &_row {
+                    text-transform: capitalize;
+                    &_name {
+                        @include head;
+                    }
+                    &_element {
+                        text-align: center;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+    }
     &_desc {
         padding: 5rem 0;
         &_title {
@@ -108,7 +132,7 @@
                     &_name {
                         @include head;
                     }
-                    &_effect {
+                    &_element {
                         text-align: center;
                     }
                 }
