@@ -30,6 +30,15 @@ export default function Items() {
         });
     }, []);
 
+    console.log(machines)
+
+    const filteredMachines = [];
+    machines.forEach(ma => {
+        if(!filteredMachines.some(m=>m.item.name === ma.item.name)){
+            filteredMachines.push(ma)
+        }
+    })
+
     useEffect(() => {
         document.title = `Machines | PokéInfo`;
      }, []);
@@ -55,7 +64,7 @@ export default function Items() {
                                 </tr>
                             </thead>
                             <tbody className='machines_table_body'>
-                                    {machines.filter((machines) => {
+                                    {filteredMachines.filter((machines) => {
                                         if (search === "") {
                                             return machines
                                         } else if (machines.move.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {

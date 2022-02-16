@@ -34,7 +34,6 @@
                 @include row;
                 &_name {
                     @include name;
-                    cursor: pointer;
                 }
                 &_element {
                     text-align: center;
