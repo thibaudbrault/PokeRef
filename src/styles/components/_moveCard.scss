@@ -4,8 +4,26 @@
         @include title;
         margin-bottom: 0.5rem;
     }
-    &_gen {
+    &_subtitle {
         @include subtitle;
+    }
+    &_gen {
+        padding: 5rem 0;
+        &_list {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            &_element {
+                button {
+                    text-transform: uppercase;
+                    font-size: 1.7rem;
+                    font-weight: 700;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                }
+            }
+        }
     }
     &_data {
         padding: 5rem 0;

@@ -83,7 +83,36 @@ const MoveCard = () => {
                 ) : (
                     <>
                         <h2 className='move_title'>{move?.name?.replace(/-/g, ' ')}</h2>
-                        <p className='ability_gen'>{move?.generation?.name?.replace(/-/g, ' ')}</p>
+                        <p className='move_subtitle'>{move?.generation?.name?.replace(/-/g, ' ')}</p>
+
+                        <nav className='move_gen'>
+                            <ol className='move_gen_list'>
+                                <li className='move_gen_list_element'>
+                                    <button>Gen I</button>
+                                </li>
+                                <li className='move_gen_list_element'>
+                                    <button>Gen II</button>
+                                </li>
+                                <li className='move_gen_list_element'>
+                                    <button>Gen III</button>
+                                </li>
+                                <li className='move_gen_list_element'>
+                                    <button>Gen IV</button>
+                                </li>
+                                <li className='move_gen_list_element'>
+                                    <button>Gen V</button>
+                                </li>
+                                <li className='move_gen_list_element'>
+                                    <button>Gen VI</button>
+                                </li>
+                                <li className='move_gen_list_element'>
+                                    <button>Gen VII</button>
+                                </li>
+                                <li className='move_gen_list_element'>
+                                    <button>Gen VIII</button>
+                                </li>
+                            </ol>
+                        </nav>
 
                         <section className='move_data'>
                             <table className='move_data_table'>

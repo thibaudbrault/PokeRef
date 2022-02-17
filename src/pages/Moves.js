@@ -104,13 +104,10 @@ function Moves() {
                                         </td>
                                         <td className='moves_table_body_row_effect'>
                                             {m?.flavor_text_entries?.map((mf) => 
-                                                mf.language.name === 'en' && mf.flavor_text !== 'Dummy Data' ? (
+                                                mf.language.name === 'en' && mf.flavor_text !== 'Dummy Data' &&
                                                     <span>
                                                         {mf.flavor_text}
                                                     </span>
-                                                ) : (
-                                                    null
-                                                )
                                             )}
                                         </td>
                                     </tr>

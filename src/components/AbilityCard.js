@@ -60,7 +60,7 @@ const AbilityCard = () => {
                 ) : (
                     <>
                         <h2 className='ability_title'>{ability?.name?.replace(/-/g, ' ')}</h2>
-                        <p className='ability_gen'>{ability?.generation?.name?.replace(/-/g, ' ')}</p>
+                        <p className='ability_subtitle'>{ability?.generation?.name?.replace(/-/g, ' ')}</p>
 
                         <section className='ability_container'>
                             <div className='ability_container_effect'>

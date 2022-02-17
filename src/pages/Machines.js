@@ -30,8 +30,6 @@ export default function Items() {
         });
     }, []);
 
-    console.log(machines)
-
     const filteredMachines = [];
     machines.forEach(ma => {
         if(!filteredMachines.some(m=>m.item.name === ma.item.name)){
@@ -64,29 +62,28 @@ export default function Items() {
                                 </tr>
                             </thead>
                             <tbody className='machines_table_body'>
-                                    {filteredMachines.filter((machines) => {
-                                        if (search === "") {
-                                            return machines
-                                        } else if (machines.move.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
-                                            return machines
-                                        }
-                                    })
-                                    .map((ma) => 
-                                        
-                                            <tr key={ma?.id} className='machines_table_body_row'>
-                                                <td className='machines_table_body_row_name'>
-                                                    {ma?.item?.name.toUpperCase()}
-                                                </td>
-                                                <td className='machines_table_body_row_element'>
-                                                    <Link
-                                                        to={`/moves/${ma?.move?.name}`}
-                                                        key={ma?.move?.name}
-                                                    >
-                                                        {ma?.move?.name.replace(/-/g, ' ')}
-                                                    </Link>
-                                                </td>
-                                            </tr>
-                                    )}
+                                {filteredMachines.filter((machines) => {
+                                    if (search === "") {
+                                        return machines
+                                    } else if (machines.move.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
+                                        return machines
+                                    }
+                                })
+                                .map((ma) => 
+                                    <tr key={ma?.id} className='machines_table_body_row'>
+                                        <td className='machines_table_body_row_name'>
+                                            {ma?.item?.name.toUpperCase()}
+                                        </td>
+                                        <td className='machines_table_body_row_element'>
+                                            <Link
+                                                to={`/moves/${ma?.move?.name}`}
+                                                key={ma?.move?.name}
+                                            >
+                                                {ma?.move?.name.replace(/-/g, ' ')}
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                )}
                             </tbody>
                         </table>
                         </>
