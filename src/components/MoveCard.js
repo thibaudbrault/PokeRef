@@ -63,11 +63,11 @@ const MoveCard = () => {
         });
     }, []);
 
-    console.log(machine)
+    const[version, setVersion] = useState('ultra-sun-ultra-moon')
 
     const maxPp = move?.pp * '1.6';
 
-    const title = `${name}`;
+    const title = `${name.replace(/-/g, ' ')}`;
 
     useEffect(() => {
         document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Moves | PokéInfo`;
@@ -88,28 +88,28 @@ const MoveCard = () => {
                         <nav className='move_gen'>
                             <ol className='move_gen_list'>
                                 <li className='move_gen_list_element'>
-                                    <button>Gen I</button>
+                                    <button onClick={() => setVersion('yellow')}>Gen I</button>
                                 </li>
                                 <li className='move_gen_list_element'>
-                                    <button>Gen II</button>
+                                    <button onClick={() => setVersion('crystal')}>Gen II</button>
                                 </li>
                                 <li className='move_gen_list_element'>
-                                    <button>Gen III</button>
+                                    <button onClick={() => setVersion('emerald')}>Gen III</button>
                                 </li>
                                 <li className='move_gen_list_element'>
-                                    <button>Gen IV</button>
+                                    <button onClick={() => setVersion('platinum')}>Gen IV</button>
                                 </li>
                                 <li className='move_gen_list_element'>
-                                    <button>Gen V</button>
+                                    <button onClick={() => setVersion('black-2-white-2')}>Gen V</button>
                                 </li>
                                 <li className='move_gen_list_element'>
-                                    <button>Gen VI</button>
+                                    <button onClick={() => setVersion('x-y')}>Gen VI</button>
                                 </li>
                                 <li className='move_gen_list_element'>
-                                    <button>Gen VII</button>
+                                    <button onClick={() => setVersion('ultra-sun-ultra-moon')}>Gen VII</button>
                                 </li>
                                 <li className='move_gen_list_element'>
-                                    <button>Gen VIII</button>
+                                    <button onClick={() => setVersion('sword-shield')}>Gen VIII</button>
                                 </li>
                             </ol>
                         </nav>
@@ -275,12 +275,12 @@ const MoveCard = () => {
 
                         <section className='move_learn'>
                             <h3 className='move_learn_title'>Learned by level up</h3>
-                            <p className='move_learn_txt'>Learned when the pokémon reach a ceratin level. Data from Pokémon Ultra Sun & Ultra Moon. These informations may vary in other games. Check the respective pokédex pages for details.</p>
+                            <p className='move_learn_txt'>Learned when the pokémon reach a ceratin level. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>
                             <ul className='move_learn_list'>
                                     {pokemon?.map((p) => 
                                         p?.moves?.map((pm) => 
                                             pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
-                                            pmv?.version_group?.name === 'ultra-sun-ultra-moon' && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at > 1 &&
+                                            pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at > 1 &&
                                                 <li className='move_learn_list_element'>
                                                     <img src={p?.sprites?.front_default} alt={p?.name} />
                                                     <Link
@@ -307,12 +307,12 @@ const MoveCard = () => {
 
                         <section className='move_learn'>
                             <h3 className='move_learn_title'>Learned by TM</h3>
-                            <p className='move_learn_txt'>Learned by using a TM. Data from Pokémon Ultra Sun & Ultra Moon. These informations may vary in other games. Check the respective pokédex pages for details.</p>
+                            <p className='move_learn_txt'>Learned by using a TM. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>
                             <ul className='move_learn_list'>
                                 {pokemon?.map((p) => 
                                     p?.moves?.map((pm) => 
                                         pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
-                                        pmv?.version_group?.name === 'ultra-sun-ultra-moon' && pmv?.move_learn_method?.name === 'machine' && pmv?.level_learned_at === 0 &&
+                                        pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'machine' && pmv?.level_learned_at === 0 &&
                                             <li className='move_learn_list_element'>
                                                 <img src={p?.sprites?.front_default} alt={p?.name} />
                                                 <Link
@@ -338,12 +338,12 @@ const MoveCard = () => {
 
                         <section className='move_learn'>
                             <h3 className='move_learn_title'>Learned from the Move Relearner / by breeding</h3>
-                            <p className='move_learn_txt'>Learned at level 1 which means that the only way to learn this move is via the move relearner or through breeeding. Data from Pokémon Ultra Sun & Ultra Moon. These informations may vary in other games. Check the respective pokédex pages for details.</p>
+                            <p className='move_learn_txt'>Learned at level 1 which means that the only way to learn this move is via the move relearner or through breeeding. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>
                             <ul className='move_learn_list'>
                                 {pokemon?.map((p) => 
                                     p?.moves?.map((pm) => 
                                         pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
-                                        pmv?.version_group?.name === 'ultra-sun-ultra-moon' && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 1 &&
+                                        pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'egg' && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 1 &&
                                             <li className='move_learn_list_element'>
                                                 <img src={p?.sprites?.front_default} alt={p?.name} />
                                                 <Link
@@ -369,12 +369,12 @@ const MoveCard = () => {
 
                         <section className='move_learn'>
                             <h3 className='move_learn_title'>Learned when evolving</h3>
-                            <p className='move_learn_txt'>Learned when the pokémon is evolving no matter its level. Data from Pokémon Ultra Sun & Ultra Moon. These informations may vary in other games. Check the respective pokédex pages for details.</p>
+                            <p className='move_learn_txt'>Learned when the pokémon is evolving no matter its level. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>
                             <ul className='move_learn_list'>
                                 {pokemon?.map((p) => 
                                     p?.moves?.map((pm) => 
                                         pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
-                                        pmv?.version_group?.name === 'ultra-sun-ultra-moon' && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 0 && 
+                                        pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 0 && 
                                             <li className='move_learn_list_element'>
                                                 <img src={p?.sprites?.front_default} alt={p?.name} />
                                                 <Link
@@ -400,12 +400,12 @@ const MoveCard = () => {
 
                         <section className='move_learn'>
                             <h3 className='move_learn_title'>Learned by move tutor</h3>
-                            <p className='move_learn_txt'>Learned by going to the move tutor. Data from Pokémon Ultra Sun & Ultra Moon. These informations may vary in other games. Check the respective pokédex pages for details.</p>
+                            <p className='move_learn_txt'>Learned by going to the move tutor. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>
                             <ul className='move_learn_list'>
                                 {pokemon?.map((p) => 
                                     p?.moves?.map((pm) => 
                                         pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
-                                        pmv?.version_group?.name === 'ultra-sun-ultra-moon' && pmv?.move_learn_method?.name === 'tutor' &&
+                                        pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'tutor' &&
                                             <li className='move_learn_list_element'>
                                                 <img src={p?.sprites?.front_default} alt={p?.name} />
                                                 <Link
