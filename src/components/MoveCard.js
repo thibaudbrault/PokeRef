@@ -69,6 +69,14 @@ const MoveCard = () => {
 
     const title = `${name.replace(/-/g, ' ')}`;
 
+    function sentenceCase(input, lowercaseBefore) {
+        input = ( input === undefined || input === null ) ? '' : input;
+        if (lowercaseBefore) { input = input.toLowerCase(); }
+        return input.toString().replace( /(^|\. *)([a-z])/g, function(match, separator, char) {
+            return separator + char.toUpperCase();
+        });
+    }
+
     useEffect(() => {
         document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Moves | PokéInfo`;
      }, [title]);
@@ -163,13 +171,10 @@ const MoveCard = () => {
                                     <p className='move_effect_container_text'>
                                         <span><i>{move?.name?.replace(/-/g, ' ')}</i> </span>
                                         {move?.effect_entries?.map((me) => 
-                                            me.language.name === 'en'  ? (
+                                            me.language.name === 'en'  &&
                                                 <>
-                                                    {me.effect}
+                                                   {me?.effect}
                                                 </>
-                                            ) : (
-                                                null
-                                            )
                                         )}
                                     </p>
                                     <ul className='move_effect_container_meta'>
