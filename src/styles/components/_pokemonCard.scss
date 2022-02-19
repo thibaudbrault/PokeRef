@@ -1,0 +1,54 @@
+.pokemon {
+    @include size-main-big;
+    &_title {
+        @include title;
+        margin: 0;
+        text-align: center;
+    }
+    &_gen {
+        padding: 5rem 0;
+        &_list {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            &_dropdown {
+                display: inline-block;
+                position: relative;
+                button {
+                    background: none;
+                    border: none;
+                    font-size: 1.7rem;
+                    font-weight: 700;
+                    color: $dark;
+                }
+                &_content {
+                    display: none;
+                    position: absolute;
+                    white-space: nowrap;
+                    background: rgba(255, 255, 255, 0.4);
+                    button {
+                        display: block;
+                        background: none;
+                        font-size: 1.5rem;
+                        border: none;
+                        margin: 1rem;
+                        color: $dark;
+                        cursor: pointer;
+                        &:hover {
+                            color: $red;
+                        }
+                    }
+                }
+                &:hover .pokemon_gen_list_dropdown_content {
+                    display: block;
+                }
+            }
+        }
+    }
+    &_sprite {
+        @include flex;
+        &_image {
+            width: 33%;
+        }
+    }
+}

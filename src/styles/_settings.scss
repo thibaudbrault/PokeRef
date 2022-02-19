@@ -345,7 +345,11 @@ main {
 
 /*css reset end*/
 
-/*td style start */
+.back_button {
+	@include button;
+}
+
+/*table cell style start */
 
 th {
 	padding: 1.5rem;
@@ -369,7 +373,7 @@ td {
 	vertical-align: middle;
 }
 
-/*td style end*/
+/*table cell style end*/
 
 /*dark theme start*/
 
@@ -409,6 +413,17 @@ body {
 		border: 1px solid $light !important;
 		&::placeholder {
 			color: $light !important;
+		}
+	}
+	button {
+		color: $light !important;
+	}
+	.back_button {
+		border: 1px solid $light;
+		transition: 0.3s ease-in-out;
+		&:hover {
+			background: $light;
+			color: $dark !important;
 		}
 	}
 }

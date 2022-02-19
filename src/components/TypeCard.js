@@ -219,7 +219,7 @@ const TypeCard = () => {
                                 <p className='type_container_comment'><span>{type.name}</span> attacks were <span>{type?.move_damage_class?.name}</span> before the Gen IV</p>
                             }
                         </section>
-                        <button className='type_button' onClick={() => navigate('/types')}> ᐸ Back to types</button>
+                        <button className='back_button' onClick={() => navigate('/types')}> ᐸ Back to types</button>
                     </>
                 )}
             </main>

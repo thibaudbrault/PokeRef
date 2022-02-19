@@ -93,7 +93,7 @@ const ItemCard = () => {
                                     </tbody>
                             </table>
                         </section>
-                        <button className='item_button' onClick={() => navigate('/items')}> ᐸ Back to items</button>
+                        <button className='back_button' onClick={() => navigate('/items')}> ᐸ Back to items</button>
                     </>
                 )}
             </main>

@@ -235,7 +235,7 @@ const AbilityCard = () => {
                             </table>
                         </section>
                         
-                        <button className='ability_button' onClick={() => navigate('/abilities')}> ᐸ Back to abilities</button>
+                        <button className='back_button' onClick={() => navigate('/abilities')}> ᐸ Back to abilities</button>
                     </>
                 )}
             </main>

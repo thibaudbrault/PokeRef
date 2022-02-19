@@ -63,6 +63,18 @@ const MoveCard = () => {
         });
     }, []);
 
+    function solution(text) {
+
+        const sentences = text.split(".");
+      
+        const capitalizedSentences = sentences.map(
+          (sentence) =>
+            sentence.trim().slice(0, 1).toUpperCase() + sentence.trim().slice(1)
+        );
+      
+        return capitalizedSentences.join(". ");
+    }
+
     const[version, setVersion] = useState('ultra-sun-ultra-moon')
 
     const maxPp = move?.pp * '1.6';
@@ -185,6 +197,15 @@ const MoveCard = () => {
                                             </div>
                                         </td>
                                     </tr>
+                                    {machine?.map((ma) => 
+                                        ma?.version_group?.name === version && ma?.move?.name === move?.name &&
+                                            <tr className='move_data_table_row'>
+                                                <th className='move_data_table_row_head'>Machine / Record</th>
+                                                <td className='move_data_table_row_element'>
+                                                    <span>{ma?.item?.name.toUpperCase()}</span>
+                                                </td>
+                                            </tr>
+                                    )}
                                     <tr className='move_data_table_row'>
                                         <th className='move_data_table_row_head'>Power</th>
                                         <td className='move_data_table_row_element'>{move?.power}</td>
@@ -216,6 +237,12 @@ const MoveCard = () => {
                                             me.language.name === 'en'  &&
                                                 <>
                                                    {me?.effect}
+                                                </>
+                                        )} <br />
+                                        {move?.flavor_text_entries?.map((mf) => 
+                                            mf?.language?.name === 'en' && mf?.version_group?.name === version && 
+                                                <>
+                                                    {mf?.flavor_text}
                                                 </>
                                         )}
                                     </p>
@@ -285,7 +312,7 @@ const MoveCard = () => {
                                 </li>
                             </ul>
                         </section>
-                        
+
                         <section className='move_learn'>
                             <h3 className='move_learn_title'>Learned by level up</h3>
                             <p className='move_learn_txt'>Learned when the pokémon reach a ceratin level. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>
@@ -442,7 +469,7 @@ const MoveCard = () => {
                             </ul>
                         </section>
 
-                        <button className='move_button' onClick={() => navigate("/moves")}> ᐸ Back to moves</button>
+                        <button className='back_button' onClick={() => navigate("/moves")}> ᐸ Back to moves</button>
                     </>
                 )}
             </main>
