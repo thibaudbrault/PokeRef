@@ -141,20 +141,17 @@ const TypeCard = () => {
                             <div className='type_container_pokemon'>
                                 {type?.pokemon?.map((tp) => (
                                     pokemon?.map((p) =>
-                                        p.name === tp.pokemon.name && p.id <899 ? (
+                                        p.name === tp.pokemon.name && p.id <899 &&
                                             <div className='type_container_pokemon_inner'>
                                                 <img className='type_container_pokemon_inner_img' src={p.sprites.front_default} alt={pokemon.name} loading='lazy' />
-                                                <p className='type_container_pokemon_inner_id'>#{p.id}</p>
+                                                <p className='type_container_pokemon_inner_id'>#{p?.id}</p>
                                                 <Link
                                                 to={`/pokemon/${p.name}`}
                                                 key={p.name}
                                                 className='type_container_pokemon_inner_name'>
-                                                    {tp.pokemon.name.replace(/-/g, ' ')}
+                                                    {tp?.pokemon?.name?.replace(/-/g, ' ')}
                                                 </Link>
                                             </div>
-                                        ) :(
-                                            null
-                                        )
                                     )
                                 ))}
                             </div>
@@ -176,7 +173,7 @@ const TypeCard = () => {
                                     <tbody className='type_container_table_body'>
                                         {type?.moves?.sort((a, b) => a.name.localeCompare(b.name)).map((tm) => (
                                             moves?.map((m) =>
-                                                m.name === tm.name ? (
+                                                m.name === tm.name &&
                                                     <tr className='type_container_table_body_row'>
                                                         <td className='type_container_table_body_row_name'>
                                                             <Link
@@ -186,21 +183,41 @@ const TypeCard = () => {
                                                             {tm.name.replace(/-/g, ' ')}
                                                             </Link>
                                                         </td>
-                                                        <td className='type_container_table_body_row_element'>{m.damage_class.name}</td>
-                                                        <td className='type_container_table_body_row_element'>{m.power}</td>
-                                                        <td className='type_container_table_body_row_element'>{m.pp}</td>
-                                                        <td className='type_container_table_body_row_element'>{m.accuracy}</td>
-                                                        <td className='type_container_table_body_row_element'>{m.meta.ailment.name.replace('none', '-')}</td>
+                                                        <td className='type_container_table_body_row_element'>{m?.damage_class?.name}</td>
+                                                        <td className='type_container_table_body_row_element'>
+                                                            {m?.power !== null ? (
+                                                                m?.power
+                                                            ) :(
+                                                                '-'
+                                                            )
+                                                            }
+                                                        </td>
+                                                        <td className='type_container_table_body_row_element'>{m?.pp}</td>
+                                                        <td className='type_container_table_body_row_element'>
+                                                            {m?.accuracy !== null ? (
+                                                                m?.accuracy
+                                                            ) :(
+                                                                '-'
+                                                            )
+                                                            }
+                                                        </td>
+                                                        <td className='type_container_table_body_row_element'>
+                                                            {m?.meta?.ailment?.name !== 'none' ? (
+                                                                m?.meta?.ailment?.name
+                                                            ) :(
+                                                                '-'
+                                                            )
+                                                            }
+                                                        </td>
                                                     </tr>
-                                                ) : (
-                                                    null
-                                                )
                                             )
                                         ))}
                                     </tbody>
                                 </table>
                             </div>
-                            <p className='type_container_comment'><span>{type.name}</span> attacks were <span>{type?.move_damage_class?.name}</span> before the Gen IV</p>
+                            {type?.name !== 'fairy' &&
+                                <p className='type_container_comment'><span>{type.name}</span> attacks were <span>{type?.move_damage_class?.name}</span> before the Gen IV</p>
+                            }
                         </section>
                         <button className='type_button' onClick={() => navigate('/types')}> ᐸ Back to types</button>
                     </>

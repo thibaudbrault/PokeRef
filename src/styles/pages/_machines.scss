@@ -24,6 +24,44 @@
             }
         }
     }
+    &_gen {
+        padding: 5rem 0;
+        &_list {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            &_dropdown {
+                display: inline-block;
+                position: relative;
+                button {
+                    background: none;
+                    border: none;
+                    font-size: 1.7rem;
+                    font-weight: 700;
+                }
+                &_content {
+                    display: none;
+                    position: absolute;
+                    white-space: nowrap;
+                    background: rgba(255, 255, 255, 0.4);
+                    button {
+                        display: block;
+                        background: none;
+                        font-size: 1.5rem;
+                        border: none;
+                        margin: 1rem;
+                        cursor: pointer;
+                        &:hover {
+                            color: $red;
+                        }
+                    }
+                }
+                &:hover .machines_gen_list_dropdown_content {
+                    display: block;
+                }
+            }
+        }
+    }
     &_table {
         @include table;
         &_head {

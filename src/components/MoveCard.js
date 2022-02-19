@@ -69,14 +69,6 @@ const MoveCard = () => {
 
     const title = `${name.replace(/-/g, ' ')}`;
 
-    function sentenceCase(input, lowercaseBefore) {
-        input = ( input === undefined || input === null ) ? '' : input;
-        if (lowercaseBefore) { input = input.toLowerCase(); }
-        return input.toString().replace( /(^|\. *)([a-z])/g, function(match, separator, char) {
-            return separator + char.toUpperCase();
-        });
-    }
-
     useEffect(() => {
         document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Moves | PokéInfo`;
      }, [title]);
@@ -95,30 +87,80 @@ const MoveCard = () => {
 
                         <nav className='move_gen'>
                             <ol className='move_gen_list'>
-                                <li className='move_gen_list_element'>
-                                    <button onClick={() => setVersion('yellow')}>Gen I</button>
-                                </li>
-                                <li className='move_gen_list_element'>
-                                    <button onClick={() => setVersion('crystal')}>Gen II</button>
-                                </li>
-                                <li className='move_gen_list_element'>
-                                    <button onClick={() => setVersion('emerald')}>Gen III</button>
-                                </li>
-                                <li className='move_gen_list_element'>
-                                    <button onClick={() => setVersion('platinum')}>Gen IV</button>
-                                </li>
-                                <li className='move_gen_list_element'>
-                                    <button onClick={() => setVersion('black-2-white-2')}>Gen V</button>
-                                </li>
-                                <li className='move_gen_list_element'>
-                                    <button onClick={() => setVersion('x-y')}>Gen VI</button>
-                                </li>
-                                <li className='move_gen_list_element'>
-                                    <button onClick={() => setVersion('ultra-sun-ultra-moon')}>Gen VII</button>
-                                </li>
-                                <li className='move_gen_list_element'>
-                                    <button onClick={() => setVersion('sword-shield')}>Gen VIII</button>
-                                </li>
+                                {move?.generation?.name === 'generation-i' &&
+                                    <li className='move_gen_list_dropdown'>
+                                        <button className='move_gen_list_dropdown_button'>Gen I</button>
+                                        <div className='move_gen_list_dropdown_content'>
+                                            <button onClick={() => setVersion('red-blue')}>Red / Blue</button>
+                                            <button onClick={() => setVersion('yellow')}>Yellow</button>
+                                        </div>
+                                    </li>
+                                }
+                                {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii') &&
+                                    <li className='move_gen_list_dropdown'>
+                                        <button className='move_gen_list_dropdown_button'>Gen II</button>
+                                        <div className='move_gen_list_dropdown_content'>
+                                            <button onClick={() => setVersion('gold-silver')}>Gold / Silver</button>
+                                            <button onClick={() => setVersion('crystal')}>Crystal</button>
+                                        </div>
+                                    </li>
+                                }
+                                {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii' || move?.generation?.name === 'generation-iii') &&
+                                    <li className='move_gen_list_dropdown'>
+                                        <button className='move_gen_list_dropdown_button'>Gen III</button>
+                                        <div className='move_gen_list_dropdown_content'>
+                                            <button onClick={() => setVersion('ruby-sapphire')}>Ruby / Sapphire</button>
+                                            <button onClick={() => setVersion('emerald')}>Emerald</button>
+                                            <button onClick={() => setVersion('firered-greenleaf')}>FireRed / GreenLeaf</button>
+                                        </div>
+                                    </li>
+                                }
+                                {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii' || move?.generation?.name === 'generation-iii' || move?.generation?.name === 'generation-iv') &&
+                                    <li className='move_gen_list_dropdown'>
+                                        <button className='move_gen_list_dropdown_button'>Gen IV</button>
+                                        <div className='move_gen_list_dropdown_content'>
+                                            <button onClick={() => setVersion('diamond-pearl')}>Diamond / Pearl</button>
+                                            <button onClick={() => setVersion('platinum')}>Platinum</button>
+                                            <button onClick={() => setVersion('heartgold-soulsilver')}>HeartGold / SoulSilver</button>
+                                        </div>
+                                    </li>
+                                }
+                                {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii' || move?.generation?.name === 'generation-iii' || move?.generation?.name === 'generation-iv' || move?.generation?.name === 'generation-v') &&
+                                    <li className='move_gen_list_dropdown'>
+                                        <button className='move_gen_list_dropdown_button'>Gen V</button>
+                                        <div className='move_gen_list_dropdown_content'>
+                                            <button onClick={() => setVersion('black-white')}>Black / White</button>
+                                            <button onClick={() => setVersion('black-2-white-2')}>Black 2 / White 2</button>
+                                        </div>
+                                    </li>
+                                }
+                                {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii' || move?.generation?.name === 'generation-iii' || move?.generation?.name === 'generation-iv' || move?.generation?.name === 'generation-v' || move?.generation?.name === 'generation-vi') &&
+                                    <li className='move_gen_list_dropdown'>
+                                        <button className='move_gen_list_dropdown_button'>Gen VI</button>
+                                        <div className='move_gen_list_dropdown_content'>
+                                            <button onClick={() => setVersion('x-y')}>X / Y</button>
+                                            <button onClick={() => setVersion('omega-ruby-alpha-sapphire')}>Omega Ruby Alpha / Sapphire</button>
+                                        </div>
+                                    </li>
+                                }
+                                {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii' || move?.generation?.name === 'generation-iii' || move?.generation?.name === 'generation-iv' || move?.generation?.name === 'generation-v' || move?.generation?.name === 'generation-vi' || move?.generation?.name === 'generation-vii') &&
+                                    <li className='move_gen_list_dropdown'>
+                                        <button className='move_gen_list_dropdown_button'>Gen VII</button>
+                                        <div className='move_gen_list_dropdown_content'>
+                                            <button onClick={() => setVersion('sun-moon')}>Sun / Moon</button>
+                                            <button onClick={() => setVersion('ultra-sun-ultra-moon')}>Ultra Sun / Ultra Moon</button>
+                                            <button onClick={() => setVersion('lets-go-pikachu-lets-go-eevee')}>Let's Go Pikachu / Let's Go Eevee</button>
+                                        </div>
+                                    </li>
+                                }
+                                {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii' || move?.generation?.name === 'generation-iii' || move?.generation?.name === 'generation-iv' || move?.generation?.name === 'generation-v' || move?.generation?.name === 'generation-vi' || move?.generation?.name === 'generation-vii' || move?.generation?.name === 'generation-viii') &&
+                                    <li className='move_gen_list_dropdown'>
+                                        <button className='move_gen_list_dropdown_button'>Gen VIII</button>
+                                        <div className='move_gen_list_dropdown_content'>
+                                            <button onClick={() => setVersion('sword-shield')}>Sword / Shield</button>
+                                        </div>
+                                    </li>
+                                }
                             </ol>
                         </nav>
 
@@ -243,41 +285,7 @@ const MoveCard = () => {
                                 </li>
                             </ul>
                         </section>
-
-                        <section className='move_machine'>
-                            <div className='move_machine_container'>
-                                <h3 className='move_machine_title'>Machine / Record</h3>
-                                <table className='move_machine_table'>
-                                    <tbody className='move_machine_table_body'>
-                                        {machine?.map((m) => 
-                                            m?.version_group?.name !== 'xd' && m?.version_group?.name !== 'colosseum' && m?.move?.name === move?.name &&
-                                                <tr className='move_machine_table_body_row'>
-                                                    <th className='move_machine_table_body_row_name'>{m?.version_group?.name?.replace(/-/g, ' ')}</th>
-                                                    <td className='move_machine_table_body_row_element'>{m?.item?.name}</td>
-                                                </tr>
-                                        )}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </section>
-
-                        <section className='move_desc'>
-                            <div className='move_desc_container'>
-                                <h3 className='move_desc_title'>Game descriptions</h3>
-                                <table className='move_desc_table'>
-                                    <tbody className='move_desc_table_body'>
-                                        {move?.flavor_text_entries?.map((mf) => 
-                                            mf?.language?.name === 'en' &&
-                                                <tr className='move_desc_table_body_row'>
-                                                    <th className='move_desc_table_body_row_name'>{mf?.version_group?.name?.replace(/-/g, ' ')}</th>
-                                                    <td className='move_desc_table_body_row_element'>{mf?.flavor_text}</td>
-                                                </tr>
-                                        )}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </section>
-
+                        
                         <section className='move_learn'>
                             <h3 className='move_learn_title'>Learned by level up</h3>
                             <p className='move_learn_txt'>Learned when the pokémon reach a ceratin level. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>

@@ -13,14 +13,34 @@
             display: flex;
             align-items: center;
             justify-content: space-around;
-            &_element {
+            &_dropdown {
+                display: inline-block;
+                position: relative;
                 button {
-                    text-transform: uppercase;
-                    font-size: 1.7rem;
-                    font-weight: 700;
                     background: none;
                     border: none;
-                    cursor: pointer;
+                    font-size: 1.7rem;
+                    font-weight: 700;
+                }
+                &_content {
+                    display: none;
+                    position: absolute;
+                    white-space: nowrap;
+                    background: rgba(255, 255, 255, 0.4);
+                    button {
+                        display: block;
+                        background: none;
+                        font-size: 1.5rem;
+                        border: none;
+                        margin: 1rem;
+                        cursor: pointer;
+                        &:hover {
+                            color: $red;
+                        }
+                    }
+                }
+                &:hover .move_gen_list_dropdown_content {
+                    display: block;
                 }
             }
         }
@@ -107,53 +127,6 @@
                 margin-left: 2rem;
                 font-size: 1.5rem;
                 text-transform: capitalize;
-            }
-        }
-    }
-    &_machine {
-        padding: 5rem 0;
-        &_title {
-            margin: 0 0 2rem;
-            font-size: 3rem;
-            font-weight: 700;
-            text-transform: capitalize;
-        }
-        &_table {
-            @include table;
-            &_body {
-                &_row {
-                    text-transform: capitalize;
-                    &_name {
-                        @include head;
-                    }
-                    &_element {
-                        text-align: center;
-                        text-transform: uppercase;
-                    }
-                }
-            }
-        }
-    }
-    &_desc {
-        padding: 5rem 0;
-        &_title {
-            margin: 0 0 2rem;
-            font-size: 3rem;
-            font-weight: 700;
-            text-transform: capitalize;
-        }
-        &_table {
-            @include table;
-            &_body {
-                &_row {
-                    text-transform: capitalize;
-                    &_name {
-                        @include head;
-                    }
-                    &_element {
-                        text-align: center;
-                    }
-                }
             }
         }
     }
