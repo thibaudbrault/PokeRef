@@ -1,11 +1,16 @@
 .pokemon {
-    @include size-main-big;
+    @include size-main-small;
     &_title {
         @include title;
-        margin: 0;
+        font-size: 4rem;
         text-align: center;
     }
     &_gen {
+        @include subtitle;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    &_nav {
         padding: 5rem 0;
         &_list {
             display: flex;
@@ -25,7 +30,7 @@
                     display: none;
                     position: absolute;
                     white-space: nowrap;
-                    background: rgba(255, 255, 255, 0.4);
+                    background: rgb(255, 255, 255);
                     button {
                         display: block;
                         background: none;
@@ -39,16 +44,60 @@
                         }
                     }
                 }
-                &:hover .pokemon_gen_list_dropdown_content {
+                &:hover .pokemon_nav_list_dropdown_content {
                     display: block;
                 }
             }
         }
     }
-    &_sprite {
-        @include flex;
+    &_data {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 55% 35%;
+        column-gap: 10%;
+        &_container {
+            &_list {
+                &_desc {
+                    font-size: 2rem;
+                }
+                &_types {
+                    position: relative;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    &_element {
+                        margin: 2rem;
+                        padding: 0.5rem;
+                        @include type;
+                        img {
+                            height: 2.5rem;
+                        }
+                        span {
+                            padding-left: 0.5rem;
+                            font-family: $font-game;
+                            font-size: 1.7rem;
+                        }
+                    }
+                }
+            }
+            &_table {
+                @include table;
+                &_body {
+                    &_row {
+                        &_head {
+                            background: rgba(130, 130, 130, 0.2);
+                        }
+                        &_element {
+                            text-align: center;
+                            text-transform: capitalize;
+                        }
+                    }
+                }
+            }
+        }
         &_image {
-            width: 33%;
+            width: 100%;
         }
     }
 }

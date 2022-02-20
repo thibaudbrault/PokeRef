@@ -25,19 +25,19 @@ $red: #cc0000;
 }
 
 @mixin size-main-big {
-	width: 90%;
+	max-width: 1700px;
     margin: 0 auto;
-    padding: 5rem 0;
+    padding: 5rem;
 }
 
 @mixin size-main-small {
-    width: 75%;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 5rem 0;
+    padding: 5rem;
 }
 
 @mixin title {
-	margin-bottom: 2rem;
+	margin-bottom: 1.5rem;
     font-size: 3.5rem;
     font-family: $font-game;
 	text-transform: capitalize;
@@ -359,7 +359,6 @@ th {
 	font-weight: 700;
 	font-size: 1.8rem;
 	vertical-align: middle;
-	cursor: pointer;
 }
 
 td {

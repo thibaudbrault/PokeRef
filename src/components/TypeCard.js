@@ -77,7 +77,8 @@ const TypeCard = () => {
                 <BarWave width='40px' height='20px' color='#cc0000' />
                 ) : (
                     <>
-                        <h2 className='type_title'>{type.name}</h2>
+                        <h2 className='type_title'>{type?.name}</h2>
+
                         <section className='type_damage'>
                             <h3 className='type_damage_title'>Attack</h3>
                             <table className='type_damage_table'>
@@ -107,6 +108,7 @@ const TypeCard = () => {
                                 </tr>
                             </table>
                         </section>
+
                         <section className='type_damage'>
                             <h3 className='type_damage_title'>Defense</h3>
                             <table className='type_damage_table'>
@@ -136,6 +138,7 @@ const TypeCard = () => {
                                 </tr>
                             </table>
                         </section>
+
                         <section className='type_container'>
                             <h3 className='type_container_subtitle'>{nbPokemon} Pokémon are <span>{type.name}</span> type</h3>
                             <div className='type_container_pokemon'>
@@ -156,6 +159,7 @@ const TypeCard = () => {
                                 ))}
                             </div>
                         </section>
+
                         <section className='type_container'>
                             <h3 className='type_container_subtitle'>{nbMoves} moves are <span>{type.name}</span> type</h3>
                             <div className='type_container_moves'>
@@ -219,6 +223,7 @@ const TypeCard = () => {
                                 <p className='type_container_comment'><span>{type.name}</span> attacks were <span>{type?.move_damage_class?.name}</span> before the Gen IV</p>
                             }
                         </section>
+
                         <button className='back_button' onClick={() => navigate('/types')}> ᐸ Back to types</button>
                     </>
                 )}

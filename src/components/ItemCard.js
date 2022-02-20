@@ -46,6 +46,7 @@ const ItemCard = () => {
                     <>
                         <h2 className='item_title'>{item?.name?.replace(/-/g, ' ')}</h2>
                         <p className='item_category'>{item?.category?.name?.replace(/-/g, ' ')}</p>
+
                         <section className='item_container'>
                             <div className='item_container_effect'>
                                 <h3 className='item_container_effect_title'>Effect</h3>
@@ -93,6 +94,7 @@ const ItemCard = () => {
                                     </tbody>
                             </table>
                         </section>
+                        
                         <button className='back_button' onClick={() => navigate('/items')}> ᐸ Back to items</button>
                     </>
                 )}

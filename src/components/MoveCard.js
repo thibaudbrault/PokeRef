@@ -63,18 +63,6 @@ const MoveCard = () => {
         });
     }, []);
 
-    function solution(text) {
-
-        const sentences = text.split(".");
-      
-        const capitalizedSentences = sentences.map(
-          (sentence) =>
-            sentence.trim().slice(0, 1).toUpperCase() + sentence.trim().slice(1)
-        );
-      
-        return capitalizedSentences.join(". ");
-    }
-
     const[version, setVersion] = useState('ultra-sun-ultra-moon')
 
     const maxPp = move?.pp * '1.6';
@@ -95,70 +83,70 @@ const MoveCard = () => {
                 ) : (
                     <>
                         <h2 className='move_title'>{move?.name?.replace(/-/g, ' ')}</h2>
-                        <p className='move_subtitle'>{move?.generation?.name?.replace(/-/g, ' ')}</p>
+                        <p className='move_gen'>{move?.generation?.name?.replace(/-/g, ' ')}</p>
 
-                        <nav className='move_gen'>
-                            <ol className='move_gen_list'>
+                        <nav className='move_nav'>
+                            <ol className='move_nav_list'>
                                 {move?.generation?.name === 'generation-i' &&
-                                    <li className='move_gen_list_dropdown'>
-                                        <button className='move_gen_list_dropdown_button'>Gen I</button>
-                                        <div className='move_gen_list_dropdown_content'>
+                                    <li className='move_nav_list_dropdown'>
+                                        <button className='move_nav_list_dropdown_button'>Gen I</button>
+                                        <div className='move_nav_list_dropdown_content'>
                                             <button onClick={() => setVersion('red-blue')}>Red / Blue</button>
                                             <button onClick={() => setVersion('yellow')}>Yellow</button>
                                         </div>
                                     </li>
                                 }
                                 {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii') &&
-                                    <li className='move_gen_list_dropdown'>
-                                        <button className='move_gen_list_dropdown_button'>Gen II</button>
-                                        <div className='move_gen_list_dropdown_content'>
+                                    <li className='move_nav_list_dropdown'>
+                                        <button className='move_nav_list_dropdown_button'>Gen II</button>
+                                        <div className='move_nav_list_dropdown_content'>
                                             <button onClick={() => setVersion('gold-silver')}>Gold / Silver</button>
                                             <button onClick={() => setVersion('crystal')}>Crystal</button>
                                         </div>
                                     </li>
                                 }
                                 {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii' || move?.generation?.name === 'generation-iii') &&
-                                    <li className='move_gen_list_dropdown'>
-                                        <button className='move_gen_list_dropdown_button'>Gen III</button>
-                                        <div className='move_gen_list_dropdown_content'>
+                                    <li className='move_nav_list_dropdown'>
+                                        <button className='move_nav_list_dropdown_button'>Gen III</button>
+                                        <div className='move_nav_list_dropdown_content'>
                                             <button onClick={() => setVersion('ruby-sapphire')}>Ruby / Sapphire</button>
                                             <button onClick={() => setVersion('emerald')}>Emerald</button>
-                                            <button onClick={() => setVersion('firered-greenleaf')}>FireRed / GreenLeaf</button>
+                                            <button onClick={() => setVersion('firered-greenleaf')}>Fire Red / Green Leaf</button>
                                         </div>
                                     </li>
                                 }
                                 {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii' || move?.generation?.name === 'generation-iii' || move?.generation?.name === 'generation-iv') &&
-                                    <li className='move_gen_list_dropdown'>
-                                        <button className='move_gen_list_dropdown_button'>Gen IV</button>
-                                        <div className='move_gen_list_dropdown_content'>
+                                    <li className='move_nav_list_dropdown'>
+                                        <button className='move_nav_list_dropdown_button'>Gen IV</button>
+                                        <div className='move_nav_list_dropdown_content'>
                                             <button onClick={() => setVersion('diamond-pearl')}>Diamond / Pearl</button>
                                             <button onClick={() => setVersion('platinum')}>Platinum</button>
-                                            <button onClick={() => setVersion('heartgold-soulsilver')}>HeartGold / SoulSilver</button>
+                                            <button onClick={() => setVersion('heartgold-soulsilver')}>Heart Gold / Soul Silver</button>
                                         </div>
                                     </li>
                                 }
                                 {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii' || move?.generation?.name === 'generation-iii' || move?.generation?.name === 'generation-iv' || move?.generation?.name === 'generation-v') &&
-                                    <li className='move_gen_list_dropdown'>
-                                        <button className='move_gen_list_dropdown_button'>Gen V</button>
-                                        <div className='move_gen_list_dropdown_content'>
+                                    <li className='move_nav_list_dropdown'>
+                                        <button className='move_nav_list_dropdown_button'>Gen V</button>
+                                        <div className='move_nav_list_dropdown_content'>
                                             <button onClick={() => setVersion('black-white')}>Black / White</button>
                                             <button onClick={() => setVersion('black-2-white-2')}>Black 2 / White 2</button>
                                         </div>
                                     </li>
                                 }
                                 {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii' || move?.generation?.name === 'generation-iii' || move?.generation?.name === 'generation-iv' || move?.generation?.name === 'generation-v' || move?.generation?.name === 'generation-vi') &&
-                                    <li className='move_gen_list_dropdown'>
-                                        <button className='move_gen_list_dropdown_button'>Gen VI</button>
-                                        <div className='move_gen_list_dropdown_content'>
+                                    <li className='move_nav_list_dropdown'>
+                                        <button className='move_nav_list_dropdown_button'>Gen VI</button>
+                                        <div className='move_nav_list_dropdown_content'>
                                             <button onClick={() => setVersion('x-y')}>X / Y</button>
-                                            <button onClick={() => setVersion('omega-ruby-alpha-sapphire')}>Omega Ruby Alpha / Sapphire</button>
+                                            <button onClick={() => setVersion('omega-ruby-alpha-sapphire')}>Omega Ruby / Alpha Sapphire</button>
                                         </div>
                                     </li>
                                 }
                                 {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii' || move?.generation?.name === 'generation-iii' || move?.generation?.name === 'generation-iv' || move?.generation?.name === 'generation-v' || move?.generation?.name === 'generation-vi' || move?.generation?.name === 'generation-vii') &&
-                                    <li className='move_gen_list_dropdown'>
-                                        <button className='move_gen_list_dropdown_button'>Gen VII</button>
-                                        <div className='move_gen_list_dropdown_content'>
+                                    <li className='move_nav_list_dropdown'>
+                                        <button className='move_nav_list_dropdown_button'>Gen VII</button>
+                                        <div className='move_nav_list_dropdown_content'>
                                             <button onClick={() => setVersion('sun-moon')}>Sun / Moon</button>
                                             <button onClick={() => setVersion('ultra-sun-ultra-moon')}>Ultra Sun / Ultra Moon</button>
                                             <button onClick={() => setVersion('lets-go-pikachu-lets-go-eevee')}>Let's Go Pikachu / Let's Go Eevee</button>
@@ -166,9 +154,9 @@ const MoveCard = () => {
                                     </li>
                                 }
                                 {(move?.generation?.name === 'generation-i' || move?.generation?.name === 'generation-ii' || move?.generation?.name === 'generation-iii' || move?.generation?.name === 'generation-iv' || move?.generation?.name === 'generation-v' || move?.generation?.name === 'generation-vi' || move?.generation?.name === 'generation-vii' || move?.generation?.name === 'generation-viii') &&
-                                    <li className='move_gen_list_dropdown'>
-                                        <button className='move_gen_list_dropdown_button'>Gen VIII</button>
-                                        <div className='move_gen_list_dropdown_content'>
+                                    <li className='move_nav_list_dropdown'>
+                                        <button className='move_nav_list_dropdown_button'>Gen VIII</button>
+                                        <div className='move_nav_list_dropdown_content'>
                                             <button onClick={() => setVersion('sword-shield')}>Sword / Shield</button>
                                         </div>
                                     </li>

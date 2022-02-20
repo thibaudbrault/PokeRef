@@ -4,10 +4,10 @@
         @include title;
         margin-bottom: 0.5rem;
     }
-    &_subtitle {
+    &_gen {
         @include subtitle;
     }
-    &_gen {
+    &_nav {
         padding: 5rem 0;
         &_list {
             display: flex;
@@ -39,7 +39,7 @@
                         }
                     }
                 }
-                &:hover .move_gen_list_dropdown_content {
+                &:hover .move_nav_list_dropdown_content {
                     display: block;
                 }
             }
