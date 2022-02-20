@@ -8,7 +8,9 @@
         @include subtitle;
     }
     &_nav {
+        position: relative;
         padding: 5rem 0;
+        z-index: 100;
         &_list {
             display: flex;
             align-items: center;
