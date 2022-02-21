@@ -46,6 +46,11 @@ function Moves() {
         });
     }, []);
 
+    const [toggleState, setToggleState] = useState(1);
+    const toggleTable = (index) => {
+        setToggleState(index);
+    }
+
     useEffect(() => {
         document.title = `Moves | PokéInfo`;
      }, []);
@@ -59,91 +64,100 @@ function Moves() {
                 <BarWave width='40px' height='20px' color='#cc0000' />
                 ) : (
                     <>
-                        <h2 className='moves_title'>Moves</h2>
-                        <div className='moves_search'>
-                            <input className='moves_search_input' type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
-                        </div>
-                        <table className='moves_table'>
-                            <thead className='moves_table_head'>
-                                <tr className='moves_table_head_row'>
-                                    <th className='moves_table_head_row_element'>Name</th>
-                                    <th className='moves_table_head_row_element'>Category</th>
-                                    <th className='moves_table_head_row_element'>Type</th>
-                                    <th className='moves_table_head_row_element'>Effect</th>
-                                </tr>
-                            </thead>
-                            <tbody className='moves_table_body'>
-                                    {moves.filter((moves) => {
-                                        if (search === "") {
-                                            return moves
-                                        } else if (moves.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
-                                            return moves
-                                        }
-                                    })
-                                    .sort((a, b) => a.name.localeCompare(b.name)).map((m) => (
-                                    <tr key={m.id} className='moves_table_body_row'>
-                                        <td className='moves_table_body_row_name'>
-                                        <Link
-                                            to={`/moves/${m.name}`}
-                                            key={m.name}
-                                        >
-                                            {m.name.replace(/-/g, ' ')}
-                                        </Link>
-                                        </td>
-                                        <td>
-                                            <div className='moves_table_body_row_category' id={m.damage_class.name}>
-                                                <img alt={m.damage_class.name} />
-                                                <span>{m.damage_class.name}</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className='moves_table_body_row_type' id={m.type.name}>
-                                                <img alt={m.type.name} />
-                                                <span>{m.type.name}</span>
-                                            </div>
-                                        </td>
-                                        <td className='moves_table_body_row_effect'>
-                                            {m?.flavor_text_entries?.map((mf) => 
-                                                mf.language.name === 'en' && mf.flavor_text !== 'Dummy Data' &&
-                                                    <span>
-                                                        {mf.flavor_text}
-                                                    </span>
-                                            )}
-                                        </td>
+                        <nav className='moves_nav'>
+                            <button className='moves_nav_element' onClick={() => toggleTable(1)}>Moves</button>
+                            <button className='moves_nav_element' onClick={() => toggleTable(2)}>Status</button>
+                        </nav>
+    
+                        <section className={toggleState === 1 ? "active" : "hidden"}>
+                            <h2 className='moves_title'>Moves</h2>
+                            <div className='moves_search'>
+                                <input className='moves_search_input' type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
+                            </div>
+                            <table className='moves_table'>
+                                <thead className='moves_table_head'>
+                                    <tr className='moves_table_head_row'>
+                                        <th className='moves_table_head_row_element'>Name</th>
+                                        <th className='moves_table_head_row_element'>Category</th>
+                                        <th className='moves_table_head_row_element'>Type</th>
+                                        <th className='moves_table_head_row_element'>Effect</th>
                                     </tr>
-                                    ))}
-                            </tbody>
-                        </table>
-
-                        <h2 className='status_title'>Status</h2>
-                        <table className='status_table'>
-                            <thead className='status_table_head'>
-                                <tr className='status_table_head_row'>
-                                    <th className='status_table_head_row_element'>Status</th>
-                                    <th className='status_table_head_row_element'>Moves</th>
-                                </tr>
-                            </thead>
-                            <tbody className='status_table_body'>
-                                {status.filter(s => s.name !== 'none') 
-                                    .sort((a, b) => a.name.localeCompare(b.name)).map((s) => (
-                                        <tr key={s.id} className='status_table_body_row'>
-                                            <td className='status_table_body_row_name'>
-                                                {s.name.replace(/-/g, ' ')}
+                                </thead>
+                                <tbody className='moves_table_body'>
+                                        {moves.filter((moves) => {
+                                            if (search === "") {
+                                                return moves
+                                            } else if (moves.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
+                                                return moves
+                                            }
+                                        })
+                                        .sort((a, b) => a.name.localeCompare(b.name)).map((m) => (
+                                        <tr key={m.id} className='moves_table_body_row'>
+                                            <td className='moves_table_body_row_name'>
+                                            <Link
+                                                to={`/moves/${m.name}`}
+                                                key={m.name}
+                                            >
+                                                {m.name.replace(/-/g, ' ')}
+                                            </Link>
                                             </td>
-                                            <td className='status_table_body_row_moves'>
-                                                {s.moves.map((sm) => (
-                                                    <Link
-                                                    to={`/moves/${moves.name}`}
-                                                    className='status_table_body_row_moves_link'
-                                                    >
-                                                        {sm.name.replace(/-/g, ' ')}
-                                                    </Link>
-                                                ))}</td>
+                                            <td>
+                                                <div className='moves_table_body_row_category' id={m.damage_class.name}>
+                                                    <img alt={m.damage_class.name} />
+                                                    <span>{m.damage_class.name}</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div className='moves_table_body_row_type' id={m.type.name}>
+                                                    <img alt={m.type.name} />
+                                                    <span>{m.type.name}</span>
+                                                </div>
+                                            </td>
+                                            <td className='moves_table_body_row_effect'>
+                                                {m?.flavor_text_entries?.map((mf) => 
+                                                    mf.language.name === 'en' && mf.flavor_text !== 'Dummy Data' &&
+                                                        <span>
+                                                            {mf.flavor_text}
+                                                        </span>
+                                                )}
+                                            </td>
                                         </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </table>
+                                        ))}
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <section className={toggleState === 2 ? "active" : "hidden"}>
+                            <h2 className='moves_status_title'>Status</h2>
+                            <table className='moves_status_table'>
+                                <thead className='moves_status_table_head'>
+                                    <tr className='moves_status_table_head_row'>
+                                        <th className='moves_status_table_head_row_element'>Status</th>
+                                        <th className='moves_status_table_head_row_element'>Moves</th>
+                                    </tr>
+                                </thead>
+                                <tbody className='moves_status_table_body'>
+                                    {status.filter(s => s.name !== 'none') 
+                                        .sort((a, b) => a.name.localeCompare(b.name)).map((s) => (
+                                            <tr key={s.id} className='moves_status_table_body_row'>
+                                                <td className='moves_status_table_body_row_name'>
+                                                    {s.name.replace(/-/g, ' ')}
+                                                </td>
+                                                <td className='moves_status_table_body_row_moves'>
+                                                    {s.moves.map((sm) => (
+                                                        <Link
+                                                        to={`/moves/${moves.name}`}
+                                                        className='moves_status_table_body_row_moves_link'
+                                                        >
+                                                            {sm.name.replace(/-/g, ' ')}
+                                                        </Link>
+                                                    ))}</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        </section>
                     </>
                 )}
             </main>

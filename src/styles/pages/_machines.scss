@@ -24,7 +24,7 @@
             }
         }
     }
-    &_gen {
+    &_nav {
         padding: 5rem 0;
         &_list {
             display: flex;
@@ -56,7 +56,7 @@
                         }
                     }
                 }
-                &:hover .machines_gen_list_dropdown_content {
+                &:hover .machines_nav_list_dropdown_content {
                     display: block;
                 }
             }

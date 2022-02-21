@@ -65,7 +65,7 @@
                     text-transform: capitalize;
                     &_type {
                         display: inline;
-                        padding: 0.5rem 1.5rem;
+                        padding: 1rem 2rem;
                         border-radius: 5px;
                         img {
                             height: 2rem;
@@ -130,6 +130,21 @@
                 font-size: 1.5rem;
                 text-transform: capitalize;
             }
+        }
+    }
+    &_method {
+        padding: 5rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        &_element {
+            background: none;
+            border: none;
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+        &_active {
+            color: $red;
         }
     }
     &_learn {
@@ -199,4 +214,12 @@
             }
         }
     }
+}
+
+.active {
+    display: block;
+}
+
+.hidden {
+    display: none;
 }

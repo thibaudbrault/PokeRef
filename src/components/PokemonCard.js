@@ -51,9 +51,10 @@ const PokemonCard = () => {
     const weight = pokemon?.weight * '0.1';
     const weightPound = weight * '2.20';
 
-    const title = `${name}`;
+    const female = species?.gender_rate / '8' * '100';
+    const male = '100' - (species?.gender_rate / '8' * '100');
 
-    const id = species?.id;
+    const title = `${name}`;
 
     useEffect(() => {
         document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Pokémon | PokéInfo`;
@@ -271,6 +272,144 @@ const PokemonCard = () => {
                             <h3 className='pokemon_evo_title'>Evolution chain</h3>
                             <div className='pokemon_evo_container'>
                                 
+                            </div>
+                        </section>
+
+                        <section className='pokemon_info'>
+                            <div className='pokemon_info_container'>
+                                <h3 className='pokemon_info_container_title'>Breeding</h3>
+                                <table className='pokemon_info_container_table'>
+                                    <tbody>
+                                        <tr className='pokemon_info_container_table_row'>
+                                            <th className='pokemon_info_container_table_row_head'>
+                                                Gender
+                                            </th>
+                                            <td className='pokemon_info_container_table_row_element'>
+                                                {species?.gender_rate !== -1 ? (
+                                                    <>
+                                                        {male}% male, {female}% female
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        genderless
+                                                    </>
+                                                )}
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_info_container_table_row'>
+                                            <th className='pokemon_info_container_table_row_head'>
+                                                Egg groups
+                                            </th>
+                                            <td className='pokemon_info_container_table_row_element'>
+                                                {species?.egg_groups?.map((seg) => 
+                                                    <p>{seg?.name}</p>
+                                                )}
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_info_container_table_row'>
+                                            <th className='pokemon_info_container_table_row_head'>
+                                                Egg cycles
+                                            </th>
+                                            <td className='pokemon_info_container_table_row_element'>
+                                                    {species?.hatch_counter} cycles ( steps)
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_info_container_table_row'>
+                                            <th className='pokemon_info_container_table_row_head'>
+                                                Baby trigger item
+                                            </th>
+                                            <td className='pokemon_info_container_table_row_element'>
+
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_info_container_table_row'>
+                                            <th className='pokemon_info_container_table_row_head'>
+                                                Habitat
+                                            </th>
+                                            <td className='pokemon_info_container_table_row_element'>
+                                                {species?.habitat?.name}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className='pokemon_info_container'>
+                            <h3 className='pokemon_info_container_title'>Training</h3>
+                                <table className='pokemon_info_container_table'>
+                                    <tbody>
+                                        <tr className='pokemon_info_container_table_row'>
+                                            <th className='pokemon_info_container_table_row_head'>
+                                                EV yield
+                                            </th>
+                                            <td className='pokemon_info_container_table_row_element'>
+
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_info_container_table_row'>
+                                            <th className='pokemon_info_container_table_row_head'>
+                                                Catch rate
+                                            </th>
+                                            <td className='pokemon_info_container_table_row_element'>
+
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_info_container_table_row'>
+                                            <th className='pokemon_info_container_table_row_head'>
+                                                Base happiness
+                                            </th>
+                                            <td className='pokemon_info_container_table_row_element'>
+
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_info_container_table_row'>
+                                            <th className='pokemon_info_container_table_row_head'>
+                                                Base experience
+                                            </th>
+                                            <td className='pokemon_info_container_table_row_element'>
+
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_info_container_table_row'>
+                                            <th className='pokemon_info_container_table_row_head'>
+                                                Growth rate
+                                            </th>
+                                            <td className='pokemon_info_container_table_row_element'>
+
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_info_container_table_row'>
+                                            <th className='pokemon_info_container_table_row_head'>
+                                                Held items
+                                            </th>
+                                            <td className='pokemon_info_container_table_row_element'>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className='pokemon_info_container'>
+                                <h3 className='pokemon_info_container_title'>Forms</h3>
+                                <table className='pokemon_info_container_table'>
+                                    <tbody>
+                                        <tr className='pokemon_info_container_table_row'>
+                                            <th className='pokemon_info_container_table_row_head'>
+                                                Varieties
+                                            </th>
+                                            <td className='pokemon_info_container_table_row_element'>
+
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_info_container_table_row'>
+                                            <th className='pokemon_info_container_table_row_head'>
+                                                Gender differences
+                                            </th>
+                                            <td className='pokemon_info_container_table_row_element'>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </section>
 

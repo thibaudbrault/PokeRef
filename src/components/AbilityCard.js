@@ -44,6 +44,8 @@ const AbilityCard = () => {
         });
     }, []);
 
+    console.log(ability)
+
     const title = `${name}`;
 
     useEffect(() => {
@@ -94,7 +96,7 @@ const AbilityCard = () => {
                         </section>
 
                         <section className='ability_container'>
-                            <h3 className='ability_container_title'>Pokemon with <span>{ability?.name?.replace(/-/g, ' ')?? ''}</span></h3>
+                            <h3 className='ability_container_title'>Pokemon with <span>{ability?.name?.replace(/-/g, ' ')}</span></h3>
                             <table className='ability_container_table'>
                                 <thead className='ability_container_table_head'>
                                     <tr className='ability_container_table_head_row'>
@@ -106,131 +108,62 @@ const AbilityCard = () => {
                                     </tr>
                                 </thead>
                                 <tbody className='ability_container_table_body'>
-                                    {ability?.pokemon?.every(ap => ap.is_hidden) ? (
-                                        <tr>
-                                            <td colSpan={5}>No Pokémon has <span>{ability?.name?.replace(/-/g, ' ')}</span> as a regular ability</td>
+                                    {ability?.pokemon?.map((ap) => (
+                                        <tr key={ap.pokemon.name} className='ability_container_table_body_row'>
+                                            <td className='ability_container_table_body_row_sprite'>
+                                                {pokemon?.map((p) =>
+                                                    p.name === ap.pokemon.name &&
+                                                        <img src={p.sprites.front_default} alt={p.name} loading="lazy" />
+                                                )}
+                                            </td>
+                                            <td className='ability_container_table_body_row_name'>
+                                                <Link
+                                                    to={`/ability/${ability.name}`}
+                                                    key={ap.pokemon.name}
+                                                >
+                                                    {ap.pokemon.name.replace(/-/g, ' ')}
+                                                </Link>
+                                            </td>
+                                            <td className='ability_container_table_body_row_abilities'>
+                                                {pokemon?.map((p) =>
+                                                    p.name === ap.pokemon.name &&
+                                                        <Link
+                                                        to={`/abilities/${p?.abilities[0]?.ability?.name}`}
+                                                        className={p?.abilities[0]?.ability?.name === ability?.name ? 'bold' : ''}>
+                                                            {p?.abilities[0]?.ability?.name?.replace(/-/g, ' ')}
+                                                        </Link>
+                                                )}
+                                            </td>
+                                            <td className='ability_container_table_body_row_abilities'>
+                                                {pokemon?.map((p) =>
+                                                    p.name === ap.pokemon.name &&
+                                                        <Link
+                                                        to={`/abilities/${p?.abilities[1]?.ability?.name}`}
+                                                        className={p?.abilities[1]?.ability?.name === ability?.name ? 'bold' : ''}>
+                                                            {p?.abilities?.length > 1 ? (
+                                                                p?.abilities[1]?.ability?.name?.replace(/-/g, ' ')
+                                                            ) : (
+                                                                '-'
+                                                            )}
+                                                        </Link>
+                                                )}
+                                            </td>
+                                            <td className='ability_container_table_body_row_abilities'>
+                                                {pokemon?.map((p) =>
+                                                    p.name === ap.pokemon.name &&
+                                                        <Link
+                                                        to={`/abilities/${p?.abilities[2]?.ability?.name.name}`}
+                                                        className={p?.abilities[2]?.ability?.name === ability?.name ? 'bold' : ''}>
+                                                            {p?.abilities?.length > 2  ? (
+                                                                p?.abilities[2]?.ability?.name?.replace(/-/g, ' ')
+                                                            ) : (
+                                                                '-'
+                                                            )}
+                                                        </Link>
+                                                )}
+                                            </td>
                                         </tr>
-                                    ) : (
-                                        ability?.pokemon?.map((ap) => (
-                                            <tr key={ap.pokemon.name} className='ability_container_table_body_row'>
-                                                <td className='ability_container_table_body_row_sprite'>
-                                                    {pokemon?.map((p) =>
-                                                        p.name === ap.pokemon.name &&
-                                                            <img src={p.sprites.front_default} alt={p.name} loading="lazy" />
-                                                    )}
-                                                </td>
-                                                <td className='ability_container_table_body_row_name'>
-                                                    <Link
-                                                        to={`/ability/${ability.name}`}
-                                                        key={ap.pokemon.name}
-                                                    >
-                                                        {ap.pokemon.name.replace(/-/g, ' ')}
-                                                    </Link>
-                                                </td>
-                                                <td className='ability_container_table_body_row_abilities'>
-                                                    {pokemon?.map((p) =>
-                                                        p.name === ap.pokemon.name &&
-                                                            <span>{p?.abilities[0]?.ability?.name?.replace(/-/g, ' ')}</span>
-                                                    )}
-                                                </td>
-                                                <td className='ability_container_table_body_row_abilities'>
-                                                    {pokemon?.map((p) =>
-                                                        p.name === ap.pokemon.name &&
-                                                            <span>
-                                                                {p?.abilities?.length > 1 ? (
-                                                                    p?.abilities[1]?.ability?.name?.replace(/-/g, ' ')
-                                                                ) : (
-                                                                    '-'
-                                                                )}
-                                                            </span>
-                                                    )}
-                                                </td>
-                                                <td className='ability_container_table_body_row_abilities'>
-                                                    {pokemon?.map((p) =>
-                                                        p.name === ap.pokemon.name &&
-                                                            <span>
-                                                                {p?.abilities?.length > 2 ? (
-                                                                    p?.abilities[2]?.ability?.name?.replace(/-/g, ' ')
-                                                                ) : (
-                                                                    '-'
-                                                                )}
-                                                            </span>
-                                                    )}
-                                                </td>
-                                            </tr>
-                                        ))
-                                    )}
-                                </tbody>
-                            </table>
-                        </section>
-
-                        <section className='ability_container'>
-                            <h3 className='ability_container_title'><span>{ability?.name?.replace(/-/g, ' ')}</span> as a <span>hidden ability</span></h3>
-                            <table className='ability_container_table'>
-                                <thead className='ability_container_table_head'>
-                                    <tr className='ability_container_table_head_row'>
-                                        <th className='ability_container_table_head_row_element'>#</th>
-                                        <th className='ability_container_table_head_row_element'>Name</th>
-                                        <th className='ability_container_table_head_row_element'>1<sup>st</sup> ability</th>
-                                        <th className='ability_container_table_head_row_element'>2<sup>nd</sup> ability</th>
-                                        <th className='ability_container_table_head_row_element'>Hidden ability</th>
-                                    </tr>
-                                </thead>
-                                <tbody className='ability_container_table_body'>
-                                    {ability?.pokemon?.every(ap => ap.is_hidden) ? (
-                                        ability?.pokemon?.map((ap) => (
-                                            <tr key={ap.pokemon.name} className='ability_container_table_body_row'>
-                                                <td className='ability_container_table_body_row_sprite'>
-                                                    {pokemon?.map((p) =>
-                                                        p.name === ap.pokemon.name &&
-                                                            <img src={p.sprites.front_default} alt={p.name} loading="lazy" />
-                                                    )}
-                                                </td>
-                                                <td className='ability_container_table_body_row_name'>
-                                                    <Link
-                                                        to={`/ability/${ability.name}`}
-                                                        key={ap.pokemon.name}
-                                                    >
-                                                        {ap.pokemon.name.replace(/-/g, ' ')}
-                                                    </Link>
-                                                </td>
-                                                <td className='ability_container_table_body_row_abilities'>
-                                                    {pokemon?.map((p) =>
-                                                        p.name === ap.pokemon.name &&
-                                                            <span>{p?.abilities[0]?.ability?.name?.replace(/-/g, ' ')}</span>
-                                                    )}
-                                                </td>
-                                                <td className='ability_container_table_body_row_abilities'>
-                                                    {pokemon?.map((p) =>
-                                                        p.name === ap.pokemon.name &&
-                                                            <span>
-                                                                {p?.abilities?.length > 1 ? (
-                                                                    p?.abilities[1]?.ability?.name?.replace(/-/g, ' ')
-                                                                ) : (
-                                                                    '-'
-                                                                )}
-                                                            </span>
-                                                    )}
-                                                </td>
-                                                <td className='ability_container_table_body_row_abilities'>
-                                                    {pokemon?.map((p) =>
-                                                        p.name === ap.pokemon.name &&
-                                                            <span>
-                                                                {p?.abilities?.length > 2 ? (
-                                                                    p?.abilities[2]?.ability?.name?.replace(/-/g, ' ')
-                                                                ) : (
-                                                                    '-'
-                                                                )}
-                                                            </span>
-                                                    )}
-                                                </td>
-                                            </tr>
-                                        ))
-                                    ) : (
-                                        <tr>
-                                            <td colSpan={5}>No pokémon has <span>{ability?.name?.replace(/-/g, ' ')}</span> as a hidden ability</td>
-                                        </tr>
-                                    )}
+                                    ))}
                                 </tbody>
                             </table>
                         </section>

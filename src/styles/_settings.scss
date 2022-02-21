@@ -1,13 +1,13 @@
 /*fonts start*/
 
-@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 /*fonts end*/
 
 /*variables start*/
 
-$font-sans: 'Karla', sans-serif;
+$font-sans: 'Quicksand', sans-serif;
 $font-game: 'Press Start 2P', cursive;
 
 $light: #c4c4c4;
@@ -51,6 +51,11 @@ $red: #cc0000;
     letter-spacing: 0.1rem;
 }
 
+@mixin bold {
+	font-weight: 700;
+	font-size: 1.7rem;
+}
+
 @mixin type {
 	border-radius: 5px;
 	text-transform: uppercase;
@@ -85,8 +90,7 @@ $red: #cc0000;
 }
 
 @mixin name {
-	font-size: 1.8rem;
-	font-weight: 700;
+	@include bold;
 	color: $red;
 	a {
 		cursor: pointer;
@@ -310,6 +314,10 @@ a {
 	cursor: pointer;
 }
 
+button {
+	cursor: pointer;
+}
+
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
@@ -353,11 +361,10 @@ main {
 
 th {
 	padding: 1.5rem;
+	font-size: 1.5rem;
 	border: 1px solid $dark;
 	border-collapse: collapse;
 	border-color: rgba(130, 130, 130, 0.2);
-	font-weight: 700;
-	font-size: 1.8rem;
 	vertical-align: middle;
 }
 

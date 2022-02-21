@@ -220,7 +220,7 @@ const TypeCard = () => {
                                 </table>
                             </div>
                             {type?.name !== 'fairy' &&
-                                <p className='type_container_comment'><span>{type.name}</span> attacks were <span>{type?.move_damage_class?.name}</span> before the Gen IV</p>
+                                <p className='type_container_comment'><span>{type.name}</span> attacks were <span>{type?.move_damage_class?.name}</span> before Gen IV</p>
                             }
                         </section>
 

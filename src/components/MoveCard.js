@@ -63,7 +63,12 @@ const MoveCard = () => {
         });
     }, []);
 
-    const[version, setVersion] = useState('ultra-sun-ultra-moon')
+    const[version, setVersion] = useState('ultra-sun-ultra-moon');
+
+    const [toggleState, setToggleState] = useState(1);
+    const toggleTable = (index) => {
+        setToggleState(index);
+    }
 
     const maxPp = move?.pp * '1.6';
 
@@ -171,8 +176,13 @@ const MoveCard = () => {
                                         <th className='move_data_table_row_head'>Type</th>
                                         <td className='move_data_table_row_element'>
                                             <div className='move_data_table_row_element_type' id={move?.type?.name}>
-                                                <img alt={move?.type?.name} />
-                                                <span>{move?.type?.name}</span>
+                                                <Link
+                                                    to={`/types/${move.type.name}`}
+                                                    key={move.type.name}
+                                                >
+                                                    <img alt={move?.type?.name} />
+                                                    <span>{move?.type?.name}</span>
+                                                </Link>
                                             </div>
                                         </td>
                                     </tr>
@@ -301,7 +311,15 @@ const MoveCard = () => {
                             </ul>
                         </section>
 
-                        <section className='move_learn'>
+                        <nav className='move_method'>
+                            <button className={toggleState === 1 ? 'move_method_element move_method_active' : 'move_method_element'} onClick={() => toggleTable(1)}>Level Up</button>
+                            <button className={toggleState === 2 ? 'move_method_element move_method_active' : 'move_method_element'} onClick={() => toggleTable(2)}>TM /HM</button>
+                            <button className={toggleState === 3 ? 'move_method_element move_method_active' : 'move_method_element'} onClick={() => toggleTable(3)}>Tutor</button>
+                            <button className={toggleState === 4 ? 'move_method_element move_method_active' : 'move_method_element'} onClick={() => toggleTable(4)}>Breeding</button>
+                            <button className={toggleState === 5 ? 'move_method_element move_method_active' : 'move_method_element'} onClick={() => toggleTable(5)}>Evolving</button>
+                        </nav>
+
+                        <section  className={toggleState === 1 ? "active move_learn" : "hidden"}>
                             <h3 className='move_learn_title'>Learned by level up</h3>
                             <p className='move_learn_txt'>Learned when the pokémon reach a ceratin level. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>
                             <ul className='move_learn_list'>
@@ -333,9 +351,9 @@ const MoveCard = () => {
                             </ul>
                         </section>
 
-                        <section className='move_learn'>
-                            <h3 className='move_learn_title'>Learned by TM</h3>
-                            <p className='move_learn_txt'>Learned by using a TM. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>
+                        <section  className={toggleState === 2 ? "active move_learn" : "hidden"}>
+                            <h3 className='move_learn_title'>Learned by TM / HM</h3>
+                            <p className='move_learn_txt'>Learned by using a TM or a HM. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>
                             <ul className='move_learn_list'>
                                 {pokemon?.map((p) => 
                                     p?.moves?.map((pm) => 
@@ -364,7 +382,38 @@ const MoveCard = () => {
                             </ul>
                         </section>
 
-                        <section className='move_learn'>
+                        <section  className={toggleState === 3 ? "active move_learn" : "hidden"}>
+                            <h3 className='move_learn_title'>Learned by move tutor</h3>
+                            <p className='move_learn_txt'>Learned by going to the move tutor. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>
+                            <ul className='move_learn_list'>
+                                {pokemon?.map((p) => 
+                                    p?.moves?.map((pm) => 
+                                        pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
+                                        pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'tutor' &&
+                                            <li className='move_learn_list_element'>
+                                                <img src={p?.sprites?.front_default} alt={p?.name} />
+                                                <Link
+                                                to={`/pokemon/${p?.name}`}
+                                                key={p?.name}
+                                                className='move_learn_list_element_name'>
+                                                    {p?.name.replace(/-/g, ' ')}
+                                                </Link>
+                                                <div className='move_learn_list_element_types'>
+                                                    {p?.types?.map((pt) =>
+                                                        <div id={pt.type.name} className='move_learn_list_element_types_element'>
+                                                            <img alt={pt?.type?.name} />
+                                                            <span>{pt?.type?.name}</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </li>
+                                        )
+                                    )
+                                )}
+                            </ul>
+                        </section>
+
+                        <section  className={toggleState === 4 ? "active move_learn" : "hidden"}>
                             <h3 className='move_learn_title'>Learned from the Move Relearner / by breeding</h3>
                             <p className='move_learn_txt'>Learned at level 1 which means that the only way to learn this move is via the move relearner or through breeeding. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>
                             <ul className='move_learn_list'>
@@ -395,7 +444,7 @@ const MoveCard = () => {
                             </ul>
                         </section>
 
-                        <section className='move_learn'>
+                        <section  className={toggleState === 5 ? "active move_learn" : "hidden"}>
                             <h3 className='move_learn_title'>Learned when evolving</h3>
                             <p className='move_learn_txt'>Learned when the pokémon is evolving no matter its level. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>
                             <ul className='move_learn_list'>
@@ -403,37 +452,6 @@ const MoveCard = () => {
                                     p?.moves?.map((pm) => 
                                         pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
                                         pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 0 && 
-                                            <li className='move_learn_list_element'>
-                                                <img src={p?.sprites?.front_default} alt={p?.name} />
-                                                <Link
-                                                to={`/pokemon/${p?.name}`}
-                                                key={p?.name}
-                                                className='move_learn_list_element_name'>
-                                                    {p?.name.replace(/-/g, ' ')}
-                                                </Link>
-                                                <div className='move_learn_list_element_types'>
-                                                    {p?.types?.map((pt) =>
-                                                        <div id={pt.type.name} className='move_learn_list_element_types_element'>
-                                                            <img alt={pt?.type?.name} />
-                                                            <span>{pt?.type?.name}</span>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </li>
-                                        )
-                                    )
-                                )}
-                            </ul>
-                        </section>
-
-                        <section className='move_learn'>
-                            <h3 className='move_learn_title'>Learned by move tutor</h3>
-                            <p className='move_learn_txt'>Learned by going to the move tutor. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</p>
-                            <ul className='move_learn_list'>
-                                {pokemon?.map((p) => 
-                                    p?.moves?.map((pm) => 
-                                        pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
-                                        pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'tutor' &&
                                             <li className='move_learn_list_element'>
                                                 <img src={p?.sprites?.front_default} alt={p?.name} />
                                                 <Link

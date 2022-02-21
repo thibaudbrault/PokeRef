@@ -91,6 +91,7 @@
                             background: rgba(130, 130, 130, 0.2);
                         }
                         &_element {
+                            @include bold;
                             text-align: center;
                             text-transform: capitalize;
                         }
@@ -100,6 +101,32 @@
         }
         &_image {
             width: 100%;
+        }
+    }
+    &_info {
+        padding: 5rem 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 3rem;
+        &_container {
+            &_title {
+                margin: 0 0 1rem;
+                font-size: 3rem;
+                font-weight: 700;
+            }
+            &_table {
+                @include table;
+                &_row {
+                    &_head {
+                        background: rgba(130, 130, 130, 0.2);
+                    }
+                    &_element {
+                        @include bold;
+                        text-align: center;
+                        text-transform: capitalize;
+                    }
+                }
+            }
         }
     }
 }
