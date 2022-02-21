@@ -41,6 +41,7 @@ const PokemonCard = () => {
     }, [name]);
 
     console.log(species)
+    console.log(pokemon)
 
     const[version, setVersion] = useState('red');
     
@@ -265,7 +266,15 @@ const PokemonCard = () => {
                                     </tbody>
                                 </table>
                             </div>
-                            <img className='pokemon_data_image' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt={pokemon?.name} />
+                            <div className='pokemon_data_more'>
+                                <img className='pokemon_data_more_sprite' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt={pokemon?.name} />
+                                {species?.is_legendary === true && (
+                                    <span className='pokemon_data_more_legendary'>Legendary</span>
+                                )}
+                                {species?.is_mythical === true && (
+                                    <span className='pokemon_data_more_mythical'>Mythical</span>
+                                )}
+                            </div>
                         </section>
 
                         <section className='pokemon_evo'>
@@ -350,7 +359,7 @@ const PokemonCard = () => {
                                                 Catch rate
                                             </th>
                                             <td className='pokemon_info_container_table_row_element'>
-
+                                                {species?.capture_rate}
                                             </td>
                                         </tr>
                                         <tr className='pokemon_info_container_table_row'>
@@ -358,7 +367,7 @@ const PokemonCard = () => {
                                                 Base happiness
                                             </th>
                                             <td className='pokemon_info_container_table_row_element'>
-
+                                                {species?.base_happiness}
                                             </td>
                                         </tr>
                                         <tr className='pokemon_info_container_table_row'>
@@ -366,7 +375,7 @@ const PokemonCard = () => {
                                                 Base experience
                                             </th>
                                             <td className='pokemon_info_container_table_row_element'>
-
+                                                {pokemon?.base_experience}
                                             </td>
                                         </tr>
                                         <tr className='pokemon_info_container_table_row'>
@@ -374,7 +383,7 @@ const PokemonCard = () => {
                                                 Growth rate
                                             </th>
                                             <td className='pokemon_info_container_table_row_element'>
-
+                                                {species?.growth_rate?.name.replace(/-/g, ' ')}
                                             </td>
                                         </tr>
                                         <tr className='pokemon_info_container_table_row'>
@@ -405,7 +414,11 @@ const PokemonCard = () => {
                                                 Gender differences
                                             </th>
                                             <td className='pokemon_info_container_table_row_element'>
-
+                                                    {species?.has_gender_differences === true ? (
+                                                        'Yes'
+                                                    ) : (
+                                                        'None'
+                                                    )}
                                             </td>
                                         </tr>
                                     </tbody>

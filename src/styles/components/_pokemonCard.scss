@@ -99,8 +99,37 @@
                 }
             }
         }
-        &_image {
-            width: 100%;
+        &_more {
+            @include flex;
+            flex-direction: column;
+            &_legendary {
+                margin: 1rem 0 0;
+                padding: 1rem 1.5rem;
+                border: 1px solid $purple;
+                border-radius: 50px;
+                background: $purple;
+                color: $light;
+                font-size: 1.7rem;
+                transition: 0.3s ease-in-out;
+                &:hover {
+                    background: none;
+                    color: $dark;
+                }
+            }
+            &_mythical {
+                margin: 1rem 0 0;
+                padding: 1rem 1.5rem;
+                border: 1px solid $purple;
+                border-radius: 50px;
+                background: none;
+                color: $dark;
+                font-size: 1.7rem;
+                transition: 0.3s ease-in-out;
+                &:hover {
+                    background: $purple;
+                    color: $light;
+                }
+            }
         }
     }
     &_info {
@@ -119,6 +148,7 @@
                 &_row {
                     &_head {
                         background: rgba(130, 130, 130, 0.2);
+                        text-transform: capitalize;
                     }
                     &_element {
                         @include bold;
