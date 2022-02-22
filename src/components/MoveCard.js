@@ -70,7 +70,7 @@ const MoveCard = () => {
         setToggleState(index);
     }
 
-    const maxPp = move?.pp * '1.6';
+    const maxPp = move?.pp * 1.6;
 
     const title = `${name.replace(/-/g, ' ')}`;
 
