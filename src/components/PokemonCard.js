@@ -63,14 +63,11 @@ const PokemonCard = () => {
     const[version, setVersion] = useState('red');
     
 
-    const height = pokemon?.height * 0.1;
-    const weight = pokemon?.weight * 0.1;
+    const height = (pokemon?.height * 0.1).toFixed(2);
+    const weight = (pokemon?.weight * 0.1).toFixed(2);
 
     const female = species?.gender_rate / 8 * 100;
     const male = '100' - (species?.gender_rate / 8 * 100);
-
-    const minHp = pokemon?.stats?.[0]?.base_stat * 2 + 110;
-    const maxHp = pokemon?.stats?.[0]?.base_stat * 2 + 204;
 
     const title = `${name}`;
 
@@ -346,7 +343,7 @@ const PokemonCard = () => {
                                             </th>
                                             <td className='pokemon_info_container_table_row_element'>
                                                 {evolution?.baby_trigger_item !== null ? (
-                                                    evolution?.baby_trigger_item
+                                                    evolution?.baby_trigger_item?.name.replace(/-/g, ' ')
                                                 ) : (
                                                     'None'
                                                 )}
@@ -364,7 +361,7 @@ const PokemonCard = () => {
                                 </table>
                             </div>
                             <div className='pokemon_info_container'>
-                            <h3 className='pokemon_info_container_title'>Training</h3>
+                                <h3 className='pokemon_info_container_title'>Training</h3>
                                 <table className='pokemon_info_container_table'>
                                     <tbody>
                                         <tr className='pokemon_info_container_table_row'>
@@ -415,7 +412,13 @@ const PokemonCard = () => {
                                                 Held items
                                             </th>
                                             <td className='pokemon_info_container_table_row_element'>
-
+                                                {pokemon?.held_items?.length > 0 ? (
+                                                    pokemon?.held_items?.map((ph) =>
+                                                        <p>{ph?.item?.name?.replace(/-/g, ' ')}</p>
+                                                    )
+                                                ) : (
+                                                    'None'
+                                                )}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -472,142 +475,146 @@ const PokemonCard = () => {
                         </section>
 
                         <section className='pokemon_stats'>
-                            <table className='pokemon_stats_table'>
-                                <tbody>
-                                    <tr className='pokemon_stats_table_row'>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {pokemon?.stats?.[0]?.stat?.name.toUpperCase()}
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {pokemon?.stats?.[0]?.base_stat}
-                                        </td>
-                                        <td className='pokemon_stats_table_row_progress'>
-                                            <div className='pokemon_stats_table_row_progress_inner'>
-                                                <span style={{"width":`calc(${pokemon?.stats?.[0]?.base_stat} / 180 * 100%)`}}></span>
-                                            </div>
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {minHp}
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {maxHp}
-                                        </td>
-                                    </tr>
-                                    <tr className='pokemon_stats_table_row'>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {pokemon?.stats?.[1]?.stat?.name}
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {pokemon?.stats?.[1]?.base_stat}
-                                        </td>
-                                        <td className='pokemon_stats_table_row_progress'>
-                                            <div className='pokemon_stats_table_row_progress_inner'>
-                                                <span style={{"width":`calc(${pokemon?.stats?.[1]?.base_stat} / 180 * 100%)`}}></span>
-                                            </div>
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-
-                                        </td>
-                                    </tr>
-                                    <tr className='pokemon_stats_table_row'>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {pokemon?.stats?.[2]?.stat?.name}
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {pokemon?.stats?.[2]?.base_stat}
-                                        </td>
-                                        <td className='pokemon_stats_table_row_progress'>
-                                            <div className='pokemon_stats_table_row_progress_inner'>
-                                                <span style={{"width":`calc(${pokemon?.stats?.[2]?.base_stat} / 180 * 100%)`}}></span>
-                                            </div>
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-
-                                        </td>
-                                    </tr>
-                                    <tr className='pokemon_stats_table_row'>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {pokemon?.stats?.[3]?.stat?.name.replace(/-/g, ' ')}
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {pokemon?.stats?.[3]?.base_stat}
-                                        </td>
-                                        <td className='pokemon_stats_table_row_progress'>
-                                            <div className='pokemon_stats_table_row_progress_inner'>
-                                                <span style={{"width":`calc(${pokemon?.stats?.[3]?.base_stat} / 180 * 100%)`}}></span>
-                                            </div>
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-
-                                        </td>
-                                    </tr>
-                                    <tr className='pokemon_stats_table_row'>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {pokemon?.stats?.[4]?.stat?.name.replace(/-/g, ' ')}
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {pokemon?.stats?.[4]?.base_stat}
-                                        </td>
-                                        <td className='pokemon_stats_table_row_progress'>
-                                            <div className='pokemon_stats_table_row_progress_inner'>
-                                                <span style={{"width":`calc(${pokemon?.stats?.[4]?.base_stat} / 180 * 100%)`}}></span>
-                                            </div>
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-
-                                        </td>
-                                    </tr>
-                                    <tr className='pokemon_stats_table_row'>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {pokemon?.stats?.[5]?.stat?.name}
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            {pokemon?.stats?.[5]?.base_stat}
-                                        </td>
-                                        <td className='pokemon_stats_table_row_progress'>
-                                            <div className='pokemon_stats_table_row_progress_inner'>
-                                                <span style={{"width":`calc(${pokemon?.stats?.[5]?.base_stat} / 180 * 100%)`}}></span>
-                                            </div>
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-
-                                        </td>
-                                        <td className='pokemon_stats_table_row_element'>
-                                            
-                                        </td>
-                                    </tr>
-                                    <tr className='pokemon_stats_table_row'>
-                                        <td className='pokemon_stats_table_row_total'>
-                                            Total
-                                        </td>
-                                        <td className='pokemon_stats_table_row_total'>
-                                        </td>
-                                        <td className='pokemon_stats_table_row_progress'>
-                                            <div className='pokemon_stats_table_row_progress_inner'>
-                                                <span style={{"width":`calc(${pokemon?.stats?.[5]?.base_stat} / 180 * 100%)`}}></span>
-                                            </div>
-                                        </td>
-                                        <td className='pokemon_stats_table_row_total'>
-                                            Min.
-                                        </td>
-                                        <td className='pokemon_stats_table_row_total'>
-                                            Max.
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div className='pokemon_stats_container'>
+                                <h3 className='pokemon_stats_container_title'>Base stats</h3>
+                                <table className='pokemon_stats_container_table'>
+                                    <tbody>
+                                        <tr className='pokemon_stats_container_table_row'>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[0]?.stat?.name.toUpperCase()}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[0]?.base_stat}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_progress'>
+                                                <div className='pokemon_stats_container_table_row_progress_inner'>
+                                                    <span style={{"width":`calc(${pokemon?.stats?.[0]?.base_stat} / 180 * 100%)`}}></span>
+                                                </div>
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[0]?.base_stat * 2 + 110}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[0]?.base_stat * 2 + 204}
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_stats_container_table_row'>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[1]?.stat?.name}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[1]?.base_stat}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_progress'>
+                                                <div className='pokemon_stats_container_table_row_progress_inner'>
+                                                    <span style={{"width":`calc(${pokemon?.stats?.[1]?.base_stat} / 180 * 100%)`}}></span>
+                                                </div>
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {Math.floor((((2 * pokemon?.stats?.[1]?.base_stat + 0 + 0 / 4) * 100) / 100 + 5) * 0.9).toFixed(0)}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {Math.floor((pokemon?.stats?.[1]?.base_stat * 2 + 99) * 1.1).toFixed(0)}
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_stats_container_table_row'>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[2]?.stat?.name}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[2]?.base_stat}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_progress'>
+                                                <div className='pokemon_stats_container_table_row_progress_inner'>
+                                                    <span style={{"width":`calc(${pokemon?.stats?.[2]?.base_stat} / 180 * 100%)`}}></span>
+                                                </div>
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {Math.floor((((2 * pokemon?.stats?.[2]?.base_stat + 0 + 0 / 4) * 100) / 100 + 5) * 0.9).toFixed(0)}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {Math.floor((pokemon?.stats?.[2]?.base_stat * 2 + 99) * 1.1).toFixed(0)}
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_stats_container_table_row'>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[3]?.stat?.name.replace(/-/g, ' ')}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[3]?.base_stat}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_progress'>
+                                                <div className='pokemon_stats_container_table_row_progress_inner'>
+                                                    <span style={{"width":`calc(${pokemon?.stats?.[3]?.base_stat} / 180 * 100%)`}}></span>
+                                                </div>
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {Math.floor((((2 * pokemon?.stats?.[3]?.base_stat + 0 + 0 / 4) * 100) / 100 + 5) * 0.9).toFixed(0)}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {Math.floor((pokemon?.stats?.[3]?.base_stat * 2 + 99) * 1.1).toFixed(0)}
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_stats_container_table_row'>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[4]?.stat?.name.replace(/-/g, ' ')}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[4]?.base_stat}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_progress'>
+                                                <div className='pokemon_stats_container_table_row_progress_inner'>
+                                                    <span style={{"width":`calc(${pokemon?.stats?.[4]?.base_stat} / 180 * 100%)`}}></span>
+                                                </div>
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {Math.floor((((2 * pokemon?.stats?.[4]?.base_stat + 0 + 0 / 4) * 100) / 100 + 5) * 0.9).toFixed(0)}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {Math.floor((pokemon?.stats?.[4]?.base_stat * 2 + 99) * 1.1).toFixed(0)}
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_stats_container_table_row'>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[5]?.stat?.name}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {pokemon?.stats?.[5]?.base_stat}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_progress'>
+                                                <div className='pokemon_stats_container_table_row_progress_inner'>
+                                                    <span style={{"width":`calc(${pokemon?.stats?.[5]?.base_stat} / 180 * 100%)`}}></span>
+                                                </div>
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                                {Math.floor((((2 * pokemon?.stats?.[5]?.base_stat + 0 + 0 / 4) * 100) / 100 + 5) * 0.9).toFixed(0)}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_element'>
+                                            {Math.floor((pokemon?.stats?.[5]?.base_stat * 2 + 99) * 1.1).toFixed(0)}
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_stats_container_table_row'>
+                                            <td className='pokemon_stats_container_table_row_total'>
+                                                Total
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_total'>
+                                                {pokemon?.stats?.[0]?.base_stat + pokemon?.stats?.[1]?.base_stat + pokemon?.stats?.[2]?.base_stat + pokemon?.stats?.[3]?.base_stat + pokemon?.stats?.[4]?.base_stat + pokemon?.stats?.[5]?.base_stat}
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_progress'>
+                                                <div className='pokemon_stats_container_table_row_progress_inner'>
+                                                    <span style={{"width":`calc(${pokemon?.stats?.[5]?.base_stat} / 180 * 100%)`}}></span>
+                                                </div>
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_total'>
+                                                Min.
+                                            </td>
+                                            <td className='pokemon_stats_container_table_row_total'>
+                                                Max.
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </section>
 
                         <button className='back_button' onClick={() => navigate("/")}> ᐸ Back to pokemon</button>
