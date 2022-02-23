@@ -69,6 +69,11 @@ const PokemonCard = () => {
     const female = species?.gender_rate / 8 * 100;
     const male = '100' - (species?.gender_rate / 8 * 100);
 
+    const [toggleState, setToggleState] = useState(1);
+    const toggleTable = (index) => {
+        setToggleState(index);
+    }
+
     const title = `${name}`;
 
     useEffect(() => {
@@ -187,7 +192,7 @@ const PokemonCard = () => {
                                         {species?.flavor_text_entries?.map((sf) => 
                                             sf?.language?.name === 'en' && sf?.version?.name === version && 
                                                 <>
-                                                    {sf.flavor_text}
+                                                    {sf?.flavor_text?.replace(/\\u000c/g, ' ')}
                                                 </>
                                         )}
                                     </li>
@@ -354,7 +359,11 @@ const PokemonCard = () => {
                                                 Habitat
                                             </th>
                                             <td className='pokemon_info_container_table_row_element'>
-                                                {species?.habitat?.name}
+                                                {species?.habitat !== null ? (
+                                                    species?.habitat?.name
+                                                ) : (
+                                                    'Undiscovered'
+                                                )}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -615,7 +624,18 @@ const PokemonCard = () => {
                                     </tbody>
                                 </table>
                             </div>
+                            <div className='pokemon_stats_types'>
+                                <h3 className='pokemon_stats_types_title'>Types relations</h3>
+                            </div>
                         </section>
+
+                        <nav className='pokemon_method'>
+                            <button className={toggleState === 1 ? 'pokemon_method_active' : 'pokemon_method_element'} onClick={() => toggleTable(1)}><span>Level Up</span></button>
+                            <button className={toggleState === 2 ? 'pokemon_method_active' : 'pokemon_method_element'} onClick={() => toggleTable(2)}><span>TM /HM</span></button>
+                            <button className={toggleState === 3 ? 'pokemon_method_active' : 'pokemon_method_element'} onClick={() => toggleTable(3)}><span>Tutor</span></button>
+                            <button className={toggleState === 4 ? 'pokemon_method_active' : 'pokemon_method_element'} onClick={() => toggleTable(4)}><span>Breeding</span></button>
+                            <button className={toggleState === 5 ? 'pokemon_method_active' : 'pokemon_method_element'} onClick={() => toggleTable(5)}><span>Evolving</span></button>
+                        </nav>
 
                         <button className='back_button' onClick={() => navigate("/")}> ᐸ Back to pokemon</button>
                     </>

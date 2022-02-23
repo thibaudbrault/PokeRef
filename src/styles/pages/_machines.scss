@@ -4,63 +4,10 @@
         @include title;
     }
     &_search {
-        display: flex;
-        flex-direction: column;
-        width: 25%;
-        margin-bottom: 5rem;
-        &_input {
-            padding: 0.5rem 1rem;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid $dark;
-            transition: 0.3s ease-in-out;
-            &:focus {
-                outline: none;
-                border-bottom: 2px solid $red;
-            }
-            &::placeholder {
-                color: $dark;
-                opacity: 0.8;
-            }
-        }
+        @include search;
     }
     &_nav {
-        padding: 5rem 0;
-        &_list {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            &_dropdown {
-                display: inline-block;
-                position: relative;
-                button {
-                    background: none;
-                    border: none;
-                    font-size: 1.7rem;
-                    font-weight: 700;
-                }
-                &_content {
-                    display: none;
-                    position: absolute;
-                    white-space: nowrap;
-                    background: rgba(255, 255, 255, 0.4);
-                    button {
-                        display: block;
-                        background: none;
-                        font-size: 1.5rem;
-                        border: none;
-                        margin: 1rem;
-                        cursor: pointer;
-                        &:hover {
-                            color: $red;
-                        }
-                    }
-                }
-                &:hover .machines_nav_list_dropdown_content {
-                    display: block;
-                }
-            }
-        }
+        @include nav;
     }
     &_table {
         @include table;

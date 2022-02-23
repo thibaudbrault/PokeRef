@@ -1,24 +1,7 @@
 .pokedex {
     @include size-main-small;
     &_search {
-        display: flex;
-        flex-direction: column;
-        width: 25%;
-        &_input {
-            padding: 0.5rem 1rem;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid $dark;
-            transition: 0.3s ease-in-out;
-            &:focus {
-                outline: none;
-                border-bottom: 2px solid $red;
-            }
-            &::placeholder {
-                color: $dark;
-                opacity: 0.8;
-            }
-        }
+        @include search;
     }
     &_title {
         @include title;
@@ -68,6 +51,7 @@
                 font-size: 1.5rem;
                 font-family: $font-game;
                 text-transform: capitalize;
+                cursor: pointer;
                 transition: 0.3s ease-in-out;
                 &:hover {
                     color: $red;
@@ -102,8 +86,4 @@
             }
         }
     }
-}
-
-.legendary {
-    border: 1px solid purple;
 }

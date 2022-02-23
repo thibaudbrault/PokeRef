@@ -4,25 +4,7 @@
         @include title;
     }
     &_search {
-        display: flex;
-        flex-direction: column;
-        width: 25%;
-        margin-bottom: 5rem;
-        &_input {
-            padding: 0.5rem 1rem;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid $dark;
-            transition: 0.3s ease-in-out;
-            &:focus {
-                outline: none;
-                border-bottom: 2px solid $red;
-            }
-            &::placeholder {
-                color: $dark;
-                opacity: 0.8;
-            }
-        }
+        @include search;
     }
     &_table {
         @include table;

@@ -8,44 +8,7 @@
         @include subtitle;
     }
     &_nav {
-        position: relative;
-        padding: 5rem 0;
-        z-index: 100;
-        &_list {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            &_dropdown {
-                display: inline-block;
-                position: relative;
-                button {
-                    background: none;
-                    border: none;
-                    font-size: 1.7rem;
-                    font-weight: 700;
-                }
-                &_content {
-                    display: none;
-                    position: absolute;
-                    white-space: nowrap;
-                    background: rgba(255, 255, 255, 0.4);
-                    button {
-                        display: block;
-                        background: none;
-                        font-size: 1.5rem;
-                        border: none;
-                        margin: 1rem;
-                        cursor: pointer;
-                        &:hover {
-                            color: $red;
-                        }
-                    }
-                }
-                &:hover .move_nav_list_dropdown_content {
-                    display: block;
-                }
-            }
-        }
+        @include nav;
     }
     &_data {
         padding: 5rem 0;
@@ -101,15 +64,10 @@
         &_container {
             margin: 0 0 2rem;
             &_title {
-                margin: 0 0 1rem;
-                font-size: 3rem;
-                font-weight: 700;
+                @include h3-title;
             }
             &_subtitle {
-                margin: 0 0 1rem;
-                font-size: 2.5rem;
-                font-weight: 700;
-                text-transform: capitalize;
+                @include h4-title;
             }
             &_text {
                 font-size: 1.7rem;
@@ -126,33 +84,18 @@
                 @include moveData;
             }
             &_target {
-                margin-left: 2rem;
-                font-size: 1.5rem;
                 text-transform: capitalize;
+                @include moveData;
             }
         }
     }
     &_method {
-        padding: 5rem 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        &_element {
-            background: none;
-            border: none;
-            font-size: 1.7rem;
-            font-weight: 700;
-        }
-        &_active {
-            color: $red;
-        }
+        @include secondary-nav;
     }
     &_learn {
         padding: 5rem 0;
         &_title {
-            margin: 0 0 1rem;
-            font-size: 3rem;
-            font-weight: 700;
+            @include h3-title;
         }
         &_txt {
             margin: 0 0 3rem;
@@ -214,12 +157,4 @@
             }
         }
     }
-}
-
-.active {
-    display: block;
-}
-
-.hidden {
-    display: none;
 }

@@ -1,5 +1,5 @@
 .pokemon {
-    @include size-main-small;
+    @include size-main-big;
     &_title {
         @include title;
         font-size: 4rem;
@@ -11,48 +11,10 @@
         text-align: center;
     }
     &_nav {
-        position: relative;
-        padding: 5rem 0;
-        z-index: 100;
-        &_list {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            &_dropdown {
-                display: inline-block;
-                position: relative;
-                button {
-                    background: none;
-                    border: none;
-                    font-size: 1.7rem;
-                    font-weight: 700;
-                    color: $dark;
-                }
-                &_content {
-                    display: none;
-                    position: absolute;
-                    white-space: nowrap;
-                    background: rgb(255, 255, 255);
-                    button {
-                        display: block;
-                        background: none;
-                        font-size: 1.5rem;
-                        border: none;
-                        margin: 1rem;
-                        color: $dark;
-                        cursor: pointer;
-                        &:hover {
-                            color: $red;
-                        }
-                    }
-                }
-                &:hover .pokemon_nav_list_dropdown_content {
-                    display: block;
-                }
-            }
-        }
+        @include nav;
     }
     &_data {
+        padding-bottom: 5rem;
         display: grid;
         align-items: center;
         grid-template-columns: 55% 35%;
@@ -132,16 +94,20 @@
             }
         }
     }
+    &_evo {
+        padding-bottom: 5rem;
+        &_title {
+            @include h3-title;
+        }
+    }
     &_info {
-        padding: 5rem 0;
+        padding-bottom: 5rem;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        column-gap: 3rem;
+        column-gap: 4rem;
         &_container {
             &_title {
-                margin: 0 0 1rem;
-                font-size: 3rem;
-                font-weight: 700;
+                @include h3-title;
             }
             &_table {
                 @include table;
@@ -160,12 +126,13 @@
         }
     }
     &_stats {
+        padding-bottom: 5rem;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 2rem;
         &_container {
             &_title {
-                margin: 0 0 1rem;
-                font-size: 3rem;
-                font-weight: 700;
-                text-transform: capitalize;
+                @include h3-title;
             }
             &_table {
                 &_row {
@@ -201,5 +168,13 @@
                 }
             }
         }
+        &_types {
+            &_title {
+                @include h3-title;
+            }
+        }
+    }
+    &_method {
+        @include secondary-nav;
     }
 }

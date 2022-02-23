@@ -177,8 +177,8 @@ const MoveCard = () => {
                                         <td className='move_data_table_row_element'>
                                             <div className='move_data_table_row_element_type' id={move?.type?.name}>
                                                 <Link
-                                                    to={`/types/${move.type.name}`}
-                                                    key={move.type.name}
+                                                    to={`/types/${move?.type?.name}`}
+                                                    key={move?.type?.name}
                                                 >
                                                     <img alt={move?.type?.name} />
                                                     <span>{move?.type?.name}</span>
@@ -312,11 +312,11 @@ const MoveCard = () => {
                         </section>
 
                         <nav className='move_method'>
-                            <button className={toggleState === 1 ? 'move_method_element move_method_active' : 'move_method_element'} onClick={() => toggleTable(1)}>Level Up</button>
-                            <button className={toggleState === 2 ? 'move_method_element move_method_active' : 'move_method_element'} onClick={() => toggleTable(2)}>TM /HM</button>
-                            <button className={toggleState === 3 ? 'move_method_element move_method_active' : 'move_method_element'} onClick={() => toggleTable(3)}>Tutor</button>
-                            <button className={toggleState === 4 ? 'move_method_element move_method_active' : 'move_method_element'} onClick={() => toggleTable(4)}>Breeding</button>
-                            <button className={toggleState === 5 ? 'move_method_element move_method_active' : 'move_method_element'} onClick={() => toggleTable(5)}>Evolving</button>
+                            <button className={toggleState === 1 ? 'move_method_active' : 'move_method_element'} onClick={() => toggleTable(1)}><span>Level Up</span></button>
+                            <button className={toggleState === 2 ? 'move_method_active' : 'move_method_element'} onClick={() => toggleTable(2)}><span>TM /HM</span></button>
+                            <button className={toggleState === 3 ? 'move_method_active' : 'move_method_element'} onClick={() => toggleTable(3)}><span>Tutor</span></button>
+                            <button className={toggleState === 4 ? 'move_method_active' : 'move_method_element'} onClick={() => toggleTable(4)}><span>Breeding</span></button>
+                            <button className={toggleState === 5 ? 'move_method_active' : 'move_method_element'} onClick={() => toggleTable(5)}><span>Evolving</span></button>
                         </nav>
 
                         <section  className={toggleState === 1 ? "active move_learn" : "hidden"}>

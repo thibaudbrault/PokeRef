@@ -12,26 +12,20 @@
         &_effect {
             margin: 0 0 3rem;
             &_title {
-                margin: 0 0 1rem;
-                font-size: 3rem;
-                font-weight: 700;
+                @include h3-title;
             }
             &_text {
                 font-size: 1.7rem;
             }
         }
         &_title {
-            margin: 0 0 2rem;
-            font-size: 3rem;
-            font-weight: 700;
+            @include h3-title;
         }
         &_effect {
             font-size: 1.7rem;
         }
         &_subtitle {
-            margin: 0 0 1rem;
-            font-size: 2.5rem;
-            font-weight: 700;
+            @include h4-title;
         }
         &_desc {
             &_table {
