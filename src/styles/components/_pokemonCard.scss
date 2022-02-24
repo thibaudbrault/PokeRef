@@ -176,5 +176,32 @@
     }
     &_method {
         @include secondary-nav;
+        padding: 0 0 2.5rem;
+    }
+    &_moves {
+        &_title {
+            @include h3-title;
+        }
+        &_table {
+            @include table;
+            &_head {
+                @include head;
+            }
+            &_body {
+                &_row {
+                    @include row;
+                    &_element {
+                        text-transform: capitalize;
+                        img {
+                            width: 32px;
+                            height: 32px;
+                        }
+                        &_machine {
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

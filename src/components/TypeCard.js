@@ -80,63 +80,64 @@ const TypeCard = () => {
                         <h2 className='type_title'>{type?.name}</h2>
 
                         <section className='type_damage'>
-                            <h3 className='type_damage_title'>Attack</h3>
-                            <table className='type_damage_table'>
-                                <tr className='type_damage_table_row'>
-                                    <th className="type_damage_table_row_head">No damage to</th>
-                                    {type?.damage_relations?.no_damage_to?.map((ndt) => (
-                                        <td className='type_damage_table_row_element' id={ndt.name}>
-                                            <img alt={ndt.name} />
-                                        </td>
-                                    ))}
-                                </tr>
-                                <tr className='type_damage_table_row'>
-                                    <th className="type_damage_table_row_head">Half damage to</th>
-                                    {type?.damage_relations?.half_damage_to?.map((hdt) => (
-                                        <td className='type_damage_table_row_element' id={hdt.name}>
-                                            <img alt={hdt.name} />
-                                        </td>
-                                    ))}
-                                </tr>
-                                <tr className='type_damage_table_row'>
-                                    <th className="type_damage_table_row_head">Double damage to</th>
-                                    {type?.damage_relations?.double_damage_to?.map((ddt) => (
-                                        <td className='type_damage_table_row_element' id={ddt.name}>
-                                            <img alt={ddt.name} />
-                                        </td>
-                                    ))}
-                                </tr>
-                            </table>
-                        </section>
-
-                        <section className='type_damage'>
-                            <h3 className='type_damage_title'>Defense</h3>
-                            <table className='type_damage_table'>
-                                <tr className='type_damage_table_row'>
-                                    <th className="type_damage_table_row_head">No damage from</th>
-                                    {type?.damage_relations?.no_damage_from?.map((ndf) => (
-                                        <td className='type_damage_table_row_element' id={ndf.name}>
-                                            <img alt={ndf.name} />
-                                        </td>
-                                    ))}
-                                </tr>
-                                <tr className='type_damage_table_row'>
-                                    <th className="type_damage_table_row_head">Half damage from</th>
-                                    {type?.damage_relations?.half_damage_from?.map((hdf) => (
-                                        <td className='type_damage_table_row_element' id={hdf.name}>
-                                            <img alt={hdf.name} />
-                                        </td>
-                                    ))}
-                                </tr>
-                                <tr className='type_damage_table_row'>
-                                    <th className="type_damage_table_row_head">Double damage from</th>
-                                    {type?.damage_relations?.double_damage_from?.map((ddf) => (
-                                        <td className='type_damage_table_row_element' id={ddf.name}>
-                                            <img alt={ddf.name} />
-                                        </td>
-                                    ))}
-                                </tr>
-                            </table>
+                            <div className='type_damage_container'>
+                                <h3 className='type_damage_container_title'>Attack</h3>
+                                <table className='type_damage_container_table'>
+                                    <tr className='type_damage_container_table_row'>
+                                        <th className="type_damage_container_table_row_head">No damage to</th>
+                                        {type?.damage_relations?.no_damage_to?.map((ndt) => (
+                                            <td className='type_damage_container_table_row_element' id={ndt.name}>
+                                                <img alt={ndt.name} />
+                                            </td>
+                                        ))}
+                                    </tr>
+                                    <tr className='type_damage_container_table_row'>
+                                        <th className="type_damage_container_table_row_head">Half damage to</th>
+                                        {type?.damage_relations?.half_damage_to?.map((hdt) => (
+                                            <td className='type_damage_container_table_row_element' id={hdt.name}>
+                                                <img alt={hdt.name} />
+                                            </td>
+                                        ))}
+                                    </tr>
+                                    <tr className='type_damage_container_table_row'>
+                                        <th className="type_damage_container_table_row_head">Double damage to</th>
+                                        {type?.damage_relations?.double_damage_to?.map((ddt) => (
+                                            <td className='type_damage_container_table_row_element' id={ddt.name}>
+                                                <img alt={ddt.name} />
+                                            </td>
+                                        ))}
+                                    </tr>
+                                </table>
+                            </div>
+                            <div className='type_damage_container_container'>
+                                <h3 className='type_damage_container_title'>Defense</h3>
+                                <table className='type_damage_container_table'>
+                                    <tr className='type_damage_container_table_row'>
+                                        <th className="type_damage_container_table_row_head">No damage from</th>
+                                        {type?.damage_relations?.no_damage_from?.map((ndf) => (
+                                            <td className='type_damage_container_table_row_element' id={ndf.name}>
+                                                <img alt={ndf.name} />
+                                            </td>
+                                        ))}
+                                    </tr>
+                                    <tr className='type_damage_container_table_row'>
+                                        <th className="type_damage_container_table_row_head">Half damage from</th>
+                                        {type?.damage_relations?.half_damage_from?.map((hdf) => (
+                                            <td className='type_damage_container_table_row_element' id={hdf.name}>
+                                                <img alt={hdf.name} />
+                                            </td>
+                                        ))}
+                                    </tr>
+                                    <tr className='type_damage_container_table_row'>
+                                        <th className="type_damage_container_table_row_head">Double damage from</th>
+                                        {type?.damage_relations?.double_damage_from?.map((ddf) => (
+                                            <td className='type_damage_container_table_row_element' id={ddf.name}>
+                                                <img alt={ddf.name} />
+                                            </td>
+                                        ))}
+                                    </tr>
+                                </table>
+                            </div>
                         </section>
 
                         <section className='type_container'>

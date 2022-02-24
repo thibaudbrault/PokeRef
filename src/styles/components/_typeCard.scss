@@ -5,31 +5,36 @@
         margin-bottom: 5rem;
     }
     &_damage {
-        &_title {
-            @include subtitle;
-        }
-        &_table {
-            @include table;
-            margin: 0.5rem 0 5rem;
-            &_row {
-                &_head {
-                    width: 25%;
-                    background: rgba(130, 130, 130, 0.2);
-                    font-size: 1.5rem;
-                }
-                &_element {
-                    background: none !important;
-                    text-align: center;
-                    img {
-                        width: 32px;
-                        height: 32px;
-                        transition: 0.3s ease-in-out;
-                        &:hover {
-                            transform: scale(1.05);
-                        }
-                    }
-                    &:hover {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 3rem;
+        &_container {
+            &_title {
+                @include subtitle;
+            }
+            &_table {
+                @include table;
+                margin: 0.5rem 0 5rem;
+                &_row {
+                    &_head {
+                        width: 25%;
                         background: rgba(130, 130, 130, 0.2);
+                        font-size: 1.5rem;
+                    }
+                    &_element {
+                        background: none !important;
+                        text-align: center;
+                        img {
+                            width: 32px;
+                            height: 32px;
+                            transition: 0.3s ease-in-out;
+                            &:hover {
+                                transform: scale(1.05);
+                            }
+                        }
+                        &:hover {
+                            background: rgba(130, 130, 130, 0.2);
+                        }
                     }
                 }
             }

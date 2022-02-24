@@ -20,10 +20,9 @@
             &_row {
                 &_head {
                     background: rgba(130, 130, 130, 0.2);
-                    font-size: 1.5rem;
-                    font-weight: 700;
                 }
                 &_element {
+                    @include bold;
                     text-align: center;
                     text-transform: capitalize;
                     &_type {
