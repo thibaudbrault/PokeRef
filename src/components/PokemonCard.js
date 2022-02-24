@@ -160,9 +160,9 @@ const PokemonCard = () => {
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen IV</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
-                                            <button onClick={() => setGame('diamond')}>Diamond</button>
-                                            <button onClick={() => setGame('pearl')}>Pearl</button>
-                                            <button onClick={() => setGame('platinum')}>Platinum</button>
+                                            <button onClick={() => { setGame('diamond'); setVersion('diamond-pearl'); }}>Diamond</button>
+                                            <button onClick={() => { setGame('pearl'); setVersion('diamond-pearl'); }}>Pearl</button>
+                                            <button onClick={() => { setGame('platinum'); setVersion('platinum'); }}>Platinum</button>
                                             <button onClick={() => setGame('heartgold')}>Heart Gold</button>
                                             <button onClick={() => setGame('soulsilver')}>Soul Silver</button>
                                         </div>
@@ -808,7 +808,7 @@ const PokemonCard = () => {
                                         pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'machine'  &&
                                             <tr className='pokemon_moves_table_body_row'>
                                                 {machine?.map((ma) =>
-                                                    ma?.move?.name === pm?.move?.name && ma?.version_group?.name === game &&
+                                                    ma?.move?.name === pm?.move?.name && ma?.version_group?.name === version &&
                                                         <td className='pokemon_moves_table_body_row_element_machine'>
                                                             {ma?.item?.name}
                                                         </td>
