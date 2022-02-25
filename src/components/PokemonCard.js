@@ -99,6 +99,9 @@ const PokemonCard = () => {
     const female = species?.gender_rate / 8 * 100;
     const male = '100' - (species?.gender_rate / 8 * 100);
 
+    const precedent = pokemon?.id - 1;
+    const next = pokemon?.id +1;
+
     const [toggleState, setToggleState] = useState(1);
     const toggleTable = (index) => {
         setToggleState(index);
@@ -108,7 +111,7 @@ const PokemonCard = () => {
 
     useEffect(() => {
         document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Pokémon | PokéInfo`;
-     }, [title]);
+    }, [title]);
 
     return (
         <>
@@ -116,7 +119,7 @@ const PokemonCard = () => {
             <Nav />
             <main className='pokemon'>
                 {loading ? (
-                    <BarWave width="40px" height="20px" color="#cc0000" />
+                    <BarWave width='40px' height='20px' color='#cc0000' />
                 ) : (
                     <>
                         <h2 className='pokemon_title'>{pokemon?.name}</h2>
@@ -128,9 +131,9 @@ const PokemonCard = () => {
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen I</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
-                                            <button onClick={() => setGame('red')}>Red</button>
-                                            <button onClick={() => setGame('blue')}>Blue</button>
-                                            <button onClick={() => setGame('yellow')}>Yellow</button>
+                                            <button onClick={() => { setGame('red'); setVersion('red-blue'); }}>Red</button>
+                                            <button onClick={() => { setGame('blue'); setVersion('red-blue'); }}>Blue</button>
+                                            <button onClick={() => { setGame('yellow'); setVersion('yellow'); }}>Yellow</button>
                                         </div>
                                     </li>
                                 }
@@ -138,9 +141,9 @@ const PokemonCard = () => {
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen II</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
-                                            <button onClick={() => setGame('gold')}>Gold</button>
-                                            <button onClick={() => setGame('silver')}>Silver</button>
-                                            <button onClick={() => setGame('crystal')}>Crystal</button>
+                                            <button onClick={() => { setGame('gold'); setVersion('gold-silver'); }}>Gold</button>
+                                            <button onClick={() => { setGame('silver'); setVersion('gold-silver'); }}>Silver</button>
+                                            <button onClick={() => { setGame('crystal'); setVersion('crystal'); }}>Crystal</button>
                                         </div>
                                     </li>
                                 }
@@ -148,11 +151,11 @@ const PokemonCard = () => {
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen III</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
-                                            <button onClick={() => setGame('ruby')}>Ruby</button>
-                                            <button onClick={() => setGame('sapphire')}>Sapphire</button>
-                                            <button onClick={() => setGame('emerald')}>Emerald</button>
-                                            <button onClick={() => setGame('firered')}>Fire Red</button>
-                                            <button onClick={() => setGame('greenleaf')}>Green Leaf</button>
+                                            <button onClick={() => { setGame('ruby'); setVersion('ruby-sapphire'); }}>Ruby</button>
+                                            <button onClick={() => { setGame('sapphire'); setVersion('rub-sapphire'); }}>Sapphire</button>
+                                            <button onClick={() => { setGame('emerald'); setVersion('emerald'); }}>Emerald</button>
+                                            <button onClick={() => { setGame('firered'); setVersion('firered-leafgreen'); }}>Fire Red</button>
+                                            <button onClick={() => { setGame('greenleaf'); setVersion('firered-leafgreen'); }}>Green Leaf</button>
                                         </div>
                                     </li>
                                 }
@@ -163,8 +166,8 @@ const PokemonCard = () => {
                                             <button onClick={() => { setGame('diamond'); setVersion('diamond-pearl'); }}>Diamond</button>
                                             <button onClick={() => { setGame('pearl'); setVersion('diamond-pearl'); }}>Pearl</button>
                                             <button onClick={() => { setGame('platinum'); setVersion('platinum'); }}>Platinum</button>
-                                            <button onClick={() => setGame('heartgold')}>Heart Gold</button>
-                                            <button onClick={() => setGame('soulsilver')}>Soul Silver</button>
+                                            <button onClick={() => { setGame('heartgold'); setVersion('heartgold-soulsilver'); }}>Heart Gold</button>
+                                            <button onClick={() => { setGame('soulsilver'); setVersion('heartgold-soulsilver'); }}>Soul Silver</button>
                                         </div>
                                     </li>
                                 }
@@ -172,10 +175,10 @@ const PokemonCard = () => {
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen V</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
-                                            <button onClick={() => setGame('black')}>Black</button>
-                                            <button onClick={() => setGame('white')}>White</button>
-                                            <button onClick={() => setGame('black-2')}>Black 2</button>
-                                            <button onClick={() => setGame('white-2')}>White 2</button>
+                                            <button onClick={() => { setGame('black'); setVersion('black-white'); }}>Black</button>
+                                            <button onClick={() => { setGame('white'); setVersion('black-white'); }}>White</button>
+                                            <button onClick={() => { setGame('black-2'); setVersion('black-2-white-2'); }}>Black 2</button>
+                                            <button onClick={() => { setGame('white-2'); setVersion('black-2-white-2'); }}>White 2</button>
                                         </div>
                                     </li>
                                 }
@@ -183,10 +186,10 @@ const PokemonCard = () => {
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen VI</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
-                                            <button onClick={() => setGame('x')}>X</button>
-                                            <button onClick={() => setGame('y')}>Y</button>
-                                            <button onClick={() => setGame('omega-ruby')}>Omega Ruby</button>
-                                            <button onClick={() => setGame('alpha-sapphire')}>Alpha Sapphire</button>
+                                            <button onClick={() => { setGame('x'); setVersion('x-y'); }}>X</button>
+                                            <button onClick={() => { setGame('y'); setVersion('x-y'); }}>Y</button>
+                                            <button onClick={() => { setGame('omega-ruby'); setVersion('omega-ruby-alpha-sapphire'); }}>Omega Ruby</button>
+                                            <button onClick={() => { setGame('alpha-sapphire'); setVersion('omega-ruby-alpha-sapphire'); }}>Alpha Sapphire</button>
                                         </div>
                                     </li>
                                 }
@@ -194,12 +197,12 @@ const PokemonCard = () => {
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen VII</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
-                                            <button onClick={() => setGame('sun')}>Sun</button>
-                                            <button onClick={() => setGame('moon')}>Moon</button>
-                                            <button onClick={() => setGame('ultra-sun')}>Ultra Sun</button>
-                                            <button onClick={() => setGame('ultra-moon')}>Ultra Moon</button>
-                                            <button onClick={() => setGame('lets-go-pikachu')}>Let's Go Pikachu</button>
-                                            <button onClick={() => setGame('lets-go-eevee')}>Let's Go Eevee</button>
+                                            <button onClick={() => { setGame('sun'); setVersion('sun-moon'); }}>Sun</button>
+                                            <button onClick={() => { setGame('moon'); setVersion('sun-moon'); }}>Moon</button>
+                                            <button onClick={() => { setGame('ultra-sun'); setVersion('ultra-sun-ultra-moon'); }}>Ultra Sun</button>
+                                            <button onClick={() => { setGame('ultra-moon'); setVersion('ultra-sun-ultra-moon'); }}>Ultra Moon</button>
+                                            <button onClick={() => { setGame('lets-go-pikachu'); setVersion('lets-go-pikachu-lets-go-eevee'); }}>Let's Go Pikachu</button>
+                                            <button onClick={() => { setGame('lets-go-eevee'); setVersion('lets-go-pikachu-lets-go-eevee'); }}>Let's Go Eevee</button>
                                         </div>
                                     </li>
                                 }
@@ -207,8 +210,8 @@ const PokemonCard = () => {
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen VIII</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
-                                            <button onClick={() => setGame('sword')}>Sword</button>
-                                            <button onClick={() => setGame('shield')}>Shield</button>
+                                            <button onClick={() => { setGame('sword'); setVersion('sword-shield'); }}>Sword</button>
+                                            <button onClick={() => { setGame('shield'); setVersion('sword-shield'); }}>Shield</button>
                                         </div>
                                     </li>
                                 }
@@ -668,6 +671,7 @@ const PokemonCard = () => {
                                 <button className={toggleState === 4 ? 'pokemon_method_active' : 'pokemon_method_element'} onClick={() => toggleTable(4)}><p>Tutor</p></button>
                                 <button className={toggleState === 5 ? 'pokemon_method_active' : 'pokemon_method_element'} onClick={() => toggleTable(5)}><p>Evolving</p></button>
                             </nav>
+
                             <table className={toggleState === 1 ? "active pokemon_moves_table" : "hidden"}>
                                 <thead className='pokemon_moves_table_head'>
                                     <tr className='pokemon_moves_table_head_row'>
@@ -770,6 +774,7 @@ const PokemonCard = () => {
                                     )}
                                 </tbody>
                             </table>
+
                             <table className={toggleState === 2 ? "active pokemon_moves_table" : "hidden"}>
                                 <thead className='pokemon_moves_table_head'>
                                     <tr className='pokemon_moves_table_head_row'>
@@ -875,9 +880,377 @@ const PokemonCard = () => {
                                     )}
                                 </tbody>
                             </table>
+                            
+                            <table className={toggleState === 3 ? "active pokemon_moves_table" : "hidden"}>
+                                <thead className='pokemon_moves_table_head'>
+                                    <tr className='pokemon_moves_table_head_row'>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            -
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Name
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Type
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Category
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Power
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            PP
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Accuracy
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Priority
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Status
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody className='pokemon_moves_table_body'>
+                                    {pokemon?.moves?.map((pm) => 
+                                        pm?.version_group_details?.map((pmv) =>
+                                        pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'egg' && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 1 &&
+                                            <tr className='pokemon_moves_table_body_row'>
+                                                <td className='pokemon_moves_table_body_row_element_machine'>
+                                                    -
+                                                </td>
+                                                <td className='pokemon_moves_table_body_row_element'>
+                                                    {pm?.move?.name.replace(/-/g, ' ')}
+                                                </td>
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element' id={m?.type?.name} style={{"background":"transparent"}}>
+                                                            <img alt={m?.type?.name} />
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.damage_class?.name}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.power !== null ? (
+                                                                m?.power
+                                                            ) : (
+                                                                '-'
+                                                            )}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.pp}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.accuracy !== null ? (
+                                                                m?.accuracy
+                                                            ) : (
+                                                                '-'
+                                                            )}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.priority}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.meta?.ailment !== null ? (
+                                                                m?.meta?.ailment?.name?.replace('none', '-')
+                                                            ) : (
+                                                                '-'
+                                                            )}
+                                                        </td>
+                                                )}
+                                            </tr>
+                                        )
+                                    )}
+                                </tbody>
+                            </table>
+                            
+                            <table className={toggleState === 4 ? "active pokemon_moves_table" : "hidden"}>
+                                <thead className='pokemon_moves_table_head'>
+                                    <tr className='pokemon_moves_table_head_row'>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            -
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Name
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Type
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Category
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Power
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            PP
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Accuracy
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Priority
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Status
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody className='pokemon_moves_table_body'>
+                                    {pokemon?.moves?.map((pm) => 
+                                        pm?.version_group_details?.map((pmv) =>
+                                        pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'tutor' &&
+                                            <tr className='pokemon_moves_table_body_row'>
+                                                <td className='pokemon_moves_table_body_row_element_machine'>
+                                                    -
+                                                </td>
+                                                <td className='pokemon_moves_table_body_row_element'>
+                                                    {pm?.move?.name.replace(/-/g, ' ')}
+                                                </td>
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element' id={m?.type?.name} style={{"background":"transparent"}}>
+                                                            <img alt={m?.type?.name} />
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.damage_class?.name}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.power !== null ? (
+                                                                m?.power
+                                                            ) : (
+                                                                '-'
+                                                            )}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.pp}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.accuracy !== null ? (
+                                                                m?.accuracy
+                                                            ) : (
+                                                                '-'
+                                                            )}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.priority}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.meta?.ailment !== null ? (
+                                                                m?.meta?.ailment?.name?.replace('none', '-')
+                                                            ) : (
+                                                                '-'
+                                                            )}
+                                                        </td>
+                                                )}
+                                            </tr>
+                                        )
+                                    )}
+                                </tbody>
+                            </table>
+
+                            <table className={toggleState === 5 ? "active pokemon_moves_table" : "hidden"}>
+                                <thead className='pokemon_moves_table_head'>
+                                    <tr className='pokemon_moves_table_head_row'>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            -
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Name
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Type
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Category
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Power
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            PP
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Accuracy
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Priority
+                                        </th>
+                                        <th className='pokemon_moves_table_head_row_element'>
+                                            Status
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody className='pokemon_moves_table_body'>
+                                    {pokemon?.moves?.map((pm) => 
+                                        pm?.version_group_details?.map((pmv) =>
+                                        pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 0 &&
+                                            <tr className='pokemon_moves_table_body_row'>
+                                                <td className='pokemon_moves_table_body_row_element_machine'>
+                                                    -
+                                                </td>
+                                                <td className='pokemon_moves_table_body_row_element'>
+                                                    {pm?.move?.name.replace(/-/g, ' ')}
+                                                </td>
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element' id={m?.type?.name} style={{"background":"transparent"}}>
+                                                            <img alt={m?.type?.name} />
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.damage_class?.name}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.power !== null ? (
+                                                                m?.power
+                                                            ) : (
+                                                                '-'
+                                                            )}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.pp}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.accuracy !== null ? (
+                                                                m?.accuracy
+                                                            ) : (
+                                                                '-'
+                                                            )}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.priority}
+                                                        </td>
+                                                )}
+                                                {move?.map((m) =>
+                                                    m?.name === pm?.move?.name &&
+                                                        <td className='pokemon_moves_table_body_row_element'>
+                                                            {m?.meta?.ailment !== null ? (
+                                                                m?.meta?.ailment?.name?.replace('none', '-')
+                                                            ) : (
+                                                                '-'
+                                                            )}
+                                                        </td>
+                                                )}
+                                            </tr>
+                                        )
+                                    )}
+                                </tbody>
+                            </table>
+
+                            <p className='pokemon_moves_void'><span>{pokemon?.name?.replace(/-/g, ' ')}</span> ‌‌ doesn't learn any moves this way in Pokémon ‌‌ <span>{game}</span></p>
+
                         </section>
 
-                        <button className='back_button' onClick={() => navigate("/")}> ᐸ Back to pokemon</button>
+                        <section className='pokemon_sprites'>
+                            <h3 className='pokemon_sprites_title'>Sprites</h3>
+                            <div className='pokemon_sprites_container'>
+                                <div className='pokemon_sprites_container_inner'>
+                                    <img src={pokemon?.sprites?.front_default} alt={pokemon?.name} />
+                                    <p className='pokemon_sprites_container_inner_text'>Front Default</p>
+                                </div>
+                                <div className='pokemon_sprites_container_inner'>
+                                    <img src={pokemon?.sprites?.back_default} alt={pokemon?.name} />
+                                    <p className='pokemon_sprites_container_inner_text'>Back Default</p>
+                                </div>
+                                {pokemon?.sprites?.front_female !== null &&
+                                    <div className='pokemon_sprites_container_inner'>
+                                        <img src={pokemon?.sprites?.front_female} alt={pokemon?.name} />
+                                        <p className='pokemon_sprites_container_inner_text'>Front Female</p>
+                                    </div>
+                                }
+                                {pokemon?.sprites?.back_female !== null &&
+                                    <div className='pokemon_sprites_container_inner'>
+                                        <img src={pokemon?.sprites?.back_female} alt={pokemon?.name} />
+                                        <p className='pokemon_sprites_container_inner_text'>Back Female</p>
+                                    </div>
+                                }
+                                <div className='pokemon_sprites_container_inner'>
+                                    <img src={pokemon?.sprites?.front_shiny} alt={pokemon?.name} />
+                                    <p className='pokemon_sprites_container_inner_text'>Front Shiny</p>
+                                </div>
+                                <div className='pokemon_sprites_container_inner'>
+                                    <img src={pokemon?.sprites?.back_shiny} alt={pokemon?.name} />
+                                    <p className='pokemon_sprites_container_inner_text'>Back Shiny</p>
+                                </div>
+                                {pokemon?.sprites?.front_shiny_female !== null &&
+                                    <div className='pokemon_sprites_container_inner'>
+                                        <img src={pokemon?.sprites?.front_shiny_female} alt={pokemon?.name} />
+                                        <p className='pokemon_sprites_container_inner_text'>Front Shiny Female</p>
+                                    </div>
+                                }
+                                {pokemon?.sprites?.back_shiny_female !== null &&
+                                    <div className='pokemon_sprites_container_inner'>
+                                        <img src={pokemon?.sprites?.back_shiny_female} alt={pokemon?.name} />
+                                        <p className='pokemon_sprites_container_inner_text'>Back Shiny Female</p>
+                                    </div>
+                                }
+                            </div>
+                        </section>
+
+                        <section className='pokemon_buttons'>
+                            <button className='back_button' onClick={() => navigate("/")}> ᐸ Back to pokemon</button>
+                            <div className='pokemon_buttons_container'>
+                                <button className='pokemon_buttons_container_precedent' onClick={() => navigate(`/pokemon/${precedent?.name}`)}>
+                                    Precedent
+                                </button>
+                                <button className='pokemon_buttons_container_next'>
+                                    Next
+                                </button>
+                            </div>
+                        </section>
                     </>
                 )}
             </main>

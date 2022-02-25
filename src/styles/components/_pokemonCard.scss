@@ -179,6 +179,7 @@
         padding: 0 0 2.5rem;
     }
     &_moves {
+        padding-bottom: 5rem;
         &_title {
             @include h3-title;
         }
@@ -203,5 +204,47 @@
                 }
             }
         }
+        &_void {
+            @include flex;
+            @include bold;
+        }
     }
+    &_sprites {
+        padding-bottom: 5rem;
+        &_title {
+            @include h3-title;
+        }
+        &_container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            row-gap: 3rem;
+            align-items: center;
+            justify-items: center;
+            &_inner {
+                @include flex;
+                flex-direction: column;
+                img {
+                    width: 96px;
+                    height: 96px;
+                }
+                &_text {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+    &_buttons {
+        &_container {
+            &_precedent {
+
+            }
+            &_next {
+
+            }
+        }
+    }
+}
+
+span {
+    text-transform: capitalize;
 }
