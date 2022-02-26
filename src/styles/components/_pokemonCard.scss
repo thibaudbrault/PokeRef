@@ -120,6 +120,9 @@
                         @include bold;
                         text-align: center;
                         text-transform: capitalize;
+                        a {
+                            display: block;
+                        }
                     }
                 }
             }

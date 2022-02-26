@@ -488,14 +488,17 @@ const PokemonCard = () => {
                                             </th>
                                             <td className='pokemon_info_container_table_row_element'>
                                                 {species?.varieties?.map((sv) => 
-                                                    <p>
+                                                    <Link
+                                                    to={`/pokemon/${sv?.pokemon?.name}`}
+                                                    key={sv?.pokemon?.name}
+                                                    >
                                                         {sv?.pokemon?.name?.replace(/-/g, ' ')}
                                                         {sv?.is_default === true &&
                                                             <>
                                                                 ‌‌ (default)
                                                             </>
                                                         }
-                                                    </p>
+                                                    </Link>
                                                 )}
                                             </td>
                                         </tr>
@@ -885,9 +888,6 @@ const PokemonCard = () => {
                                 <thead className='pokemon_moves_table_head'>
                                     <tr className='pokemon_moves_table_head_row'>
                                         <th className='pokemon_moves_table_head_row_element'>
-                                            -
-                                        </th>
-                                        <th className='pokemon_moves_table_head_row_element'>
                                             Name
                                         </th>
                                         <th className='pokemon_moves_table_head_row_element'>
@@ -918,9 +918,6 @@ const PokemonCard = () => {
                                         pm?.version_group_details?.map((pmv) =>
                                         pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'egg' && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 1 &&
                                             <tr className='pokemon_moves_table_body_row'>
-                                                <td className='pokemon_moves_table_body_row_element_machine'>
-                                                    -
-                                                </td>
                                                 <td className='pokemon_moves_table_body_row_element'>
                                                     {pm?.move?.name.replace(/-/g, ' ')}
                                                 </td>
@@ -988,9 +985,6 @@ const PokemonCard = () => {
                                 <thead className='pokemon_moves_table_head'>
                                     <tr className='pokemon_moves_table_head_row'>
                                         <th className='pokemon_moves_table_head_row_element'>
-                                            -
-                                        </th>
-                                        <th className='pokemon_moves_table_head_row_element'>
                                             Name
                                         </th>
                                         <th className='pokemon_moves_table_head_row_element'>
@@ -1021,9 +1015,6 @@ const PokemonCard = () => {
                                         pm?.version_group_details?.map((pmv) =>
                                         pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'tutor' &&
                                             <tr className='pokemon_moves_table_body_row'>
-                                                <td className='pokemon_moves_table_body_row_element_machine'>
-                                                    -
-                                                </td>
                                                 <td className='pokemon_moves_table_body_row_element'>
                                                     {pm?.move?.name.replace(/-/g, ' ')}
                                                 </td>
@@ -1091,9 +1082,6 @@ const PokemonCard = () => {
                                 <thead className='pokemon_moves_table_head'>
                                     <tr className='pokemon_moves_table_head_row'>
                                         <th className='pokemon_moves_table_head_row_element'>
-                                            -
-                                        </th>
-                                        <th className='pokemon_moves_table_head_row_element'>
                                             Name
                                         </th>
                                         <th className='pokemon_moves_table_head_row_element'>
@@ -1124,9 +1112,6 @@ const PokemonCard = () => {
                                         pm?.version_group_details?.map((pmv) =>
                                         pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 0 &&
                                             <tr className='pokemon_moves_table_body_row'>
-                                                <td className='pokemon_moves_table_body_row_element_machine'>
-                                                    -
-                                                </td>
                                                 <td className='pokemon_moves_table_body_row_element'>
                                                     {pm?.move?.name.replace(/-/g, ' ')}
                                                 </td>
@@ -1185,13 +1170,11 @@ const PokemonCard = () => {
                                                         </td>
                                                 )}
                                             </tr>
-                                        )
-                                    )}
+                                    ))}
                                 </tbody>
                             </table>
 
                             <p className='pokemon_moves_void'><span>{pokemon?.name?.replace(/-/g, ' ')}</span> ‌‌ doesn't learn any moves this way in Pokémon ‌‌ <span>{game}</span></p>
-
                         </section>
 
                         <section className='pokemon_sprites'>
