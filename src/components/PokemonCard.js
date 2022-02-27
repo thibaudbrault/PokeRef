@@ -107,7 +107,7 @@ const PokemonCard = () => {
         setToggleState(index);
     }
 
-    const title = `${name}`;
+    const title = `${name.replace(/-/g, ' ')}`;
 
     useEffect(() => {
         document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Pokémon | PokéInfo`;
@@ -122,7 +122,11 @@ const PokemonCard = () => {
                     <BarWave width='40px' height='20px' color='#cc0000' />
                 ) : (
                     <>
-                        <h2 className='pokemon_title'>{pokemon?.name}</h2>
+                        {pokemon?.name?.includes('mega') ? (
+                            <h2 className='pokemon_title'>{pokemon?.name?.replace(/-/g, ' ').split(' ').reverse().join(' ')}</h2>
+                        ) : (
+                            <h2 className='pokemon_title'>{pokemon?.name?.replace(/-/g, ' ')}</h2>
+                        )}
                         <p className='pokemon_gen'>{species?.generation?.name?.replace(/-/g, ' ')}</p>
 
                         <nav className='pokemon_nav'>
@@ -245,7 +249,11 @@ const PokemonCard = () => {
                                                 National number
                                             </th>
                                             <td className='pokemon_data_container_table_body_row_element'>
-                                                # {pokemon?.id?.toString()?.padStart(3, '0')}
+                                                {pokemon?.id > 10000 ? (
+                                                    `# ${species?.id?.toString()?.padStart(3, '0')}`
+                                                ) : (
+                                                    `# ${pokemon?.id?.toString()?.padStart(3, '0')}`
+                                                )}
                                             </td>
                                         </tr>
                                         <tr className='pokemon_data_container_table_body_row'>
@@ -319,7 +327,7 @@ const PokemonCard = () => {
                                 </table>
                             </div>
                             <div className='pokemon_data_more'>
-                                <img className='pokemon_data_more_sprite' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt={pokemon?.name} />
+                                <img className='pokemon_data_more_sprite' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt={pokemon?.name} loading='lazy' />
                                 {species?.is_legendary === true && (
                                     <span className='pokemon_data_more_legendary'>Legendary</span>
                                 )}
@@ -1175,6 +1183,7 @@ const PokemonCard = () => {
                             </table>
 
                             <p className='pokemon_moves_void'><span>{pokemon?.name?.replace(/-/g, ' ')}</span> ‌‌ doesn't learn any moves this way in Pokémon ‌‌ <span>{game}</span></p>
+                            
                         </section>
 
                         <section className='pokemon_sprites'>
