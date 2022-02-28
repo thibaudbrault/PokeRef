@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { TableVirtuoso } from 'react-virtuoso';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
@@ -84,6 +85,14 @@ export default function Abilities() {
                                     ))}
                             </tbody>
                         </table>
+
+                        {/* <TableVirtuoso 
+                            style={{ height:'100%', width:'100%' }}
+                            data={abilities}
+                            fixedHeaderContent={(index, abilities) => (
+
+                            )}
+                        /> */}
                     </>
                 )}
             </main>

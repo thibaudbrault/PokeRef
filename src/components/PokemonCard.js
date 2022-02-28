@@ -99,9 +99,6 @@ const PokemonCard = () => {
     const female = species?.gender_rate / 8 * 100;
     const male = '100' - (species?.gender_rate / 8 * 100);
 
-    const precedent = pokemon?.id - 1;
-    const next = pokemon?.id +1;
-
     const [toggleState, setToggleState] = useState(1);
     const toggleTable = (index) => {
         setToggleState(index);
@@ -1232,17 +1229,7 @@ const PokemonCard = () => {
                             </div>
                         </section>
 
-                        <section className='pokemon_buttons'>
-                            <button className='back_button' onClick={() => navigate("/")}> ᐸ Back to pokemon</button>
-                            <div className='pokemon_buttons_container'>
-                                <button className='pokemon_buttons_container_precedent' onClick={() => navigate(`/pokemon/${precedent?.name}`)}>
-                                    Precedent
-                                </button>
-                                <button className='pokemon_buttons_container_next'>
-                                    Next
-                                </button>
-                            </div>
-                        </section>
+                        <button className='back_button' onClick={() => navigate("/")}> ᐸ Back to pokemon</button>
                     </>
                 )}
             </main>

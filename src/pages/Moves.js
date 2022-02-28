@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Column, Table, AutoSizer } from 'react-virtualized';
-import 'react-virtualized/styles.css';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
@@ -71,23 +69,8 @@ function Moves() {
                             <button className='moves_nav_element' onClick={() => toggleTable(1)}>Moves</button>
                             <button className='moves_nav_element' onClick={() => toggleTable(2)}>Status</button>
                         </nav>
-    
-                        <div style ={{ width:"100%", height:"100%" }}>
-                            <AutoSizer>
-                                {({ width, height }) => (
-                                    <Table
-                                        width={width}
-                                        height={height}
-                                        headerHeight={20}
-                                        rowCount={}
-                                    >
 
-                                    </Table>
-                                )}
-                            </AutoSizer>
-                        </div>
-
-                        {/* <section className={toggleState === 1 ? "active" : "hidden"}>
+                        <section className={toggleState === 1 ? "active" : "hidden"}>
                             <h2 className='moves_title'>Moves</h2>
                             <div className='moves_search'>
                                 <input className='moves_search_input' type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
@@ -102,14 +85,14 @@ function Moves() {
                                     </tr>
                                 </thead>
                                 <tbody className='moves_table_body'>
-                                        {moves.filter((moves) => {
-                                            if (search === "") {
-                                                return moves
-                                            } else if (moves.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
-                                                return moves
-                                            }
-                                        })
-                                        .sort((a, b) => a.name.localeCompare(b.name)).map((m) => (
+                                    {moves.filter((moves) => {
+                                        if (search === "") {
+                                            return moves
+                                        } else if (moves.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
+                                            return moves
+                                        }
+                                    })
+                                    .sort((a, b) => a.name.localeCompare(b.name)).map((m) => (
                                         <tr key={m.id} className='moves_table_body_row'>
                                             <td className='moves_table_body_row_name'>
                                             <Link
@@ -140,7 +123,7 @@ function Moves() {
                                                 )}
                                             </td>
                                         </tr>
-                                        ))}
+                                    ))}
                                 </tbody>
                             </table>
                         </section>
@@ -175,7 +158,7 @@ function Moves() {
                                     }
                                 </tbody>
                             </table>
-                        </section> */}
+                        </section>
                     </>
                 )}
             </main>
