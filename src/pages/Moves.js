@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Column, Table, AutoSizer } from 'react-virtualized';
+import 'react-virtualized/styles.css';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
@@ -55,6 +57,7 @@ function Moves() {
         document.title = `Moves | PokéInfo`;
      }, []);
 
+
     return (
         <>
             <Header />
@@ -69,7 +72,22 @@ function Moves() {
                             <button className='moves_nav_element' onClick={() => toggleTable(2)}>Status</button>
                         </nav>
     
-                        <section className={toggleState === 1 ? "active" : "hidden"}>
+                        <div style ={{ width:"100%", height:"100%" }}>
+                            <AutoSizer>
+                                {({ width, height }) => (
+                                    <Table
+                                        width={width}
+                                        height={height}
+                                        headerHeight={20}
+                                        rowCount={}
+                                    >
+
+                                    </Table>
+                                )}
+                            </AutoSizer>
+                        </div>
+
+                        {/* <section className={toggleState === 1 ? "active" : "hidden"}>
                             <h2 className='moves_title'>Moves</h2>
                             <div className='moves_search'>
                                 <input className='moves_search_input' type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
@@ -157,7 +175,7 @@ function Moves() {
                                     }
                                 </tbody>
                             </table>
-                        </section>
+                        </section> */}
                     </>
                 )}
             </main>
