@@ -11,21 +11,17 @@
         &_head {
             @include head;
         }
-        &_body {
-            &_row {
-                @include row;
-                &_name {
-                    @include name;
-                    cursor: pointer;
-                }
-                &_effect {
-                    text-align: center;
-                    span {
-                        display: none;
-                        &:first-child {
-                            display: inline;
-                        }
-                    }
+        &_name {
+            @include name;
+            text-transform: capitalize;
+            cursor: pointer;
+        }
+        &_effect {
+            text-align: center;
+            span {
+                display: none;
+                &:first-child {
+                    display: inline;
                 }
             }
         }

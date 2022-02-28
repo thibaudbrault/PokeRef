@@ -420,10 +420,6 @@ html {
 	line-height: 1.5;
 }
 
-main {
-	min-height: 100vh;
-}
-
 /*css reset end*/
 
 /*table cell style start */
@@ -451,6 +447,7 @@ td {
 /*dark theme start*/
 
 body {
+	height: 100vh;
 	background: $light;
 	color: $dark;
 	font-family: $font-sans;
