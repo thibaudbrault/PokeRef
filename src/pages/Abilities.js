@@ -83,8 +83,8 @@ export default function Abilities() {
                 </table> */}
 
                 <TableVirtuoso 
-                    style={{ height:'50vh', width:'100%' }}
                     data={abilities}
+                    useWindowScroll
                     fixedHeaderContent={(index, abilities) => (
                         <tr className='abilities_table_head'>
                             <th>Name</th>
@@ -94,7 +94,6 @@ export default function Abilities() {
                     itemContent={(index, abilities) => (
                         <>
                             <td 
-                                style={{ width:'33%' }}
                                 className='abilities_table_name'>
                                 <Link
                                     to={`/abilities/${abilities.name}`}
@@ -104,7 +103,6 @@ export default function Abilities() {
                                 </Link>
                             </td>
                             <td
-                                style={{ width:'67%'}}
                                 className='abilities_table_effect'>
                                 {abilities?.flavor_text_entries?.map((af) => 
                                     af.language.name === 'en' &&

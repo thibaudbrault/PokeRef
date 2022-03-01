@@ -1,5 +1,6 @@
 .abilities {
     @include size-main-big;
+    margin-bottom: 5rem;
     &_title {
         @include title;
     }
@@ -7,7 +8,6 @@
         @include search;
     }
     &_table {
-        @include table;
         &_head {
             @include head;
         }
@@ -26,4 +26,8 @@
             }
         }
     }
+}
+
+table {
+    @include table;
 }
