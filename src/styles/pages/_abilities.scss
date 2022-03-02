@@ -8,26 +8,28 @@
         @include search;
     }
     &_table {
+        @include table;
         &_head {
             @include head;
         }
-        &_name {
-            @include name;
-            text-transform: capitalize;
-            cursor: pointer;
-        }
-        &_effect {
-            text-align: center;
-            span {
-                display: none;
-                &:first-child {
-                    display: inline;
+        &_body {
+            &_row {
+                @include row;
+                &_name {
+                    @include name;
+                    text-transform: capitalize;
+                    cursor: pointer;
+                }
+                &_effect {
+                    text-align: center;
+                    span {
+                        display: none;
+                        &:first-child {
+                            display: inline;
+                        }
+                    }
                 }
             }
         }
     }
-}
-
-table {
-    @include table;
 }
