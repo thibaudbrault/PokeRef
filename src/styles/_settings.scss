@@ -33,10 +33,11 @@ $purple: #5e318f;
 
 @mixin search {
 	display: flex;
-	flex-direction: column;
-	width: 25%;
+	align-items: center;
+	justify-content: space-around;
 	margin-bottom: 5rem;
 	&_input {
+		width: 15vw;
 		padding: 0.5rem 1rem;
 		background: transparent;
 		border: none;
@@ -452,7 +453,8 @@ td {
 
 body {
 	height: 100vh;
-	background: $light;
+	background-color: $light;
+	background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
 	color: $dark;
 	font-family: $font-sans;
 	scroll-behavior: smooth;

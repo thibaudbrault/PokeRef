@@ -2,6 +2,18 @@
     @include size-main-small;
     &_search {
         @include search;
+        display: flex;
+        &_dropdown {
+            @include flex;
+            flex-direction: column;
+            label {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+            select {
+                width: 10vw;
+            }
+        }
     }
     &_title {
         @include title;
@@ -86,9 +98,11 @@
             }
         }
     }
-}
-
-.loader {
-    width: 50%;
-    margin: 0 auto;
+    &_gifs {
+        display: flex;
+        justify-content: space-around;
+        &_reshiram {
+            transform: scaleX(-1);
+        }
+    }
 }
