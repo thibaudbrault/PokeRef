@@ -44,6 +44,20 @@ function Pokemon() {
                     <div className='pokedex_search'>
                         <input className='pokedex_search_input' type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
                         <div className='pokedex_search_dropdown'>
+                            <label htmlFor="generation">Generation</label>
+                            <select name="generation" id="generation">
+                                <option value="all">All</option>
+                                <option value="gen1">Generation I</option>
+                                <option value="gen2">Generation II</option>
+                                <option value="gen3">Generation III</option>
+                                <option value="gen4">Generation IV</option>
+                                <option value="gen5">Generation V</option>
+                                <option value="gen6">Generation VI</option>
+                                <option value="gen7">Generation VII</option>
+                                <option value="gen8">Generation VIII</option>
+                            </select>
+                        </div>
+                        <div className='pokedex_search_dropdown'>
                             <label htmlFor="type">Type</label>
                             <select name="type" id="type" value={type} onChange={(e) => {
                                 const selectedType = e.target.value;
@@ -78,13 +92,8 @@ function Pokemon() {
                             } else if (pokedex.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
                                 return pokedex
                             }
-                        })?.filter((pokedex) => {
-                            if (type === "all") {
-                                return pokedex
-                            } else if (type === pokedex.types.type.name) {
-                                return pokedex
-                            }
                         })?.map((p) => (
+                            type === 'all' || p?.types?.map((pt) => (pt?.type?.name === type &&
                                 <li key={p.name} className='pokedex_container_inner'>
                                     <div className='pokedex_container_inner_image'>
                                         {p.id < 152 ? (
@@ -136,6 +145,7 @@ function Pokemon() {
                                         ))}
                                     </div>
                                 </li>
+                            ))
                         ))}
                     </ol>
                     <div className='pokedex_gifs'>
