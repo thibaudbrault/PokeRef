@@ -7,7 +7,8 @@ function Pokemon() {
 
     const [search, setSearch] = useState('');
 
-    const [type, setType] = useState('all');
+    const [type, setType] = useState(['all']);
+    const [generation, setGeneration] = useState(['gen1']);
 
     const [pokedex, setPokedex] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -45,7 +46,10 @@ function Pokemon() {
                         <input className='pokedex_search_input' type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
                         <div className='pokedex_search_dropdown'>
                             <label htmlFor="generation">Generation</label>
-                            <select name="generation" id="generation">
+                            <select name="generation" id="generation" onChange={(e) => {
+                                const selectedGen = e.target.value;
+                                setGeneration(selectedGen);
+                            }}>
                                 <option value="all">All</option>
                                 <option value="gen1">Generation I</option>
                                 <option value="gen2">Generation II</option>
@@ -59,7 +63,7 @@ function Pokemon() {
                         </div>
                         <div className='pokedex_search_dropdown'>
                             <label htmlFor="type">Type</label>
-                            <select name="type" id="type" value={type} onChange={(e) => {
+                            <select name="type" id="type" onChange={(e) => {
                                 const selectedType = e.target.value;
                                 setType(selectedType);
                             }}>
@@ -92,15 +96,17 @@ function Pokemon() {
                             } else if (pokedex.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
                                 return pokedex
                             }
+                        })?.filter((pokedex) => {
+                            if (type === 'all') {
+                                return pokedex
+                            } else if (pokedex?.types?.type?.name?.includes(type)) {
+                                return pokedex
+                            }
                         })?.map((p) => (
-                            type === 'all' || p?.types?.map((pt) => (pt?.type?.name === type &&
                                 <li key={p.name} className='pokedex_container_inner'>
                                     <div className='pokedex_container_inner_image'>
-                                        {p.id < 152 ? (
-                                            <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${p.id}.png`} alt={p.name} loading='lazy' />
-                                        ) : (
-                                            null
-                                        )}
+                                        {p.id < 152 &&
+                                            <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${p.id}.png`} alt={p.name} loading='lazy' />}
                                         {p.id > 151 && p.id < 252 &&
                                             <>
                                                 <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/${p.id}.png`} alt={p.name} loading='lazy' />
@@ -146,7 +152,7 @@ function Pokemon() {
                                     </div>
                                 </li>
                             ))
-                        ))}
+                        }
                     </ol>
                     <div className='pokedex_gifs'>
                         <img src="https://media4.giphy.com/media/jRrbtBwb8yNXUhNS5x/giphy.gif?cid=ecf05e473lf0lhh5u1h0oze6llypinsing9if2o4gh1fhw1n&rid=giphy.gif&ct=s" alt='reshiram' width="100" height="100" className="pokedex_gifs_reshiram"></img>
