@@ -206,7 +206,13 @@ const MoveCard = () => {
                                     )}
                                     <tr className='move_data_table_row'>
                                         <th className='move_data_table_row_head'>Power</th>
-                                        <td className='move_data_table_row_element'>{move?.power}</td>
+                                        <td className='move_data_table_row_element'>
+                                            {move?.power !== null ? (
+                                                move?.power
+                                            ) : (
+                                                '-'
+                                            )}
+                                        </td>
                                     </tr>
                                     <tr className='move_data_table_row'>
                                         <th className='move_data_table_row_head'>PP</th>
@@ -214,7 +220,13 @@ const MoveCard = () => {
                                     </tr>
                                     <tr className='move_data_table_row'>
                                         <th className='move_data_table_row_head'>Accuracy</th>
-                                        <td className='move_data_table_row_element'>{move?.accuracy}</td>
+                                        <td className='move_data_table_row_element'>
+                                            {move?.accuracy !== null ? (
+                                                move?.accuracy
+                                            ) : (
+                                                '-'
+                                            )}
+                                        </td>
                                     </tr>
                                     <tr className='move_data_table_row'>
                                         <th className='move_data_table_row_head'>Status</th>
@@ -234,7 +246,10 @@ const MoveCard = () => {
                                         {move?.effect_entries?.map((me) => 
                                             me.language.name === 'en'  &&
                                                 <>
-                                                   {me?.effect}
+                                                    {me?.effect
+                                                        .replace(/\$effect_chance/g, `${move?.meta?.ailment_chance}`)
+                                                        .replace('(100 - accuracy)', 100 - `${move?.accuracy}`)
+                                                    }
                                                 </>
                                         )} <br />
                                         {move?.flavor_text_entries?.map((mf) => 
@@ -259,8 +274,14 @@ const MoveCard = () => {
                                         <li className='move_effect_container_meta_element'>Recovers {move?.meta?.flinch_chance}% of the user's maximum HP</li>}
                                         {move?.meta?.min_hits !== null && 
                                         <li className='move_effect_container_meta_element'>This move hits between {move?.meta?.min_hits} and {move?.meta?.max_hits} times</li>}
-                                        {move?.meta?.min_turns !== null && 
-                                        <li className='move_effect_container_meta_element'>This move last between {move?.meta?.min_turns} and {move?.meta?.max_turns} turns</li>}
+                                        {move?.meta?.min_turns !== null &&  move?.meta?.min_turns !== move?.meta?.max_turns &&
+                                        <li className='move_effect_container_meta_element'>
+                                            This move last between {move?.meta?.min_turns} and {move?.meta?.max_turns} turns
+                                        </li>}
+                                        {move?.meta?.min_turns !== null &&  move?.meta?.min_turns === move?.meta?.max_turns &&
+                                        <li className='move_effect_container_meta_element'>
+                                            This move last {move?.meta?.min_turns} turns
+                                        </li>}
                                     </ul>
                                 </li>
                                 <li className='move_effect_container'>

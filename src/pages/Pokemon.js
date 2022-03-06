@@ -7,7 +7,7 @@ function Pokemon() {
 
     const [search, setSearch] = useState('');
 
-    const [type, setType] = useState(['all']);
+    const [type, setType] = useState('all');
     const [generation, setGeneration] = useState(['gen1']);
 
     const [pokedex, setPokedex] = useState([]);

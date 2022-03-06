@@ -147,7 +147,7 @@ function Moves() {
                                                 <td className='moves_status_table_body_row_moves'>
                                                     {s.moves.map((sm) => (
                                                         <Link
-                                                        to={`/moves/${moves.name}`}
+                                                        to={`/moves/${sm.name}`}
                                                         className='moves_status_table_body_row_moves_link'
                                                         >
                                                             {sm.name.replace(/-/g, ' ')}
