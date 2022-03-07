@@ -123,6 +123,10 @@
                 &_name {
                     font-weight: 700;
                     text-transform: capitalize;
+                    transition: 0.3s ease-in-out;
+                    &:hover {
+                        color: $red;
+                    }
                 }
                 &_types {
                     width: 100%;
@@ -149,9 +153,6 @@
                 }
                 &:hover {
                     border: 1px solid $red;
-                }
-                &:hover > &_name {
-                    color: $red;
                 }
             }
         }

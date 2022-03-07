@@ -10,6 +10,7 @@ import Footer from '../components/Footer';
 function Moves() {
 
     const[search, setSearch] = useState('');
+    const [filteredMoves, setFilteredMoves] = useState([])
 
     const [moves, setMoves] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -45,6 +46,14 @@ function Moves() {
             setStatus(results.map((res) => res.data));
         });
     }, []);
+
+    useEffect(() => {
+        setFilteredMoves(
+            moves.filter((moves) =>
+                moves.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())
+            )
+        );
+    }, [search, moves]);
 
     const [toggleState, setToggleState] = useState(1);
     const toggleTable = (index) => {
@@ -85,40 +94,33 @@ function Moves() {
                                     </tr>
                                 </thead>
                                 <tbody className='moves_table_body'>
-                                    {moves.filter((moves) => {
-                                        if (search === "") {
-                                            return moves
-                                        } else if (moves.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
-                                            return moves
-                                        }
-                                    })
-                                    .sort((a, b) => a.name.localeCompare(b.name)).map((m) => (
+                                    {moves?.sort((a, b) => a.name.localeCompare(b.name))?.map((m) => (
                                         <tr key={m.id} className='moves_table_body_row'>
                                             <td className='moves_table_body_row_name'>
                                             <Link
                                                 to={`/moves/${m.name}`}
                                                 key={m.name}
                                             >
-                                                {m.name.replace(/-/g, ' ')}
+                                                {m?.name?.replace(/-/g, ' ')}
                                             </Link>
                                             </td>
                                             <td>
                                                 <div className='moves_table_body_row_category' id={m.damage_class.name}>
                                                     <img alt={m.damage_class.name} />
-                                                    <span>{m.damage_class.name}</span>
+                                                    <span>{m?.damage_class?.name}</span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div className='moves_table_body_row_type' id={m.type.name}>
                                                     <img alt={m.type.name} />
-                                                    <span>{m.type.name}</span>
+                                                    <span>{m?.type?.name}</span>
                                                 </div>
                                             </td>
                                             <td className='moves_table_body_row_effect'>
                                                 {m?.flavor_text_entries?.map((mf) => 
                                                     mf.language.name === 'en' && mf.flavor_text !== 'Dummy Data' &&
                                                         <span>
-                                                            {mf.flavor_text}
+                                                            {mf?.flavor_text}
                                                         </span>
                                                 )}
                                             </td>

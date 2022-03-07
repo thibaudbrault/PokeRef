@@ -12,9 +12,14 @@
             }
             select {
                 width: 10vw;
+                padding: 0.5rem;
                 background: transparent;
                 border: 1px solid $dark;
-                border-radius: 10px;
+                border-radius: 5px;
+                transition: 0.3s ease-in-out;
+                &:focus {
+                    border: 1px solid $red;
+                }
             }
         }
     }
@@ -89,6 +94,7 @@
                     @include type;
                     img {
                         height: 1.5rem;
+                        max-height: 1.5rem;
                     }
                     span {
                         padding-left: 0.5rem;
