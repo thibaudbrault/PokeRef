@@ -7,36 +7,48 @@
     &_category {
         @include subtitle;
     }
-    &_container {
+    &_data {
         margin: 5rem 0;
-        &_effect {
-            margin: 0 0 3rem;
-            &_title {
+        display: grid;
+        grid-template-columns: 75% 25%;
+        align-items: center;
+        &_column {
+            &_effect {
+                margin: 0 0 3rem;
+                &_title {
+                    margin: 0 0 1rem;
+                    font-size: 3rem;
+                    font-weight: 700;
+                }
+                &_text {
+                    font-size: 1.7rem;
+                }
+            }
+            &_cost {
                 margin: 0 0 1rem;
-                font-size: 3rem;
+                font-size: 1.7rem;
                 font-weight: 700;
             }
-            &_text {
+            &_held {
+                margin: 0 0 1rem;
+                font-size: 1.7rem;
+                a {
+                    display: inline-block;
+                    padding: 0 0.5rem;
+                    text-transform: capitalize;
+                }
+            }
+            &_fling {
                 font-size: 1.7rem;
             }
         }
-        &_cost {
-            margin: 0 0 1rem;
-            font-size: 1.7rem;
-            font-weight: 700;
+        img {
+            width: 96px;
+            height: 96px;
         }
-        &_held {
-            margin: 0 0 1rem;
-            font-size: 1.7rem;
-            a {
-                display: inline-block;
-                padding: 0 0.5rem;
-                text-transform: capitalize;
-            }
-        }
-        &_fling {
-            font-size: 1.7rem;
-        }
+    }
+    &_container {
+        margin: 5rem 0;
         &_title {
             margin: 0 0 2rem;
             font-size: 3rem;

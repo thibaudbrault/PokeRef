@@ -67,7 +67,10 @@ function Pokemon() {
             ) : (
                 <>
                     <div className='pokedex_search'>
-                        <input className='pokedex_search_input' type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
+                        <div className='pokedex_search_input'>
+                            <label htmlFor="searchBar">Search</label>
+                            <input type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
+                        </div>
                         <div className='pokedex_search_dropdown'>
                             <label htmlFor="generation">Generation</label>
                             <select name="generation" id="generation" value={generation} onChange={(e) => {setGeneration(e.target.value);

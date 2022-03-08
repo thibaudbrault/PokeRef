@@ -467,7 +467,11 @@ const PokemonCard = () => {
                                             <td className='pokemon_info_container_table_row_element'>
                                                 {pokemon?.held_items?.length > 0 ? (
                                                     pokemon?.held_items?.map((ph) =>
-                                                        <p>{ph?.item?.name?.replace(/-/g, ' ')}</p>
+                                                        <Link
+                                                            to={`/items/${ph.item.name}`}
+                                                        >
+                                                            {ph?.item?.name?.replace(/-/g, ' ')}
+                                                        </Link>
                                                     )
                                                 ) : (
                                                     'None'

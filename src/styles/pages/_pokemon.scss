@@ -2,13 +2,13 @@
     @include size-main-small;
     &_search {
         @include search;
-        display: flex;
         &_dropdown {
             @include flex;
             flex-direction: column;
             label {
                 font-size: 1.5rem;
                 margin-bottom: 0.5rem;
+                justify-self: flex-start;
             }
             select {
                 width: 10vw;

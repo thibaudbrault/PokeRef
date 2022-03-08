@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 
 function Moves() {
 
-    const[search, setSearch] = useState('');
+    const [search, setSearch] = useState('');
     const [filteredMoves, setFilteredMoves] = useState([])
 
     const [moves, setMoves] = useState([]);
@@ -82,7 +82,10 @@ function Moves() {
                         <section className={toggleState === 1 ? "active" : "hidden"}>
                             <h2 className='moves_title'>Moves</h2>
                             <div className='moves_search'>
-                                <input className='moves_search_input' type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
+                                <div className='pokedex_search_input'>
+                                    <label htmlFor="searchBar">Search</label>
+                                    <input type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
+                                </div>
                             </div>
                             <table className='moves_table'>
                                 <thead className='moves_table_head'>
@@ -94,7 +97,7 @@ function Moves() {
                                     </tr>
                                 </thead>
                                 <tbody className='moves_table_body'>
-                                    {moves?.sort((a, b) => a.name.localeCompare(b.name))?.map((m) => (
+                                    {filteredMoves?.sort((a, b) => a.name.localeCompare(b.name))?.map((m) => (
                                         <tr key={m.id} className='moves_table_body_row'>
                                             <td className='moves_table_body_row_name'>
                                             <Link
@@ -105,7 +108,7 @@ function Moves() {
                                             </Link>
                                             </td>
                                             <td>
-                                                <div className='moves_table_body_row_category' id={m.damage_class.name}>
+                                                <div className='moves_table_body_row_category' id={m?.damage_class?.name}>
                                                     <img alt={m.damage_class.name} />
                                                     <span>{m?.damage_class?.name}</span>
                                                 </div>

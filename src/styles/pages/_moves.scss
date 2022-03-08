@@ -17,6 +17,7 @@
     }
     &_search {
         @include search;
+        justify-content: flex-start;
     }
     &_table {
         @include table;
