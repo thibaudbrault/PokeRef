@@ -37,7 +37,7 @@
                         img {
                             height: 2.5rem;
                         }
-                        span {
+                        a {
                             padding-left: 0.5rem;
                             font-family: $font-game;
                             font-size: 1.7rem;
@@ -64,6 +64,11 @@
         &_more {
             @include flex;
             flex-direction: column;
+            &_sprite {
+                animation-name: pulse;
+                animation-duration: 5s;
+                animation-iteration-count: infinite;
+            }
             &_legendary {
                 margin: 1rem 0 0;
                 padding: 1rem 1.5rem;
@@ -240,4 +245,10 @@
 
 span {
     text-transform: capitalize;
+}
+
+@keyframes pulse {
+    0% {transform: scale(1.01);}
+    50% {transform: scale(0.99);}
+    100% {transform: scale(1.01);}
 }

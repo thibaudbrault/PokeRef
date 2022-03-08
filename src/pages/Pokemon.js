@@ -9,7 +9,7 @@ function Pokemon() {
     const [filteredPokedex, setFilteredPokedex] = useState([])
 
     const [type, setType] = useState('all');
-    const [generation, setGeneration] = useState(['gen1']);
+    const [generation, setGeneration] = useState('all');
 
     const [pokedex, setPokedex] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ function Pokemon() {
     useEffect(() => {
         setLoading(true);
         axios
-        .get('https://pokeapi.co/api/v2/pokemon?limit=898')
+        .get('https://pokeapi.co/api/v2/pokemon?limit=200')
         .then((res) => {
             return res.data.results;
         })
@@ -28,16 +28,32 @@ function Pokemon() {
             setLoading(false);
             setPokedex(results.map((res) => res.data));
         });
-    }, []);
-    
+    }, []);    
 
     useEffect(() => {
         setFilteredPokedex(
             pokedex.filter((pokedex) =>
                 pokedex.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())
-            )
+            ).filter((pokedex) => {
+                return (
+                    type === 'all' || 
+                    pokedex.types.map((pt) => pt.type.name).includes(type)
+                );
+            }).filter((pokedex) => {
+                return (
+                    generation === 'all' ||
+                    (generation === 'gen1' && pokedex.id < 152) ||
+                    (generation === 'gen2' && pokedex.id > 151 && pokedex.id < 252) ||
+                    (generation === 'gen3' && pokedex.id > 251 && pokedex.id < 387) ||
+                    (generation === 'gen4' && pokedex.id > 386 && pokedex.id < 494) ||
+                    (generation === 'gen5' && pokedex.id > 493 && pokedex.id < 650) ||
+                    (generation === 'gen6' && pokedex.id > 649 && pokedex.id < 722) ||
+                    (generation === 'gen7' && pokedex.id > 721 && pokedex.id < 810) ||
+                    (generation === 'gen8' && pokedex.id > 809 && pokedex.id < 898)
+                )
+            })
         );
-    }, [search, pokedex]);
+    }, [search, pokedex, type, generation]);
 
     useEffect(() => {
         document.title = `Pokémon | PokéInfo`;
@@ -51,12 +67,10 @@ function Pokemon() {
             ) : (
                 <>
                     <div className='pokedex_search'>
-                        <input className='pokedex_search_input' type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
+                        <input className='pokedex_search_input' type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
                         <div className='pokedex_search_dropdown'>
                             <label htmlFor="generation">Generation</label>
-                            <select name="generation" id="generation" onChange={(e) => {
-                                const selectedGen = e.target.value;
-                                setGeneration(selectedGen);
+                            <select name="generation" id="generation" value={generation} onChange={(e) => {setGeneration(e.target.value);
                             }}>
                                 <option value="all">All</option>
                                 <option value="gen1">Generation I</option>
@@ -71,9 +85,7 @@ function Pokemon() {
                         </div>
                         <div className='pokedex_search_dropdown'>
                             <label htmlFor="type">Type</label>
-                            <select name="type" id="type" onChange={(e) => {
-                                const selectedType = e.target.value;
-                                setType(selectedType);
+                            <select name="type" id="type" value={type} onChange={(e) => {setType(e.target.value);
                             }}>
                                 <option value="all">All</option>
                                 <option value="bug">Bug</option>
@@ -142,7 +154,11 @@ function Pokemon() {
                                     {p?.types?.map((pt) => (
                                         <div id={pt.type.name} className='pokedex_container_inner_types_element'>
                                             <img alt={pt.type.name} />
-                                            <span>{pt?.type?.name}</span>
+                                            <Link
+                                                to={`/types/${pt.type.name}`}
+                                            >
+                                                {pt?.type?.name}
+                                            </Link>
                                         </div>
                                     ))}
                                 </div>

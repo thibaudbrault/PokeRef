@@ -11,7 +11,7 @@ const PokemonCard = () => {
 
     const { name } = useParams();
     const navigate = useNavigate();
-    const [pokemon, setPokemon] = useState([])
+    const [pokemon, setPokemon] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -234,7 +234,11 @@ const PokemonCard = () => {
                                         {pokemon?.types?.map((pt) => (
                                             <div id={pt.type.name} className='pokemon_data_container_list_types_element'>
                                                 <img alt={pt.type.name} />
-                                                <span>{pt.type.name}</span>
+                                                <Link
+                                                    to={`types/${pt.type.name}`}
+                                                >
+                                                    {pt.type.name}
+                                                </Link>
                                             </div>
                                         ))}
                                     </li>
@@ -353,7 +357,9 @@ const PokemonCard = () => {
                                             <td className='pokemon_info_container_table_row_element'>
                                                 {species?.gender_rate !== -1 ? (
                                                     <>
-                                                        {male}% male, {female}% female
+                                                        {male}% male
+                                                        <br />
+                                                        {female}% female
                                                     </>
                                                 ) : (
                                                     <>
@@ -377,7 +383,7 @@ const PokemonCard = () => {
                                                 Egg cycles
                                             </th>
                                             <td className='pokemon_info_container_table_row_element'>
-                                                    {species?.hatch_counter} cycles ( steps)
+                                                    {species?.hatch_counter} cycles
                                             </td>
                                         </tr>
                                         <tr className='pokemon_info_container_table_row'>
@@ -725,57 +731,41 @@ const PokemonCard = () => {
                                                 </td>
                                                 {move?.map((m) =>
                                                     m?.name === pm?.move?.name &&
-                                                        <td className='pokemon_moves_table_body_row_element' id={m?.type?.name} style={{"background":"transparent"}}>
-                                                            <img alt={m?.type?.name} />
-                                                        </td>
-                                                )}
-                                                {move?.map((m) =>
-                                                    m?.name === pm?.move?.name &&
-                                                        <td className='pokemon_moves_table_body_row_element'>
-                                                            {m?.damage_class?.name}
-                                                        </td>
-                                                )}
-                                                {move?.map((m) =>
-                                                    m?.name === pm?.move?.name &&
-                                                        <td className='pokemon_moves_table_body_row_element'>
-                                                            {m?.power !== null ? (
-                                                                m?.power
-                                                            ) : (
-                                                                '-'
-                                                            )}
-                                                        </td>
-                                                )}
-                                                {move?.map((m) =>
-                                                    m?.name === pm?.move?.name &&
-                                                        <td className='pokemon_moves_table_body_row_element'>
-                                                            {m?.pp}
-                                                        </td>
-                                                )}
-                                                {move?.map((m) =>
-                                                    m?.name === pm?.move?.name &&
-                                                        <td className='pokemon_moves_table_body_row_element'>
-                                                            {m?.accuracy !== null ? (
-                                                                m?.accuracy
-                                                            ) : (
-                                                                '-'
-                                                            )}
-                                                        </td>
-                                                )}
-                                                {move?.map((m) =>
-                                                    m?.name === pm?.move?.name &&
-                                                        <td className='pokemon_moves_table_body_row_element'>
-                                                            {m?.priority}
-                                                        </td>
-                                                )}
-                                                {move?.map((m) =>
-                                                    m?.name === pm?.move?.name &&
-                                                        <td className='pokemon_moves_table_body_row_element'>
-                                                            {m?.meta?.ailment !== null ? (
-                                                                m?.meta?.ailment?.name?.replace('none', '-')
-                                                            ) : (
-                                                                '-'
-                                                            )}
-                                                        </td>
+                                                        <>
+                                                            <td className='pokemon_moves_table_body_row_element' id={m?.type?.name} style={{"background":"transparent"}}>
+                                                                <img alt={m?.type?.name} />
+                                                            </td>
+                                                            <td className='pokemon_moves_table_body_row_element'>
+                                                                {m?.damage_class?.name}
+                                                            </td>
+                                                            <td className='pokemon_moves_table_body_row_element'>
+                                                                {m?.power !== null ? (
+                                                                    m?.power
+                                                                ) : (
+                                                                    '-'
+                                                                )}
+                                                            </td>
+                                                            <td className='pokemon_moves_table_body_row_element'>
+                                                                {m?.pp}
+                                                            </td>
+                                                            <td className='pokemon_moves_table_body_row_element'>
+                                                                {m?.accuracy !== null ? (
+                                                                    m?.accuracy
+                                                                ) : (
+                                                                    '-'
+                                                                )}
+                                                            </td>
+                                                            <td className='pokemon_moves_table_body_row_element'>
+                                                                {m?.priority}
+                                                            </td>
+                                                            <td className='pokemon_moves_table_body_row_element'>
+                                                                {m?.meta?.ailment !== null ? (
+                                                                    m?.meta?.ailment?.name?.replace('none', '-')
+                                                                ) : (
+                                                                    '-'
+                                                                )}
+                                                            </td>
+                                                        </>
                                                 )}
                                             </tr>
                                         )
