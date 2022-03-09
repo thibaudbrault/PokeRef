@@ -75,16 +75,16 @@ function Moves() {
                 ) : (
                     <>
                         <nav className='moves_nav'>
-                            <button className='moves_nav_element' onClick={() => toggleTable(1)}>Moves</button>
-                            <button className='moves_nav_element' onClick={() => toggleTable(2)}>Status</button>
+                            <button className={toggleState === 1 ? 'moves_nav_active' : 'moves_nav_element'} onClick={() => toggleTable(1)}><p>Moves</p></button>
+                            <button className={toggleState === 2 ? 'moves_nav_active' : 'moves_nav_element'} onClick={() => toggleTable(2)}><p>Status</p></button>
                         </nav>
 
                         <section className={toggleState === 1 ? "active" : "hidden"}>
                             <h2 className='moves_title'>Moves</h2>
                             <div className='moves_search'>
-                                <div className='pokedex_search_input'>
+                                <div className='moves_search_input'>
                                     <label htmlFor="searchBar">Search</label>
-                                    <input type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
+                                    <input type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
                                 </div>
                             </div>
                             <table className='moves_table'>

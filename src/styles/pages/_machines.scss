@@ -5,6 +5,7 @@
     }
     &_search {
         @include search;
+        justify-content: flex-start;
     }
     &_nav {
         @include nav;

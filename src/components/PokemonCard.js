@@ -40,6 +40,8 @@ const PokemonCard = () => {
         });
     }, [name]);
 
+    console.log(species)
+
     const evolutionChainUrl = species?.evolution_chain?.url;
 
     const [evolution, setEvolution] = useState([]);
@@ -86,8 +88,6 @@ const PokemonCard = () => {
             setMachine(results.map((res) => res.data));
         });
     }, []);
-
-    console.log(pokemon)
 
     const [game, setGame] = useState('red');
     const [version, setVersion] = useState('red-blue');
@@ -226,7 +226,7 @@ const PokemonCard = () => {
                                         {species?.flavor_text_entries?.map((sf) => 
                                             sf?.language?.name === 'en' && sf?.version?.name === game && 
                                                 <>
-                                                    {sf?.flavor_text?.replace(/\\u000c/g, ' ')}
+                                                    {sf?.flavor_text?.replace('\u000c', ' ')}
                                                 </>
                                         )}
                                     </li>
