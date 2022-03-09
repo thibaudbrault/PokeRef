@@ -5,7 +5,7 @@ function themeFunction() {
     element.classList.toggle("dark");
 };
 
-export default function Header() {
+const Header = () => {
     return (
         <header className='header' id='header'>
             <div className="header_progress">
@@ -27,3 +27,5 @@ export default function Header() {
         </header>
     )
 }
+
+export default Header

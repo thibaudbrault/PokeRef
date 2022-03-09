@@ -1,10 +1,10 @@
-import React from 'react'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import Nav from './components/Nav'
-import Pokemon from './pages/Pokemon'
+import React from 'react';
+import Header from './components/Header';
+import Nav from './components/Nav';
+import Pokemon from './pages/Pokemon';
+import Footer from './components/Footer';
 
-export default function Wrapper() {
+const Wrapper = () => {
     return (
         <>
             <Header />
@@ -14,3 +14,5 @@ export default function Wrapper() {
         </>
     )
 }
+
+export default Wrapper
