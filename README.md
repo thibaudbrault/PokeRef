@@ -78,10 +78,9 @@ npm start
 <a href="https://pokeapi.co/docs/v2" target="_blank">PokéAPi</a>  
 
 <h4>Dependencies</h4>  
-<a href="https://www.npmjs.com/package/react-icons" target="_blank">React-icons</a>  
-<a href="https://www.npmjs.com/package/typewriter-effect" target="_blank">Typewriter-effect</a>  
-<a href="https://www.npmjs.com/package/infinite-react-carousel" target="_blank">Infinite-react-carousel</a>  
-<a href="https://www.npmjs.com/package/react-modal" target="_blank">React-modal</a>  
+
+<a href="https://www.npmjs.com/package/axios" target="_blank">Axios</a>    
+<a href="https://www.npmjs.com/package/react-cssfx-loading" target="_blank">React CSSFX loading</a>  
 
 <h2 id="contact">Contact</h2>  
 
