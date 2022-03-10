@@ -30,7 +30,7 @@ export default function Items() {
         });
     }, []);
 
-    const[version, setVersion] = useState('ultra-sun-ultra-moon')
+    const[version, setVersion] = useState('red-blue');
 
     useEffect(() => {
         document.title = `Machines | PokéInfo`;
