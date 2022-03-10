@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="PokéInfo" src="https://raw.githubusercontent.com/thibaudbrault/PokeInfo/main/public/images/pok%C3%A9info_logo.png" width="80%" />  
+  <img alt="PokéInfo" src="https://raw.githubusercontent.com/thibaudbrault/PokeInfo/main/public/images/pok%C3%A9info_logo.png" width="90%" />  
 </div>  
   
 ---
@@ -53,7 +53,8 @@
 - ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)  
 
 <h2 id="setup">Setup</h2>  
-To get a local copy of my portfolio you'll need tohave Git and Node.js installed. After that, in your command line, you'll need to :    
+To get a local copy of my portfolio you'll need tohave Git and Node.js installed. After that, in your command line, you'll need to :  
+  
 
 1. Clone the repo  
 ```
