@@ -4,7 +4,7 @@
   
 ---
 <br />
-<h3 align="center">PokéInfo is a pokémon encyclopedia using data from PokéAPI</h3>  
+<h2 align="center">PokéInfo is a pokémon encyclopedia using data from PokéAPI</h2>  
 <p align="center">You'll find a ton of informations on every pokémon, moves, abilities, items, ...</p>  
 
 <div align="center">
