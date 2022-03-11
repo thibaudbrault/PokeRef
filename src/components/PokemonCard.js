@@ -91,17 +91,14 @@ const PokemonCard = () => {
 
     useEffect(() => {
         axios
-        .get('https://pokeapi.co/api/v2/location-area?limit=703')
-        .then((res) => {
-            return res.data.results;
+        .get(`https://pokeapi.co/api/v2/pokemon/${name}/encounters`)
+        .then((results) => {
+            return results.data;
         })
         .then((results) => {
-            return Promise.all(results.map((res) => axios.get(res.url)));
-        })
-        .then((results) => {
-            setLocation(results.map((res) => res.data));
+            setLocation(results);
         });
-    }, []);
+    }, [name]);
 
     console.log(location)
 
@@ -144,7 +141,7 @@ const PokemonCard = () => {
 
                         <nav className='pokemon_nav'>
                             <ol className='pokemon_nav_list'>
-                                {pokemon?.id < 152 &&
+                                {(pokemon?.id < 152 || species?.id < 152) &&
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen I</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
@@ -154,7 +151,7 @@ const PokemonCard = () => {
                                         </div>
                                     </li>
                                 }
-                                {pokemon?.id < 252 &&
+                                {(pokemon?.id < 252 || species?.id < 252) &&
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen II</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
@@ -164,7 +161,7 @@ const PokemonCard = () => {
                                         </div>
                                     </li>
                                 }
-                                {pokemon?.id < 387 &&
+                                {(pokemon?.id < 387 || species?.id < 387) &&
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen III</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
@@ -176,7 +173,7 @@ const PokemonCard = () => {
                                         </div>
                                     </li>
                                 }
-                                {pokemon?.id < 494 &&
+                                {(pokemon?.id < 494 || species?.id < 494) &&
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen IV</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
@@ -188,7 +185,7 @@ const PokemonCard = () => {
                                         </div>
                                     </li>
                                 }
-                                {pokemon?.id < 650 &&
+                                {(pokemon?.id < 650 || species?.id < 650) &&
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen V</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
@@ -199,7 +196,7 @@ const PokemonCard = () => {
                                         </div>
                                     </li>
                                 }
-                                {pokemon?.id < 722 &&
+                                {(pokemon?.id < 722 || species?.id < 722) &&
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen VI</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
@@ -210,7 +207,7 @@ const PokemonCard = () => {
                                         </div>
                                     </li>
                                 }
-                                {pokemon?.id < 810 &&
+                                {(pokemon?.id < 810 || species?.id < 810) &&
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen VII</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
@@ -223,7 +220,7 @@ const PokemonCard = () => {
                                         </div>
                                     </li>
                                 }
-                                {pokemon?.id < 899 &&
+                                {(pokemon?.id < 899 || species?.id < 899) &&
                                     <li className='pokemon_nav_list_dropdown'>
                                         <button className='pokemon_nav_list_dropdown_button'>Gen VIII</button>
                                         <div className='pokemon_nav_list_dropdown_content'>
@@ -279,13 +276,11 @@ const PokemonCard = () => {
                                             </th>
                                             <td className='pokemon_data_container_table_body_row_element'>
                                                 {location?.map((l) => 
-                                                    l?.pokemon_encounters?.map((lp) => 
-                                                        lp?.pokemon?.name === pokemon?.name && lp?.version_details?.map((lpv) => 
-                                                            lpv?.version?.name === game &&
+                                                    l?.version_details?.map((lv) =>
+                                                        lv?.version?.name === game &&
                                                             <p>
-                                                                {l?.name?.replace(/-/g, ' ')}
+                                                                {l?.location_area?.name?.replace(/-/g, ' ')}
                                                             </p>
-                                                        )
                                                     )
                                                 )}
                                             </td>

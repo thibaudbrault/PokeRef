@@ -126,7 +126,12 @@
                         text-align: center;
                         text-transform: capitalize;
                         a {
-                            display: block;
+                            display: inline-block;
+                            border-bottom: 1px solid transparent;
+                            transition: 0.3s ease-in-out;
+                            &:hover {
+                                border-bottom: 1px solid $dark;
+                            }
                         }
                     }
                 }
