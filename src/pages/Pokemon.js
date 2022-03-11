@@ -4,6 +4,9 @@ import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 function Pokemon() {
+    
+    const Pokedex = require("pokeapi-js-wrapper")
+    const P = new Pokedex.Pokedex()
 
     const [search, setSearch] = useState('');
     const [filteredPokedex, setFilteredPokedex] = useState([])

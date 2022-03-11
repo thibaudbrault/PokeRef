@@ -1,19 +1,33 @@
 .locations {
     @include size-main-big;
-    &_title {
-        @include title;
+    &_region {
+        @include secondary-nav;
+        padding: 0 0 2.5rem;
     }
     &_container {
-        padding: 5rem 0;
+        padding: 5rem 0 0;
         &_inner {
             display: grid;
+            justify-items: center;
             grid-template-columns: repeat(5, 1fr);
             gap: 2rem;
-            p {
+            li {
                 align-self: center;
 	            font-size: 1.5rem;
                 text-transform: capitalize;
+                a {
+                    cursor: pointer;
+                    transition: 0.3s ease-in-out;
+                    border-bottom: 1px solid transparent;
+                }
+                a:hover {
+                    border-bottom: 1px solid $dark;
+                }
             }
+        }
+        &_void {
+            @include bold;
+            text-align: center;
         }
     }
 }

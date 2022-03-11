@@ -45,7 +45,10 @@ export default function Items() {
                     <>
                         <h2 className='items_title'>Items</h2>
                         <div className='items_search'>
-                            <input className='items_search_input' type="text" placeholder='Item Name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
+                            <div className='items_search_input'>
+                                <label htmlFor="searchBar">Search</label>
+                                <input type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
+                            </div>
                         </div>
                         <table className='items_table'>
                             <thead className='items_table_head'>
