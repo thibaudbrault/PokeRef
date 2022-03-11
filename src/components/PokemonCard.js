@@ -40,8 +40,6 @@ const PokemonCard = () => {
         });
     }, [name]);
 
-    console.log(species)
-
     const evolutionChainUrl = species?.evolution_chain?.url;
 
     const [evolution, setEvolution] = useState([]);
@@ -88,6 +86,24 @@ const PokemonCard = () => {
             setMachine(results.map((res) => res.data));
         });
     }, []);
+
+    const [location, setLocation] = useState([]);
+
+    useEffect(() => {
+        axios
+        .get('https://pokeapi.co/api/v2/location-area?limit=703')
+        .then((res) => {
+            return res.data.results;
+        })
+        .then((results) => {
+            return Promise.all(results.map((res) => axios.get(res.url)));
+        })
+        .then((results) => {
+            setLocation(results.map((res) => res.data));
+        });
+    }, []);
+
+    console.log(location)
 
     const [game, setGame] = useState('red');
     const [version, setVersion] = useState('red-blue');
@@ -254,6 +270,23 @@ const PokemonCard = () => {
                                                     `# ${species?.id?.toString()?.padStart(3, '0')}`
                                                 ) : (
                                                     `# ${pokemon?.id?.toString()?.padStart(3, '0')}`
+                                                )}
+                                            </td>
+                                        </tr>
+                                        <tr className='pokemon_data_container_table_body_row'>
+                                            <th className='pokemon_data_container_table_body_row_head'>
+                                                Locations
+                                            </th>
+                                            <td className='pokemon_data_container_table_body_row_element'>
+                                                {location?.map((l) => 
+                                                    l?.pokemon_encounters?.map((lp) => 
+                                                        lp?.pokemon?.name === pokemon?.name && lp?.version_details?.map((lpv) => 
+                                                            lpv?.version?.name === game &&
+                                                            <p>
+                                                                {l?.name?.replace(/-/g, ' ')}
+                                                            </p>
+                                                        )
+                                                    )
                                                 )}
                                             </td>
                                         </tr>
