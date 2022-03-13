@@ -3,7 +3,7 @@
 </div>  
   
 ---
-<br />
+  
 <h2 align="center">PokéInfo is a pokémon encyclopedia built using React JS, Sass and PokéAPI</h2>  
 <p align="center">You'll find a ton of information on every pokémon, moves, abilities, items and much more</p>  
 <p align="center">Leave a 🌟 if you like my project 👍</p>
@@ -42,7 +42,6 @@
 🛠404 page  
 🛠Location page  
 🛠Infinite scrolling  
-🛠Virtualize moves and abilities tables  
 🔜A "create your team" page  
 🔜Animation on scroll  
 🔜Berry page  
