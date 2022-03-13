@@ -10,7 +10,8 @@ function Pokemon() {
     const P = new Pokedex.Pokedex()
 
     const [search, setSearch] = useState('');
-    const [filteredPokedex, setFilteredPokedex] = useState([])
+    const [filteredPokedex, setFilteredPokedex] = useState([]);
+    const [offset, setOffset] = useState(0);
 
     const [type, setType] = useState('all');
     const [generation, setGeneration] = useState('all');
@@ -22,7 +23,7 @@ function Pokemon() {
     useEffect(() => {
         setLoading(true);
         axios
-        .get('https://pokeapi.co/api/v2/pokemon?limit=25')
+        .get(`https://pokeapi.co/api/v2/pokemon?limit=25&offset=${offset}`)
         .then((res) => {
             setNext(res.data.next);
             return res.data.results;
@@ -34,7 +35,15 @@ function Pokemon() {
             setLoading(false);
             setPokedex(results.map((res) => res.data));
         });
-    }, []);
+    }, [offset]);
+
+    const [hasMore, setHasMore] = useState(true);
+
+    useEffect(() => {
+        if (pokedex.length >= 899) 
+            setHasMore(false)
+        
+    }, [pokedex.length]);
 
     useEffect(() => {
         setFilteredPokedex(
@@ -46,17 +55,34 @@ function Pokemon() {
                     pokedex.types.map((pt) => pt.type.name).includes(type)
                 );
             }).filter((pokedex) => {
-                return (
-                    generation === 'all' ||
-                    (generation === 'gen1' && pokedex.id < 152) ||
-                    (generation === 'gen2' && pokedex.id > 151 && pokedex.id < 252) ||
-                    (generation === 'gen3' && pokedex.id > 251 && pokedex.id < 387) ||
-                    (generation === 'gen4' && pokedex.id > 386 && pokedex.id < 494) ||
-                    (generation === 'gen5' && pokedex.id > 493 && pokedex.id < 650) ||
-                    (generation === 'gen6' && pokedex.id > 649 && pokedex.id < 722) ||
-                    (generation === 'gen7' && pokedex.id > 721 && pokedex.id < 810) ||
-                    (generation === 'gen8' && pokedex.id > 809 && pokedex.id < 898)
-                )
+                if (generation === 'all') {
+                    setOffset(0)
+                    return (pokedex)
+                } else if (generation === 'gen1') {
+                    setOffset(0)
+                    return (pokedex?.id < 152)
+                } else if (generation === 'gen2') {
+                    setOffset(151)
+                    return (pokedex?.id > 151 && pokedex?.id < 252)
+                } else if (generation === 'gen3') {
+                    setOffset(251)
+                    return (pokedex?.id > 251 && pokedex?.id < 387)
+                } else if (generation === 'gen4') {
+                    setOffset(386)
+                    return (pokedex?.id > 386 && pokedex?.id < 494)
+                } else if (generation === 'gen5') {
+                    setOffset(493)
+                    return (pokedex?.id > 493 && pokedex?.id < 650)
+                } else if (generation === 'gen6') {
+                    setOffset(649)
+                    return (pokedex?.id > 649 && pokedex?.id < 722)
+                } else if (generation === 'gen7') {
+                    setOffset(721)
+                    return (pokedex?.id > 721 && pokedex?.id < 810)
+                } else if (generation === 'gen8') {
+                    setOffset(809)
+                    return (pokedex?.id > 809 && pokedex?.id < 898)
+                }
             })
         );
     }, [search, pokedex, type, generation]);
@@ -119,67 +145,67 @@ function Pokemon() {
                         </div>
                     </div>
                     <ol className='pokedex_container'>
-                    <InfiniteScroll
-                        dataLength={filteredPokedex.length}
-                        next={next}
-                        hasMore={true}
-                        loader={<h4>Loading...</h4>}
-                    >
-                            {filteredPokedex?.map((p) => (
-                                <li key={p.name} className='pokedex_container_inner'>
-                                    <div className='pokedex_container_inner_image'>
-                                        {p.id < 152 &&
-                                            <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${p.id}.png`} alt={p.name} loading='lazy' />}
-                                        {p.id > 151 && p.id < 252 &&
+                        <InfiniteScroll
+                            dataLength={filteredPokedex.length}
+                            next={next}
+                            hasMore={hasMore}
+                            loader={<p className='loading'>Loading...</p>}
+                        >
+                                {filteredPokedex?.map((p) => (
+                                    <li key={p.name} className='pokedex_container_inner'>
+                                        <div className='pokedex_container_inner_image'>
+                                            {p.id < 152 &&
+                                                <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${p.id}.png`} alt={p.name} loading='lazy' />}
+                                            {p.id > 151 && p.id < 252 &&
+                                                <>
+                                                    <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/${p.id}.png`} alt={p.name} loading='lazy' />
+                                                    <img className='pokedex_container_inner_image_shiny' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
+                                                </>}
+                                            {p.id > 251 && p.id < 387 &&
+                                                <>
+                                                    <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-iii/emerald/${p.id}.png`} alt={p.name} loading='lazy' />
+                                                    <img className='pokedex_container_inner_image_shiny' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-iii/emerald/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
+                                                </>}
+                                            {p.id > 386 && p.id < 494 &&
+                                                <>
+                                                    <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-iv/platinum/${p.id}.png`} alt={p.name} loading='lazy' />
+                                                    <img className='pokedex_container_inner_image_shiny' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-iv/platinum/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
+                                                </>}
+                                            {p.id > 493 && p.id < 650 && 
+                                                <>
+                                                    <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-v/black-white/${p.id}.png`} alt={p.name} loading='lazy' />
+                                                    <img className='pokedex_container_inner_image_shiny' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-v/black-white/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
+                                                </>}
+                                            {p.id > 649 && 
                                             <>
-                                                <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/${p.id}.png`} alt={p.name} loading='lazy' />
-                                                <img className='pokedex_container_inner_image_shiny' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
+                                                <img className='pokedex_container_inner_image_sprite' src={p.sprites.front_default} alt={p.name} loading='lazy' />
+                                                <img className='pokedex_container_inner_image_shiny' src={p.sprites.front_shiny} alt={p.name} loading='lazy' />
                                             </>}
-                                        {p.id > 251 && p.id < 387 &&
-                                            <>
-                                                <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-iii/emerald/${p.id}.png`} alt={p.name} loading='lazy' />
-                                                <img className='pokedex_container_inner_image_shiny' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-iii/emerald/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
-                                            </>}
-                                        {p.id > 386 && p.id < 494 &&
-                                            <>
-                                                <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-iv/platinum/${p.id}.png`} alt={p.name} loading='lazy' />
-                                                <img className='pokedex_container_inner_image_shiny' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-iv/platinum/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
-                                            </>}
-                                        {p.id > 493 && p.id < 650 && 
-                                            <>
-                                                <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-v/black-white/${p.id}.png`} alt={p.name} loading='lazy' />
-                                                <img className='pokedex_container_inner_image_shiny' src={`https://raw.githubusercontent.com/pyO3rust/sprites/master/sprites/pokemon/versions/generation-v/black-white/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
-                                            </>}
-                                        {p.id > 649 && 
-                                        <>
-                                            <img className='pokedex_container_inner_image_sprite' src={p.sprites.front_default} alt={p.name} loading='lazy' />
-                                            <img className='pokedex_container_inner_image_shiny' src={p.sprites.front_shiny} alt={p.name} loading='lazy' />
-                                        </>}
-                                    </div>
-                                    <p>#{p?.id?.toString()?.padStart(3, '0')}</p>
-                                    <Link
-                                        to={`/pokemon/${p.name}`}
-                                        key={p.name}
-                                    >
-                                        <h2>
-                                            {p?.name?.replace(/-/g, ' ')}
-                                        </h2>
-                                    </Link>
-                                    <div className='pokedex_container_inner_types'>
-                                        {p?.types?.map((pt) => (
-                                            <div id={pt.type.name} className='pokedex_container_inner_types_element'>
-                                                <img alt={pt.type.name} />
-                                                <Link
-                                                    to={`/types/${pt.type.name}`}
-                                                >
-                                                    {pt?.type?.name}
-                                                </Link>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </li>
-                            ))}
-                    </InfiniteScroll>
+                                        </div>
+                                        <p>#{p?.id?.toString()?.padStart(3, '0')}</p>
+                                        <Link
+                                            to={`/pokemon/${p.name}`}
+                                            key={p.name}
+                                        >
+                                            <h2>
+                                                {p?.name?.replace(/-/g, ' ')}
+                                            </h2>
+                                        </Link>
+                                        <div className='pokedex_container_inner_types'>
+                                            {p?.types?.map((pt) => (
+                                                <div id={pt.type.name} className='pokedex_container_inner_types_element'>
+                                                    <img alt={pt.type.name} />
+                                                    <Link
+                                                        to={`/types/${pt.type.name}`}
+                                                    >
+                                                        {pt?.type?.name}
+                                                    </Link>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </li>
+                                ))}
+                        </InfiniteScroll>
                     </ol>
                     <div className='pokedex_gifs'>
                         <img src="https://media4.giphy.com/media/jRrbtBwb8yNXUhNS5x/giphy.gif?cid=ecf05e473lf0lhh5u1h0oze6llypinsing9if2o4gh1fhw1n&rid=giphy.gif&ct=s" alt='reshiram' width="100" height="100" className="pokedex_gifs_reshiram"></img>

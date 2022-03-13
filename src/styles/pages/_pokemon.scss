@@ -33,8 +33,6 @@
         margin-bottom: 2rem;
     }
     &_container {
-        @include flex;
-        flex-wrap: wrap;
         &_inner {
             width: 20rem;
             height: 30rem;
@@ -124,4 +122,16 @@
             transform: scaleX(-1);
         }
     }
+}
+
+.infinite-scroll-component {
+    @include flex;
+    flex-wrap: wrap;
+}
+
+.loading {
+    width: 100%;
+    margin: 3rem 0;
+    text-align: center;
+    @include bold;
 }

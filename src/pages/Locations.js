@@ -88,7 +88,8 @@ export default function Locations() {
                                     {l?.locations?.sort((a, b) => a.name.localeCompare(b.name))?.map((ln) => (
                                         <li>
                                             <Link
-                                                to={`/locations`}
+                                                to={`/locations/${ln?.name}`}
+                                                key={ln?.name}
                                             >
                                                 {ln?.name?.replace(/-/g, ' ')}
                                             </Link>

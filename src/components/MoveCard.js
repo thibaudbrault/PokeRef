@@ -84,7 +84,7 @@ const MoveCard = () => {
             <Nav />
             <main className='move'>
                 {loading ? (
-                <BarWave width="40px" height="20px" color="#cc0000" />
+                    <BarWave width="40px" height="20px" color="#cc0000" />
                 ) : (
                     <>
                         <h2 className='move_title'>{move?.name?.replace(/-/g, ' ')}</h2>

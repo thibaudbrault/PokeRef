@@ -14,6 +14,7 @@ import MoveCard from './components/MoveCard';
 import AbilityCard from './components/AbilityCard';
 import TypeCard from './components/TypeCard';
 import ItemCard from './components/ItemCard';
+import LocationCard from './components/LocationCard';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/items/:name" element={<ItemCard />} />
         <Route path="/machines" element={<Machines />} />
         <Route path="/locations" element={<Locations />} />
+        <Route path="/locations/:name" element={<LocationCard />} />
       </Routes>
     </BrowserRouter>
   );
