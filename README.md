@@ -35,7 +35,7 @@
 <h2 id="roadmap">Roadmap</h2>  
 
 ✅A page for every pokémon / move / ability / type / item  
-✅Filter pokémon by name / type / generation  
+✅Filter pokémon by name / type / generation / forms  
 ✅Filter moves / abilities / machines by name  
 ✅Change certain data according to the game version selected  
 ✅Dark mode  
@@ -45,6 +45,8 @@
 🔜A "create your team" page  
 🔜Animation on scroll  
 🔜Berry page  
+
+🥚Pikachu page  
 
 <h2 id="description">Description</h2>  
 
