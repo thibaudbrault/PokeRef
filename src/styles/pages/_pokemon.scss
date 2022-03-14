@@ -23,15 +23,6 @@
             }
         }
     }
-    &_title {
-        @include title;
-        margin-bottom: 0.5rem
-    }
-    &_subtitle {
-        @include subtitle;
-        margin-left: 2rem;
-        margin-bottom: 2rem;
-    }
     &_container {
         &_inner {
             width: 20rem;
