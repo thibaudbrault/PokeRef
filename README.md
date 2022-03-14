@@ -3,7 +3,7 @@
 </div>  
   
 ---
-<br />
+  
 <h2 align="center">PokéInfo is a pokémon encyclopedia built using React JS, Sass and PokéAPI</h2>  
 <p align="center">You'll find a ton of information on every pokémon, moves, abilities, items and much more</p>  
 <p align="center">Leave a 🌟 if you like my project 👍</p>
@@ -42,7 +42,6 @@
 🛠404 page  
 🛠Location page  
 🛠Infinite scrolling  
-🛠Virtualize moves and abilities tables  
 🔜A "create your team" page  
 🔜Animation on scroll  
 🔜Berry page  
@@ -70,7 +69,7 @@ My main goal for this site was to learn to use React JS and to use an Api. I cho
 
 <h2 id="setup">Setup</h2>  
 
-To get a local copy of my portfolio you'll need tohave Git and Node.js installed. After that, in your command line, you'll need to :  
+To get a local copy of this awesome app you'll need tohave Git and Node.js installed. After that, in your command line, you'll need to :  
 
 1. Clone the repo  
 ```
