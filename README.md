@@ -69,7 +69,7 @@ My main goal for this site was to learn to use React JS and to use an Api. I cho
 
 <h2 id="setup">Setup</h2>  
 
-To get a local copy of my portfolio you'll need tohave Git and Node.js installed. After that, in your command line, you'll need to :  
+To get a local copy of this awesome app you'll need tohave Git and Node.js installed. After that, in your command line, you'll need to :  
 
 1. Clone the repo  
 ```
