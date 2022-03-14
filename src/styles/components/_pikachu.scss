@@ -1,0 +1,93 @@
+.pikachu {
+    @include size-main-small;
+    &_container {
+        @include flex;
+        flex-wrap: wrap;
+        background-image: url('../../../public/images/pikachu.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        background-clip: content-box;
+        &_inner {
+            width: 20rem;
+            height: 30rem;
+            margin: 3rem;
+            padding: 2rem 3rem;
+            @include flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid transparent;
+            border-radius: 25px;
+            text-align: center;
+            transition: 0.3s ease-in-out;
+            &_image {
+                position: relative;
+                margin: 0 auto;
+                &:hover .pikachu_container_inner_image_shiny {
+                    opacity: 1;
+                }
+                &_sprite {
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    transition: 0.3s ease-in-out;
+                }
+                &_shiny {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    opacity: 0;
+                    transition: 0.3s ease-in-out;
+                }
+            }
+            h2 {
+                font-size: 1.5rem;
+                font-family: $font-game;
+                text-transform: capitalize;
+                cursor: pointer;
+                transition: 0.3s ease-in-out;
+                &:hover {
+                    color: $red;
+                }
+            }
+            p {
+                font-size: 1.3rem;
+            }
+            &_types {
+                position: relative;
+                width: 100%;
+                height: 50%;
+				@include flex;
+                flex-direction: column;
+				font-size: 1.3rem;
+                &_element {
+                    width: 100%;
+                    margin-bottom: 1rem;
+                    padding: 0.5rem;
+                    @include type;
+                    img {
+                        height: 1.5rem;
+                        max-height: 1.5rem;
+                    }
+                    a {
+                        padding-left: 0.5rem;
+                        font-family: $font-game;
+                    }
+                }
+            }
+            &:hover {
+                transform: scale(1.05);
+            }
+            &:nth-child(odd) {
+                &:hover {
+                    border-radius: 10px 50px;
+                }
+            }
+            &:nth-child(even) {
+                &:hover {
+                    border-radius: 50px 10px;
+                }
+            }
+        }
+    }
+}

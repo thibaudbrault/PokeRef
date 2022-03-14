@@ -15,12 +15,14 @@ import AbilityCard from './components/AbilityCard';
 import TypeCard from './components/TypeCard';
 import ItemCard from './components/ItemCard';
 import LocationCard from './components/LocationCard';
+import Pikachu from './components/Pikachu';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Wrapper />} />
+        <Route path="/pikachu" element={<Pikachu />} />
         <Route path="/pokemon/:name" element={<PokemonCard />} />
         <Route path="/moves" element={<Moves />} />
         <Route path="/moves/:name" element={<MoveCard />} />

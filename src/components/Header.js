@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 function themeFunction() {
     var element = document.getElementById('root');
@@ -21,7 +23,12 @@ const Header = () => {
                 <button className="header_inner_btn" onClick={themeFunction}>
                     <img className="header_inner_img" src="https://www.pokepedia.fr/images/4/4f/Sombre_Ball.png" alt="sombre ball" />
                 </button>
-                <img className="header_inner_img" src="https://www.pokepedia.fr/images/f/fd/Rapide_Ball.png" alt="rapide ball" />
+                <Link
+                    className='header_inner_link'
+                    to={`/pikachu`}
+                >
+                    <img className="header_inner_img" src="https://www.pokepedia.fr/images/f/fd/Rapide_Ball.png" alt="rapide ball" />
+                </Link>
                 <img className="header_inner_img" src="https://www.pokepedia.fr/images/1/18/Luxe_Ball.png" alt="luxe ball" />
             </div>
         </header>

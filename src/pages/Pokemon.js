@@ -49,8 +49,8 @@ function Pokemon() {
                     setOffset(0)
                     return (pokedex?.id < 899)
                 } else if (generation === 'all' && form === 'regional') {
-                    setOffset(930)
-                    return (pokedex?.id > 10160 && pokedex?.id < 10181)
+                    setOffset(1058)
+                    return (pokedex?.name?.includes('galar'))
                 } else if (generation === 'all' && form === 'mega') {
                     setOffset(930)
                     return (pokedex?.name?.includes('mega'))
@@ -95,7 +95,6 @@ function Pokemon() {
         <main className='pokedex'>
             {loading ? (
                 <BarWave width='40px' height='20px' color='#cc0000' />
-
             ) : (
                 <>
                     <div className='pokedex_search'>
@@ -193,7 +192,9 @@ function Pokemon() {
                                                 <img className='pokedex_container_inner_image_shiny' src={p.sprites.front_shiny} alt=' ' loading='lazy' />
                                             </>}
                                     </div>
-                                    <p>#{p?.id?.toString()?.padStart(3, '0')}</p>
+                                    {p?.id < 899 &&
+                                        <p>#{p?.id?.toString()?.padStart(3, '0')}</p>
+                                    }
                                     <Link
                                         to={`/pokemon/${p.name}`}
                                         key={p.name}
