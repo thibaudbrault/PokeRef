@@ -5,7 +5,7 @@
 ---
   
 <h2 align="center">PokéInfo is a pokémon encyclopedia built using React JS, Sass and PokéAPI</h2>  
-<p align="center">You'll find a ton of information on every pokémon, moves, abilities, items and much more</p>  
+<p align="center">You'll find a ton of informations on every pokémon, moves, abilities, items and much more</p>  
 <p align="center">Leave a 🌟 if you like my project 👍</p>
 
 <div align="center">
@@ -35,7 +35,7 @@
 <h2 id="roadmap">Roadmap</h2>  
 
 ✅A page for every pokémon / move / ability / type / item  
-✅Filter pokémon by name / type / generation  
+✅Filter pokémon by name / type / generation / forms  
 ✅Filter moves / abilities / machines by name  
 ✅Change certain data according to the game version selected  
 ✅Dark mode  
@@ -46,11 +46,13 @@
 🔜Animation on scroll  
 🔜Berry page  
 
+🥚Pikachu page  
+
 <h2 id="description">Description</h2>  
 
 <h4>Main goal</h4>  
 
-My main goal for this site was to learn to use React JS and to use an Api. I chose to use PokéApi because there was a lot of tutorial to start from, the documentation was very clear and easy to use and there is a ton of information so I could make an bigger site.  
+My main goal for this site was to get better at React JS and to learn how to use an Api. I chose to use PokéApi because there is a lot of tutorials to start from, the documentation is very clear and easy to use and there is a ton of informations so I could make an bigger site with multiple pages.  
 
 <h4>Contents</h4>  
 
@@ -60,7 +62,8 @@ My main goal for this site was to learn to use React JS and to use an Api. I cho
 - Types : effectiveness against other types, pokémon with this type, ...  
 - Items : effect, flinch power, ...  
 - Machines : list of tm and hm for every game  
-- Locations : coming soon
+- Locations : coming soon  
+- Pikachu : all the different pikachu's forms (excluding gmax)  
 
 <h2 id="technologies">Technologies</h2>  
 
