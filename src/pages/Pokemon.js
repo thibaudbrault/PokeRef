@@ -93,67 +93,67 @@ function Pokemon() {
 
     return (
         <main className='pokedex'>
+            <div className='pokedex_search'>
+                <div className='pokedex_search_input'>
+                    <label htmlFor="searchBar">Search</label>
+                    <input type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
+                </div>
+                <div className='pokedex_search_dropdown'>
+                    <label htmlFor="form">Form</label>
+                    <select name="form" id="form" value={form} onChange={(e) => {setForm(e.target.value);
+                    }}>
+                        <option value="default">Default</option>
+                        <option value="regional">Regional</option>
+                        <option value="mega">Mega</option>
+                        <option value="gmax">Gmax</option>
+                    </select>
+                </div>
+                <div className={form === 'default' ? 'pokedex_search_dropdown' : 'hidden'}>
+                    <label htmlFor="generation">Generation</label>
+                    <select name="generation" id="generation" value={generation} onChange={(e) => {setGeneration(e.target.value);
+                    }}>
+                        <option value="all">All</option>
+                        <option value="gen1">Generation I</option>
+                        <option value="gen2">Generation II</option>
+                        <option value="gen3">Generation III</option>
+                        <option value="gen4">Generation IV</option>
+                        <option value="gen5">Generation V</option>
+                        <option value="gen6">Generation VI</option>
+                        <option value="gen7">Generation VII</option>
+                        <option value="gen8">Generation VIII</option>
+                    </select>
+                </div>
+                <div className='pokedex_search_dropdown'>
+                    <label htmlFor="type">Type</label>
+                    <select name="type" id="type" value={type} onChange={(e) => {setType(e.target.value);
+                    }}>
+                        <option value="all">All</option>
+                        <option value="bug">Bug</option>
+                        <option value="dark">Dark</option>
+                        <option value="dragon">Dragon</option>
+                        <option value="electric">Electric</option>
+                        <option value="fairy">Fairy</option>
+                        <option value="fighting">Fighting</option>
+                        <option value="fire">Fire</option>
+                        <option value="flying">Flying</option>
+                        <option value="ghost">Ghost</option>
+                        <option value="grass">Grass</option>
+                        <option value="ground">Ground</option>
+                        <option value="ice">Ice</option>
+                        <option value="normal">Normal</option>
+                        <option value="poison">Poison</option>
+                        <option value="psychic">Psychic</option>
+                        <option value="rock">Rock</option>
+                        <option value="steel">Steel</option>
+                        <option value="water">Water</option>
+                    </select>
+                </div>
+            </div>
+
             {loading ? (
                 <BarWave width='40px' height='20px' color='#cc0000' />
             ) : (
                 <>
-                    <div className='pokedex_search'>
-                        <div className='pokedex_search_input'>
-                            <label htmlFor="searchBar">Search</label>
-                            <input type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
-                        </div>
-                        <div className='pokedex_search_dropdown'>
-                            <label htmlFor="form">Form</label>
-                            <select name="form" id="form" value={form} onChange={(e) => {setForm(e.target.value);
-                            }}>
-                                <option value="default">Default</option>
-                                <option value="regional">Regional</option>
-                                <option value="mega">Mega</option>
-                                <option value="gmax">Gmax</option>
-                            </select>
-                        </div>
-                        <div className={form === 'default' ? 'pokedex_search_dropdown' : 'hidden'}>
-                            <label htmlFor="generation">Generation</label>
-                            <select name="generation" id="generation" value={generation} onChange={(e) => {setGeneration(e.target.value);
-                            }}>
-                                <option value="all">All</option>
-                                <option value="gen1">Generation I</option>
-                                <option value="gen2">Generation II</option>
-                                <option value="gen3">Generation III</option>
-                                <option value="gen4">Generation IV</option>
-                                <option value="gen5">Generation V</option>
-                                <option value="gen6">Generation VI</option>
-                                <option value="gen7">Generation VII</option>
-                                <option value="gen8">Generation VIII</option>
-                            </select>
-                        </div>
-                        <div className='pokedex_search_dropdown'>
-                            <label htmlFor="type">Type</label>
-                            <select name="type" id="type" value={type} onChange={(e) => {setType(e.target.value);
-                            }}>
-                                <option value="all">All</option>
-                                <option value="bug">Bug</option>
-                                <option value="dark">Dark</option>
-                                <option value="dragon">Dragon</option>
-                                <option value="electric">Electric</option>
-                                <option value="fairy">Fairy</option>
-                                <option value="fighting">Fighting</option>
-                                <option value="fire">Fire</option>
-                                <option value="flying">Flying</option>
-                                <option value="ghost">Ghost</option>
-                                <option value="grass">Grass</option>
-                                <option value="ground">Ground</option>
-                                <option value="ice">Ice</option>
-                                <option value="normal">Normal</option>
-                                <option value="poison">Poison</option>
-                                <option value="psychic">Psychic</option>
-                                <option value="rock">Rock</option>
-                                <option value="steel">Steel</option>
-                                <option value="water">Water</option>
-                            </select>
-                        </div>
-                    </div>
-
                     <ol className='pokedex_container'>
                         <InfiniteScroll
                             dataLength={filteredPokedex.length}
@@ -224,7 +224,6 @@ function Pokemon() {
                         <img src="https://media4.giphy.com/media/jRrbtBwb8yNXUhNS5x/giphy.gif?cid=ecf05e473lf0lhh5u1h0oze6llypinsing9if2o4gh1fhw1n&rid=giphy.gif&ct=s" alt='reshiram' width="100" height="100" className="pokedex_gifs_reshiram"></img>
                         <img src="https://media2.giphy.com/media/5E9uS9vKcwu0n7svJA/giphy.gif?cid=ecf05e478q1611hme094r2kdftv7efoxtyq3s1wtwdvm8vgf&rid=giphy.gif&ct=s" alt='zekrom' width="100" height="100" className="pokemon_gifs_zekrom"></img>
                     </div>
-
                 </>
             )}
         </main>

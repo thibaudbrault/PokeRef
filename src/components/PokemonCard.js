@@ -100,8 +100,6 @@ const PokemonCard = () => {
         });
     }, [name]);
 
-    console.log(location)
-
     const [game, setGame] = useState('red');
     const [version, setVersion] = useState('red-blue');
     
@@ -275,13 +273,17 @@ const PokemonCard = () => {
                                                 Locations
                                             </th>
                                             <td className='pokemon_data_container_table_body_row_element'>
-                                                {location?.map((l) => 
-                                                    l?.version_details?.map((lv) =>
-                                                        lv?.version?.name === game &&
-                                                            <p>
-                                                                {l?.location_area?.name?.replace(/-/g, ' ')}
-                                                            </p>
+                                                {location.length !== 0 ? (
+                                                    location?.map((l) => 
+                                                        l?.version_details?.map((lv) =>
+                                                            lv?.version?.name === game &&
+                                                                <p>
+                                                                    {l?.location_area?.name?.replace(/-/g, ' ')}
+                                                                </p>
+                                                        )
                                                     )
+                                                ) : (
+                                                    'Not found in the wild'
                                                 )}
                                             </td>
                                         </tr>
@@ -369,7 +371,49 @@ const PokemonCard = () => {
                         <section className='pokemon_evo'>
                             <h3 className='pokemon_evo_title'>Evolution chain</h3>
                             <div className='pokemon_evo_container'>
-                                
+                                <div className='pokemon_evo_container_inner'>
+                                    <div className='pokemon_evo_container_inner_pokemon'>
+                                        <Link
+                                            to={`/pokemon/${evolution?.chain?.species?.name}`}
+                                        >
+                                            {evolution?.chain?.species?.name?.replace(/-/g, '')}
+                                        </Link>
+                                    </div>
+                                    <div className='pokemon_evo_container_inner_method'>
+                                        {evolution?.chain?.evolves_to?.map((ee) => ee?.evolution_details?.map((eed) =>
+                                            <p className='pokemon_evo_container_inner_method_details'>Level {eed?.min_level}</p>
+                                        ))}
+                                        <p className='pokemon_evo_container_inner_method_arrow'>➜</p>
+                                    </div>
+                                </div>
+                                {evolution?.chain?.evolves_to?.map((ee) => 
+                                    <div className='pokemon_evo_container_inner'>
+                                        <div className='pokemon_evo_container_inner_pokemon'>
+                                            <Link
+                                                to={`/pokemon/${ee?.species?.name}`}
+                                            >
+                                                {ee?.species?.name?.replace(/-/g, '')}
+                                            </Link>
+                                        </div>
+                                        <div className='pokemon_evo_container_inner_method'>
+                                            {ee?.evolves_to?.map((ee) => ee?.evolution_details?.map((eed) =>
+                                                <p className='pokemon_evo_container_inner_method_details'>Level {eed?.min_level}</p>
+                                            ))}
+                                            <p className='pokemon_evo_container_inner_method_arrow'>➜</p>
+                                        </div>
+                                    </div>
+                                )}
+                                {evolution?.chain?.evolves_to?.map((ee) => ee?.evolves_to?.map((eet) => 
+                                    <div className='pokemon_evo_container_inner'>
+                                        <div className='pokemon_evo_container_inner_pokemon'>
+                                            <Link
+                                                to={`/pokemon/${eet?.species?.name}`}
+                                            >
+                                                {eet?.species?.name?.replace(/-/g, '')}
+                                            </Link>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </section>
 
@@ -759,7 +803,11 @@ const PokemonCard = () => {
                                                     {pmv?.level_learned_at}
                                                 </td>
                                                 <td className='pokemon_moves_table_body_row_element'>
-                                                    {pm?.move?.name.replace(/-/g, ' ')}
+                                                    <Link
+                                                        to={`/moves/${pm?.move?.name}`}
+                                                    >
+                                                        {pm?.move?.name.replace(/-/g, ' ')}
+                                                    </Link>
                                                 </td>
                                                 {move?.map((m) =>
                                                     m?.name === pm?.move?.name &&

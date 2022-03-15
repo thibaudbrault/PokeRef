@@ -206,6 +206,13 @@
                     @include row;
                     &_element {
                         text-transform: capitalize;
+                        a {
+                            border-bottom: 1px solid transparent;
+                            transition: 0.3s ease-in-out;
+                            &:hover {
+                                border-bottom: 1px solid $dark;
+                            }
+                        }
                         img {
                             width: 32px;
                             height: 32px;
