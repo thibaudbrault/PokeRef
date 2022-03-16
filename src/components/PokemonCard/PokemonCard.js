@@ -3,9 +3,9 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
-import Header from '../Header/Header';
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+import Header from '../Wrapper/Header/Header';
+import Nav from '../Wrapper/Nav/Nav';
+import Footer from '../Wrapper/Footer/Footer';
 
 const PokemonCard = () => {
 

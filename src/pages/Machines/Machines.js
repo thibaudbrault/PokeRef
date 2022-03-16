@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
-import Header from '../../components/Header';
+import Header from '../../components/Wrapper/Header';
 import Nav from '../../components/Nav';
-import Footer from '../../components/Footer';
+import Footer from '../../components/Wrapper/Footer';
 
 export default function Items() {
 
