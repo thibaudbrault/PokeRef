@@ -8,9 +8,9 @@
 @import './pages/Machines/machines';
 @import './pages/Locations/locations';
 
-@import './components/Header/header';
-@import './components/Nav/nav';
-@import './components/Footer/footer';
+@import './components/Wrapper/Header/header';
+@import './components/Wrapper/Nav/nav';
+@import './components/Wrapper/Footer/footer';
 
 @import './components/PokemonCard/pokemonCard';
 @import './components/MoveCard/moveCard';
@@ -18,4 +18,4 @@
 @import './components/TypeCard/typeCard';
 @import './components/ItemCard/itemCard';
 
-@import './components/Bonus/pikachu';
+@import './components/Bonus/Pikachu/pikachu';

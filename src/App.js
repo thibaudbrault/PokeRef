@@ -15,7 +15,7 @@ import AbilityCard from './components/AbilityCard/AbilityCard';
 import TypeCard from './components/TypeCard/TypeCard';
 import ItemCard from './components/ItemCard/ItemCard';
 import LocationCard from './components/LocationCard/LocationCard';
-import Pikachu from './components/Bonus/Pikachu';
+import Pikachu from './components/Bonus/Pikachu/Pikachu';
 
 function App() {
   return (
