@@ -2,20 +2,20 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Wrapper from './Wrapper';
-import Moves from './pages/Moves';
-import Abilities from './pages/Abilities';
-import Types from './pages/Types';
-import Items from './pages/Items';
-import Machines from './pages/Machines';
-import Locations from './pages/Locations';
+import Moves from './pages/Moves/Moves';
+import Abilities from './pages/Abilities/Abilities';
+import Types from './pages/Types/Types';
+import Items from './pages/Items/Items';
+import Machines from './pages/Machines/Machines';
+import Locations from './pages/Locations/Locations';
 
-import PokemonCard from './components/PokemonCard';
-import MoveCard from './components/MoveCard';
-import AbilityCard from './components/AbilityCard';
-import TypeCard from './components/TypeCard';
-import ItemCard from './components/ItemCard';
-import LocationCard from './components/LocationCard';
-import Pikachu from './components/Pikachu';
+import PokemonCard from './components/PokemonCard/PokemonCard';
+import MoveCard from './components/MoveCard/MoveCard';
+import AbilityCard from './components/AbilityCard/AbilityCard';
+import TypeCard from './components/TypeCard/TypeCard';
+import ItemCard from './components/ItemCard/ItemCard';
+import LocationCard from './components/LocationCard/LocationCard';
+import Pikachu from './components/Bonus/Pikachu';
 
 function App() {
   return (

@@ -3,9 +3,9 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
-import Header from './Header';
-import Nav from './Nav';
-import Footer from './Footer';
+import Header from '../Header/Header';
+import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
 
 const ItemCard = () => {
 

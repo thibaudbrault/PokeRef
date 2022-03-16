@@ -1,8 +1,9 @@
 import React from 'react';
-import Header from './components/Header';
-import Nav from './components/Nav';
-import Pokemon from './pages/Pokemon';
-import Footer from './components/Footer';
+
+import Header from './components/Header/Header';
+import Nav from './components/Nav/Nav';
+import Pokemon from './pages/Pokemon/Pokemon';
+import Footer from './components/Footer/Footer';
 
 const Wrapper = () => {
     return (
