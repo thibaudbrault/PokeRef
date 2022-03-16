@@ -21,7 +21,7 @@ function Pokemon() {
     useEffect(() => {
         setLoading(true);
         axios
-        .get(`https://pokeapi.co/api/v2/pokemon?limit=100&offset=${offset}`)
+        .get(`https://pokeapi.co/api/v2/pokemon?limit=200&offset=${offset}`)
         .then((res) => {
             setNext(res.data.next);
             return res.data.results;

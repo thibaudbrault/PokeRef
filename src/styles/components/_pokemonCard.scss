@@ -104,6 +104,24 @@
         &_title {
             @include h3-title;
         }
+        &_container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            &_inner {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-direction: column;
+                &_stade {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+            }
+        }
     }
     &_info {
         padding-bottom: 5rem;

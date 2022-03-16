@@ -379,41 +379,39 @@ const PokemonCard = () => {
                                             {evolution?.chain?.species?.name?.replace(/-/g, '')}
                                         </Link>
                                     </div>
-                                    <div className='pokemon_evo_container_inner_method'>
-                                        {evolution?.chain?.evolves_to?.map((ee) => ee?.evolution_details?.map((eed) =>
-                                            <p className='pokemon_evo_container_inner_method_details'>Level {eed?.min_level}</p>
-                                        ))}
-                                        <p className='pokemon_evo_container_inner_method_arrow'>➜</p>
-                                    </div>
                                 </div>
-                                {evolution?.chain?.evolves_to?.map((ee) => 
-                                    <div className='pokemon_evo_container_inner'>
-                                        <div className='pokemon_evo_container_inner_pokemon'>
-                                            <Link
-                                                to={`/pokemon/${ee?.species?.name}`}
-                                            >
-                                                {ee?.species?.name?.replace(/-/g, '')}
-                                            </Link>
+                                <div className='pokemon_evo_container_inner'>
+                                    {evolution?.chain?.evolves_to?.map((ee) => 
+                                        <div className='pokemon_evo_container_inner_stade'>
+                                            <div className='pokemon_evo_container_inner_stade_method'>
+                                                {ee?.evolution_details?.map((eed) =>
+                                                    <p className='pokemon_evo_container_inner_stade_method_details'>Level {eed?.min_level}</p>
+                                                )}
+                                                <p className='pokemon_evo_container_inner_stade_method_arrow'>➜</p>
+                                            </div>
+                                            <div className='pokemon_evo_container_inner_stade_pokemon'>
+                                                <Link
+                                                    to={`/pokemon/${ee?.species?.name}`}
+                                                >
+                                                    {ee?.species?.name?.replace(/-/g, '')}
+                                                </Link>
+                                            </div>
                                         </div>
-                                        <div className='pokemon_evo_container_inner_method'>
-                                            {ee?.evolves_to?.map((ee) => ee?.evolution_details?.map((eed) =>
-                                                <p className='pokemon_evo_container_inner_method_details'>Level {eed?.min_level}</p>
-                                            ))}
-                                            <p className='pokemon_evo_container_inner_method_arrow'>➜</p>
+                                    )}
+                                </div>
+                                <div className={evolution?.chain?.evolves_to[0]?.evolves_to?.[0]?.length > 0 ? ('pokemon_evo_container_inner') : ('hidden')}>
+                                    {evolution?.chain?.evolves_to?.map((ee) => ee?.evolves_to?.map((eet) => 
+                                        <div className='pokemon_evo_container_inner_stade'>
+                                            <div className='pokemon_evo_container_inner_stade_pokemon'>
+                                                <Link
+                                                    to={`/pokemon/${eet?.species?.name}`}
+                                                >
+                                                    {eet?.species?.name?.replace(/-/g, '')}
+                                                </Link>
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                                {evolution?.chain?.evolves_to?.map((ee) => ee?.evolves_to?.map((eet) => 
-                                    <div className='pokemon_evo_container_inner'>
-                                        <div className='pokemon_evo_container_inner_pokemon'>
-                                            <Link
-                                                to={`/pokemon/${eet?.species?.name}`}
-                                            >
-                                                {eet?.species?.name?.replace(/-/g, '')}
-                                            </Link>
-                                        </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
                         </section>
 
