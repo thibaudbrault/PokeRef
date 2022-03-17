@@ -3,7 +3,7 @@
     &_container {
         @include flex;
         flex-wrap: wrap;
-        background-image: url('../../../public/images/pikachu.png');
+        background-image: url('../../../../public/images/pikachu.png');
         background-repeat: no-repeat;
         background-position: center center;
         &_inner {

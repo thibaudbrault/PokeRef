@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
-import Header from './Header';
-import Nav from './Nav';
-import Footer from './Footer';
+import Header from '../../Wrapper/Header/Header';
+import Nav from '../../Wrapper/Nav/Nav';
+import Footer from '../../Wrapper/Footer/Footer';
 
 const Pikachu = () => {
 

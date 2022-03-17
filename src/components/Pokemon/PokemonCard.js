@@ -6,8 +6,9 @@ import BarWave from 'react-cssfx-loading/lib/BarWave';
 import Header from '../Wrapper/Header/Header';
 import Nav from '../Wrapper/Nav/Nav';
 import Footer from '../Wrapper/Footer/Footer';
+import { Data } from './Data/Data';
 
-const PokemonCard = () => {
+function PokemonCard() {
 
     const { name } = useParams();
     const navigate = useNavigate();
@@ -102,10 +103,6 @@ const PokemonCard = () => {
 
     const [game, setGame] = useState('red');
     const [version, setVersion] = useState('red-blue');
-    
-
-    const height = (pokemon?.height * 0.1).toFixed(2);
-    const weight = (pokemon?.weight * 0.1).toFixed(2);
 
     const female = species?.gender_rate / 8 * 100;
     const male = '100' - (species?.gender_rate / 8 * 100);
@@ -230,143 +227,7 @@ const PokemonCard = () => {
                             </ol>
                         </nav>
 
-                        <section className='pokemon_data'>
-                            <div className='pokemon_data_container'>
-                                <ul className='pokemon_data_container_list'>
-                                    <li className='pokemon_data_container_list_desc'>
-                                        {species?.flavor_text_entries?.map((sf) => 
-                                            sf?.language?.name === 'en' && sf?.version?.name === game && 
-                                                <>
-                                                    {sf?.flavor_text?.replace('\u000c', ' ')}
-                                                </>
-                                        )}
-                                    </li>
-                                    <li className='pokemon_data_container_list_types'>
-                                        {pokemon?.types?.map((pt) => (
-                                            <div id={pt.type.name} className='pokemon_data_container_list_types_element'>
-                                                <img alt={pt.type.name} />
-                                                <Link
-                                                    to={`types/${pt.type.name}`}
-                                                >
-                                                    {pt.type.name}
-                                                </Link>
-                                            </div>
-                                        ))}
-                                    </li>
-                                </ul>
-                                <table className='pokemon_data_container_table'>
-                                    <tbody className='pokemon_data_container_table_body'>
-                                        <tr className='pokemon_data_container_table_body_row'>
-                                            <th className='pokemon_data_container_table_body_row_head'>
-                                                National number
-                                            </th>
-                                            <td className='pokemon_data_container_table_body_row_element'>
-                                                {pokemon?.id > 10000 ? (
-                                                    `# ${species?.id?.toString()?.padStart(3, '0')}`
-                                                ) : (
-                                                    `# ${pokemon?.id?.toString()?.padStart(3, '0')}`
-                                                )}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_data_container_table_body_row'>
-                                            <th className='pokemon_data_container_table_body_row_head'>
-                                                Locations
-                                            </th>
-                                            <td className='pokemon_data_container_table_body_row_element'>
-                                                {location.length !== 0 ? (
-                                                    location?.map((l) => 
-                                                        l?.version_details?.map((lv) =>
-                                                            lv?.version?.name === game &&
-                                                                <p>
-                                                                    {l?.location_area?.name?.replace(/-/g, ' ')}
-                                                                </p>
-                                                        )
-                                                    )
-                                                ) : (
-                                                    'Not found in the wild'
-                                                )}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_data_container_table_body_row'>
-                                            <th className='pokemon_data_container_table_body_row_head'>
-                                                Abilities
-                                            </th>
-                                            <td className='pokemon_data_container_table_body_row_element'>
-                                                {pokemon?.abilities?.map((pa) => 
-                                                    <p>
-                                                        <Link
-                                                        to={`/abilities/${pa.ability.name}`}
-                                                        key={pa.ability.name}
-                                                        >
-                                                            {pa?.ability?.name?.replace(/-/g, ' ')}
-                                                        </Link>
-                                                        {pa?.is_hidden && 
-                                                            <>
-                                                                ‌‌ (hidden ability)
-                                                            </>
-                                                        }
-                                                    </p>
-                                                )}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_data_container_table_body_row'>
-                                            <th className='pokemon_data_container_table_body_row_head'>
-                                                Height
-                                            </th>
-                                            <td className='pokemon_data_container_table_body_row_element'>
-                                                {height.toString()} m
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_data_container_table_body_row'>
-                                            <th className='pokemon_data_container_table_body_row_head'>
-                                                Weight
-                                            </th>
-                                            <td className='pokemon_data_container_table_body_row_element'>
-                                                {weight.toString()} kg
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_data_container_table_body_row'>
-                                            <th className='pokemon_data_container_table_body_row_head'>
-                                                Category
-                                            </th>
-                                            <td className='pokemon_data_container_table_body_row_element'>
-                                                {species?.genera?.map((sg) => 
-                                                    sg?.language?.name === 'en' &&
-                                                    <>
-                                                        {sg?.genus}
-                                                    </>
-                                                )}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_data_container_table_body_row'>
-                                            <th className='pokemon_data_container_table_body_row_head'>
-                                                Shape
-                                            </th>
-                                            <td className='pokemon_data_container_table_body_row_element'>
-                                                {species?.shape?.name}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_data_container_table_body_row'>
-                                            <th className='pokemon_data_container_table_body_row_head'>
-                                                Color
-                                            </th>
-                                            <td className='pokemon_data_container_table_body_row_element'>
-                                                {species?.color?.name}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className='pokemon_data_more'>
-                                <img className='pokemon_data_more_sprite' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt={pokemon?.name} loading='lazy' />
-                                {species?.is_legendary === true && (
-                                    <span className='pokemon_data_more_legendary'>Legendary</span>
-                                )}
-                                {species?.is_mythical === true && (
-                                    <span className='pokemon_data_more_mythical'>Mythical</span>
-                                )}
-                            </div>
-                        </section>
+                        <Data />
 
                         <section className='pokemon_evo'>
                             <h3 className='pokemon_evo_title'>Evolution chain</h3>
@@ -1291,4 +1152,4 @@ const PokemonCard = () => {
     )
 }
 
-export default PokemonCard;
+export default PokemonCard

@@ -9,12 +9,12 @@ import Items from './pages/Items/Items';
 import Machines from './pages/Machines/Machines';
 import Locations from './pages/Locations/Locations';
 
-import PokemonCard from './components/PokemonCard/PokemonCard';
-import MoveCard from './components/MoveCard/MoveCard';
-import AbilityCard from './components/AbilityCard/AbilityCard';
-import TypeCard from './components/TypeCard/TypeCard';
-import ItemCard from './components/ItemCard/ItemCard';
-import LocationCard from './components/LocationCard/LocationCard';
+import PokemonCard from './components/Pokemon/PokemonCard';
+import MoveCard from './components/Move/MoveCard';
+import AbilityCard from './components/Ability/AbilityCard';
+import TypeCard from './components/Type/TypeCard';
+import ItemCard from './components/Item/ItemCard';
+import LocationCard from './components/Location/LocationCard';
 import Pikachu from './components/Bonus/Pikachu/Pikachu';
 
 function App() {
