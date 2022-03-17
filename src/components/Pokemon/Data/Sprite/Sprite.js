@@ -1,5 +1,5 @@
 import React from 'react';
-import { species, pokemon } from '../../PokemonCard';
+import PokemonCard from '../../PokemonCard';
 
 function Sprite() {
     return (

@@ -6,7 +6,7 @@ import BarWave from 'react-cssfx-loading/lib/BarWave';
 import Header from '../Wrapper/Header/Header';
 import Nav from '../Wrapper/Nav/Nav';
 import Footer from '../Wrapper/Footer/Footer';
-import { Data } from './Data/Data';
+import Data from './Data/Data';
 
 function PokemonCard() {
 
