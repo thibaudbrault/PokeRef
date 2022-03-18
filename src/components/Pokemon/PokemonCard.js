@@ -7,6 +7,8 @@ import Header from '../Wrapper/Header/Header';
 import Nav from '../Wrapper/Nav/Nav';
 import Footer from '../Wrapper/Footer/Footer';
 import Data from './Data/Data';
+import Info from './Info/Info';
+import Stats from './Stats/Stats';
 
 function PokemonCard() {
 
@@ -103,9 +105,6 @@ function PokemonCard() {
 
     const [game, setGame] = useState('red');
     const [version, setVersion] = useState('red-blue');
-
-    const female = species?.gender_rate / 8 * 100;
-    const male = '100' - (species?.gender_rate / 8 * 100);
 
     const [toggleState, setToggleState] = useState(1);
     const toggleTable = (index) => {
@@ -227,7 +226,12 @@ function PokemonCard() {
                             </ol>
                         </nav>
 
-                        <Data />
+                        <Data 
+                            pokemon={pokemon}
+                            species={species}
+                            location={location}
+                            game={game}
+                        />
 
                         <section className='pokemon_evo'>
                             <h3 className='pokemon_evo_title'>Evolution chain</h3>
@@ -276,340 +280,15 @@ function PokemonCard() {
                             </div>
                         </section>
 
-                        <section className='pokemon_info'>
-                            <div className='pokemon_info_container'>
-                                <h3 className='pokemon_info_container_title'>Breeding</h3>
-                                <table className='pokemon_info_container_table'>
-                                    <tbody>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                Gender
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                {species?.gender_rate !== -1 ? (
-                                                    <>
-                                                        {male}% male
-                                                        <br />
-                                                        {female}% female
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        genderless
-                                                    </>
-                                                )}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                Egg groups
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                {species?.egg_groups?.map((seg) => 
-                                                    <p>{seg?.name}</p>
-                                                )}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                Egg cycles
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                    {species?.hatch_counter} cycles
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                Baby trigger item
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                {evolution?.baby_trigger_item !== null ? (
-                                                    evolution?.baby_trigger_item?.name.replace(/-/g, ' ')
-                                                ) : (
-                                                    'None'
-                                                )}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                Habitat
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                {species?.habitat !== null ? (
-                                                    species?.habitat?.name
-                                                ) : (
-                                                    'Undiscovered'
-                                                )}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className='pokemon_info_container'>
-                                <h3 className='pokemon_info_container_title'>Training</h3>
-                                <table className='pokemon_info_container_table'>
-                                    <tbody>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                EV yield
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                {pokemon?.stats?.map((ps) => 
-                                                    ps?.effort !== 0 &&
-                                                    <p>{ps?.effort} {ps?.stat?.name?.replace(/-/g, ' ')}</p>
-                                                )}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                Catch rate
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                {species?.capture_rate}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                Base happiness
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                {species?.base_happiness}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                Base experience
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                {pokemon?.base_experience}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                Growth rate
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                {species?.growth_rate?.name.replace(/-/g, ' ')}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                Held items
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                {pokemon?.held_items?.length > 0 ? (
-                                                    pokemon?.held_items?.map((ph) =>
-                                                        <Link
-                                                            to={`/items/${ph.item.name}`}
-                                                        >
-                                                            {ph?.item?.name?.replace(/-/g, ' ')}
-                                                        </Link>
-                                                    )
-                                                ) : (
-                                                    'None'
-                                                )}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className='pokemon_info_container'>
-                                <h3 className='pokemon_info_container_title'>Forms</h3>
-                                <table className='pokemon_info_container_table'>
-                                    <tbody>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                Alternative forms
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                    {species?.forms_switchable === true ? (
-                                                        'Yes'
-                                                    ) : (
-                                                        'No'
-                                                    )}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                Varieties
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                {species?.varieties?.map((sv) => 
-                                                    <Link
-                                                    to={`/pokemon/${sv?.pokemon?.name}`}
-                                                    key={sv?.pokemon?.name}
-                                                    >
-                                                        {sv?.pokemon?.name?.replace(/-/g, ' ')}
-                                                        {sv?.is_default === true &&
-                                                            <>
-                                                                ‌‌ (default)
-                                                            </>
-                                                        }
-                                                    </Link>
-                                                )}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_info_container_table_row'>
-                                            <th className='pokemon_info_container_table_row_head'>
-                                                Gender differences
-                                            </th>
-                                            <td className='pokemon_info_container_table_row_element'>
-                                                    {species?.has_gender_differences === true ? (
-                                                        'Yes'
-                                                    ) : (
-                                                        'No'
-                                                    )}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </section>
+                        <Info 
+                            pokemon={pokemon}
+                            species={species}
+                            evolution={evolution}
+                        />
 
-                        <section className='pokemon_stats'>
-                            <div className='pokemon_stats_container'>
-                                <h3 className='pokemon_stats_container_title'>Base stats</h3>
-                                <table className='pokemon_stats_container_table'>
-                                    <tbody>
-                                        <tr className='pokemon_stats_container_table_row'>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[0]?.stat?.name.toUpperCase()}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[0]?.base_stat}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_progress'>
-                                                <div className='pokemon_stats_container_table_row_progress_inner'>
-                                                    <span style={{"width":`calc(${pokemon?.stats?.[0]?.base_stat} / 180 * 100%)`}}></span>
-                                                </div>
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[0]?.base_stat * 2 + 110}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[0]?.base_stat * 2 + 204}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_stats_container_table_row'>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[1]?.stat?.name}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[1]?.base_stat}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_progress'>
-                                                <div className='pokemon_stats_container_table_row_progress_inner'>
-                                                    <span style={{"width":`calc(${pokemon?.stats?.[1]?.base_stat} / 180 * 100%)`}}></span>
-                                                </div>
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {Math.floor((((2 * pokemon?.stats?.[1]?.base_stat + 0 + 0 / 4) * 100) / 100 + 5) * 0.9).toFixed(0)}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {Math.floor((pokemon?.stats?.[1]?.base_stat * 2 + 99) * 1.1).toFixed(0)}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_stats_container_table_row'>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[2]?.stat?.name}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[2]?.base_stat}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_progress'>
-                                                <div className='pokemon_stats_container_table_row_progress_inner'>
-                                                    <span style={{"width":`calc(${pokemon?.stats?.[2]?.base_stat} / 180 * 100%)`}}></span>
-                                                </div>
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {Math.floor((((2 * pokemon?.stats?.[2]?.base_stat + 0 + 0 / 4) * 100) / 100 + 5) * 0.9).toFixed(0)}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {Math.floor((pokemon?.stats?.[2]?.base_stat * 2 + 99) * 1.1).toFixed(0)}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_stats_container_table_row'>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[3]?.stat?.name.replace(/-/g, ' ')}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[3]?.base_stat}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_progress'>
-                                                <div className='pokemon_stats_container_table_row_progress_inner'>
-                                                    <span style={{"width":`calc(${pokemon?.stats?.[3]?.base_stat} / 180 * 100%)`}}></span>
-                                                </div>
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {Math.floor((((2 * pokemon?.stats?.[3]?.base_stat + 0 + 0 / 4) * 100) / 100 + 5) * 0.9).toFixed(0)}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {Math.floor((pokemon?.stats?.[3]?.base_stat * 2 + 99) * 1.1).toFixed(0)}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_stats_container_table_row'>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[4]?.stat?.name.replace(/-/g, ' ')}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[4]?.base_stat}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_progress'>
-                                                <div className='pokemon_stats_container_table_row_progress_inner'>
-                                                    <span style={{"width":`calc(${pokemon?.stats?.[4]?.base_stat} / 180 * 100%)`}}></span>
-                                                </div>
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {Math.floor((((2 * pokemon?.stats?.[4]?.base_stat + 0 + 0 / 4) * 100) / 100 + 5) * 0.9).toFixed(0)}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {Math.floor((pokemon?.stats?.[4]?.base_stat * 2 + 99) * 1.1).toFixed(0)}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_stats_container_table_row'>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[5]?.stat?.name}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {pokemon?.stats?.[5]?.base_stat}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_progress'>
-                                                <div className='pokemon_stats_container_table_row_progress_inner'>
-                                                    <span style={{"width":`calc(${pokemon?.stats?.[5]?.base_stat} / 180 * 100%)`}}></span>
-                                                </div>
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                                {Math.floor((((2 * pokemon?.stats?.[5]?.base_stat + 0 + 0 / 4) * 100) / 100 + 5) * 0.9).toFixed(0)}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_element'>
-                                            {Math.floor((pokemon?.stats?.[5]?.base_stat * 2 + 99) * 1.1).toFixed(0)}
-                                            </td>
-                                        </tr>
-                                        <tr className='pokemon_stats_container_table_row'>
-                                            <td className='pokemon_stats_container_table_row_total'>
-                                                Total
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_total'>
-                                                {pokemon?.stats?.[0]?.base_stat + pokemon?.stats?.[1]?.base_stat + pokemon?.stats?.[2]?.base_stat + pokemon?.stats?.[3]?.base_stat + pokemon?.stats?.[4]?.base_stat + pokemon?.stats?.[5]?.base_stat}
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_progress'>
-                                                <div className='pokemon_stats_container_table_row_progress_inner'>
-                                                    <span style={{"width":`calc(${pokemon?.stats?.[5]?.base_stat} / 180 * 100%)`}}></span>
-                                                </div>
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_total'>
-                                                Min.
-                                            </td>
-                                            <td className='pokemon_stats_container_table_row_total'>
-                                                Max.
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className='pokemon_stats_types'>
-                                <h3 className='pokemon_stats_types_title'>Types relations</h3>
-                            </div>
-                        </section>
+                        <Stats 
+                            pokemon={pokemon}
+                        />
 
                         <section className='pokemon_moves'>
                             <h3 className='pokemon_moves_title'>Moves</h3>

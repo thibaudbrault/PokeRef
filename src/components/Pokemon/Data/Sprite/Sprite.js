@@ -1,7 +1,6 @@
 import React from 'react';
-import PokemonCard from '../../PokemonCard';
 
-function Sprite() {
+function Sprite({pokemon, species}) {
     return (
         <>
             <img className='pokemon_data_more_sprite' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt={pokemon?.name} loading='lazy' />

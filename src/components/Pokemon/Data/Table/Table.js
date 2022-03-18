@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { pokemon, species, location, game} from '../../PokemonCard';
 
-function Table() {
+function Table({pokemon, species, game, location}) {
 
     const height = (pokemon?.height * 0.1).toFixed(2);
     const weight = (pokemon?.weight * 0.1).toFixed(2);

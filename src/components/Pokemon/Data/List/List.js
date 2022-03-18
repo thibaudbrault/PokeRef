@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { species, pokemon, game } from '../../PokemonCard';
 
-function List() {
+function List({pokemon, species, game}) {
     return (
         <ul className='pokemon_data_container_list'>
             <li className='pokemon_data_container_list_desc'>
