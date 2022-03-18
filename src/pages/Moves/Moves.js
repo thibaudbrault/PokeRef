@@ -155,7 +155,7 @@ function Moves() {
                                                         to={`/moves/${sm.name}`}
                                                         className='moves_status_table_body_row_moves_link'
                                                         >
-                                                            {sm.name.replace(/-/g, ' ')}
+                                                            <p>{sm.name.replace(/-/g, ' ')}</p>
                                                         </Link>
                                                     ))}</td>
                                             </tr>

@@ -74,8 +74,16 @@
                 &_moves {
                     &_link {
                         display: block;
-                        padding: 0.5rem;
-                        text-transform: capitalize;
+                        p {
+                            display: inline-block;
+                            margin: 0.5rem;
+                            text-transform: capitalize;
+                            border-bottom: 1px solid transparent;
+                            transition: 0.3s ease-in-out;
+                            &:hover {
+                                border-bottom: 1px solid $dark;
+                            }
+                        }
                     }
                 }
             }
