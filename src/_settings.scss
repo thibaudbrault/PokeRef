@@ -352,8 +352,23 @@ $purple: #5e318f;
     display: none;
 }
 
+.method {
+    @include secondary-nav;
+	padding: 0 0 2.5rem
+}
+
 .back_button {
 	@include button;
+}
+
+.lazy_loading {
+	font-size: 4rem;
+	font-weight: 700;
+	color: $red;
+	position: absolute;
+	left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
 }
 
 /*general class styling end*/

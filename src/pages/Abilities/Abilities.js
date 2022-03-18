@@ -45,7 +45,10 @@ export default function Abilities() {
                     <>
                         <h2 className='abilities_title'>Abilities</h2>
                         <div className='abilities_search'>
-                            <input className='abilities_search_input' type="text" placeholder='Ability Name' name='searchBar' id='searchBar' onChange={event => {setSearch(event.target.value)}} />
+                            <div className='abilities_search_input'>
+                                <label htmlFor="searchBar">Search</label>
+                                <input type="text" placeholder='Ability Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
+                            </div>
                         </div>
                         <table className='abilities_table'>
                             <thead className='abilities_table_head'>

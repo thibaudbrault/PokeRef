@@ -1,41 +1,43 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Wrapper from './Wrapper';
-import Moves from './pages/Moves/Moves';
-import Abilities from './pages/Abilities/Abilities';
-import Types from './pages/Types/Types';
-import Items from './pages/Items/Items';
-import Machines from './pages/Machines/Machines';
-import Locations from './pages/Locations/Locations';
+const Wrapper = lazy(() => import ('./Wrapper.js'));
+const Moves = lazy(() => import ('./pages/Moves/Moves.js'));
+const Abilities = lazy(() => import ('./pages/Abilities/Abilities'));
+const Types = lazy(() => import ('./pages/Types/Types'));
+const Items = lazy(() => import ('./pages/Items/Items'));
+const Machines = lazy(() => import ('./pages/Machines/Machines'));
+const Locations = lazy(() => import ('./pages/Locations/Locations'));
 
-import PokemonCard from './components/Pokemon/PokemonCard';
-import MoveCard from './components/Move/MoveCard';
-import AbilityCard from './components/Ability/AbilityCard';
-import TypeCard from './components/Type/TypeCard';
-import ItemCard from './components/Item/ItemCard';
-import LocationCard from './components/Location/LocationCard';
-import Pikachu from './components/Bonus/Pikachu/Pikachu';
+const PokemonCard = lazy(() => import ('./components/Pokemon/PokemonCard'));
+const MoveCard = lazy(() => import ('./components/Move/MoveCard'));
+const AbilityCard = lazy(() => import ('./components/Ability/AbilityCard.js'));
+const TypeCard = lazy(() => import ('./components/Type/TypeCard'));
+const ItemCard = lazy(() => import ('./components/Item/ItemCard'));
+const LocationCard = lazy(() => import ('./components/Location/LocationCard'));
+const Pikachu = lazy(() => import ('./components/Bonus/Pikachu/Pikachu'));
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Wrapper />} />
-        <Route path="/pikachu" element={<Pikachu />} />
-        <Route path="/pokemon/:name" element={<PokemonCard />} />
-        <Route path="/moves" element={<Moves />} />
-        <Route path="/moves/:name" element={<MoveCard />} />
-        <Route path="/abilities" element={<Abilities />} />
-        <Route path="/abilities/:name" element={<AbilityCard />} />
-        <Route path="/types" element={<Types />} />
-        <Route path ="/types/:name" element={<TypeCard />} />
-        <Route path="/items" element={<Items />} />
-        <Route path="/items/:name" element={<ItemCard />} />
-        <Route path="/machines" element={<Machines />} />
-        <Route path="/locations" element={<Locations />} />
-        <Route path="/locations/:name" element={<LocationCard />} />
-      </Routes>
+      <Suspense fallback={<p className='lazy_loading'>Welcome to PokéInfo!</p>}>
+        <Routes>
+          <Route path="/" element={<Wrapper />} />
+          <Route path="/pikachu" element={<Pikachu />} />
+          <Route path="/pokemon/:name" element={<PokemonCard />} />
+          <Route path="/moves" element={<Moves />} />
+          <Route path="/moves/:name" element={<MoveCard />} />
+          <Route path="/abilities" element={<Abilities />} />
+          <Route path="/abilities/:name" element={<AbilityCard />} />
+          <Route path="/types" element={<Types />} />
+          <Route path ="/types/:name" element={<TypeCard />} />
+          <Route path="/items" element={<Items />} />
+          <Route path="/items/:name" element={<ItemCard />} />
+          <Route path="/machines" element={<Machines />} />
+          <Route path="/locations" element={<Locations />} />
+          <Route path="/locations/:name" element={<LocationCard />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

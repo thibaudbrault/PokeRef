@@ -6,6 +6,7 @@ import BarWave from 'react-cssfx-loading/lib/BarWave';
 import Header from '../Wrapper/Header/Header';
 import Nav from '../Wrapper/Nav/Nav';
 import Footer from '../Wrapper/Footer/Footer';
+import Method from '../Method/Method';
 
 const MoveCard = () => {
 
@@ -329,19 +330,10 @@ const MoveCard = () => {
                             </ul>
                         </section>
 
-                        <nav className='move_method'>
-
-                            <button className={toggleState === 1 ? 'move_method_active' : 'move_method_element'} onClick={() => toggleTable(1)}><p>Level Up</p></button>
-
-                            <button className={toggleState === 2 ? 'move_method_active' : 'move_method_element'} onClick={() => toggleTable(2)}><p>TM /HM</p></button>
-
-                            <button className={toggleState === 3 ? 'move_method_active' : 'move_method_element'} onClick={() => toggleTable(3)}><p>Egg</p></button>
-
-                            <button className={toggleState === 4 ? 'move_method_active' : 'move_method_element'} onClick={() => toggleTable(4)}><p>Tutor</p></button>
-
-                            <button className={toggleState === 5 ? 'move_method_active' : 'move_method_element'} onClick={() => toggleTable(5)}><p>Evolving</p></button>
-
-                        </nav>
+                        <Method 
+                            toggleState={toggleState}
+                            toggleTable={toggleTable}
+                        />
 
                         <section  className={toggleState === 1 ? "active move_learn" : "hidden"}>
                             <h3 className='move_learn_title'>Learned by level up</h3>
