@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function List({pokemon, species, game}) {
+function Desc({pokemon, species, game}) {
     return (
         <ul className='pokemon_data_container_list'>
             <li className='pokemon_data_container_list_desc'>
@@ -28,4 +28,4 @@ function List({pokemon, species, game}) {
     )
 }
 
-export default List
+export default Desc

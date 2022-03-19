@@ -1,19 +1,19 @@
 import React from 'react';
-import List from './List/List';
+import Desc from './Desc/Desc';
 import Sprite from './Sprite/Sprite';
-import Table from './Table/Table';
+import Base from './Base/Base';
 
 function Data({pokemon, species, location, game}) {
 
     return (
         <section className='pokemon_data'>
             <div className='pokemon_data_container'>
-                <List 
+                <Desc 
                     species={species}
                     pokemon={pokemon}
                     game={game}
                 />
-                <Table 
+                <Base 
                     species={species}
                     pokemon={pokemon}
                     location={location}

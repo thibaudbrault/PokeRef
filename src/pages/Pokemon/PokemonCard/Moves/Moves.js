@@ -1,5 +1,5 @@
 import React from 'react';
-import Method from '../../Method/Method';
+import Method from '../../../../helpers/Method/Method';
 
 import Level from './Level/Level';
 import Machine from './Machine/Machine';

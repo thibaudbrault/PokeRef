@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Table({pokemon, species, game, location}) {
+function Base({pokemon, species, game, location}) {
 
     const height = (pokemon?.height * 0.1).toFixed(2);
     const weight = (pokemon?.weight * 0.1).toFixed(2);
@@ -112,4 +112,4 @@ function Table({pokemon, species, game, location}) {
     )
 }
 
-export default Table
+export default Base
