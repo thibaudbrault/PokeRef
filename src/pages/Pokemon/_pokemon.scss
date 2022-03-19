@@ -106,13 +106,6 @@
             }
         }
     }
-    &_gifs {
-        display: flex;
-        justify-content: space-around;
-        &_reshiram {
-            transform: scaleX(-1);
-        }
-    }
 }
 
 .infinite-scroll-component {

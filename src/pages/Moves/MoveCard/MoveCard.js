@@ -6,7 +6,7 @@ import BarWave from 'react-cssfx-loading/lib/BarWave';
 import Header from '../../../components/Header/Header';
 import Nav from '../../../components/Nav/Nav';
 import Footer from '../../../components/Footer/Footer';
-import Method from '../../../Helpers/Method/Method';
+import Method from '../../../helpers/Method/Method';
 
 const MoveCard = () => {
 

@@ -1,20 +1,20 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const Wrapper = lazy(() => import ('./Wrapper.js'));
-const Moves = lazy(() => import ('./pages/Moves/Moves.js'));
+const Wrapper = lazy(() => import ('./Wrapper'));
+const Moves = lazy(() => import ('./pages/Moves/Moves'));
 const Abilities = lazy(() => import ('./pages/Abilities/Abilities'));
 const Types = lazy(() => import ('./pages/Types/Types'));
 const Items = lazy(() => import ('./pages/Items/Items'));
 const Machines = lazy(() => import ('./pages/Machines/Machines'));
 const Locations = lazy(() => import ('./pages/Locations/Locations'));
 
-const PokemonCard = lazy(() => import ('./components/Pokemon/PokemonCard'));
-const MoveCard = lazy(() => import ('./components/Move/MoveCard'));
-const AbilityCard = lazy(() => import ('./components/Ability/AbilityCard.js'));
-const TypeCard = lazy(() => import ('./components/Type/TypeCard'));
-const ItemCard = lazy(() => import ('./components/Item/ItemCard'));
-const LocationCard = lazy(() => import ('./components/Location/LocationCard'));
+const PokemonCard = lazy(() => import ('./pages/Pokemon/PokemonCard/PokemonCard'));
+const MoveCard = lazy(() => import ('./pages/Moves/MoveCard/MoveCard'));
+const AbilityCard = lazy(() => import ('./pages/Abilities/AbilityCard/AbilityCard'));
+const TypeCard = lazy(() => import ('./pages/Types/TypeCard/TypeCard'));
+const ItemCard = lazy(() => import ('./pages/Items/ItemCard/ItemCard'));
+const LocationCard = lazy(() => import ('./pages/Locations/LocationCard/LocationCard'));
 const Pikachu = lazy(() => import ('./components/Bonus/Pikachu/Pikachu'));
 
 function App() {
