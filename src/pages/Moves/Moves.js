@@ -7,6 +7,8 @@ import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
 
+import { Table } from '../../components/BaseStyles/Table';
+
 function Moves() {
 
     const [search, setSearch] = useState('');
@@ -87,7 +89,7 @@ function Moves() {
                                     <input type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
                                 </div>
                             </div>
-                            <table className='moves_table'>
+                            <Table>
                                 <thead className='moves_table_head'>
                                     <tr className='moves_table_head_row'>
                                         <th className='moves_table_head_row_element'>Name</th>
@@ -130,12 +132,12 @@ function Moves() {
                                         </tr>
                                     ))}
                                 </tbody>
-                            </table>
+                            </Table>
                         </section>
 
                         <section className={toggleState === 2 ? "active" : "hidden"}>
                             <h2 className='moves_status_title'>Status</h2>
-                            <table className='moves_status_table'>
+                            <Table>
                                 <thead className='moves_status_table_head'>
                                     <tr className='moves_status_table_head_row'>
                                         <th className='moves_status_table_head_row_element'>Status</th>
@@ -162,7 +164,7 @@ function Moves() {
                                         ))
                                     }
                                 </tbody>
-                            </table>
+                            </Table>
                         </section>
                     </>
                 )}
