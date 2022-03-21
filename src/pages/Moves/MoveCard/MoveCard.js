@@ -8,6 +8,9 @@ import Nav from '../../../components/Nav/Nav';
 import Footer from '../../../components/Footer/Footer';
 import Method from '../../../helpers/Method/Method';
 
+import { Subtitle, Title } from '../../../components/BaseStyles/Headings';
+import { Table } from '../../../components/BaseStyles/Table';
+
 const MoveCard = () => {
 
     const { name } = useParams();
@@ -88,8 +91,8 @@ const MoveCard = () => {
                     <BarWave width="40px" height="20px" color="#cc0000" />
                 ) : (
                     <>
-                        <h2 className='move_title'>{move?.name?.replace(/-/g, ' ')}</h2>
-                        <p className='move_gen'>{move?.generation?.name?.replace(/-/g, ' ')}</p>
+                        <Title>{move?.name?.replace(/-/g, ' ')}</Title>
+                        <Subtitle>{move?.generation?.name?.replace(/-/g, ' ')}</Subtitle>
 
                         <nav className='move_nav'>
                             <ol className='move_nav_list'>
@@ -171,10 +174,10 @@ const MoveCard = () => {
                         </nav>
 
                         <section className='move_data'>
-                            <table className='move_data_table'>
+                            <Table>
                                 <tbody>
                                     <tr className='move_data_table_row'>
-                                        <th className='move_data_table_row_head'>Type</th>
+                                        <th>Type</th>
                                         <td className='move_data_table_row_element'>
                                             <div className='move_data_table_row_element_type' id={move?.type?.name}>
                                                 <Link
@@ -238,7 +241,7 @@ const MoveCard = () => {
                                         <td className='move_data_table_row_element'>{move?.priority}</td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </Table>
                             <ul className='move_effect'>
                                 <li className='move_effect_container'>
                                     <h3 className='move_effect_container_title'>Effects</h3>

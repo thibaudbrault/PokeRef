@@ -7,7 +7,8 @@ import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
 
-import { Table } from '../../components/BaseStyles/Table';
+import { Table, Thead, Tname, Trow } from '../../components/BaseStyles/Table';
+import { Search } from '../../components/BaseStyles/Inputs';
 
 function Moves() {
 
@@ -83,32 +84,32 @@ function Moves() {
 
                         <section className={toggleState === 1 ? "active" : "hidden"}>
                             <h2 className='moves_title'>Moves</h2>
-                            <div className='moves_search'>
-                                <div className='moves_search_input'>
+                            <Search>
+                                <div>
                                     <label htmlFor="searchBar">Search</label>
                                     <input type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
                                 </div>
-                            </div>
+                            </Search>
                             <Table>
-                                <thead className='moves_table_head'>
+                                <Thead>
                                     <tr className='moves_table_head_row'>
                                         <th className='moves_table_head_row_element'>Name</th>
                                         <th className='moves_table_head_row_element'>Category</th>
                                         <th className='moves_table_head_row_element'>Type</th>
                                         <th className='moves_table_head_row_element'>Effect</th>
                                     </tr>
-                                </thead>
+                                </Thead>
                                 <tbody className='moves_table_body'>
                                     {filteredMoves?.sort((a, b) => a.name.localeCompare(b.name))?.map((m) => (
-                                        <tr key={m.id} className='moves_table_body_row'>
-                                            <td className='moves_table_body_row_name'>
-                                            <Link
-                                                to={`/moves/${m.name}`}
-                                                key={m.name}
-                                            >
-                                                {m?.name?.replace(/-/g, ' ')}
-                                            </Link>
-                                            </td>
+                                        <Trow>
+                                            <Tname>
+                                                <Link
+                                                    to={`/moves/${m.name}`}
+                                                    key={m.name}
+                                                >
+                                                    {m?.name?.replace(/-/g, ' ')}
+                                                </Link>
+                                            </Tname>
                                             <td>
                                                 <div className='moves_table_body_row_category' id={m?.damage_class?.name}>
                                                     <img alt={m.damage_class.name} />
@@ -129,7 +130,7 @@ function Moves() {
                                                         </span>
                                                 )}
                                             </td>
-                                        </tr>
+                                        </Trow>
                                     ))}
                                 </tbody>
                             </Table>
