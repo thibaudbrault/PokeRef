@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Table = styled.table`
+export const Table = styled.table`
     display: table;
 	width: 100%;
 	text-align: center;
@@ -18,5 +18,3 @@ const Table = styled.table`
         
     }
 `
-
-export { Table }
