@@ -9,12 +9,12 @@
 <p align="center">Leave a 🌟 if you like my project 👍</p>
 
 <div align="center">
-    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/479.gif" width="20%" />
-    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10008.gif" width="20%" />  
-    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10009.gif" width="20%" />  
-    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10010.gif" width="20%" />  
-    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10011.gif" width="20%" />  
-    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10012.gif" width="20%" />  
+    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/479.gif" width="15%" />
+    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10008.gif" width="15%" />  
+    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10009.gif" width="15%" />  
+    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10010.gif" width="15%" />  
+    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10011.gif" width="15%" />  
+    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10012.gif" width="15%" />  
 </div>
 
 ---
@@ -39,12 +39,14 @@
 ✅Filter moves / abilities / machines by name  
 ✅Change certain data according to the game version selected  
 ✅Dark mode  
+
+🛠Moving to Styled-Components  
 🛠404 page  
-🛠Location page  
 🛠Infinite scrolling  
+
+🔜Location page  
 🔜A "create your team" page  
 🔜Animation on scroll  
-🔜Berry page  
 
 🥚Pikachu page  
 
