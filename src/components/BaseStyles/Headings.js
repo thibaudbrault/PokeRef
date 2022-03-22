@@ -19,6 +19,10 @@ export const Title = styled.h2`
 	text-shadow: rgb(22, 22, 22) -1px -1px 0px, rgb(22, 22, 22) 1px -1px 0px, rgb(22, 22, 22) -1px 1px 0px, rgb(22, 22, 22) 1px 1px 0px;
 `
 
+export const LeftTitle = styled(Title)`
+    text-align: left;
+`
+
 export const Subtitle = styled.p`
     font-size: 1.3rem;
     text-transform: uppercase;

@@ -26,12 +26,16 @@ export const Search = styled.div`
 			transition: 0.3s ease-in-out;
 			&:focus {
 				outline: none;
-				border: 1px solid $red;
+				border: 1px solid ${props => props.theme.colors.red};
 			}
 			&::placeholder {
-				color: $dark;
+				color: ${props => props.theme.colors.dark};
 				opacity: 0.8;
 			}
 		}
 	}
+`
+
+export const ModifiedSearch = styled(Search)`
+	justify-content: flex-start;
 `

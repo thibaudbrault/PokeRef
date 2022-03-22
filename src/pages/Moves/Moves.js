@@ -7,8 +7,9 @@ import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
 
-import { Table, Thead, Tname, Trow } from '../../components/BaseStyles/Table';
-import { Search } from '../../components/BaseStyles/Inputs';
+import { Table, THead, TName, TRow, TEffect } from '../../components/BaseStyles/Table';
+import { ModifiedSearch } from '../../components/BaseStyles/Inputs';
+import { LeftTitle } from '../../components/BaseStyles/Headings';
 
 function Moves() {
 
@@ -65,8 +66,7 @@ function Moves() {
 
     useEffect(() => {
         document.title = `Moves | PokéInfo`;
-     }, []);
-
+    }, []);
 
     return (
         <>
@@ -84,32 +84,32 @@ function Moves() {
 
                         <section className={toggleState === 1 ? "active" : "hidden"}>
                             <h2 className='moves_title'>Moves</h2>
-                            <Search>
+                            <ModifiedSearch>
                                 <div>
                                     <label htmlFor="searchBar">Search</label>
                                     <input type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
                                 </div>
-                            </Search>
+                            </ModifiedSearch>
                             <Table>
-                                <Thead>
+                                <THead>
                                     <tr className='moves_table_head_row'>
                                         <th className='moves_table_head_row_element'>Name</th>
                                         <th className='moves_table_head_row_element'>Category</th>
                                         <th className='moves_table_head_row_element'>Type</th>
                                         <th className='moves_table_head_row_element'>Effect</th>
                                     </tr>
-                                </Thead>
+                                </THead>
                                 <tbody className='moves_table_body'>
                                     {filteredMoves?.sort((a, b) => a.name.localeCompare(b.name))?.map((m) => (
-                                        <Trow>
-                                            <Tname>
+                                        <TRow>
+                                            <TName>
                                                 <Link
                                                     to={`/moves/${m.name}`}
                                                     key={m.name}
                                                 >
                                                     {m?.name?.replace(/-/g, ' ')}
                                                 </Link>
-                                            </Tname>
+                                            </TName>
                                             <td>
                                                 <div className='moves_table_body_row_category' id={m?.damage_class?.name}>
                                                     <img alt={m.damage_class.name} />
@@ -122,33 +122,33 @@ function Moves() {
                                                     <span>{m?.type?.name}</span>
                                                 </div>
                                             </td>
-                                            <td className='moves_table_body_row_effect'>
+                                            <TEffect>
                                                 {m?.flavor_text_entries?.map((mf) => 
                                                     mf.language.name === 'en' && mf.flavor_text !== 'Dummy Data' &&
                                                         <span>
                                                             {mf?.flavor_text}
                                                         </span>
                                                 )}
-                                            </td>
-                                        </Trow>
+                                            </TEffect>
+                                        </TRow>
                                     ))}
                                 </tbody>
                             </Table>
                         </section>
 
                         <section className={toggleState === 2 ? "active" : "hidden"}>
-                            <h2 className='moves_status_title'>Status</h2>
+                            <LeftTitle>Status</LeftTitle>
                             <Table>
-                                <thead className='moves_status_table_head'>
+                                <THead>
                                     <tr className='moves_status_table_head_row'>
                                         <th className='moves_status_table_head_row_element'>Status</th>
                                         <th className='moves_status_table_head_row_element'>Moves</th>
                                     </tr>
-                                </thead>
+                                </THead>
                                 <tbody className='moves_status_table_body'>
                                     {status.filter(s => s.name !== 'none') 
                                         .sort((a, b) => a.name.localeCompare(b.name)).map((s) => (
-                                            <tr key={s.id} className='moves_status_table_body_row'>
+                                            <TRow>
                                                 <td className='moves_status_table_body_row_name'>
                                                     {s.name.replace(/-/g, ' ')}
                                                 </td>
@@ -161,7 +161,7 @@ function Moves() {
                                                             <p>{sm.name.replace(/-/g, ' ')}</p>
                                                         </Link>
                                                     ))}</td>
-                                            </tr>
+                                            </TRow>
                                         ))
                                     }
                                 </tbody>

@@ -7,9 +7,14 @@ import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
 
+import { LeftTitle } from '../../components/BaseStyles/Headings';
+import { ModifiedSearch } from '../../components/BaseStyles/Inputs';
+import { Table, THead, TName, TRow, TEffect } from '../../components/BaseStyles/Table';
+
 export default function Abilities() {
 
-    const[search, setSearch] = useState('');
+    const [search, setSearch] = useState('');
+    const [filteredAbilities, setFilteredAbilities] = useState([])
 
     const [abilities, setAbilities] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -31,6 +36,14 @@ export default function Abilities() {
     }, []);
 
     useEffect(() => {
+        setFilteredAbilities(
+            abilities.filter((abilities) =>
+                abilities.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())
+            )
+        );
+    }, [search, abilities])
+
+    useEffect(() => {
         document.title = `Abilities | PokéInfo`;
      }, []);
 
@@ -43,50 +56,43 @@ export default function Abilities() {
                     <BarWave width='40px' height='20px' color='#cc0000' />
                 ) : (
                     <>
-                        <h2 className='abilities_title'>Abilities</h2>
-                        <div className='abilities_search'>
-                            <div className='abilities_search_input'>
+                        <LeftTitle>Abilities</LeftTitle>
+                        <ModifiedSearch>
+                            <div>
                                 <label htmlFor="searchBar">Search</label>
                                 <input type="text" placeholder='Ability Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
                             </div>
-                        </div>
-                        <table className='abilities_table'>
-                            <thead className='abilities_table_head'>
+                        </ModifiedSearch>
+                        <Table>
+                            <THead>
                                 <tr className='abilities_table_head_row'>
                                     <th className='abilities_table_head_row_element'>Name</th>
                                     <th className='abilities_table_head_row_element'>Effect</th>
                                 </tr>
-                            </thead>
-                            <tbody className='abilities_table_body'>
-                                    {abilities.filter((abilities) => {
-                                        if (search === "") {
-                                            return abilities
-                                        } else if (abilities.name.replace(/-/g, ' ').toLowerCase().includes(search.toLowerCase())) {
-                                            return abilities
-                                        }
-                                    })
-                                    .sort((a, b) => a.name.localeCompare(b.name)).map((a) => (
-                                    <tr key={a.name} className='abilities_table_body_row'>
-                                        <td className='abilities_table_body_row_name'>
-                                            <Link
-                                                to={`/abilities/${a.name}`}
-                                                key={a.name}
-                                            >
-                                                {a.name.replace(/-/g, ' ')}
-                                            </Link>
-                                        </td>
-                                        <td className='abilities_table_body_row_effect'>
-                                            {a?.flavor_text_entries?.map((af) => 
-                                                af.language.name === 'en' &&
-                                                    <span>
-                                                        {af.flavor_text}
-                                                    </span>
-                                            )}
-                                        </td>
-                                    </tr>
-                                    ))}
+                            </THead>
+                            <tbody>
+                                {filteredAbilities?.sort((a, b) => a.name.localeCompare(b.name)).map((a) => (
+                                <TRow>
+                                    <TName>
+                                        <Link
+                                            to={`/abilities/${a.name}`}
+                                            key={a.name}
+                                        >
+                                            {a.name.replace(/-/g, ' ')}
+                                        </Link>
+                                    </TName>
+                                    <TEffect>
+                                        {a?.flavor_text_entries?.map((af) => 
+                                            af.language.name === 'en' &&
+                                                <span>
+                                                    {af.flavor_text}
+                                                </span>
+                                        )}
+                                    </TEffect>
+                                </TRow>
+                                ))}
                             </tbody>
-                        </table>
+                        </Table>
                     </>
                 )}
             </main>

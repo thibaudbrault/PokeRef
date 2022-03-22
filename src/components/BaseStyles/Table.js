@@ -29,7 +29,7 @@ export const Table = styled.table`
 	}
 `
 
-export const Thead = styled.thead`
+export const THead = styled.thead`
 	background: ${props => props.theme.colors.dark};
 	color: ${props => props.theme.colors.light};
 	font-size: 1.7rem;
@@ -37,13 +37,13 @@ export const Thead = styled.thead`
 	text-transform: capitalize;
 `
 
-export const Trow = styled.tr`
+export const TRow = styled.tr`
 	&:hover {
 		background: rgba(130, 130, 130, 0.2);
 	}
 `
 
-export const Tname = styled.td`
+export const TName = styled.td`
 	text-transform: capitalize;
 	font-size: 1.7rem;
 	font-weight: 700;
@@ -54,6 +54,17 @@ export const Tname = styled.td`
 		transition: 0.3s ease-in-out;
 		&:hover {
 			border-bottom: 1px solid ${props => props.theme.colors.dark};
+		}
+	}
+`
+
+export const TEffect = styled.td`
+	text-align: center;
+
+	& span {
+		display: none;
+		&:first-child {
+			display: block;
 		}
 	}
 `
