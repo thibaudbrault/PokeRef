@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Table = styled.table`
@@ -47,14 +48,15 @@ export const TName = styled.td`
 	text-transform: capitalize;
 	font-size: 1.7rem;
 	font-weight: 700;
-	
-	& a {
-		border-bottom: 1px solid transparent;
-		cursor: pointer;
-		transition: 0.3s ease-in-out;
-		&:hover {
-			border-bottom: 1px solid ${props => props.theme.colors.dark};
-		}
+`
+
+export const TLink = styled(Link)`
+	text-transform: capitalize;
+	border-bottom: 1px solid transparent;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
+	&:hover {
+		border-bottom: 1px solid ${props => props.theme.colors.dark};
 	}
 `
 

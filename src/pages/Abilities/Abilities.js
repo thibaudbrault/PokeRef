@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
@@ -9,7 +8,7 @@ import Footer from '../../components/Footer/Footer';
 
 import { LeftTitle } from '../../components/BaseStyles/Headings';
 import { ModifiedSearch } from '../../components/BaseStyles/Inputs';
-import { Table, THead, TName, TRow, TEffect } from '../../components/BaseStyles/Table';
+import { Table, THead, TName, TRow, TEffect, TLink } from '../../components/BaseStyles/Table';
 
 export default function Abilities() {
 
@@ -74,12 +73,12 @@ export default function Abilities() {
                                 {filteredAbilities?.sort((a, b) => a.name.localeCompare(b.name)).map((a) => (
                                 <TRow>
                                     <TName>
-                                        <Link
+                                        <TLink
                                             to={`/abilities/${a.name}`}
                                             key={a.name}
                                         >
                                             {a.name.replace(/-/g, ' ')}
-                                        </Link>
+                                        </TLink>
                                     </TName>
                                     <TEffect>
                                         {a?.flavor_text_entries?.map((af) => 

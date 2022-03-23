@@ -6,6 +6,7 @@
     &_search {
         @include search;
         justify-content: flex-start;
+        margin-bottom: 0;
     }
     &_nav {
         @include nav;

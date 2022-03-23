@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
@@ -7,9 +6,10 @@ import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
 
-import { Table, THead, TName, TRow, TEffect } from '../../components/BaseStyles/Table';
+import { Table, THead, TName, TRow, TEffect, TLink } from '../../components/BaseStyles/Table';
 import { ModifiedSearch } from '../../components/BaseStyles/Inputs';
 import { LeftTitle } from '../../components/BaseStyles/Headings';
+import { ModifiedLeftTitle, StatusMoves } from './StyledMoves';
 
 function Moves() {
 
@@ -83,7 +83,7 @@ function Moves() {
                         </nav>
 
                         <section className={toggleState === 1 ? "active" : "hidden"}>
-                            <h2 className='moves_title'>Moves</h2>
+                            <LeftTitle>Moves</LeftTitle>
                             <ModifiedSearch>
                                 <div>
                                     <label htmlFor="searchBar">Search</label>
@@ -92,23 +92,23 @@ function Moves() {
                             </ModifiedSearch>
                             <Table>
                                 <THead>
-                                    <tr className='moves_table_head_row'>
-                                        <th className='moves_table_head_row_element'>Name</th>
-                                        <th className='moves_table_head_row_element'>Category</th>
-                                        <th className='moves_table_head_row_element'>Type</th>
-                                        <th className='moves_table_head_row_element'>Effect</th>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Category</th>
+                                        <th>Type</th>
+                                        <th>Effect</th>
                                     </tr>
                                 </THead>
-                                <tbody className='moves_table_body'>
+                                <tbody>
                                     {filteredMoves?.sort((a, b) => a.name.localeCompare(b.name))?.map((m) => (
                                         <TRow>
                                             <TName>
-                                                <Link
+                                                <TLink
                                                     to={`/moves/${m.name}`}
                                                     key={m.name}
                                                 >
                                                     {m?.name?.replace(/-/g, ' ')}
-                                                </Link>
+                                                </TLink>
                                             </TName>
                                             <td>
                                                 <div className='moves_table_body_row_category' id={m?.damage_class?.name}>
@@ -137,7 +137,7 @@ function Moves() {
                         </section>
 
                         <section className={toggleState === 2 ? "active" : "hidden"}>
-                            <LeftTitle>Status</LeftTitle>
+                            <ModifiedLeftTitle>Status</ModifiedLeftTitle>
                             <Table>
                                 <THead>
                                     <tr className='moves_status_table_head_row'>
@@ -145,22 +145,23 @@ function Moves() {
                                         <th className='moves_status_table_head_row_element'>Moves</th>
                                     </tr>
                                 </THead>
-                                <tbody className='moves_status_table_body'>
+                                <tbody>
                                     {status.filter(s => s.name !== 'none') 
                                         .sort((a, b) => a.name.localeCompare(b.name)).map((s) => (
                                             <TRow>
-                                                <td className='moves_status_table_body_row_name'>
+                                                <TName>
                                                     {s.name.replace(/-/g, ' ')}
-                                                </td>
-                                                <td className='moves_status_table_body_row_moves'>
+                                                </TName>
+                                                <td>
                                                     {s.moves.map((sm) => (
-                                                        <Link
+                                                        <StatusMoves
                                                         to={`/moves/${sm.name}`}
                                                         className='moves_status_table_body_row_moves_link'
                                                         >
                                                             <p>{sm.name.replace(/-/g, ' ')}</p>
-                                                        </Link>
-                                                    ))}</td>
+                                                        </StatusMoves>
+                                                    ))}
+                                                </td>
                                             </TRow>
                                         ))
                                     }
