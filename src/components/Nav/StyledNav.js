@@ -15,12 +15,13 @@ export const MainNavList = styled.ul`
         white-space: nowrap;
         font-size: 1.5rem;
         font-weight: 700;
+        color: ${({ theme }) => theme.secondary};
         transition: 0.3s ease-in-out;
         &::before {
             position: absolute;
             width: 100%;
             height: 1px;
-            background: ${props => props.theme.colors.dark};
+            background: ${({ theme }) => theme.secondary};
             top: 100%;
             left: 0;
             pointer-events: none;
@@ -35,7 +36,7 @@ export const MainNavList = styled.ul`
             position: absolute;
             width: 100%;
             height: 1px;
-            background: ${props => props.theme.colors.dark};
+            background: ${({ theme }) => theme.secondary};
             top: 100%;
             left: 0;
             pointer-events: none;

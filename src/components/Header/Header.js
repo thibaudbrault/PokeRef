@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { H1 } from '../BaseStyles/Headings';
 import { HeaderBtn, HeaderContainer, HeaderLink } from './StyledHeader';
 
-
-function themeFunction() {
-    var element = document.getElementById('root');
-    element.classList.toggle("dark");
-};
-
 const Header = () => {
+
+    const [theme, setTheme] = useState('light');
+
+    const themeToggler = () => {
+        theme === 'light' ? setTheme('dark') : setTheme('light')
+    }
+
     return (
         <HeaderContainer id='header'>
             <img src="https://www.pokepedia.fr/images/8/87/Pok%C3%A9_Ball.png" alt="poke ball" />
             <img src="https://www.pokepedia.fr/images/a/aa/Super_Ball.png" alt="super ball" />
             <img src="https://www.pokepedia.fr/images/d/da/Hyper_Ball.png" alt="hyper ball" />
             <H1>PokéInfo</H1>
-            <HeaderBtn onClick={themeFunction}>
+            <HeaderBtn onClick={themeToggler}>
                 <img src="https://www.pokepedia.fr/images/4/4f/Sombre_Ball.png" alt="sombre ball" />
             </HeaderBtn>
             <HeaderLink

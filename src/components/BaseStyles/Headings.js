@@ -5,7 +5,6 @@ export const H1 = styled.h1`
     font-family: 'Press start 2P';
     font-size: 6rem;
     letter-spacing: 3px;
-    color: ${props => props.theme.colors.light};
     text-shadow: rgb(22, 22, 22) -2px -2px 0px, rgb(22, 22, 22) 2px -2px 0px, rgb(22, 22, 22) -2px 2px 0px, rgb(22, 22, 22) 2px 2px 0px;
 `
 
@@ -14,7 +13,6 @@ export const Title = styled.h2`
     font-size: 3.5rem;
     font-family: 'Press start 2P';
 	text-transform: capitalize;
-	color: ${props => props.theme.colors.light};
     text-align: center;
 	text-shadow: rgb(22, 22, 22) -1px -1px 0px, rgb(22, 22, 22) 1px -1px 0px, rgb(22, 22, 22) -1px 1px 0px, rgb(22, 22, 22) 1px 1px 0px;
 `

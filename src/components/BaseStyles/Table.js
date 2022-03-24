@@ -31,8 +31,7 @@ export const Table = styled.table`
 `
 
 export const THead = styled.thead`
-	background: ${props => props.theme.colors.dark};
-	color: ${props => props.theme.colors.light};
+	background: ${({ theme }) => theme.secondary};
 	font-size: 1.7rem;
 	font-weight: 700;
 	text-transform: capitalize;
@@ -56,7 +55,7 @@ export const TLink = styled(Link)`
 	cursor: pointer;
 	transition: 0.3s ease-in-out;
 	&:hover {
-		border-bottom: 1px solid ${props => props.theme.colors.dark};
+		border-bottom: 1px solid ${({ theme }) => theme.secondary};
 	}
 `
 

@@ -72,9 +72,11 @@ export const Reset = createGlobalStyle`
     }
 
     body {
+        color: ${({ theme }) => theme.main};
         background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
         font-family: 'Quicksand', sans-serif;
         font-weight: 400;
+        transition: all 0.3s ease-in-out;
     }
 
     main {

@@ -1,15 +1,13 @@
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
-
-export const Themes = {
-    colors: {
-        light: '#c4c4c4',
-        dark: '#161616',
-        red: '#cc0000',
-        purple: '#5e318f'
-    }
+export const lightTheme = {
+    main: '#c4c4c4',
+    secondary: '#161616',
+    red: '#cc0000',
+    purple: '#5e318f'
 }
 
-export const Theme = ({ children }) => (
-    <ThemeProvider theme={Themes}>{children}</ThemeProvider>
-);
+export const darkTheme = {
+    main: '#161616',
+    secondary: '#c4c4c4',
+    red: '#cc0000',
+    purple: '#5e318f'
+}

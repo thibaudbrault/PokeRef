@@ -35,7 +35,7 @@ export const GenNav = styled.nav`
 					margin: 1rem;
 					cursor: pointer;
 					&:hover {
-						color: ${props => props.theme.colors.red};
+						color: ${({ theme }) => theme.red};
 					}
                 }
             }
