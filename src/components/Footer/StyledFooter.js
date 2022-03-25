@@ -14,7 +14,7 @@ export const FooterInner = styled.div`
     display: grid;
     grid-template-columns: 30% 40% 30%;
     align-items: center;
-    color: '#161616';
+    color: #161616;
 `
 
 export const LeftFooter = styled.div`

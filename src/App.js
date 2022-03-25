@@ -38,26 +38,28 @@ function App() {
         <ThemeProvider
           theme={theme === 'light' ? lightTheme : darkTheme}
         >
-        <Reset />
-        <Fonts />
-        <Suspense fallback={<p className='lazy_loading'>Welcome to PokéInfo!</p>}>
-          <Routes>
-            <Route path="/" element={<Wrapper />} />
-            <Route path="/pikachu" element={<Pikachu />} />
-            <Route path="/pokemon/:name" element={<PokemonCard />} />
-            <Route path="/moves" element={<Moves />} />
-            <Route path="/moves/:name" element={<MoveCard />} />
-            <Route path="/abilities" element={<Abilities />} />
-            <Route path="/abilities/:name" element={<AbilityCard />} />
-            <Route path="/types" element={<Types />} />
-            <Route path ="/types/:name" element={<TypeCard />} />
-            <Route path="/items" element={<Items />} />
-            <Route path="/items/:name" element={<ItemCard />} />
-            <Route path="/machines" element={<Machines />} />
-            <Route path="/locations" element={<Locations />} />
-            <Route path="/locations/:name" element={<LocationCard />} />
-          </Routes>
-        </Suspense>
+          <>
+            <Reset />
+            <Fonts />
+            <Suspense fallback={<p className='lazy_loading'>Welcome to PokéInfo!</p>}>
+              <Routes>
+                <Route path="/" element={<Wrapper />} />
+                <Route path="/pikachu" element={<Pikachu />} />
+                <Route path="/pokemon/:name" element={<PokemonCard />} />
+                <Route path="/moves" element={<Moves />} />
+                <Route path="/moves/:name" element={<MoveCard />} />
+                <Route path="/abilities" element={<Abilities />} />
+                <Route path="/abilities/:name" element={<AbilityCard />} />
+                <Route path="/types" element={<Types />} />
+                <Route path ="/types/:name" element={<TypeCard />} />
+                <Route path="/items" element={<Items />} />
+                <Route path="/items/:name" element={<ItemCard />} />
+                <Route path="/machines" element={<Machines />} />
+                <Route path="/locations" element={<Locations />} />
+                <Route path="/locations/:name" element={<LocationCard />} />
+              </Routes>
+            </Suspense>
+          </>
         </ThemeProvider>
       </Layout>
     </BrowserRouter>
