@@ -1,16 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { H1 } from '../BaseStyles/Headings';
 import { HeaderBtn, HeaderContainer, HeaderLink } from './StyledHeader';
 
-const Header = () => {
-
-    const [theme, setTheme] = useState('light');
-
-    const themeToggler = () => {
-        theme === 'light' ? setTheme('dark') : setTheme('light')
-    }
-
+const Header = ({themeToggler}) => {
     return (
         <HeaderContainer id='header'>
             <img src="https://www.pokepedia.fr/images/8/87/Pok%C3%A9_Ball.png" alt="poke ball" />

@@ -5,6 +5,7 @@ export const H1 = styled.h1`
     font-family: 'Press start 2P';
     font-size: 6rem;
     letter-spacing: 3px;
+    color: #c4c4c4;
     text-shadow: rgb(22, 22, 22) -2px -2px 0px, rgb(22, 22, 22) 2px -2px 0px, rgb(22, 22, 22) -2px 2px 0px, rgb(22, 22, 22) 2px 2px 0px;
 `
 
