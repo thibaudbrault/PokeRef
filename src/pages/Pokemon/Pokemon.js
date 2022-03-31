@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import InfiniteScroll from "react-infinite-scroll-component";
 
+import { PokedexDropdown } from './StyledPokemon';
+import { Search } from '../../components/BaseStyles/Inputs';
+
 function Pokemon() {
 
     const [search, setSearch] = useState('');
@@ -89,12 +92,12 @@ function Pokemon() {
 
     return (
         <main className='pokedex'>
-            <div className='pokedex_search'>
-                <div className='pokedex_search_input'>
+            <Search>
+                <div>
                     <label htmlFor="searchBar">Search</label>
                     <input type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
                 </div>
-                <div className='pokedex_search_dropdown'>
+                <PokedexDropdown>
                     <label htmlFor="form">Form</label>
                     <select name="form" id="form" value={form} onChange={(e) => {setForm(e.target.value);
                     }}>
@@ -103,7 +106,7 @@ function Pokemon() {
                         <option value="mega">Mega</option>
                         <option value="gmax">Gmax</option>
                     </select>
-                </div>
+                </PokedexDropdown>
                 <div className={form === 'default' ? 'pokedex_search_dropdown' : 'hidden'}>
                     <label htmlFor="generation">Generation</label>
                     <select name="generation" id="generation" value={generation} onChange={(e) => {setGeneration(e.target.value);
@@ -119,7 +122,7 @@ function Pokemon() {
                         <option value="gen8">Generation VIII</option>
                     </select>
                 </div>
-                <div className='pokedex_search_dropdown'>
+                <PokedexDropdown>
                     <label htmlFor="type">Type</label>
                     <select name="type" id="type" value={type} onChange={(e) => {setType(e.target.value);
                     }}>
@@ -143,8 +146,8 @@ function Pokemon() {
                         <option value="steel">Steel</option>
                         <option value="water">Water</option>
                     </select>
-                </div>
-            </div>
+                </PokedexDropdown>
+            </Search>
             <ol className='pokedex_container'>
                 <InfiniteScroll
                     dataLength={filteredPokedex.length}
