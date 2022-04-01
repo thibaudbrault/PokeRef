@@ -5,33 +5,34 @@ export const Search = styled.div`
 	align-items: center;
 	justify-content: space-around;
 	margin-bottom: 5rem;
-    
-	& div {
-		display: flex;
-        align-items: center;
-        justify-content: center;
-		flex-direction: column;
+`
 
-		& label {
-			font-size: 1.5rem;
-			margin-bottom: 0.5rem;
+export const Input = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	& label {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	& input {
+		width: 15vw;
+		padding: 0.5rem 1rem;
+		color: ${({ theme }) => theme.secondary};
+		background: transparent;
+		border: 1px solid ${({ theme }) => theme.secondary};
+		border-radius: 5px;
+		transition: 0.3s ease-in-out;
+		&:focus {
+			outline: none;
+			border: 1px solid ${({ theme }) => theme.red};
 		}
-
-		& input {
-			width: 15vw;
-			padding: 0.5rem 1rem;
-			background: transparent;
-			border: 1px solid ${({ theme }) => theme.secondary};
-			border-radius: 5px;
-			transition: 0.3s ease-in-out;
-			&:focus {
-				outline: none;
-				border: 1px solid ${({ theme }) => theme.red};
-			}
-			&::placeholder {
-				color: ${({ theme }) => theme.secondary};
-				opacity: 0.8;
-			}
+		&::placeholder {
+			color: ${({ theme }) => theme.secondary};
+			opacity: 0.8;
 		}
 	}
 `

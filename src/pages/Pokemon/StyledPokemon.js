@@ -15,6 +15,7 @@ export const PokedexDropdown = styled.div`
     & select {
         width: 10vw;
         padding: 0.5rem;
+        color: ${({ theme }) => theme.secondary};
         background: transparent;
         border: 1px solid ${({ theme }) => theme.secondary};
         border-radius: 5px;

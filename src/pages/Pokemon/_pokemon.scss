@@ -94,12 +94,12 @@
             &:hover {
                 transform: scale(1.05);
             }
-            &:nth-child(odd) {
+            &:nth-child(even) {
                 &:hover {
                     border-radius: 10px 50px;
                 }
             }
-            &:nth-child(even) {
+            &:nth-child(odd) {
                 &:hover {
                     border-radius: 50px 10px;
                 }

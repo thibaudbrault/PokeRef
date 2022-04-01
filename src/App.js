@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './components/Layout/Layout';
 import { ThemeProvider } from 'styled-components';
@@ -27,9 +27,19 @@ function App() {
 
   const [theme, setTheme] = useState('light');
 
+  const setMode = mode => {
+    window.localStorage.setItem('theme', mode)
+    setTheme(mode)
+  };
+
   const themeToggler = () => {
-      theme === 'light' ? setTheme('dark') : setTheme('light')
+      theme === 'light' ? setMode('dark') : setMode('light')
   }
+
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem('theme');
+    localTheme && setTheme(localTheme)
+  }, []);
 
   return (
     <BrowserRouter>

@@ -4,7 +4,7 @@ import axios from 'axios';
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { PokedexDropdown } from './StyledPokemon';
-import { Search } from '../../components/BaseStyles/Inputs';
+import { Input, Search } from '../../components/BaseStyles/Inputs';
 
 function Pokemon() {
 
@@ -93,10 +93,10 @@ function Pokemon() {
     return (
         <main className='pokedex'>
             <Search>
-                <div>
+                <Input>
                     <label htmlFor="searchBar">Search</label>
                     <input type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
-                </div>
+                </Input>
                 <PokedexDropdown>
                     <label htmlFor="form">Form</label>
                     <select name="form" id="form" value={form} onChange={(e) => {setForm(e.target.value);

@@ -7,7 +7,7 @@ import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
 
 import { Table, THead, TName, TRow, TEffect, TLink } from '../../components/BaseStyles/Table';
-import { ModifiedSearch } from '../../components/BaseStyles/Inputs';
+import { ModifiedSearch, Input } from '../../components/BaseStyles/Inputs';
 import { LeftTitle } from '../../components/BaseStyles/Headings';
 import { ModifiedLeftTitle, StatusMoves } from './StyledMoves';
 
@@ -85,10 +85,10 @@ function Moves() {
                         <section className={toggleState === 1 ? "active" : "hidden"}>
                             <LeftTitle>Moves</LeftTitle>
                             <ModifiedSearch>
-                                <div>
+                                <Input>
                                     <label htmlFor="searchBar">Search</label>
                                     <input type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
-                                </div>
+                                </Input>
                             </ModifiedSearch>
                             <Table>
                                 <THead>
