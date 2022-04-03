@@ -13,7 +13,7 @@ export const MainNavList = styled.ul`
         padding-bottom: 0.2rem;
         position: relative;
         white-space: nowrap;
-        font-size: 1.5rem;
+        font-size: 1.7rem;
         font-weight: 700;
         transition: 0.3s ease-in-out;
         &::before {

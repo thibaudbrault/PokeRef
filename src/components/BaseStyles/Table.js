@@ -31,7 +31,8 @@ export const Table = styled.table`
 `
 
 export const THead = styled.thead`
-	background: ${({ theme }) => theme.secondary};
+	color: #c4c4c4;
+	background: #161616;
 	font-size: 1.7rem;
 	font-weight: 700;
 	text-transform: capitalize;

@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
-import Header from '../../components/Header/Header';
-import Nav from '../../components/Nav/Nav';
-import Footer from '../../components/Footer/Footer';
+import { MainSmall } from '../../components/BaseStyles/Sizing';
+import { TypesList } from './StyledTypes';
 
 export default function Types() {
 
@@ -33,29 +32,24 @@ export default function Types() {
      }, []);
 
     return (
-        <>
-            <Header />
-            <Nav />
-            <main className='types'>
-                {loading ? (
-                    <BarWave width='40px' height='20px' color='#cc0000' />
-                    ) : (
-                    <ul className='types_container'>
-                        {types.sort((a, b) => a.name.localeCompare(b.name)).map((t) => (
-                            <li id={t.name} key={t.name} className='types_container_element'>
-                                <Link
-                                    to={`/types/${t.name}`}
-                                    key={t.name}
-                                >
-                                    <img alt={t.name} />
-                                    <h2>{t.name}</h2>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </main>
-            <Footer />
-        </>
+        <MainSmall>
+            {loading ? (
+                <BarWave width='40px' height='20px' color='#cc0000' />
+                ) : (
+                <TypesList>
+                    {types.sort((a, b) => a.name.localeCompare(b.name)).map((t) => (
+                        <li id={t.name} key={t.name}>
+                            <Link
+                                to={`/types/${t.name}`}
+                                key={t.name}
+                            >
+                                <img alt={t.name} />
+                                <h2>{t.name}</h2>
+                            </Link>
+                        </li>
+                    ))}
+                </TypesList>
+            )}
+        </MainSmall>
   )
 }

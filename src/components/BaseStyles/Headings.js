@@ -5,17 +5,19 @@ export const H1 = styled.h1`
     font-family: 'Press start 2P';
     font-size: 6rem;
     letter-spacing: 3px;
-    color: #c4c4c4;
-    text-shadow: rgb(22, 22, 22) -2px -2px 0px, rgb(22, 22, 22) 2px -2px 0px, rgb(22, 22, 22) -2px 2px 0px, rgb(22, 22, 22) 2px 2px 0px;
+    color: ${({ theme }) => theme.main};
+    text-shadow: ${({ theme }) => theme.secondary} -2px -2px 0px, ${({ theme }) => theme.secondary} 2px -2px 0px, ${({ theme }) => theme.secondary} -2px 2px 0px, ${({ theme }) => theme.secondary} 2px 2px 0px;
 `
 
 export const Title = styled.h2`
     margin-bottom: 1.5rem;
     font-size: 3.5rem;
     font-family: 'Press start 2P';
+    color: #c4c4c4;
 	text-transform: capitalize;
     text-align: center;
-	text-shadow: rgb(22, 22, 22) -1px -1px 0px, rgb(22, 22, 22) 1px -1px 0px, rgb(22, 22, 22) -1px 1px 0px, rgb(22, 22, 22) 1px 1px 0px;
+	color: ${({ theme }) => theme.main};
+    text-shadow: ${({ theme }) => theme.secondary} -1px -1px 0px, ${({ theme }) => theme.secondary} 1px -1px 0px, ${({ theme }) => theme.secondary} -1px 1px 0px, ${({ theme }) => theme.secondary} 1px 1px 0px;
 `
 
 export const LeftTitle = styled(Title)`

@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
-
-import Header from '../../components/Header/Header';
-import Nav from '../../components/Nav/Nav';
-import Footer from '../../components/Footer/Footer';
 
 import { Table, THead, TName, TRow, TEffect, TLink } from '../../components/BaseStyles/Table';
 import { ModifiedSearch, Input } from '../../components/BaseStyles/Inputs';
 import { LeftTitle } from '../../components/BaseStyles/Headings';
-import { ModifiedLeftTitle, StatusMoves } from './StyledMoves';
+import { ModifiedLeftTitle, StatusMoves, TCategory, TType } from './StyledMoves';
+import { MainBig } from '../../components/BaseStyles/Sizing';
 
 function Moves() {
 
@@ -69,110 +67,106 @@ function Moves() {
     }, []);
 
     return (
-        <>
-            <Header />
-            <Nav />
-            <main className='moves'>
-                {loading ? (
-                <BarWave width='40px' height='20px' color='#cc0000' />
-                ) : (
-                    <>
-                        <nav className='moves_nav'>
-                            <button className={toggleState === 1 ? 'moves_nav_active' : 'moves_nav_element'} onClick={() => toggleTable(1)}><p>Moves</p></button>
-                            <button className={toggleState === 2 ? 'moves_nav_active' : 'moves_nav_element'} onClick={() => toggleTable(2)}><p>Status</p></button>
-                        </nav>
+        <MainBig>
+            {loading ? (
+            <BarWave width='40px' height='20px' color='#cc0000' />
+            ) : (
+                <>
+                    <nav className='moves_nav'>
+                        <button className={toggleState === 1 ? 'moves_nav_active' : 'moves_nav_element'} onClick={() => toggleTable(1)}><p>Moves</p></button>
+                        <button className={toggleState === 2 ? 'moves_nav_active' : 'moves_nav_element'} onClick={() => toggleTable(2)}><p>Status</p></button>
+                    </nav>
 
-                        <section className={toggleState === 1 ? "active" : "hidden"}>
-                            <LeftTitle>Moves</LeftTitle>
-                            <ModifiedSearch>
-                                <Input>
-                                    <label htmlFor="searchBar">Search</label>
-                                    <input type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
-                                </Input>
-                            </ModifiedSearch>
-                            <Table>
-                                <THead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Category</th>
-                                        <th>Type</th>
-                                        <th>Effect</th>
-                                    </tr>
-                                </THead>
-                                <tbody>
-                                    {filteredMoves?.sort((a, b) => a.name.localeCompare(b.name))?.map((m) => (
+                    <section className={toggleState === 1 ? "active" : "hidden"}>
+                        <LeftTitle>Moves</LeftTitle>
+                        <ModifiedSearch>
+                            <Input>
+                                <label htmlFor="searchBar">Search</label>
+                                <input type="text" placeholder='Move Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
+                            </Input>
+                        </ModifiedSearch>
+                        <Table>
+                            <THead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Type</th>
+                                    <th>Effect</th>
+                                </tr>
+                            </THead>
+                            <tbody>
+                                {filteredMoves?.sort((a, b) => a.name.localeCompare(b.name))?.map((m) => (
+                                    <TRow>
+                                        <TName>
+                                            <TLink
+                                                to={`/moves/${m.name}`}
+                                                key={m.name}
+                                            >
+                                                {m?.name?.replace(/-/g, ' ')}
+                                            </TLink>
+                                        </TName>
+                                        <TCategory>
+                                            <div id={m?.damage_class?.name}>
+                                                <img alt={m.damage_class.name} />
+                                                <span>{m?.damage_class?.name}</span>
+                                            </div>
+                                        </TCategory>
+                                        <TType>
+                                            <Link
+                                                to={`/types/${m.type.name}`}
+                                                id={m.type.name}>
+                                                <img alt={m.type.name} />
+                                                <span>{m?.type?.name}</span>
+                                            </Link>
+                                        </TType>
+                                        <TEffect>
+                                            {m?.flavor_text_entries?.map((mf) => 
+                                                mf.language.name === 'en' && mf.flavor_text !== 'Dummy Data' &&
+                                                    <span>
+                                                        {mf?.flavor_text}
+                                                    </span>
+                                            )}
+                                        </TEffect>
+                                    </TRow>
+                                ))}
+                            </tbody>
+                        </Table>
+                    </section>
+
+                    <section className={toggleState === 2 ? "active" : "hidden"}>
+                        <ModifiedLeftTitle>Status</ModifiedLeftTitle>
+                        <Table>
+                            <THead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Moves</th>
+                                </tr>
+                            </THead>
+                            <tbody>
+                                {status.filter(s => s.name !== 'none') 
+                                    .sort((a, b) => a.name.localeCompare(b.name)).map((s) => (
                                         <TRow>
                                             <TName>
-                                                <TLink
-                                                    to={`/moves/${m.name}`}
-                                                    key={m.name}
-                                                >
-                                                    {m?.name?.replace(/-/g, ' ')}
-                                                </TLink>
+                                                {s.name.replace(/-/g, ' ')}
                                             </TName>
-                                            <td>
-                                                <div className='moves_table_body_row_category' id={m?.damage_class?.name}>
-                                                    <img alt={m.damage_class.name} />
-                                                    <span>{m?.damage_class?.name}</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className='moves_table_body_row_type' id={m.type.name}>
-                                                    <img alt={m.type.name} />
-                                                    <span>{m?.type?.name}</span>
-                                                </div>
-                                            </td>
-                                            <TEffect>
-                                                {m?.flavor_text_entries?.map((mf) => 
-                                                    mf.language.name === 'en' && mf.flavor_text !== 'Dummy Data' &&
-                                                        <span>
-                                                            {mf?.flavor_text}
-                                                        </span>
-                                                )}
-                                            </TEffect>
-                                        </TRow>
-                                    ))}
-                                </tbody>
-                            </Table>
-                        </section>
-
-                        <section className={toggleState === 2 ? "active" : "hidden"}>
-                            <ModifiedLeftTitle>Status</ModifiedLeftTitle>
-                            <Table>
-                                <THead>
-                                    <tr className='moves_status_table_head_row'>
-                                        <th className='moves_status_table_head_row_element'>Status</th>
-                                        <th className='moves_status_table_head_row_element'>Moves</th>
-                                    </tr>
-                                </THead>
-                                <tbody>
-                                    {status.filter(s => s.name !== 'none') 
-                                        .sort((a, b) => a.name.localeCompare(b.name)).map((s) => (
-                                            <TRow>
-                                                <TName>
-                                                    {s.name.replace(/-/g, ' ')}
-                                                </TName>
-                                                <td>
-                                                    {s.moves.map((sm) => (
-                                                        <StatusMoves
+                                            <StatusMoves>
+                                                {s.moves.map((sm) => (
+                                                    <Link
                                                         to={`/moves/${sm.name}`}
-                                                        className='moves_status_table_body_row_moves_link'
-                                                        >
-                                                            <p>{sm.name.replace(/-/g, ' ')}</p>
-                                                        </StatusMoves>
-                                                    ))}
-                                                </td>
-                                            </TRow>
-                                        ))
-                                    }
-                                </tbody>
-                            </Table>
-                        </section>
-                    </>
-                )}
-            </main>
-            <Footer />
-        </>
+                                                    >
+                                                        <p>{sm.name.replace(/-/g, ' ')}</p>
+                                                    </Link>
+                                                ))}
+                                            </StatusMoves>
+                                        </TRow>
+                                    ))
+                                }
+                            </tbody>
+                        </Table>
+                    </section>
+                </>
+            )}
+        </MainBig>
     )
 }
 

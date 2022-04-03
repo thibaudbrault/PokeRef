@@ -5,8 +5,8 @@ import { ThemeProvider } from 'styled-components';
 import { Reset } from './components/BaseStyles/Reset';
 import { Fonts } from './components/BaseStyles/Fonts';
 import { lightTheme, darkTheme } from './components/BaseStyles/Themes';
+import Pokemon from './pages/Pokemon/Pokemon';
 
-const Wrapper = lazy(() => import ('./Wrapper'));
 const Moves = lazy(() => import ('./pages/Moves/Moves'));
 const Abilities = lazy(() => import ('./pages/Abilities/Abilities'));
 const Types = lazy(() => import ('./pages/Types/Types'));
@@ -55,7 +55,7 @@ function App() {
           <Fonts />
           <Suspense fallback={<p className='lazy_loading'>Welcome to PokéInfo!</p>}>
             <Routes>
-              <Route path="/" element={<Wrapper />} />
+              <Route path="/" element={<Pokemon />} />
               <Route path="/pikachu" element={<Pikachu />} />
               <Route path="/pokemon/:name" element={<PokemonCard />} />
               <Route path="/moves" element={<Moves />} />
