@@ -20,8 +20,14 @@ export const PokedexDropdown = styled.div`
         border: 1px solid ${({ theme }) => theme.secondary};
         border-radius: 5px;
         transition: 0.3s ease-in-out;
+
         &:focus {
             border: 1px solid ${({ theme }) => theme.red};
+        }
+
+        & option {
+            color: ${({ theme }) => theme.secondary};
+            background: ${({ theme }) => theme.main};
         }
     }
 `
@@ -84,15 +90,6 @@ export const PokemonElement = styled.li`
     }
 `
 
-export const PokemonImage = styled.div`
-    position: relative;
-    margin: 0 auto;
-    
-    &:hover .pokedex_container_inner_image_shiny {
-        opacity: 1;
-    }
-`
-
 export const SpriteNormal = styled.img`
     position: relative;
     top: 0;
@@ -108,10 +105,19 @@ export const SpriteShiny = styled.img`
     transition: 0.3s ease-in-out;
 `
 
+export const PokemonImage = styled.div`
+    position: relative;
+    margin: 0 auto;
+    
+    &:hover ${SpriteShiny} {
+        opacity: 1;
+    }
+`
+
 export const PokemonTypes = styled.div`
     position: relative;
     width: 100%;
-    height: 50%;
+    height: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -126,7 +132,7 @@ export const PokemonTypes = styled.div`
         text-transform: uppercase;
         text-align: center;
         text-shadow: 1px 1px 2px rgba(0,0,0,.7);
-        color: ${({ theme }) => theme.main};
+        color: #c4c4c4;
         border: 1px solid rgba($color: #161616, $alpha: 0.2);
 
         & img {

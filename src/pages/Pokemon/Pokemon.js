@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { Loading, PokedexDropdown, PokemonElement, PokemonImage, PokemonList, PokemonTypes, SpriteNormal } from './StyledPokemon';
+import { Loading, PokedexDropdown, PokemonElement, PokemonImage, PokemonList, PokemonTypes, SpriteNormal, SpriteShiny } from './StyledPokemon';
 import { Input, Search } from '../../components/BaseStyles/Inputs';
 import { MainSmall } from '../../components/BaseStyles/Sizing';
 
@@ -163,28 +163,28 @@ function Pokemon() {
                                     <SpriteNormal src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${p.id}.png`} alt={p.name} loading='lazy' />}
                                 {p.id > 151 && p.id < 252 &&
                                     <>
-                                        <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/${p.id}.png`} alt={p.name} loading='lazy' />
-                                        <img className='pokedex_container_inner_image_shiny' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
+                                        <SpriteNormal src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/${p.id}.png`} alt={p.name} loading='lazy' />
+                                        <SpriteShiny src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
                                     </>}
                                 {p.id > 251 && p.id < 387 &&
                                     <>
-                                        <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/${p.id}.png`} alt={p.name} loading='lazy' />
-                                        <img className='pokedex_container_inner_image_shiny' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
+                                        <SpriteNormal src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/${p.id}.png`} alt={p.name} loading='lazy' />
+                                        <SpriteShiny src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
                                     </>}
                                 {p.id > 386 && p.id < 494 &&
                                     <>
-                                        <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/platinum/${p.id}.png`} alt={p.name} loading='lazy' />
-                                        <img className='pokedex_container_inner_image_shiny' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/platinum/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
+                                        <SpriteNormal src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/platinum/${p.id}.png`} alt={p.name} loading='lazy' />
+                                        <SpriteShiny src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/platinum/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
                                     </>}
                                 {p.id > 493 && p.id < 650 && 
                                     <>
-                                        <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${p.id}.png`} alt={p.name} loading='lazy' />
-                                        <img className='pokedex_container_inner_image_shiny' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
+                                        <SpriteNormal src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${p.id}.png`} alt={p.name} loading='lazy' />
+                                        <SpriteShiny src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/shiny/${p.id}.png`} alt={p.name} loading='lazy' />
                                     </>}
                                 {p.id > 649 && 
                                     <>
-                                        <img className='pokedex_container_inner_image_sprite' src={p.sprites.front_default} alt={p.name} loading='lazy' />
-                                        <img className='pokedex_container_inner_image_shiny' src={p.sprites.front_shiny} alt=' ' loading='lazy' />
+                                        <SpriteNormal src={p.sprites.front_default} alt={p.name} loading='lazy' />
+                                        <SpriteShiny src={p.sprites.front_shiny} alt=' ' loading='lazy' />
                                     </>}
                             </PokemonImage>
                             {p?.id < 899 &&

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
+import { MainSmall } from '../../BaseStyles/Sizing';
+import { PikachuPage } from './StyledPikachu';
+import { PokemonElement, PokemonImage, PokemonTypes, SpriteNormal, SpriteShiny } from '../../../pages/Pokemon/StyledPokemon';
 
 const Pikachu = () => {
 
@@ -26,20 +29,18 @@ const Pikachu = () => {
 
 
     return (
-        <main className='pikachu'>
+        <MainSmall>
             {loading ? (
                 <BarWave width='40px' height='20px' color='#cc0000' />
             ) : (
-                <ol className='pikachu_container'>
+                <PikachuPage>
                     {pikachu?.map((p) => 
                         p?.name?.includes('pikachu') && !p?.name?.includes('gmax') && !p?.name?.includes('starter') && !p?.name?.includes('world') &&
-                            <li key={p.name} className='pikachu_container_inner'>
-                                <div className='pikachu_container_inner_image'>
-                                    <>
-                                        <img className='pikachu_container_inner_image_sprite' src={p.sprites.front_default} alt={p.name} loading='lazy' />
-                                        <img className='pikachu_container_inner_image_shiny' src={p.sprites.front_shiny} alt=' ' loading='lazy' />
-                                    </>
-                                </div>
+                            <PokemonElement>
+                                <PokemonImage>
+                                    <SpriteNormal src={p.sprites.front_default} alt={p.name} loading='lazy' />
+                                    <SpriteShiny src={p.sprites.front_shiny} alt=' ' loading='lazy' />
+                                </PokemonImage>
                                 <p>#025</p>
                                 <Link
                                     to={`/pokemon/${p.name}`}
@@ -49,9 +50,9 @@ const Pikachu = () => {
                                         {p?.name?.replace(/-/g, ' ')}
                                     </h2>
                                 </Link>
-                                <div className='pikachu_container_inner_types'>
+                                <PokemonTypes>
                                     {p?.types?.map((pt) => (
-                                        <div id={pt.type.name} className='pikachu_container_inner_types_element'>
+                                        <div id={pt.type.name}>
                                             <img alt={pt.type.name} />
                                             <Link
                                                 to={`/types/${pt.type.name}`}
@@ -60,12 +61,12 @@ const Pikachu = () => {
                                             </Link>
                                         </div>
                                     ))}
-                                </div>
-                            </li>
+                                </PokemonTypes>
+                            </PokemonElement>
                     )}
-                </ol>
+                </PikachuPage>
             )}
-        </main>
+        </MainSmall>
     )
 }
 

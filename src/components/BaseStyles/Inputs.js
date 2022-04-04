@@ -26,6 +26,7 @@ export const Input = styled.div`
 		border: 1px solid ${({ theme }) => theme.secondary};
 		border-radius: 5px;
 		transition: 0.3s ease-in-out;
+		
 		&:focus {
 			outline: none;
 			border: 1px solid ${({ theme }) => theme.red};
