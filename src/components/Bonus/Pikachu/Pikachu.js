@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
-import Header from '../../Header/Header';
-import Nav from '../../Nav/Nav';
-import Footer from '../../Footer/Footer';
-
 const Pikachu = () => {
 
     const [pikachu, setPikachu] = useState([]);
@@ -30,51 +26,46 @@ const Pikachu = () => {
 
 
     return (
-        <>
-            <Header />
-            <Nav />
-            <main className='pikachu'>
-                {loading ? (
-                    <BarWave width='40px' height='20px' color='#cc0000' />
-                ) : (
-                    <ol className='pikachu_container'>
-                        {pikachu?.map((p) => 
-                            p?.name?.includes('pikachu') && !p?.name?.includes('gmax') && !p?.name?.includes('starter') && !p?.name?.includes('world') &&
-                                <li key={p.name} className='pikachu_container_inner'>
-                                    <div className='pikachu_container_inner_image'>
-                                        <>
-                                            <img className='pikachu_container_inner_image_sprite' src={p.sprites.front_default} alt={p.name} loading='lazy' />
-                                            <img className='pikachu_container_inner_image_shiny' src={p.sprites.front_shiny} alt=' ' loading='lazy' />
-                                        </>
-                                    </div>
-                                    <p>#025</p>
-                                    <Link
-                                        to={`/pokemon/${p.name}`}
-                                        key={p.name}
-                                    >
-                                        <h2>
-                                            {p?.name?.replace(/-/g, ' ')}
-                                        </h2>
-                                    </Link>
-                                    <div className='pikachu_container_inner_types'>
-                                        {p?.types?.map((pt) => (
-                                            <div id={pt.type.name} className='pikachu_container_inner_types_element'>
-                                                <img alt={pt.type.name} />
-                                                <Link
-                                                    to={`/types/${pt.type.name}`}
-                                                >
-                                                    {pt?.type?.name}
-                                                </Link>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </li>
-                        )}
-                    </ol>
-                )}
-            </main>
-            <Footer />
-        </>
+        <main className='pikachu'>
+            {loading ? (
+                <BarWave width='40px' height='20px' color='#cc0000' />
+            ) : (
+                <ol className='pikachu_container'>
+                    {pikachu?.map((p) => 
+                        p?.name?.includes('pikachu') && !p?.name?.includes('gmax') && !p?.name?.includes('starter') && !p?.name?.includes('world') &&
+                            <li key={p.name} className='pikachu_container_inner'>
+                                <div className='pikachu_container_inner_image'>
+                                    <>
+                                        <img className='pikachu_container_inner_image_sprite' src={p.sprites.front_default} alt={p.name} loading='lazy' />
+                                        <img className='pikachu_container_inner_image_shiny' src={p.sprites.front_shiny} alt=' ' loading='lazy' />
+                                    </>
+                                </div>
+                                <p>#025</p>
+                                <Link
+                                    to={`/pokemon/${p.name}`}
+                                    key={p.name}
+                                >
+                                    <h2>
+                                        {p?.name?.replace(/-/g, ' ')}
+                                    </h2>
+                                </Link>
+                                <div className='pikachu_container_inner_types'>
+                                    {p?.types?.map((pt) => (
+                                        <div id={pt.type.name} className='pikachu_container_inner_types_element'>
+                                            <img alt={pt.type.name} />
+                                            <Link
+                                                to={`/types/${pt.type.name}`}
+                                            >
+                                                {pt?.type?.name}
+                                            </Link>
+                                        </div>
+                                    ))}
+                                </div>
+                            </li>
+                    )}
+                </ol>
+            )}
+        </main>
     )
 }
 

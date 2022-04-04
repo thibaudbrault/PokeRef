@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { PokedexDropdown } from './StyledPokemon';
+import { Loading, PokedexDropdown, PokemonElement, PokemonImage, PokemonList, PokemonTypes, SpriteNormal } from './StyledPokemon';
 import { Input, Search } from '../../components/BaseStyles/Inputs';
+import { MainSmall } from '../../components/BaseStyles/Sizing';
 
 function Pokemon() {
 
@@ -91,7 +92,7 @@ function Pokemon() {
     }, []);
 
     return (
-        <main className='pokedex'>
+        <MainSmall>
             <Search>
                 <Input>
                     <label htmlFor="searchBar">Search</label>
@@ -148,18 +149,18 @@ function Pokemon() {
                     </select>
                 </PokedexDropdown>
             </Search>
-            <ol className='pokedex_container'>
+            <PokemonList>
                 <InfiniteScroll
                     dataLength={filteredPokedex.length}
                     next={next}
-                    hasMore={false}
-                    loader={<p className='loading'>More Pokémon coming</p>}
+                    hasMore={true}
+                    loader={<Loading>More Pokémon coming</Loading>}
                 >
                     {filteredPokedex?.map((p) => 
-                        <li key={p.name} className='pokedex_container_inner'>
-                            <div className='pokedex_container_inner_image'>
+                        <PokemonElement>
+                            <PokemonImage>
                                 {p.id < 152 &&
-                                    <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${p.id}.png`} alt={p.name} loading='lazy' />}
+                                    <SpriteNormal src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${p.id}.png`} alt={p.name} loading='lazy' />}
                                 {p.id > 151 && p.id < 252 &&
                                     <>
                                         <img className='pokedex_container_inner_image_sprite' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/${p.id}.png`} alt={p.name} loading='lazy' />
@@ -185,7 +186,7 @@ function Pokemon() {
                                         <img className='pokedex_container_inner_image_sprite' src={p.sprites.front_default} alt={p.name} loading='lazy' />
                                         <img className='pokedex_container_inner_image_shiny' src={p.sprites.front_shiny} alt=' ' loading='lazy' />
                                     </>}
-                            </div>
+                            </PokemonImage>
                             {p?.id < 899 &&
                                 <p>#{p?.id?.toString()?.padStart(3, '0')}</p>
                             }
@@ -197,9 +198,9 @@ function Pokemon() {
                                     {p?.name?.replace(/-/g, ' ')}
                                 </h2>
                             </Link>
-                            <div className='pokedex_container_inner_types'>
+                            <PokemonTypes>
                                 {p?.types?.map((pt) => (
-                                    <div id={pt.type.name} className='pokedex_container_inner_types_element'>
+                                    <div id={pt.type.name}>
                                         <img alt={pt.type.name} />
                                         <Link
                                             to={`/types/${pt.type.name}`}
@@ -208,12 +209,12 @@ function Pokemon() {
                                         </Link>
                                     </div>
                                 ))}
-                            </div>
-                        </li>
+                            </PokemonTypes>
+                        </PokemonElement>
                     )}
                 </InfiniteScroll>
-            </ol>
-        </main>
+            </PokemonList>
+        </MainSmall>
     )
 }
 
