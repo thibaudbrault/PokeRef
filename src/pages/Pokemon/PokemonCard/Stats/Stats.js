@@ -1,15 +1,17 @@
-import React from 'react'
-import Bars from './Bars/Bars'
-import Types from './Types/Types'
+import React from 'react';
+import Bars from './Bars/Bars';
+import Types from './Types/Types';
+
+import { PokemonStatsSection } from './StyledStats';
 
 function Stats({pokemon}) {
     return (
-        <section className='pokemon_stats'>
+        <PokemonStatsSection>
             <Bars 
                 pokemon={pokemon}
             />
             <Types />
-        </section>
+        </PokemonStatsSection>
     )
 }
 

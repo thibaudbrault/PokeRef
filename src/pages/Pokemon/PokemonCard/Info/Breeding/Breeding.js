@@ -1,4 +1,6 @@
 import React from 'react'
+import { H3 } from '../../../../../components/BaseStyles/Headings';
+import { PokemonInfoTable } from '../StyledInfo';
 
 function Breeding({species, evolution}) {
 
@@ -6,15 +8,15 @@ function Breeding({species, evolution}) {
     const male = '100' - (species?.gender_rate / 8 * 100);
 
     return (
-        <div className='pokemon_info_container'>
-            <h3 className='pokemon_info_container_title'>Breeding</h3>
-            <table className='pokemon_info_container_table'>
+        <div>
+            <H3>Breeding</H3>
+            <PokemonInfoTable>
                 <tbody>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             Gender
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                             {species?.gender_rate !== -1 ? (
                                 <>
                                     {male}% male
@@ -28,29 +30,29 @@ function Breeding({species, evolution}) {
                             )}
                         </td>
                     </tr>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             Egg groups
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                             {species?.egg_groups?.map((seg) => 
                                 <p>{seg?.name}</p>
                             )}
                         </td>
                     </tr>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             Egg cycles
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                                 {species?.hatch_counter} cycles
                         </td>
                     </tr>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             Baby trigger item
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                             {evolution?.baby_trigger_item !== null ? (
                                 evolution?.baby_trigger_item?.name.replace(/-/g, ' ')
                             ) : (
@@ -58,11 +60,11 @@ function Breeding({species, evolution}) {
                             )}
                         </td>
                     </tr>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             Habitat
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                             {species?.habitat !== null ? (
                                 species?.habitat?.name
                             ) : (
@@ -71,7 +73,7 @@ function Breeding({species, evolution}) {
                         </td>
                     </tr>
                 </tbody>
-            </table>
+            </PokemonInfoTable>
         </div>
     )
 }

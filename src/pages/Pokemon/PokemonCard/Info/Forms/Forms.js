@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { H3 } from '../../../../../components/BaseStyles/Headings';
+import { PokemonInfoTable } from '../StyledInfo';
 
 function Forms({species}) {
     return (
-        <div className='pokemon_info_container'>
-            <h3 className='pokemon_info_container_title'>Forms</h3>
-            <table className='pokemon_info_container_table'>
+        <div>
+            <H3>Forms</H3>
+            <PokemonInfoTable>
                 <tbody>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             Alternative forms
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                                 {species?.forms_switchable === true ? (
                                     'Yes'
                                 ) : (
@@ -19,11 +21,11 @@ function Forms({species}) {
                                 )}
                         </td>
                     </tr>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             Varieties
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                             {species?.varieties?.map((sv) => 
                                 <Link
                                 to={`/pokemon/${sv?.pokemon?.name}`}
@@ -39,11 +41,11 @@ function Forms({species}) {
                             )}
                         </td>
                     </tr>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             Gender differences
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                                 {species?.has_gender_differences === true ? (
                                     'Yes'
                                 ) : (
@@ -52,7 +54,7 @@ function Forms({species}) {
                         </td>
                     </tr>
                 </tbody>
-            </table>
+            </PokemonInfoTable>
         </div>
     )
 }

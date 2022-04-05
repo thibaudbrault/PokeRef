@@ -2,12 +2,13 @@ import React from 'react';
 import Desc from './Desc/Desc';
 import Sprite from './Sprite/Sprite';
 import Base from './Base/Base';
+import { PokemonDataSection, PokemonDataSprite } from './StyledData';
 
 function Data({pokemon, species, location, game}) {
 
     return (
-        <section className='pokemon_data'>
-            <div className='pokemon_data_container'>
+        <PokemonDataSection>
+            <div>
                 <Desc 
                     species={species}
                     pokemon={pokemon}
@@ -20,13 +21,13 @@ function Data({pokemon, species, location, game}) {
                     game={game}
                 />
             </div>
-            <div className='pokemon_data_more'>
+            <PokemonDataSprite>
                 <Sprite 
                     species={species}
                     pokemon={pokemon}
                 />
-            </div>
-        </section>
+            </PokemonDataSprite>
+        </PokemonDataSection>
     )
 }
 

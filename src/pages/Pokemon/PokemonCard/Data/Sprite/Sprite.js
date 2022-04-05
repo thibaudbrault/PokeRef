@@ -1,15 +1,16 @@
 import React from 'react';
+import { PokemonDataImg, PokemonDataLeg, PokemonDataMyt } from '../StyledData';
 
 function Sprite({pokemon, species}) {
     return (
         <>
-            <img className='pokemon_data_more_sprite' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt={pokemon?.name} loading='lazy' />
+            <PokemonDataImg src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt={pokemon?.name} loading='lazy' />
             <>
                 {species?.is_legendary === true && (
-                    <span className='pokemon_data_more_legendary'>Legendary</span>
+                    <PokemonDataLeg>Legendary</PokemonDataLeg>
                 )}
                 {species?.is_mythical === true && (
-                    <span className='pokemon_data_more_mythical'>Mythical</span>
+                    <PokemonDataMyt>Mythical</PokemonDataMyt>
                 )}
             </>
         </>

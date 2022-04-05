@@ -1,60 +1,62 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { H3 } from '../../../../../components/BaseStyles/Headings';
+import { PokemonInfoTable } from '../StyledInfo';
 
 function Training({pokemon, species}) {
     return (
-        <div className='pokemon_info_container'>
-            <h3 className='pokemon_info_container_title'>Training</h3>
-            <table className='pokemon_info_container_table'>
+        <div>
+            <H3>Training</H3>
+            <PokemonInfoTable>
                 <tbody>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             EV yield
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                             {pokemon?.stats?.map((ps) => 
                                 ps?.effort !== 0 &&
                                 <p>{ps?.effort} {ps?.stat?.name?.replace(/-/g, ' ')}</p>
                             )}
                         </td>
                     </tr>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             Catch rate
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                             {species?.capture_rate}
                         </td>
                     </tr>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             Base happiness
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                             {species?.base_happiness}
                         </td>
                     </tr>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             Base experience
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                             {pokemon?.base_experience}
                         </td>
                     </tr>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             Growth rate
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                             {species?.growth_rate?.name.replace(/-/g, ' ')}
                         </td>
                     </tr>
-                    <tr className='pokemon_info_container_table_row'>
-                        <th className='pokemon_info_container_table_row_head'>
+                    <tr>
+                        <th>
                             Held items
                         </th>
-                        <td className='pokemon_info_container_table_row_element'>
+                        <td>
                             {pokemon?.held_items?.length > 0 ? (
                                 pokemon?.held_items?.map((ph) =>
                                     <Link
@@ -69,7 +71,7 @@ function Training({pokemon, species}) {
                         </td>
                     </tr>
                 </tbody>
-            </table>
+            </PokemonInfoTable>
         </div>
     )
 }

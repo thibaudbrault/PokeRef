@@ -1,20 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { PokemonDataDesc, PokemonDataTypes } from '../StyledData';
 
 function Desc({pokemon, species, game}) {
     return (
-        <ul className='pokemon_data_container_list'>
-            <li className='pokemon_data_container_list_desc'>
+        <ul>
+            <PokemonDataDesc>
                 {species?.flavor_text_entries?.map((sf) => 
                     sf?.language?.name === 'en' && sf?.version?.name === game && 
                         <>
                             {sf?.flavor_text?.replace('\u000c', ' ')}
                         </>
                 )}
-            </li>
-            <li className='pokemon_data_container_list_types'>
+            </PokemonDataDesc>
+            <PokemonDataTypes>
                 {pokemon?.types?.map((pt) => (
-                    <div id={pt.type.name} className='pokemon_data_container_list_types_element'>
+                    <div id={pt.type.name}>
                         <img alt={pt.type.name} />
                         <Link
                             to={`types/${pt.type.name}`}
@@ -23,7 +24,7 @@ function Desc({pokemon, species, game}) {
                         </Link>
                     </div>
                 ))}
-            </li>
+            </PokemonDataTypes>
         </ul>
     )
 }

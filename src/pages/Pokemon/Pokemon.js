@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { Loading, PokedexDropdown, PokemonElement, PokemonImage, PokemonList, PokemonTypes, SpriteNormal, SpriteShiny } from './StyledPokemon';
+import { Loading, PokedexDropdown, PokedexElement, PokedexImage, PokedexList, PokedexTypes, SpriteNormal, SpriteShiny } from './StyledPokemon';
 import { Input, Search } from '../../components/BaseStyles/Inputs';
 import { MainSmall } from '../../components/BaseStyles/Sizing';
 
@@ -149,7 +149,7 @@ function Pokemon() {
                     </select>
                 </PokedexDropdown>
             </Search>
-            <PokemonList>
+            <PokedexList>
                 <InfiniteScroll
                     dataLength={filteredPokedex.length}
                     next={next}
@@ -157,8 +157,8 @@ function Pokemon() {
                     loader={<Loading>More Pokémon coming</Loading>}
                 >
                     {filteredPokedex?.map((p) => 
-                        <PokemonElement>
-                            <PokemonImage>
+                        <PokedexElement>
+                            <PokedexImage>
                                 {p.id < 152 &&
                                     <SpriteNormal src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${p.id}.png`} alt={p.name} loading='lazy' />}
                                 {p.id > 151 && p.id < 252 &&
@@ -186,7 +186,7 @@ function Pokemon() {
                                         <SpriteNormal src={p.sprites.front_default} alt={p.name} loading='lazy' />
                                         <SpriteShiny src={p.sprites.front_shiny} alt=' ' loading='lazy' />
                                     </>}
-                            </PokemonImage>
+                            </PokedexImage>
                             {p?.id < 899 &&
                                 <p>#{p?.id?.toString()?.padStart(3, '0')}</p>
                             }
@@ -198,7 +198,7 @@ function Pokemon() {
                                     {p?.name?.replace(/-/g, ' ')}
                                 </h2>
                             </Link>
-                            <PokemonTypes>
+                            <PokedexTypes>
                                 {p?.types?.map((pt) => (
                                     <div id={pt.type.name}>
                                         <img alt={pt.type.name} />
@@ -209,11 +209,11 @@ function Pokemon() {
                                         </Link>
                                     </div>
                                 ))}
-                            </PokemonTypes>
-                        </PokemonElement>
+                            </PokedexTypes>
+                        </PokedexElement>
                     )}
                 </InfiniteScroll>
-            </PokemonList>
+            </PokedexList>
         </MainSmall>
     )
 }

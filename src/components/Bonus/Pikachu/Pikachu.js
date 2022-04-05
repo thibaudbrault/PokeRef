@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
+
 import { MainSmall } from '../../BaseStyles/Sizing';
 import { PikachuPage } from './StyledPikachu';
-import { PokemonElement, PokemonImage, PokemonTypes, SpriteNormal, SpriteShiny } from '../../../pages/Pokemon/StyledPokemon';
+import { PokedexElement, PokedexImage, PokedexTypes, SpriteNormal, SpriteShiny } from '../../../pages/Pokemon/StyledPokemon';
 
 const Pikachu = () => {
 
@@ -36,11 +37,11 @@ const Pikachu = () => {
                 <PikachuPage>
                     {pikachu?.map((p) => 
                         p?.name?.includes('pikachu') && !p?.name?.includes('gmax') && !p?.name?.includes('starter') && !p?.name?.includes('world') &&
-                            <PokemonElement>
-                                <PokemonImage>
+                            <PokedexElement>
+                                <PokedexImage>
                                     <SpriteNormal src={p.sprites.front_default} alt={p.name} loading='lazy' />
                                     <SpriteShiny src={p.sprites.front_shiny} alt=' ' loading='lazy' />
-                                </PokemonImage>
+                                </PokedexImage>
                                 <p>#025</p>
                                 <Link
                                     to={`/pokemon/${p.name}`}
@@ -50,7 +51,7 @@ const Pikachu = () => {
                                         {p?.name?.replace(/-/g, ' ')}
                                     </h2>
                                 </Link>
-                                <PokemonTypes>
+                                <PokedexTypes>
                                     {p?.types?.map((pt) => (
                                         <div id={pt.type.name}>
                                             <img alt={pt.type.name} />
@@ -61,8 +62,8 @@ const Pikachu = () => {
                                             </Link>
                                         </div>
                                     ))}
-                                </PokemonTypes>
-                            </PokemonElement>
+                                </PokedexTypes>
+                            </PokedexElement>
                     )}
                 </PikachuPage>
             )}

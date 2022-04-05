@@ -32,7 +32,7 @@ export const PokedexDropdown = styled.div`
     }
 `
 
-export const PokemonList = styled.ol`
+export const PokedexList = styled.ol`
     & div {
         & div {
             display: flex;
@@ -43,7 +43,7 @@ export const PokemonList = styled.ol`
     }
 `
 
-export const PokemonElement = styled.li`
+export const PokedexElement = styled.li`
     width: 20rem;
     height: 30rem;
     margin: 3rem;
@@ -105,7 +105,7 @@ export const SpriteShiny = styled.img`
     transition: 0.3s ease-in-out;
 `
 
-export const PokemonImage = styled.div`
+export const PokedexImage = styled.div`
     position: relative;
     margin: 0 auto;
     
@@ -114,7 +114,7 @@ export const PokemonImage = styled.div`
     }
 `
 
-export const PokemonTypes = styled.div`
+export const PokedexTypes = styled.div`
     position: relative;
     width: 100%;
     height: 40%;

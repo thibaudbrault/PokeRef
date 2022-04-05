@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { PokemonDataTable } from '../StyledData';
 
 function Base({pokemon, species, game, location}) {
 
@@ -7,13 +8,13 @@ function Base({pokemon, species, game, location}) {
     const weight = (pokemon?.weight * 0.1).toFixed(2);
 
     return (
-        <table className='pokemon_data_container_table'>
-            <tbody className='pokemon_data_container_table_body'>
-                <tr className='pokemon_data_container_table_body_row'>
-                    <th className='pokemon_data_container_table_body_row_head'>
+        <PokemonDataTable>
+            <tbody>
+                <tr>
+                    <th>
                         National number
                     </th>
-                    <td className='pokemon_data_container_table_body_row_element'>
+                    <td>
                         {pokemon?.id > 10000 ? (
                             `# ${species?.id?.toString()?.padStart(3, '0')}`
                         ) : (
@@ -21,11 +22,11 @@ function Base({pokemon, species, game, location}) {
                         )}
                     </td>
                 </tr>
-                <tr className='pokemon_data_container_table_body_row'>
-                    <th className='pokemon_data_container_table_body_row_head'>
+                <tr>
+                    <th>
                         Locations
                     </th>
-                    <td className='pokemon_data_container_table_body_row_element'>
+                    <td>
                         {location.length !== 0 ? (
                             location?.map((l) => 
                                 l?.version_details?.map((lv) =>
@@ -40,11 +41,11 @@ function Base({pokemon, species, game, location}) {
                         )}
                     </td>
                 </tr>
-                <tr className='pokemon_data_container_table_body_row'>
-                    <th className='pokemon_data_container_table_body_row_head'>
+                <tr>
+                    <th>
                         Abilities
                     </th>
-                    <td className='pokemon_data_container_table_body_row_element'>
+                    <td>
                         {pokemon?.abilities?.map((pa) => 
                             <p>
                                 <Link
@@ -62,27 +63,27 @@ function Base({pokemon, species, game, location}) {
                         )}
                     </td>
                 </tr>
-                <tr className='pokemon_data_container_table_body_row'>
-                    <th className='pokemon_data_container_table_body_row_head'>
+                <tr>
+                    <th>
                         Height
                     </th>
-                    <td className='pokemon_data_container_table_body_row_element'>
+                    <td>
                         {height.toString()} m
                     </td>
                 </tr>
-                <tr className='pokemon_data_container_table_body_row'>
-                    <th className='pokemon_data_container_table_body_row_head'>
+                <tr>
+                    <th>
                         Weight
                     </th>
-                    <td className='pokemon_data_container_table_body_row_element'>
+                    <td>
                         {weight.toString()} kg
                     </td>
                 </tr>
-                <tr className='pokemon_data_container_table_body_row'>
-                    <th className='pokemon_data_container_table_body_row_head'>
+                <tr>
+                    <th>
                         Category
                     </th>
-                    <td className='pokemon_data_container_table_body_row_element'>
+                    <td>
                         {species?.genera?.map((sg) => 
                             sg?.language?.name === 'en' &&
                             <>
@@ -91,24 +92,24 @@ function Base({pokemon, species, game, location}) {
                         )}
                     </td>
                 </tr>
-                <tr className='pokemon_data_container_table_body_row'>
-                    <th className='pokemon_data_container_table_body_row_head'>
+                <tr>
+                    <th>
                         Shape
                     </th>
-                    <td className='pokemon_data_container_table_body_row_element'>
+                    <td>
                         {species?.shape?.name}
                     </td>
                 </tr>
-                <tr className='pokemon_data_container_table_body_row'>
-                    <th className='pokemon_data_container_table_body_row_head'>
+                <tr>
+                    <th>
                         Color
                     </th>
-                    <td className='pokemon_data_container_table_body_row_element'>
+                    <td>
                         {species?.color?.name}
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </PokemonDataTable>
     )
 }
 

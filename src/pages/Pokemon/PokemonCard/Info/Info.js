@@ -3,9 +3,11 @@ import Breeding from './Breeding/Breeding'
 import Forms from './Forms/Forms'
 import Training from './Training/Training'
 
+import { PokemonInfoSection } from './StyledInfo'
+
 function Info({pokemon, species, evolution}) {
     return (
-        <section className='pokemon_info'>
+        <PokemonInfoSection>
             <Breeding 
                 species={species}
                 evolution={evolution}
@@ -17,7 +19,7 @@ function Info({pokemon, species, evolution}) {
             <Forms 
                 species={species}
             />
-        </section>
+        </PokemonInfoSection>
     )
 }
 

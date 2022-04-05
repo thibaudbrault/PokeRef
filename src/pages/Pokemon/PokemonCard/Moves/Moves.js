@@ -6,11 +6,13 @@ import Machine from './Machine/Machine';
 import Egg from './Egg/Egg';
 import Evolving from './Evolving/Evolving';
 import Tutor from './Tutor/Tutor';
+import { PokemonMovesEmpty, PokemonMovesSection } from './StyledMoves';
+import { H3 } from '../../../../components/BaseStyles/Headings';
 
 function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}) {
     return (
-        <section className='pokemon_moves'>
-            <h3 className='pokemon_moves_title'>Moves</h3>
+        <PokemonMovesSection>
+            <H3>Moves</H3>
             <Method 
                 toggleState={toggleState}
                 toggleTable={toggleTable}
@@ -47,9 +49,11 @@ function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}
                 toggleState={toggleState}
             />
 
-            <p className='pokemon_moves_void'><span>{pokemon?.name?.replace(/-/g, ' ')}</span> ‌‌ doesn't learn any moves this way in Pokémon ‌‌ <span>{game}</span></p>
+            <PokemonMovesEmpty>
+                <span>{pokemon?.name?.replace(/-/g, ' ')}</span> ‌‌ doesn't learn any moves this way in Pokémon ‌‌ <span>{game}</span>
+            </PokemonMovesEmpty>
             
-        </section>
+        </PokemonMovesSection>
     )
 }
 

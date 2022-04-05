@@ -1,9 +1,10 @@
 import React from 'react'
+import { H3 } from '../../../../../components/BaseStyles/Headings'
 
 function Types() {
     return (
-        <div className='pokemon_stats_types'>
-            <h3 className='pokemon_stats_types_title'>Types relations</h3>
+        <div>
+            <H3>Types relations</H3>
         </div>
     )
 }

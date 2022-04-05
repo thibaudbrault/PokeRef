@@ -1,52 +1,54 @@
 import React from 'react'
+import { H3 } from '../../../../components/BaseStyles/Headings'
+import { PokemonSpritesDiv, PokemonSpritesSection } from './StyledSprites'
 
 function Sprites({pokemon}) {
     return (
-        <section className='pokemon_sprites'>
-            <h3 className='pokemon_sprites_title'>Sprites</h3>
-            <div className='pokemon_sprites_container'>
-                <div className='pokemon_sprites_container_inner'>
+        <PokemonSpritesSection>
+            <H3>Sprites</H3>
+            <PokemonSpritesDiv>
+                <div>
                     <img src={pokemon?.sprites?.front_default} alt={pokemon?.name} />
-                    <p className='pokemon_sprites_container_inner_text'>Front Default</p>
+                    <p>Front Default</p>
                 </div>
-                <div className='pokemon_sprites_container_inner'>
+                <div>
                     <img src={pokemon?.sprites?.back_default} alt={pokemon?.name} />
-                    <p className='pokemon_sprites_container_inner_text'>Back Default</p>
+                    <p>Back Default</p>
                 </div>
                 {pokemon?.sprites?.front_female !== null &&
-                    <div className='pokemon_sprites_container_inner'>
+                    <div>
                         <img src={pokemon?.sprites?.front_female} alt={pokemon?.name} />
-                        <p className='pokemon_sprites_container_inner_text'>Front Female</p>
+                        <p>Front Female</p>
                     </div>
                 }
                 {pokemon?.sprites?.back_female !== null &&
-                    <div className='pokemon_sprites_container_inner'>
+                    <div>
                         <img src={pokemon?.sprites?.back_female} alt={pokemon?.name} />
-                        <p className='pokemon_sprites_container_inner_text'>Back Female</p>
+                        <p>Back Female</p>
                     </div>
                 }
-                <div className='pokemon_sprites_container_inner'>
+                <div>
                     <img src={pokemon?.sprites?.front_shiny} alt={pokemon?.name} />
-                    <p className='pokemon_sprites_container_inner_text'>Front Shiny</p>
+                    <p>Front Shiny</p>
                 </div>
-                <div className='pokemon_sprites_container_inner'>
+                <div>
                     <img src={pokemon?.sprites?.back_shiny} alt={pokemon?.name} />
-                    <p className='pokemon_sprites_container_inner_text'>Back Shiny</p>
+                    <p>Back Shiny</p>
                 </div>
                 {pokemon?.sprites?.front_shiny_female !== null &&
-                    <div className='pokemon_sprites_container_inner'>
+                    <div>
                         <img src={pokemon?.sprites?.front_shiny_female} alt={pokemon?.name} />
-                        <p className='pokemon_sprites_container_inner_text'>Front Shiny Female</p>
+                        <p>Front Shiny Female</p>
                     </div>
                 }
                 {pokemon?.sprites?.back_shiny_female !== null &&
-                    <div className='pokemon_sprites_container_inner'>
+                    <div>
                         <img src={pokemon?.sprites?.back_shiny_female} alt={pokemon?.name} />
-                        <p className='pokemon_sprites_container_inner_text'>Back Shiny Female</p>
+                        <p>Back Shiny Female</p>
                     </div>
                 }
-            </div>
-        </section>
+            </PokemonSpritesDiv>
+        </PokemonSpritesSection>
     )
 }
 

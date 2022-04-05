@@ -19,13 +19,14 @@ export const GenNav = styled.nav`
 				border: none;
 				font-size: 1.7rem;
 				font-weight: 700;
+                color: ${({ theme }) => theme.secondary};
             }
 
             & div {
                 display: none;
 				position: absolute;
 				white-space: nowrap;
-				background: rgb(255, 255, 255);
+				background: #c4c4c4;
 
                 & button {
                     display: block;
@@ -33,6 +34,7 @@ export const GenNav = styled.nav`
 					font-size: 1.5rem;
 					border: none;
 					margin: 1rem;
+                    color: #161616;
 					cursor: pointer;
 					&:hover {
 						color: ${({ theme }) => theme.red};
