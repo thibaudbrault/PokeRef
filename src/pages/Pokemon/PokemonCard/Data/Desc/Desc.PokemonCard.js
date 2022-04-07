@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PokemonDataDesc, PokemonDataTypes } from '../StyledData';
+import { PokemonDataDesc, PokemonDataTypes } from '../StyledData.PokemonCard';
 
 function Desc({pokemon, species, game}) {
     return (

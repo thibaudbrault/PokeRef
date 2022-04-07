@@ -1,5 +1,5 @@
 import React from 'react';
-import { PokemonDataImg, PokemonDataLeg, PokemonDataMyt } from '../StyledData';
+import { PokemonDataImg, PokemonDataLeg, PokemonDataMyt } from '../StyledData.PokemonCard';
 
 function Sprite({pokemon, species}) {
     return (

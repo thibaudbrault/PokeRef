@@ -3,11 +3,11 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
-import Data from './Data/Data';
-import Info from './Info/Info';
-import Stats from './Stats/Stats';
-import Moves from './Moves/Moves';
-import Sprites from './Sprites/Sprites';
+import Data from './Data/Data.PokemonCard';
+import Info from './Info/Info.PokemonCard';
+import Stats from './Stats/Stats.PokemonCard';
+import Moves from './Moves/Moves.PokemonCard';
+import Sprites from './Sprites/Sprites.PokemonCard';
 
 import { MainBig } from '../../../components/BaseStyles/Sizing';
 import { PokemonSubtitle, PokemonTitle } from './StyledPokemonCard';

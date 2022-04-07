@@ -1,6 +1,6 @@
 import React from 'react'
 import { H3 } from '../../../../components/BaseStyles/Headings'
-import { PokemonSpritesDiv, PokemonSpritesSection } from './StyledSprites'
+import { PokemonSpritesDiv, PokemonSpritesSection } from './StyledSprites.PokemonCard'
 
 function Sprites({pokemon}) {
     return (

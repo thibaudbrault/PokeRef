@@ -1,8 +1,8 @@
 import React from 'react';
-import Bars from './Bars/Bars';
-import Types from './Types/Types';
+import Bars from './Bars/Bars.PokemonCard';
+import Types from './Types/Types.PokemonCard';
 
-import { PokemonStatsSection } from './StyledStats';
+import { PokemonStatsSection } from './StyledStats.PokemonCard';
 
 function Stats({pokemon}) {
     return (

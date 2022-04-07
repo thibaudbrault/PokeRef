@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PokemonDataTable } from '../StyledData';
+import { PokemonDataTable } from '../StyledData.PokemonCard';
 
 function Base({pokemon, species, game, location}) {
 

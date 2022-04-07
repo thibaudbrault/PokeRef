@@ -1,8 +1,8 @@
 import React from 'react';
-import Desc from './Desc/Desc';
-import Sprite from './Sprite/Sprite';
-import Base from './Base/Base';
-import { PokemonDataSection, PokemonDataSprite } from './StyledData';
+import Desc from './Desc/Desc.PokemonCard';
+import Sprite from './Sprite/Sprite.PokemonCard';
+import Base from './Base/Base.PokemonCard';
+import { PokemonDataSection, PokemonDataSprite } from './StyledData.PokemonCard';
 
 function Data({pokemon, species, location, game}) {
 

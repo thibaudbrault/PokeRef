@@ -1,9 +1,9 @@
 import React from 'react'
-import Breeding from './Breeding/Breeding'
-import Forms from './Forms/Forms'
-import Training from './Training/Training'
+import Breeding from './Breeding/Breeding.PokemonCard'
+import Forms from './Forms/Forms.PokemonCard'
+import Training from './Training/Training.PokemonCard'
 
-import { PokemonInfoSection } from './StyledInfo'
+import { PokemonInfoSection } from './StyledInfo.PokemonCard'
 
 function Info({pokemon, species, evolution}) {
     return (

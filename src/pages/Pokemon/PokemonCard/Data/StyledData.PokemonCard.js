@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Pulse } from '../../../../components/BaseStyles/Keyframes';
 import { Table } from '../../../../components/BaseStyles/Table';
 

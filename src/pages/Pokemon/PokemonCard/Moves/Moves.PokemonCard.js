@@ -1,12 +1,12 @@
 import React from 'react';
 import Method from '../../../../helpers/Method/Method';
 
-import Level from './Level/Level';
-import Machine from './Machine/Machine';
-import Egg from './Egg/Egg';
-import Evolving from './Evolving/Evolving';
-import Tutor from './Tutor/Tutor';
-import { PokemonMovesEmpty, PokemonMovesSection } from './StyledMoves';
+import Level from './Level/Level.PokemonCard';
+import Machine from './Machine/Machine.PokemonCard';
+import Egg from './Egg/Egg.PokemonCard';
+import Evolving from './Evolving/Evolving.PokemonCard';
+import Tutor from './Tutor/Tutor.PokemonCard';
+import { PokemonMovesEmpty, PokemonMovesSection } from './StyledMoves.PokemonCard';
 import { H3 } from '../../../../components/BaseStyles/Headings';
 
 function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}) {

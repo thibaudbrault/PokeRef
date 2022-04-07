@@ -1,6 +1,6 @@
 import React from 'react';
 import { H3 } from '../../../../../components/BaseStyles/Headings';
-import { PokemonStatsBars, PokemonStatsText, PokemonStatsTotal } from '../StyledStats';
+import { PokemonStatsBars, PokemonStatsText, PokemonStatsTotal } from '../StyledStats.PokemonCard';
 
 
 function Bars({pokemon}) {

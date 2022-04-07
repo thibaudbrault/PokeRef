@@ -1,6 +1,6 @@
 import React from 'react'
 import { H3 } from '../../../../../components/BaseStyles/Headings';
-import { PokemonInfoTable } from '../StyledInfo';
+import { PokemonInfoTable } from '../StyledInfo.PokemonCard';
 
 function Breeding({species, evolution}) {
 

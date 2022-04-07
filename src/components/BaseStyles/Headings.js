@@ -24,6 +24,10 @@ export const LeftTitle = styled(Title)`
     text-align: left;
 `
 
+export const CardTitle = styled(Title)`
+    margin-bottom: 0.5rem;
+`
+
 export const Subtitle = styled.p`
     font-size: 1.3rem;
     text-transform: uppercase;
@@ -43,4 +47,8 @@ export const H4 = styled.h4`
 	font-size: 2.5rem;
 	font-weight: 700;
 	text-transform: capitalize;
+`
+
+export const Span = styled.span`
+    text-transform: capitalize;
 `
