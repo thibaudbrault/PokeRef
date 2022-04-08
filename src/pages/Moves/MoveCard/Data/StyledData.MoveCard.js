@@ -25,15 +25,18 @@ export const MoveCardDataType = styled.div`
     display: inline;
     padding: 1rem 2rem;
     border-radius: 5px;
+    cursor: pointer;
 
     & img {
         height: 2rem;
         vertical-align: middle;
+        cursor: pointer;
     }
 
     & span {
         padding-left: 0.5rem;
         vertical-align: middle;
+        cursor: pointer;
     }
 `
 

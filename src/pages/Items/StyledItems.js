@@ -9,8 +9,11 @@ export const TNameItems = styled(TName)`
         align-items: center;
         justify-content: center;
 
+        & img {
+            margin-right: 1rem;
+        }
+
         & span {
-            padding-left: 0.5rem;
             cursor: pointer;
         }
     }

@@ -30,10 +30,3 @@ export const Sup = styled.sup`
     vertical-align: super;
     font-size: smaller;
 `
-
-export const AbilityCardSprite = styled.td`
-    & img {
-        width: 64px;
-        height: 64px;
-    }
-`

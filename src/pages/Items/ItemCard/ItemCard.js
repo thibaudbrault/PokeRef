@@ -3,9 +3,10 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
-import Header from '../../../components/Header/Header';
-import Nav from '../../../components/Nav/Nav';
-import Footer from '../../../components/Footer/Footer';
+import { MainBig } from '../../../components/BaseStyles/Sizing';
+import { CardTitle, Span, Subtitle } from '../../../components/BaseStyles/Headings';
+import { BackButton } from '../../../components/BaseStyles/Inputs';
+import { ItemCardDataCost, ItemCardDataEffect, ItemCardDataFling, ItemCardDataHeld, ItemCardDataSection, ItemCardDescSection, ItemCardDescTable, ItemCardDescTitle } from './StyledItemCard';
 
 const ItemCard = () => {
 
@@ -36,76 +37,71 @@ const ItemCard = () => {
     console.log(item)
 
     return (
-        <>
-            <Header />
-            <Nav />
-            <main className='item'>
-            {loading ? (
-                <BarWave width='40px' height='20px' color='#cc0000' />
+            <MainBig>
+                {loading ? (
+                    <BarWave width='40px' height='20px' color='#cc0000' />
                 ) : (
                     <>
-                        <h2 className='item_title'>{item?.name?.replace(/-/g, ' ')}</h2>
-                        <p className='item_category'>{item?.category?.name?.replace(/-/g, ' ')}</p>
+                        <CardTitle>{item?.name?.replace(/-/g, ' ')}</CardTitle>
+                        <Subtitle>{item?.category?.name?.replace(/-/g, ' ')}</Subtitle>
 
-                        <section className='item_data'>
-                            <div className='item_data_column'>
-                                <div className='item_data_column_effect'>
-                                    <h3 className='item_data_column_effect_title'>Effect</h3>
+                        <ItemCardDataSection>
+                            <div>
+                                <ItemCardDataEffect>
+                                    <h3>Effect</h3>
                                     {item?.effect_entries?.map((ie) => 
                                         ie?.language?.name === 'en' &&
-                                            <p className='item_data_column_effect_text'>
+                                            <p>
                                                 {ie?.short_effect}
                                             </p>
                                     )}
-                                </div>
+                                </ItemCardDataEffect>
                                 {item?.cost !== 0 && 
-                                    <p className='item_data_column_cost'>Cost : {item?.cost} Pokédollars</p>
+                                    <ItemCardDataCost>Cost : {item?.cost} Pokédollars</ItemCardDataCost>
                                 }
                                 {item?.held_by_pokemon?.length !== 0 &&
-                                    <p className='item_data_column_held'>Held by :
+                                    <ItemCardDataHeld>Held by :
                                         {item?.held_by_pokemon?.map((ih) => 
                                             <Link
-                                            to={`/pokemon/${ih?.pokemon?.name}`}
-                                            key={ih?.pokemon?.name}
+                                                to={`/pokemon/${ih?.pokemon?.name}`}
+                                                key={ih?.pokemon?.name}
                                             >
                                                 {ih?.pokemon?.name.replace(/-/g, ' ')}
                                             </Link>
                                         )}
-                                    </p>
+                                    </ItemCardDataHeld>
                                 }
-                                <p className='item_data_column_fling'>When the pokémon holds <span>{item?.name?.replace(/-/g, ' ')}</span> the move <i>Fling</i> has {item?.fling_power} power.
+                                <ItemCardDataFling>When the pokémon holds <Span>{item?.name?.replace(/-/g, ' ')}</Span> the move <i>Fling</i> has {item?.fling_power} power.
                                 {item?.fling_effect?.name !== undefined && item?.fling_effect?.name !== 'berry-effect' && item?.fling_effect?.name !== 'herb-effect' && ` The move will ${item?.fling_effect?.name?.replace(/-/g, ' ')} the target.`}
-                                </p>
+                                </ItemCardDataFling>
                             </div>
-                            <div className='item_data_column'>
-                                <img src={item?.sprites?.default} alt={item?.name} />
+                            <div>
+                                <img src={item?.sprites?.default} alt={item?.name} width={96} height={96} />
                             </div>
-                        </section>
+                        </ItemCardDataSection>
 
-                        <section className='item_container'>
-                            <h3 className='item_container_title'>Game descriptions</h3>
-                            <table className='item_container_desc_table'>
-                                    <tbody>
-                                        {item?.flavor_text_entries?.map((ift) => 
-                                            ift?.language?.name === 'en' ? (
-                                                <tr className='item_container_desc_table_row'>
-                                                    <th className='item_container_desc_table_row_head'>{ift?.version_group?.name?.replace(/-/g, ' ')}</th>
-                                                    <td className='item_container_desc_table_row_element'>{ift?.text}</td>
-                                                </tr>
-                                            ) : (
-                                                ''
-                                            )
-                                        )}
-                                    </tbody>
-                            </table>
-                        </section>
+                        <ItemCardDescSection>
+                            <ItemCardDescTitle>Game descriptions</ItemCardDescTitle>
+                            <ItemCardDescTable>
+                                <tbody>
+                                    {item?.flavor_text_entries?.map((ift) => 
+                                        ift?.language?.name === 'en' ? (
+                                            <tr>
+                                                <th>{ift?.version_group?.name?.replace(/-/g, ' ')}</th>
+                                                <td>{ift?.text}</td>
+                                            </tr>
+                                        ) : (
+                                            ''
+                                        )
+                                    )}
+                                </tbody>
+                            </ItemCardDescTable>
+                        </ItemCardDescSection>
                         
-                        <button className='back_button' onClick={() => navigate('/items')}> ᐸ Back to items</button>
+                        <BackButton onClick={() => navigate('/items')}> ᐸ Back to items</BackButton>
                     </>
                 )}
-            </main>
-            <Footer />
-        </>
+            </MainBig>
     )
 }
 

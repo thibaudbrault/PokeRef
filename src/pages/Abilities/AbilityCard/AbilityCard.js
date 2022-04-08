@@ -4,7 +4,7 @@ import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { MainBig } from '../../../components/BaseStyles/Sizing';
-import { AbilityCardEffect, AbilityCardSection, AbilityCardSprite, AbilityCardTable, Sup } from './StyledAbilityCard';
+import { AbilityCardEffect, AbilityCardSection, AbilityCardTable, Sup } from './StyledAbilityCard';
 import { CardTitle, H3, H4, Subtitle } from '../../../components/BaseStyles/Headings';
 import { Table, THead, TLink, TName, TRow } from '../../../components/BaseStyles/Table';
 import { BackButton } from '../../../components/BaseStyles/Inputs';
@@ -55,8 +55,8 @@ const AbilityCard = () => {
 
     return (
         <MainBig>
-        {loading ? (
-            <BarWave width='40px' height='20px' color='#cc0000' />
+            {loading ? (
+                <BarWave width='40px' height='20px' color='#cc0000' />
             ) : (
                 <>
                     <CardTitle>{ability?.name?.replace(/-/g, ' ')}</CardTitle>
@@ -108,12 +108,12 @@ const AbilityCard = () => {
                             <tbody>
                                 {ability?.pokemon?.map((ap) => (
                                     <TRow>
-                                        <AbilityCardSprite>
+                                        <td>
                                             {pokemon?.map((p) =>
                                                 p.name === ap.pokemon.name &&
-                                                    <img src={p.sprites.front_default} alt='-' loading="lazy" />
+                                                    <img src={p.sprites.front_default} alt='-' loading="lazy" width={64} height={64} />
                                             )}
-                                        </AbilityCardSprite>
+                                        </td>
                                         <TName>
                                             <TLink
                                                 to={`/ability/${ability.name}`}

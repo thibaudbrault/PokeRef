@@ -69,7 +69,7 @@ function Moves() {
     return (
         <MainBig>
             {loading ? (
-            <BarWave width='40px' height='20px' color='#cc0000' />
+                <BarWave width='40px' height='20px' color='#cc0000' />
             ) : (
                 <>
                     <nav className='moves_nav'>
