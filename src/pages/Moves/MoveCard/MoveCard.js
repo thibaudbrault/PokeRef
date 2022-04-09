@@ -184,31 +184,31 @@ const MoveCard = () => {
                         <H3>Learned by level up</H3>
                         <MoveCardText>Learned when the pokémon reach a ceratin level. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveCardText>
                         <MoveCardList>
-                                {pokemon?.map((p) => 
-                                    p?.moves?.map((pm) => 
-                                        pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
-                                        pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at > 1 &&
-                                            <li>
-                                                <img src={p?.sprites?.front_default} alt={p?.name} />
-                                                <MoveCardLink
-                                                    to={`/pokemon/${p?.name}`}
-                                                    key={p?.name}
-                                                >
-                                                    {p?.name.replace(/-/g, ' ')}
-                                                </MoveCardLink>
-                                                <p>Level {pmv?.level_learned_at}</p>
-                                                <MoveCardTypes>
-                                                    {p?.types?.map((pt) =>
-                                                        <div id={pt.type.name}>
-                                                            <img alt={pt?.type?.name} />
-                                                            <span>{pt?.type?.name}</span>
-                                                        </div>
-                                                    )}
-                                                </MoveCardTypes>
-                                            </li>
-                                        )
+                            {pokemon?.map((p) => 
+                                p?.moves?.map((pm) => 
+                                    pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
+                                    pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at > 1 &&
+                                        <li>
+                                            <img src={p?.sprites?.front_default} alt={p?.name} />
+                                            <MoveCardLink
+                                                to={`/pokemon/${p?.name}`}
+                                                key={p?.name}
+                                            >
+                                                {p?.name.replace(/-/g, ' ')}
+                                            </MoveCardLink>
+                                            <p>Level {pmv?.level_learned_at}</p>
+                                            <MoveCardTypes>
+                                                {p?.types?.map((pt) =>
+                                                    <div id={pt.type.name}>
+                                                        <img alt={pt?.type?.name} />
+                                                        <span>{pt?.type?.name}</span>
+                                                    </div>
+                                                )}
+                                            </MoveCardTypes>
+                                        </li>
                                     )
-                                )}
+                                )
+                            )}
                         </MoveCardList>
                     </section>
 
