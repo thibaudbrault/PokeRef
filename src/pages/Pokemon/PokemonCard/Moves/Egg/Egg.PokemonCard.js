@@ -35,7 +35,7 @@ function Egg({toggleState, pokemon, move, version}) {
             <tbody className='pokemon_moves_table_body'>
                 {pokemon?.moves?.map((pm) => 
                     pm?.version_group_details?.map((pmv) =>
-                    pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'egg' && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 1 &&
+                    pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'egg' &&
                         <tr className='pokemon_moves_table_body_row'>
                             <td className='pokemon_moves_table_body_row_element'>
                                 <Link
