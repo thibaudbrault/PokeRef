@@ -181,7 +181,7 @@ const MoveCard = () => {
                     />
 
                     <section  className={toggleState === 1 ? "active move_learn" : "hidden"}>
-                        <H3>Learned by level up</H3>
+                        <H3>Learned by leveling up</H3>
                         <MoveCardText>Learned when the pokémon reach a ceratin level. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveCardText>
                         <MoveCardList>
                             {pokemon?.map((p) => 
@@ -213,7 +213,7 @@ const MoveCard = () => {
                     </section>
 
                     <section  className={toggleState === 2 ? "active move_learn" : "hidden"}>
-                        <H3>Learned by TM / HM</H3>
+                        <H3>Learned from a TM / HM</H3>
                         <MoveCardText>Learned by using a TM or a HM. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveCardText>
                         <MoveCardList>
                             {pokemon?.map((p) => 
@@ -244,13 +244,13 @@ const MoveCard = () => {
                     </section>
 
                     <section  className={toggleState === 3 ? "active move_learn" : "hidden"}>
-                        <H3>Learned from the Move Relearner / by breeding</H3>
-                        <MoveCardText>Learned at level 1 which means that the only way to learn this move is via the move relearner or through breeeding. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveCardText>
+                        <H3>Learned from the move relearner / by breeding</H3>
+                        <MoveCardText>Learned via the move relearner or through breeeding. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveCardText>
                         <MoveCardList>
                             {pokemon?.map((p) => 
                                 p?.moves?.map((pm) => 
                                     pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
-                                    pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'egg' && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 1 &&
+                                    pmv?.version_group?.name === version && ((pmv?.move_learn_method?.name === 'egg') || (pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 1)) &&
                                         <li>
                                             <img src={p?.sprites?.front_default} alt={p?.name} />
                                             <MoveCardLink
@@ -275,7 +275,7 @@ const MoveCard = () => {
                     </section>
 
                     <section  className={toggleState === 4 ? "active move_learn" : "hidden"}>
-                        <H3>Learned by move tutor</H3>
+                        <H3>Learned from the move tutor</H3>
                         <MoveCardText>Learned by going to the move tutor. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveCardText>
                         <MoveCardList>
                             {pokemon?.map((p) => 
