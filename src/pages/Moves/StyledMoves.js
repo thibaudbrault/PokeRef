@@ -1,9 +1,12 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { LeftTitle } from '../../components/BaseStyles/Headings';
 
 export const ModifiedLeftTitle = styled(LeftTitle)`
     margin-top: 5rem;
+`
+
+export const MovesSection = styled.section`
+    display: ${props => props.visibility? 'block': 'none'};
 `
 
 export const StatusMoves = styled.td`

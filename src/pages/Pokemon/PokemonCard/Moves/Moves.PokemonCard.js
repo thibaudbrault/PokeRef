@@ -41,6 +41,7 @@ function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}
                 pokemon={pokemon}
                 move={move}
                 version={version}
+                game={game}
                 toggleState={toggleState}
             />
             <Evolving 

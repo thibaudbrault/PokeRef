@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const MoveCardLearnSection = styled.section`
+export const MoveLearnSection = styled.section`
     padding: 5rem 0;
+    display: ${props => props.visibility? 'block': 'none'};
 `
 
-export const MoveCardList = styled.ul`
+export const MoveList = styled.ul`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,12 +39,12 @@ export const MoveCardList = styled.ul`
     }
 `
 
-export const MoveCardText = styled.p`
+export const MoveText = styled.p`
     margin: 0 0 3rem;
     font-size: 1.5rem;
 `
 
-export const MoveCardLink = styled(Link)`
+export const MoveLink = styled(Link)`
     font-weight: 700;
     text-transform: capitalize;
     transition: 0.3s ease-in-out;
@@ -53,7 +54,7 @@ export const MoveCardLink = styled(Link)`
     }
 `
 
-export const MoveCardTypes = styled.div`
+export const MoveTypes = styled.div`
     width: 100%;
     height: 50%;
     margin-top: 1rem;

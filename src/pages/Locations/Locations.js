@@ -6,6 +6,7 @@ import BarWave from 'react-cssfx-loading/lib/BarWave';
 import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
+import { MainBig } from '../../components/BaseStyles/Sizing';
 
 export default function Locations() {
 
@@ -38,10 +39,7 @@ export default function Locations() {
     }, []);
 
     return (
-        <>
-            <Header />
-            <Nav />
-            <main className='locations'>
+        <MainBig>
             {loading ? (
                 <BarWave width='40px' height='20px' color='#cc0000' />
             ) : (
@@ -190,8 +188,6 @@ export default function Locations() {
 
                 </>
             )}
-            </main>
-            <Footer />
-        </>
+        </MainBig>
   )
 }

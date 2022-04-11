@@ -1,92 +1,92 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { THead, TLink, TRow } from '../../../../../components/BaseStyles/Table';
+import { PokemonMovesTd, PokemonMovesTable } from '../StyledMoves.PokemonCard';
 
 function Evolving({pokemon, version, toggleState, move}) {
     return (
-        <table className={toggleState === 5 ? "active pokemon_moves_table" : "hidden"}>
-            <thead className='pokemon_moves_table_head'>
-                <tr className='pokemon_moves_table_head_row'>
-                    <th className='pokemon_moves_table_head_row_element'>
+        <PokemonMovesTable visibility={toggleState === 5}>
+            <THead>
+                <tr>
+                    <th>
                         Name
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         Type
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         Category
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         Power
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         PP
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         Accuracy
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         Priority
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         Status
                     </th>
                 </tr>
-            </thead>
-            <tbody className='pokemon_moves_table_body'>
+            </THead>
+            <tbody>
                 {pokemon?.moves?.map((pm) => 
                     pm?.version_group_details?.map((pmv) =>
                     pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 0 &&
-                        <tr className='pokemon_moves_table_body_row'>
-                            <td className='pokemon_moves_table_body_row_element'>
-                                <Link
-                                    to={`/moves/${pm?.move?.name}`}
-                                >
-                                    {pm?.move?.name.replace(/-/g, ' ')}
-                                </Link>
-                            </td>
-                            {move?.map((m) => 
-                                m?.name === pm?.move?.name &&
-                                    <>
-                                        <td className='pokemon_moves_table_body_row_element' id={m?.type?.name} style={{"background":"transparent"}}>
-                                            <img alt={m?.type?.name} />
-                                        </td>
-                                        <td className='pokemon_moves_table_body_row_element'>
-                                            {m?.damage_class?.name}
-                                        </td>
-                                        <td className='pokemon_moves_table_body_row_element'>
-                                            {m?.power !== null ? (
-                                                m?.power
-                                            ) : (
-                                                '-'
-                                            )}
-                                        </td>
-                                        <td className='pokemon_moves_table_body_row_element'>
-                                            {m?.pp}
-                                        </td>
-                                        <td className='pokemon_moves_table_body_row_element'>
-                                            {m?.accuracy !== null ? (
-                                                m?.accuracy
-                                            ) : (
-                                                '-'
-                                            )}
-                                        </td>
-                                        <td className='pokemon_moves_table_body_row_element'>
-                                            {m?.priority}
-                                        </td>
-                                        <td className='pokemon_moves_table_body_row_element'>
-                                            {m?.meta?.ailment !== null ? (
-                                                m?.meta?.ailment?.name?.replace('none', '-')
-                                            ) : (
-                                                '-'
-                                            )}
-                                        </td>
-                                    </>
-                                
-                            )}
-                        </tr>
+                    <TRow>
+                        <td>
+                            <TLink
+                                to={`/moves/${pm?.move?.name}`}
+                            >
+                                {pm?.move?.name.replace(/-/g, ' ')}
+                            </TLink>
+                        </td>
+                        {move?.map((m) =>
+                            m?.name === pm?.move?.name &&
+                                <>
+                                    <PokemonMovesTd id={m?.type?.name} style={{"background":"transparent"}}>
+                                        <img alt={m?.type?.name} width={32} height={32} />
+                                    </PokemonMovesTd>
+                                    <PokemonMovesTd>
+                                        {m?.damage_class?.name}
+                                    </PokemonMovesTd>
+                                    <PokemonMovesTd>
+                                        {m?.power !== null ? (
+                                            m?.power
+                                        ) : (
+                                            '-'
+                                        )}
+                                    </PokemonMovesTd>
+                                    <PokemonMovesTd>
+                                        {m?.pp}
+                                    </PokemonMovesTd>
+                                    <PokemonMovesTd>
+                                        {m?.accuracy !== null ? (
+                                            m?.accuracy
+                                        ) : (
+                                            '-'
+                                        )}
+                                    </PokemonMovesTd>
+                                    <PokemonMovesTd>
+                                        {m?.priority}
+                                    </PokemonMovesTd>
+                                    <PokemonMovesTd>
+                                        {m?.meta?.ailment !== null ? (
+                                            m?.meta?.ailment?.name?.replace('none', '-')
+                                        ) : (
+                                            '-'
+                                        )}
+                                    </PokemonMovesTd>
+                                </>
+                        )}
+                    </TRow>
                 ))}
             </tbody>
-        </table>
+        </PokemonMovesTable>
     )
 }
 

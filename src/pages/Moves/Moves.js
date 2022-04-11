@@ -6,7 +6,7 @@ import BarWave from 'react-cssfx-loading/lib/BarWave';
 import { Table, THead, TName, TRow, TEffect, TLink } from '../../components/BaseStyles/Table';
 import { ModifiedSearch, Input } from '../../components/BaseStyles/Inputs';
 import { LeftTitle } from '../../components/BaseStyles/Headings';
-import { ModifiedLeftTitle, StatusMoves, TCategory, TType } from './StyledMoves';
+import { ModifiedLeftTitle, MovesSection, StatusMoves, TCategory, TType } from './StyledMoves';
 import { MainBig } from '../../components/BaseStyles/Sizing';
 
 function Moves() {
@@ -77,7 +77,7 @@ function Moves() {
                         <button className={toggleState === 2 ? 'moves_nav_active' : 'moves_nav_element'} onClick={() => toggleTable(2)}><p>Status</p></button>
                     </nav>
 
-                    <section className={toggleState === 1 ? "active" : "hidden"}>
+                    <MovesSection visibility={toggleState === 1}>
                         <LeftTitle>Moves</LeftTitle>
                         <ModifiedSearch>
                             <Input>
@@ -131,9 +131,9 @@ function Moves() {
                                 ))}
                             </tbody>
                         </Table>
-                    </section>
+                    </MovesSection>
 
-                    <section className={toggleState === 2 ? "active" : "hidden"}>
+                    <MovesSection visibility={toggleState === 2}>
                         <ModifiedLeftTitle>Status</ModifiedLeftTitle>
                         <Table>
                             <THead>
@@ -163,7 +163,7 @@ function Moves() {
                                 }
                             </tbody>
                         </Table>
-                    </section>
+                    </MovesSection>
                 </>
             )}
         </MainBig>

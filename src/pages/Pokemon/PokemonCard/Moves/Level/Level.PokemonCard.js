@@ -1,11 +1,10 @@
 import React from 'react';
 import { THead, TLink, TRow } from '../../../../../components/BaseStyles/Table';
-import { PokemonMovesTd, PokemonCardTable } from '../StyledMoves.PokemonCard';
+import { PokemonMovesTd, PokemonMovesTable } from '../StyledMoves.PokemonCard';
 
 function Level({toggleState, pokemon, move, version}) {
-
     return (
-        <PokemonCardTable visibility={toggleState === 1}>
+        <PokemonMovesTable visibility={toggleState === 1}>
             <THead>
                 <tr>
                     <th>
@@ -94,7 +93,7 @@ function Level({toggleState, pokemon, move, version}) {
                     )
                 )}
             </tbody>
-        </PokemonCardTable>
+        </PokemonMovesTable>
     )
 }
 

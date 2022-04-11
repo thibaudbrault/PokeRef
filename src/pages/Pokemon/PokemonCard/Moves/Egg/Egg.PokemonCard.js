@@ -1,10 +1,10 @@
 import React from 'react';
 import { THead, TLink, TRow } from '../../../../../components/BaseStyles/Table';
-import { PokemonMovesTd, PokemonMovesEmpty, PokemonCardTable } from '../StyledMoves.PokemonCard';
+import { PokemonMovesTd, PokemonMovesEmpty, PokemonMovesTable } from '../StyledMoves.PokemonCard';
 
 function Egg({toggleState, pokemon, move, version, game}) {
     return (
-        <PokemonCardTable visibility={toggleState === 3}>
+        <PokemonMovesTable visibility={toggleState === 3}>
             <THead>
                 <tr>
                     <th>
@@ -95,7 +95,7 @@ function Egg({toggleState, pokemon, move, version, game}) {
                     ))}
                 </>
             </tbody>
-        </PokemonCardTable>
+        </PokemonMovesTable>
     )
 }
 

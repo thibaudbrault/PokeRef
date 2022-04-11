@@ -5,12 +5,16 @@ export const PokemonMovesSection = styled.section`
     padding-bottom: 5rem;
 `
 
-export const PokemonCardTable = styled(Table)`
+export const PokemonMovesTable = styled(Table)`
     display: ${props => props.visibility? 'table': 'none'};
 `
 
 export const PokemonMovesTd = styled.td`
     text-transform: capitalize;
+`
+
+export const PokemonMovesMachine = styled.td`
+    text-transform: uppercase;
 `
 
 export const PokemonMovesEmpty = styled.p`

@@ -1,102 +1,103 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { THead, TLink, TRow } from '../../../../../components/BaseStyles/Table';
+import { PokemonMovesTd, PokemonMovesTable, PokemonMovesMachine } from '../StyledMoves.PokemonCard';
 
 function Machine({toggleState, pokemon, move, machine, version}) {
     return (
-        <table className={toggleState === 2 ? "active pokemon_moves_table" : "hidden"}>
-            <thead className='pokemon_moves_table_head'>
-                <tr className='pokemon_moves_table_head_row'>
-                    <th className='pokemon_moves_table_head_row_element'>
+        <PokemonMovesTable visibility={toggleState === 2}>
+            <THead>
+                <tr>
+                    <th>
                         Machine
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         Name
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         Type
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         Category
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         Power
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         PP
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         Accuracy
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         Priority
                     </th>
-                    <th className='pokemon_moves_table_head_row_element'>
+                    <th>
                         Status
                     </th>
                 </tr>
-            </thead>
-            <tbody className='pokemon_moves_table_body'>
+            </THead>
+            <tbody>
                 {pokemon?.moves?.map((pm) => 
                     pm?.version_group_details?.map((pmv) =>
                     pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'machine'  &&
-                        <tr className='pokemon_moves_table_body_row'>
+                        <TRow>
                             {machine?.map((ma) =>
                                 ma?.move?.name === pm?.move?.name && ma?.version_group?.name === version &&
-                                    <td className='pokemon_moves_table_body_row_element_machine'>
+                                    <PokemonMovesMachine>
                                         {ma?.item?.name}
-                                    </td>
+                                    </PokemonMovesMachine>
                             )}
-                            <td className='pokemon_moves_table_body_row_element'>
-                                <Link
+                            <PokemonMovesTd>
+                                <TLink
                                     to={`/moves/${pm?.move?.name}`}
                                 >
                                     {pm?.move?.name.replace(/-/g, ' ')}
-                                </Link>
-                            </td>
+                                </TLink>
+                            </PokemonMovesTd>
                             {move?.map((m) =>
                                 m?.name === pm?.move?.name && (
                                     <>
-                                        <td className='pokemon_moves_table_body_row_element' id={m?.type?.name} style={{"background":"transparent"}}>
-                                            <img alt={m?.type?.name} />
-                                        </td>
-                                        <td className='pokemon_moves_table_body_row_element'>
+                                        <PokemonMovesTd id={m?.type?.name} style={{"background":"transparent"}}>
+                                            <img alt={m?.type?.name} width={32} height={32} />
+                                        </PokemonMovesTd>
+                                        <PokemonMovesTd>
                                             {m?.damage_class?.name}
-                                        </td>
-                                        <td className='pokemon_moves_table_body_row_element'>
+                                        </PokemonMovesTd>
+                                        <PokemonMovesTd>
                                             {m?.power !== null ? (
                                                 m?.power
                                             ) : (
                                                 '-'
                                             )}
-                                        </td>
-                                        <td className='pokemon_moves_table_body_row_element'>
+                                        </PokemonMovesTd>
+                                        <PokemonMovesTd>
                                             {m?.pp}
-                                        </td>
-                                        <td className='pokemon_moves_table_body_row_element'>
+                                        </PokemonMovesTd>
+                                        <PokemonMovesTd>
                                             {m?.accuracy !== null ? (
                                                 m?.accuracy
                                             ) : (
                                                 '-'
                                             )}
-                                        </td>
-                                        <td className='pokemon_moves_table_body_row_element'>
+                                        </PokemonMovesTd>
+                                        <PokemonMovesTd>
                                             {m?.priority}
-                                        </td>
-                                        <td className='pokemon_moves_table_body_row_element'>
+                                        </PokemonMovesTd>
+                                        <PokemonMovesTd>
                                             {m?.meta?.ailment !== null ? (
                                                 m?.meta?.ailment?.name?.replace('none', '-')
                                             ) : (
                                                 '-'
                                             )}
-                                        </td>
+                                        </PokemonMovesTd>
                                     </>
                                 )
                             )}
-                        </tr>
+                        </TRow>
                     )
                 )}
             </tbody>
-        </table>
+        </PokemonMovesTable>
     )
 }
 

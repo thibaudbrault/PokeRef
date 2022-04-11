@@ -9,7 +9,7 @@ import { CardTitle, H3, Subtitle } from '../../../components/BaseStyles/Headings
 import { GenNav } from '../../../components/BaseStyles/Navbars';
 import { MainBig } from '../../../components/BaseStyles/Sizing';
 import Data from './Data/Data.MoveCard';
-import { MoveCardLink, MoveCardList, MoveCardText, MoveCardTypes } from './StyledMoveCard';
+import { MoveLearnSection, MoveLink, MoveList, MoveText, MoveTypes } from './StyledMoveCard';
 import { BackButton } from '../../../components/BaseStyles/Inputs';
 
 const MoveCard = () => {
@@ -180,161 +180,161 @@ const MoveCard = () => {
                         toggleTable={toggleTable}
                     />
 
-                    <section  className={toggleState === 1 ? "active move_learn" : "hidden"}>
+                    <MoveLearnSection visibility={toggleState === 1}>
                         <H3>Learned by leveling up</H3>
-                        <MoveCardText>Learned when the pokémon reach a ceratin level. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveCardText>
-                        <MoveCardList>
+                        <MoveText>Learned when the pokémon reach a ceratin level. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveText>
+                        <MoveList>
                             {pokemon?.map((p) => 
                                 p?.moves?.map((pm) => 
                                     pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
                                     pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at > 1 &&
                                         <li>
                                             <img src={p?.sprites?.front_default} alt={p?.name} />
-                                            <MoveCardLink
+                                            <MoveLink
                                                 to={`/pokemon/${p?.name}`}
                                                 key={p?.name}
                                             >
                                                 {p?.name.replace(/-/g, ' ')}
-                                            </MoveCardLink>
+                                            </MoveLink>
                                             <p>Level {pmv?.level_learned_at}</p>
-                                            <MoveCardTypes>
+                                            <MoveTypes>
                                                 {p?.types?.map((pt) =>
                                                     <div id={pt.type.name}>
                                                         <img alt={pt?.type?.name} />
                                                         <span>{pt?.type?.name}</span>
                                                     </div>
                                                 )}
-                                            </MoveCardTypes>
+                                            </MoveTypes>
                                         </li>
                                     )
                                 )
                             )}
-                        </MoveCardList>
-                    </section>
+                        </MoveList>
+                    </MoveLearnSection>
 
-                    <section  className={toggleState === 2 ? "active move_learn" : "hidden"}>
+                    <MoveLearnSection visibility={toggleState === 2}>
                         <H3>Learned from a TM / HM</H3>
-                        <MoveCardText>Learned by using a TM or a HM. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveCardText>
-                        <MoveCardList>
+                        <MoveText>Learned by using a TM or a HM. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveText>
+                        <MoveList>
                             {pokemon?.map((p) => 
                                 p?.moves?.map((pm) => 
                                     pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
                                     pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'machine' && pmv?.level_learned_at === 0 &&
                                         <li>
                                             <img src={p?.sprites?.front_default} alt={p?.name} />
-                                            <MoveCardLink
+                                            <MoveLink
                                                 to={`/pokemon/${p?.name}`}
                                                 key={p?.name}
                                             >
                                                 {p?.name.replace(/-/g, ' ')}
-                                            </MoveCardLink>
-                                            <MoveCardTypes>
+                                            </MoveLink>
+                                            <MoveTypes>
                                                 {p?.types?.map((pt) =>
                                                     <div id={pt.type.name}>
                                                         <img alt={pt?.type?.name} />
                                                         <span>{pt?.type?.name}</span>
                                                     </div>
                                                 )}
-                                            </MoveCardTypes>
+                                            </MoveTypes>
                                         </li>
                                     )
                                 )
                             )}
-                        </MoveCardList>
-                    </section>
+                        </MoveList>
+                    </MoveLearnSection>
 
-                    <section  className={toggleState === 3 ? "active move_learn" : "hidden"}>
+                    <MoveLearnSection visibility={toggleState === 3}>
                         <H3>Learned from the move relearner / by breeding</H3>
-                        <MoveCardText>Learned via the move relearner or through breeeding. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveCardText>
-                        <MoveCardList>
+                        <MoveText>Learned via the move relearner or through breeeding. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveText>
+                        <MoveList>
                             {pokemon?.map((p) => 
                                 p?.moves?.map((pm) => 
                                     pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
                                     pmv?.version_group?.name === version && ((pmv?.move_learn_method?.name === 'egg') || (pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 1)) &&
                                         <li>
                                             <img src={p?.sprites?.front_default} alt={p?.name} />
-                                            <MoveCardLink
+                                            <MoveLink
                                                 to={`/pokemon/${p?.name}`}
                                                 key={p?.name}
                                             >
                                                 {p?.name.replace(/-/g, ' ')}
-                                            </MoveCardLink>
-                                            <MoveCardTypes>
+                                            </MoveLink>
+                                            <MoveTypes>
                                                 {p?.types?.map((pt) =>
                                                     <div id={pt.type.name}>
                                                         <img alt={pt?.type?.name} />
                                                         <span>{pt?.type?.name}</span>
                                                     </div>
                                                 )}
-                                            </MoveCardTypes>
+                                            </MoveTypes>
                                         </li>
                                     )
                                 )
                             )}
-                        </MoveCardList>
-                    </section>
+                        </MoveList>
+                    </MoveLearnSection>
 
-                    <section  className={toggleState === 4 ? "active move_learn" : "hidden"}>
+                    <MoveLearnSection visibility={toggleState === 4}>
                         <H3>Learned from the move tutor</H3>
-                        <MoveCardText>Learned by going to the move tutor. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveCardText>
-                        <MoveCardList>
+                        <MoveText>Learned by going to the move tutor. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveText>
+                        <MoveList>
                             {pokemon?.map((p) => 
                                 p?.moves?.map((pm) => 
                                     pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
                                     pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'tutor' &&
                                         <li>
                                             <img src={p?.sprites?.front_default} alt={p?.name} />
-                                            <MoveCardLink
+                                            <MoveLink
                                                 to={`/pokemon/${p?.name}`}
                                                 key={p?.name}
                                             >
                                                 {p?.name.replace(/-/g, ' ')}
-                                            </MoveCardLink>
-                                            <MoveCardTypes>
+                                            </MoveLink>
+                                            <MoveTypes>
                                                 {p?.types?.map((pt) =>
                                                     <div id={pt.type.name}>
                                                         <img alt={pt?.type?.name} />
                                                         <span>{pt?.type?.name}</span>
                                                     </div>
                                                 )}
-                                            </MoveCardTypes>
+                                            </MoveTypes>
                                         </li>
                                     )
                                 )
                             )}
-                        </MoveCardList>
-                    </section>
+                        </MoveList>
+                    </MoveLearnSection>
 
-                    <section  className={toggleState === 5 ? "active move_learn" : "hidden"}>
+                    <MoveLearnSection visibility={toggleState === 5}>
                         <H3>Learned when evolving</H3>
-                        <MoveCardText>Learned when the pokémon is evolving no matter its level. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveCardText>
-                        <MoveCardList>
+                        <MoveText>Learned when the pokémon is evolving no matter its level. Data from Pokémon <span>{version.replace(/-/g, ' ')}</span>. These informations may vary in other games. Check the respective pokédex pages for details.</MoveText>
+                        <MoveList>
                             {pokemon?.map((p) => 
                                 p?.moves?.map((pm) => 
                                     pm?.move?.name === move?.name && pm?.version_group_details?.map((pmv) =>
                                     pmv?.version_group?.name === version && pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 0 && 
                                         <li>
                                             <img src={p?.sprites?.front_default} alt={p?.name} />
-                                            <MoveCardLink
+                                            <MoveLink
                                                 to={`/pokemon/${p?.name}`}
-                                                key={p?.name}MoveCardList
+                                                key={p?.name}MoveList
                                             >
                                                 {p?.name.replace(/-/g, ' ')}
-                                            </MoveCardLink>
-                                            <MoveCardTypes>
+                                            </MoveLink>
+                                            <MoveTypes>
                                                 {p?.types?.map((pt) =>
                                                     <div id={pt.type.name}>
                                                         <img alt={pt?.type?.name} />
                                                         <span>{pt?.type?.name}</span>
                                                     </div>
                                                 )}
-                                            </MoveCardTypes>
+                                            </MoveTypes>
                                         </li>
                                     )
                                 )
                             )}
-                        </MoveCardList>
-                    </section>
+                        </MoveList>
+                    </MoveLearnSection>
 
                     <BackButton onClick={() => navigate("/moves")}> ᐸ Back to moves</BackButton>
                 </>
