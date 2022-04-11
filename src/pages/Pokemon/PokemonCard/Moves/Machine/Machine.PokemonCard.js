@@ -54,58 +54,43 @@ function Machine({toggleState, pokemon, move, machine, version}) {
                                 </Link>
                             </td>
                             {move?.map((m) =>
-                                m?.name === pm?.move?.name &&
-                                    <td className='pokemon_moves_table_body_row_element' id={m?.type?.name} style={{"background":"transparent"}}>
-                                        <img alt={m?.type?.name} />
-                                    </td>
-                            )}
-                            {move?.map((m) =>
-                                m?.name === pm?.move?.name &&
-                                    <td className='pokemon_moves_table_body_row_element'>
-                                        {m?.damage_class?.name}
-                                    </td>
-                            )}
-                            {move?.map((m) =>
-                                m?.name === pm?.move?.name &&
-                                    <td className='pokemon_moves_table_body_row_element'>
-                                        {m?.power !== null ? (
-                                            m?.power
-                                        ) : (
-                                            '-'
-                                        )}
-                                    </td>
-                            )}
-                            {move?.map((m) =>
-                                m?.name === pm?.move?.name &&
-                                    <td className='pokemon_moves_table_body_row_element'>
-                                        {m?.pp}
-                                    </td>
-                            )}
-                            {move?.map((m) =>
-                                m?.name === pm?.move?.name &&
-                                    <td className='pokemon_moves_table_body_row_element'>
-                                        {m?.accuracy !== null ? (
-                                            m?.accuracy
-                                        ) : (
-                                            '-'
-                                        )}
-                                    </td>
-                            )}
-                            {move?.map((m) =>
-                                m?.name === pm?.move?.name &&
-                                    <td className='pokemon_moves_table_body_row_element'>
-                                        {m?.priority}
-                                    </td>
-                            )}
-                            {move?.map((m) =>
-                                m?.name === pm?.move?.name &&
-                                    <td className='pokemon_moves_table_body_row_element'>
-                                        {m?.meta?.ailment !== null ? (
-                                            m?.meta?.ailment?.name?.replace('none', '-')
-                                        ) : (
-                                            '-'
-                                        )}
-                                    </td>
+                                m?.name === pm?.move?.name && (
+                                    <>
+                                        <td className='pokemon_moves_table_body_row_element' id={m?.type?.name} style={{"background":"transparent"}}>
+                                            <img alt={m?.type?.name} />
+                                        </td>
+                                        <td className='pokemon_moves_table_body_row_element'>
+                                            {m?.damage_class?.name}
+                                        </td>
+                                        <td className='pokemon_moves_table_body_row_element'>
+                                            {m?.power !== null ? (
+                                                m?.power
+                                            ) : (
+                                                '-'
+                                            )}
+                                        </td>
+                                        <td className='pokemon_moves_table_body_row_element'>
+                                            {m?.pp}
+                                        </td>
+                                        <td className='pokemon_moves_table_body_row_element'>
+                                            {m?.accuracy !== null ? (
+                                                m?.accuracy
+                                            ) : (
+                                                '-'
+                                            )}
+                                        </td>
+                                        <td className='pokemon_moves_table_body_row_element'>
+                                            {m?.priority}
+                                        </td>
+                                        <td className='pokemon_moves_table_body_row_element'>
+                                            {m?.meta?.ailment !== null ? (
+                                                m?.meta?.ailment?.name?.replace('none', '-')
+                                            ) : (
+                                                '-'
+                                            )}
+                                        </td>
+                                    </>
+                                )
                             )}
                         </tr>
                     )
