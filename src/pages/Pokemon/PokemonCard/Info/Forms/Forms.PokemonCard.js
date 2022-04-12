@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { H3 } from '../../../../../components/BaseStyles/Headings';
+import { TLink } from '../../../../../components/BaseStyles/Table';
 import { PokemonInfoTable } from '../StyledInfo.PokemonCard';
 
 function Forms({species}) {
@@ -26,19 +27,14 @@ function Forms({species}) {
                             Varieties
                         </th>
                         <td>
-                            {species?.varieties?.map((sv) => 
-                                <Link
-                                to={`/pokemon/${sv?.pokemon?.name}`}
-                                key={sv?.pokemon?.name}
+                            {species?.varieties?.map((sv) => (
+                                <TLink
+                                    to={`/pokemon/${sv?.pokemon?.name}`}
+                                    key={sv?.pokemon?.name}
                                 >
                                     {sv?.pokemon?.name?.replace(/-/g, ' ')}
-                                    {sv?.is_default === true &&
-                                        <>
-                                            ‌‌ (default)
-                                        </>
-                                    }
-                                </Link>
-                            )}
+                                </TLink>
+                            ))}
                         </td>
                     </tr>
                     <tr>
