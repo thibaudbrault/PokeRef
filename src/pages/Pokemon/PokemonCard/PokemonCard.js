@@ -143,7 +143,7 @@ function PokemonCard() {
         document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Pokémon | PokéInfo`;
     }, [title]);
 
-    console.log(move)
+    console.log(evolution)
 
     return (
         <MainBig>
@@ -265,7 +265,8 @@ function PokemonCard() {
                     />
 
                     <Evolution 
-                        
+                        species={species}
+                        evolution={evolution}
                     />
 
                     <Info 

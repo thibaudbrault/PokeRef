@@ -87,7 +87,8 @@ function Bars({pokemon}) {
                     </tr>
                     <tr>
                         <PokemonStatsText>
-                            {pokemon?.stats?.[4]?.stat?.name.replace(/-/g, ' ')}
+                            {pokemon?.stats?.[4]?.stat?.name.replace(/-/g, ' ')
+                            .replace('special', 'sp.')}
                         </PokemonStatsText>
                         <PokemonStatsText>
                             {pokemon?.stats?.[4]?.base_stat}

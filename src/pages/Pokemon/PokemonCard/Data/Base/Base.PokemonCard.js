@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { TLink } from '../../../../../components/BaseStyles/Table';
 import { PokemonDataTable } from '../StyledData.PokemonCard';
 
 function Base({pokemon, species, game, location}) {
@@ -48,12 +49,12 @@ function Base({pokemon, species, game, location}) {
                     <td>
                         {pokemon?.abilities?.map((pa) => 
                             <p>
-                                <Link
-                                to={`/abilities/${pa.ability.name}`}
-                                key={pa.ability.name}
+                                <TLink
+                                    to={`/abilities/${pa.ability.name}`}
+                                    key={pa.ability.name}
                                 >
                                     {pa?.ability?.name?.replace(/-/g, ' ')}
-                                </Link>
+                                </TLink>
                                 {pa?.is_hidden && 
                                     <>
                                         ‌‌ (hidden ability)
