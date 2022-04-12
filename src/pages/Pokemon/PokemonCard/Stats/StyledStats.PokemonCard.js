@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { PokemonInfoTable } from '../Info/StyledInfo.PokemonCard';
 
 export const PokemonStatsSection = styled.section`
     padding-bottom: 5rem;
@@ -44,4 +45,8 @@ export const PokemonStatsTotal = styled.td`
     font-size: 1.5rem;
     font-weight: 700;
     vertical-align: middle;
+`
+
+export const PokemonTypesTable = styled(PokemonInfoTable)`
+    display: ${props => props.visibility? 'table': 'none'};
 `

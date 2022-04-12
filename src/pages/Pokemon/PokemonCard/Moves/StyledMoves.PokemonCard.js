@@ -17,10 +17,12 @@ export const PokemonMovesMachine = styled.td`
     text-transform: uppercase;
 `
 
-export const PokemonMovesEmpty = styled.p`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+export const PokemonMovesEmpty = styled.td`
+    display: none;
     font-size: 1.7rem;
     font-weight: 700;
+
+    &:first-child {
+        display: table-cell;
+    }
 `

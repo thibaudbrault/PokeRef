@@ -4,13 +4,18 @@ import Types from './Types/Types.PokemonCard';
 
 import { PokemonStatsSection } from './StyledStats.PokemonCard';
 
-function Stats({pokemon}) {
+function Stats({pokemon, type, toggleType, toggleTypeTable}) {
     return (
         <PokemonStatsSection>
             <Bars 
                 pokemon={pokemon}
             />
-            <Types />
+            <Types 
+                toggleType={toggleType}
+                toggleTypeTable={toggleTypeTable}
+                pokemon={pokemon}
+                type={type}
+            />
         </PokemonStatsSection>
     )
 }
