@@ -35,11 +35,9 @@ function Egg({toggleState, pokemon, move, version, game}) {
             </THead>
             <tbody>
                 <>
-                    {!pokemon?.moves &&
-                        <PokemonMovesEmpty>
+                        {/* <PokemonMovesEmpty>
                             <span>{pokemon?.name?.replace(/-/g, ' ')}</span> ‌‌ doesn't learn any moves this way in Pokémon ‌‌ <span>{game}</span>
-                        </PokemonMovesEmpty>
-                    }
+                        </PokemonMovesEmpty> */}
                     {pokemon?.moves?.map((pm) => 
                         pm?.version_group_details?.map((pmv) =>
                         pmv?.version_group?.name === version && ((pmv?.move_learn_method?.name === 'egg') || (pmv?.move_learn_method?.name === 'level-up' && pmv?.level_learned_at === 1)) &&
