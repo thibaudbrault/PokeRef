@@ -1,12 +1,7 @@
 import styled from 'styled-components';
-import { Table } from '../../../../components/BaseStyles/Table';
 
 export const PokemonMovesSection = styled.section`
     padding-bottom: 5rem;
-`
-
-export const PokemonMovesTable = styled(Table)`
-    display: ${props => props.visibility? 'table': 'none'};
 `
 
 export const PokemonMovesTd = styled.td`

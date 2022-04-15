@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Method from '../../../../helpers/Method/Method';
 
-import Level from './Level/Level.PokemonCard';
-import Machine from './Machine/Machine.PokemonCard';
-import Egg from './Egg/Egg.PokemonCard';
-import Evolving from './Evolving/Evolving.PokemonCard';
-import Tutor from './Tutor/Tutor.PokemonCard';
-import { PokemonMovesSection } from './StyledMoves.PokemonCard';
+import { PokemonMovesSection, PokemonMovesTd, PokemonMovesEmpty, PokemonMovesMachine } from './StyledMoves.PokemonCard';
+import { Table, THead, TRow, TLink } from '../../../../components/BaseStyles/Table';
 import { H3 } from '../../../../components/BaseStyles/Headings';
 
 function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}) {
+
+    const [learn, setLearn] = useState();
+
+    useEffect(() => {
+        if (toggleState === 1) {
+            setLearn('level-up')
+        } else if (toggleState === 2) {
+            setLearn('machine')
+        } else if (toggleState === 3) {
+            setLearn('egg')
+        } else if (toggleState === 4) {
+            setLearn('tutor')
+        } 
+    }, [toggleState])
+
     return (
         <PokemonMovesSection>
             <H3>Moves</H3>
@@ -17,44 +28,118 @@ function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}
                 toggleState={toggleState}
                 toggleTable={toggleTable}
             />
-            <Level 
-                pokemon={pokemon}
-                move={move}
-                version={version}
-                toggleState={toggleState}
-            />
-            <Machine 
-                pokemon={pokemon}
-                move={move}
-                machine={machine}
-                version={version}
-                toggleState={toggleState}
-            />
-            <Egg 
-                pokemon={pokemon}
-                move={move}
-                version={version}
-                game={game}
-                toggleState={toggleState}
-            />
-            <Tutor 
-                pokemon={pokemon}
-                move={move}
-                version={version}
-                game={game}
-                toggleState={toggleState}
-            />
-            <Evolving 
-                pokemon={pokemon}
-                move={move}
-                version={version}
-                toggleState={toggleState}
-            />
-
-            {/* <PokemonMovesEmpty>
-                <span>{pokemon?.name?.replace(/-/g, ' ')}</span> ‌‌ doesn't learn any moves this way in Pokémon ‌‌ <span>{game}</span>
-            </PokemonMovesEmpty> */}
-            
+                <Table>
+                    <THead>
+                        <tr>
+                            <th>
+                                {learn === 'level-up' ? 'Level' : learn === 'machine' ? 'Machine' : '-'}
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                            <th>
+                                Category
+                            </th>
+                            <th>
+                                Power
+                            </th>
+                            <th>
+                                PP
+                            </th>
+                            <th>
+                                Accuracy
+                            </th>
+                            <th>
+                                Priority
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                        </tr>
+                    </THead>
+                    <tbody>
+                        {pokemon?.moves?.map((pm) => 
+                            pm?.version_group_details?.map((pmv) =>
+                            pmv?.version_group?.name === version && pmv?.move_learn_method?.name === learn &&
+                            <TRow>
+                                {learn === 'level-up' && (
+                                    <PokemonMovesTd>
+                                        {pmv?.level_learned_at}
+                                    </PokemonMovesTd>
+                                )}
+                                {learn === 'machine' && (
+                                    machine?.map((ma) =>
+                                        ma?.move?.name === pm?.move?.name && ma?.version_group?.name === version &&
+                                            <PokemonMovesMachine>
+                                                {ma?.item?.name}
+                                            </PokemonMovesMachine>
+                                    )
+                                )}
+                                {learn === 'egg' && (
+                                    <PokemonMovesTd>
+                                        -
+                                    </PokemonMovesTd>
+                                )}
+                                {learn === 'tutor' && (
+                                    <PokemonMovesTd>
+                                        -
+                                    </PokemonMovesTd>
+                                )}
+                                <td>
+                                    <TLink
+                                        to={`/moves/${pm?.move?.name}`}
+                                    >
+                                        {pm?.move?.name.replace(/-/g, ' ')}
+                                    </TLink>
+                                </td>
+                                {move?.map((m) =>
+                                    m?.name === pm?.move?.name &&
+                                        <>
+                                            <PokemonMovesTd id={m?.type?.name} style={{"background":"transparent"}}>
+                                                <img alt={m?.type?.name} width={32} height={32} />
+                                            </PokemonMovesTd>
+                                            <PokemonMovesTd>
+                                                {m?.damage_class?.name}
+                                            </PokemonMovesTd>
+                                            <PokemonMovesTd>
+                                                {m?.power !== null ? (
+                                                    m?.power
+                                                ) : (
+                                                    '-'
+                                                )}
+                                            </PokemonMovesTd>
+                                            <PokemonMovesTd>
+                                                {m?.pp}
+                                            </PokemonMovesTd>
+                                            <PokemonMovesTd>
+                                                {m?.accuracy !== null ? (
+                                                    m?.accuracy
+                                                ) : (
+                                                    '-'
+                                                )}
+                                            </PokemonMovesTd>
+                                            <PokemonMovesTd>
+                                                {m?.priority}
+                                            </PokemonMovesTd>
+                                            <PokemonMovesTd>
+                                                {m?.meta?.ailment !== null ? (
+                                                    m?.meta?.ailment?.name?.replace('none', '-')
+                                                ) : (
+                                                    '-'
+                                                )}
+                                            </PokemonMovesTd>
+                                        </>
+                                )}
+                            </TRow>
+                        ))}
+                    </tbody>
+                </Table>
+                <PokemonMovesEmpty>
+                    <span>{pokemon?.name?.replace(/-/g, ' ')}</span> ‌‌ doesn't learn any moves this way in Pokémon ‌‌ <span>{game}</span>
+                </PokemonMovesEmpty>
         </PokemonMovesSection>
     )
 }
