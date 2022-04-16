@@ -13,7 +13,6 @@ export const PokemonMovesMachine = styled.td`
 `
 
 export const PokemonMovesEmpty = styled.td`
-    display: none;
     font-size: 1.7rem;
     font-weight: 700;
 

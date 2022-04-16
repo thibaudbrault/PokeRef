@@ -21,6 +21,100 @@ function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}
         } 
     }, [toggleState])
 
+    const isLearnedMoveForVersion = (version) => (pmv) => 
+        pmv?.version_group?.name === version && 
+        pmv?.move_learn_method?.name === learn;
+
+    const isLearnedMove = isLearnedMoveForVersion(version);
+
+    const isMoveDisplayed = pokemon?.moves?.map((pm) =>
+    pm?.version_group_details?.map(
+    (pmv) => isLearnedMove(pmv)));
+
+    const moveDisplayed = isMoveDisplayed
+
+    const emptyMoves = (
+        <PokemonMovesEmpty>
+            <span>{pokemon?.name?.replace(/-/g, " ")}</span> ‌‌ doesn't learn
+            any moves this way in Pokémon ‌‌ <span>{game}</span>
+        </PokemonMovesEmpty>
+    );
+
+    const moveInfoTable = (pm) =>
+        move?.map((m) =>
+            m?.name === pm?.move?.name && (
+                <>
+                    <PokemonMovesTd id={m?.type?.name} style={{"background":"transparent"}}>
+                        <img alt={m?.type?.name} width={32} height={32} />
+                    </PokemonMovesTd>
+                    <PokemonMovesTd>
+                        {m?.damage_class?.name}
+                    </PokemonMovesTd>
+                    <PokemonMovesTd>
+                        {m?.power !== null ? (
+                            m?.power
+                        ) : (
+                            '-'
+                        )}
+                    </PokemonMovesTd>
+                    <PokemonMovesTd>
+                        {m?.pp}
+                    </PokemonMovesTd>
+                    <PokemonMovesTd>
+                        {m?.accuracy !== null ? (
+                            m?.accuracy
+                        ) : (
+                            '-'
+                        )}
+                    </PokemonMovesTd>
+                    <PokemonMovesTd>
+                        {m?.priority}
+                    </PokemonMovesTd>
+                    <PokemonMovesTd>
+                        {m?.meta?.ailment !== null ? (
+                            m?.meta?.ailment?.name?.replace('none', '-')
+                        ) : (
+                            '-'
+                        )}
+                    </PokemonMovesTd>
+                </>
+            )
+        );
+
+    const dataMoves = moveDisplayed && (
+            <TRow>
+                {learn === 'level-up' && (
+                    <PokemonMovesTd>
+                        {pmv?.level_learned_at}
+                    </PokemonMovesTd>
+                )}
+                {learn === 'machine' && (
+                    machine?.map((ma) =>
+                        ma?.move?.name === pm?.move?.name && ma?.version_group?.name === version &&
+                            <PokemonMovesMachine>
+                                {ma?.item?.name}
+                            </PokemonMovesMachine>
+                    )
+                )}
+                {learn === 'egg' && (
+                    <PokemonMovesTd>
+                        -
+                    </PokemonMovesTd>
+                )}
+                {learn === 'tutor' && (
+                    <PokemonMovesTd>
+                        -
+                    </PokemonMovesTd>
+                )}
+                <td>
+                    <TLink to={`/moves/${pm?.move?.name}`}>
+                        {pm?.move?.name.replace(/-/g, " ")}
+                    </TLink>
+                </td>
+                {moveInfoTable(pm)}
+            </TRow>
+    );
+
     return (
         <PokemonMovesSection>
             <H3>Moves</H3>
@@ -61,85 +155,15 @@ function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}
                         </tr>
                     </THead>
                     <tbody>
-                        {pokemon?.moves?.map((pm) => 
-                            pm?.version_group_details?.map((pmv) =>
-                            pmv?.version_group?.name === version && pmv?.move_learn_method?.name === learn &&
-                            <TRow>
-                                {learn === 'level-up' && (
-                                    <PokemonMovesTd>
-                                        {pmv?.level_learned_at}
-                                    </PokemonMovesTd>
-                                )}
-                                {learn === 'machine' && (
-                                    machine?.map((ma) =>
-                                        ma?.move?.name === pm?.move?.name && ma?.version_group?.name === version &&
-                                            <PokemonMovesMachine>
-                                                {ma?.item?.name}
-                                            </PokemonMovesMachine>
-                                    )
-                                )}
-                                {learn === 'egg' && (
-                                    <PokemonMovesTd>
-                                        -
-                                    </PokemonMovesTd>
-                                )}
-                                {learn === 'tutor' && (
-                                    <PokemonMovesTd>
-                                        -
-                                    </PokemonMovesTd>
-                                )}
-                                <td>
-                                    <TLink
-                                        to={`/moves/${pm?.move?.name}`}
-                                    >
-                                        {pm?.move?.name.replace(/-/g, ' ')}
-                                    </TLink>
-                                </td>
-                                {move?.map((m) =>
-                                    m?.name === pm?.move?.name &&
-                                        <>
-                                            <PokemonMovesTd id={m?.type?.name} style={{"background":"transparent"}}>
-                                                <img alt={m?.type?.name} width={32} height={32} />
-                                            </PokemonMovesTd>
-                                            <PokemonMovesTd>
-                                                {m?.damage_class?.name}
-                                            </PokemonMovesTd>
-                                            <PokemonMovesTd>
-                                                {m?.power !== null ? (
-                                                    m?.power
-                                                ) : (
-                                                    '-'
-                                                )}
-                                            </PokemonMovesTd>
-                                            <PokemonMovesTd>
-                                                {m?.pp}
-                                            </PokemonMovesTd>
-                                            <PokemonMovesTd>
-                                                {m?.accuracy !== null ? (
-                                                    m?.accuracy
-                                                ) : (
-                                                    '-'
-                                                )}
-                                            </PokemonMovesTd>
-                                            <PokemonMovesTd>
-                                                {m?.priority}
-                                            </PokemonMovesTd>
-                                            <PokemonMovesTd>
-                                                {m?.meta?.ailment !== null ? (
-                                                    m?.meta?.ailment?.name?.replace('none', '-')
-                                                ) : (
-                                                    '-'
-                                                )}
-                                            </PokemonMovesTd>
-                                        </>
-                                )}
-                            </TRow>
-                        ))}
+                        <>
+                            {moveDisplayed.length === 0 ? (
+                                {emptyMoves}
+                            ) :(
+                                {dataMoves}
+                            )}
+                        </>
                     </tbody>
                 </Table>
-                <PokemonMovesEmpty>
-                    <span>{pokemon?.name?.replace(/-/g, ' ')}</span> ‌‌ doesn't learn any moves this way in Pokémon ‌‌ <span>{game}</span>
-                </PokemonMovesEmpty>
         </PokemonMovesSection>
     )
 }
