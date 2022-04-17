@@ -27,12 +27,6 @@ function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}
 
     const isLearnedMove = isLearnedMoveForVersion(version);
 
-    const isMoveDisplayed = pokemon?.moves?.map((pm) =>
-    pm?.version_group_details?.map(
-    (pmv) => isLearnedMove(pmv)));
-
-    const moveDisplayed = isMoveDisplayed
-
     const emptyMoves = (
         <PokemonMovesEmpty>
             <span>{pokemon?.name?.replace(/-/g, " ")}</span> ‌‌ doesn't learn
@@ -81,7 +75,9 @@ function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}
             )
         );
 
-    const dataMoves = moveDisplayed && (
+    const dataMoves = pokemon?.moves?.map((pm) =>
+        pm?.version_group_details?.map(
+        (pmv) => isLearnedMove(pmv) && (
             <TRow>
                 {learn === 'level-up' && (
                     <PokemonMovesTd>
@@ -113,6 +109,7 @@ function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}
                 </td>
                 {moveInfoTable(pm)}
             </TRow>
+        ))
     );
 
     return (
@@ -156,11 +153,8 @@ function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}
                     </THead>
                     <tbody>
                         <>
-                            {moveDisplayed.length === 0 ? (
-                                {emptyMoves}
-                            ) :(
-                                {dataMoves}
-                            )}
+                            {emptyMoves}
+                            {dataMoves}
                         </>
                     </tbody>
                 </Table>

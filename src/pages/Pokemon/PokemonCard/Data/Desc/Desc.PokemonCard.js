@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Type } from '../../../../../components/BaseStyles/Themes';
 import { PokemonDataDesc, PokemonDataTypes } from '../StyledData.PokemonCard';
 
 function Desc({pokemon, species, game}) {
@@ -15,14 +16,14 @@ function Desc({pokemon, species, game}) {
             </PokemonDataDesc>
             <PokemonDataTypes>
                 {pokemon?.types?.map((pt) => (
-                    <div id={pt.type.name}>
+                    <Type id={pt.type.name}>
                         <img alt={pt.type.name} />
                         <Link
                             to={`types/${pt.type.name}`}
                         >
                             {pt.type.name}
                         </Link>
-                    </div>
+                    </Type>
                 ))}
             </PokemonDataTypes>
         </ul>
