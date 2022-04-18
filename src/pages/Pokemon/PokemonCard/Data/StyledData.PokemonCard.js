@@ -44,7 +44,7 @@ export const PokemonDataTypes = styled.li`
 
         & a {
             padding-left: 0.5rem;
-            font-family: 'Press start 2P';
+            font-family: 'Press Start 2P';
             font-size: 1.7rem;
         }
     }

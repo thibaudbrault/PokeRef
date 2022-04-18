@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { H1 } from '../BaseStyles/Headings';
+import { H1 } from '../../BaseStyles/Headings';
 import { HeaderBtn, HeaderContainer, HeaderLink } from './StyledHeader';
 
 const Header = ({themeToggler}) => {

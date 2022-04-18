@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const H1 = styled.h1`
     padding: 0 1rem;
-    font-family: 'Press start 2P';
+    font-family: 'Press Start 2P';
     font-size: 6rem;
     letter-spacing: 3px;
     color: ${({ theme }) => theme.main};
@@ -12,7 +12,7 @@ export const H1 = styled.h1`
 export const Title = styled.h2`
     margin-bottom: 1.5rem;
     font-size: 3.5rem;
-    font-family: 'Press start 2P';
+    font-family: 'Press Start 2P';
     color: #c4c4c4;
 	text-transform: capitalize;
     text-align: center;

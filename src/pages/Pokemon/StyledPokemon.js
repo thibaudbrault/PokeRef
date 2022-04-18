@@ -64,7 +64,7 @@ export const PokedexElement = styled.li`
 
     & h2 {
         font-size: 1.5rem;
-        font-family: 'Press start 2P';
+        font-family: 'Press Start 2P';
         text-transform: capitalize;
         cursor: pointer;
         transition: 0.3s ease-in-out;
@@ -146,7 +146,7 @@ export const PokedexTypes = styled.div`
 
         & a {
             padding-left: 0.5rem;
-            font-family: 'Press start 2P';
+            font-family: 'Press Start 2P';
         }
     }
 `

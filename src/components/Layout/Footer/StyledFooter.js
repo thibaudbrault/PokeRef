@@ -25,7 +25,7 @@ export const LeftFooter = styled.div`
 export const CenterFooter = styled.div`
     justify-self: center;
     font-size: 2rem;
-    font-family: 'Press start 2P';
+    font-family: 'Press Start 2P';
     text-align: center;
 `
 
