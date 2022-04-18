@@ -6,12 +6,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Loading, PokedexDropdown, PokedexElement, PokedexImage, PokedexList, PokedexTypes, SpriteNormal, SpriteShiny } from './StyledPokemon';
 import { Input, Search } from '../../components/BaseStyles/Inputs';
 import { MainSmall } from '../../components/BaseStyles/Sizing';
+import { Type } from '../../components/BaseStyles/Themes';
 
 function Pokemon() {
 
     const [search, setSearch] = useState('');
     const [filteredPokedex, setFilteredPokedex] = useState([]);
     const [offset, setOffset] = useState(0);
+    const [hasMore, setHasMore] = useState(true);
 
     const [form, setForm] = useState('default')
     const [type, setType] = useState('all');
@@ -22,7 +24,7 @@ function Pokemon() {
 
     useEffect(() => {
         axios
-        .get(`https://pokeapi.co/api/v2/pokemon?limit=150&offset=${offset}`)
+        .get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`)
         .then((res) => {
             setNext(res.data.next);
             return res.data.results;
@@ -34,6 +36,15 @@ function Pokemon() {
             setPokedex(results.map((res) => res.data));
         });
     }, [offset]);
+
+    console.log(next)
+
+    const moreData = () => {
+        if (next === null) {
+            setHasMore(false);
+        }
+        setOffset(offset + 20);
+    };
 
     useEffect(() => {
         setFilteredPokedex(
@@ -49,8 +60,13 @@ function Pokemon() {
                     setOffset(0)
                     return (pokedex?.id < 899)
                 } else if (generation === 'all' && form === 'regional') {
-                    setOffset(1058)
-                    return (pokedex?.name?.includes('galar'))
+                    setOffset(987)
+                    return (
+                        pokedex?.name?.includes('alola'))
+                // } else if (generation === 'all' && form === 'regional') {
+                //     setOffset(1058)
+                //     return (
+                //         pokedex?.name?.includes('galar'))
                 } else if (generation === 'all' && form === 'mega') {
                     setOffset(930)
                     return (pokedex?.name?.includes('mega'))
@@ -98,6 +114,7 @@ function Pokemon() {
                     <label htmlFor="searchBar">Search</label>
                     <input type="text" placeholder='Pokémon Name' name='searchBar' id='searchBar' onChange={e => {setSearch(e.target.value)}} />
                 </Input>
+
                 <PokedexDropdown>
                     <label htmlFor="form">Form</label>
                     <select name="form" id="form" value={form} onChange={(e) => {setForm(e.target.value);
@@ -108,7 +125,8 @@ function Pokemon() {
                         <option value="gmax">Gmax</option>
                     </select>
                 </PokedexDropdown>
-                <div className={form === 'default' ? 'pokedex_search_dropdown' : 'hidden'}>
+
+                <PokedexDropdown className={form === 'default' ? '' : 'hidden'}>
                     <label htmlFor="generation">Generation</label>
                     <select name="generation" id="generation" value={generation} onChange={(e) => {setGeneration(e.target.value);
                     }}>
@@ -122,7 +140,8 @@ function Pokemon() {
                         <option value="gen7">Generation VII</option>
                         <option value="gen8">Generation VIII</option>
                     </select>
-                </div>
+                </PokedexDropdown>
+
                 <PokedexDropdown>
                     <label htmlFor="type">Type</label>
                     <select name="type" id="type" value={type} onChange={(e) => {setType(e.target.value);
@@ -149,12 +168,14 @@ function Pokemon() {
                     </select>
                 </PokedexDropdown>
             </Search>
+            <hr />
             <PokedexList>
                 <InfiniteScroll
-                    dataLength={filteredPokedex.length}
-                    next={next}
-                    hasMore={true}
+                    dataLength={pokedex.length}
+                    next={moreData}
+                    hasMore={hasMore}
                     loader={<Loading>More Pokémon coming</Loading>}
+                    endMessage={<Loading>No more pokémon</Loading>}
                 >
                     {filteredPokedex?.map((p) => 
                         <PokedexElement>
@@ -200,14 +221,14 @@ function Pokemon() {
                             </Link>
                             <PokedexTypes>
                                 {p?.types?.map((pt) => (
-                                    <div id={pt.type.name}>
+                                    <Type id={pt.type.name}>
                                         <img alt={pt.type.name} />
                                         <Link
                                             to={`/types/${pt.type.name}`}
                                         >
                                             {pt?.type?.name}
                                         </Link>
-                                    </div>
+                                    </Type>
                                 ))}
                             </PokedexTypes>
                         </PokedexElement>

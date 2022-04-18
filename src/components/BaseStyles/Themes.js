@@ -144,7 +144,8 @@ export const Type = styled.div`
     }
 `
 
-export const DamageClass = styled.div`
+export const DamageClass = styled.td`
+    text-transform: capitalize;
     &#physical {
         img {
             content: url(https://raw.githubusercontent.com/msikma/pokesprite/master/misc/seals/home/move-physical.png);

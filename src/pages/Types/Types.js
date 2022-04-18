@@ -6,7 +6,7 @@ import BarWave from 'react-cssfx-loading/lib/BarWave';
 import { MainSmall } from '../../components/BaseStyles/Sizing';
 import { TypesList } from './StyledTypes';
 
-export default function Types() {
+function Types() {
 
     const [types, setTypes] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -53,3 +53,5 @@ export default function Types() {
         </MainSmall>
   )
 }
+
+export default Types

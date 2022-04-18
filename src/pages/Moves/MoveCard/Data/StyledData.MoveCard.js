@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Table } from '../../../../components/BaseStyles/Table';
+import { DamageClass, Type } from '../../../../components/BaseStyles/Themes';
 
 export const MoveCardDataSection = styled.section`
     padding: 5rem 0;
@@ -21,7 +22,7 @@ export const MoveCardDataTable = styled(Table)`
     }
 `
 
-export const MoveCardDataType = styled.div`
+export const MoveCardDataType = styled(Type)`
     display: inline;
     padding: 1rem 2rem;
     border-radius: 5px;
@@ -40,19 +41,20 @@ export const MoveCardDataType = styled.div`
     }
 `
 
-export const MoveCardDataCategory = styled.div`
-    display: inline;
-    padding: 0.5rem 1.5rem;
-    border-radius: 5px;
+export const MoveCardDataCategory = styled(DamageClass)`
+    & div {
+        display: inline;
+        padding: 0.5rem 1.5rem;
 
-    & img {
+        & img {
         height: 3.5rem;
         vertical-align: middle;
-    }
+        }
 
-    & span {
-        padding-left: 0.5rem;
-        vertical-align: middle;
+        & span {
+            padding-left: 0.5rem;
+            vertical-align: middle;
+        }
     }
 `
 

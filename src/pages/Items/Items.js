@@ -8,7 +8,7 @@ import { Input, ModifiedSearch } from '../../components/BaseStyles/Inputs';
 import { Table, THead, TLink, TRow } from '../../components/BaseStyles/Table';
 import { TCategoryItems, TEffectItems, TNameItems } from './StyledItems';
 
-export default function Items() {
+function Items() {
 
     const [search, setSearch] = useState('');
     const [filteredItems, setFilteredItems] = useState([])
@@ -102,3 +102,5 @@ export default function Items() {
         </MainBig>
   )
 }
+
+export default Items

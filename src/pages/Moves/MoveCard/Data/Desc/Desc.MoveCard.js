@@ -25,12 +25,12 @@ function Desc({ move, version, machine }) {
                 </tr>
                 <tr>
                     <th>Category</th>
-                    <td>
-                        <MoveCardDataCategory id={move?.damage_class?.name}>
+                    <MoveCardDataCategory id={move?.damage_class?.name}>
+                        <div>
                             <img alt={move?.damage_class?.name} />
                             <span>{move?.damage_class?.name}</span>
-                        </MoveCardDataCategory>
-                    </td>
+                        </div>
+                    </MoveCardDataCategory>
                 </tr>
                 {machine?.map((ma) => 
                     ma?.version_group?.name === version && ma?.move?.name === move?.name &&

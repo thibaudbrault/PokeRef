@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
-import Method from '../../../helpers/Method/Method';
+import Method from '../../../components/Method/Method';
 
 import { CardTitle, H3, Subtitle } from '../../../components/BaseStyles/Headings';
 import { GenNav } from '../../../components/BaseStyles/Navbars';
@@ -11,6 +11,7 @@ import { MainBig } from '../../../components/BaseStyles/Sizing';
 import Data from './Data/Data.MoveCard';
 import { MoveLearnSection, MoveLink, MoveList, MoveText, MoveTypes } from './StyledMoveCard';
 import { BackButton } from '../../../components/BaseStyles/Inputs';
+import { Type } from '../../../components/BaseStyles/Themes';
 
 const MoveCard = () => {
 
@@ -199,10 +200,10 @@ const MoveCard = () => {
                                             <p>Level {pmv?.level_learned_at}</p>
                                             <MoveTypes>
                                                 {p?.types?.map((pt) =>
-                                                    <div id={pt.type.name}>
+                                                    <Type id={pt.type.name}>
                                                         <img alt={pt?.type?.name} />
                                                         <span>{pt?.type?.name}</span>
-                                                    </div>
+                                                    </Type>
                                                 )}
                                             </MoveTypes>
                                         </li>
@@ -230,10 +231,10 @@ const MoveCard = () => {
                                             </MoveLink>
                                             <MoveTypes>
                                                 {p?.types?.map((pt) =>
-                                                    <div id={pt.type.name}>
+                                                    <Type id={pt.type.name}>
                                                         <img alt={pt?.type?.name} />
                                                         <span>{pt?.type?.name}</span>
-                                                    </div>
+                                                    </Type>
                                                 )}
                                             </MoveTypes>
                                         </li>
@@ -261,10 +262,10 @@ const MoveCard = () => {
                                             </MoveLink>
                                             <MoveTypes>
                                                 {p?.types?.map((pt) =>
-                                                    <div id={pt.type.name}>
+                                                    <Type id={pt.type.name}>
                                                         <img alt={pt?.type?.name} />
                                                         <span>{pt?.type?.name}</span>
-                                                    </div>
+                                                    </Type>
                                                 )}
                                             </MoveTypes>
                                         </li>
@@ -292,10 +293,10 @@ const MoveCard = () => {
                                             </MoveLink>
                                             <MoveTypes>
                                                 {p?.types?.map((pt) =>
-                                                    <div id={pt.type.name}>
+                                                    <Type id={pt.type.name}>
                                                         <img alt={pt?.type?.name} />
                                                         <span>{pt?.type?.name}</span>
-                                                    </div>
+                                                    </Type>
                                                 )}
                                             </MoveTypes>
                                         </li>
@@ -323,10 +324,10 @@ const MoveCard = () => {
                                             </MoveLink>
                                             <MoveTypes>
                                                 {p?.types?.map((pt) =>
-                                                    <div id={pt.type.name}>
+                                                    <Type id={pt.type.name}>
                                                         <img alt={pt?.type?.name} />
                                                         <span>{pt?.type?.name}</span>
-                                                    </div>
+                                                    </Type>
                                                 )}
                                             </MoveTypes>
                                         </li>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { LeftTitle } from '../../components/BaseStyles/Headings';
+import { DamageClass, Type } from '../../components/BaseStyles/Themes';
 
 export const ModifiedLeftTitle = styled(LeftTitle)`
     margin-top: 5rem;
@@ -30,7 +31,7 @@ export const StatusMoves = styled.td`
     }
 `
 
-export const TCategory = styled.td`
+export const TCategory = styled(DamageClass)`
     & div {
         display: flex;
         align-items: center;
@@ -39,12 +40,17 @@ export const TCategory = styled.td`
         & img {
             width: 2rem;
         }
+
+        & span {
+            padding-left: 0.5rem;
+        }
     }
 `
 
 export const TType = styled.td`
-    & a {
-        display: inline;
+    & div {
+        width: 50%;
+        margin: 0 auto;
         padding: 0.7rem 1.5rem;
         border-radius: 5px;
         text-transform: uppercase;
@@ -60,7 +66,7 @@ export const TType = styled.td`
         }
         & span {
             font-family: 'Press start 2P';
-            font-size: 1rem;
+            font-size: 1.2rem;
             padding-left: 0.5rem;
             vertical-align: middle;
             cursor: pointer;

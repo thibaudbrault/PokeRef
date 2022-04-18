@@ -30,6 +30,10 @@ export const PokedexDropdown = styled.div`
             background: ${({ theme }) => theme.main};
         }
     }
+
+    .hidden {
+        display: none !important;
+    }
 `
 
 export const PokedexList = styled.ol`

@@ -8,6 +8,8 @@ import { ModifiedSearch, Input } from '../../components/BaseStyles/Inputs';
 import { LeftTitle } from '../../components/BaseStyles/Headings';
 import { ModifiedLeftTitle, MovesSection, StatusMoves, TCategory, TType } from './StyledMoves';
 import { MainBig } from '../../components/BaseStyles/Sizing';
+import { Type } from '../../components/BaseStyles/Themes';
+import { MethodNav } from '../../components/BaseStyles/Navbars';
 
 function Moves() {
 
@@ -72,10 +74,10 @@ function Moves() {
                 <BarWave width='40px' height='20px' color='#cc0000' />
             ) : (
                 <>
-                    <nav className='moves_nav'>
-                        <button className={toggleState === 1 ? 'moves_nav_active' : 'moves_nav_element'} onClick={() => toggleTable(1)}><p>Moves</p></button>
-                        <button className={toggleState === 2 ? 'moves_nav_active' : 'moves_nav_element'} onClick={() => toggleTable(2)}><p>Status</p></button>
-                    </nav>
+                    <MethodNav>
+                        <button className={toggleState === 1 ? 'button_active' : ''} onClick={() => toggleTable(1)}><p>Moves</p></button>
+                        <button className={toggleState === 2 ? 'button_active' : ''} onClick={() => toggleTable(2)}><p>Status</p></button>
+                    </MethodNav>
 
                     <MovesSection visibility={toggleState === 1}>
                         <LeftTitle>Moves</LeftTitle>
@@ -105,19 +107,20 @@ function Moves() {
                                                 {m?.name?.replace(/-/g, ' ')}
                                             </TLink>
                                         </TName>
-                                        <TCategory>
-                                            <div id={m?.damage_class?.name}>
+                                        <TCategory id={m?.damage_class?.name}>
+                                            <div>
                                                 <img alt={m.damage_class.name} />
                                                 <span>{m?.damage_class?.name}</span>
                                             </div>
                                         </TCategory>
                                         <TType>
-                                            <Link
-                                                to={`/types/${m.type.name}`}
-                                                id={m.type.name}>
-                                                <img alt={m.type.name} />
-                                                <span>{m?.type?.name}</span>
-                                            </Link>
+                                            <Type id={m.type.name}>
+                                                <Link
+                                                    to={`/types/${m.type.name}`}>
+                                                    <img alt={m.type.name} />
+                                                    <span>{m?.type?.name}</span>
+                                                </Link>
+                                            </Type>
                                         </TType>
                                         <TEffect>
                                             {m?.flavor_text_entries?.map((mf) => 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MethodNav } from '../../components/BaseStyles/Navbars';
+import { MethodNav } from '../BaseStyles/Navbars';
 
 function Method({toggleState, toggleTable}) {
     return (

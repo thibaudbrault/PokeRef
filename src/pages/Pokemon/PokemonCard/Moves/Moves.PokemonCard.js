@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Method from '../../../../helpers/Method/Method';
+import Method from '../../../../components/Method/Method';
 
 import { PokemonMovesSection, PokemonMovesTd, PokemonMovesEmpty, PokemonMovesMachine } from './StyledMoves.PokemonCard';
 import { Table, THead, TRow, TLink } from '../../../../components/BaseStyles/Table';
 import { H3 } from '../../../../components/BaseStyles/Headings';
+import { DamageClass } from '../../../../components/BaseStyles/Themes';
 
 function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}) {
 
@@ -38,9 +39,9 @@ function Moves({toggleState, toggleTable, pokemon, move, machine, version, game}
         move?.map((m) =>
             m?.name === pm?.move?.name && (
                 <>
-                    <PokemonMovesTd id={m?.type?.name} style={{"background":"transparent"}}>
+                    <DamageClass id={m?.type?.name} style={{"background":"transparent"}}>
                         <img alt={m?.type?.name} width={32} height={32} />
-                    </PokemonMovesTd>
+                    </DamageClass>
                     <PokemonMovesTd>
                         {m?.damage_class?.name}
                     </PokemonMovesTd>

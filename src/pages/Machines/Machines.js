@@ -8,7 +8,7 @@ import { LeftTitle } from '../../components/BaseStyles/Headings';
 import { Table, THead, TLink, TName, TRow } from '../../components/BaseStyles/Table';
 import { MainBig } from '../../components/BaseStyles/Sizing';
 
-export default function Items() {
+function Machines() {
 
     const[search, setSearch] = useState('');
 
@@ -30,8 +30,6 @@ export default function Items() {
             setMachines(results.map((res) => res.data));
         });
     }, []);
-
-    console.log(machines)
 
     const[version, setVersion] = useState('red-blue');
 
@@ -155,3 +153,5 @@ export default function Items() {
         </MainBig>
     )
 }
+
+export default Machines

@@ -6,6 +6,7 @@ import { Reset } from './components/BaseStyles/Reset';
 import { Fonts } from './components/BaseStyles/Fonts';
 import { lightTheme, darkTheme } from './components/BaseStyles/Themes';
 import Pokemon from './pages/Pokemon/Pokemon';
+import styled from 'styled-components';
 
 const Moves = lazy(() => import ('./pages/Moves/Moves'));
 const Abilities = lazy(() => import ('./pages/Abilities/Abilities'));
@@ -41,6 +42,15 @@ function App() {
     localTheme && setTheme(localTheme)
   }, []);
 
+  const LazyLoad = styled.p`
+    font-size: 4rem;
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  `
+
   return (
     <BrowserRouter>
       <ThemeProvider
@@ -53,7 +63,7 @@ function App() {
         >
           <Reset />
           <Fonts />
-          <Suspense fallback={<p className='lazy_loading'>Welcome to PokéInfo!</p>}>
+          <Suspense fallback={<LazyLoad>Welcome to PokéInfo!</LazyLoad>}>
             <Routes>
               <Route path="/" element={<Pokemon />} />
               <Route path="/pikachu" element={<Pikachu />} />

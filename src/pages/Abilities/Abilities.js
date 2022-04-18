@@ -7,7 +7,7 @@ import { Input, ModifiedSearch } from '../../components/BaseStyles/Inputs';
 import { Table, THead, TName, TRow, TEffect, TLink } from '../../components/BaseStyles/Table';
 import { ModifiedMainBig } from '../../components/BaseStyles/Sizing';
 
-export default function Abilities() {
+function Abilities() {
 
     const [search, setSearch] = useState('');
     const [filteredAbilities, setFilteredAbilities] = useState([])
@@ -91,3 +91,5 @@ export default function Abilities() {
         </ModifiedMainBig>
     )
 }
+
+export default Abilities
