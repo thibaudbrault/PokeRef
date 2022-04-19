@@ -40,7 +40,6 @@
 ✅Change certain data according to the game version selected  
 ✅Dark mode
 
-🛠Moving to Styled-Components  
 🛠404 page  
 🛠Infinite scrolling
 
@@ -69,8 +68,8 @@ My main goal for this site was to get better at React JS and to learn how to use
 
 <h2 id="technologies">Technologies</h2>
 
-- ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 - ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+- ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 
 <h2 id="setup">Setup</h2>
 
@@ -116,7 +115,7 @@ A big thanks also to the pokeapi team for creating such a huge, detailed and ver
 
 <h2 id="contact">Contact</h2>
 
-<a href="https://thibaud-brault.com/" target="_blank">![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)</a>
+<a href="https://thibaudbrault.dev/" target="_blank">![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)</a>
 
 <h2 id="license">License</h2>  
 MIT © Thibaud Brault
