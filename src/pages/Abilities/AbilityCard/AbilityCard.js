@@ -4,173 +4,230 @@ import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { MainBig } from '../../../components/BaseStyles/Sizing';
-import { AbilityCardEffect, AbilityCardSection, AbilityCardTable, Sup } from './StyledAbilityCard';
-import { CardTitle, H3, H4, Subtitle } from '../../../components/BaseStyles/Headings';
-import { Table, THead, TLink, TName, TRow } from '../../../components/BaseStyles/Table';
+import {
+	AbilityCardEffect,
+	AbilityCardSection,
+	AbilityCardTable,
+	Sup,
+} from './StyledAbilityCard';
+import {
+	CardTitle,
+	H3,
+	H4,
+	Subtitle,
+} from '../../../components/BaseStyles/Headings';
+import {
+	Table,
+	THead,
+	TLink,
+	TName,
+	TRow,
+} from '../../../components/BaseStyles/Table';
 import { BackButton } from '../../../components/BaseStyles/Inputs';
 
 const AbilityCard = () => {
+	const { name } = useParams();
+	const navigate = useNavigate();
+	const [ability, setAbility] = useState([]);
+	const [loading, setLoading] = useState(false);
 
-    const { name } = useParams();
-    const navigate = useNavigate();
-    const [ability, setAbility] = useState([])
-    const [loading, setLoading] = useState(false);
+	useEffect(() => {
+		setLoading(true);
+		axios
+			.get(`https://pokeapi.co/api/v2/ability/${name}`)
+			.then((results) => {
+				return results.data;
+			})
+			.then((results) => {
+				setLoading(false);
+				setAbility(results);
+			});
+	}, [name]);
 
-    useEffect(() => {
-        setLoading(true);
-        axios
-        .get(`https://pokeapi.co/api/v2/ability/${name}`)
-        .then((results) => {
-            return results.data;
-        })
-        .then((results) => {
-            setLoading(false);
-            setAbility(results);
-        });
-    }, [name]);
+	const [pokemon, setPokemon] = useState([]);
 
-    const [pokemon, setPokemon] = useState([]);
+	useEffect(() => {
+		axios
+			.get('https://pokeapi.co/api/v2/pokemon?limit=1300')
+			.then((res) => {
+				return res.data.results;
+			})
+			.then((results) => {
+				return Promise.all(results.map((res) => axios.get(res.url)));
+			})
+			.then((results) => {
+				setPokemon(results.map((res) => res.data));
+			});
+	}, []);
 
-    useEffect(() => {
-        axios
-        .get('https://pokeapi.co/api/v2/pokemon?limit=1300')
-        .then((res) => {
-            return res.data.results;
-        })
-        .then((results) => {
-            return Promise.all(results.map((res) => axios.get(res.url)));
-        })
-        .then((results) => {
-            setPokemon(results.map((res) => res.data));
-        });
-    }, []);
+	console.log(ability);
 
-    console.log(ability)
+	const title = `${name}`;
 
-    const title = `${name}`;
+	useEffect(() => {
+		document.title = `${
+			title.charAt(0).toUpperCase() + title.slice(1)
+		} | Abilities | PokéInfo`;
+	}, [title]);
 
-    useEffect(() => {
-        document.title = `${title.charAt(0).toUpperCase() + title.slice(1)} | Abilities | PokéInfo`;
-     }, [title]);
+	return (
+		<MainBig>
+			{loading ? (
+				<BarWave width='40px' height='20px' color='#cc0000' />
+			) : (
+				<>
+					<CardTitle>{ability?.name?.replace(/-/g, ' ')}</CardTitle>
+					<Subtitle>{ability?.generation?.name?.replace(/-/g, ' ')}</Subtitle>
 
-    return (
-        <MainBig>
-            {loading ? (
-                <BarWave width='40px' height='20px' color='#cc0000' />
-            ) : (
-                <>
-                    <CardTitle>{ability?.name?.replace(/-/g, ' ')}</CardTitle>
-                    <Subtitle>{ability?.generation?.name?.replace(/-/g, ' ')}</Subtitle>
+					<AbilityCardSection>
+						<AbilityCardEffect>
+							<H3>Effect</H3>
+							{ability?.effect_entries?.map(
+								(ae) => ae?.language?.name === 'en' && <p>{ae?.effect}</p>
+							)}
+						</AbilityCardEffect>
+						<H4>Overworld</H4>
+					</AbilityCardSection>
 
-                    <AbilityCardSection>
-                        <AbilityCardEffect>
-                            <H3>Effect</H3>
-                            {ability?.effect_entries?.map((ae) => 
-                                ae?.language?.name === 'en' &&
-                                    <p>
-                                        {ae?.effect}
-                                    </p>
-                            )}
-                        </AbilityCardEffect>
-                        <H4>Overworld</H4>
-                    </AbilityCardSection>
+					<AbilityCardSection>
+						<H3>Game descriptions</H3>
+						<AbilityCardTable>
+							<tbody>
+								{ability?.flavor_text_entries?.map((af) =>
+									af?.language?.name === 'en' ? (
+										<tr>
+											<th>{af?.version_group?.name?.replace(/-/g, ' ')}</th>
+											<td>{af?.flavor_text}</td>
+										</tr>
+									) : (
+										''
+									)
+								)}
+							</tbody>
+						</AbilityCardTable>
+					</AbilityCardSection>
 
-                    <AbilityCardSection>
-                        <H3>Game descriptions</H3>
-                        <AbilityCardTable>
-                            <tbody>
-                                {ability?.flavor_text_entries?.map((af) => 
-                                    af?.language?.name === 'en' ? (
-                                        <tr>
-                                            <th>{af?.version_group?.name?.replace(/-/g, ' ')}</th>
-                                            <td>{af?.flavor_text}</td>
-                                        </tr>
-                                    ) : (
-                                        ''
-                                    )
-                                )}
-                            </tbody>
-                        </AbilityCardTable>
-                    </AbilityCardSection>
+					<AbilityCardSection>
+						<H3>
+							Pokemon with <span>{ability?.name?.replace(/-/g, ' ')}</span>
+						</H3>
+						<Table>
+							<THead>
+								<tr>
+									<th>#</th>
+									<th>Name</th>
+									<th>
+										1<Sup>st</Sup> ability
+									</th>
+									<th>
+										2<Sup>nd</Sup> ability
+									</th>
+									<th>Hidden ability</th>
+								</tr>
+							</THead>
+							<tbody>
+								{ability?.pokemon?.map((ap) => (
+									<TRow>
+										<td>
+											{pokemon?.map(
+												(p) =>
+													p.name === ap.pokemon.name && (
+														<img
+															src={p.sprites.front_default}
+															alt='-'
+															loading='lazy'
+															width={64}
+															height={64}
+														/>
+													)
+											)}
+										</td>
+										<TName>
+											<TLink
+												to={`/ability/${ability.name}`}
+												key={ap.pokemon.name}
+											>
+												{ap.pokemon.name.replace(/-/g, ' ')}
+											</TLink>
+										</TName>
+										<td>
+											{pokemon?.map(
+												(p) =>
+													p.name === ap.pokemon.name && (
+														<TLink
+															to={`/abilities/${p?.abilities[0]?.ability?.name}`}
+															className={
+																p?.abilities[0]?.ability?.name === ability?.name
+																	? 'bold'
+																	: ''
+															}
+														>
+															{p?.abilities[0]?.ability?.name?.replace(
+																/-/g,
+																' '
+															)}
+														</TLink>
+													)
+											)}
+										</td>
+										<td>
+											{pokemon?.map(
+												(p) =>
+													p.name === ap.pokemon.name && (
+														<TLink
+															to={`/abilities/${p?.abilities[1]?.ability?.name}`}
+															className={
+																p?.abilities[1]?.ability?.name === ability?.name
+																	? 'bold'
+																	: ''
+															}
+														>
+															{p?.abilities?.length > 1
+																? p?.abilities[1]?.ability?.name?.replace(
+																		/-/g,
+																		' '
+																  )
+																: '-'}
+														</TLink>
+													)
+											)}
+										</td>
+										<td>
+											{pokemon?.map(
+												(p) =>
+													p.name === ap.pokemon.name && (
+														<TLink
+															to={`/abilities/${p?.abilities[2]?.ability?.name.name}`}
+															className={
+																p?.abilities[2]?.ability?.name === ability?.name
+																	? 'bold'
+																	: ''
+															}
+														>
+															{p?.abilities?.length > 2
+																? p?.abilities[2]?.ability?.name?.replace(
+																		/-/g,
+																		' '
+																  )
+																: '-'}
+														</TLink>
+													)
+											)}
+										</td>
+									</TRow>
+								))}
+							</tbody>
+						</Table>
+					</AbilityCardSection>
 
-                    <AbilityCardSection>
-                        <H3>Pokemon with <span>{ability?.name?.replace(/-/g, ' ')}</span></H3>
-                        <Table>
-                            <THead>
-                                <tr >
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>1<Sup>st</Sup> ability</th>
-                                    <th>2<Sup>nd</Sup> ability</th>
-                                    <th>Hidden ability</th>
-                                </tr>
-                            </THead>
-                            <tbody>
-                                {ability?.pokemon?.map((ap) => (
-                                    <TRow>
-                                        <td>
-                                            {pokemon?.map((p) =>
-                                                p.name === ap.pokemon.name &&
-                                                    <img src={p.sprites.front_default} alt='-' loading="lazy" width={64} height={64} />
-                                            )}
-                                        </td>
-                                        <TName>
-                                            <TLink
-                                                to={`/ability/${ability.name}`}
-                                                key={ap.pokemon.name}
-                                            >
-                                                {ap.pokemon.name.replace(/-/g, ' ')}
-                                            </TLink>
-                                        </TName>
-                                        <td>
-                                            {pokemon?.map((p) =>
-                                                p.name === ap.pokemon.name &&
-                                                    <TLink
-                                                        to={`/abilities/${p?.abilities[0]?.ability?.name}`}
-                                                        className={p?.abilities[0]?.ability?.name === ability?.name ? 'bold' : ''}>
-                                                            {p?.abilities[0]?.ability?.name?.replace(/-/g, ' ')}
-                                                    </TLink>
-                                            )}
-                                        </td>
-                                        <td>
-                                            {pokemon?.map((p) =>
-                                                p.name === ap.pokemon.name &&
-                                                    <TLink
-                                                        to={`/abilities/${p?.abilities[1]?.ability?.name}`}
-                                                        className={p?.abilities[1]?.ability?.name === ability?.name ? 'bold' : ''}>
-                                                            {p?.abilities?.length > 1 ? (
-                                                                p?.abilities[1]?.ability?.name?.replace(/-/g, ' ')
-                                                            ) : (
-                                                                '-'
-                                                            )}
-                                                    </TLink>
-                                            )}
-                                        </td>
-                                        <td>
-                                            {pokemon?.map((p) =>
-                                                p.name === ap.pokemon.name &&
-                                                    <TLink
-                                                        to={`/abilities/${p?.abilities[2]?.ability?.name.name}`}
-                                                        className={p?.abilities[2]?.ability?.name === ability?.name ? 'bold' : ''}>
-                                                            {p?.abilities?.length > 2  ? (
-                                                                p?.abilities[2]?.ability?.name?.replace(/-/g, ' ')
-                                                            ) : (
-                                                                '-'
-                                                            )}
-                                                    </TLink>
-                                            )}
-                                        </td>
-                                    </TRow>
-                                ))}
-                            </tbody>
-                        </Table>
-                    </AbilityCardSection>
-                    
-                    <BackButton onClick={() => navigate('/abilities')}> ᐸ Back to abilities</BackButton>
-                </>
-            )}
-        </MainBig>
-    )
-}
+					<BackButton onClick={() => navigate('/abilities')}>
+						{' '}
+						ᐸ Back to abilities
+					</BackButton>
+				</>
+			)}
+		</MainBig>
+	);
+};
 
 export default AbilityCard;

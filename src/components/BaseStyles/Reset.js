@@ -83,4 +83,4 @@ export const Reset = createGlobalStyle`
     main {
         min-height: 100vh;
     }
-`
+`;

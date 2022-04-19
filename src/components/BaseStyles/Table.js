@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Table = styled.table`
-    display: table;
+	display: table;
 	width: 100%;
 	text-align: center;
 	border: 1px solid rgba(130, 130, 130, 0.2);
@@ -28,7 +28,7 @@ export const Table = styled.table`
 		border-right: none;
 		vertical-align: middle;
 	}
-`
+`;
 
 export const THead = styled.thead`
 	color: #c4c4c4;
@@ -36,19 +36,19 @@ export const THead = styled.thead`
 	font-size: 1.7rem;
 	font-weight: 700;
 	text-transform: capitalize;
-`
+`;
 
 export const TRow = styled.tr`
 	&:hover {
 		background: rgba(130, 130, 130, 0.2);
 	}
-`
+`;
 
 export const TName = styled.td`
 	text-transform: capitalize;
 	font-size: 1.7rem;
 	font-weight: 700;
-`
+`;
 
 export const TLink = styled(Link)`
 	text-transform: capitalize;
@@ -58,7 +58,7 @@ export const TLink = styled(Link)`
 	&:hover {
 		border-bottom: 1px solid ${({ theme }) => theme.secondary};
 	}
-`
+`;
 
 export const TEffect = styled.td`
 	text-align: center;
@@ -69,4 +69,4 @@ export const TEffect = styled.td`
 			display: block;
 		}
 	}
-`
+`;

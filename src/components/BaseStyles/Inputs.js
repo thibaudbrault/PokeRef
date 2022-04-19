@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Search = styled.div`
-    display: flex;
+	display: flex;
 	align-items: center;
 	justify-content: space-around;
 	margin-bottom: 5rem;
-`
+`;
 
 export const Input = styled.div`
 	display: flex;
@@ -26,7 +26,7 @@ export const Input = styled.div`
 		border: 1px solid ${({ theme }) => theme.secondary};
 		border-radius: 5px;
 		transition: 0.3s ease-in-out;
-		
+
 		&:focus {
 			outline: none;
 			border: 1px solid ${({ theme }) => theme.red};
@@ -36,11 +36,11 @@ export const Input = styled.div`
 			opacity: 0.8;
 		}
 	}
-`
+`;
 
 export const ModifiedSearch = styled(Search)`
 	justify-content: flex-start;
-`
+`;
 
 export const BackButton = styled.button`
 	padding: 1rem 1.5rem;
@@ -58,4 +58,4 @@ export const BackButton = styled.button`
 		color: ${({ theme }) => theme.main};
 		border: 1px solid ${({ theme }) => theme.main};
 	}
-`
+`;

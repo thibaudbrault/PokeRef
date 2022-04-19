@@ -4,15 +4,11 @@ import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 const LocationCard = () => {
-
-    return (
-        <main className='location'>
-            
-                <>
-
-                </>
-        </main>
-    )
-}
+	return (
+		<main className='location'>
+			<></>
+		</main>
+	);
+};
 
 export default LocationCard;

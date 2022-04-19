@@ -1,59 +1,58 @@
 import styled from 'styled-components';
 
 export const GenNav = styled.nav`
-    position: relative;
+	position: relative;
 	padding: 5rem 0;
 	z-index: 100;
 
-    & ol {
-        display: flex;
+	& ol {
+		display: flex;
 		align-items: center;
 		justify-content: space-around;
 
-        & li {
-            display: inline-block;
+		& li {
+			display: inline-block;
 			position: relative;
 
-            & button {
-                background: none;
+			& button {
+				background: none;
 				border: none;
 				font-size: 1.7rem;
 				font-weight: 700;
-                color: ${({ theme }) => theme.secondary};
-            }
+				color: ${({ theme }) => theme.secondary};
+			}
 
-            & div {
-                display: none;
+			& div {
+				display: none;
 				position: absolute;
 				white-space: nowrap;
 				background: #c4c4c4;
 
-                & button {
-                    display: block;
+				& button {
+					display: block;
 					background: none;
 					font-size: 1.5rem;
 					border: none;
 					margin: 1rem;
-                    color: #161616;
+					color: #161616;
 					cursor: pointer;
 					&:hover {
 						color: ${({ theme }) => theme.red};
 					}
-                }
-            }
+				}
+			}
 
-            &:hover {
-
-                & div {
-                    display: block;
-                }
-            }
-        }
-    }
-`
+			&:hover {
+				& div {
+					display: block;
+				}
+			}
+		}
+	}
+`;
 
 export const MethodNav = styled.nav`
-    padding-bottom: 2.5rem;
+	padding-bottom: 2.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
@@ -80,8 +79,8 @@ export const MethodNav = styled.nav`
 		}
 
 		&:hover::before {
-			opacity: 0 ;
-			transform: scale(0.5,0.5);
+			opacity: 0;
+			transform: scale(0.5, 0.5);
 		}
 
 		&::after {
@@ -97,12 +96,12 @@ export const MethodNav = styled.nav`
 			background: ${({ theme }) => theme.secondary};
 			border: 1px solid ${({ theme }) => theme.secondary};
 			border-radius: 5px;
-			transform: scale(1.2,1.2);
+			transform: scale(1.2, 1.2);
 		}
 
 		&:hover::after {
 			opacity: 1;
-			transform: scale(1,1);
+			transform: scale(1, 1);
 		}
 
 		& p {
@@ -140,8 +139,8 @@ export const MethodNav = styled.nav`
 		}
 
 		&:hover::before {
-			opacity: 0 ;
-			transform: scale(0.5,0.5);
+			opacity: 0;
+			transform: scale(0.5, 0.5);
 		}
 
 		&::after {
@@ -157,12 +156,12 @@ export const MethodNav = styled.nav`
 			background: ${({ theme }) => theme.main};
 			border: 1px solid ${({ theme }) => theme.secondary};
 			border-radius: 5px;
-			transform: scale(1.2,1.2);
+			transform: scale(1.2, 1.2);
 		}
 
 		&:hover::after {
 			opacity: 1;
-			transform: scale(1,1);
+			transform: scale(1, 1);
 		}
 
 		& p {
@@ -179,4 +178,4 @@ export const MethodNav = styled.nav`
 			}
 		}
 	}
-`
+`;
