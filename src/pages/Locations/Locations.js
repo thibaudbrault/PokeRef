@@ -4,11 +4,11 @@ import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { MainBig } from '../../components/BaseStyles/Sizing';
-import { MethodNav } from '../../components/BaseStyles/Navbars';
-import { LocationList, LocationSection } from './StyledLocations';
+import { LocationList, LocationNav, LocationSection } from './StyledLocations';
 
 function Locations() {
 
+    const [filteredLocations, setFilteredLocations] = useState([]);
     const [locations, setLocations] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -56,6 +56,16 @@ function Locations() {
     }, [toggleState])
 
     useEffect(() => {
+        setFilteredLocations(
+            locations.filter(locations => 
+                !locations?.locations?.name?.includes('route')
+            )
+        );
+    }, [locations]);
+
+    console.log(filteredLocations)
+
+    useEffect(() => {
         document.title = `Locations | PokéInfo`;
     }, []);
 
@@ -65,7 +75,7 @@ function Locations() {
                 <BarWave width='40px' height='20px' color='#cc0000' />
             ) : (
                 <>
-                    <MethodNav>
+                    <LocationNav>
                         <button className={toggleState === 1 ? 'button_active' : ''} onClick={() => toggleTable(1)}><p>Kanto</p></button>
 
                         <button className={toggleState === 2 ? 'button_active' : ''} onClick={() => toggleTable(2)}><p>Johto</p></button>
@@ -81,18 +91,18 @@ function Locations() {
                         <button className={toggleState === 7 ? 'button_active' : ''} onClick={() => toggleTable(7)}><p>Alola</p></button>
 
                         <button className={toggleState === 8 ? 'button_active' : ''} onClick={() => toggleTable(8)}><p>Galar</p></button>
-                    </MethodNav>
+                    </LocationNav>
 
                     <LocationSection>
-                        {locations?.map((l) => 
+                        {filteredLocations?.map((l) => 
                             l?.name === location && location !== 'galar' &&
                                 <LocationList>
-                                    {l?.locations?.sort((a, b) => a.name.localeCompare(b.name))?.map((ln) => (
+                                    {l?.locations?.sort((a, b) => a.name.localeCompare(b.name))?.map((ll) => (
                                         <li>
                                             <Link
                                                 to={`/locations`}
                                             >
-                                                {ln?.name?.replace(/-/g, ' ')}
+                                                {ll?.name?.replace(/-/g, ' ').replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/g,'')}
                                             </Link>
                                         </li>
                                     ))}

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MethodNav } from '../../components/BaseStyles/Navbars';
 
 export const LocationSection = styled.section`
     padding-bottom: 2.5rem;
@@ -8,6 +9,10 @@ export const LocationSection = styled.section`
         font-weight: 700;
         text-align: center;
     }
+`
+
+export const LocationNav = styled(MethodNav)`
+    padding-bottom: 5rem;
 `
 
 export const LocationList = styled.ol`
