@@ -58,6 +58,10 @@ export const TLink = styled(Link)`
 	&:hover {
 		border-bottom: 1px solid ${({ theme }) => theme.secondary};
 	}
+
+	&.bold {
+		font-weight: 700;
+	}
 `;
 
 export const TEffect = styled.td`

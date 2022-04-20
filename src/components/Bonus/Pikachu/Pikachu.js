@@ -13,7 +13,7 @@ import {
 	SpriteShiny,
 } from '../../../pages/Pokemon/StyledPokemon';
 
-const Pikachu = () => {
+function Pikachu() {
 	const [pikachu, setPikachu] = useState([]);
 	const [loading, setLoading] = useState(false);
 

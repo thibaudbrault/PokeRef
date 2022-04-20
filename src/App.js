@@ -6,6 +6,7 @@ import { Reset } from './components/BaseStyles/Reset';
 import { lightTheme, darkTheme } from './components/BaseStyles/Themes';
 import Pokemon from './pages/Pokemon/Pokemon';
 import styled from 'styled-components';
+import NotFound from './pages/404/NotFound';
 
 const Moves = lazy(() => import('./pages/Moves/Moves'));
 const Abilities = lazy(() => import('./pages/Abilities/Abilities'));
@@ -79,6 +80,7 @@ function App() {
 							<Route path='/machines' element={<Machines />} />
 							<Route path='/locations' element={<Locations />} />
 							<Route path='/locations/:name' element={<LocationCard />} />
+							<Route path='*' element={<NotFound />} />
 						</Routes>
 					</Layout>
 				</Suspense>

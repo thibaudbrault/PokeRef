@@ -1,5 +1,5 @@
 import React from 'react';
-import { H3, H4 } from '../../../../../components/BaseStyles/Headings';
+import { H3, H4, Span } from '../../../../../components/BaseStyles/Headings';
 import {
 	MoveCardDataList,
 	MoveCardDataMeta,
@@ -15,9 +15,9 @@ function Effect({ move, version }) {
 				<H3>Effects</H3>
 
 				<MoveCardDataText>
-					<span>
+					<Span>
 						<i>{move?.name?.replace(/-/g, ' ')}</i>{' '}
-					</span>
+					</Span>
 					{move?.effect_entries?.map(
 						(me) =>
 							me.language.name === 'en' && (
@@ -42,7 +42,7 @@ function Effect({ move, version }) {
 				<MoveCardDataMeta>
 					{move?.meta?.ailment?.name !== 'none' && (
 						<li>
-							Status : <span>{move?.meta?.ailment?.name}</span>
+							Status : <Span>{move?.meta?.ailment?.name}</Span>
 						</li>
 					)}
 					{move?.meta?.ailment_chance !== 0 && (
@@ -102,12 +102,12 @@ function Effect({ move, version }) {
 								ms?.change < 0 ? (
 									<li>
 										This move lower the target's{' '}
-										<span>{ms?.stat?.name?.replace(/-/g, ' ')}</span> by{' '}
+										<Span>{ms?.stat?.name?.replace(/-/g, ' ')}</Span> by{' '}
 										{ms?.change} stage
 									</li>
 								) : (
 									<li>
-										This move raises the target's <span>{ms?.stat?.name}</span>{' '}
+										This move raises the target's <Span>{ms?.stat?.name}</Span>{' '}
 										by {ms?.change} stage
 									</li>
 								)
@@ -127,44 +127,44 @@ function Effect({ move, version }) {
 									{mp?.power !== null && (
 										<li>
 											Before{' '}
-											<span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span>{' '}
+											<Span>{mp?.version_group?.name?.replace(/-/g, ' ')}</Span>{' '}
 											:{' '}
-											<span>
+											<Span>
 												<i>{move?.name?.replace(/-/g, ' ')}</i>
-											</span>{' '}
+											</Span>{' '}
 											had {mp?.power} base power
 										</li>
 									)}
 									{mp?.accuracy !== null && (
 										<li>
 											Before{' '}
-											<span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span>{' '}
+											<Span>{mp?.version_group?.name?.replace(/-/g, ' ')}</Span>{' '}
 											:{' '}
-											<span>
+											<Span>
 												<i>{move?.name?.replace(/-/g, ' ')}</i>
-											</span>{' '}
+											</Span>{' '}
 											had {mp?.accuracy} accuracy
 										</li>
 									)}
 									{mp?.pp !== null && (
 										<li>
 											Before{' '}
-											<span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span>{' '}
+											<Span>{mp?.version_group?.name?.replace(/-/g, ' ')}</Span>{' '}
 											:{' '}
-											<span>
+											<Span>
 												<i>{move?.name?.replace(/-/g, ' ')}</i>
-											</span>{' '}
+											</Span>{' '}
 											had {mp?.pp} PP
 										</li>
 									)}
 									{mp?.type !== null && (
 										<li>
 											Before{' '}
-											<span>{mp?.version_group?.name?.replace(/-/g, ' ')}</span>{' '}
+											<Span>{mp?.version_group?.name?.replace(/-/g, ' ')}</Span>{' '}
 											:{' '}
-											<span>
+											<Span>
 												<i>{move?.name?.replace(/-/g, ' ')}</i>
-											</span>{' '}
+											</Span>{' '}
 											was {mp?.type} type
 										</li>
 									)}

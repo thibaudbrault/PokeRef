@@ -14,6 +14,7 @@ import {
 	CardTitle,
 	H3,
 	H4,
+	Span,
 	Subtitle,
 } from '../../../components/BaseStyles/Headings';
 import {
@@ -62,7 +63,7 @@ const AbilityCard = () => {
 
 	console.log(ability);
 
-	const title = `${name}`;
+	const title = `${name.replace(/-/g, ' ')}`;
 
 	useEffect(() => {
 		document.title = `${
@@ -86,7 +87,12 @@ const AbilityCard = () => {
 								(ae) => ae?.language?.name === 'en' && <p>{ae?.effect}</p>
 							)}
 						</AbilityCardEffect>
-						<H4>Overworld</H4>
+						{ability?.effect_entries?.map(
+							(ae) => ae?.language?.name === 'en' && ae?.effect?.includes('\n\nOverworld:') &&
+								<AbilityCardEffect>
+									<H4>Overworld</H4>
+								</AbilityCardEffect>
+						)}
 					</AbilityCardSection>
 
 					<AbilityCardSection>
@@ -109,7 +115,7 @@ const AbilityCard = () => {
 
 					<AbilityCardSection>
 						<H3>
-							Pokemon with <span>{ability?.name?.replace(/-/g, ' ')}</span>
+							Pokemon with <Span>{ability?.name?.replace(/-/g, ' ')}</Span>
 						</H3>
 						<Table>
 							<THead>
