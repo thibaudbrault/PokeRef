@@ -37,15 +37,21 @@ export const PokemonDataTypes = styled.li`
 		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 		color: #c4c4c4;
 		border: 1px solid rgba($color: #161616, $alpha: 0.2);
-
-		& img {
-			height: 2.5rem;
-		}
+		cursor: pointer;
 
 		& a {
-			padding-left: 0.5rem;
 			font-family: 'Press Start 2P';
 			font-size: 1.7rem;
+
+			& img {
+				height: 2.5rem;
+				cursor: pointer;
+			}
+
+			& span {
+				padding-left: 0.5rem;
+				cursor: pointer;
+			}
 		}
 	}
 `;

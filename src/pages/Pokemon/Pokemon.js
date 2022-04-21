@@ -73,13 +73,13 @@ function Pokemon() {
 					if (generation === 'all' && form === 'default') {
 						setOffset(0);
 						return pokedex?.id < 899;
-					} else if (generation === 'all' && form === 'regional') {
+					} else if (generation === 'all' && form === 'regional - alola') {
 						setOffset(987);
 						return pokedex?.name?.includes('alola');
-						// } else if (generation === 'all' && form === 'regional') {
-						//     setOffset(1058)
-						//     return (
-						//         pokedex?.name?.includes('galar'))
+					} else if (generation === 'all' && form === 'regional - galar') {
+						setOffset(1058)
+						return (
+							pokedex?.name?.includes('galar'))
 					} else if (generation === 'all' && form === 'mega') {
 						setOffset(930);
 						return pokedex?.name?.includes('mega');
@@ -146,7 +146,8 @@ function Pokemon() {
 						}}
 					>
 						<option value='default'>Default</option>
-						<option value='regional'>Regional</option>
+						<option value='regional - alola'>Regional - Alola</option>
+						<option value='regional - galar'>Regional - Galar</option>
 						<option value='mega'>Mega</option>
 						<option value='gmax'>Gmax</option>
 					</select>

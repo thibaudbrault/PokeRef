@@ -13,8 +13,9 @@ import {
 	TRow,
 	TLink,
 } from '../../../../components/BaseStyles/Table';
-import { H3 } from '../../../../components/BaseStyles/Headings';
-import { DamageClass } from '../../../../components/BaseStyles/Themes';
+import { H3, Span } from '../../../../components/BaseStyles/Headings';
+import { DamageClass, Type } from '../../../../components/BaseStyles/Themes';
+import { Link } from 'react-router-dom';
 
 function Moves({
 	toggleState,
@@ -57,12 +58,18 @@ function Moves({
 			(m) =>
 				m?.name === pm?.move?.name && (
 					<>
-						<DamageClass
-							id={m?.type?.name}
-							style={{ background: 'transparent' }}
-						>
-							<img alt={m?.type?.name} width={32} height={32} />
-						</DamageClass>
+						<PokemonMovesTd>
+							<Type
+								id={m?.type?.name}
+								style={{ background: 'transparent' }}
+							>
+								<Link
+									to={m?.type?.name}
+								>
+									<img alt={m?.type?.name} width={32} height={32} style={{ cursor: 'pointer' }}/>
+								</Link>
+							</Type>
+						</PokemonMovesTd>
 						<PokemonMovesTd>{m?.damage_class?.name}</PokemonMovesTd>
 						<PokemonMovesTd>
 							{m?.power !== null ? m?.power : '-'}
@@ -86,19 +93,33 @@ function Moves({
 			(pmv) =>
 				isLearnedMove(pmv) && (
 					<TRow>
-						{learn === 'level-up' && (
-							<PokemonMovesTd>{pmv?.level_learned_at}</PokemonMovesTd>
-						)}
+						{(() => {
+							if (learn === 'level-up' && pmv?.level_learned_at === 0) {
+								return(
+									<PokemonMovesTd>
+										<Span>evolution</Span>
+									</PokemonMovesTd>
+								)
+							} else if (learn === 'level-up' && pmv?.level_learned_at !== 0) {
+								return(
+									<td>
+										{pmv?.level_learned_at}
+									</td>
+								)
+							}
+						})()}
 						{learn === 'machine' &&
 							machine?.map(
 								(ma) =>
 									ma?.move?.name === pm?.move?.name &&
 									ma?.version_group?.name === version && (
-										<PokemonMovesMachine>{ma?.item?.name}</PokemonMovesMachine>
+										<PokemonMovesMachine>
+											{ma?.item?.name}
+										</PokemonMovesMachine>
 									)
 							)}
-						{learn === 'egg' && <PokemonMovesTd>-</PokemonMovesTd>}
-						{learn === 'tutor' && <PokemonMovesTd>-</PokemonMovesTd>}
+						{learn === 'egg' && <td>-</td>}
+						{learn === 'tutor' && <td>-</td>}
 						<td>
 							<TLink to={`/moves/${pm?.move?.name}`}>
 								{pm?.move?.name.replace(/-/g, ' ')}
@@ -136,7 +157,6 @@ function Moves({
 				</THead>
 				<tbody>
 					<>
-						{emptyMoves}
 						{dataMoves}
 					</>
 				</tbody>

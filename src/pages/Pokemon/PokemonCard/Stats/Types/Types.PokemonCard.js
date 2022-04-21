@@ -1,25 +1,26 @@
 import React from 'react';
 import { H3 } from '../../../../../components/BaseStyles/Headings';
+import { MethodNav } from '../../../../../components/BaseStyles/Navbars';
 import { PokemonTypesTable } from '../StyledStats.PokemonCard';
 
 function Types({ pokemon, type, toggleType, toggleTypeTable }) {
 	return (
 		<div>
 			<H3>Types relations</H3>
-			<nav className='method'>
+			<MethodNav>
 				<button
-					className={toggleType === 1 ? 'method_active' : 'method_element'}
+					className={toggleType === 1 ? 'button_active' : ''}
 					onClick={() => toggleTypeTable(1)}
 				>
 					<p>Attack</p>
 				</button>
 				<button
-					className={toggleType === 2 ? 'method_active' : 'method_element'}
+					className={toggleType === 2 ? 'button_active' : ''}
 					onClick={() => toggleTypeTable(2)}
 				>
 					<p>Defense</p>
 				</button>
-			</nav>
+			</MethodNav>
 			<PokemonTypesTable visibility={toggleType === 1}>
 				<tbody>
 					<tr>

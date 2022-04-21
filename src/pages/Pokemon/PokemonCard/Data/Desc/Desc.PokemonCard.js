@@ -18,8 +18,10 @@ function Desc({ pokemon, species, game }) {
 			<PokemonDataTypes>
 				{pokemon?.types?.map((pt) => (
 					<Type id={pt.type.name}>
-						<img alt={pt.type.name} />
-						<Link to={`types/${pt.type.name}`}>{pt.type.name}</Link>
+						<Link to={`types/${pt.type.name}`}>
+							<img alt={pt.type.name} />
+							<span>{pt.type.name}</span>
+						</Link>
 					</Type>
 				))}
 			</PokemonDataTypes>
