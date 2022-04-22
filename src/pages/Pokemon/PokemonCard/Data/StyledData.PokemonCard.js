@@ -19,6 +19,11 @@ export const PokemonDataSprite = styled.div`
 
 export const PokemonDataDesc = styled.li`
 	font-size: 2rem;
+
+	& p {
+		padding-top: 0.5rem;
+		font-size: 1.3rem;
+	}
 `;
 
 export const PokemonDataTypes = styled.li`

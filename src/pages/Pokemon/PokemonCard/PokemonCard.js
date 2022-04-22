@@ -123,8 +123,36 @@ function PokemonCard() {
 			});
 	}, [name]);
 
-	const [game, setGame] = useState('red');
-	const [version, setVersion] = useState('red-blue');
+	const [game, setGame] = useState('');
+	const [version, setVersion] = useState('');
+
+	useEffect(() => {
+		if (species?.id < 152) {
+			setGame('yellow');
+			setVersion('yellow');
+		} else if (species?.id > 151 && species?.id < 252) {
+			setGame('crystal');
+			setVersion('crystal');
+		} else if (species?.id > 251 && species?.id < 387) {
+			setGame('emerald');
+			setVersion('emerald');
+		} else if (species?.id > 386 && species?.id < 494) {
+			setGame('platinum');
+			setVersion('platinum');
+		} else if (species?.id > 493 && species?.id < 650) {
+			setGame('black-2');
+			setVersion('black-2-white-2');
+		} else if (species?.id > 649 && species?.id < 722) {
+			setGame('x');
+			setVersion('x-y');
+		} else if (species?.id > 721 && species?.id < 810) {
+			setGame('ultra-sun');
+			setVersion('ultra-sun-ultra-moon');
+		} else if (species?.id > 809 && species?.id < 898) {
+			setGame('sword');
+			setVersion('sword-shield');
+		}
+	}, [species])
 
 	const [toggleState, setToggleState] = useState(1);
 	const toggleTable = (index) => {

@@ -14,7 +14,7 @@ import {
 	TLink,
 } from '../../../../components/BaseStyles/Table';
 import { H3, Span } from '../../../../components/BaseStyles/Headings';
-import { DamageClass, Type } from '../../../../components/BaseStyles/Themes';
+import { Type } from '../../../../components/BaseStyles/Themes';
 import { Link } from 'react-router-dom';
 
 function Moves({
@@ -81,7 +81,7 @@ function Moves({
 						<PokemonMovesTd>{m?.priority}</PokemonMovesTd>
 						<PokemonMovesTd>
 							{m?.meta?.ailment !== null
-								? m?.meta?.ailment?.name?.replace('none', '-')
+								? m?.meta?.ailment?.name?.replace('none', '-').replace(/-/g, ' ')
 								: '-'}
 						</PokemonMovesTd>
 					</>
