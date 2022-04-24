@@ -14,38 +14,17 @@ import { PokemonSubtitle, PokemonTitle } from './StyledPokemonCard';
 import { GenNav } from '../../../components/BaseStyles/Navbars';
 import { BackButton } from '../../../components/BaseStyles/Inputs';
 import Evolution from './Evolution/Evolution.PokemonCard';
+import { useMoves, usePokemon, useSpecies, useType } from '../../../helpers/DataFetch';
 
 function PokemonCard() {
 	const { name } = useParams();
 	const navigate = useNavigate();
-	const [pokemon, setPokemon] = useState([]);
-	const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
-		setLoading(true);
-		axios
-			.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
-			.then((results) => {
-				return results.data;
-			})
-			.then((results) => {
-				setLoading(false);
-				setPokemon(results);
-			});
-	}, [name]);
+	const { pokemon, loading } = usePokemon(`https://pokeapi.co/api/v2/pokemon/${name}`);
 
-	const [species, setSpecies] = useState([]);
+	const { species } = useSpecies(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
 
-	useEffect(() => {
-		axios
-			.get(`https://pokeapi.co/api/v2/pokemon-species/${name}`)
-			.then((results) => {
-				return results.data;
-			})
-			.then((results) => {
-				setSpecies(results);
-			});
-	}, [name]);
+	const { moves } = useMoves('https://pokeapi.co/api/v2/move?limit=826');
 
 	const evolutionChainUrl = species?.evolution_chain?.url;
 
@@ -62,37 +41,7 @@ function PokemonCard() {
 			});
 	}, [evolutionChainUrl]);
 
-	const [move, setMove] = useState([]);
-
-	useEffect(() => {
-		axios
-			.get('https://pokeapi.co/api/v2/move?limit=826')
-			.then((res) => {
-				return res.data.results;
-			})
-			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
-			})
-			.then((results) => {
-				setMove(results.map((res) => res.data));
-			});
-	}, []);
-
-	const [type, setType] = useState([]);
-
-	useEffect(() => {
-		axios
-			.get('https://pokeapi.co/api/v2/type?limit=18')
-			.then((res) => {
-				return res.data.results;
-			})
-			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
-			})
-			.then((results) => {
-				setType(results.map((res) => res.data));
-			});
-	}, []);
+	const { types } = useType('https://pokeapi.co/api/v2/type?limit=18');
 
 	const [machine, setMachine] = useState([]);
 
@@ -521,14 +470,14 @@ function PokemonCard() {
 						toggleType={toggleType}
 						toggleTypeTable={toggleTypeTable}
 						pokemon={pokemon}
-						type={type}
+						type={types}
 					/>
 
 					<Moves
 						toggleState={toggleState}
 						toggleTable={toggleTable}
 						pokemon={pokemon}
-						move={move}
+						move={moves}
 						machine={machine}
 						version={version}
 						game={game}

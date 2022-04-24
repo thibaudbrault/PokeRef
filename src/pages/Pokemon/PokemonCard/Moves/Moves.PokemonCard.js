@@ -21,7 +21,7 @@ function Moves({
 	toggleState,
 	toggleTable,
 	pokemon,
-	move,
+	moves,
 	machine,
 	version,
 	game,
@@ -54,7 +54,7 @@ function Moves({
 	);
 
 	const moveInfoTable = (pm) =>
-		move?.map(
+		moves?.map(
 			(m) =>
 				m?.name === pm?.move?.name && (
 					<>

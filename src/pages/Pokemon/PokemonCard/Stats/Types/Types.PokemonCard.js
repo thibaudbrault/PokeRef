@@ -3,7 +3,7 @@ import { H3 } from '../../../../../components/BaseStyles/Headings';
 import { MethodNav } from '../../../../../components/BaseStyles/Navbars';
 import { PokemonTypesTable } from '../StyledStats.PokemonCard';
 
-function Types({ pokemon, type, toggleType, toggleTypeTable }) {
+function Types({ pokemon, types, toggleType, toggleTypeTable }) {
 	return (
 		<div>
 			<H3>Types relations</H3>

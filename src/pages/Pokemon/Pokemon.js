@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import {
@@ -17,6 +16,8 @@ import { Input, Search } from '../../components/BaseStyles/Inputs';
 import { MainSmall } from '../../components/BaseStyles/Sizing';
 import { Type } from '../../components/BaseStyles/Themes';
 
+import { usePokedex } from '../../helpers/DataFetch';
+
 function Pokemon() {
 	const [search, setSearch] = useState('');
 	const [filteredPokedex, setFilteredPokedex] = useState([]);
@@ -27,23 +28,7 @@ function Pokemon() {
 	const [type, setType] = useState('all');
 	const [generation, setGeneration] = useState('all');
 
-	const [pokedex, setPokedex] = useState([]);
-	const [next, setNext] = useState([]);
-
-	useEffect(() => {
-		axios
-			.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=250`)
-			.then((res) => {
-				setNext(res.data.next);
-				return res.data.results;
-			})
-			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
-			})
-			.then((results) => {
-				setPokedex(results.map((res) => res.data));
-			});
-	}, [offset]);
+	const {pokedex, next} = usePokedex(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`);
 
 	console.log(next);
 
