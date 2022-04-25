@@ -6,7 +6,7 @@ import {
 	MoveCardDataType,
 } from '../StyledData.MoveCard';
 
-function Desc({ move, version, machine }) {
+function Desc({ move, version, machines }) {
 	const maxPp = move?.pp * 1.6;
 
 	return (
@@ -32,7 +32,7 @@ function Desc({ move, version, machine }) {
 						</div>
 					</MoveCardDataCategory>
 				</tr>
-				{machine?.map(
+				{machines?.map(
 					(ma) =>
 						ma?.version_group?.name === version &&
 						ma?.move?.name === move?.name && (

@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Fetch all pokemon
+
 export function usePokedex(url) {
 
     const [pokedex, setPokedex] = useState([]);
     const [next, setNext] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         axios
             .get(url)
             .then((res) => {
@@ -17,12 +21,93 @@ export function usePokedex(url) {
                 return Promise.all(results.map((res) => axios.get(res.url)));
             })
             .then((results) => {
+                setLoading(false);
                 setPokedex(results.map((res) => res.data));
             });
     }, [url]);
 
-    return {pokedex, next}
+    return {pokedex, next, loading}
 }
+
+// Fetch all moves
+
+export function useMoves(url) {
+
+    const [moves, setMoves] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+        setLoading(true);
+		axios
+			.get(url)
+			.then((res) => {
+				return res.data.results;
+			})
+			.then((results) => {
+				return Promise.all(results.map((res) => axios.get(res.url)));
+			})
+			.then((results) => {
+                setLoading(false);
+				setMoves(results.map((res) => res.data));
+			});
+	}, [url]);
+
+    return { moves, loading }
+}
+
+// Fetch all types
+
+export function useTypes(url) {
+
+    const [types, setTypes] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true);
+        axios
+            .get(url)
+            .then((res) => {
+                return res.data.results;
+            })
+            .then((results) => {
+                return Promise.all(results.map((res) => axios.get(res.url)));
+            })
+            .then((results) => {
+                setLoading(false);
+                setTypes(results.map((res) => res.data));
+            });
+    }, [url]);
+
+    return { types, loading }
+}
+
+// Fetch all machines
+
+export function useMachines(url) {
+
+    const [machines, setMachine] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+        setLoading(true);
+		axios
+			.get(url)
+			.then((res) => {
+				return res.data.results;
+			})
+			.then((results) => {
+				return Promise.all(results.map((res) => axios.get(res.url)));
+			})
+			.then((results) => {
+                setLoading(false);
+				setMachine(results.map((res) => res.data));
+			});
+	}, [url]);
+
+    return { machines, loading }
+}
+
+// Fetch single pokemon
 
 export function usePokemon(url) {
 
@@ -32,7 +117,7 @@ export function usePokemon(url) {
 	useEffect(() => {
 		setLoading(true);
 		axios
-			.get()
+			.get(url)
 			.then((results) => {
 				return results.data;
 			})
@@ -45,62 +130,94 @@ export function usePokemon(url) {
     return { pokemon, loading }
 }
 
-export function useSpecies(url) {
+// Fetch single move
 
-    const [species, setSpecies] = useState([]);
+export function useMove(url) {
+
+    const [move, setMove] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
+		setLoading(true);
 		axios
 			.get(url)
 			.then((results) => {
 				return results.data;
 			})
 			.then((results) => {
+				setLoading(false);
+				setMove(results);
+			});
+	}, [url]);
+
+    return { move, loading }
+}
+
+// Fetch single pokemon species
+
+export function useSpecies(url) {
+
+    const [species, setSpecies] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		setLoading(true);
+		axios
+			.get(url)
+			.then((results) => {
+				return results.data;
+			})
+			.then((results) => {
+				setLoading(false);
 				setSpecies(results);
 			});
 	}, [url]);
 
-    return { species }
+    return { species, loading }
 }
 
-export function useMoves(url) {
+// Fetch location for a single pokemon
 
-    const [moves, setMoves] = useState([]);
+export function useLocation(url) {
+
+    const [location, setLocation] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
+		setLoading(true);
 		axios
 			.get(url)
-			.then((res) => {
-				return res.data.results;
+			.then((results) => {
+				return results.data;
 			})
 			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
-			})
-			.then((results) => {
-				setMoves(results.map((res) => res.data));
+				setLoading(false);
+				setLocation(results);
 			});
 	}, [url]);
 
-    return { moves }
+    return { location, loading }
 }
 
-export function useTypes(url) {
+// Fetch evolution chain of a single pokemon
 
-    const [types, setTypes] = useState([]);
+export function useEvolution(url) {
 
-    useEffect(() => {
-        axios
-            .get(url)
-            .then((res) => {
-                return res.data.results;
-            })
-            .then((results) => {
-                return Promise.all(results.map((res) => axios.get(res.url)));
-            })
-            .then((results) => {
-                setTypes(results.map((res) => res.data));
-            });
-    }, [url]);
+    const [evolution, setEvolution] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    return {types}
+	useEffect(() => {
+		setLoading(true);
+		axios
+			.get(url)
+			.then((results) => {
+				return results.data;
+			})
+			.then((results) => {
+				setLoading(false);
+				setEvolution(results);
+			});
+	}, [url]);
+
+    return { evolution, loading }
 }

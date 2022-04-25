@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import Method from '../../../components/Method/Method';
@@ -22,68 +21,33 @@ import {
 } from './StyledMoveCard';
 import { BackButton } from '../../../components/BaseStyles/Inputs';
 import { Type } from '../../../components/BaseStyles/Themes';
+import { useMachines, useMove, usePokedex } from '../../../helpers/DataFetch';
 
 const MoveCard = () => {
+
 	const { name } = useParams();
 	const navigate = useNavigate();
-	const [move, setMove] = useState([]);
-	const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
-		setLoading(true);
-		axios
-			.get(`https://pokeapi.co/api/v2/move/${name}`)
-			.then((results) => {
-				return results.data;
-			})
-			.then((results) => {
-				setLoading(false);
-				setMove(results);
-			});
-	}, [name]);
+	// Import data fetch
 
-	const [pokemon, setPokemon] = useState([]);
+	const { move, loading } = useMove(`https://pokeapi.co/api/v2/move/${name}`)
 
-	useEffect(() => {
-		setLoading(true);
-		axios
-			.get('https://pokeapi.co/api/v2/pokemon?limit=898')
-			.then((res) => {
-				return res.data.results;
-			})
-			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
-			})
-			.then((results) => {
-				setLoading(false);
-				setPokemon(results.map((res) => res.data));
-			});
-	}, []);
+	const { pokedex } = usePokedex('https://pokeapi.co/api/v2/pokemon?limit=898')
 
-	const [machine, setMachine] = useState([]);
+	const { machines } = useMachines('https://pokeapi.co/api/v2/machine?limit=1700');
 
-	useEffect(() => {
-		setLoading(true);
-		axios
-			.get('https://pokeapi.co/api/v2/machine?limit=1700')
-			.then((res) => {
-				return res.data.results;
-			})
-			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
-			})
-			.then((results) => {
-				setLoading(false);
-				setMachine(results.map((res) => res.data));
-			});
-	}, []);
+	// Data from latest gen available with PokeApi
 
 	const [version, setVersion] = useState('ultra-sun-ultra-moon');
+
+	// Toggle for moves table
 
 	const [toggleState, setToggleState] = useState(1);
 	const toggleTable = (index) => {
 		setToggleState(index);
 	};
+
+	// Modify title of the page
 
 	const title = `${name.replace(/-/g, ' ')}`;
 
@@ -247,7 +211,7 @@ const MoveCard = () => {
 						</ol>
 					</GenNav>
 
-					<Data move={move} machine={machine} version={version} />
+					<Data move={move} machines={machines} version={version} />
 
 					<Method toggleState={toggleState} toggleTable={toggleTable} />
 
@@ -260,7 +224,7 @@ const MoveCard = () => {
 							details.
 						</MoveText>
 						<MoveList>
-							{pokemon?.map((p) =>
+							{pokedex?.map((p) =>
 								p?.moves?.map(
 									(pm) =>
 										pm?.move?.name === move?.name &&
@@ -303,7 +267,7 @@ const MoveCard = () => {
 							details.
 						</MoveText>
 						<MoveList>
-							{pokemon?.map((p) =>
+							{pokedex?.map((p) =>
 								p?.moves?.map(
 									(pm) =>
 										pm?.move?.name === move?.name &&
@@ -345,7 +309,7 @@ const MoveCard = () => {
 							pages for details.
 						</MoveText>
 						<MoveList>
-							{pokemon?.map((p) =>
+							{pokedex?.map((p) =>
 								p?.moves?.map(
 									(pm) =>
 										pm?.move?.name === move?.name &&
@@ -388,7 +352,7 @@ const MoveCard = () => {
 							details.
 						</MoveText>
 						<MoveList>
-							{pokemon?.map((p) =>
+							{pokedex?.map((p) =>
 								p?.moves?.map(
 									(pm) =>
 										pm?.move?.name === move?.name &&
@@ -429,7 +393,7 @@ const MoveCard = () => {
 							pages for details.
 						</MoveText>
 						<MoveList>
-							{pokemon?.map((p) =>
+							{pokedex?.map((p) =>
 								p?.moves?.map(
 									(pm) =>
 										pm?.move?.name === move?.name &&

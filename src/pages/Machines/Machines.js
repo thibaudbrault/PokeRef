@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { GenNav } from '../../components/BaseStyles/Navbars';
@@ -13,28 +12,25 @@ import {
 	TRow,
 } from '../../components/BaseStyles/Table';
 import { MainBig } from '../../components/BaseStyles/Sizing';
+import { useMachines } from '../../helpers/DataFetch';
 
 function Machines() {
-	const [search, setSearch] = useState('');
 
-	const [machines, setMachines] = useState([]);
-	const [loading, setLoading] = useState(false);
+	const [search, setSearch] = useState('');
+	const [filteredMachines, setFilteredMachines] = useState([]);
+
+	const { machines, loading } = useMachines('https://pokeapi.co/api/v2/machine?limit=1700');
 
 	useEffect(() => {
-		setLoading(true);
-		axios
-			.get('https://pokeapi.co/api/v2/machine?limit=1700')
-			.then((res) => {
-				return res.data.results;
-			})
-			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
-			})
-			.then((results) => {
-				setLoading(false);
-				setMachines(results.map((res) => res.data));
-			});
-	}, []);
+		setFilteredMachines(
+			machines.filter((machines) =>
+				machines.move.name
+					.replace(/-/g, ' ')
+					.toLowerCase()
+					.includes(search.toLowerCase())
+			)
+		)
+	}, [machines, search])
 
 	const [version, setVersion] = useState('red-blue');
 
@@ -167,19 +163,7 @@ function Machines() {
 							</tr>
 						</THead>
 						<tbody>
-							{machines
-								.filter((machines) => {
-									if (search === '') {
-										return machines;
-									} else if (
-										machines.move.name
-											.replace(/-/g, ' ')
-											.toLowerCase()
-											.includes(search.toLowerCase())
-									) {
-										return machines;
-									}
-								})
+							{filteredMachines
 								.map(
 									(ma) =>
 										ma?.version_group?.name === version && (

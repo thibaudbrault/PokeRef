@@ -19,14 +19,19 @@ import { Type } from '../../components/BaseStyles/Themes';
 import { usePokedex } from '../../helpers/DataFetch';
 
 function Pokemon() {
+
 	const [search, setSearch] = useState('');
 	const [filteredPokedex, setFilteredPokedex] = useState([]);
 	const [offset, setOffset] = useState(0);
 	const [hasMore, setHasMore] = useState(true);
 
+	// Default values of dropdown
+
 	const [form, setForm] = useState('default');
 	const [type, setType] = useState('all');
 	const [generation, setGeneration] = useState('all');
+
+	// Import hooks for all pokemon
 
 	const {pokedex, next} = usePokedex(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`);
 
@@ -38,6 +43,8 @@ function Pokemon() {
 		}
 		setOffset(offset + 20);
 	};
+
+	// Filter pokedex array : search bar and dropdowns filters
 
 	useEffect(() => {
 		setFilteredPokedex(

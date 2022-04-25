@@ -22,7 +22,7 @@ function Moves({
 	toggleTable,
 	pokemon,
 	moves,
-	machine,
+	machines,
 	version,
 	game,
 }) {
@@ -109,7 +109,7 @@ function Moves({
 							}
 						})()}
 						{learn === 'machine' &&
-							machine?.map(
+							machines?.map(
 								(ma) =>
 									ma?.move?.name === pm?.move?.name &&
 									ma?.version_group?.name === version && (

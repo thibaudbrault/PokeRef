@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import Data from './Data/Data.PokemonCard';
@@ -14,11 +13,14 @@ import { PokemonSubtitle, PokemonTitle } from './StyledPokemonCard';
 import { GenNav } from '../../../components/BaseStyles/Navbars';
 import { BackButton } from '../../../components/BaseStyles/Inputs';
 import Evolution from './Evolution/Evolution.PokemonCard';
-import { useMoves, usePokemon, useSpecies, useType } from '../../../helpers/DataFetch';
+import { useEvolution, useLocation, useMachines, useMoves, usePokemon, useSpecies, useTypes } from '../../../helpers/DataFetch';
 
 function PokemonCard() {
+
 	const { name } = useParams();
 	const navigate = useNavigate();
+
+	// Import data fetch
 
 	const { pokemon, loading } = usePokemon(`https://pokeapi.co/api/v2/pokemon/${name}`);
 
@@ -28,49 +30,15 @@ function PokemonCard() {
 
 	const evolutionChainUrl = species?.evolution_chain?.url;
 
-	const [evolution, setEvolution] = useState([]);
+	const { evolution } = useEvolution(`${evolutionChainUrl}`)
 
-	useEffect(() => {
-		axios
-			.get(`${evolutionChainUrl}`)
-			.then((results) => {
-				return results.data;
-			})
-			.then((results) => {
-				setEvolution(results);
-			});
-	}, [evolutionChainUrl]);
+	const { types } = useTypes('https://pokeapi.co/api/v2/type?limit=18');
 
-	const { types } = useType('https://pokeapi.co/api/v2/type?limit=18');
+	const { machines } = useMachines('https://pokeapi.co/api/v2/machine?limit=1700');
 
-	const [machine, setMachine] = useState([]);
+	const { location } = useLocation(`https://pokeapi.co/api/v2/pokemon/${name}/encounters`);
 
-	useEffect(() => {
-		axios
-			.get('https://pokeapi.co/api/v2/machine?limit=1700')
-			.then((res) => {
-				return res.data.results;
-			})
-			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
-			})
-			.then((results) => {
-				setMachine(results.map((res) => res.data));
-			});
-	}, []);
-
-	const [location, setLocation] = useState([]);
-
-	useEffect(() => {
-		axios
-			.get(`https://pokeapi.co/api/v2/pokemon/${name}/encounters`)
-			.then((results) => {
-				return results.data;
-			})
-			.then((results) => {
-				setLocation(results);
-			});
-	}, [name]);
+	// Modify game and version according to the id of the pokemon
 
 	const [game, setGame] = useState('');
 	const [version, setVersion] = useState('');
@@ -103,15 +71,21 @@ function PokemonCard() {
 		}
 	}, [species])
 
+	// Toggle for moves table
+
 	const [toggleState, setToggleState] = useState(1);
 	const toggleTable = (index) => {
 		setToggleState(index);
 	};
 
+	// Toggle for types table
+
 	const [toggleType, setToggleType] = useState(1);
 	const toggleTypeTable = (index) => {
 		setToggleType(index);
 	};
+
+	// Modify title of the page
 
 	const title = `${name.replace(/-/g, ' ')}`;
 
@@ -478,7 +452,7 @@ function PokemonCard() {
 						toggleTable={toggleTable}
 						pokemon={pokemon}
 						move={moves}
-						machine={machine}
+						machine={machines}
 						version={version}
 						game={game}
 					/>
