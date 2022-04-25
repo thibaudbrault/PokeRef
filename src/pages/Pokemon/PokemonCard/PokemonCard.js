@@ -451,7 +451,7 @@ function PokemonCard() {
 						toggleState={toggleState}
 						toggleTable={toggleTable}
 						pokemon={pokemon}
-						move={moves}
+						moves={moves}
 						machine={machines}
 						version={version}
 						game={game}

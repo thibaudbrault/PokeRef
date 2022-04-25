@@ -46,12 +46,12 @@ function Moves({
 
 	const isLearnedMove = isLearnedMoveForVersion(version);
 
-	const emptyMoves = (
-		<PokemonMovesEmpty>
-			<span>{pokemon?.name?.replace(/-/g, ' ')}</span> ‌‌ doesn't learn any
-			moves this way in Pokémon ‌‌ <span>{game}</span>
-		</PokemonMovesEmpty>
-	);
+	// const emptyMoves = (
+	// 	<PokemonMovesEmpty>
+	// 		<span>{pokemon?.name?.replace(/-/g, ' ')}</span> ‌‌ doesn't learn any
+	// 		moves this way in Pokémon ‌‌ <span>{game}</span>
+	// 	</PokemonMovesEmpty>
+	// );
 
 	const moveInfoTable = (pm) =>
 		moves?.map(

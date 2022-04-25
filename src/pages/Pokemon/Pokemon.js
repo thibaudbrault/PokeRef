@@ -17,10 +17,10 @@ import { MainSmall } from '../../components/BaseStyles/Sizing';
 import { Type } from '../../components/BaseStyles/Themes';
 
 import { usePokedex } from '../../helpers/DataFetch';
+import Autocomplete from '../../components/Autocomplete/Autocomplete';
 
 function Pokemon() {
 
-	const [search, setSearch] = useState('');
 	const [filteredPokedex, setFilteredPokedex] = useState([]);
 	const [offset, setOffset] = useState(0);
 	const [hasMore, setHasMore] = useState(true);
@@ -49,12 +49,6 @@ function Pokemon() {
 	useEffect(() => {
 		setFilteredPokedex(
 			pokedex
-				.filter((pokedex) =>
-					pokedex.name
-						.replace(/-/g, ' ')
-						.toLowerCase()
-						.includes(search.toLowerCase())
-				)
 				.filter((pokedex) => {
 					return (
 						type === 'all' ||
@@ -105,7 +99,7 @@ function Pokemon() {
 					}
 				})
 		);
-	}, [pokedex, search, form, type, generation]);
+	}, [pokedex, form, type, generation]);
 
 	useEffect(() => {
 		document.title = `Pokémon | PokéInfo`;
@@ -114,7 +108,7 @@ function Pokemon() {
 	return (
 		<MainSmall>
 			<Search>
-				<Input>
+				{/* <Input>
 					<label htmlFor='searchBar'>Search</label>
 					<input
 						type='text'
@@ -125,7 +119,13 @@ function Pokemon() {
 							setSearch(e.target.value);
 						}}
 					/>
-				</Input>
+				</Input> */}
+
+				<div>
+					<Autocomplete 
+						results={pokedex?.name}
+					/>
+				</div>
 
 				<PokedexDropdown>
 					<label htmlFor='form'>Form</label>
