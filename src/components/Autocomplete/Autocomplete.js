@@ -1,92 +1,52 @@
 import React, { useState } from 'react'
+import { usePokedex } from '../../helpers/DataFetch';
+import { Input } from '../BaseStyles/Inputs';
+import { AutocompleteContainer, AutocompleteId, AutocompleteLink} from './StyledAutocomplete';
 
-function Autocomplete({results}) {
+function Autocomplete() {
 
-    const [filteredResults, setFilteredResults] = useState([]);
-    const [activeResultIndex, setActiveResultIndex] = useState(0);
-    const [showResults, setShowResults] = useState(false);
-    const [input, setInput] = useState("");
+  const { pokedex } = usePokedex(`https://pokeapi.co/api/v2/pokemon?limit=898`);
 
-    const onChange = (e) => {
-        const userInput = e.target.value;
-    
-        const notResults = results.filter(
-          (result) =>
-            result.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-        );
-    
-        setInput(e.target.value);
-        setFilteredResults(notResults);
-        setActiveResultIndex(0);
-        setShowResults(true);
-    };
+  const [pokedexMatch, setPokedexMatch] = useState([]);
 
-    const onClick = (e) => {
-        setFilteredResults([]);
-        setInput(e.target.innerText);
-        setActiveResultIndex(0);
-        setShowResults(false);
-    };
+  const searchPokedex = (text) => {
+    if (!text) {
+      setPokedexMatch([])
+    } else {
+      let matches = pokedex.filter((pokedex) => {
+        const regex = new RegExp(`${text}`, 'gi');
+        return pokedex?.name?.match(regex);
+      });
+      setPokedexMatch(matches.slice(0, 5));
+    }
+  };
 
-    const onKeyDown = (e) => {
-        // User pressed the enter key
-        if (e.keyCode === 13) {
-          setInput(filteredResults[activeResultIndex]);
-          setActiveResultIndex(0);
-          setShowResults(false);
-        }
-        // User pressed the up arrow
-        else if (e.keyCode === 38) {
-          if (activeResultIndex === 0) {
-            return;
-          }
-    
-          setActiveResultIndex(activeResultIndex - 1);
-        }
-        // User pressed the down arrow
-        else if (e.keyCode === 40) {
-          if (activeResultIndex - 1 === filteredResults.length) {
-            return;
-          }
-    
-          setActiveResultIndex(activeResultIndex + 1);
-        }
-      };
-
-    const ResultsListComponent = () => {
-        return filteredResults.length ? (
-          <ul class="results">
-            {filteredResults.map((result, index) => {
-              let className;
-              // Flag the active result with a class
-              if (index === activeResultIndex) {
-                className = "result-active";
-              }
-              return (
-                <li className={className} key={result} onClick={onClick}>
-                  {result}
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <div class="no-results">
-            <em>No results, you're on your own!</em>
-          </div>
-        );
-      };
-
-    return (
-        <>
-            <input
-                type="text"
-                onChange={onChange}
-                onKeyDown={onKeyDown}
-                value={input}
-            />
-            {showResults && input && <ResultsListComponent />}
-        </>
-    )
+  return (
+    <Input>
+      <label htmlFor="search">Search</label>
+      <input
+          type="text"
+          placeholder='Pokémon Name'
+          onChange={(e) => searchPokedex(e.target.value)}
+      />
+      <AutocompleteContainer>
+        <ul>
+          {pokedexMatch && pokedexMatch.map((pm) => (
+            <li>
+              <img src={pm?.sprites?.front_default} alt='' width={32} height={32} />
+              <AutocompleteLink 
+                to={`/pokemon/${pm.name}`}
+                className='bold'
+              >
+                {pm?.name}
+              </AutocompleteLink>
+              <AutocompleteId>#{pm?.id?.toString()?.padStart(3, '0')}</AutocompleteId>
+            </li>
+          ))}
+        </ul>
+      </AutocompleteContainer>
+    </Input>
+  )
 }
 
 export default Autocomplete

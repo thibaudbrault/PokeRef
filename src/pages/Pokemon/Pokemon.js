@@ -12,7 +12,7 @@ import {
 	SpriteNormal,
 	SpriteShiny,
 } from './StyledPokemon';
-import { Input, Search } from '../../components/BaseStyles/Inputs';
+import { Search } from '../../components/BaseStyles/Inputs';
 import { MainSmall } from '../../components/BaseStyles/Sizing';
 import { Type } from '../../components/BaseStyles/Themes';
 
@@ -33,7 +33,7 @@ function Pokemon() {
 
 	// Import hooks for all pokemon
 
-	const {pokedex, next} = usePokedex(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`);
+	const { pokedex, next } = usePokedex(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`);
 
 	console.log(next);
 
@@ -121,11 +121,7 @@ function Pokemon() {
 					/>
 				</Input> */}
 
-				<div>
-					<Autocomplete 
-						results={pokedex?.name}
-					/>
-				</div>
+				<Autocomplete/>
 
 				<PokedexDropdown>
 					<label htmlFor='form'>Form</label>

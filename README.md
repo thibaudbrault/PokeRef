@@ -27,8 +27,7 @@
 3.  [Technologies](#technologies)
 4.  [Setup](#setup)
 5.  [Acknowledgements](#acknowledgements)
-6.  [Contact](#contact)
-7.  [License](#license)
+6.  [License](#license)
 
 </details>
 
@@ -37,10 +36,11 @@
 ✅A page for every pokémon / move / ability / type / item  
 ✅Filter pokémon by name / type / generation / forms  
 ✅Filter moves / abilities / machines by name  
-✅Change certain data according to the game version selected  
-✅Dark mode
+✅Change certain data according to the game selected  
+✅Dark mode  
+✅404 page  
+✅Autocomplete
 
-🛠404 page  
 🛠Infinite scrolling
 
 🔜Location page  
@@ -53,7 +53,7 @@
 
 <h4>Main goal</h4>
 
-My main goal for this site was to get better at React JS and to learn how to use an Api. I chose to use PokéApi because there is a lot of tutorials to start from, the documentation is very clear and easy to use and there is a ton of informations so I could make an bigger site with multiple pages.
+My main goal for this site was to get better at React JS and to learn how to use an Api and to use styled-components. I chose to use PokéApi because there is a lot of tutorials to start from, the documentation is very clear and easy to use and there is a ton of informations so I could make an bigger site with multiple pages.
 
 <h4>Contents</h4>
 
@@ -112,10 +112,6 @@ A big thanks also to the pokeapi team for creating such a huge, detailed and ver
 
 <a href="https://www.npmjs.com/package/axios" target="_blank">Axios</a>  
 <a href="https://www.npmjs.com/package/react-cssfx-loading" target="_blank">React CSSFX loading</a>
-
-<h2 id="contact">Contact</h2>
-
-<a href="https://thibaudbrault.dev/" target="_blank">![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)</a>
 
 <h2 id="license">License</h2>  
 MIT © Thibaud Brault
