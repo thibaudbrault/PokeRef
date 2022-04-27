@@ -7,7 +7,7 @@ import {
 	TypePokemonList,
 } from '../StyledTypeCard';
 
-function Pokemon({ type, pokemon }) {
+function Pokemon({ type, pokedex }) {
 	const nbPokemon = type?.pokemon?.length;
 
 	return (
@@ -17,14 +17,14 @@ function Pokemon({ type, pokemon }) {
 			</TypeListSubtitle>
 			<TypePokemonList>
 				{type?.pokemon?.map((tp) =>
-					pokemon?.map(
+					pokedex?.map(
 						(p) =>
 							p.name === tp.pokemon.name &&
 							p.id < 899 && (
 								<li>
 									<img
 										src={p.sprites.front_default}
-										alt={pokemon.name}
+										alt={p.name}
 										loading='lazy'
 									/>
 									<p>#{p?.id}</p>

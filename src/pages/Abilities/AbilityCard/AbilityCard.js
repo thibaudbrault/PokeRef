@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { MainBig } from '../../../components/BaseStyles/Sizing';
@@ -25,43 +24,15 @@ import {
 	TRow,
 } from '../../../components/BaseStyles/Table';
 import { BackButton } from '../../../components/BaseStyles/Inputs';
+import { useAbility, usePokedex } from '../../../helpers/DataFetch';
 
 const AbilityCard = () => {
 	const { name } = useParams();
 	const navigate = useNavigate();
-	const [ability, setAbility] = useState([]);
-	const [loading, setLoading] = useState(false);
+	
+	const { ability, loading } = useAbility(`https://pokeapi.co/api/v2/ability/${name}`);
 
-	useEffect(() => {
-		setLoading(true);
-		axios
-			.get(`https://pokeapi.co/api/v2/ability/${name}`)
-			.then((results) => {
-				return results.data;
-			})
-			.then((results) => {
-				setLoading(false);
-				setAbility(results);
-			});
-	}, [name]);
-
-	const [pokemon, setPokemon] = useState([]);
-
-	useEffect(() => {
-		axios
-			.get('https://pokeapi.co/api/v2/pokemon?limit=1300')
-			.then((res) => {
-				return res.data.results;
-			})
-			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
-			})
-			.then((results) => {
-				setPokemon(results.map((res) => res.data));
-			});
-	}, []);
-
-	console.log(ability);
+	const { pokedex } = usePokedex('https://pokeapi.co/api/v2/pokemon?limit=1300');
 
 	const title = `${name.replace(/-/g, ' ')}`;
 
@@ -135,7 +106,7 @@ const AbilityCard = () => {
 								{ability?.pokemon?.map((ap) => (
 									<TRow>
 										<td>
-											{pokemon?.map(
+											{pokedex?.map(
 												(p) =>
 													p.name === ap.pokemon.name && (
 														<img
@@ -157,7 +128,7 @@ const AbilityCard = () => {
 											</TLink>
 										</TName>
 										<td>
-											{pokemon?.map(
+											{pokedex?.map(
 												(p) =>
 													p.name === ap.pokemon.name && (
 														<TLink
@@ -177,7 +148,7 @@ const AbilityCard = () => {
 											)}
 										</td>
 										<td>
-											{pokemon?.map(
+											{pokedex?.map(
 												(p) =>
 													p.name === ap.pokemon.name && (
 														<TLink
@@ -199,7 +170,7 @@ const AbilityCard = () => {
 											)}
 										</td>
 										<td>
-											{pokemon?.map(
+											{pokedex?.map(
 												(p) =>
 													p.name === ap.pokemon.name && (
 														<TLink

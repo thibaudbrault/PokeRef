@@ -19,6 +19,7 @@ export const MainNavList = styled.ul`
 			white-space: nowrap;
 			font-size: 1.7rem;
 			font-weight: 700;
+			cursor: pointer;
 			transition: 0.3s ease-in-out;
 			&::before {
 				position: absolute;

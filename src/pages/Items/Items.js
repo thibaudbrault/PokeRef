@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { MainBig } from '../../components/BaseStyles/Sizing';
@@ -7,29 +6,13 @@ import { LeftTitle } from '../../components/BaseStyles/Headings';
 import { Input, ModifiedSearch } from '../../components/BaseStyles/Inputs';
 import { Table, THead, TLink, TRow } from '../../components/BaseStyles/Table';
 import { TCategoryItems, TEffectItems, TNameItems } from './StyledItems';
+import { useItems } from '../../helpers/DataFetch';
 
 function Items() {
 	const [search, setSearch] = useState('');
 	const [filteredItems, setFilteredItems] = useState([]);
 
-	const [items, setItems] = useState([]);
-	const [loading, setLoading] = useState(false);
-
-	useEffect(() => {
-		setLoading(true);
-		axios
-			.get('https://pokeapi.co/api/v2/item?limit=1608')
-			.then((res) => {
-				return res.data.results;
-			})
-			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
-			})
-			.then((results) => {
-				setLoading(false);
-				setItems(results.map((res) => res.data));
-			});
-	}, []);
+	const { items, loading } = useItems('https://pokeapi.co/api/v2/item?limit=1608');
 
 	useEffect(() => {
 		setFilteredItems(

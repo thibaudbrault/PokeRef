@@ -13,29 +13,13 @@ import {
 	TLink,
 } from '../../components/BaseStyles/Table';
 import { ModifiedMainBig } from '../../components/BaseStyles/Sizing';
+import { useAbilities } from '../../helpers/DataFetch';
 
 function Abilities() {
 	const [search, setSearch] = useState('');
 	const [filteredAbilities, setFilteredAbilities] = useState([]);
 
-	const [abilities, setAbilities] = useState([]);
-	const [loading, setLoading] = useState(false);
-
-	useEffect(() => {
-		setLoading(true);
-		axios
-			.get('https://pokeapi.co/api/v2/ability?limit=267')
-			.then((res) => {
-				return res.data.results;
-			})
-			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
-			})
-			.then((results) => {
-				setLoading(false);
-				setAbilities(results.map((res) => res.data));
-			});
-	}, []);
+	const { abilities, loading } = useAbilities('https://pokeapi.co/api/v2/ability?limit=267');
 
 	useEffect(() => {
 		setFilteredAbilities(

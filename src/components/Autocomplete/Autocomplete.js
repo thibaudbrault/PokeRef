@@ -33,7 +33,7 @@ function Autocomplete() {
         <ul>
           {pokedexMatch && pokedexMatch.map((pm) => (
             <li>
-              <img src={pm?.sprites?.front_default} alt='' width={32} height={32} />
+              <img src={pm?.sprites?.front_default} alt='' width={39} height={39} />
               <AutocompleteLink 
                 to={`/pokemon/${pm.name}`}
                 className='bold'

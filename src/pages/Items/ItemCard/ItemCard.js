@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { MainBig } from '../../../components/BaseStyles/Sizing';
@@ -20,25 +19,13 @@ import {
 	ItemCardDescTable,
 	ItemCardDescTitle,
 } from './StyledItemCard';
+import { useItem } from '../../../helpers/DataFetch';
 
-const ItemCard = () => {
+function ItemCard() {
 	const { name } = useParams();
 	const navigate = useNavigate();
-	const [item, setItem] = useState([]);
-	const [loading, setLoading] = useState(false);
-
-	useEffect(() => {
-		setLoading(true);
-		axios
-			.get(`https://pokeapi.co/api/v2/item/${name}`)
-			.then((results) => {
-				return results.data;
-			})
-			.then((results) => {
-				setLoading(false);
-				setItem(results);
-			});
-	}, [name]);
+	
+	const { item, loading } = useItem(`https://pokeapi.co/api/v2/item/${name}`);
 
 	const title = `${name}`;
 

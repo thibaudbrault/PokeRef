@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 import { BackButton } from '../../../components/BaseStyles/Inputs';
 import { MainBig } from '../../../components/BaseStyles/Sizing';
@@ -8,57 +7,17 @@ import { CardTitle } from '../../../components/BaseStyles/Headings';
 import Damage from './Damage/Damage.TypeCard';
 import Moves from './Moves/Moves.TypeCard';
 import Pokemon from './Pokemon/Pokemon.TypeCard';
+import { useMoves, usePokedex, useType } from '../../../helpers/DataFetch';
 
 const TypeCard = () => {
 	const { name } = useParams();
 	const navigate = useNavigate();
-	const [type, setType] = useState([]);
-	const [loading, setLoading] = useState(false);
+	
+	const { type, loading } = useType(`https://pokeapi.co/api/v2/type/${name}`)
 
-	useEffect(() => {
-		setLoading(true);
-		axios
-			.get(`https://pokeapi.co/api/v2/type/${name}`)
-			.then((results) => {
-				return results.data;
-			})
-			.then((results) => {
-				setLoading(false);
-				setType(results);
-			});
-	}, [name]);
+	const { pokedex } = usePokedex('https://pokeapi.co/api/v2/pokemon?limit=898');
 
-	const [pokemon, setPokemon] = useState([]);
-
-	useEffect(() => {
-		axios
-			.get('https://pokeapi.co/api/v2/pokemon?limit=899')
-			.then((res) => {
-				return res.data.results;
-			})
-			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
-			})
-			.then((results) => {
-				setPokemon(results.map((res) => res.data));
-			});
-	}, []);
-
-	const [moves, setMoves] = useState([]);
-
-	useEffect(() => {
-		axios
-			.get('https://pokeapi.co/api/v2/move?limit=826')
-			.then((res) => {
-				return res.data.results;
-			})
-			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
-			})
-			.then((results) => {
-				setMoves(results.map((res) => res.data));
-			});
-	}, []);
+	const { moves } = useMoves('https://pokeapi.co/api/v2/move?limit=826');
 
 	const title = `${name}`;
 
@@ -78,7 +37,7 @@ const TypeCard = () => {
 
 					<Damage type={type} />
 
-					<Pokemon type={type} pokemon={pokemon} />
+					<Pokemon type={type} pokedex={pokedex} />
 
 					<Moves type={type} moves={moves} />
 

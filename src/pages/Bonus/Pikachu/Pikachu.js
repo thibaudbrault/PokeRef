@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
-import { MainSmall } from '../../BaseStyles/Sizing';
+import { MainSmall } from '../../../components/BaseStyles/Sizing';
 import { PikachuPage } from './StyledPikachu';
 import {
 	PokedexElement,
@@ -11,9 +11,10 @@ import {
 	PokedexTypes,
 	SpriteNormal,
 	SpriteShiny,
-} from '../../../pages/Pokemon/StyledPokemon';
+} from '../../Pokemon/StyledPokemon';
 
 function Pikachu() {
+	
 	const [pikachu, setPikachu] = useState([]);
 	const [loading, setLoading] = useState(false);
 
