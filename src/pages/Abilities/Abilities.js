@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { LeftTitle } from '../../components/BaseStyles/Headings';
