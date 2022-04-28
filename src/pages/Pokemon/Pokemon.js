@@ -21,8 +21,6 @@ function Pokemon() {
 	const [offset, setOffset] = useState(0);
 	const [hasMore, setHasMore] = useState(true);
 
-
-
 	const { pokedex, next } = usePokedex(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`);
 
 	console.log(next);
