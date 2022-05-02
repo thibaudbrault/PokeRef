@@ -15,7 +15,7 @@ import { usePokedex } from '../../helpers/DataFetch';
 import Filters from './Components/Filters.Pokemon';
 import Sprites from './Components/Sprites.Pokemon';
 
-function Pokemon() {
+const Pokemon = React.memo(function Pokemon() {
 
 	const [filteredPokedex, setFilteredPokedex] = useState([]);
 	const [offset, setOffset] = useState(0);
@@ -87,6 +87,6 @@ function Pokemon() {
 			</PokedexList>
 		</MainSmall>
 	);
-}
+});
 
 export default Pokemon;

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { MainSmall } from '../../components/BaseStyles/Sizing';
-import { TypesList } from './StyledTypes';
+import { ModifiedType, TypesList } from './StyledTypes';
 import { useTypes } from '../../helpers/DataFetch';
 
 function Types() {
@@ -23,11 +23,13 @@ function Types() {
 					{types
 						.sort((a, b) => a.name.localeCompare(b.name))
 						.map((t) => (
-							<li id={t.name} key={t.name}>
-								<Link to={`/types/${t.name}`} key={t.name}>
-									<img alt={t.name} />
-									<h2>{t.name}</h2>
-								</Link>
+							<li key={t.name}>
+								<ModifiedType id={t.name}>
+									<Link to={`/types/${t.name}`} key={t.name}>
+										<img alt={t.name} />
+										<h2>{t.name}</h2>
+									</Link>
+								</ModifiedType>
 							</li>
 						))}
 				</TypesList>
