@@ -19,18 +19,16 @@ const Pokemon = React.memo(function Pokemon() {
 
 	const [filteredPokedex, setFilteredPokedex] = useState([]);
 	const [offset, setOffset] = useState(0);
+	const [limit, setLimit] = useState(25);
 	const [hasMore, setHasMore] = useState(true);
 
-	const { pokedex, next } = usePokedex(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`);
+	const { pokedex } = usePokedex(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
 
-	console.log(next);
-
-	const moreData = () => {
-		if (next === null) {
-			setHasMore(false);
+	const fetchMore = () => {
+		if (limit >= 898) {
+			setHasMore(false)
 		}
-		setOffset(offset + 20);
-	};
+	}
 
 	useEffect(() => {
 		document.title = `Pokémon | PokéInfo`;
@@ -48,8 +46,8 @@ const Pokemon = React.memo(function Pokemon() {
 			<PokedexList>
 				<InfiniteScroll
 					dataLength={pokedex.length}
-					next={moreData}
-					hasMore={hasMore}
+					next={() => setLimit(limit + 25)}
+					hasMore={fetchMore}
 					loader={<Loading>More Pokémon coming</Loading>}
 					endMessage={<Loading>No more pokémon</Loading>}
 				>

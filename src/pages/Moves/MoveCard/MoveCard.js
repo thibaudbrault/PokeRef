@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import Method from '../../../components/Method/Method';
 
@@ -60,7 +59,7 @@ const MoveCard = () => {
 	return (
 		<MainBig>
 			{loading ? (
-				<BarWave width='40px' height='20px' color='#cc0000' />
+				<p>Loading...</p>
 			) : (
 				<>
 					<CardTitle>{move?.name?.replace(/-/g, ' ')}</CardTitle>

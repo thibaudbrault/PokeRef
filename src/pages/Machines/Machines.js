@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { GenNav } from '../../components/BaseStyles/Navbars';
 import { Input, ModifiedSearch } from '../../components/BaseStyles/Inputs';
@@ -41,7 +40,7 @@ function Machines() {
 	return (
 		<MainBig>
 			{loading ? (
-				<BarWave width='40px' height='20px' color='#cc0000' />
+				<p>Loading...</p>
 			) : (
 				<>
 					<LeftTitle>Machines</LeftTitle>

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { MainBig } from '../../../components/BaseStyles/Sizing';
 import {
@@ -40,7 +39,7 @@ function ItemCard() {
 	return (
 		<MainBig>
 			{loading ? (
-				<BarWave width='40px' height='20px' color='#cc0000' />
+				<p>Loading...</p>
 			) : (
 				<>
 					<CardTitle>{item?.name?.replace(/-/g, ' ')}</CardTitle>

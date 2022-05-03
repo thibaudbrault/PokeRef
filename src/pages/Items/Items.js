@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { MainBig } from '../../components/BaseStyles/Sizing';
 import { LeftTitle } from '../../components/BaseStyles/Headings';
@@ -34,7 +33,7 @@ function Items() {
 	return (
 		<MainBig>
 			{loading ? (
-				<BarWave width='40px' height='20px' color='#cc0000' />
+				<p>Loading...</p>
 			) : (
 				<>
 					<LeftTitle>Items</LeftTitle>

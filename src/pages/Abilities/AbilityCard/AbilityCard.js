@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { MainBig } from '../../../components/BaseStyles/Sizing';
 import {
@@ -45,7 +44,7 @@ const AbilityCard = () => {
 	return (
 		<MainBig>
 			{loading ? (
-				<BarWave width='40px' height='20px' color='#cc0000' />
+				<p>Loading...</p>
 			) : (
 				<>
 					<CardTitle>{ability?.name?.replace(/-/g, ' ')}</CardTitle>

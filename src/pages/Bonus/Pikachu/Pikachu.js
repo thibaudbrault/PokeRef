@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { MainSmall } from '../../../components/BaseStyles/Sizing';
 import { PikachuPage } from './StyledPikachu';
@@ -37,7 +36,7 @@ function Pikachu() {
 	return (
 		<MainSmall>
 			{loading ? (
-				<BarWave width='40px' height='20px' color='#cc0000' />
+				<p>Loading...</p>
 			) : (
 				<PikachuPage>
 					{pikachu?.map(

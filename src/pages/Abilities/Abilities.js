@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import { LeftTitle } from '../../components/BaseStyles/Headings';
 import { Input, ModifiedSearch } from '../../components/BaseStyles/Inputs';
@@ -38,7 +37,7 @@ function Abilities() {
 	return (
 		<ModifiedMainBig>
 			{loading ? (
-				<BarWave width='40px' height='20px' color='#cc0000' />
+				<p>Loading...</p>
 			) : (
 				<>
 					<LeftTitle>Abilities</LeftTitle>

@@ -6,7 +6,6 @@ import axios from 'axios';
 export function usePokedex(url) {
 
     const [pokedex, setPokedex] = useState([]);
-    const [next, setNext] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -14,7 +13,6 @@ export function usePokedex(url) {
         axios
             .get(url)
             .then((res) => {
-                setNext(res.data.next);
                 return res.data.results;
             })
             .then((results) => {
@@ -26,7 +24,7 @@ export function usePokedex(url) {
             });
     }, [url]);
 
-    return {pokedex, next, loading}
+    return {pokedex, loading}
 }
 
 // Fetch all moves

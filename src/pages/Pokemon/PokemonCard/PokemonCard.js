@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import BarWave from 'react-cssfx-loading/lib/BarWave';
 
 import Data from './Data/Data.PokemonCard';
 import Info from './Info/Info.PokemonCard';
@@ -98,7 +97,7 @@ function PokemonCard() {
 	return (
 		<MainBig>
 			{loading ? (
-				<BarWave width='40px' height='20px' color='#cc0000' />
+				<p>Loading...</p>
 			) : (
 				<>
 					{pokemon?.name?.includes('mega') ? (
