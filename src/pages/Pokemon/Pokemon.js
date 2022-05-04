@@ -14,6 +14,7 @@ import { Type } from '../../components/BaseStyles/Themes';
 import { usePokedex } from '../../helpers/DataFetch';
 import Filters from './Components/Filters.Pokemon';
 import Sprites from './Components/Sprites.Pokemon';
+import { LoadingImg } from '../../components/BaseStyles/Loader';
 
 const Pokemon = React.memo(function Pokemon() {
 
@@ -25,7 +26,7 @@ const Pokemon = React.memo(function Pokemon() {
 	const { pokedex } = usePokedex(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
 
 	const fetchMore = () => {
-		if (limit >= 898) {
+		if (limit > 100) {
 			setHasMore(false)
 		}
 	}
@@ -48,7 +49,7 @@ const Pokemon = React.memo(function Pokemon() {
 					dataLength={pokedex.length}
 					next={() => setLimit(limit + 25)}
 					hasMore={fetchMore}
-					loader={<Loading>More Pokémon coming</Loading>}
+					loader={<LoadingImg src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg' alt='More pokémon coming' width={48} height={48} />}
 					endMessage={<Loading>No more pokémon</Loading>}
 				>
 					{filteredPokedex?.map((p) => (
