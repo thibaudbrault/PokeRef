@@ -49,7 +49,7 @@ const Pokemon = React.memo(function Pokemon() {
 					dataLength={pokedex.length}
 					next={() => setLimit(limit + 25)}
 					hasMore={fetchMore}
-					loader={<LoadingImg src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg' alt='More pokémon coming' width={48} height={48} />}
+					loader={<LoadingImg><img src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg' alt='More Pokémon coming' width={48} height={48} /></LoadingImg>}
 					endMessage={<Loading>No more pokémon</Loading>}
 				>
 					{filteredPokedex?.map((p) => (
