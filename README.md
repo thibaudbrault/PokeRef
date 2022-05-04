@@ -39,9 +39,11 @@
 ✅Change certain data according to the game selected  
 ✅Dark mode  
 ✅404 page  
-✅Autocomplete
+✅Autocomplete  
+✅Infinite scrolling (a bit wonky but trying to imrpove it)
 
-🛠Infinite scrolling
+🛠Implement PokeApi service worker to cache images  
+🛠Improve performances
 
 🔜Location page  
 🔜A "create your team" page  
