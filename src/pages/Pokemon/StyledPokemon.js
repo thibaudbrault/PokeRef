@@ -43,7 +43,7 @@ export const PokedexList = styled.ol`
 			align-items: center;
 			justify-content: center;
 			flex-wrap: wrap;
-			overflow: visible;
+			overflow: visible !important;
 		}
 	}
 `;

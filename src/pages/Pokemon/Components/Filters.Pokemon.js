@@ -31,7 +31,7 @@ function Filters({pokedex, setFilteredPokedex, setOffset}) {
 							pokedex?.name?.includes('galar'))
 					} else if (generation === 'all' && form === 'mega') {
 						setOffset(930);
-						return pokedex?.name?.includes('mega');
+						return pokedex?.name?.includes('mega ');
 					} else if (generation === 'all' && form === 'gmax') {
 						setOffset(1092);
 						return pokedex?.name?.includes('gmax');

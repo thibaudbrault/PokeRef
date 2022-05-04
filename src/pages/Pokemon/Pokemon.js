@@ -16,18 +16,19 @@ import Filters from './Components/Filters.Pokemon';
 import Sprites from './Components/Sprites.Pokemon';
 import { LoadingImg } from '../../components/BaseStyles/Loader';
 
-const Pokemon = React.memo(function Pokemon() {
+function Pokemon() {
 
 	const [filteredPokedex, setFilteredPokedex] = useState([]);
 	const [offset, setOffset] = useState(0);
 	const [limit, setLimit] = useState(25);
-	const [hasMore, setHasMore] = useState(true);
+	const [hasMore, setHasMore] = useState(false);
 
 	const { pokedex } = usePokedex(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
 
 	const fetchMore = () => {
-		if (limit > 100) {
-			setHasMore(false)
+		if (filteredPokedex.length < 100) {
+			setHasMore(true)
+			console.log('first')
 		}
 	}
 
@@ -86,6 +87,6 @@ const Pokemon = React.memo(function Pokemon() {
 			</PokedexList>
 		</MainSmall>
 	);
-});
+};
 
 export default Pokemon;
