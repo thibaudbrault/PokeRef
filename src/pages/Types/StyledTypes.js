@@ -37,4 +37,4 @@ export const ModifiedType = styled(Type)`
 			cursor: pointer;
 		}
 	}
-`
+`;

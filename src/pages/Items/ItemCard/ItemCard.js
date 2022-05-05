@@ -23,7 +23,7 @@ import { useItem } from '../../../helpers/DataFetch';
 function ItemCard() {
 	const { name } = useParams();
 	const navigate = useNavigate();
-	
+
 	const { item, loading } = useItem(`https://pokeapi.co/api/v2/item/${name}`);
 
 	const title = `${name}`;
@@ -121,6 +121,6 @@ function ItemCard() {
 			)}
 		</MainBig>
 	);
-};
+}
 
 export default ItemCard;

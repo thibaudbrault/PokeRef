@@ -6,8 +6,9 @@ import { ModifiedType, TypesList } from './StyledTypes';
 import { useTypes } from '../../helpers/DataFetch';
 
 function Types() {
-	
-	const { types, loading } = useTypes('https://pokeapi.co/api/v2/type?limit=18');
+	const { types, loading } = useTypes(
+		'https://pokeapi.co/api/v2/type?limit=18'
+	);
 
 	useEffect(() => {
 		document.title = `Types | PokéInfo`;

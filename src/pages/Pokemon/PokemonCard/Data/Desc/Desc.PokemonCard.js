@@ -15,7 +15,12 @@ function Desc({ pokemon, species, game }) {
 							<>{sf?.flavor_text?.replace('\u000c', ' ')}</>
 						)
 				)}
-				<p>Pokémon <Span><i>{game.replace(/-/g, ' ')}</i></Span></p>
+				<p>
+					Pokémon{' '}
+					<Span>
+						<i>{game.replace(/-/g, ' ')}</i>
+					</Span>
+				</p>
 			</PokemonDataDesc>
 			<PokemonDataTypes>
 				{pokemon?.types?.map((pt) => (

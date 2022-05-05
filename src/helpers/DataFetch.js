@@ -4,38 +4,11 @@ import axios from 'axios';
 // Fetch all pokemon
 
 export function usePokedex(url) {
-
-    const [pokedex, setPokedex] = useState([]);
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        setLoading(true);
-        axios
-            .get(url)
-            .then((res) => {
-                return res.data.results;
-            })
-            .then((results) => {
-                return Promise.all(results.map((res) => axios.get(res.url)));
-            })
-            .then((results) => {
-                setLoading(false);
-                setPokedex(results.map((res) => res.data));
-            });
-    }, [url]);
-
-    return {pokedex, loading}
-}
-
-// Fetch all moves
-
-export function useMoves(url) {
-
-    const [moves, setMoves] = useState([]);
-    const [loading, setLoading] = useState(false);
+	const [pokedex, setPokedex] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-        setLoading(true);
+		setLoading(true);
 		axios
 			.get(url)
 			.then((res) => {
@@ -45,18 +18,42 @@ export function useMoves(url) {
 				return Promise.all(results.map((res) => axios.get(res.url)));
 			})
 			.then((results) => {
-                setLoading(false);
+				setLoading(false);
+				setPokedex(results.map((res) => res.data));
+			});
+	}, [url]);
+
+	return { pokedex, loading };
+}
+
+// Fetch all moves
+
+export function useMoves(url) {
+	const [moves, setMoves] = useState([]);
+	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		setLoading(true);
+		axios
+			.get(url)
+			.then((res) => {
+				return res.data.results;
+			})
+			.then((results) => {
+				return Promise.all(results.map((res) => axios.get(res.url)));
+			})
+			.then((results) => {
+				setLoading(false);
 				setMoves(results.map((res) => res.data));
 			});
 	}, [url]);
 
-    return { moves, loading }
+	return { moves, loading };
 }
 
 // Fetch all abilities
 
 export function useAbilities(url) {
-
 	const [abilities, setAbilities] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -76,18 +73,17 @@ export function useAbilities(url) {
 			});
 	}, [url]);
 
-	return { abilities, loading }
+	return { abilities, loading };
 }
 
 // Fetch all status
 
 export function useStatus(url) {
-
 	const [status, setStatus] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		setLoading(true)
+		setLoading(true);
 		axios
 			.get(url)
 			.then((res) => {
@@ -97,49 +93,22 @@ export function useStatus(url) {
 				return Promise.all(results.map((res) => axios.get(res.url)));
 			})
 			.then((results) => {
-				setLoading(false)
+				setLoading(false);
 				setStatus(results.map((res) => res.data));
 			});
 	}, [url]);
 
-	return { status, loading }
+	return { status, loading };
 }
 
 // Fetch all types
 
 export function useTypes(url) {
-
-    const [types, setTypes] = useState([]);
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        setLoading(true);
-        axios
-            .get(url)
-            .then((res) => {
-                return res.data.results;
-            })
-            .then((results) => {
-                return Promise.all(results.map((res) => axios.get(res.url)));
-            })
-            .then((results) => {
-                setLoading(false);
-                setTypes(results.map((res) => res.data));
-            });
-    }, [url]);
-
-    return { types, loading }
-}
-
-// Fetch all machines
-
-export function useMachines(url) {
-
-    const [machines, setMachine] = useState([]);
-    const [loading, setLoading] = useState(false);
+	const [types, setTypes] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-        setLoading(true);
+		setLoading(true);
 		axios
 			.get(url)
 			.then((res) => {
@@ -149,18 +118,42 @@ export function useMachines(url) {
 				return Promise.all(results.map((res) => axios.get(res.url)));
 			})
 			.then((results) => {
-                setLoading(false);
+				setLoading(false);
+				setTypes(results.map((res) => res.data));
+			});
+	}, [url]);
+
+	return { types, loading };
+}
+
+// Fetch all machines
+
+export function useMachines(url) {
+	const [machines, setMachine] = useState([]);
+	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		setLoading(true);
+		axios
+			.get(url)
+			.then((res) => {
+				return res.data.results;
+			})
+			.then((results) => {
+				return Promise.all(results.map((res) => axios.get(res.url)));
+			})
+			.then((results) => {
+				setLoading(false);
 				setMachine(results.map((res) => res.data));
 			});
 	}, [url]);
 
-    return { machines, loading }
+	return { machines, loading };
 }
 
 // Fetch all items
 
 export function useItems(url) {
-
 	const [items, setItems] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -180,16 +173,13 @@ export function useItems(url) {
 			});
 	}, [url]);
 
-	return { items, loading }
+	return { items, loading };
 }
-
-
 
 // Fetch single pokemon
 
 export function usePokemon(url) {
-
-    const [pokemon, setPokemon] = useState([]);
+	const [pokemon, setPokemon] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
@@ -205,14 +195,13 @@ export function usePokemon(url) {
 			});
 	}, [url]);
 
-    return { pokemon, loading }
+	return { pokemon, loading };
 }
 
 // Fetch single move
 
 export function useMove(url) {
-
-    const [move, setMove] = useState([]);
+	const [move, setMove] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
@@ -228,13 +217,12 @@ export function useMove(url) {
 			});
 	}, [url]);
 
-    return { move, loading }
+	return { move, loading };
 }
 
 // Fetch single ability
 
 export function useAbility(url) {
-	
 	const [ability, setAbility] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -251,15 +239,14 @@ export function useAbility(url) {
 			});
 	}, [url]);
 
-	return { ability, loading }
+	return { ability, loading };
 }
 
 // Fetch single pokemon species
 
 export function useSpecies(url) {
-
-    const [species, setSpecies] = useState([]);
-    const [loading, setLoading] = useState(false);
+	const [species, setSpecies] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		setLoading(true);
@@ -274,14 +261,13 @@ export function useSpecies(url) {
 			});
 	}, [url]);
 
-    return { species, loading }
+	return { species, loading };
 }
 
 // Fetch location for a single pokemon
 
 export function useLocation(url) {
-
-    const [location, setLocation] = useState([]);
+	const [location, setLocation] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
@@ -297,15 +283,14 @@ export function useLocation(url) {
 			});
 	}, [url]);
 
-    return { location, loading }
+	return { location, loading };
 }
 
 // Fetch evolution chain of a single pokemon
 
 export function useEvolution(url) {
-
-    const [evolution, setEvolution] = useState([]);
-    const [loading, setLoading] = useState(false);
+	const [evolution, setEvolution] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		setLoading(true);
@@ -320,13 +305,12 @@ export function useEvolution(url) {
 			});
 	}, [url]);
 
-    return { evolution, loading }
+	return { evolution, loading };
 }
 
 // Fetch single type
 
 export function useType(url) {
-
 	const [type, setType] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -343,13 +327,12 @@ export function useType(url) {
 			});
 	}, [url]);
 
-	return { type, loading }
+	return { type, loading };
 }
 
 // Fetch single item
 
 export function useItem(url) {
-
 	const [item, setItem] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -366,5 +349,5 @@ export function useItem(url) {
 			});
 	}, [url]);
 
-	return { item, loading }
+	return { item, loading };
 }

@@ -17,20 +17,21 @@ import Sprites from './Components/Sprites.Pokemon';
 import { LoadingImg } from '../../components/BaseStyles/Loader';
 
 function Pokemon() {
-
 	const [filteredPokedex, setFilteredPokedex] = useState([]);
 	const [offset, setOffset] = useState(0);
 	const [limit, setLimit] = useState(25);
 	const [hasMore, setHasMore] = useState(false);
 
-	const { pokedex } = usePokedex(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
+	const { pokedex } = usePokedex(
+		`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
+	);
 
 	const fetchMore = () => {
 		if (filteredPokedex.length < 100) {
-			setHasMore(true)
-			console.log('first')
+			setHasMore(true);
+			console.log('first');
 		}
-	}
+	};
 
 	useEffect(() => {
 		document.title = `Pokémon | PokéInfo`;
@@ -38,8 +39,7 @@ function Pokemon() {
 
 	return (
 		<MainSmall>
-			
-			<Filters 
+			<Filters
 				pokedex={pokedex}
 				setFilteredPokedex={setFilteredPokedex}
 				setOffset={setOffset}
@@ -50,34 +50,31 @@ function Pokemon() {
 					dataLength={pokedex.length}
 					next={() => setLimit(limit + 25)}
 					hasMore={fetchMore}
-					loader={<LoadingImg><img src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg' alt='More Pokémon coming' width={48} height={48} /></LoadingImg>}
+					loader={
+						<LoadingImg>
+							<img
+								src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg'
+								alt=''
+								width={48}
+								height={48}
+							/>
+						</LoadingImg>
+					}
 					endMessage={<Loading>No more pokémon</Loading>}
 				>
 					{filteredPokedex?.map((p) => (
 						<PokedexElement>
-							
-							<Sprites 
-								p={p}
-							/>
+							<Sprites p={p} />
 
-							{p?.id < 899 && 
-								<p>#{p?.id?.toString()?.padStart(3, '0')}</p>
-							}
-							<Link 
-								to={`/pokemon/${p.name}`} 
-								key={p.name}
-							>
+							{p?.id < 899 && <p>#{p?.id?.toString()?.padStart(3, '0')}</p>}
+							<Link to={`/pokemon/${p.name}`} key={p.name}>
 								<h2>{p?.name?.replace(/-/g, ' ')}</h2>
 							</Link>
 							<PokedexTypes>
 								{p?.types?.map((pt) => (
 									<Type id={pt.type.name}>
 										<img alt={pt.type.name} />
-										<Link 
-											to={`/types/${pt.type.name}`}
-										>
-											{pt?.type?.name}
-										</Link>
+										<Link to={`/types/${pt.type.name}`}>{pt?.type?.name}</Link>
 									</Type>
 								))}
 							</PokedexTypes>
@@ -87,6 +84,6 @@ function Pokemon() {
 			</PokedexList>
 		</MainSmall>
 	);
-};
+}
 
 export default Pokemon;

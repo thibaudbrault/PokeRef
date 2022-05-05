@@ -14,11 +14,12 @@ import { MainBig } from '../../components/BaseStyles/Sizing';
 import { useMachines } from '../../helpers/DataFetch';
 
 function Machines() {
-
 	const [search, setSearch] = useState('');
 	const [filteredMachines, setFilteredMachines] = useState([]);
 
-	const { machines, loading } = useMachines('https://pokeapi.co/api/v2/machine?limit=1700');
+	const { machines, loading } = useMachines(
+		'https://pokeapi.co/api/v2/machine?limit=1700'
+	);
 
 	useEffect(() => {
 		setFilteredMachines(
@@ -28,8 +29,8 @@ function Machines() {
 					.toLowerCase()
 					.includes(search.toLowerCase())
 			)
-		)
-	}, [machines, search])
+		);
+	}, [machines, search]);
 
 	const [version, setVersion] = useState('red-blue');
 
@@ -162,23 +163,22 @@ function Machines() {
 							</tr>
 						</THead>
 						<tbody>
-							{filteredMachines
-								.map(
-									(ma) =>
-										ma?.version_group?.name === version && (
-											<TRow>
-												<TName>{ma?.item?.name.toUpperCase()}</TName>
-												<td>
-													<TLink
-														to={`/moves/${ma?.move?.name}`}
-														key={ma?.move?.name}
-													>
-														{ma?.move?.name.replace(/-/g, ' ')}
-													</TLink>
-												</td>
-											</TRow>
-										)
-								)}
+							{filteredMachines.map(
+								(ma) =>
+									ma?.version_group?.name === version && (
+										<TRow>
+											<TName>{ma?.item?.name.toUpperCase()}</TName>
+											<td>
+												<TLink
+													to={`/moves/${ma?.move?.name}`}
+													key={ma?.move?.name}
+												>
+													{ma?.move?.name.replace(/-/g, ' ')}
+												</TLink>
+											</td>
+										</TRow>
+									)
+							)}
 						</tbody>
 					</Table>
 				</>

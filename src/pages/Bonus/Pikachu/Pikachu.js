@@ -11,9 +11,10 @@ import {
 	SpriteNormal,
 	SpriteShiny,
 } from '../../Pokemon/StyledPokemon';
+import { Type } from '../../../components/BaseStyles/Themes';
+import { LoadingImg } from '../../../components/BaseStyles/Loader';
 
 function Pikachu() {
-	
 	const [pikachu, setPikachu] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -36,7 +37,14 @@ function Pikachu() {
 	return (
 		<MainSmall>
 			{loading ? (
-				<p>Loading...</p>
+				<LoadingImg>
+					<img
+						src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg'
+						alt=''
+						width={48}
+						height={48}
+					/>
+				</LoadingImg>
 			) : (
 				<PikachuPage>
 					{pikachu?.map(
@@ -64,12 +72,12 @@ function Pikachu() {
 									</Link>
 									<PokedexTypes>
 										{p?.types?.map((pt) => (
-											<div id={pt.type.name}>
+											<Type id={pt.type.name}>
 												<img alt={pt.type.name} />
 												<Link to={`/types/${pt.type.name}`}>
 													{pt?.type?.name}
 												</Link>
-											</div>
+											</Type>
 										))}
 									</PokedexTypes>
 								</PokedexElement>
@@ -79,6 +87,6 @@ function Pikachu() {
 			)}
 		</MainSmall>
 	);
-};
+}
 
 export default Pikachu;

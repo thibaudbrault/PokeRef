@@ -59,14 +59,14 @@ function Moves({
 				m?.name === pm?.move?.name && (
 					<>
 						<PokemonMovesTd>
-							<Type
-								id={m?.type?.name}
-								style={{ background: 'transparent' }}
-							>
-								<Link
-									to={m?.type?.name}
-								>
-									<img alt={m?.type?.name} width={32} height={32} style={{ cursor: 'pointer' }}/>
+							<Type id={m?.type?.name} style={{ background: 'transparent' }}>
+								<Link to={m?.type?.name}>
+									<img
+										alt={m?.type?.name}
+										width={32}
+										height={32}
+										style={{ cursor: 'pointer' }}
+									/>
 								</Link>
 							</Type>
 						</PokemonMovesTd>
@@ -81,7 +81,9 @@ function Moves({
 						<PokemonMovesTd>{m?.priority}</PokemonMovesTd>
 						<PokemonMovesTd>
 							{m?.meta?.ailment !== null
-								? m?.meta?.ailment?.name?.replace('none', '-').replace(/-/g, ' ')
+								? m?.meta?.ailment?.name
+										?.replace('none', '-')
+										.replace(/-/g, ' ')
 								: '-'}
 						</PokemonMovesTd>
 					</>
@@ -95,17 +97,13 @@ function Moves({
 					<TRow>
 						{(() => {
 							if (learn === 'level-up' && pmv?.level_learned_at === 0) {
-								return(
+								return (
 									<PokemonMovesTd>
 										<Span>evolution</Span>
 									</PokemonMovesTd>
-								)
+								);
 							} else if (learn === 'level-up' && pmv?.level_learned_at !== 0) {
-								return(
-									<td>
-										{pmv?.level_learned_at}
-									</td>
-								)
+								return <td>{pmv?.level_learned_at}</td>;
 							}
 						})()}
 						{learn === 'machine' &&
@@ -113,9 +111,7 @@ function Moves({
 								(ma) =>
 									ma?.move?.name === pm?.move?.name &&
 									ma?.version_group?.name === version && (
-										<PokemonMovesMachine>
-											{ma?.item?.name}
-										</PokemonMovesMachine>
+										<PokemonMovesMachine>{ma?.item?.name}</PokemonMovesMachine>
 									)
 							)}
 						{learn === 'egg' && <td>-</td>}
@@ -156,9 +152,7 @@ function Moves({
 					</tr>
 				</THead>
 				<tbody>
-					<>
-						{dataMoves}
-					</>
+					<>{dataMoves}</>
 				</tbody>
 			</Table>
 		</PokemonMovesSection>

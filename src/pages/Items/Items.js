@@ -11,7 +11,9 @@ function Items() {
 	const [search, setSearch] = useState('');
 	const [filteredItems, setFilteredItems] = useState([]);
 
-	const { items, loading } = useItems('https://pokeapi.co/api/v2/item?limit=1608');
+	const { items, loading } = useItems(
+		'https://pokeapi.co/api/v2/item?limit=1608'
+	);
 
 	useEffect(() => {
 		setFilteredItems(

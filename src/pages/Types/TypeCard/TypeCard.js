@@ -12,8 +12,8 @@ import { useMoves, usePokedex, useType } from '../../../helpers/DataFetch';
 const TypeCard = () => {
 	const { name } = useParams();
 	const navigate = useNavigate();
-	
-	const { type, loading } = useType(`https://pokeapi.co/api/v2/type/${name}`)
+
+	const { type, loading } = useType(`https://pokeapi.co/api/v2/type/${name}`);
 
 	const { pokedex } = usePokedex('https://pokeapi.co/api/v2/pokemon?limit=898');
 

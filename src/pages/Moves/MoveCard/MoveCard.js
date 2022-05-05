@@ -23,17 +23,18 @@ import { useMachines, useMove, usePokedex } from '../../../helpers/DataFetch';
 import Nav from './Nav/Nav.MoveCard';
 
 const MoveCard = () => {
-
 	const { name } = useParams();
 	const navigate = useNavigate();
 
 	// Import data fetch
 
-	const { move, loading } = useMove(`https://pokeapi.co/api/v2/move/${name}`)
+	const { move, loading } = useMove(`https://pokeapi.co/api/v2/move/${name}`);
 
-	const { pokedex } = usePokedex('https://pokeapi.co/api/v2/pokemon?limit=898')
+	const { pokedex } = usePokedex('https://pokeapi.co/api/v2/pokemon?limit=898');
 
-	const { machines } = useMachines('https://pokeapi.co/api/v2/machine?limit=1700');
+	const { machines } = useMachines(
+		'https://pokeapi.co/api/v2/machine?limit=1700'
+	);
 
 	// Data from latest gen available with PokeApi
 
@@ -65,10 +66,7 @@ const MoveCard = () => {
 					<CardTitle>{move?.name?.replace(/-/g, ' ')}</CardTitle>
 					<Subtitle>{move?.generation?.name?.replace(/-/g, ' ')}</Subtitle>
 
-					<Nav 
-						move={move}
-						setVersion={setVersion}
-					/>
+					<Nav move={move} setVersion={setVersion} />
 
 					<Data move={move} machines={machines} version={version} />
 

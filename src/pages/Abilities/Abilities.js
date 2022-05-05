@@ -17,7 +17,9 @@ function Abilities() {
 	const [search, setSearch] = useState('');
 	const [filteredAbilities, setFilteredAbilities] = useState([]);
 
-	const { abilities, loading } = useAbilities('https://pokeapi.co/api/v2/ability?limit=267');
+	const { abilities, loading } = useAbilities(
+		'https://pokeapi.co/api/v2/ability?limit=267'
+	);
 
 	useEffect(() => {
 		setFilteredAbilities(

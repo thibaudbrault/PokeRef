@@ -12,30 +12,45 @@ import { PokemonSubtitle, PokemonTitle } from './StyledPokemonCard';
 import { GenNav } from '../../../components/BaseStyles/Navbars';
 import { BackButton } from '../../../components/BaseStyles/Inputs';
 import Evolution from './Evolution/Evolution.PokemonCard';
-import { useEvolution, useLocation, useMachines, useMoves, usePokemon, useSpecies, useTypes } from '../../../helpers/DataFetch';
+import {
+	useEvolution,
+	useLocation,
+	useMachines,
+	useMoves,
+	usePokemon,
+	useSpecies,
+	useTypes,
+} from '../../../helpers/DataFetch';
 
 function PokemonCard() {
-
 	const { name } = useParams();
 	const navigate = useNavigate();
 
 	// Import data fetch
 
-	const { pokemon, loading } = usePokemon(`https://pokeapi.co/api/v2/pokemon/${name}`);
+	const { pokemon, loading } = usePokemon(
+		`https://pokeapi.co/api/v2/pokemon/${name}`
+	);
 
-	const { species } = useSpecies(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
+	const { species } = useSpecies(
+		`https://pokeapi.co/api/v2/pokemon-species/${name}`
+	);
 
 	const { moves } = useMoves('https://pokeapi.co/api/v2/move?limit=826');
 
 	const evolutionChainUrl = species?.evolution_chain?.url;
 
-	const { evolution } = useEvolution(`${evolutionChainUrl}`)
+	const { evolution } = useEvolution(`${evolutionChainUrl}`);
 
 	const { types } = useTypes('https://pokeapi.co/api/v2/type?limit=18');
 
-	const { machines } = useMachines('https://pokeapi.co/api/v2/machine?limit=1700');
+	const { machines } = useMachines(
+		'https://pokeapi.co/api/v2/machine?limit=1700'
+	);
 
-	const { location } = useLocation(`https://pokeapi.co/api/v2/pokemon/${name}/encounters`);
+	const { location } = useLocation(
+		`https://pokeapi.co/api/v2/pokemon/${name}/encounters`
+	);
 
 	// Modify game and version according to the id of the pokemon
 
@@ -68,7 +83,7 @@ function PokemonCard() {
 			setGame('sword');
 			setVersion('sword-shield');
 		}
-	}, [species])
+	}, [species]);
 
 	// Toggle for moves table
 

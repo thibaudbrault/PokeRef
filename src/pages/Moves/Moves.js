@@ -7,11 +7,13 @@ import MovesTable from './Components/MovesTable.Moves';
 import StatusTable from './Components/StatusTable.Moves';
 
 function Moves() {
+	const { moves, loading } = useMoves(
+		'https://pokeapi.co/api/v2/move?limit=826'
+	);
 
-	const { moves, loading } = useMoves('https://pokeapi.co/api/v2/move?limit=826');
-
-	const { status } = useStatus('https://pokeapi.co/api/v2/move-ailment?limit=22');
-	
+	const { status } = useStatus(
+		'https://pokeapi.co/api/v2/move-ailment?limit=22'
+	);
 
 	const [toggleState, setToggleState] = useState(1);
 	const toggleTable = (index) => {
@@ -43,16 +45,9 @@ function Moves() {
 						</button>
 					</MethodNav>
 
-					<MovesTable 
-						moves={moves}
-						toggleState={toggleState}
-					/>
+					<MovesTable moves={moves} toggleState={toggleState} />
 
-					<StatusTable 
-						status={status}
-						toggleState={toggleState}
-					/>
-
+					<StatusTable status={status} toggleState={toggleState} />
 				</>
 			)}
 		</MainBig>

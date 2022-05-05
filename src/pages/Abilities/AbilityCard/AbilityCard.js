@@ -28,10 +28,14 @@ import { useAbility, usePokedex } from '../../../helpers/DataFetch';
 const AbilityCard = () => {
 	const { name } = useParams();
 	const navigate = useNavigate();
-	
-	const { ability, loading } = useAbility(`https://pokeapi.co/api/v2/ability/${name}`);
 
-	const { pokedex } = usePokedex('https://pokeapi.co/api/v2/pokemon?limit=1300');
+	const { ability, loading } = useAbility(
+		`https://pokeapi.co/api/v2/ability/${name}`
+	);
+
+	const { pokedex } = usePokedex(
+		'https://pokeapi.co/api/v2/pokemon?limit=1300'
+	);
 
 	const title = `${name.replace(/-/g, ' ')}`;
 
@@ -58,10 +62,13 @@ const AbilityCard = () => {
 							)}
 						</AbilityCardEffect>
 						{ability?.effect_entries?.map(
-							(ae) => ae?.language?.name === 'en' && ae?.effect?.includes('\n\nOverworld:') &&
-								<AbilityCardEffect>
-									<H4>Overworld</H4>
-								</AbilityCardEffect>
+							(ae) =>
+								ae?.language?.name === 'en' &&
+								ae?.effect?.includes('\n\nOverworld:') && (
+									<AbilityCardEffect>
+										<H4>Overworld</H4>
+									</AbilityCardEffect>
+								)
 						)}
 					</AbilityCardSection>
 
