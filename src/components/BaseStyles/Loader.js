@@ -12,7 +12,7 @@ export const LoadingImg = styled.div`
 		left: 50%;
 		-webkit-transform: translateX(-50%);
 		transform: translateX(-50%);
-		animation: ${Wiggle} 2.5s infinite;
+		animation: ${Wiggle} 2s infinite;
 		text-align: center;
 		font-size: 1.7rem;
 		font-weight: 700;

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const PokedexDropdown = styled.div`
@@ -151,6 +152,20 @@ export const PokedexTypes = styled.div`
 		}
 	}
 `;
+
+export const PokemonBeta = styled(Link)`
+	position: fixed;
+	bottom: 2rem;
+	left: 2rem;
+	cursor: pointer;
+
+	& span {
+		font-size: 1.7rem;
+		font-weight: 700;
+		color: ${({ theme }) => theme.secondary};
+		cursor: pointer;
+	}
+`
 
 export const Loading = styled.p`
 	width: 100%;

@@ -42,6 +42,7 @@
 ✅Autocomplete  
 ✅Infinite scrolling (a bit wonky but trying to imrpove it)
 
+🛠Other bonus page  
 🛠Implement PokeApi service worker to cache images  
 🛠Improve performances
 
