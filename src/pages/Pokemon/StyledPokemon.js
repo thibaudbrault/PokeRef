@@ -153,7 +153,7 @@ export const PokedexTypes = styled.div`
 	}
 `;
 
-export const PokemonBeta = styled(Link)`
+export const PokemonGyms = styled(Link)`
 	position: fixed;
 	bottom: 2rem;
 	left: 2rem;

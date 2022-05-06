@@ -7,7 +7,7 @@ import {
 	PokedexElement,
 	PokedexList,
 	PokedexTypes,
-	PokemonBeta,
+	PokemonGym,
 } from './StyledPokemon';
 import { MainSmall } from '../../components/BaseStyles/Sizing';
 import { Type } from '../../components/BaseStyles/Themes';
@@ -81,9 +81,9 @@ function Pokemon() {
 							</PokedexTypes>
 						</PokedexElement>
 					))}
-					<PokemonBeta to={`/beta`}>
-						<span>β</span>
-					</PokemonBeta>
+					<PokemonGym to={`/gyms`}>
+						<span>G</span>
+					</PokemonGym>
 				</InfiniteScroll>
 			</PokedexList>
 		</MainSmall>

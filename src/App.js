@@ -28,7 +28,7 @@ const LocationCard = lazy(() =>
 	import('./pages/Locations/LocationCard/LocationCard')
 );
 const Pikachu = lazy(() => import('./pages/Bonus/Pikachu/Pikachu'));
-const Beta = lazy(() => import('./pages/Bonus/Beta/Beta'));
+const Gym = lazy(() => import('./pages/Bonus/Beta/Beta'));
 
 function App() {
 	const [theme, setTheme] = useState('light');
