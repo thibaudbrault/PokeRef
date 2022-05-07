@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { MethodNav } from '../../components/BaseStyles/Navbars';
+import { device } from '../../components/BaseStyles/Sizing';
 
 export const LocationSection = styled.section`
 	padding-bottom: 2.5rem;
@@ -12,7 +13,15 @@ export const LocationSection = styled.section`
 `;
 
 export const LocationNav = styled(MethodNav)`
-	padding-bottom: 5rem;
+	padding-bottom: 1.5rem;
+
+	& button {
+		margin-bottom: 1rem;
+
+		@media ${device.sm} { 
+			font-size: 1.5rem;
+		}
+	}
 `;
 
 export const LocationList = styled.ol`
@@ -20,6 +29,7 @@ export const LocationList = styled.ol`
 	justify-items: center;
 	grid-template-columns: repeat(5, 1fr);
 	gap: 2rem;
+	text-align: center;
 
 	& li {
 		align-self: center;
@@ -34,5 +44,9 @@ export const LocationList = styled.ol`
 				border-bottom: 1px solid ${({ theme }) => theme.secondary};
 			}
 		}
+	}
+
+	@media ${device.sm} { 
+		grid-template-columns: repeat(4, 1fr);
 	}
 `;

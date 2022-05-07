@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Type } from '../../components/BaseStyles/Themes';
+import { device } from '../../components/BaseStyles/Sizing';
 
 export const TypesList = styled.ul`
 	display: flex;
@@ -36,5 +37,9 @@ export const ModifiedType = styled(Type)`
 			color: #c4c4c4;
 			cursor: pointer;
 		}
+	}
+
+	@media ${device.sm} { 
+		margin: 2rem;
 	}
 `;

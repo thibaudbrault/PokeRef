@@ -21,7 +21,7 @@ export const MainSmall = styled.main`
 	padding: 5rem;
 
 	@media ${device.sm} { 
-		padding: 5rem 0;
+		padding: 3rem 0 5rem;
 	}
 `;
 
@@ -30,6 +30,9 @@ export const MainBig = styled.main`
 	margin: 0 auto;
 	padding: 5rem;
 
+	@media ${device.sm} { 
+		padding: 3rem;
+	}
 `;
 
 export const ModifiedMainBig = styled(MainBig)`

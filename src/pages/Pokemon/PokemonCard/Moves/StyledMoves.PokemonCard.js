@@ -1,7 +1,22 @@
 import styled from 'styled-components';
+import { device } from '../../../../components/BaseStyles/Sizing';
+import { Table } from '../../../../components/BaseStyles/Table';
 
 export const PokemonMovesSection = styled.section`
 	padding-bottom: 5rem;
+	overflow-x: hidden;
+`;
+
+export const PokemonMovesContainer = styled.div`
+	overflow-x: auto;
+`;
+
+export const PokemonMovesTable = styled(Table)`
+	& td {
+		@media ${device.sm} { 
+			font-size: 1.7rem;
+		}
+	}
 `;
 
 export const PokemonMovesTd = styled.td`

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from './Sizing';
 
 export const Search = styled.div`
 	display: flex;

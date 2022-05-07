@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Pulse } from '../../../../components/BaseStyles/Keyframes';
+import { device } from '../../../../components/BaseStyles/Sizing';
 import { Table } from '../../../../components/BaseStyles/Table';
 
 export const PokemonDataSection = styled.section`
@@ -8,6 +9,13 @@ export const PokemonDataSection = styled.section`
 	align-items: center;
 	grid-template-columns: 55% 35%;
 	column-gap: 10%;
+
+	@media ${device.sm} { 
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column-reverse;
+	}
 `;
 
 export const PokemonDataSprite = styled.div`
@@ -59,6 +67,10 @@ export const PokemonDataTypes = styled.li`
 			}
 		}
 	}
+
+	@media ${device.sm} { 
+		justify-content: center;
+	}
 `;
 
 export const PokemonDataTable = styled(Table)`
@@ -105,7 +117,10 @@ export const PokemonDataMyt = styled(PokemonDataPill)`
 `;
 
 export const PokemonDataImg = styled.img`
-	animation-name: ${Pulse};
-	animation-duration: 5s;
-	animation-iteration-count: infinite;
+	animation: ${Pulse} 5s infinite;
+
+	@media ${device.sm} { 
+		width: 75%;
+		margin-bottom: 1rem;
+	}
 `;

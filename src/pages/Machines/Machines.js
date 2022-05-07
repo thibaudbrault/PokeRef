@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import { GenNav } from '../../components/BaseStyles/Navbars';
-import { Input, ModifiedSearch } from '../../components/BaseStyles/Inputs';
+import { Input } from '../../components/BaseStyles/Inputs';
 import { LeftTitle } from '../../components/BaseStyles/Headings';
 import {
-	Table,
 	THead,
 	TLink,
 	TName,
@@ -12,6 +11,7 @@ import {
 } from '../../components/BaseStyles/Table';
 import { MainBig } from '../../components/BaseStyles/Sizing';
 import { useMachines } from '../../helpers/DataFetch';
+import { MachinesSearch, MachinesTable } from './StyledMachines';
 
 function Machines() {
 	const [search, setSearch] = useState('');
@@ -45,7 +45,7 @@ function Machines() {
 			) : (
 				<>
 					<LeftTitle>Machines</LeftTitle>
-					<ModifiedSearch>
+					<MachinesSearch>
 						<Input>
 							<label htmlFor='searchBar'>Search</label>
 							<input
@@ -58,7 +58,7 @@ function Machines() {
 								}}
 							/>
 						</Input>
-					</ModifiedSearch>
+					</MachinesSearch>
 
 					<GenNav>
 						<ol>
@@ -155,7 +155,7 @@ function Machines() {
 						</ol>
 					</GenNav>
 
-					<Table>
+					<MachinesTable>
 						<THead>
 							<tr>
 								<th>Name</th>
@@ -180,7 +180,7 @@ function Machines() {
 									)
 							)}
 						</tbody>
-					</Table>
+					</MachinesTable>
 				</>
 			)}
 		</MainBig>

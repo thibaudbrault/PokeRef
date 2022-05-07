@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../../../components/BaseStyles/Sizing';
 import { Table } from '../../../../components/BaseStyles/Table';
 
 export const PokemonInfoSection = styled.section`
@@ -6,6 +7,25 @@ export const PokemonInfoSection = styled.section`
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	column-gap: 4rem;
+
+	@media ${device.sm} { 
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+
+		& div {
+			margin: 1rem 0;
+
+			&:first-of-type {
+				margin-top: 0;
+			}
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+	}
 `;
 
 export const PokemonInfoTable = styled(Table)`

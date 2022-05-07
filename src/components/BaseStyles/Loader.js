@@ -10,7 +10,7 @@ export const LoadingImg = styled.div`
 	& img {
 		position: absolute;
 		left: 50%;
-		-webkit-transform: translateX(-50%);
+		margin-left: -24px;
 		transform: translateX(-50%);
 		animation: ${Wiggle} 2s infinite;
 		text-align: center;

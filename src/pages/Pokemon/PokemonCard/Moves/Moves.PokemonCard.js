@@ -6,9 +6,10 @@ import {
 	PokemonMovesTd,
 	PokemonMovesEmpty,
 	PokemonMovesMachine,
+	PokemonMovesContainer,
+	PokemonMovesTable,
 } from './StyledMoves.PokemonCard';
 import {
-	Table,
 	THead,
 	TRow,
 	TLink,
@@ -131,30 +132,32 @@ function Moves({
 		<PokemonMovesSection>
 			<H3>Moves</H3>
 			<Method toggleState={toggleState} toggleTable={toggleTable} />
-			<Table>
-				<THead>
-					<tr>
-						<th>
-							{learn === 'level-up'
-								? 'Level'
-								: learn === 'machine'
-								? 'Machine'
-								: '-'}
-						</th>
-						<th>Name</th>
-						<th>Type</th>
-						<th>Category</th>
-						<th>Power</th>
-						<th>PP</th>
-						<th>Accuracy</th>
-						<th>Priority</th>
-						<th>Status</th>
-					</tr>
-				</THead>
-				<tbody>
-					<>{dataMoves}</>
-				</tbody>
-			</Table>
+			<PokemonMovesContainer>
+				<PokemonMovesTable>
+					<THead>
+						<tr>
+							<th>
+								{learn === 'level-up'
+									? 'Level'
+									: learn === 'machine'
+									? 'Machine'
+									: '-'}
+							</th>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Category</th>
+							<th>Power</th>
+							<th>PP</th>
+							<th>Accuracy</th>
+							<th>Priority</th>
+							<th>Status</th>
+						</tr>
+					</THead>
+					<tbody>
+						<>{dataMoves}</>
+					</tbody>
+				</PokemonMovesTable>
+			</PokemonMovesContainer>
 		</PokemonMovesSection>
 	);
 }

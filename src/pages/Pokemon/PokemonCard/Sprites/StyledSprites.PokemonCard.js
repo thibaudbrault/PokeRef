@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../../../components/BaseStyles/Sizing';
 
 export const PokemonSpritesSection = styled.section`
 	padding-bottom: 5rem;
@@ -25,5 +26,9 @@ export const PokemonSpritesDiv = styled.div`
 		& p {
 			font-size: 1.5rem;
 		}
+	}
+
+	@media ${device.xs} {
+		grid-template-columns: repeat(2, 1fr);
 	}
 `;

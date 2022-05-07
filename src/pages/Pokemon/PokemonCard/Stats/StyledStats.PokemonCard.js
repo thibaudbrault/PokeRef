@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../../../components/BaseStyles/Sizing';
 import { PokemonInfoTable } from '../Info/StyledInfo.PokemonCard';
 
 export const PokemonStatsSection = styled.section`
@@ -6,6 +7,13 @@ export const PokemonStatsSection = styled.section`
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	column-gap: 2rem;
+
+	@media ${device.sm} { 
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
 `;
 
 export const PokemonStatsText = styled.td`
@@ -45,6 +53,13 @@ export const PokemonStatsTotal = styled.td`
 	font-size: 1.5rem;
 	font-weight: 700;
 	vertical-align: middle;
+`;
+
+export const PokemonTypesContainer = styled.div`
+	@media ${device.sm} { 
+		width: 100%;
+		margin-top: 1rem;
+	}
 `;
 
 export const PokemonTypesTable = styled(PokemonInfoTable)`

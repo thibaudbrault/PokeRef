@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from './Sizing';
 
 export const GenNav = styled.nav`
 	position: relative;
@@ -11,6 +12,7 @@ export const GenNav = styled.nav`
 		justify-content: space-around;
 
 		& li {
+			margin: 0 0.5rem;
 			display: inline-block;
 			position: relative;
 
@@ -20,6 +22,10 @@ export const GenNav = styled.nav`
 				font-size: 1.7rem;
 				font-weight: 700;
 				color: ${({ theme }) => theme.secondary};
+
+				@media ${device.sm} { 
+					font-size: 1.5rem;
+				}
 			}
 
 			& div {
@@ -34,10 +40,16 @@ export const GenNav = styled.nav`
 					font-size: 1.5rem;
 					border: none;
 					margin: 1rem;
+					text-align: left;
 					color: #161616;
 					cursor: pointer;
 					&:hover {
 						color: ${({ theme }) => theme.red};
+					}
+
+					@media ${device.sm} { 
+						font-size: 1.3rem;
+						white-space: break-spaces;
 					}
 				}
 			}
@@ -46,6 +58,14 @@ export const GenNav = styled.nav`
 				& div {
 					display: block;
 				}
+			}
+
+			&:first-of-type {
+				margin-left: 0;
+			}
+
+			&:last-of-type {
+				margin-right: 0;
 			}
 		}
 	}
@@ -56,6 +76,7 @@ export const MethodNav = styled.nav`
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
+	flex-wrap: wrap;
 
 	& button {
 		position: relative;

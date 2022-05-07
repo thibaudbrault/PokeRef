@@ -44,4 +44,8 @@ export const CenterFooter = styled.div`
 export const RightFooter = styled.div`
 	justify-self: right;
 	font-size: 2rem;
+
+	& a {
+		cursor: pointer;
+	}
 `;
