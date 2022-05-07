@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Autocomplete from '../../../components/Autocomplete/Autocomplete';
-import { Search } from '../../../components/BaseStyles/Inputs';
-import { PokedexDropdown } from '../StyledPokemon';
+import { PokedexDropdown, PokedexSearch } from '../StyledPokemon';
 
 function Filters({ pokedex, setFilteredPokedex, setOffset }) {
 	const [form, setForm] = useState('default');
@@ -29,7 +28,7 @@ function Filters({ pokedex, setFilteredPokedex, setOffset }) {
 						return pokedex?.name?.includes('galar');
 					} else if (generation === 'all' && form === 'mega') {
 						setOffset(930);
-						return pokedex?.name?.includes('mega ');
+						return pokedex?.name?.includes('mega');
 					} else if (generation === 'all' && form === 'gmax') {
 						setOffset(1092);
 						return pokedex?.name?.includes('gmax');
@@ -64,7 +63,7 @@ function Filters({ pokedex, setFilteredPokedex, setOffset }) {
 
 	return (
 		<>
-			<Search>
+			<PokedexSearch>
 				<Autocomplete />
 
 				<PokedexDropdown>
@@ -138,7 +137,7 @@ function Filters({ pokedex, setFilteredPokedex, setOffset }) {
 						<option value='water'>Water</option>
 					</select>
 				</PokedexDropdown>
-			</Search>
+			</PokedexSearch>
 			<hr />
 		</>
 	);

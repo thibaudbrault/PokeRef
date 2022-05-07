@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 export const Table = styled.table`
 	display: table;
-	width: 100%;
 	text-align: center;
 	border: 1px solid rgba(130, 130, 130, 0.2);
 	border-collapse: collapse;
@@ -20,6 +19,7 @@ export const Table = styled.table`
 	}
 
 	& td {
+		min-width: 200px;
 		padding: 1.5rem;
 		font-size: 1.5rem;
 		border: 1px solid rgba(130, 130, 130, 0.2);

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { usePokedex } from '../../helpers/DataFetch';
-import { Input } from '../BaseStyles/Inputs';
 import {
 	AutocompleteContainer,
 	AutocompleteId,
+	AutocompleteInput,
 	AutocompleteLink,
 } from './StyledAutocomplete';
 
@@ -25,7 +25,7 @@ function Autocomplete() {
 	};
 
 	return (
-		<Input>
+		<AutocompleteInput>
 			<label htmlFor='search'>Search</label>
 			<input
 				type='text'
@@ -53,7 +53,7 @@ function Autocomplete() {
 						))}
 				</ul>
 			</AutocompleteContainer>
-		</Input>
+		</AutocompleteInput>
 	);
 }
 

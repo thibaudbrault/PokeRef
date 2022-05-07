@@ -1,11 +1,19 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Search } from '../../components/BaseStyles/Inputs';
+import { device } from '../../components/BaseStyles/Sizing';
+
+export const PokedexSearch = styled(Search)`
+	@media ${device.sm} { 
+		padding: 0 5rem;
+	}
+`
 
 export const PokedexDropdown = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	margin: 0 0.5rem;
 
 	& label {
 		font-size: 1.5rem;
@@ -14,7 +22,7 @@ export const PokedexDropdown = styled.div`
 	}
 
 	& select {
-		width: 10vw;
+		min-width: 15rem;
 		padding: 0.5rem;
 		color: ${({ theme }) => theme.secondary};
 		background: transparent;
@@ -35,6 +43,15 @@ export const PokedexDropdown = styled.div`
 	.hidden {
 		display: none !important;
 	}
+
+	&:last-of-type {
+		margin-left: 0.5rem;
+		margin-right: 0;
+	}
+
+	@media ${device.lg} { 
+		margin-top: 1rem;
+	}
 `;
 
 export const PokedexList = styled.ol`
@@ -42,7 +59,7 @@ export const PokedexList = styled.ol`
 		& div {
 			display: flex;
 			align-items: center;
-			justify-content: center;
+			justify-content: space-evenly;
 			flex-wrap: wrap;
 			overflow: visible !important;
 		}
@@ -73,6 +90,10 @@ export const PokedexElement = styled.li`
 		&:hover {
 			color: ${({ theme }) => theme.red};
 		}
+
+		@media ${device.sm} { 
+			font-size: 1.3rem;
+		}
 	}
 
 	& p {
@@ -86,13 +107,28 @@ export const PokedexElement = styled.li`
 	&:nth-child(even) {
 		&:hover {
 			border-radius: 10px 50px;
+
+			@media ${device.sm} { 
+				border-radius: 7px 35px;
+			}
 		}
 	}
 
 	&:nth-child(odd) {
 		&:hover {
 			border-radius: 50px 10px;
+
+			@media ${device.sm} { 
+				border-radius: 7px 35px;
+			}
 		}
+	}
+
+	@media ${device.sm} { 
+		width: 18rem;
+		height: 27rem;
+		margin: 2rem;
+		padding: 1.5rem 2.5rem;
 	}
 `;
 
@@ -101,6 +137,11 @@ export const SpriteNormal = styled.img`
 	top: 0;
 	left: 0;
 	transition: 0.3s ease-in-out;
+
+	@media ${device.sm} { 
+		width: 72px;
+		height: 72px;
+	}
 `;
 
 export const SpriteShiny = styled.img`
@@ -109,6 +150,11 @@ export const SpriteShiny = styled.img`
 	left: 0;
 	opacity: 0;
 	transition: 0.3s ease-in-out;
+
+	@media ${device.sm} { 
+		width: 72px;
+		height: 72px;
+	}
 `;
 
 export const PokedexImage = styled.div`
@@ -132,7 +178,7 @@ export const PokedexTypes = styled.div`
 
 	& div {
 		width: 100%;
-		margin-bottom: 1rem;
+		margin: 0.5rem 0;
 		padding: 0.5rem;
 		border-radius: 5px;
 		text-transform: uppercase;
@@ -151,21 +197,11 @@ export const PokedexTypes = styled.div`
 			font-family: 'Press Start 2P';
 		}
 	}
-`;
 
-export const PokemonGyms = styled(Link)`
-	position: fixed;
-	bottom: 2rem;
-	left: 2rem;
-	cursor: pointer;
-
-	& span {
-		font-size: 1.7rem;
-		font-weight: 700;
-		color: ${({ theme }) => theme.secondary};
-		cursor: pointer;
+	@media ${device.sm} { 
+		font-size: 1rem;
 	}
-`
+`;
 
 export const Loading = styled.p`
 	width: 100%;

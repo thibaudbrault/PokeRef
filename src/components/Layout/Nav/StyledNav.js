@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../BaseStyles/Sizing';
 
 export const MainNav = styled.nav`
 	max-width: 1700px;
@@ -17,7 +18,7 @@ export const MainNavList = styled.ul`
 			padding-bottom: 0.2rem;
 			position: relative;
 			white-space: nowrap;
-			font-size: 1.7rem;
+			font-size: 2rem;
 			font-weight: 700;
 			cursor: pointer;
 			transition: 0.3s ease-in-out;
@@ -77,6 +78,10 @@ export const MainNavList = styled.ul`
 			&:hover::before {
 				transition-delay: 0s;
 			}
+		}
+
+		@media ${device.lg} { 
+			margin-bottom: 2rem;
 		}
 	}
 `;

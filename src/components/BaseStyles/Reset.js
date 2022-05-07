@@ -82,4 +82,22 @@ export const Reset = createGlobalStyle`
     main {
         min-height: 100vh;
     }
+
+    @media(max-width: 890px) {
+        html {
+            font-size: 9px;
+        }
+    }
+
+    @media(max-width: 650px) {
+        html {
+            font-size: 8px;
+        }
+    }
+
+    @media(max-width: 400px) {
+        html {
+            font-size: 7px;
+        }
+    }
 `;

@@ -133,7 +133,7 @@ function Locations() {
 													<Link to={`/locations`}>
 														{ll?.name
 															?.replace(/-/g, ' ')
-															.replace(
+															?.replace(
 																/kanto|johto|hoenn|sinnoh|unova|kalos|alola/g,
 																''
 															)}

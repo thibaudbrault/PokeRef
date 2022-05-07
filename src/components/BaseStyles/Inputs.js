@@ -4,6 +4,7 @@ export const Search = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
+	flex-wrap: wrap;
 	margin-bottom: 5rem;
 `;
 
@@ -20,6 +21,7 @@ export const Input = styled.div`
 
 	& input {
 		width: 15vw;
+		min-width: 15rem;
 		padding: 0.5rem 1rem;
 		color: ${({ theme }) => theme.secondary};
 		background: transparent;

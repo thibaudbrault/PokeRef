@@ -1,5 +1,20 @@
 import styled from 'styled-components';
+import { Input } from '../BaseStyles/Inputs';
+import { device } from '../BaseStyles/Sizing';
 import { TLink } from '../BaseStyles/Table';
+
+export const AutocompleteInput = styled(Input)`
+	min-width: 15rem;
+	margin-right: 0.5rem;
+
+	& input {
+		width: 100%;
+	}
+
+	@media ${device.lg} { 
+		margin-top: 1rem;
+	}
+`;
 
 export const AutocompleteContainer = styled.div`
 	width: 100%;

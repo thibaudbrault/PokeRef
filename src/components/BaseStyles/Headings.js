@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from './Sizing';
 
 export const H1 = styled.h1`
 	padding: 0 1rem;
@@ -10,6 +11,22 @@ export const H1 = styled.h1`
 		${({ theme }) => theme.secondary} 2px -2px 0px,
 		${({ theme }) => theme.secondary} -2px 2px 0px,
 		${({ theme }) => theme.secondary} 2px 2px 0px;
+	
+	@media ${device.lg} { 
+		font-size: 5rem;
+	}
+
+	@media ${device.md} { 
+		font-size: 4.5rem;
+	}
+
+	@media ${device.sm} { 
+		font-size: 4rem;
+	}
+
+	@media ${device.xs} { 
+		font-size: 3.5rem;
+	}
 `;
 
 export const Title = styled.h2`
