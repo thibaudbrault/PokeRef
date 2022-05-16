@@ -10,7 +10,7 @@ export const PokemonDataSection = styled.section`
 	grid-template-columns: 55% 35%;
 	column-gap: 10%;
 
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -68,7 +68,7 @@ export const PokemonDataTypes = styled.li`
 		}
 	}
 
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		justify-content: center;
 	}
 `;
@@ -119,7 +119,7 @@ export const PokemonDataMyt = styled(PokemonDataPill)`
 export const PokemonDataImg = styled.img`
 	animation: ${Pulse} 5s infinite;
 
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		width: 75%;
 		margin-bottom: 1rem;
 	}

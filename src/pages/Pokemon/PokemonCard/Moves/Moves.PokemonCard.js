@@ -9,11 +9,7 @@ import {
 	PokemonMovesContainer,
 	PokemonMovesTable,
 } from './StyledMoves.PokemonCard';
-import {
-	THead,
-	TRow,
-	TLink,
-} from '../../../../components/BaseStyles/Table';
+import { THead, TRow, TLink } from '../../../../components/BaseStyles/Table';
 import { H3, Span } from '../../../../components/BaseStyles/Headings';
 import { Type } from '../../../../components/BaseStyles/Themes';
 import { Link } from 'react-router-dom';

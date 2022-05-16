@@ -13,7 +13,7 @@ export const PokemonMovesContainer = styled.div`
 
 export const PokemonMovesTable = styled(Table)`
 	& td {
-		@media ${device.sm} { 
+		@media ${device.sm} {
 			font-size: 1.7rem;
 		}
 	}

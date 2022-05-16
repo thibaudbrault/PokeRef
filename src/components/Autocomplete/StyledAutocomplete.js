@@ -11,7 +11,7 @@ export const AutocompleteInput = styled(Input)`
 		width: 100%;
 	}
 
-	@media ${device.lg} { 
+	@media ${device.lg} {
 		margin-top: 1rem;
 	}
 `;

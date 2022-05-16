@@ -8,7 +8,7 @@ export const PokemonInfoSection = styled.section`
 	grid-template-columns: repeat(3, 1fr);
 	column-gap: 4rem;
 
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		display: flex;
 		align-items: center;
 		justify-content: center;

@@ -9,7 +9,7 @@ export const HeaderContainer = styled.header`
 	align-items: center;
 	justify-content: space-between;
 
-	@media ${device.md} { 
+	@media ${device.md} {
 		width: 90%;
 	}
 `;
@@ -17,7 +17,7 @@ export const HeaderContainer = styled.header`
 export const HeaderBtnContainer = styled.div`
 	display: flex;
 	align-items: center;
-`
+`;
 
 export const HeaderBtnTheme = styled.button`
 	width: 3rem;

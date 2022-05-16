@@ -23,7 +23,7 @@ export const GenNav = styled.nav`
 				font-weight: 700;
 				color: ${({ theme }) => theme.secondary};
 
-				@media ${device.sm} { 
+				@media ${device.sm} {
 					font-size: 1.5rem;
 				}
 			}
@@ -47,7 +47,7 @@ export const GenNav = styled.nav`
 						color: ${({ theme }) => theme.red};
 					}
 
-					@media ${device.sm} { 
+					@media ${device.sm} {
 						font-size: 1.3rem;
 						white-space: break-spaces;
 					}

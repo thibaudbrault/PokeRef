@@ -8,7 +8,7 @@ export const PokemonStatsSection = styled.section`
 	grid-template-columns: 2fr 1fr;
 	column-gap: 2rem;
 
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -56,7 +56,7 @@ export const PokemonStatsTotal = styled.td`
 `;
 
 export const PokemonTypesContainer = styled.div`
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		width: 100%;
 		margin-top: 1rem;
 	}

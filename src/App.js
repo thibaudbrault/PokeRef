@@ -28,7 +28,6 @@ const LocationCard = lazy(() =>
 	import('./pages/Locations/LocationCard/LocationCard')
 );
 
-
 function App() {
 	const [theme, setTheme] = useState('light');
 

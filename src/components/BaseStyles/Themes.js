@@ -20,8 +20,6 @@ export const darkTheme = {
 		'url("https://www.transparenttextures.com/patterns/asfalt-dark.png")',
 };
 
-
-
 export const Type = styled.div`
 	&#normal {
 		background-color: #969592;

@@ -11,20 +11,20 @@ export const H1 = styled.h1`
 		${({ theme }) => theme.secondary} 2px -2px 0px,
 		${({ theme }) => theme.secondary} -2px 2px 0px,
 		${({ theme }) => theme.secondary} 2px 2px 0px;
-	
-	@media ${device.lg} { 
+
+	@media ${device.lg} {
 		font-size: 5rem;
 	}
 
-	@media ${device.md} { 
+	@media ${device.md} {
 		font-size: 4.5rem;
 	}
 
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		font-size: 4rem;
 	}
 
-	@media ${device.xs} { 
+	@media ${device.xs} {
 		font-size: 3.5rem;
 	}
 `;

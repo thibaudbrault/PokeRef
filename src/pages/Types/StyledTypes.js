@@ -39,7 +39,7 @@ export const ModifiedType = styled(Type)`
 		}
 	}
 
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		margin: 2rem;
 	}
 `;

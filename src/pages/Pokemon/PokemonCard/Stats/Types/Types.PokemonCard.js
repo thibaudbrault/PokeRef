@@ -1,7 +1,10 @@
 import React from 'react';
 import { H3 } from '../../../../../components/BaseStyles/Headings';
 import { MethodNav } from '../../../../../components/BaseStyles/Navbars';
-import { PokemonTypesContainer, PokemonTypesTable } from '../StyledStats.PokemonCard';
+import {
+	PokemonTypesContainer,
+	PokemonTypesTable,
+} from '../StyledStats.PokemonCard';
 
 function Types({ pokemon, types, toggleType, toggleTypeTable }) {
 	return (

@@ -80,7 +80,7 @@ export const MainNavList = styled.ul`
 			}
 		}
 
-		@media ${device.lg} { 
+		@media ${device.lg} {
 			margin-bottom: 2rem;
 		}
 	}

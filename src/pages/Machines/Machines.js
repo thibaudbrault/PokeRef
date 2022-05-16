@@ -3,12 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { GenNav } from '../../components/BaseStyles/Navbars';
 import { Input } from '../../components/BaseStyles/Inputs';
 import { LeftTitle } from '../../components/BaseStyles/Headings';
-import {
-	THead,
-	TLink,
-	TName,
-	TRow,
-} from '../../components/BaseStyles/Table';
+import { THead, TLink, TName, TRow } from '../../components/BaseStyles/Table';
 import { MainBig } from '../../components/BaseStyles/Sizing';
 import { useMachines } from '../../helpers/DataFetch';
 import { MachinesSearch, MachinesTable } from './StyledMachines';

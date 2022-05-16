@@ -18,7 +18,7 @@ export const LocationNav = styled(MethodNav)`
 	& button {
 		margin-bottom: 1rem;
 
-		@media ${device.sm} { 
+		@media ${device.sm} {
 			font-size: 1.5rem;
 		}
 	}
@@ -46,7 +46,7 @@ export const LocationList = styled.ol`
 		}
 	}
 
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		grid-template-columns: repeat(4, 1fr);
 	}
 `;

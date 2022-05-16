@@ -3,10 +3,10 @@ import { Search } from '../../components/BaseStyles/Inputs';
 import { device } from '../../components/BaseStyles/Sizing';
 
 export const PokedexSearch = styled(Search)`
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		padding: 0 5rem;
 	}
-`
+`;
 
 export const PokedexDropdown = styled.div`
 	display: flex;
@@ -49,7 +49,7 @@ export const PokedexDropdown = styled.div`
 		margin-right: 0;
 	}
 
-	@media ${device.lg} { 
+	@media ${device.lg} {
 		margin-top: 1rem;
 	}
 `;
@@ -91,7 +91,7 @@ export const PokedexElement = styled.li`
 			color: ${({ theme }) => theme.red};
 		}
 
-		@media ${device.sm} { 
+		@media ${device.sm} {
 			font-size: 1.3rem;
 		}
 	}
@@ -108,7 +108,7 @@ export const PokedexElement = styled.li`
 		&:hover {
 			border-radius: 10px 50px;
 
-			@media ${device.sm} { 
+			@media ${device.sm} {
 				border-radius: 7px 35px;
 			}
 		}
@@ -118,13 +118,13 @@ export const PokedexElement = styled.li`
 		&:hover {
 			border-radius: 50px 10px;
 
-			@media ${device.sm} { 
+			@media ${device.sm} {
 				border-radius: 7px 35px;
 			}
 		}
 	}
 
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		width: 18rem;
 		height: 27rem;
 		margin: 2rem;
@@ -138,7 +138,7 @@ export const SpriteNormal = styled.img`
 	left: 0;
 	transition: 0.3s ease-in-out;
 
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		width: 72px;
 		height: 72px;
 	}
@@ -151,7 +151,7 @@ export const SpriteShiny = styled.img`
 	opacity: 0;
 	transition: 0.3s ease-in-out;
 
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		width: 72px;
 		height: 72px;
 	}
@@ -198,7 +198,7 @@ export const PokedexTypes = styled.div`
 		}
 	}
 
-	@media ${device.sm} { 
+	@media ${device.sm} {
 		font-size: 1rem;
 	}
 `;
