@@ -27,7 +27,7 @@ const ItemCard = lazy(() => import('./pages/Items/ItemCard/ItemCard'));
 const LocationCard = lazy(() =>
 	import('./pages/Locations/LocationCard/LocationCard')
 );
-const Pikachu = lazy(() => import('./pages/Bonus/Pikachu/Pikachu'));
+
 
 function App() {
 	const [theme, setTheme] = useState('light');
@@ -67,7 +67,6 @@ function App() {
 						<Reset />
 						<Routes>
 							<Route path='/' element={<Pokemon />} />
-							<Route path='/pikachu' element={<Pikachu />} />
 							<Route path='/pokemon/:name' element={<PokemonCard />} />
 							<Route path='/moves' element={<Moves />} />
 							<Route path='/moves/:name' element={<MoveCard />} />

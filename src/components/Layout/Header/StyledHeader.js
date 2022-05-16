@@ -1,39 +1,32 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { device } from '../../BaseStyles/Sizing';
 
 export const HeaderContainer = styled.header`
+	width: 80%;
+	margin: 0 auto;
 	padding: 3rem 0;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 
 	@media ${device.md} { 
-		& img {
-			width: 16px;
-			height: 16px;
-		}
+		width: 90%;
 	}
 `;
 
-export const HeaderBtn = styled.button`
-	width: 32px;
-	height: 32px;
+export const HeaderBtnContainer = styled.div`
+	display: flex;
+	align-items: center;
+`
+
+export const HeaderBtnTheme = styled.button`
+	width: 3rem;
 	background: none;
 	border: none;
+	color: ${({ theme }) => theme.secondary};
+	font-size: 3rem;
 
-	@media ${device.md} { 
-		width: 16px;
-		height: 16px;
-	}
-`;
-
-export const HeaderLink = styled(Link)`
-	width: 32px;
-	height: 32px;
-	
-	@media ${device.md} { 
-		width: 16px;
-		height: 16px;
+	&::before {
+		content: '${({ theme }) => theme.toggle}';
 	}
 `;

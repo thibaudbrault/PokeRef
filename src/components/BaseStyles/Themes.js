@@ -5,6 +5,7 @@ export const lightTheme = {
 	secondary: '#161616',
 	red: '#cc0000',
 	purple: '#5e318f',
+	toggle: '☾',
 	background:
 		'url("https://www.transparenttextures.com/patterns/asfalt-light.png")',
 };
@@ -14,6 +15,7 @@ export const darkTheme = {
 	secondary: '#c4c4c4',
 	red: '#cc0000',
 	purple: '#5e318f',
+	toggle: '☀',
 	background:
 		'url("https://www.transparenttextures.com/patterns/asfalt-dark.png")',
 };

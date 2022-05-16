@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { H3 } from '../../../../../components/BaseStyles/Headings';
 import { TLink } from '../../../../../components/BaseStyles/Table';
 import { PokemonInfoTable } from '../StyledInfo.PokemonCard';

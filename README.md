@@ -47,10 +47,8 @@
 🛠Improve performances
 
 🔜Location page  
-🔜A "create your team" page  
+🔜A "create your team" page (with authentication)  
 🔜Animation on scroll
-
-🥚Pikachu page
 
 <h2 id="description">Description</h2>
 
@@ -67,7 +65,6 @@ My main goal for this site was to get better at React JS and to learn how to use
 - Items : effect, flinch power, ...
 - Machines : list of tm and hm for every game
 - Locations : coming soon
-- Pikachu : all the different pikachu's forms (excluding gmax)
 
 <h2 id="technologies">Technologies</h2>
 
