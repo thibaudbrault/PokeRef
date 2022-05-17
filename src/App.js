@@ -28,6 +28,10 @@ const LocationCard = lazy(() =>
 	import('./pages/Locations/LocationCard/LocationCard')
 );
 
+const Login = lazy(() => import('./components/Auth/Login'));
+const Register = lazy(() => import('./components/Auth/Register'));
+
+
 function App() {
 	const [theme, setTheme] = useState('light');
 
@@ -78,6 +82,8 @@ function App() {
 							<Route path='/machines' element={<Machines />} />
 							<Route path='/locations' element={<Locations />} />
 							<Route path='/locations/:name' element={<LocationCard />} />
+							<Route path='/login' element={<Login />} />
+							<Route path='/register' element={<Register />} />
 							<Route path='*' element={<NotFound />} />
 						</Routes>
 					</Layout>
