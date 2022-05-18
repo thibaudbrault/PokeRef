@@ -12,7 +12,7 @@ import {
 	TRow,
 } from '../../../components/BaseStyles/Table';
 import { Type } from '../../../components/BaseStyles/Themes';
-import { MovesSection, TCategory, TType } from '../StyledMoves';
+import { MovesSection, MovesTableContainer, TCategory, TType } from '../StyledMoves';
 
 function MovesTable({ moves, toggleState }) {
 	const [search, setSearch] = useState('');
@@ -46,7 +46,7 @@ function MovesTable({ moves, toggleState }) {
 					/>
 				</Input>
 			</ModifiedSearch>
-			<div>
+			<MovesTableContainer>
 				<Table>
 					<THead>
 						<tr>
@@ -93,7 +93,7 @@ function MovesTable({ moves, toggleState }) {
 							))}
 					</tbody>
 				</Table>
-			</div>
+			</MovesTableContainer>
 		</MovesSection>
 	);
 }

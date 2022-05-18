@@ -5,13 +5,17 @@ import { device } from '../../BaseStyles/Sizing';
 export const HeaderContainer = styled.header`
 	width: 80%;
 	margin: 0 auto;
-	padding: 3rem 0;
+	padding: 3rem 0 5rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 
 	@media ${device.md} {
 		width: 90%;
+	}
+
+	@media ${device.xs} {
+		width: 95%;
 	}
 `;
 
@@ -47,6 +51,10 @@ export const HeaderBtnCreate = styled(Link)`
 		background: transparent;
 		border-color: ${({ theme }) => theme.secondary};
 		color: ${({ theme }) => theme.secondary};
+	}
+
+	@media ${device.xs} {
+		margin: 0 1rem;
 	}
 `;
 

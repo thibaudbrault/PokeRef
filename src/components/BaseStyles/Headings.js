@@ -25,7 +25,7 @@ export const H1 = styled.h1`
 	}
 
 	@media ${device.xs} {
-		font-size: 3.5rem;
+		font-size: 3rem;
 	}
 `;
 

@@ -20,17 +20,21 @@ function Filters({ pokedex, setFilteredPokedex, setOffset }) {
 					if (generation === 'all' && form === 'default') {
 						setOffset(0);
 						return pokedex?.id < 899;
-					} else if (generation === 'all' && form === 'regional - alola') {
+					} else if (form === 'regional - alola') {
 						setOffset(987);
+						setGeneration('all');
 						return pokedex?.name?.includes('alola');
-					} else if (generation === 'all' && form === 'regional - galar') {
+					} else if (form === 'regional - galar') {
 						setOffset(1058);
+						setGeneration('all');
 						return pokedex?.name?.includes('galar');
-					} else if (generation === 'all' && form === 'mega') {
+					} else if (form === 'mega') {
 						setOffset(930);
+						setGeneration('all');
 						return pokedex?.name?.includes('mega');
-					} else if (generation === 'all' && form === 'gmax') {
+					} else if (form === 'gmax') {
 						setOffset(1092);
+						setGeneration('all');
 						return pokedex?.name?.includes('gmax');
 					} else if (generation === 'gen1' && form === 'default') {
 						setOffset(0);

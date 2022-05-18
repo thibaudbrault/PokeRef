@@ -13,6 +13,10 @@ export const AbilityCardEffect = styled.div`
 	}
 `;
 
+export const AbilityCardTableContainer = styled.div`
+	overflow-x: auto;
+`;
+
 export const AbilityCardTable = styled(Table)`
 	& th {
 		background: rgba(130, 130, 130, 0.2);
