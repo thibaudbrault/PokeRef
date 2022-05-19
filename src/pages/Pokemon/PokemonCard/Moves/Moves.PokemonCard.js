@@ -6,10 +6,9 @@ import {
 	PokemonMovesTd,
 	PokemonMovesEmpty,
 	PokemonMovesMachine,
-	PokemonMovesContainer,
 	PokemonMovesTable,
 } from './StyledMoves.PokemonCard';
-import { THead, TRow, TLink } from '../../../../components/BaseStyles/Table';
+import { THead, TRow, TLink, TableContainer } from '../../../../components/BaseStyles/Table';
 import { H3, Span } from '../../../../components/BaseStyles/Headings';
 import { Type } from '../../../../components/BaseStyles/Themes';
 import { Link } from 'react-router-dom';
@@ -128,7 +127,7 @@ function Moves({
 		<PokemonMovesSection>
 			<H3>Moves</H3>
 			<Method toggleState={toggleState} toggleTable={toggleTable} />
-			<PokemonMovesContainer>
+			<TableContainer>
 				<PokemonMovesTable>
 					<THead>
 						<tr>
@@ -153,7 +152,7 @@ function Moves({
 						<>{dataMoves}</>
 					</tbody>
 				</PokemonMovesTable>
-			</PokemonMovesContainer>
+			</TableContainer>
 		</PokemonMovesSection>
 	);
 }

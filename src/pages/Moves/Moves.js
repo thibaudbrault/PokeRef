@@ -5,6 +5,7 @@ import { MethodNav } from '../../components/BaseStyles/Navbars';
 import { useMoves, useStatus } from '../../helpers/DataFetch';
 import MovesTable from './Components/MovesTable.Moves';
 import StatusTable from './Components/StatusTable.Moves';
+import { LoadingImg } from '../../components/BaseStyles/Loader';
 
 function Moves() {
 	const { moves, loading } = useMoves(
@@ -27,7 +28,14 @@ function Moves() {
 	return (
 		<MainBig>
 			{loading ? (
-				<p>Loading...</p>
+				<LoadingImg>
+					<img
+						src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg'
+						alt=''
+						width={48}
+						height={48}
+					/>
+				</LoadingImg>
 			) : (
 				<>
 					<MethodNav>

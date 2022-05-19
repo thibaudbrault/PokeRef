@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 
 import {
 	Table,
+	TableContainer,
 	THead,
 	TName,
 	TRow,
 } from '../../../components/BaseStyles/Table';
-import { ModifiedLeftTitle, MovesSection, MovesTableContainer, StatusMoves } from '../StyledMoves';
+import { ModifiedLeftTitle, MovesSection, StatusMoves } from '../StyledMoves';
 
 function StatusTable({ status, toggleState }) {
 	return (
 		<MovesSection visibility={toggleState === 2}>
 			<ModifiedLeftTitle>Status</ModifiedLeftTitle>
-			<MovesTableContainer>
+			<TableContainer>
 				<Table>
 					<THead>
 						<tr>
@@ -39,7 +40,7 @@ function StatusTable({ status, toggleState }) {
 							))}
 					</tbody>
 				</Table>
-			</MovesTableContainer>
+			</TableContainer>
 		</MovesSection>
 	);
 }

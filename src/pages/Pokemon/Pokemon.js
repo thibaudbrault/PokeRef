@@ -29,7 +29,6 @@ function Pokemon() {
 	const fetchMore = () => {
 		if (filteredPokedex.length < 100) {
 			setHasMore(true);
-			console.log('first');
 		}
 	};
 
@@ -44,7 +43,6 @@ function Pokemon() {
 				setFilteredPokedex={setFilteredPokedex}
 				setOffset={setOffset}
 			/>
-
 			<PokedexList>
 				<InfiniteScroll
 					dataLength={pokedex.length}

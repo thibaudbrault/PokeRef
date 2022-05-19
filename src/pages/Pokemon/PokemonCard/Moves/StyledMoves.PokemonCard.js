@@ -7,10 +7,6 @@ export const PokemonMovesSection = styled.section`
 	overflow-x: hidden;
 `;
 
-export const PokemonMovesContainer = styled.div`
-	overflow-x: auto;
-`;
-
 export const PokemonMovesTable = styled(Table)`
 	& td {
 		@media ${device.sm} {

@@ -9,9 +9,11 @@ import {
 	TRow,
 	TEffect,
 	TLink,
+	TableContainer,
 } from '../../components/BaseStyles/Table';
 import { ModifiedMainBig } from '../../components/BaseStyles/Sizing';
 import { useAbilities } from '../../helpers/DataFetch';
+import { LoadingImg } from '../../components/BaseStyles/Loader';
 
 function Abilities() {
 	const [search, setSearch] = useState('');
@@ -39,7 +41,14 @@ function Abilities() {
 	return (
 		<ModifiedMainBig>
 			{loading ? (
-				<p>Loading...</p>
+				<LoadingImg>
+					<img
+						src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg'
+						alt=''
+						width={48}
+						height={48}
+					/>
+				</LoadingImg>
 			) : (
 				<>
 					<LeftTitle>Abilities</LeftTitle>
@@ -57,35 +66,37 @@ function Abilities() {
 							/>
 						</Input>
 					</ModifiedSearch>
-					<Table>
-						<THead>
-							<tr className='abilities_table_head_row'>
-								<th className='abilities_table_head_row_element'>Name</th>
-								<th className='abilities_table_head_row_element'>Effect</th>
-							</tr>
-						</THead>
-						<tbody>
-							{filteredAbilities
-								?.sort((a, b) => a.name.localeCompare(b.name))
-								.map((a) => (
-									<TRow>
-										<TName>
-											<TLink to={`/abilities/${a.name}`} key={a.name}>
-												{a.name.replace(/-/g, ' ')}
-											</TLink>
-										</TName>
-										<TEffect>
-											{a?.flavor_text_entries?.map(
-												(af) =>
-													af.language.name === 'en' && (
-														<span>{af.flavor_text}</span>
-													)
-											)}
-										</TEffect>
-									</TRow>
-								))}
-						</tbody>
-					</Table>
+					<TableContainer>
+						<Table>
+							<THead>
+								<tr className='abilities_table_head_row'>
+									<th className='abilities_table_head_row_element'>Name</th>
+									<th className='abilities_table_head_row_element'>Effect</th>
+								</tr>
+							</THead>
+							<tbody>
+								{filteredAbilities
+									?.sort((a, b) => a.name.localeCompare(b.name))
+									.map((a) => (
+										<TRow>
+											<TName>
+												<TLink to={`/abilities/${a.name}`} key={a.name}>
+													{a.name.replace(/-/g, ' ')}
+												</TLink>
+											</TName>
+											<TEffect>
+												{a?.flavor_text_entries?.map(
+													(af) =>
+														af.language.name === 'en' && (
+															<span>{af.flavor_text}</span>
+														)
+												)}
+											</TEffect>
+										</TRow>
+									))}
+							</tbody>
+						</Table>
+					</TableContainer>
 				</>
 			)}
 		</ModifiedMainBig>

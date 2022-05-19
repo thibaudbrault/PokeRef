@@ -6,7 +6,6 @@ import {
 	AbilityCardEffect,
 	AbilityCardSection,
 	AbilityCardTable,
-	AbilityCardTableContainer,
 	Sup,
 } from './StyledAbilityCard';
 import {
@@ -18,6 +17,7 @@ import {
 } from '../../../components/BaseStyles/Headings';
 import {
 	Table,
+	TableContainer,
 	THead,
 	TLink,
 	TName,
@@ -95,7 +95,7 @@ const AbilityCard = () => {
 						<H3>
 							Pokemon with <Span>{ability?.name?.replace(/-/g, ' ')}</Span>
 						</H3>
-						<AbilityCardTableContainer>
+						<TableContainer>
 							<Table>
 								<THead>
 									<tr>
@@ -203,7 +203,7 @@ const AbilityCard = () => {
 									))}
 								</tbody>
 							</Table>
-						</AbilityCardTableContainer>
+						</TableContainer>
 					</AbilityCardSection>
 
 					<BackButton onClick={() => navigate('/abilities')}>

@@ -5,6 +5,7 @@ import { LeftTitle } from '../../../components/BaseStyles/Headings';
 import { Input, ModifiedSearch } from '../../../components/BaseStyles/Inputs';
 import {
 	Table,
+	TableContainer,
 	TEffect,
 	THead,
 	TLink,
@@ -12,7 +13,7 @@ import {
 	TRow,
 } from '../../../components/BaseStyles/Table';
 import { Type } from '../../../components/BaseStyles/Themes';
-import { MovesSection, MovesTableContainer, TCategory, TType } from '../StyledMoves';
+import { MovesSection, TCategory, TType } from '../StyledMoves';
 
 function MovesTable({ moves, toggleState }) {
 	const [search, setSearch] = useState('');
@@ -46,7 +47,7 @@ function MovesTable({ moves, toggleState }) {
 					/>
 				</Input>
 			</ModifiedSearch>
-			<MovesTableContainer>
+			<TableContainer>
 				<Table>
 					<THead>
 						<tr>
@@ -93,7 +94,7 @@ function MovesTable({ moves, toggleState }) {
 							))}
 					</tbody>
 				</Table>
-			</MovesTableContainer>
+			</TableContainer>
 		</MovesSection>
 	);
 }

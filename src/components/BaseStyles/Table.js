@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+export const TableContainer = styled.div`
+	overflow-x: auto;
+`;
+
 export const Table = styled.table`
 	display: table;
 	text-align: center;
