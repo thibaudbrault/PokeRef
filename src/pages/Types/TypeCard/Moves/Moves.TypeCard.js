@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Span } from '../../../../components/BaseStyles/Headings';
-import { THead, TRow } from '../../../../components/BaseStyles/Table';
+import { TableContainer, THead, TRow } from '../../../../components/BaseStyles/Table';
 import {
 	TypeListSection,
 	TypeListSubtitle,
@@ -19,7 +19,7 @@ function Moves({ type, moves }) {
 			<TypeListSubtitle>
 				{nbMoves} moves are <Span>{type.name}</Span> type
 			</TypeListSubtitle>
-			<div>
+			<TableContainer>
 				<TypeMovesTable>
 					<THead>
 						<tr>
@@ -63,7 +63,7 @@ function Moves({ type, moves }) {
 							)}
 					</tbody>
 				</TypeMovesTable>
-			</div>
+			</TableContainer>
 			{type?.name !== 'fairy' && (
 				<TypeMovesComment>
 					<Span>{type.name}</Span> attacks were{' '}

@@ -7,6 +7,7 @@ import { THead, TLink, TName, TRow } from '../../components/BaseStyles/Table';
 import { MainBig } from '../../components/BaseStyles/Sizing';
 import { useMachines } from '../../helpers/DataFetch';
 import { MachinesSearch, MachinesTable } from './StyledMachines';
+import { LoadingImg } from '../../components/BaseStyles/Loader';
 
 function Machines() {
 	const [search, setSearch] = useState('');
@@ -36,7 +37,14 @@ function Machines() {
 	return (
 		<MainBig>
 			{loading ? (
-				<p>Loading...</p>
+				<LoadingImg>
+					<img
+						src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg'
+						alt=''
+						width={48}
+						height={48}
+					/>
+				</LoadingImg>
 			) : (
 				<>
 					<LeftTitle>Machines</LeftTitle>

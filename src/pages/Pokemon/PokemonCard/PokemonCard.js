@@ -21,6 +21,7 @@ import {
 	useSpecies,
 	useTypes,
 } from '../../../helpers/DataFetch';
+import { LoadingImg } from '../../../components/BaseStyles/Loader';
 
 function PokemonCard() {
 	const { name } = useParams();
@@ -112,7 +113,14 @@ function PokemonCard() {
 	return (
 		<MainBig>
 			{loading ? (
-				<p>Loading...</p>
+				<LoadingImg>
+					<img
+						src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg'
+						alt=''
+						width={48}
+						height={48}
+					/>
+				</LoadingImg>
 			) : (
 				<>
 					{pokemon?.name?.includes('mega') ? (

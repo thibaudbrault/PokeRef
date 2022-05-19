@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { device } from '../../../components/BaseStyles/Sizing';
 
 export const MoveLearnSection = styled.section`
-	padding: 5rem 0;
+	padding: 0 0 5rem;
 	display: ${(props) => (props.visibility ? 'block' : 'none')};
 `;
 
@@ -31,6 +32,11 @@ export const MoveList = styled.ul`
 		& img {
 			width: 96px;
 			height: 96px;
+
+			@media ${device.sm} {
+				width: 72px;
+				height: 72px;
+			}
 		}
 
 		&:hover {
@@ -81,6 +87,11 @@ export const MoveTypes = styled.div`
 
 		& span {
 			padding-left: 0.5rem;
+			text-transform: capitalize;
+		}
+
+		@media ${device.sm} {
+			font-size: 1.3rem;
 		}
 	}
 `;

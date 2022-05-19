@@ -21,6 +21,7 @@ import { BackButton } from '../../../components/BaseStyles/Inputs';
 import { Type } from '../../../components/BaseStyles/Themes';
 import { useMachines, useMove, usePokedex } from '../../../helpers/DataFetch';
 import Nav from './Nav/Nav.MoveCard';
+import { LoadingImg } from '../../../components/BaseStyles/Loader';
 
 const MoveCard = () => {
 	const { name } = useParams();
@@ -60,7 +61,14 @@ const MoveCard = () => {
 	return (
 		<MainBig>
 			{loading ? (
-				<p>Loading...</p>
+				<LoadingImg>
+					<img
+						src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg'
+						alt=''
+						width={48}
+						height={48}
+					/>
+				</LoadingImg>
 			) : (
 				<>
 					<CardTitle>{move?.name?.replace(/-/g, ' ')}</CardTitle>

@@ -19,6 +19,7 @@ import {
 	ItemCardDescTitle,
 } from './StyledItemCard';
 import { useItem } from '../../../helpers/DataFetch';
+import { LoadingImg } from '../../../components/BaseStyles/Loader';
 
 function ItemCard() {
 	const { name } = useParams();
@@ -39,7 +40,14 @@ function ItemCard() {
 	return (
 		<MainBig>
 			{loading ? (
-				<p>Loading...</p>
+				<LoadingImg>
+					<img
+						src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg'
+						alt=''
+						width={48}
+						height={48}
+					/>
+				</LoadingImg>
 			) : (
 				<>
 					<CardTitle>{item?.name?.replace(/-/g, ' ')}</CardTitle>

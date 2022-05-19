@@ -1,12 +1,20 @@
 import styled from 'styled-components';
+import { device } from '../../../../components/BaseStyles/Sizing';
 import { Table } from '../../../../components/BaseStyles/Table';
 import { DamageClass, Type } from '../../../../components/BaseStyles/Themes';
 
 export const MoveCardDataSection = styled.section`
-	padding: 5rem 0;
+	padding: 0 0 5rem;
 	display: grid;
 	grid-template-columns: 1fr 1.3fr;
 	column-gap: 3rem;
+
+	@media ${device.sm} {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column-reverse;
+	}
 `;
 
 export const MoveCardDataTable = styled(Table)`
@@ -19,6 +27,10 @@ export const MoveCardDataTable = styled(Table)`
 		font-weight: 700;
 		text-align: center;
 		text-transform: capitalize;
+	}
+
+	@media ${device.sm} {
+		width: 100%;
 	}
 `;
 
@@ -62,6 +74,10 @@ export const MoveCardDataList = styled.ul`
 	margin-top: 2rem;
 
 	& li {
+		margin: 0 0 2rem;
+	}
+
+	@media ${device.sm} {
 		margin: 0 0 2rem;
 	}
 `;

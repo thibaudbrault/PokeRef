@@ -33,7 +33,7 @@ const Register = lazy(() => import('./components/Auth/Register'));
 
 
 function App() {
-	const [theme, setTheme] = useState('light');
+	const [theme, setTheme] = useState('dark');
 
 	const setMode = (mode) => {
 		window.localStorage.setItem('theme', mode);
@@ -41,7 +41,7 @@ function App() {
 	};
 
 	const themeToggler = () => {
-		theme === 'light' ? setMode('dark') : setMode('light');
+		theme === 'dark' ? setMode('light') : setMode('dark');
 	};
 
 	useEffect(() => {
@@ -60,7 +60,7 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+			<ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
 				<Suspense fallback={<LazyLoad>Welcome to PokéInfo!</LazyLoad>}>
 					<Layout
 						themeToggler={themeToggler}

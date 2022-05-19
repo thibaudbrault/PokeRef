@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { MainSmall } from '../../components/BaseStyles/Sizing';
 import { ModifiedType, TypesList } from './StyledTypes';
 import { useTypes } from '../../helpers/DataFetch';
+import { LoadingImg } from '../../components/BaseStyles/Loader';
 
 function Types() {
 	const { types, loading } = useTypes(
@@ -17,7 +18,14 @@ function Types() {
 	return (
 		<MainSmall>
 			{loading ? (
-				<p>Loading...</p>
+				<LoadingImg>
+					<img
+						src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg'
+						alt=''
+						width={48}
+						height={48}
+					/>
+				</LoadingImg>
 			) : (
 				<TypesList>
 					{types

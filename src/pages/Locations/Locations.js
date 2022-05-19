@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import { MainBig } from '../../components/BaseStyles/Sizing';
 import { LocationList, LocationNav, LocationSection } from './StyledLocations';
+import { LoadingImg } from '../../components/BaseStyles/Loader';
 
 function Locations() {
 	const [locations, setLocations] = useState([]);
@@ -59,7 +60,14 @@ function Locations() {
 	return (
 		<MainBig>
 			{loading ? (
-				<p>Loading...</p>
+				<LoadingImg>
+					<img
+						src='https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg'
+						alt=''
+						width={48}
+						height={48}
+					/>
+				</LoadingImg>
 			) : (
 				<>
 					<LocationNav>

@@ -1,43 +1,63 @@
 import styled from 'styled-components';
 import { Subtitle } from '../../../components/BaseStyles/Headings';
+import { device } from '../../../components/BaseStyles/Sizing';
 import { Table, TName } from '../../../components/BaseStyles/Table';
 
 export const TypeDamageSection = styled.section`
+	padding: 5rem 0;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	column-gap: 3rem;
+
+	@media ${device.sm} {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
 `;
 
 export const TypeDamageTable = styled(Table)`
-	margin: 0.5rem 0 5rem;
+	width: 100%;
+	margin-top: 0.5rem;
 
-	& th {
-		width: 25%;
-		background: rgba(130, 130, 130, 0.2);
-		font-size: 1.5rem;
-	}
+	& tr {
+		border: 1px solid rgba(130,130,130,0.2);
+		border-left: none;
+		border-right: none;
 
-	& td {
-		background: none !important;
-		text-align: center;
+		& th {
+			width: 25%;
+			background: rgba(130, 130, 130, 0.2);
+			font-size: 1.5rem;
+		}
 
-		& img {
-			width: 32px;
-			height: 32px;
-			transition: 0.3s ease-in-out;
-			&:hover {
-				transform: scale(1.05);
+		& td {
+			text-align: center;
+			border: none;
+
+			& div {
+				background: none !important;
+
+				& img {
+					width: 32px;
+					height: 32px;
+					transition: 0.3s ease-in-out;
+					&:hover {
+						transform: scale(1.05);
+					}
+				}
 			}
 		}
+	}
 
-		&:hover {
-			background: rgba(130, 130, 130, 0.2);
-		}
+	&:first-of-type {
+		margin-bottom: 5rem;
 	}
 `;
 
 export const TypeListSection = styled.section`
-	padding: 5rem 0;
+	padding-bottom: 5rem;
 `;
 
 export const TypeListSubtitle = styled(Subtitle)`
@@ -51,6 +71,10 @@ export const TypePokemonList = styled.ul`
 	flex-wrap: wrap;
 
 	& li {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
 		width: 14rem;
 		height: 21rem;
 		margin: 3rem;
@@ -66,7 +90,11 @@ export const TypePokemonList = styled.ul`
 		& img {
 			width: 96px;
 			height: 96px;
-			margin: 0 auto;
+
+			@media ${device.sm} {
+				width: 72px;
+				height: 72px;
+			}
 		}
 
 		& p {
@@ -100,6 +128,7 @@ export const TypeMovesName = styled(TName)`
 
 export const TypeMovesData = styled.td`
 	text-align: center;
+	text-transform: capitalize;
 `;
 
 export const TypeMovesComment = styled.p`
