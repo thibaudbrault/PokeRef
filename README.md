@@ -2,18 +2,22 @@
   
 ---
   
-<h2 align="center">PokéRef is a pokémon encyclopedia built using React JS, Sass and PokéAPI</h2>  
-<p align="center">You'll find a ton of informations on every pokémon, moves, abilities, items and much more</p>  
-<p align="center">Leave a 🌟 if you like my project 👍</p>
+![GitHub repo size](https://img.shields.io/github/repo-size/thibaudbrault/pokeref)
+![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
+  ![GitHub last commit](https://img.shields.io/github/last-commit/thibaudbrault/pokeref)
 
-<div align="center">
-    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/479.gif" width="100%" />
-    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10008.gif" width="100%" />  
-    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10009.gif" width="100%" />  
-    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10010.gif" width="100%" />  
-    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10011.gif" width="100%" />  
-    <img alt="Rotom" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/10012.gif" width="100%" />  
+  ![GitHub Repo stars](https://img.shields.io/github/stars/thibaudbrault/pokeref?style=social)
 </div>
+
+
+<h3 align="center">PokéRef is a pokémon encyclopedia built using React JS, Styled-Components and PokéAPI</h3>  
+<p align="center">You'll find a ton of informations on every pokémon, moves, abilities, items and much more</p>  
+<div align="center">
+  <a href="https://pokeref.netlify.app/">Live version</a>  
+</div>  
+  
+<p align="center">Leave a 🌟 if you like my project 👍</p>  
 
 ---
 
@@ -24,7 +28,7 @@
 2.  [Description](#description)
 3.  [Technologies](#technologies)
 4.  [Acknowledgements](#acknowledgements)
-5.  [License](#license)
+5.  [Other](#other)
 
 </details>
 
@@ -82,5 +86,8 @@ A big thanks also to the pokeapi team for creating such a huge, detailed and ver
 <a href="https://www.npmjs.com/package/axios" target="_blank">Axios</a>  
 <a href="https://www.npmjs.com/package/react-infinite-scroll-component>" target="_blank">React Infinite Scroll Component</a>  
 
-<h2 id="license">License</h2>  
-MIT © Thibaud Brault
+<h2 id="other">Other</h2>  
+
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/thibaudbrault/pokeref)
+![GitHub](https://img.shields.io/github/license/thibaudbrault/pokeref)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fpokeref.netlify.app%2F)
