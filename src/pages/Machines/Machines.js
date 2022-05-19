@@ -31,7 +31,7 @@ function Machines() {
 	const [version, setVersion] = useState('red-blue');
 
 	useEffect(() => {
-		document.title = `Machines | PokéInfo`;
+		document.title = `Machines | PokéRef`;
 	}, []);
 
 	return (

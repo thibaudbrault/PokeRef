@@ -55,7 +55,7 @@ const MoveCard = () => {
 	useEffect(() => {
 		document.title = `${
 			title.charAt(0).toUpperCase() + title.slice(1)
-		} | Moves | PokéInfo`;
+		} | Moves | PokéRef`;
 	}, [title]);
 
 	return (

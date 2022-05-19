@@ -54,7 +54,7 @@ function Locations() {
 	}, [toggleState]);
 
 	useEffect(() => {
-		document.title = `Locations | PokéInfo`;
+		document.title = `Locations | PokéRef`;
 	}, []);
 
 	return (

@@ -61,7 +61,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
-				<Suspense fallback={<LazyLoad>Welcome to PokéInfo!</LazyLoad>}>
+				<Suspense fallback={<LazyLoad>Welcome to PokéRef!</LazyLoad>}>
 					<Layout
 						themeToggler={themeToggler}
 						lightTheme={lightTheme}

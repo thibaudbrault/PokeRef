@@ -35,7 +35,7 @@ function Abilities() {
 	}, [search, abilities]);
 
 	useEffect(() => {
-		document.title = `Abilities | PokéInfo`;
+		document.title = `Abilities | PokéRef`;
 	}, []);
 
 	return (

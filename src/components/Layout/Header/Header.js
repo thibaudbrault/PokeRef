@@ -12,7 +12,7 @@ import {
 const Header = ({ themeToggler }) => {
 	return (
 		<HeaderContainer id='header'>
-			<H1>PokéInfo</H1>
+			<H1>PokéRef</H1>
 			<HeaderBtnContainer>
 				<HeaderBtnLogin to={`/login`}>Sign In</HeaderBtnLogin>
 				<HeaderBtnCreate to={`/register`}>Sign Up</HeaderBtnCreate>

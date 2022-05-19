@@ -16,7 +16,7 @@ const Footer = () => {
 					<br />
 					Powered by PokéApi
 				</LeftFooter>
-				<CenterFooter>PokéInfo</CenterFooter>
+				<CenterFooter>PokéRef</CenterFooter>
 				<RightFooter>
 					<a href='#header'>
 						<i className='fas fa-arrow-up'></i>

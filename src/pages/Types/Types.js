@@ -12,7 +12,7 @@ function Types() {
 	);
 
 	useEffect(() => {
-		document.title = `Types | PokéInfo`;
+		document.title = `Types | PokéRef`;
 	}, []);
 
 	return (

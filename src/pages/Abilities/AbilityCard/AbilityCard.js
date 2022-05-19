@@ -44,7 +44,7 @@ const AbilityCard = () => {
 	useEffect(() => {
 		document.title = `${
 			title.charAt(0).toUpperCase() + title.slice(1)
-		} | Abilities | PokéInfo`;
+		} | Abilities | PokéRef`;
 	}, [title]);
 
 	return (

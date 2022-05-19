@@ -32,7 +32,7 @@ function ItemCard() {
 	useEffect(() => {
 		document.title = `${
 			title.charAt(0).toUpperCase() + title.slice(1).replace(/-/g, ' ')
-		} | Items | PokéInfo`;
+		} | Items | PokéRef`;
 	}, [title]);
 
 	console.log(item);

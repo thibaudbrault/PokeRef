@@ -107,7 +107,7 @@ function PokemonCard() {
 	useEffect(() => {
 		document.title = `${
 			title.charAt(0).toUpperCase() + title.slice(1)
-		} | Pokémon | PokéInfo`;
+		} | Pokémon | PokéRef`;
 	}, [title]);
 
 	return (

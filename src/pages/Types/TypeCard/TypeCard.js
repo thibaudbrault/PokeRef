@@ -25,7 +25,7 @@ const TypeCard = () => {
 	useEffect(() => {
 		document.title = `${
 			title.charAt(0).toUpperCase() + title.slice(1)
-		} | Types | PokéInfo`;
+		} | Types | PokéRef`;
 	}, [title]);
 
 	return (

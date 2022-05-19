@@ -30,7 +30,7 @@ function Items() {
 	}, [search, items]);
 
 	useEffect(() => {
-		document.title = `Items | PokéInfo`;
+		document.title = `Items | PokéRef`;
 	}, []);
 
 	return (

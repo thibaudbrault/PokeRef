@@ -22,7 +22,7 @@ function Moves() {
 	};
 
 	useEffect(() => {
-		document.title = `Moves | PokéInfo`;
+		document.title = `Moves | PokéRef`;
 	}, []);
 
 	return (

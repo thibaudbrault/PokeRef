@@ -33,7 +33,7 @@ function Pokemon() {
 	};
 
 	useEffect(() => {
-		document.title = `Pokémon | PokéInfo`;
+		document.title = `Pokémon | PokéRef`;
 	}, []);
 
 	return (
