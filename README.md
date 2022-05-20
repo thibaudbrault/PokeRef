@@ -16,7 +16,7 @@
 <h3 align="center">PokéRef is a pokémon encyclopedia built using React JS, Styled-Components and PokéAPI</h3>  
 <p align="center">You'll find a ton of informations on every pokémon, moves, abilities, items and much more</p>  
 <div align="center">
-  <a href="https://pokeref.netlify.app/">Live version</a>  
+  <a href="https://pokeref.app/">Live version</a>  
 </div>  
   
 <p align="center">Leave a 🌟 if you like my project 👍</p>  
@@ -46,6 +46,8 @@
 ✅Infinite scrolling (a bit wonky but trying to imrpove it)  
 ✅Responsive
 
+🛠Types relations for each pokémon  
+🛠Evolution chain  
 🛠Implement PokeApi service worker to cache images  
 🛠Improve performances
 
