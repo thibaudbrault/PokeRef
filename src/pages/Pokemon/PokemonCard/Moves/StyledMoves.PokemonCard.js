@@ -17,6 +17,10 @@ export const PokemonMovesTable = styled(Table)`
 
 export const PokemonMovesTd = styled.td`
 	text-transform: capitalize;
+
+	& img {
+		display: inline-block;
+	}
 `;
 
 export const PokemonMovesMachine = styled.td`

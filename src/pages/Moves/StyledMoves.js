@@ -59,17 +59,20 @@ export const TType = styled.td`
 		color: #c4c4c4;
 		border: 1px solid rgba($color: #161616, $alpha: 0.2);
 
-		& img {
-			width: 1.5rem;
-			vertical-align: middle;
-			cursor: pointer;
-		}
-		& span {
-			font-family: 'Press start 2P';
-			font-size: 1rem;
-			padding-left: 0.5rem;
-			vertical-align: middle;
-			cursor: pointer;
+		& a {
+			& img {
+				width: 1.5rem;
+				display: inline-block;
+				vertical-align: middle;
+				cursor: pointer;
+			}
+			& span {
+				font-family: 'Press start 2P';
+				font-size: 1rem;
+				padding-left: 0.5rem;
+				vertical-align: middle;
+				cursor: pointer;
+			}
 		}
 	}
 `;

@@ -20,16 +20,17 @@ function Pokemon() {
 	const [filteredPokedex, setFilteredPokedex] = useState([]);
 	const [offset, setOffset] = useState(0);
 	const [limit, setLimit] = useState(25);
-	const [hasMore, setHasMore] = useState(false);
+	const [hasMore, setHasMore] = useState(true);
 
 	const { pokedex } = usePokedex(
 		`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
 	);
 
 	const fetchMore = () => {
-		if (filteredPokedex.length < 100) {
-			setHasMore(true);
+		if (pokedex.length >= 898) {
+		  setHasMore(false);
 		}
+		setLimit((l) => l + 25);
 	};
 
 	useEffect(() => {
@@ -46,8 +47,8 @@ function Pokemon() {
 			<PokedexList>
 				<InfiniteScroll
 					dataLength={pokedex.length}
-					next={() => setLimit(limit + 25)}
-					hasMore={fetchMore}
+					next={fetchMore}
+					hasMore={hasMore}
 					loader={
 						<LoadingImg>
 							<img

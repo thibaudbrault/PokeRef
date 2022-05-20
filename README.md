@@ -73,6 +73,7 @@ My main goal for this site was to get better at React JS and to learn how to use
 
 - ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 - ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+- ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
 
 <h2 id="acknowledgements">Acknowledgements</h2>
 
@@ -92,4 +93,4 @@ A big thanks also to the pokeapi team for creating such a huge, detailed and ver
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/thibaudbrault/pokeref)
 ![GitHub](https://img.shields.io/github/license/thibaudbrault/pokeref)
-![Website](https://img.shields.io/website?url=https%3A%2F%2Fpokeref.netlify.app%2F)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e89668e7-4ebe-4bb7-8c7a-ba5f4b42700f/deploy-status)](https://app.netlify.com/sites/pokeref/deploys)

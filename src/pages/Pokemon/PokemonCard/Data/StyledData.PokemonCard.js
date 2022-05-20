@@ -58,6 +58,7 @@ export const PokemonDataTypes = styled.li`
 
 			& img {
 				height: 2.5rem;
+				display: inline-block;
 				cursor: pointer;
 			}
 
