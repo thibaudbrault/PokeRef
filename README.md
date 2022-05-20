@@ -2,12 +2,14 @@
   
 ---
   
-![GitHub repo size](https://img.shields.io/github/repo-size/thibaudbrault/pokeref)
-![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
-  ![GitHub last commit](https://img.shields.io/github/last-commit/thibaudbrault/pokeref)
+<div align="center">
 
+  ![GitHub repo size](https://img.shields.io/github/repo-size/thibaudbrault/pokeref)
+  ![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
+  ![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
+  ![GitHub last commit](https://img.shields.io/github/last-commit/thibaudbrault/pokeref)
   ![GitHub Repo stars](https://img.shields.io/github/stars/thibaudbrault/pokeref?style=social)
+
 </div>
 
 
