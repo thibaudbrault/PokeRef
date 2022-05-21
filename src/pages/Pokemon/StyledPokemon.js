@@ -54,7 +54,7 @@ export const PokedexDropdown = styled.div`
 	}
 `;
 
-export const PokedexList = styled.ol`
+export const PokedexList = styled.div`
 	& div {
 		& div {
 			display: flex;
@@ -66,7 +66,7 @@ export const PokedexList = styled.ol`
 	}
 `;
 
-export const PokedexElement = styled.li`
+export const PokedexElement = styled.div`
 	width: 20rem;
 	height: 30rem;
 	margin: 3rem;

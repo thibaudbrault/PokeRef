@@ -18,7 +18,7 @@ const Footer = () => {
 				</LeftFooter>
 				<CenterFooter>PokéRef</CenterFooter>
 				<RightFooter>
-					<a href='#header'>
+					<a href='#header' aria-label='Go up'>
 						<i className='fas fa-arrow-up'></i>
 					</a>
 				</RightFooter>
