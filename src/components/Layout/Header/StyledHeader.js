@@ -14,7 +14,7 @@ export const HeaderContainer = styled.header`
 		width: 90%;
 	}
 
-	@media ${device.xs} {
+	@media ${device.sm} {
 		width: 95%;
 	}
 `;

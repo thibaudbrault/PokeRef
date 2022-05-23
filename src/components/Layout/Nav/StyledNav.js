@@ -13,6 +13,7 @@ export const MainNavList = styled.ul`
 
 	& li {
 		padding: 0 2rem;
+		align-self: center;
 
 		& a {
 			padding-bottom: 0.2rem;
@@ -84,4 +85,11 @@ export const MainNavList = styled.ul`
 			margin-bottom: 2rem;
 		}
 	}
+/* 
+	@media ${device.sm} {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+		align-items: center;
+		justify-items: center;
+	} */
 `;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const size = {
-	xs: '400px',
+	xs: '420px',
 	sm: '650px',
 	md: '890px',
 	lg: '1150px',
