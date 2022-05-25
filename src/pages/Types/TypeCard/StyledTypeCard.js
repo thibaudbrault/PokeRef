@@ -40,6 +40,7 @@ export const TypeDamageTable = styled(Table)`
 				background: none !important;
 
 				& img {
+					display: inline-block;
 					width: 32px;
 					height: 32px;
 					transition: 0.3s ease-in-out;
@@ -123,7 +124,14 @@ export const TypeMovesTable = styled(Table)`
 `;
 
 export const TypeMovesName = styled(TName)`
-	cursor: pointer;
+	& a {
+		border-bottom: 1px solid transparent;
+		cursor: pointer;
+		
+		&:hover {
+			border-bottom: 1px solid ${({ theme }) => theme.secondary};
+		}
+	}
 `;
 
 export const TypeMovesData = styled.td`

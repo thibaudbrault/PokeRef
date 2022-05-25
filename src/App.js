@@ -33,7 +33,13 @@ const Register = lazy(() => import('./components/Auth/Register'));
 
 
 function App() {
-	const [theme, setTheme] = useState('dark');
+
+	const loadTheme = () => {
+		const localTheme = window.localStorage.getItem('theme');
+		return localTheme ?? 'dark';
+	};
+
+	const [theme, setTheme] = useState(loadTheme());
 
 	const setMode = (mode) => {
 		window.localStorage.setItem('theme', mode);
@@ -43,11 +49,6 @@ function App() {
 	const themeToggler = () => {
 		theme === 'dark' ? setMode('light') : setMode('dark');
 	};
-
-	useEffect(() => {
-		const localTheme = window.localStorage.getItem('theme');
-		localTheme && setTheme(localTheme);
-	}, []);
 
 	const LazyLoad = styled.p`
 		font-size: 4rem;

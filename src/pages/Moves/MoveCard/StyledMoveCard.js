@@ -81,6 +81,7 @@ export const MoveTypes = styled.div`
 		border-radius: 5px;
 
 		& img {
+			display: inline-block;
 			height: 1.5rem;
 			width: 1.5rem;
 		}
