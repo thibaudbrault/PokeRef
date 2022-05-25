@@ -106,15 +106,16 @@ export const TypePokemonList = styled.ul`
 			font-size: 1.7rem;
 			font-weight: 700;
 			text-transform: capitalize;
+			cursor: pointer;
 			transition: 0.3s ease-in-out;
+
+			&:hover {
+				color: ${({ theme }) => theme.red};
+			}
 		}
 
 		&:hover {
 			border: 1px solid ${({ theme }) => theme.red};
-		}
-
-		&:hover > & a {
-			color: ${({ theme }) => theme.red};
 		}
 	}
 `;

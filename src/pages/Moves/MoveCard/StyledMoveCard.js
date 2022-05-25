@@ -34,14 +34,25 @@ export const MoveList = styled.ul`
 			height: 96px;
 
 			@media ${device.sm} {
-				width: 72px;
-				height: 72px;
+				width: 54px;
+				height: 54px;
 			}
 		}
 
 		&:hover {
 			border: 1px solid ${({ theme }) => theme.red};
 		}
+
+		@media ${device.sm} {
+			width: 14rem;
+			height: 21rem;
+			margin: 1.5rem;
+			padding: 1rem 2rem;
+		}
+	}
+
+	@media ${device.sm} {
+		justify-content: space-evenly;
 	}
 `;
 
@@ -53,6 +64,7 @@ export const MoveText = styled.p`
 export const MoveLink = styled(Link)`
 	font-weight: 700;
 	text-transform: capitalize;
+	cursor: pointer;
 	transition: 0.3s ease-in-out;
 
 	&:hover {
@@ -68,16 +80,14 @@ export const MoveTypes = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	font-size: 1rem;
+	font-size: 1.5rem;
 
 	& div {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		margin-bottom: 1rem;
 		padding: 0.5rem;
-		font-size: 1.5rem;
 		border-radius: 5px;
 
 		& img {
@@ -89,10 +99,20 @@ export const MoveTypes = styled.div`
 		& span {
 			padding-left: 0.5rem;
 			text-transform: capitalize;
+			color: #161616;
 		}
 
-		@media ${device.sm} {
-			font-size: 1.3rem;
+		&:first-of-type {
+			margin-bottom: 1rem;
+
+			@media ${device.sm} {
+				margin-bottom: 0.5rem;
+			}
 		}
+	}
+
+	@media ${device.sm} {
+		margin-top: 0.5rem;
+		font-size: 1.3rem;
 	}
 `;
