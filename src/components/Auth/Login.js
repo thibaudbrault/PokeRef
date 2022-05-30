@@ -48,7 +48,7 @@ function Login() {
         </form>
       </AuthContainer>
       <AuthCreate>
-        <p>No account ? <Link to={`/register`}>Create an account</Link></p>
+        <p>No account ? <Link to={`/register`}>Create one now</Link></p>
       </AuthCreate>
     </AuthSection>
   )

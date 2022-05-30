@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../BaseStyles/Sizing';
 
 export const AuthSection = styled.section`
     height: 80vh;
@@ -22,6 +23,10 @@ export const AuthContainer = styled.div`
         font-size: 3.5rem;
         text-align: center;
     }
+
+    @media ${device.sm} {
+		width: 95%;
+	}
 `;
 
 export const AuthInput = styled.div`
@@ -57,13 +62,19 @@ export const AuthPwd = styled.div`
     grid-template-columns: 80% 15%;
     column-gap: 5%;
     align-items: center;
+    justify-items: center;
 
     & button {
-        background: none;
+        height: 30px;
+        width: 30px;
+        background: #c4c4c4;
         border: none;
+        border-radius: 50px;
         cursor: default;
 
         & img {
+            width: 25px;
+            height: 25px;
             cursor: pointer;
             /* filter: invert(84%) sepia(19%) saturate(0%) hue-rotate(195deg) brightness(94%) contrast(83%); */
         }
@@ -103,4 +114,8 @@ export const AuthCreate = styled.div`
             }
         }
     }
+
+    @media ${device.sm} {
+		width: 95%;
+	}
 `;
