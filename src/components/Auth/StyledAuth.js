@@ -119,3 +119,9 @@ export const AuthCreate = styled.div`
 		width: 95%;
 	}
 `;
+
+export const ValidateText = styled.p`
+    color: ${({ theme }) => theme.red};
+    margin: 0.5rem 0 0 0.5rem;
+    font-size: 1.3rem;
+`

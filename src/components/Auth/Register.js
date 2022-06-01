@@ -1,21 +1,26 @@
-import React, { useState } from 'react'
-import { AuthBtn, AuthContainer, AuthInput, AuthPwd, AuthSection } from './StyledAuth'
+import React, { useState, useRef, useContext } from 'react'
+import { AuthBtn, AuthContainer, AuthInput, AuthPwd, AuthSection, ValidateText } from './StyledAuth'
 import eye from './Images/eye.svg'
 import eyeSlash from './Images/eye-slash.svg'
+import { UserContext } from '../../helpers/userContext'
 
 function Login() {
+
+  const { signUp } = useContext(UserContext);
+
+  console.log(signUp)
 
   const [passwordType, setPasswordType] = useState("password");
   const [otherPasswordType, setOtherPasswordType] = useState("password");
 
-  const [passwordInput, setPasswordInput] = useState("");
-  const [otherPasswordInput, setOtherPasswordInput] = useState("");
-  const handlePasswordChange =(evnt)=>{
-    setPasswordInput(evnt.target.value);
-  }
-  const handleOtherPasswordChange =(evnt)=>{
-    setOtherPasswordInput(evnt.target.value);
-  }
+  // const [passwordInput, setPasswordInput] = useState("");
+  // const [otherPasswordInput, setOtherPasswordInput] = useState("");
+  // const handlePasswordChange =(evnt)=>{
+  //   setPasswordInput(evnt.target.value);
+  // }
+  // const handleOtherPasswordChange =(evnt)=>{
+  //   setOtherPasswordInput(evnt.target.value);
+  // }
 
   const togglePassword =()=>{
     if(passwordType==="password")
@@ -35,25 +40,60 @@ function Login() {
     setOtherPasswordType("password")
   }
 
+  const inputs = useRef([]);
+  const addInputs = el => {
+    if (el && !inputs.current.includes(el)) {
+      inputs.current.push(el)
+    }
+  }
+
+  const formRef = useRef();
+
+  const [validation, setValidation] = useState('');
+
+  const handleForm = async (e) => {
+    e.preventDefault()
+
+    if ((inputs.current[2].value.length || inputs.current[3].value.length ) < 8) {
+      setValidation('8 characters min')
+      return;
+    } else if (inputs.current[2].value !== inputs.current[3].value) {
+      setValidation('Passwords do not match')
+      return;
+    }
+
+    try {
+      const cred = await signUp(
+        inputs.current[1].value,
+        inputs.current[2].value
+      )
+      formRef.current.reset();
+      setValidation('');
+      console.log(cred)
+    } catch(err) {
+
+    }
+  }
+
   return (
     <AuthSection>
       <AuthContainer style={{ borderRadius: '5px' }}>
-        <form>
+        <form ref={formRef} onSubmit={handleForm}>
         <h2>Create an account</h2>
           <AuthInput>
             <label htmlFor="signInUser">Username</label>
-            <input type="text" name="user" required />
+            <input ref={addInputs} type="text" name="user" />
           </AuthInput>
           <AuthInput>
             <label htmlFor="signInEmail">Email address</label>
-            <input type="email" name="email" required />
+            <input ref={addInputs} type="email" name="email" required />
           </AuthInput>
           <AuthInput>
             <div>
               <label htmlFor="signInPwd">Password</label>
             </div>
             <AuthPwd>
-              <input type={passwordType} value={passwordInput} onChange={handlePasswordChange} name="pwd" required />
+              <input ref={addInputs} type={passwordType} name="pwd" required />
               <button onClick={togglePassword}>
                 { passwordType==="password" ? <img src={eye} alt="Show password" width='25' /> : <img src={eyeSlash} alt="Hide password" width='25' /> }
               </button>
@@ -64,11 +104,12 @@ function Login() {
               <label htmlFor="signInPwd">Confirm password</label>
             </div>
             <AuthPwd>
-              <input type={otherPasswordType} value={otherPasswordInput} onChange={handleOtherPasswordChange} name="pwd" required />
+              <input ref={addInputs} type={otherPasswordType} name="pwd" required />
               <button onClick={otherTogglePassword}>
                 { otherPasswordType==="password" ? <img src={eye} alt="Show password" width='25' /> : <img src={eyeSlash} alt="Hide password" width='25' /> }
               </button>
             </AuthPwd>
+            <ValidateText>{validation}</ValidateText>
           </AuthInput>
           <AuthBtn type="submit">Sign Up</AuthBtn>
         </form>
