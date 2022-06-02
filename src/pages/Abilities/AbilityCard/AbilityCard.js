@@ -150,7 +150,8 @@ const AbilityCard = () => {
 															<TLink
 																to={`/abilities/${p?.abilities[0]?.ability?.name}`}
 																className={
-																	p?.abilities[0]?.ability?.name === ability?.name
+																	p?.abilities[0]?.ability?.name ===
+																	ability?.name
 																		? 'bold'
 																		: ''
 																}
@@ -170,7 +171,8 @@ const AbilityCard = () => {
 															<TLink
 																to={`/abilities/${p?.abilities[1]?.ability?.name}`}
 																className={
-																	p?.abilities[1]?.ability?.name === ability?.name
+																	p?.abilities[1]?.ability?.name ===
+																	ability?.name
 																		? 'bold'
 																		: ''
 																}
@@ -179,7 +181,7 @@ const AbilityCard = () => {
 																	? p?.abilities[1]?.ability?.name?.replace(
 																			/-/g,
 																			' '
-																	)
+																	  )
 																	: '-'}
 															</TLink>
 														)
@@ -192,7 +194,8 @@ const AbilityCard = () => {
 															<TLink
 																to={`/abilities/${p?.abilities[2]?.ability?.name.name}`}
 																className={
-																	p?.abilities[2]?.ability?.name === ability?.name
+																	p?.abilities[2]?.ability?.name ===
+																	ability?.name
 																		? 'bold'
 																		: ''
 																}
@@ -201,7 +204,7 @@ const AbilityCard = () => {
 																	? p?.abilities[2]?.ability?.name?.replace(
 																			/-/g,
 																			' '
-																	)
+																	  )
 																	: '-'}
 															</TLink>
 														)

@@ -4,14 +4,13 @@
   
 <div align="center">
 
-  ![GitHub repo size](https://img.shields.io/github/repo-size/thibaudbrault/pokeref)
-  ![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
-  ![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
-  ![GitHub last commit](https://img.shields.io/github/last-commit/thibaudbrault/pokeref)
-  ![GitHub Repo stars](https://img.shields.io/github/stars/thibaudbrault/pokeref?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/thibaudbrault/pokeref)
+![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
+![GitHub last commit](https://img.shields.io/github/last-commit/thibaudbrault/pokeref)
+![GitHub Repo stars](https://img.shields.io/github/stars/thibaudbrault/pokeref?style=social)
 
 </div>
-
 
 <h3 align="center">PokéRef is a pokémon encyclopedia built using React JS, Styled-Components and PokéAPI</h3>  
 <p align="center">You'll find a ton of informations on every pokémon, moves, abilities, items and much more</p>  
@@ -19,7 +18,7 @@
   <a href="https://pokeref.app/">Live version</a>  
 </div>  
   
-<p align="center">Leave a 🌟 if you like my project 👍</p>  
+<p align="center">Leave a 🌟 if you like my project 👍</p>
 
 ---
 
@@ -91,9 +90,9 @@ A big thanks also to the pokeapi team for creating such a huge, detailed and ver
 <h4>Dependencies</h4>
 
 <a href="https://www.npmjs.com/package/axios" target="_blank">Axios</a>  
-<a href="https://www.npmjs.com/package/react-infinite-scroll-component>" target="_blank">React Infinite Scroll Component</a>  
+<a href="https://www.npmjs.com/package/react-infinite-scroll-component>" target="_blank">React Infinite Scroll Component</a>
 
-<h2 id="other">Other</h2>  
+<h2 id="other">Other</h2>
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/thibaudbrault/pokeref)
 ![GitHub](https://img.shields.io/github/license/thibaudbrault/pokeref)

@@ -6,7 +6,6 @@ import { Reset } from './components/BaseStyles/Reset';
 import { lightTheme, darkTheme } from './components/BaseStyles/Themes';
 import Pokemon from './pages/Pokemon/Pokemon';
 import styled from 'styled-components';
-import NotFound from './pages/404/NotFound';
 
 const Moves = lazy(() => import('./pages/Moves/Moves'));
 const Abilities = lazy(() => import('./pages/Abilities/Abilities'));
@@ -30,10 +29,11 @@ const LocationCard = lazy(() =>
 
 const Login = lazy(() => import('./components/Auth/Login'));
 const Register = lazy(() => import('./components/Auth/Register'));
+const Profile = lazy(() => import('./pages/Profile/Profile'));
 
+const NotFound = lazy(() => import('./pages/404/NotFound'));
 
 function App() {
-
 	const loadTheme = () => {
 		const localTheme = window.localStorage.getItem('theme');
 		return localTheme ?? 'dark';
@@ -85,6 +85,7 @@ function App() {
 							<Route path='/locations/:name' element={<LocationCard />} />
 							<Route path='/login' element={<Login />} />
 							<Route path='/register' element={<Register />} />
+							<Route path='/profile' element={<Profile />} />
 							<Route path='*' element={<NotFound />} />
 						</Routes>
 					</Layout>

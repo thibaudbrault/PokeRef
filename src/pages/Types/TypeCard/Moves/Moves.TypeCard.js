@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Span } from '../../../../components/BaseStyles/Headings';
-import { TableContainer, THead, TRow } from '../../../../components/BaseStyles/Table';
+import {
+	TableContainer,
+	THead,
+	TRow,
+} from '../../../../components/BaseStyles/Table';
 import {
 	TypeListSection,
 	TypeListSubtitle,

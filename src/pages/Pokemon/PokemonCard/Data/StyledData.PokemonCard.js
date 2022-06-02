@@ -76,7 +76,7 @@ export const PokemonDataTypes = styled.li`
 
 export const PokemonDataTable = styled(Table)`
 	width: 90%;
-	
+
 	& th {
 		background: rgba(130, 130, 130, 0.2);
 	}

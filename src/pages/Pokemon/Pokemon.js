@@ -26,7 +26,6 @@ import { LoadingImg } from '../../components/BaseStyles/Loader';
 // const P = new Pokedex.Pokedex(customOptions)
 
 function Pokemon() {
-
 	const [filteredPokedex, setFilteredPokedex] = useState([]);
 	const [offset, setOffset] = useState(0);
 	const [limit, setLimit] = useState(25);
@@ -38,7 +37,7 @@ function Pokemon() {
 
 	const fetchMore = () => {
 		if (pokedex.length >= 898) {
-		  setHasMore(false);
+			setHasMore(false);
 		}
 		setLimit((l) => l + 25);
 	};

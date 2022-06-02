@@ -22,7 +22,7 @@ export const TypeDamageTable = styled(Table)`
 	margin-top: 0.5rem;
 
 	& tr {
-		border: 1px solid rgba(130,130,130,0.2);
+		border: 1px solid rgba(130, 130, 130, 0.2);
 		border-left: none;
 		border-right: none;
 
@@ -128,7 +128,7 @@ export const TypeMovesName = styled(TName)`
 	& a {
 		border-bottom: 1px solid transparent;
 		cursor: pointer;
-		
+
 		&:hover {
 			border-bottom: 1px solid ${({ theme }) => theme.secondary};
 		}

@@ -85,7 +85,7 @@ export const MainNavList = styled.ul`
 			margin-bottom: 2rem;
 		}
 	}
-/* 
+	/* 
 	@media ${device.sm} {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));

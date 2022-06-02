@@ -30,7 +30,7 @@ export const PokemonInfoSection = styled.section`
 
 export const PokemonInfoTable = styled(Table)`
 	width: 90%;
-	
+
 	& th {
 		background: rgba(130, 130, 130, 0.2);
 		text-transform: capitalize;

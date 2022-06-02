@@ -10,7 +10,6 @@ export const MovesSection = styled.section`
 	display: ${(props) => (props.visibility ? 'block' : 'none')};
 `;
 
-
 export const StatusMoves = styled.td`
 	& a {
 		display: block;
