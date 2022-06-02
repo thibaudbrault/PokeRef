@@ -2,3 +2,4 @@ node_modules
 build
 .env.local
 config-overrides.js
+firebase-config.js
