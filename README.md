@@ -46,12 +46,11 @@
 ✅Responsive  
 ✅Service Worker
 
-🛠Types relations for each pokémon  
+🛠Authentification with profile page and "create your team" functionality  
 🛠Evolution chain  
-🛠Improve performances
 
 🔜Location page  
-🔜A "create your team" page (with authentication)  
+🔜Types relations for each pokémon  
 🔜Animation on scroll
 
 <h2 id="description">Description</h2>
