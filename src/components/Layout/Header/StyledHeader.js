@@ -69,3 +69,16 @@ export const HeaderBtnTheme = styled.button`
 		content: '${({ theme }) => theme.toggle}';
 	}
 `;
+
+export const HeaderBtnProfile = styled(Link)`
+	width: 3rem;
+	height: 3rem;
+	margin-left: 2rem;
+	border: none;
+	background: none;
+
+	& img {
+		width: 100%;
+		height: 100%;
+	}
+`;

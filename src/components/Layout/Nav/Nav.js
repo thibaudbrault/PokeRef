@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { MainNav, MainNavList } from './StyledNav';
 
-const Nav = () => {
+function Nav() {
 	return (
 		<MainNav>
 			<MainNavList>

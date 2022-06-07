@@ -10,24 +10,13 @@ import {
 import eye from './Images/eye.svg';
 import eyeSlash from './Images/eye-slash.svg';
 import { UserContext } from '../../helpers/userContext';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 function Login() {
 	const { signUp } = useContext(UserContext);
 
-	const navigate = useNavigate();
-
 	const [passwordType, setPasswordType] = useState('password');
 	const [otherPasswordType, setOtherPasswordType] = useState('password');
-
-	// const [passwordInput, setPasswordInput] = useState("");
-	// const [otherPasswordInput, setOtherPasswordInput] = useState("");
-	// const handlePasswordChange =(evnt)=>{
-	//   setPasswordInput(evnt.target.value);
-	// }
-	// const handleOtherPasswordChange =(evnt)=>{
-	//   setOtherPasswordInput(evnt.target.value);
-	// }
 
 	const togglePassword = () => {
 		if (passwordType === 'password') {
@@ -76,7 +65,7 @@ function Login() {
 			);
 			formRef.current.reset();
 			setValidation('');
-			navigate('../../pages/Profile/Profile.js');
+			return <Navigate to='/profile' />;
 		} catch (err) {
 			if (err.code === 'auth/invalid-email') {
 				setValidation('Email format invalid');
@@ -137,7 +126,7 @@ function Login() {
 						</AuthPwd>
 						<ValidateText>{validation}</ValidateText>
 					</AuthInput>
-					<AuthBtn type='submit'>Sign Up</AuthBtn>
+					<AuthBtn>Sign Up</AuthBtn>
 				</form>
 			</AuthContainer>
 		</AuthSection>

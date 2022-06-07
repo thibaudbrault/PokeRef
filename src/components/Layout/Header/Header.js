@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../../helpers/userContext';
+import profile from './Images/profile.svg';
 
 import { H1 } from '../../BaseStyles/Headings';
 import {
 	HeaderBtnContainer,
 	HeaderBtnCreate,
 	HeaderBtnLogin,
+	HeaderBtnProfile,
 	HeaderBtnTheme,
 	HeaderContainer,
 } from './StyledHeader';
 
-const Header = ({ themeToggler }) => {
+function Header({ themeToggler }) {
+
+	const { currentUser } = useContext(UserContext);
+
 	return (
 		<HeaderContainer id='header'>
 			<H1>PokéRef</H1>
@@ -20,6 +26,13 @@ const Header = ({ themeToggler }) => {
 					onClick={themeToggler}
 					aria-label='Switch Theme'
 				></HeaderBtnTheme>
+				{currentUser && 
+					<HeaderBtnProfile
+						to={`/profile`}
+					>
+						<img src={profile} alt="Profile" />
+					</HeaderBtnProfile>
+				}
 			</HeaderBtnContainer>
 		</HeaderContainer>
 	);

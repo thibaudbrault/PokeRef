@@ -7,7 +7,7 @@ import {
 	RightFooter,
 } from './StyledFooter';
 
-const Footer = () => {
+function Footer() {
 	return (
 		<FooterContainer>
 			<FooterInner>
