@@ -59,7 +59,7 @@ function Login() {
 		}
 
 		try {
-			const cred = await signUp(
+			await signUp(
 				inputs.current[1].value,
 				inputs.current[2].value
 			);

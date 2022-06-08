@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useRef } from 'react';
+import { UserContext } from '../../helpers/userContext';
+import { Navigate } from 'react-router-dom';
+
 import {
 	AuthBtn,
 	AuthContainer,
@@ -6,17 +9,44 @@ import {
 	AuthInput,
 	AuthPwd,
 	AuthSection,
+	ValidateText,
 } from './StyledAuth';
 import eye from './Images/eye.svg';
 import eyeSlash from './Images/eye-slash.svg';
 import { Link } from 'react-router-dom';
 
 function Login() {
-	const [passwordType, setPasswordType] = useState('password');
-	const [passwordInput, setPasswordInput] = useState('');
-	const handlePasswordChange = (evnt) => {
-		setPasswordInput(evnt.target.value);
+
+	const { signIn } = useContext(UserContext);
+
+	const inputs = useRef([]);
+	const addInputs = (el) => {
+		if (el && !inputs.current.includes(el)) {
+			inputs.current.push(el);
+		}
 	};
+
+	const formRef = useRef();
+
+	const [validation, setValidation] = useState('');
+
+	const handleForm = async (e) => {
+		e.preventDefault();
+
+		try {
+			await signIn(
+				inputs.current[1].value,
+				inputs.current[2].value
+			);
+			formRef.current.reset();
+			setValidation('');
+			return <Navigate to='/profile' />;
+		} catch {
+			setValidation('Email and / or password is incorrect');
+		}
+	};
+
+	const [passwordType, setPasswordType] = useState('password');
 	const togglePassword = () => {
 		if (passwordType === 'password') {
 			setPasswordType('text');
@@ -31,12 +61,8 @@ function Login() {
 				<form>
 					<h2>Sign In to your account</h2>
 					<AuthInput>
-						<label htmlFor='signInUser'>Username</label>
-						<input type='text' name='user' required />
-					</AuthInput>
-					<AuthInput>
 						<label htmlFor='signInEmail'>Email address</label>
-						<input type='email' name='email' required />
+						<input ref={addInputs} type='email' name='email' required />
 					</AuthInput>
 					<AuthInput>
 						<div>
@@ -44,9 +70,8 @@ function Login() {
 						</div>
 						<AuthPwd>
 							<input
+								ref={addInputs}
 								type={passwordType}
-								value={passwordInput}
-								onChange={handlePasswordChange}
 								name='pwd'
 								required
 							/>
@@ -58,6 +83,7 @@ function Login() {
 								)}
 							</button>
 						</AuthPwd>
+						<ValidateText>{validation}</ValidateText>
 					</AuthInput>
 					<AuthBtn type='submit'>Sign In</AuthBtn>
 				</form>
