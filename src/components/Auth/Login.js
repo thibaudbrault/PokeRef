@@ -35,8 +35,8 @@ function Login() {
 
 		try {
 			await signIn(
-				inputs.current[1].value,
-				inputs.current[2].value
+				inputs.current[0].value,
+				inputs.current[1].value
 			);
 			formRef.current.reset();
 			setValidation('');
@@ -58,7 +58,7 @@ function Login() {
 	return (
 		<AuthSection>
 			<AuthContainer>
-				<form>
+				<form ref={formRef} onSubmit={handleForm}>
 					<h2>Sign In to your account</h2>
 					<AuthInput>
 						<label htmlFor='signInEmail'>Email address</label>
@@ -85,7 +85,7 @@ function Login() {
 						</AuthPwd>
 						<ValidateText>{validation}</ValidateText>
 					</AuthInput>
-					<AuthBtn type='submit'>Sign In</AuthBtn>
+					<AuthBtn>Sign In</AuthBtn>
 				</form>
 			</AuthContainer>
 			<AuthCreate>
