@@ -16,15 +16,6 @@ import Filters from './Components/Filters.Pokemon';
 import Sprites from './Components/Sprites.Pokemon';
 import { LoadingImg } from '../../components/BaseStyles/Loader';
 
-// const Pokedex = require("pokeapi-js-wrapper")
-// const customOptions = {
-// 	protocol: "https",
-// 	cache: true,
-// 	timeout: 3600 * 1000,
-// 	cacheImages: true
-// }
-// const P = new Pokedex.Pokedex(customOptions)
-
 function Pokemon() {
 	const [filteredPokedex, setFilteredPokedex] = useState([]);
 	const [offset, setOffset] = useState(0);

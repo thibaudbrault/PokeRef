@@ -58,6 +58,14 @@ export const Subtitle = styled.p`
 	text-align: center;
 `;
 
+export const H2 = styled.h2`
+	margin: 0 0 1rem;
+	font-size: 4.5rem;
+	font-weight: 700;
+	text-transform: capitalize;
+	text-align: center;
+`;
+
 export const H3 = styled.h3`
 	margin: 0 0 1rem;
 	font-size: 3.5rem;
