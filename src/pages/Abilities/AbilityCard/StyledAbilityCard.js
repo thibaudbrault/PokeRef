@@ -14,6 +14,7 @@ export const AbilityCardEffect = styled.div`
 `;
 
 export const AbilityCardTable = styled(Table)`
+	width: 100%;
 	& th {
 		background: rgba(130, 130, 130, 0.2);
 		font-size: 1.5rem;

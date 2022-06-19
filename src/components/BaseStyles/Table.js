@@ -34,6 +34,10 @@ export const Table = styled.table`
 	}
 `;
 
+export const TableFull = styled(Table)`
+	width: 100%;
+`;
+
 export const THead = styled.thead`
 	color: #c4c4c4;
 	background: #161616;

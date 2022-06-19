@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { AutocompleteContainer } from '../../components/Autocomplete/StyledAutocomplete';
 import { Input } from '../../components/BaseStyles/Inputs';
 
 export const TeamGrid = styled.div`
@@ -25,4 +26,13 @@ export const TeamImg = styled.div`
 
 export const TeamAdd = styled(Input)`
     margin: 0.7rem 0;
+`;
+
+export const TeamAutocomplete = styled(AutocompleteContainer)`
+    width: 15vw;
+
+    & li {
+        height: 4rem;
+        text-transform: capitalize;
+    }
 `;

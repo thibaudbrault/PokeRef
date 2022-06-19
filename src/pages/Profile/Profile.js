@@ -17,11 +17,11 @@ function Profile() {
 		<MainBig>
 			<H2>Create your team</H2>
 			<Team />
+			{/* <Team />
 			<Team />
 			<Team />
 			<Team />
-			<Team />
-			<Team />
+			<Team /> */}
 		</MainBig>
 	);
 }

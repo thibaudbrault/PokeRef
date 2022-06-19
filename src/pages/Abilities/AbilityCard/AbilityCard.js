@@ -16,8 +16,8 @@ import {
 	Subtitle,
 } from '../../../components/BaseStyles/Headings';
 import {
-	Table,
 	TableContainer,
+	TableFull,
 	THead,
 	TLink,
 	TName,
@@ -104,7 +104,7 @@ const AbilityCard = () => {
 							Pokemon with <Span>{ability?.name?.replace(/-/g, ' ')}</Span>
 						</H3>
 						<TableContainer>
-							<Table>
+							<TableFull>
 								<THead>
 									<tr>
 										<th>#</th>
@@ -213,7 +213,7 @@ const AbilityCard = () => {
 										</TRow>
 									))}
 								</tbody>
-							</Table>
+							</TableFull>
 						</TableContainer>
 					</AbilityCardSection>
 
