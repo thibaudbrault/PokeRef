@@ -4,7 +4,6 @@ import Method from '../../../../components/Method/Method';
 import {
 	PokemonMovesSection,
 	PokemonMovesTd,
-	PokemonMovesEmpty,
 	PokemonMovesMachine,
 	PokemonMovesTable,
 } from './StyledMoves.PokemonCard';
