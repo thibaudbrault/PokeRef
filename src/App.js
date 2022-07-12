@@ -50,19 +50,26 @@ function App() {
 		theme === 'dark' ? setMode('light') : setMode('dark');
 	};
 
-	const LazyLoad = styled.p`
-		font-size: 4rem;
-		font-weight: 700;
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
+	const LazyLoad = styled.div`
+		position: relative;
+		width: 100%;
+		height: 100%;
+		color: ${({ theme }) => theme.secondary};
+        background-color: ${({ theme }) => theme.main};
+		& p {
+			font-size: 4rem;
+			font-weight: 700;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
 	`;
 
 	return (
 		<BrowserRouter>
 			<ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
-				<Suspense fallback={<LazyLoad>Welcome to PokéRef!</LazyLoad>}>
+				<Suspense fallback={<LazyLoad><p>PokéRef!</p></LazyLoad>}>
 					<Layout
 						themeToggler={themeToggler}
 						lightTheme={lightTheme}

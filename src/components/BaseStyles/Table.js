@@ -3,6 +3,23 @@ import styled from 'styled-components';
 
 export const TableContainer = styled.div`
 	overflow-x: auto;
+	&::-webkit-scrollbar {
+		height: 1rem;
+	}
+	
+	&::-webkit-scrollbar-track {
+		background: ${({ theme }) => theme.main};
+		border-radius: 5px;
+	}
+	
+	&::-webkit-scrollbar-thumb {
+		background: ${({ theme }) => theme.secondary};
+		border-radius: 5px;
+	}
+	
+	&::-webkit-scrollbar-thumb:hover {
+		background: rgba(130, 130, 130, 0.2); 
+	}
 `;
 
 export const Table = styled.table`

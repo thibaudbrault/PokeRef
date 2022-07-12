@@ -35,27 +35,34 @@ export const MoveCardDataTable = styled(Table)`
 `;
 
 export const MoveCardDataType = styled(Type)`
-	display: inline;
+	display: inline-block;
 	padding: 1rem 2rem;
 	border-radius: 5px;
 	cursor: pointer;
 
-	& img {
-		height: 2rem;
-		vertical-align: middle;
-		cursor: pointer;
-	}
+	& a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		& img {
+			height: 2rem;
+			vertical-align: middle;
+			cursor: pointer;
+		}
 
-	& span {
-		padding-left: 0.5rem;
-		vertical-align: middle;
-		cursor: pointer;
+		& span {
+			padding-left: 0.5rem;
+			vertical-align: middle;
+			cursor: pointer;
+		}
 	}
 `;
 
 export const MoveCardDataCategory = styled(DamageClass)`
 	& div {
-		display: inline;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		padding: 0.5rem 1.5rem;
 
 		& img {
@@ -78,6 +85,7 @@ export const MoveCardDataList = styled.ul`
 	}
 
 	@media ${device.sm} {
+		width: 100%;
 		margin: 0 0 2rem;
 	}
 `;

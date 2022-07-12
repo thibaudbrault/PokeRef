@@ -24,6 +24,7 @@ export const PokemonSpritesDiv = styled.div`
 		}
 
 		& p {
+			margin-top: 1rem;
 			font-size: 1.5rem;
 		}
 	}
