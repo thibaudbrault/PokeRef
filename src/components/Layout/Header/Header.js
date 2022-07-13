@@ -39,16 +39,16 @@ function Header({ themeToggler }) {
 							<HeaderBtnCreate to={`/register`}>Sign Up</HeaderBtnCreate>
 						</>
 					) : (
-						<HeaderBtnLogOut onClick={logOut}>Log Out</HeaderBtnLogOut>
+						<>
+							<HeaderBtnLogOut onClick={logOut}>Log Out</HeaderBtnLogOut>
+							<HeaderBtnProfile to={`/profile`}>Profile</HeaderBtnProfile>
+						</>
 					)
 				}
 				<HeaderBtnTheme
 					onClick={themeToggler}
 					aria-label='Switch Theme'
 				></HeaderBtnTheme>
-				{currentUser && 
-					<HeaderBtnProfile to={`/profile`}>Profile</HeaderBtnProfile>
-				}
 			</HeaderBtnContainer>
 		</HeaderContainer>
 	);

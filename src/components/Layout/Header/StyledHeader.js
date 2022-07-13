@@ -36,7 +36,7 @@ export const HeaderBtnLogin = styled(Link)`
 `;
 
 export const HeaderBtnProfile = styled(HeaderBtnLogin)`
-	margin-left: 2rem;
+	margin: 0 2rem;
 
 	@media ${device.xs} {
 		margin-left: 1rem;
@@ -67,7 +67,6 @@ export const HeaderBtnCreate = styled(Link)`
 `;
 
 export const HeaderBtnLogOut = styled.button`
-	margin-right: 2rem;
 	padding: 0.7rem 1.5rem;
 	background: ${({ theme }) => theme.secondary};
 	border: 1px solid transparent;
