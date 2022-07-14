@@ -8,6 +8,7 @@ export const PokemonMovesSection = styled.section`
 `;
 
 export const PokemonMovesTable = styled(Table)`
+	width: 100%;
 	& td {
 		@media ${device.sm} {
 			font-size: 1.7rem;

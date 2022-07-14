@@ -1,6 +1,7 @@
 import React from 'react';
 import { H3 } from '../../../../components/BaseStyles/Headings';
 import {
+	PokemonAnimatedSpritesDiv,
 	PokemonSpritesDiv,
 	PokemonSpritesSection,
 } from './StyledSprites.PokemonCard';
@@ -63,7 +64,7 @@ function Sprites({ pokemon }) {
 			{pokemon?.id < 650 && (
 				<PokemonSpritesSection>
 					<H3>Animated Sprites</H3>
-					<PokemonSpritesDiv>
+					<PokemonAnimatedSpritesDiv>
 						<div>
 							<img
 								src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon?.id}.gif`}
@@ -128,7 +129,7 @@ function Sprites({ pokemon }) {
 								<p>Back Shiny Female</p>
 							</div>
 						)}
-					</PokemonSpritesDiv>
+					</PokemonAnimatedSpritesDiv>
 				</PokemonSpritesSection>
 			)}
 		</>

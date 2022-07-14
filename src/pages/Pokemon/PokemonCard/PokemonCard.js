@@ -474,9 +474,10 @@ function PokemonCard() {
 						toggleTable={toggleTable}
 						pokemon={pokemon}
 						moves={moves}
-						machine={machines}
+						machines={machines}
 						version={version}
 						game={game}
+						loading={loading}
 					/>
 
 					<Sprites pokemon={pokemon} />

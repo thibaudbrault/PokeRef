@@ -33,3 +33,12 @@ export const PokemonSpritesDiv = styled.div`
 		grid-template-columns: repeat(2, 1fr);
 	}
 `;
+
+export const PokemonAnimatedSpritesDiv = styled(PokemonSpritesDiv)`
+	& div {
+		& img {
+			width: 48px;
+			height: 48px;
+		}
+	}
+`;
