@@ -458,7 +458,7 @@ function PokemonCard() {
 						game={game}
 					/>
 
-					<Evolution species={species} evolution={evolution} />
+					<Evolution evolution={evolution} pokemon={pokemon} />
 
 					<Info pokemon={pokemon} species={species} evolution={evolution} />
 
