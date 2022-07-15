@@ -1,8 +1,11 @@
 import React from 'react';
 import { H3 } from '../../../../components/BaseStyles/Headings';
 import {
+	PokemonEvolutionBase,
 	PokemonEvolutionContainer,
+	PokemonEvolutionElement,
 	PokemonEvolutionSection,
+	PokemonEvolutionStages,
 } from './StyledEvolution.PokemonCard';
 
 function Evolution({ evolution, pokemon }) {
@@ -13,27 +16,31 @@ console.log(pokemon)
 		<PokemonEvolutionSection>
 			<H3>Evolution chain</H3>
 			<PokemonEvolutionContainer>
-				<div>
+				<PokemonEvolutionBase>
 					<p>{evolution?.chain?.species?.name}</p>
-				</div>
-				{evolution?.chain?.evolves_to?.map((ee) => (
-					<>
-						<div>→</div>
-						<div>
-							<p>{ee?.species?.name}</p>
-						</div>
-					</>
-				))}
-				{evolution?.chain?.evolves_to?.map((ee) =>
-					ee?.evolves_to?.map((eee) => (
-						<>
-							<div>→</div>
+				</PokemonEvolutionBase>
+				<PokemonEvolutionStages>
+					{evolution?.chain?.evolves_to?.map((ee) => (
+						<PokemonEvolutionElement>
+							<span>→</span>
 							<div>
-								<p>{eee?.species?.name}</p>
+								<p>{ee?.species?.name?.replace(/-/g, ' ')}</p>
 							</div>
-						</>
-					))
-				)}
+						</PokemonEvolutionElement>
+					))}
+				</PokemonEvolutionStages>
+				<PokemonEvolutionStages>
+					{evolution?.chain?.evolves_to?.map((ee) =>
+						ee?.evolves_to?.map((eee) => (
+							<PokemonEvolutionElement>
+								<span>→</span>
+								<div>
+									<p>{eee?.species?.name?.replace(/-/g, ' ')}</p>
+								</div>
+							</PokemonEvolutionElement>
+						))
+					)}
+				</PokemonEvolutionStages>
 			</PokemonEvolutionContainer>
 		</PokemonEvolutionSection>
 	);
