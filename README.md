@@ -11,7 +11,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
 ![GitHub last commit](https://img.shields.io/github/last-commit/thibaudbrault/pokeref)
-![GitHub Repo stars](https://img.shields.io/github/stars/thibaudbrault/pokeref?style=social)
+![Lines of code](https://img.shields.io/tokei/lines/github/thibaudbrault/pokeref)
 
 </div>
 
