@@ -95,6 +95,7 @@ A big thanks also to the pokeapi team for creating such a huge, detailed and ver
 
 <h2 id="other">Other</h2>
 
+![Dependabot](https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot&logoColor=white)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/thibaudbrault/pokeref)
 ![GitHub](https://img.shields.io/github/license/thibaudbrault/pokeref)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e89668e7-4ebe-4bb7-8c7a-ba5f4b42700f/deploy-status)](https://app.netlify.com/sites/pokeref/deploys)
