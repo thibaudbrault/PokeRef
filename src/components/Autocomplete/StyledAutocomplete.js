@@ -4,7 +4,7 @@ import { device } from '../BaseStyles/Sizing';
 import { TLink } from '../BaseStyles/Table';
 
 export const AutocompleteInput = styled(Input)`
-	min-width: 15rem;
+	min-width: 25rem;
 	margin-right: 0.5rem;
 
 	& input {

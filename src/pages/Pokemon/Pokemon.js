@@ -8,7 +8,7 @@ import {
 	PokedexList,
 	PokedexTypes,
 } from './StyledPokemon';
-import { MainSmall } from '../../components/BaseStyles/Sizing';
+import { MainBig } from '../../components/BaseStyles/Sizing';
 import { Type } from '../../components/BaseStyles/Themes';
 
 import { usePokedex } from '../../helpers/DataFetch';
@@ -38,7 +38,7 @@ function Pokemon() {
 	}, []);
 
 	return (
-		<MainSmall>
+		<MainBig>
 			<Filters
 				pokedex={pokedex}
 				setFilteredPokedex={setFilteredPokedex}
@@ -81,7 +81,7 @@ function Pokemon() {
 					))}
 				</InfiniteScroll>
 			</PokedexList>
-		</MainSmall>
+		</MainBig>
 	);
 }
 
