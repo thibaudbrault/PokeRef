@@ -13,6 +13,7 @@ export const PokemonEvolutionContainer = styled.div`
 
 export const PokemonEvolutionBase = styled.div`
 	width: 100%;
+	text-align: center;
 
 	& h4 {
 		font-size: 2.5rem;
@@ -29,6 +30,7 @@ export const PokemonEvolutionStages = styled.div`
 export const PokemonEvolutionElement = styled.div`
 	display: flex;
 	justify-content: space-between;
+	margin: 3rem 0;
 
 	& div {
 		width: 100%;

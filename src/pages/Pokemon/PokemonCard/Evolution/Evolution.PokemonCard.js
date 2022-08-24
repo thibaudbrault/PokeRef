@@ -29,7 +29,12 @@ console.log(evolution)
 										: (<p>Male</p>)
 									)
 								}
-
+								{ee?.evolution_details?.[0]?.held_item != null &&
+									<p>{ee?.evolution_details?.[0]?.held_item?.name?.replace(/-/g, ' ')}</p>
+								}
+								{ee?.evolution_details?.[0]?.item != null &&
+									<p>{ee?.evolution_details?.[0]?.item?.name?.replace(/-/g, ' ')}</p>
+								}
 								<span>→</span>
 							</div>
 							<div>
@@ -38,20 +43,24 @@ console.log(evolution)
 						</PokemonEvolutionElement>
 					))}
 				</PokemonEvolutionStages>
-				<PokemonEvolutionStages>
-					{evolution?.chain?.evolves_to?.map((ee) =>
-						ee?.evolves_to?.map((eee) => (
-							<PokemonEvolutionElement>
-								<div>
-									<span>→</span>
-								</div>
-								<div>
-									<h4>{eee?.species?.name?.replace(/-/g, ' ')}</h4>
-								</div>
-							</PokemonEvolutionElement>
-						))
+				{evolution?.chain?.evolves_to?.map((ee) =>
+					ee?.evolves_to?.length !== 0 ?
+						(ee?.evolves_to?.map((eee) => (
+							<PokemonEvolutionStages>
+								<PokemonEvolutionElement>
+									<div>
+										<span>→</span>
+									</div>
+									<div>
+										<h4>{eee?.species?.name?.replace(/-/g, ' ')}</h4>
+									</div>
+								</PokemonEvolutionElement>
+							</PokemonEvolutionStages>
+						)))
+							: (
+								null
+							)
 					)}
-				</PokemonEvolutionStages>
 			</PokemonEvolutionContainer>
 		</PokemonEvolutionSection>
 	);
