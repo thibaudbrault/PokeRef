@@ -56,6 +56,7 @@ export const PokedexDropdown = styled.div`
 
 export const PokedexList = styled.div`
 	max-width: 1300px;
+	margin: 0 auto;
 	& div {
 		& div {
 			display: flex;

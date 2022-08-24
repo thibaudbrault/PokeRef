@@ -10,21 +10,30 @@ import {
 
 function Evolution({ evolution, pokemon }) {
 
-console.log(pokemon)
+console.log(evolution)
 
 	return (
 		<PokemonEvolutionSection>
 			<H3>Evolution chain</H3>
 			<PokemonEvolutionContainer>
 				<PokemonEvolutionBase>
-					<p>{evolution?.chain?.species?.name}</p>
+					<h4>{evolution?.chain?.species?.name}</h4>
 				</PokemonEvolutionBase>
 				<PokemonEvolutionStages>
 					{evolution?.chain?.evolves_to?.map((ee) => (
 						<PokemonEvolutionElement>
-							<span>→</span>
 							<div>
-								<p>{ee?.species?.name?.replace(/-/g, ' ')}</p>
+								{ee?.evolution_details?.[0]?.gender != null &&
+									(ee?.evolution_details?.[0]?.gender === 1 
+										? (<p>Female</p>)
+										: (<p>Male</p>)
+									)
+								}
+
+								<span>→</span>
+							</div>
+							<div>
+								<h4>{ee?.species?.name?.replace(/-/g, ' ')}</h4>
 							</div>
 						</PokemonEvolutionElement>
 					))}
@@ -33,9 +42,11 @@ console.log(pokemon)
 					{evolution?.chain?.evolves_to?.map((ee) =>
 						ee?.evolves_to?.map((eee) => (
 							<PokemonEvolutionElement>
-								<span>→</span>
 								<div>
-									<p>{eee?.species?.name?.replace(/-/g, ' ')}</p>
+									<span>→</span>
+								</div>
+								<div>
+									<h4>{eee?.species?.name?.replace(/-/g, ' ')}</h4>
 								</div>
 							</PokemonEvolutionElement>
 						))

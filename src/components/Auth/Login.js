@@ -11,9 +11,8 @@ import {
 	AuthSection,
 	ValidateText,
 } from './StyledAuth';
-import eye from './Images/eye.svg';
-import eyeSlash from './Images/eye-slash.svg';
 import { Link } from 'react-router-dom';
+import { BsEye, BsEyeSlash } from 'react-icons/bs'
 
 function Login() {
 
@@ -77,9 +76,9 @@ function Login() {
 							/>
 							<button onClick={togglePassword}>
 								{passwordType === 'password' ? (
-									<img src={eye} alt='Show password' width='25' />
+									<BsEye />
 								) : (
-									<img src={eyeSlash} alt='Hide password' width='25' />
+									<BsEyeSlash />
 								)}
 							</button>
 						</AuthPwd>

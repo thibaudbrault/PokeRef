@@ -16,6 +16,7 @@ function Items() {
 		'https://pokeapi.co/api/v2/item?limit=1608'
 	);
 
+	// Filter the items returned when the user type the name in the search bar
 	useEffect(() => {
 		setFilteredItems(
 			items

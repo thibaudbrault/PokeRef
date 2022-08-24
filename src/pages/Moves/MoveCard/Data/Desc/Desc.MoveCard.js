@@ -7,6 +7,7 @@ import {
 } from '../StyledData.MoveCard';
 
 function Desc({ move, version, machines }) {
+	// Calculate the max number of pp for a move
 	const maxPp = move?.pp * 1.6;
 
 	return (

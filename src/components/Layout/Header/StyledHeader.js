@@ -94,8 +94,4 @@ export const HeaderBtnTheme = styled.button`
 	border: none;
 	color: ${({ theme }) => theme.secondary};
 	font-size: 3rem;
-
-	&::before {
-		content: '${({ theme }) => theme.toggle}';
-	}
 `;

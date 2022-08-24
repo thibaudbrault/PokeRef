@@ -16,6 +16,8 @@ function Moves() {
 		'https://pokeapi.co/api/v2/move-ailment?limit=22'
 	);
 
+	// Switch between the 'moves' table and the 'status' table
+	// Default is the 'moves' table (1)
 	const [toggleState, setToggleState] = useState(1);
 	const toggleTable = (index) => {
 		setToggleState(index);

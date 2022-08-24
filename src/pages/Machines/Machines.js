@@ -17,6 +17,7 @@ function Machines() {
 		'https://pokeapi.co/api/v2/machine?limit=1700'
 	);
 
+	// Filter the moves returned when the user type the name in the search bar
 	useEffect(() => {
 		setFilteredMachines(
 			machines.filter((machines) =>
@@ -28,6 +29,7 @@ function Machines() {
 		);
 	}, [machines, search]);
 
+	// Set default version for the list of returned machines to 'red-blue'
 	const [version, setVersion] = useState('red-blue');
 
 	useEffect(() => {

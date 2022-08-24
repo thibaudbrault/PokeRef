@@ -7,8 +7,8 @@ import {
 	AuthSection,
 	ValidateText,
 } from './StyledAuth';
-import eye from './Images/eye.svg';
-import eyeSlash from './Images/eye-slash.svg';
+import { BsEye, BsEyeSlash } from 'react-icons/bs'
+
 import { UserContext } from '../../helpers/userContext';
 import { Navigate } from 'react-router-dom';
 
@@ -98,9 +98,9 @@ function Login() {
 							<input ref={addInputs} type={passwordType} name='pwd' required />
 							<button onClick={togglePassword}>
 								{passwordType === 'password' ? (
-									<img src={eye} alt='Show password' width='25' />
+									<BsEye />
 								) : (
-									<img src={eyeSlash} alt='Hide password' width='25' />
+									<BsEyeSlash />
 								)}
 							</button>
 						</AuthPwd>
@@ -118,9 +118,9 @@ function Login() {
 							/>
 							<button onClick={otherTogglePassword}>
 								{otherPasswordType === 'password' ? (
-									<img src={eye} alt='Show password' width='25' />
+									<BsEye />
 								) : (
-									<img src={eyeSlash} alt='Hide password' width='25' />
+									<BsEyeSlash />
 								)}
 							</button>
 						</AuthPwd>

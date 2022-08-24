@@ -15,8 +15,9 @@ import {
 	HeaderBtnTheme,
 	HeaderContainer,
 } from './StyledHeader';
+import { BsMoonStars, BsSun } from 'react-icons/bs'
 
-function Header({ themeToggler }) {
+function Header({ themeToggler, theme }) {
 
 	const { currentUser } = useContext(UserContext);
 
@@ -48,7 +49,9 @@ function Header({ themeToggler }) {
 				<HeaderBtnTheme
 					onClick={themeToggler}
 					aria-label='Switch Theme'
-				></HeaderBtnTheme>
+				>
+					{theme === 'dark' ? <BsSun /> : <BsMoonStars />}
+				</HeaderBtnTheme>
 			</HeaderBtnContainer>
 		</HeaderContainer>
 	);

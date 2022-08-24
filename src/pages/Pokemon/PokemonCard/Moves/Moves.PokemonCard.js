@@ -26,8 +26,11 @@ function Moves({
 	version,
 	game,
 }) {
+
+	// Changes according to the table selected
 	const [learn, setLearn] = useState();
 
+	// Switch between tables and returns different moves according to the selected table
 	useEffect(() => {
 		if (toggleState === 1) {
 			setLearn('level-up');

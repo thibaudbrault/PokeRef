@@ -3,6 +3,8 @@ import { TLink } from '../../../../../components/BaseStyles/Table';
 import { PokemonDataTable } from '../StyledData.PokemonCard';
 
 function Base({ pokemon, species, game, location }) {
+
+	// Convert height and weight to meters and kilograms and round the number
 	const height = (pokemon?.height * 0.1).toFixed(2);
 	const weight = (pokemon?.weight * 0.1).toFixed(2);
 

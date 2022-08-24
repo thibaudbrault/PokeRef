@@ -17,15 +17,22 @@ import Sprites from './Components/Sprites.Pokemon';
 import { LoadingImg } from '../../components/BaseStyles/Loader';
 
 function Pokemon() {
+
+	// Filters the pokemon returned with the filters
 	const [filteredPokedex, setFilteredPokedex] = useState([]);
+	// Modify the first pokemon displayed
 	const [offset, setOffset] = useState(0);
+	// Number of pokemon displayed
 	const [limit, setLimit] = useState(25);
+	// Will load more pokemon when the user reach the bottom of the page
 	const [hasMore, setHasMore] = useState(true);
 
 	const { pokedex } = usePokedex(
 		`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
 	);
 
+	// Stop loading more pokemon when the user reaches the 898th pokemon
+	// Oterwise will load 25 more pokemon
 	const fetchMore = () => {
 		if (pokedex.length >= 898) {
 			setHasMore(false);

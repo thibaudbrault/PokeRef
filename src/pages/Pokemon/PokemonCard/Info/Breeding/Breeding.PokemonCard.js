@@ -3,6 +3,8 @@ import { H3 } from '../../../../../components/BaseStyles/Headings';
 import { PokemonInfoTable } from '../StyledInfo.PokemonCard';
 
 function Breeding({ species, evolution }) {
+
+	// Returns the gender rate for male and female in percent
 	const female = (species?.gender_rate / 8) * 100;
 	const male = '100' - (species?.gender_rate / 8) * 100;
 

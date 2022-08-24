@@ -121,7 +121,7 @@ export const TypePokemonList = styled.ul`
 `;
 
 export const TypeMovesTable = styled(Table)`
-	margin-top: 3rem;
+	margin: 3rem auto 0;
 `;
 
 export const TypeMovesName = styled(TName)`

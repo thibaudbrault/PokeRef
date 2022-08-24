@@ -72,6 +72,7 @@ function App() {
 				<Suspense fallback={<LazyLoad><p>PokéRef!</p></LazyLoad>}>
 					<Layout
 						themeToggler={themeToggler}
+						theme={theme}
 						lightTheme={lightTheme}
 						darkTheme={darkTheme}
 					>

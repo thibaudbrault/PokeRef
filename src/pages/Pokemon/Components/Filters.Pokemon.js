@@ -3,10 +3,17 @@ import Autocomplete from '../../../components/Autocomplete/Autocomplete';
 import { PokedexDropdown, PokedexSearch } from '../StyledPokemon';
 
 function Filters({ pokedex, setFilteredPokedex, setOffset }) {
+
+	// Form of the pokemon (changed with a drodpown)
 	const [form, setForm] = useState('default');
+	// Type of the pokemon (changed with a drodpown)
 	const [type, setType] = useState('all');
+	// Generation of the pokemon (changed with a drodpown)
 	const [generation, setGeneration] = useState('all');
 
+	// Return all pokemon when the type is 'all'
+	// Modify the returned pokemon according to the options selected in the filters
+	// Modify the offset then filter with a word in the pokemon's name or with the pokemon's id
 	useEffect(() => {
 		setFilteredPokedex(
 			pokedex

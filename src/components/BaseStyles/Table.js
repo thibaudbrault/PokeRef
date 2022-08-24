@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const TableContainer = styled.div`
+	width: 100%;
 	overflow-x: auto;
 	&::-webkit-scrollbar {
 		height: 1rem;

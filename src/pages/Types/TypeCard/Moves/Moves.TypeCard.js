@@ -16,6 +16,8 @@ import {
 } from '../StyledTypeCard';
 
 function Moves({ type, moves }) {
+
+	// Returns the number of moves from this type
 	const nbMoves = type?.moves?.length;
 
 	return (

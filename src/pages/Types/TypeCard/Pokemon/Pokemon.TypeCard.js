@@ -8,6 +8,8 @@ import {
 } from '../StyledTypeCard';
 
 function Pokemon({ type, pokedex }) {
+	
+	// Returns the number of pokemon with this type
 	const nbPokemon = type?.pokemon?.length;
 
 	return (

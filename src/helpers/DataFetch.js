@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // Fetch all pokemon
-
 export function usePokedex(url) {
 	const [pokedex, setPokedex] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -27,7 +26,6 @@ export function usePokedex(url) {
 }
 
 // Fetch all moves
-
 export function useMoves(url) {
 	const [moves, setMoves] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -52,7 +50,6 @@ export function useMoves(url) {
 }
 
 // Fetch all abilities
-
 export function useAbilities(url) {
 	const [abilities, setAbilities] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -77,7 +74,6 @@ export function useAbilities(url) {
 }
 
 // Fetch all status
-
 export function useStatus(url) {
 	const [status, setStatus] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -102,7 +98,6 @@ export function useStatus(url) {
 }
 
 // Fetch all types
-
 export function useTypes(url) {
 	const [types, setTypes] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -127,7 +122,6 @@ export function useTypes(url) {
 }
 
 // Fetch all machines
-
 export function useMachines(url) {
 	const [machines, setMachine] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -152,7 +146,6 @@ export function useMachines(url) {
 }
 
 // Fetch all items
-
 export function useItems(url) {
 	const [items, setItems] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -177,7 +170,6 @@ export function useItems(url) {
 }
 
 // Fetch single pokemon
-
 export function usePokemon(url) {
 	const [pokemon, setPokemon] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -199,7 +191,6 @@ export function usePokemon(url) {
 }
 
 // Fetch single move
-
 export function useMove(url) {
 	const [move, setMove] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -221,7 +212,6 @@ export function useMove(url) {
 }
 
 // Fetch single ability
-
 export function useAbility(url) {
 	const [ability, setAbility] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -243,7 +233,6 @@ export function useAbility(url) {
 }
 
 // Fetch single pokemon species
-
 export function useSpecies(url) {
 	const [species, setSpecies] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -265,7 +254,6 @@ export function useSpecies(url) {
 }
 
 // Fetch location for a single pokemon
-
 export function useLocation(url) {
 	const [location, setLocation] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -287,7 +275,6 @@ export function useLocation(url) {
 }
 
 // Fetch evolution chain of a single pokemon
-
 export function useEvolution(url) {
 	const [evolution, setEvolution] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -309,7 +296,6 @@ export function useEvolution(url) {
 }
 
 // Fetch single type
-
 export function useType(url) {
 	const [type, setType] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -331,7 +317,6 @@ export function useType(url) {
 }
 
 // Fetch single item
-
 export function useItem(url) {
 	const [item, setItem] = useState([]);
 	const [loading, setLoading] = useState(false);

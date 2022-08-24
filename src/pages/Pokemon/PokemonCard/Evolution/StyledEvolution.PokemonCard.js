@@ -14,8 +14,8 @@ export const PokemonEvolutionContainer = styled.div`
 export const PokemonEvolutionBase = styled.div`
 	width: 100%;
 
-	& p {
-		font-size: 2rem;
+	& h4 {
+		font-size: 2.5rem;
 		text-transform: capitalize;
 	}
 `;
@@ -29,17 +29,28 @@ export const PokemonEvolutionStages = styled.div`
 export const PokemonEvolutionElement = styled.div`
 	display: flex;
 	justify-content: space-between;
-	
-	& span {
-		font-size: 2rem;
-	}
 
 	& div {
 		width: 100%;
-		& p {
-			font-size: 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		& h4 {
+			font-size: 2.5rem;
 			text-align: center;
 			text-transform: capitalize;
+		}
+
+		& p {
+			font-size: 1.3rem;
+			text-align: center;
+			text-transform: capitalize;
+		}
+
+		& span {
+			font-size: 2rem;
 		}
 	}
 `;

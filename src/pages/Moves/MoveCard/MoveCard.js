@@ -37,18 +37,14 @@ const MoveCard = () => {
 		'https://pokeapi.co/api/v2/machine?limit=1700'
 	);
 
-	// Data from latest gen available with PokeApi
-
+	// Version of the returned data is from the latest available from PokéAPI
 	const [version, setVersion] = useState('ultra-sun-ultra-moon');
 
-	// Toggle for moves table
-
+	// Switch between the different tables for the method to learn the move
 	const [toggleState, setToggleState] = useState(1);
 	const toggleTable = (index) => {
 		setToggleState(index);
 	};
-
-	// Modify title of the page
 
 	const title = `${name.replace(/-/g, ' ')}`;
 

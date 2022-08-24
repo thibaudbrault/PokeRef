@@ -19,6 +19,7 @@ function MovesTable({ moves, toggleState }) {
 	const [search, setSearch] = useState('');
 	const [filteredMoves, setFilteredMoves] = useState([]);
 
+	// Filter the moves returned when the user type the name in the search bar
 	useEffect(() => {
 		setFilteredMoves(
 			moves.filter((moves) =>

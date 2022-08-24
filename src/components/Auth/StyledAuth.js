@@ -65,18 +65,16 @@ export const AuthPwd = styled.div`
 	justify-items: center;
 
 	& button {
-		height: 30px;
-		width: 30px;
-		background: #c4c4c4;
+		height: 25px;
+		width: 25px;
+		background: none;
 		border: none;
-		border-radius: 50px;
-		cursor: default;
+		color: ${({ theme }) => theme.main};
+		cursor: pointer;
 
-		& img {
-			width: 25px;
-			height: 25px;
-			cursor: pointer;
-			/* filter: invert(84%) sepia(19%) saturate(0%) hue-rotate(195deg) brightness(94%) contrast(83%); */
+		& svg {
+			width: 100%;
+			height: 100%;
 		}
 	}
 `;

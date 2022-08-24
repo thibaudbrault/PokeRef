@@ -23,6 +23,7 @@ function Abilities() {
 		'https://pokeapi.co/api/v2/ability?limit=267'
 	);
 
+	// Filter the abilities returned when the user type the name in the search bar
 	useEffect(() => {
 		setFilteredAbilities(
 			abilities.filter((abilities) =>
