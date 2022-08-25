@@ -44,7 +44,7 @@ function Training({ pokemon, species }) {
 							{pokemon?.held_items?.length > 0
 								? pokemon?.held_items?.map((ph) => (
 										<Link to={`/items/${ph.item.name}`}>
-											{ph?.item?.name?.replace(/-/g, ' ')}
+											<span>{ph?.item?.name?.replace(/-/g, ' ')}</span>
 										</Link>
 								  ))
 								: 'None'}

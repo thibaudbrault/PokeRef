@@ -25,7 +25,21 @@ export const PokemonEvolutionStages = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+
+	&:empty {
+		display: none;
+	}
 `;
+
+export const PokemonEvolutionFinal = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+
+	&:empty {
+		display: none;
+	}
+`
 
 export const PokemonEvolutionElement = styled.div`
 	display: flex;
@@ -45,14 +59,17 @@ export const PokemonEvolutionElement = styled.div`
 			text-transform: capitalize;
 		}
 
-		& p {
-			font-size: 1.3rem;
-			text-align: center;
-			text-transform: capitalize;
-		}
-
-		& span {
-			font-size: 2rem;
+		& svg {
+			font-size: 2.5rem;
 		}
 	}
 `;
+
+export const PokemonEvolutionText = styled.p`
+	font-size: 1.5rem;
+	text-align: center;
+
+	& span {
+		font-weight: 700;
+	}
+`

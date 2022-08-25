@@ -37,18 +37,26 @@ export const PokemonInfoTable = styled(Table)`
 	}
 
 	& td {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 		font-size: 1.7rem;
 		font-weight: 700;
-		text-align: center;
 		text-transform: capitalize;
 
 		& a {
-			display: inline-block;
+			width: fit-content;
+			display: block;
 			border-bottom: 1px solid transparent;
 			transition: 0.3s ease-in-out;
 
 			&:hover {
 				border-bottom: 1px solid ${({ theme }) => theme.secondary};
+			}
+
+			& span {
+				cursor: pointer;
 			}
 		}
 	}
