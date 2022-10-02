@@ -1,34 +1,97 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+  
+  ![PokéRef](/public/readme%20images/Pok%C3%A9Ref.png)
+</div>
 
-## Getting Started
+---
 
-First, run the development server:
+<div align="center">
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+![GitHub repo size](https://img.shields.io/github/repo-size/thibaudbrault/pokeref)
+![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
+![GitHub last commit](https://img.shields.io/github/last-commit/thibaudbrault/pokeref)
+![Lines of code](https://img.shields.io/tokei/lines/github/thibaudbrault/pokeref)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+</div>
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+<h3 align="center">PokéRef is a pokémon encyclopedia built using React JS, Styled-Components and PokéAPI</h3>  
+<p align="center">You'll find a ton of information on every pokémon, moves, abilities, items and much more</p>  
+<div align="center">
+  <a href="https://pokeref.app/">Live version</a>  
+</div>  
+  
+<p align="center">Leave a 🌟 if you like my project 👍</p>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+---
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<details open="open">  
+  <summary>Table of contents</summary>
 
-## Learn More
+1.  [Roadmap](#roadmap)
+2.  [Description](#description)
+3.  [Technologies](#technologies)
+4.  [Acknowledgements](#acknowledgements)
+5.  [Other](#other)
 
-To learn more about Next.js, take a look at the following resources:
+</details>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<h2 id="roadmap">Roadmap</h2>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+✅A page for every pokémon / move / ability / type / item  
+✅Filter pokémon by name / form / generation / type  
+✅Filter moves / abilities / machines by name  
+✅Change certain data according to the game selected  
+✅Dark mode  
+✅404 page  
+✅Autocomplete  
+✅Responsive  
+✅Service Worker
 
-## Deploy on Vercel
+🛠Types relations for each pokémon  
+🛠Location page
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🔜Authentication with profile page and "create your team" functionality  
+🔜Animation on scroll
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<h2 id="description">Description</h2>
+
+<h4>Main goal</h4>
+
+My main goal for this site was to get better at React JS and to learn how to use an API and to use styled-components. I chose to use PokéAPI because there are a lot of tutorials to start from, the documentation is very clear and easy to use and there is a ton of information so I could make a bigger site with multiple pages.
+
+<h4>Contents</h4>
+
+- All the 898 pokémon + regional variants, mega and gmax
+- Moves : basic data, effect, pokémon that can learn it, ...
+- Abilities : effect, pokémon that have this ability (normal or hidden), ...
+- Types : effectiveness against other types, pokémon with this type, ...
+- Items : effect, flinch power, ...
+- Machines : list of TM and HM for every game
+- Locations : coming soon
+
+<h2 id="technologies">Technologies</h2>
+
+- <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
+- <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
+- <img src="https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7" />
+- <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white" />
+
+<h2 id="acknowledgements">Acknowledgements</h2>
+
+A huge thanks to everyone that helped me by answering to my questions on Stack Overflow and Reddit.  
+A big thanks also to the PokeAPI team for creating such a huge, detailed and very well organized api.
+
+<h4>Data</h4>
+
+<a href="https://pokeapi.co/docs/v2" target="_blank">PokéAPi</a>
+
+<h4>Dependencies</h4>
+
+<a href="https://www.npmjs.com/package/react-infinite-scroll-component>" target="_blank">React Infinite Scroll Component</a>  
+<a href="https://www.npmjs.com/package/react-query" target="_blank">React Query</a>
+
+<h2 id="other">Other</h2>
+
+![Dependabot](https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot&logoColor=white)
+![GitHub](https://img.shields.io/github/license/thibaudbrault/pokeref)

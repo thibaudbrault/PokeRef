@@ -9,11 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "next": "12.3.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
+    "react-query": "^3.39.2",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "^2.0.7",
     "eslint": "8.24.0",
     "eslint-config-next": "12.3.1"
   }

@@ -1,0 +1,32 @@
+{
+	"lang": "en",
+	"name": "PokéRef",
+	"app_name": "",
+	"start_url": "/public/index.html",
+	"display": "standalone",
+	"orientation": "portrait",
+	"theme_color": "#161616",
+	"background_color": "#c4c4c4",
+	"icons": [
+		{
+			"src": "./favicons/favicon.ico",
+			"sizes": "32x32 16x16",
+			"type": "image/x-icon"
+		},
+		{
+			"src": "./favicons/android-chrome-192x192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "./favicons/android-chrome-512x512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		},
+		{
+			"src": "./favicons/apple-touch-icon.png",
+			"type": "image/png",
+			"sizes": "180x180"
+		}
+	]
+}
