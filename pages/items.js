@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-import { MainBig } from '../../components/BaseStyles/Sizing';
-import { LeftTitle } from '../../components/BaseStyles/Headings';
-import { Input, ModifiedSearch } from '../../components/BaseStyles/Inputs';
-import { Table, THead, TLink, TRow } from '../../components/BaseStyles/Table';
-import { TCategoryItems, TEffectItems, TNameItems } from './StyledItems';
-import { useItems } from '../../helpers/DataFetch';
-import Loader from '../../components/Loader/Loader';
+import { MainBig } from '/components/BaseStyles/Sizing';
+import { LeftTitle } from '/components/BaseStyles/Headings';
+import { Input, ModifiedSearch } from '/components/BaseStyles/Inputs';
+import { Table, THead, TLink, TRow } from '/components/BaseStyles/Table';
+import { TCategoryItems, TEffectItems, TNameItems } from '/components/Items/StyledItems';
+import { useItems } from '/helpers/DataFetch';
+import Loader from '/components/Loader/Loader';
+import Head from 'next/head';
+import Image from 'next/image';
 
 function Items() {
+
 	const [search, setSearch] = useState('');
 	const [filteredItems, setFilteredItems] = useState([]);
 
@@ -41,10 +44,6 @@ function Items() {
 		);
 	}
 
-	useEffect(() => {
-		document.title = `Items | PokéRef`;
-	}, []);
-
 	if (error) {
 		return <p>{error}</p>;
 	}
@@ -54,58 +53,70 @@ function Items() {
 	}
 
 	return (
-		<MainBig>
-			<LeftTitle>Items</LeftTitle>
-			<ModifiedSearch>
-				<Input>
-					<label htmlFor='searchBar'>Search</label>
-					<input
-						type='text'
-						placeholder='Move Name'
-						name='searchBar'
-						id='searchBar'
-						onChange={(e) => {
-							setSearch(e.target.value);
-						}}
-					/>
-				</Input>
-			</ModifiedSearch>
+		<>
+			<Head>
+				<title>Items | Pokeref</title>
+				<meta name="description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
+				<meta property="og:title" content="Items | Pokeref" />
+				<meta property="og:description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
+				<meta property="og:url" content="https://pokeref.app/items" />
+				<meta property="og:type" content="website" />
+			</Head>
+			<MainBig>
+				<LeftTitle>Items</LeftTitle>
+				<ModifiedSearch>
+					<Input>
+						<label htmlFor='searchBar'>Search</label>
+						<input
+							type='text'
+							placeholder='Move Name'
+							name='searchBar'
+							id='searchBar'
+							onChange={(e) => {
+								setSearch(e.target.value);
+							}}
+						/>
+					</Input>
+				</ModifiedSearch>
 
-			<Table>
-				<THead>
-					<tr>
-						<th>Name</th>
-						<th>Category</th>
-						<th>Effect</th>
-					</tr>
-				</THead>
-				<tbody>
-					{filteredItems?.map(
-						(i) =>
-							itemsToHide(i) && (
-								<TRow key={i.name}>
-									<TNameItems>
-										<div>
-											<img src={i.sprites.default} alt='' />
-											<TLink to={`/items/${i.name}`} key={i.name}>
-												<span>{i.name.replace(/-/g, ' ')}</span>
-											</TLink>
-										</div>
-									</TNameItems>
-									<TCategoryItems>
-										{i.category.name.replace(/-/g, ' ')}
-									</TCategoryItems>
-									<TEffectItems>
-										{i.effect_entries.map((ie) => (
-											<span>{ie.short_effect}</span>
-										))}
-									</TEffectItems>
-								</TRow>
-							)
-					)}
-				</tbody>
-			</Table>
-		</MainBig>
+				<Table>
+					<THead>
+						<tr>
+							<th>Name</th>
+							<th>Category</th>
+							<th>Effect</th>
+						</tr>
+					</THead>
+					<tbody>
+						{filteredItems?.map(
+							(i) =>
+								itemsToHide(i) && (
+									<TRow key={i.name}>
+										<TNameItems>
+											<div>
+												{i.sprites.default !== null && 
+													<Image src={i.sprites.default} alt='' width={30} height={30} />
+												}
+												<TLink to={`/items/${i.name}`} key={i.name}>
+													<span>{i.name.replace(/-/g, ' ')}</span>
+												</TLink>
+											</div>
+										</TNameItems>
+										<TCategoryItems>
+											{i.category.name.replace(/-/g, ' ')}
+										</TCategoryItems>
+										<TEffectItems>
+											{i.effect_entries.map((ie) => (
+												<span key={ie.short_effect}>{ie.short_effect}</span>
+											))}
+										</TEffectItems>
+									</TRow>
+								)
+						)}
+					</tbody>
+				</Table>
+			</MainBig>
+		</>
 	);
 }
 

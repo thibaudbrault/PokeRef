@@ -1,21 +1,16 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
-import { MainSmall } from '../../components/BaseStyles/Sizing';
-import { ModifiedType, TypesList } from './StyledTypes';
-import { useTypes } from '../../helpers/DataFetch';
-import Loader from '../../components/Loader/Loader';
+import { MainSmall } from '/components/BaseStyles/Sizing';
+import { ModifiedType, TypesList } from '/components/Types/StyledTypes';
+import { useTypes } from '/helpers/DataFetch';
+import Loader from '/components/Loader/Loader';
+import Link from 'next/link';
+import Image from 'next/image';
+import Head from 'next/head';
 
 function Types() {
+
 	const { isLoading, error, data: types } = useTypes();
-
-	// const sortedTypes = useMemo(() => {
-	// 	return [...types]?.sort((a, b) => a.name.localeCompare(b.name));
-	// }, [types]);
-
-	useEffect(() => {
-		document.title = `Types | PokéRef`;
-	}, []);
 
 	if (error) {
 		return <p>{error}</p>;
@@ -26,20 +21,32 @@ function Types() {
 	}
 
 	return (
-		<MainSmall>
-			<TypesList>
-				{types?.map((t) => (
-					<li key={t.name}>
-						<ModifiedType id={t.name}>
-							<Link to={`/types/${t.name}`} key={t.name}>
-								<img alt={t.name} />
-								<h2>{t.name}</h2>
-							</Link>
-						</ModifiedType>
-					</li>
-				))}
-			</TypesList>
-		</MainSmall>
+		<>
+			<Head>
+				<title>Types | Pokeref</title>
+				<meta name="description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
+				<meta property="og:title" content="Types | Pokeref" />
+				<meta property="og:description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
+				<meta property="og:url" content="https://pokeref.app/types" />
+				<meta property="og:type" content="website" />
+			</Head>
+			<MainSmall>
+				<TypesList>
+					{types?.map((t) => (
+						<li key={t.name}>
+							<ModifiedType id={t.name}>
+								<Link href={{ pathname: '/type/[name]', query: { name: t.name }}} key={t.name} passHref>
+									<a>
+										<Image alt={t.name} />
+										<h2>{t.name}</h2>
+									</a>
+								</Link>
+							</ModifiedType>
+						</li>
+					))}
+				</TypesList>
+			</MainSmall>
+		</>
 	);
 }
 

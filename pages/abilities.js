@@ -14,6 +14,7 @@ import {
 import { ModifiedMainBig } from '/components/BaseStyles/Sizing';
 import { useAbilities } from '/helpers/DataFetch';
 import Loader from '/components/Loader/Loader';
+import Head from 'next/head';
 
 function Abilities() {
 	const [search, setSearch] = useState('');
@@ -32,10 +33,6 @@ function Abilities() {
 		);
 	}, [search, abilities]);
 
-	useEffect(() => {
-		document.title = `Abilities | PokéRef`;
-	}, []);
-
 	if (error) {
 		return <p>{error}</p>;
 	}
@@ -45,54 +42,64 @@ function Abilities() {
 	}
 
 	return (
-		<ModifiedMainBig>
-			<LeftTitle>Abilities</LeftTitle>
-			<ModifiedSearch>
-				<Input>
-					<label htmlFor='searchBar'>Search</label>
-					<input
-						type='text'
-						placeholder='Ability Name'
-						name='searchBar'
-						id='searchBar'
-						onChange={(e) => {
-							setSearch(e.target.value);
-						}}
-					/>
-				</Input>
-			</ModifiedSearch>
-			<TableContainer>
-				<ModifiedTable>
-					<THead>
-						<tr className='abilities_table_head_row'>
-							<th className='abilities_table_head_row_element'>Name</th>
-							<th className='abilities_table_head_row_element'>Effect</th>
-						</tr>
-					</THead>
-					<tbody>
-						{filteredAbilities
-							?.sort((a, b) => a.name.localeCompare(b.name))
-							.map((a) => (
-								<TRow key={a.name}>
-									<TName>
-										<TLink href={{ pathname: '/ability/[name]', query: { name: a.name }}}>
-											{a.name.replace(/-/g, ' ')}
-										</TLink>
-									</TName>
-									<TEffect>
-										{a.flavor_text_entries.map(
-											(af) =>
-												af.language.name === 'en' && (
-													<span>{af.flavor_text}</span>
-												)
-										)}
-									</TEffect>
-								</TRow>
-							))}
-					</tbody>
-				</ModifiedTable>
-			</TableContainer>
-		</ModifiedMainBig>
+		<>
+			<Head>
+				<title>Abilities | Pokeref</title>
+				<meta name="description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
+				<meta property="og:title" content="Abilities | Pokeref" />
+				<meta property="og:description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
+				<meta property="og:url" content="https://pokeref.app/abilities" />
+				<meta property="og:type" content="website" />
+			</Head>
+			<ModifiedMainBig>
+				<LeftTitle>Abilities</LeftTitle>
+				<ModifiedSearch>
+					<Input>
+						<label htmlFor='searchBar'>Search</label>
+						<input
+							type='text'
+							placeholder='Ability Name'
+							name='searchBar'
+							id='searchBar'
+							onChange={(e) => {
+								setSearch(e.target.value);
+							}}
+						/>
+					</Input>
+				</ModifiedSearch>
+				<TableContainer>
+					<ModifiedTable>
+						<THead>
+							<tr className='abilities_table_head_row'>
+								<th className='abilities_table_head_row_element'>Name</th>
+								<th className='abilities_table_head_row_element'>Effect</th>
+							</tr>
+						</THead>
+						<tbody>
+							{filteredAbilities
+								?.sort((a, b) => a.name.localeCompare(b.name))
+								.map((a) => (
+									<TRow key={a.name}>
+										<TName>
+											<TLink href={{ pathname: '/ability/[name]', query: { name: a.name }}}>
+												{a.name.replace(/-/g, ' ')}
+											</TLink>
+										</TName>
+										<TEffect>
+											{a.flavor_text_entries.map(
+												(af) =>
+													af.language.name === 'en' && (
+														<span>{af.flavor_text}</span>
+													)
+											)}
+										</TEffect>
+									</TRow>
+								))}
+						</tbody>
+					</ModifiedTable>
+				</TableContainer>
+			</ModifiedMainBig>
+		</>
 	);
 }
 

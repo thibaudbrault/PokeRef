@@ -40,10 +40,6 @@ function Pokemon() {
     `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
   );
 
-  useEffect(() => {
-    document.title = `Pokémon | PokéRef`;
-  }, []);
-
   if (error) {
     return <p>{error}</p>;
   }
