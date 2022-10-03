@@ -7,7 +7,10 @@ import { LeftTitle } from '/components/BaseStyles/Headings';
 import { THead, TLink, TName, TRow } from '/components/BaseStyles/Table';
 import { MainBig } from '/components/BaseStyles/Sizing';
 import { useMachines } from '/helpers/DataFetch';
-import { MachinesSearch, MachinesTable } from '/components/Machines/StyledMachines';
+import {
+	MachinesSearch,
+	MachinesTable,
+} from '/components/Machines/StyledMachines';
 import Loader from '/components/Loader/Loader';
 import Head from 'next/head';
 
@@ -44,11 +47,17 @@ function Machines() {
 		<>
 			<Head>
 				<title>Machines | Pokeref</title>
-				<meta name="description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
-				<meta property="og:title" content="Machines | Pokeref" />
-				<meta property="og:description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
-				<meta property="og:url" content="https://pokeref.app/machines" />
-				<meta property="og:type" content="website" />
+				<meta
+					name='description'
+					content='Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game'
+				/>
+				<meta property='og:title' content='Machines | Pokeref' />
+				<meta
+					property='og:description'
+					content='Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game'
+				/>
+				<meta property='og:url' content='https://pokeref.app/machines' />
+				<meta property='og:type' content='website' />
 			</Head>
 			<MainBig>
 				<LeftTitle>Machines</LeftTitle>
@@ -72,7 +81,9 @@ function Machines() {
 						<li>
 							<button>Gen I</button>
 							<div>
-								<button onClick={() => setVersion('red-blue')}>Red / Blue</button>
+								<button onClick={() => setVersion('red-blue')}>
+									Red / Blue
+								</button>
 								<button onClick={() => setVersion('yellow')}>Yellow</button>
 							</div>
 						</li>
@@ -132,7 +143,9 @@ function Machines() {
 						<li>
 							<button>Gen VII</button>
 							<div>
-								<button onClick={() => setVersion('sun-moon')}>Sun / Moon</button>
+								<button onClick={() => setVersion('sun-moon')}>
+									Sun / Moon
+								</button>
 								<button onClick={() => setVersion('ultra-sun-ultra-moon')}>
 									Ultra Sun / Ultra Moon
 								</button>
@@ -168,7 +181,13 @@ function Machines() {
 									<TRow>
 										<TName>{ma?.item?.name.toUpperCase()}</TName>
 										<td>
-											<TLink href={{ pathname: '/move/[name]', query: { name: ma.move.name }}} key={ma?.move?.name}>
+											<TLink
+												href={{
+													pathname: '/move/[name]',
+													query: { name: ma.move.name },
+												}}
+												key={ma?.move?.name}
+											>
 												{ma?.move?.name.replace(/-/g, ' ')}
 											</TLink>
 										</td>

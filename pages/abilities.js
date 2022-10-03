@@ -45,11 +45,17 @@ function Abilities() {
 		<>
 			<Head>
 				<title>Abilities | Pokeref</title>
-				<meta name="description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
-				<meta property="og:title" content="Abilities | Pokeref" />
-				<meta property="og:description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
-				<meta property="og:url" content="https://pokeref.app/abilities" />
-				<meta property="og:type" content="website" />
+				<meta
+					name='description'
+					content='Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game'
+				/>
+				<meta property='og:title' content='Abilities | Pokeref' />
+				<meta
+					property='og:description'
+					content='Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game'
+				/>
+				<meta property='og:url' content='https://pokeref.app/abilities' />
+				<meta property='og:type' content='website' />
 			</Head>
 			<ModifiedMainBig>
 				<LeftTitle>Abilities</LeftTitle>
@@ -81,7 +87,12 @@ function Abilities() {
 								.map((a) => (
 									<TRow key={a.name}>
 										<TName>
-											<TLink href={{ pathname: '/ability/[name]', query: { name: a.name }}}>
+											<TLink
+												href={{
+													pathname: '/ability/[name]',
+													query: { name: a.name },
+												}}
+											>
 												{a.name.replace(/-/g, ' ')}
 											</TLink>
 										</TName>

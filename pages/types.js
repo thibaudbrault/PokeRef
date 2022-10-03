@@ -9,7 +9,6 @@ import Image from 'next/image';
 import Head from 'next/head';
 
 function Types() {
-
 	const { isLoading, error, data: types } = useTypes();
 
 	if (error) {
@@ -24,18 +23,28 @@ function Types() {
 		<>
 			<Head>
 				<title>Types | Pokeref</title>
-				<meta name="description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
-				<meta property="og:title" content="Types | Pokeref" />
-				<meta property="og:description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
-				<meta property="og:url" content="https://pokeref.app/types" />
-				<meta property="og:type" content="website" />
+				<meta
+					name='description'
+					content='Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game'
+				/>
+				<meta property='og:title' content='Types | Pokeref' />
+				<meta
+					property='og:description'
+					content='Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game'
+				/>
+				<meta property='og:url' content='https://pokeref.app/types' />
+				<meta property='og:type' content='website' />
 			</Head>
 			<MainSmall>
 				<TypesList>
 					{types?.map((t) => (
 						<li key={t.name}>
 							<ModifiedType id={t.name}>
-								<Link href={{ pathname: '/type/[name]', query: { name: t.name }}} key={t.name} passHref>
+								<Link
+									href={{ pathname: '/type/[name]', query: { name: t.name } }}
+									key={t.name}
+									passHref
+								>
 									<a>
 										<Image alt={t.name} />
 										<h2>{t.name}</h2>

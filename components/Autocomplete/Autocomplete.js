@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { usePokedex } from '../../helpers/DataFetch';
+import { usePokedex } from '/helpers/DataFetch';
 import {
 	AutocompleteContainer,
 	AutocompleteId,
 	AutocompleteInput,
 	AutocompleteLink,
 } from './StyledAutocomplete';
+import Image from 'next/image';
 
 function Autocomplete() {
 	const { data: pokedex } = usePokedex(
@@ -38,14 +39,20 @@ function Autocomplete() {
 				<ul>
 					{pokedexMatch &&
 						pokedexMatch.map((pm) => (
-							<li>
-								<img
+							<li key={pm.name}>
+								<Image
 									src={pm?.sprites?.front_default}
 									alt=''
 									width={39}
 									height={39}
 								/>
-								<AutocompleteLink to={`/pokemon/${pm.name}`} className='bold'>
+								<AutocompleteLink
+									href={{
+										pathname: '/pokemon/[name]',
+										query: { name: pm.name },
+									}}
+									className='bold'
+								>
 									{pm?.name}
 								</AutocompleteLink>
 								<AutocompleteId>

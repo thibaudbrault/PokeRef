@@ -25,7 +25,10 @@ function Forms({ pokemon, species }) {
 							{pokemon.id < 10000
 								? species?.varieties?.map((sv) => (
 										<Link
-											href={{ pathname: '/pokemon/[name]', query: { name: sv.pokemon.name }}}
+											href={{
+												pathname: '/pokemon/[name]',
+												query: { name: sv.pokemon.name },
+											}}
 											key={sv?.pokemon?.name}
 										>
 											<span>{sv?.pokemon?.name?.replace(/-/g, ' ')}</span>

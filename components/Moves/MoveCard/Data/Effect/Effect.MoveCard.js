@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import { H3, H4, Span } from '../../../../../components/BaseStyles/Headings';
 import {

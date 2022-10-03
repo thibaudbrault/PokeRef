@@ -1,10 +1,6 @@
 import React from 'react';
 import { MainBig } from '/components/BaseStyles/Sizing';
-import {
-	CardTitle,
-	Span,
-	Subtitle,
-} from '/components/BaseStyles/Headings';
+import { CardTitle, Span, Subtitle } from '/components/BaseStyles/Headings';
 import { BackButton } from '/components/BaseStyles/Inputs';
 import {
 	ItemCardDataCost,
@@ -44,12 +40,17 @@ function ItemCard() {
 	return (
 		<>
 			<Head>
-				<title>{name.charAt(0).toUpperCase() + name.slice(1)} | Items | PokéRef</title>
-				<meta name="description" content={`Find every details about ${name}`} />
-				<meta property="og:title" content={`${name} | Items | PokéRef`} />
-				<meta property="og:description" content={`Find every details about ${name}`} />
-				<meta property="og:url" content={`https://pokeref.app/item/${name}`} />
-				<meta property="og:type" content="website" />
+				<title>
+					{name.charAt(0).toUpperCase() + name.slice(1)} | Items | PokéRef
+				</title>
+				<meta name='description' content={`Find every details about ${name}`} />
+				<meta property='og:title' content={`${name} | Items | PokéRef`} />
+				<meta
+					property='og:description'
+					content={`Find every details about ${name}`}
+				/>
+				<meta property='og:url' content={`https://pokeref.app/item/${name}`} />
+				<meta property='og:type' content='website' />
 			</Head>
 			<MainBig>
 				<CardTitle>{item?.name?.replace(/-/g, ' ')}</CardTitle>
@@ -64,14 +65,19 @@ function ItemCard() {
 							)}
 						</ItemCardDataEffect>
 						{item?.cost !== 0 && (
-							<ItemCardDataCost>Cost : {item?.cost} Pokédollars</ItemCardDataCost>
+							<ItemCardDataCost>
+								Cost : {item?.cost} Pokédollars
+							</ItemCardDataCost>
 						)}
 						{item?.held_by_pokemon?.length !== 0 && (
 							<ItemCardDataHeld>
 								Held by :
 								{item?.held_by_pokemon?.map((ih) => (
 									<Link
-										href={{ pathname: '/pokemon/[name]', query: { name: ih.pokemon.name }}}
+										href={{
+											pathname: '/pokemon/[name]',
+											query: { name: ih.pokemon.name },
+										}}
 										key={ih?.pokemon?.name}
 									>
 										{ih?.pokemon?.name.replace(/-/g, ' ')}
@@ -80,8 +86,9 @@ function ItemCard() {
 							</ItemCardDataHeld>
 						)}
 						<ItemCardDataFling>
-							When the pokémon holds <Span>{item?.name?.replace(/-/g, ' ')}</Span>{' '}
-							the move <i>Fling</i> has {item?.fling_power} power.
+							When the pokémon holds{' '}
+							<Span>{item?.name?.replace(/-/g, ' ')}</Span> the move{' '}
+							<i>Fling</i> has {item?.fling_power} power.
 							{item?.fling_effect?.name !== undefined &&
 								item?.fling_effect?.name !== 'berry-effect' &&
 								item?.fling_effect?.name !== 'herb-effect' &&

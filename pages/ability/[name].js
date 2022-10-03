@@ -57,12 +57,20 @@ const AbilityCard = () => {
 	return (
 		<>
 			<Head>
-				<title>{name.charAt(0).toUpperCase() + name.slice(1)} | Ability | PokéRef</title>
-				<meta name="description" content={`Find every details about ${name}`} />
-				<meta property="og:title" content={`${name} | Ability | PokéRef`} />
-				<meta property="og:description" content={`Find every details about ${name}`} />
-				<meta property="og:url" content={`https://pokeref.app/ability/${name}`} />
-				<meta property="og:type" content="website" />
+				<title>
+					{name.charAt(0).toUpperCase() + name.slice(1)} | Ability | PokéRef
+				</title>
+				<meta name='description' content={`Find every details about ${name}`} />
+				<meta property='og:title' content={`${name} | Ability | PokéRef`} />
+				<meta
+					property='og:description'
+					content={`Find every details about ${name}`}
+				/>
+				<meta
+					property='og:url'
+					content={`https://pokeref.app/ability/${name}`}
+				/>
+				<meta property='og:type' content='website' />
 			</Head>
 			<MainBig>
 				<CardTitle>{ability?.name?.replace(/-/g, ' ')}</CardTitle>
@@ -81,7 +89,11 @@ const AbilityCard = () => {
 							ae?.effect?.includes('\n\nOverworld:') && (
 								<AbilityCardEffect>
 									<H4>Overworld</H4>
-									<p>{ae.effect.slice(ae.effect.indexOf(overworld)).replace('Overworld:', '')}</p>
+									<p>
+										{ae.effect
+											.slice(ae.effect.indexOf(overworld))
+											.replace('Overworld:', '')}
+									</p>
 								</AbilityCardEffect>
 							)
 					)}
@@ -143,7 +155,10 @@ const AbilityCard = () => {
 										</td>
 										<TName>
 											<TLink
-												to={{ pathname: '/pokemon/[name]', query: { name: ap.pokemon.name }}}
+												to={{
+													pathname: '/pokemon/[name]',
+													query: { name: ap.pokemon.name },
+												}}
 												key={ap.pokemon.name}
 											>
 												{ap.pokemon.name.replace(/-/g, ' ')}
@@ -154,14 +169,20 @@ const AbilityCard = () => {
 												(p) =>
 													p.name === ap.pokemon.name && (
 														<TLink
-															href={{ pathname: '/ability/[name]', query: { name: p?.abilities[0]?.ability?.name }}}
+															href={{
+																pathname: '/ability/[name]',
+																query: { name: p?.abilities[0]?.ability?.name },
+															}}
 															className={
 																p?.abilities[0]?.ability?.name === ability?.name
 																	? 'bold'
 																	: ''
 															}
 														>
-															{p?.abilities[0]?.ability?.name?.replace(/-/g, ' ')}
+															{p?.abilities[0]?.ability?.name?.replace(
+																/-/g,
+																' '
+															)}
 														</TLink>
 													)
 											)}
@@ -171,7 +192,10 @@ const AbilityCard = () => {
 												(p) =>
 													p.name === ap.pokemon.name && (
 														<TLink
-															href={{ pathname: '/ability/[name]', query: { name: p?.abilities[1]?.ability?.name }}}
+															href={{
+																pathname: '/ability/[name]',
+																query: { name: p?.abilities[1]?.ability?.name },
+															}}
 															className={
 																p?.abilities[1]?.ability?.name === ability?.name
 																	? 'bold'
@@ -182,7 +206,7 @@ const AbilityCard = () => {
 																? p?.abilities[1]?.ability?.name?.replace(
 																		/-/g,
 																		' '
-																)
+																  )
 																: '-'}
 														</TLink>
 													)
@@ -193,7 +217,10 @@ const AbilityCard = () => {
 												(p) =>
 													p.name === ap.pokemon.name && (
 														<TLink
-															href={{ pathname: '/ability/[name]', query: { name: p?.abilities[2]?.ability?.name }}}
+															href={{
+																pathname: '/ability/[name]',
+																query: { name: p?.abilities[2]?.ability?.name },
+															}}
 															className={
 																p?.abilities[2]?.ability?.name === ability?.name
 																	? 'bold'
@@ -204,7 +231,7 @@ const AbilityCard = () => {
 																? p?.abilities[2]?.ability?.name?.replace(
 																		/-/g,
 																		' '
-																)
+																  )
 																: '-'}
 														</TLink>
 													)

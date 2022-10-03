@@ -39,10 +39,20 @@ function Evolution({ evolution, pokemon }) {
 					<div>
 						{pokedex.map((p) =>
 							p?.name === evolution?.chain?.species?.name ? (
-								<Image src={p?.sprites?.front_default} alt='' width={96} height={96} />
+								<Image
+									src={p?.sprites?.front_default}
+									alt=''
+									width={96}
+									height={96}
+								/>
 							) : null
 						)}
-						<Link href={{ pathname: '/pokemon/[name]', query: { name: evolution?.chain?.species?.name }}}>
+						<Link
+							href={{
+								pathname: '/pokemon/[name]',
+								query: { name: evolution?.chain?.species?.name },
+							}}
+						>
 							{evolution?.chain?.species?.name}
 						</Link>
 					</div>
@@ -238,10 +248,20 @@ function Evolution({ evolution, pokemon }) {
 									<div>
 										{pokedex.map((p) =>
 											p?.name === ee?.species?.name ? (
-												<Image src={p?.sprites?.front_default} alt='' width={96} height={96} />
+												<Image
+													src={p?.sprites?.front_default}
+													alt=''
+													width={96}
+													height={96}
+												/>
 											) : null
 										)}
-										<Link href={{ pathname: '/pokemon/[name]', query: { name: ee.species.name }}}>
+										<Link
+											href={{
+												pathname: '/pokemon/[name]',
+												query: { name: ee.species.name },
+											}}
+										>
 											{ee?.species?.name?.replace(/-/g, ' ')}
 										</Link>
 									</div>
@@ -476,10 +496,20 @@ function Evolution({ evolution, pokemon }) {
 												<div>
 													{pokedex.map((p) =>
 														p?.name === eee?.species?.name ? (
-															<Image src={p?.sprites?.front_default} alt='' width={96} height={96} />
+															<Image
+																src={p?.sprites?.front_default}
+																alt=''
+																width={96}
+																height={96}
+															/>
 														) : null
 													)}
-													<Link href={{ pathname: '/pokemon/[name]', query: { name: eee.species.name }}}>
+													<Link
+														href={{
+															pathname: '/pokemon/[name]',
+															query: { name: eee.species.name },
+														}}
+													>
 														{eee?.species?.name?.replace(/-/g, ' ')}
 													</Link>
 												</div>

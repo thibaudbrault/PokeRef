@@ -5,12 +5,7 @@ import { SmallLoadingImg } from './StyledLoader';
 function SmallLoader() {
 	return (
 		<SmallLoadingImg>
-			<Image
-				src={'/pokeball.svg'}
-				alt=''
-				width={48}
-				height={48}
-			/>
+			<Image src={'/pokeball.svg'} alt='' width={48} height={48} />
 		</SmallLoadingImg>
 	);
 }

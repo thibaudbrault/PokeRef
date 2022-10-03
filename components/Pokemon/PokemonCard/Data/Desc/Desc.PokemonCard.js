@@ -28,7 +28,10 @@ function Desc({ pokemon, species, game }) {
 			<PokemonDataTypes>
 				{pokemon?.types?.map((pt) => (
 					<Type id={pt.type.name} key={pt.type.name}>
-						<Link href={{ pathname: '/type/[name]', query: { name: pt.type.name } }} passHref>
+						<Link
+							href={{ pathname: '/type/[name]', query: { name: pt.type.name } }}
+							passHref
+						>
 							<a>
 								<Image alt={pt.type.name} width={25} height={25} />
 								<span>{pt.type.name}</span>

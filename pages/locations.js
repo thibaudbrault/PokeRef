@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 import { MainBig } from '/components/BaseStyles/Sizing';
-import { LocationList, LocationNav, LocationSection } from '/components/Locations/StyledLocations';
+import {
+	LocationList,
+	LocationNav,
+	LocationSection,
+} from '/components/Locations/StyledLocations';
 import Loader from '/components/Loader/Loader';
 import { useLocations } from '/helpers/DataFetch';
 import { regions } from '/helpers/DataMap';
@@ -33,11 +37,17 @@ function Locations() {
 		<>
 			<Head>
 				<title>Locations | Pokeref</title>
-				<meta name="description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
-				<meta property="og:title" content="Locations | Pokeref" />
-				<meta property="og:description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
-				<meta property="og:url" content="https://pokeref.app/locations" />
-				<meta property="og:type" content="website" />
+				<meta
+					name='description'
+					content='Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game'
+				/>
+				<meta property='og:title' content='Locations | Pokeref' />
+				<meta
+					property='og:description'
+					content='Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game'
+				/>
+				<meta property='og:url' content='https://pokeref.app/locations' />
+				<meta property='og:type' content='website' />
 			</Head>
 			<MainBig>
 				<LocationNav>
@@ -62,7 +72,13 @@ function Locations() {
 										?.sort((a, b) => a.name.localeCompare(b.name))
 										?.map((ll) => (
 											<li key={l.locations}>
-												<Link href={{ pathname: '/locations/[name]', query: { name: ll.name }}} key={ll.name}>
+												<Link
+													href={{
+														pathname: '/locations/[name]',
+														query: { name: ll.name },
+													}}
+													key={ll.name}
+												>
 													{ll?.name
 														?.replace(/-/g, ' ')
 														?.replace(

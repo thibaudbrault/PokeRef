@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import {
-	CardTitle,
-	H3,
-	Subtitle,
-} from '/components/BaseStyles/Headings';
+import { CardTitle, H3, Subtitle } from '/components/BaseStyles/Headings';
 import { MainBig } from '/components/BaseStyles/Sizing';
 import Data from '/components/Moves/MoveCard/Data/Data.MoveCard';
 import {
@@ -62,12 +58,17 @@ const MoveCard = () => {
 	return (
 		<>
 			<Head>
-				<title>{name.charAt(0).toUpperCase() + name.slice(1)} | Moves | PokéRef</title>
-				<meta name="description" content={`Find every details about ${name}`} />
-				<meta property="og:title" content={`${name} | Moves | PokéRef`} />
-				<meta property="og:description" content={`Find every details about ${name}`} />
-				<meta property="og:url" content={`https://pokeref.app/move/${name}`} />
-				<meta property="og:type" content="website" />
+				<title>
+					{name.charAt(0).toUpperCase() + name.slice(1)} | Moves | PokéRef
+				</title>
+				<meta name='description' content={`Find every details about ${name}`} />
+				<meta property='og:title' content={`${name} | Moves | PokéRef`} />
+				<meta
+					property='og:description'
+					content={`Find every details about ${name}`}
+				/>
+				<meta property='og:url' content={`https://pokeref.app/move/${name}`} />
+				<meta property='og:type' content='website' />
 			</Head>
 			<MainBig>
 				<CardTitle>{move?.name?.replace(/-/g, ' ')}</CardTitle>
@@ -83,8 +84,8 @@ const MoveCard = () => {
 					<H3>Learned by leveling up</H3>
 					<MoveText>
 						Learned when the pokémon reach a ceratin level. Data from Pokémon{' '}
-						<span>{version.replace(/-/g, ' ')}</span>. These information may vary
-						in other games. Check the respective pokédex pages for details.
+						<span>{version.replace(/-/g, ' ')}</span>. These information may
+						vary in other games. Check the respective pokédex pages for details.
 					</MoveText>
 					<MoveList>
 						{pokedex?.map((p) =>
@@ -97,15 +98,30 @@ const MoveCard = () => {
 											pmv?.move_learn_method?.name === 'level-up' &&
 											pmv?.level_learned_at > 1 && (
 												<li>
-													<Image src={p?.sprites?.front_default} alt={p?.name} width={96} height={96} />
-													<MoveLink href={{ pathname: '/pokemon/[name]', query: { name: p.name }}} key={p?.name}>
+													<Image
+														src={p?.sprites?.front_default}
+														alt={p?.name}
+														width={96}
+														height={96}
+													/>
+													<MoveLink
+														href={{
+															pathname: '/pokemon/[name]',
+															query: { name: p.name },
+														}}
+														key={p?.name}
+													>
 														{p?.name.replace(/-/g, ' ')}
 													</MoveLink>
 													<p>Level {pmv?.level_learned_at}</p>
 													<MoveTypes>
 														{p?.types?.map((pt) => (
 															<Type id={pt.type.name} key={pt.type.name}>
-																<Image alt={pt?.type?.name} width={15} height={15} />
+																<Image
+																	alt={pt?.type?.name}
+																	width={15}
+																	height={15}
+																/>
 																<span>{pt?.type?.name}</span>
 															</Type>
 														))}
@@ -122,8 +138,8 @@ const MoveCard = () => {
 					<H3>Learned from a TM / HM</H3>
 					<MoveText>
 						Learned by using a TM or a HM. Data from Pokémon{' '}
-						<span>{version.replace(/-/g, ' ')}</span>. These information may vary
-						in other games. Check the respective pokédex pages for details.
+						<span>{version.replace(/-/g, ' ')}</span>. These information may
+						vary in other games. Check the respective pokédex pages for details.
 					</MoveText>
 					<MoveList>
 						{pokedex?.map((p) =>
@@ -136,14 +152,29 @@ const MoveCard = () => {
 											pmv?.move_learn_method?.name === 'machine' &&
 											pmv?.level_learned_at === 0 && (
 												<li>
-													<Image src={p?.sprites?.front_default} alt={p?.name} width={96} height={96} />
-													<MoveLink href={{ pathname: '/pokemon/[name]', query: { name: p.name }}} key={p?.name}>
+													<Image
+														src={p?.sprites?.front_default}
+														alt={p?.name}
+														width={96}
+														height={96}
+													/>
+													<MoveLink
+														href={{
+															pathname: '/pokemon/[name]',
+															query: { name: p.name },
+														}}
+														key={p?.name}
+													>
 														{p?.name.replace(/-/g, ' ')}
 													</MoveLink>
 													<MoveTypes>
 														{p?.types?.map((pt) => (
 															<Type id={pt.type.name} key={pt.type.name}>
-																<Image alt={pt?.type?.name} width={15} height={15} />
+																<Image
+																	alt={pt?.type?.name}
+																	width={15}
+																	height={15}
+																/>
 																<span>{pt?.type?.name}</span>
 															</Type>
 														))}
@@ -159,9 +190,10 @@ const MoveCard = () => {
 				<MoveLearnSection visibility={toggleState === 2}>
 					<H3>Learned from the move relearner / by breeding</H3>
 					<MoveText>
-						Learned via the move relearner or through breeding. Data from Pokémon{' '}
-						<span>{version.replace(/-/g, ' ')}</span>. These information may vary
-						in other games. Check the respective pokédex pages for details.
+						Learned via the move relearner or through breeding. Data from
+						Pokémon <span>{version.replace(/-/g, ' ')}</span>. These information
+						may vary in other games. Check the respective pokédex pages for
+						details.
 					</MoveText>
 					<MoveList>
 						{pokedex?.map((p) =>
@@ -175,14 +207,29 @@ const MoveCard = () => {
 												(pmv?.move_learn_method?.name === 'level-up' &&
 													pmv?.level_learned_at === 1)) && (
 												<li>
-													<Image src={p?.sprites?.front_default} alt={p?.name} width={96} height={96} />
-													<MoveLink href={{ pathname: '/pokemon/[name]', query: { name: p.name }}} key={p?.name}>
+													<Image
+														src={p?.sprites?.front_default}
+														alt={p?.name}
+														width={96}
+														height={96}
+													/>
+													<MoveLink
+														href={{
+															pathname: '/pokemon/[name]',
+															query: { name: p.name },
+														}}
+														key={p?.name}
+													>
 														{p?.name.replace(/-/g, ' ')}
 													</MoveLink>
 													<MoveTypes>
 														{p?.types?.map((pt) => (
 															<Type id={pt.type.name} key={pt.type.name}>
-																<Image alt={pt?.type?.name} width={15} height={15} />
+																<Image
+																	alt={pt?.type?.name}
+																	width={15}
+																	height={15}
+																/>
 																<span>{pt?.type?.name}</span>
 															</Type>
 														))}
@@ -199,8 +246,8 @@ const MoveCard = () => {
 					<H3>Learned from the move tutor</H3>
 					<MoveText>
 						Learned by going to the move tutor. Data from Pokémon{' '}
-						<span>{version.replace(/-/g, ' ')}</span>. These information may vary
-						in other games. Check the respective pokédex pages for details.
+						<span>{version.replace(/-/g, ' ')}</span>. These information may
+						vary in other games. Check the respective pokédex pages for details.
 					</MoveText>
 					<MoveList>
 						{pokedex?.map((p) =>
@@ -212,14 +259,29 @@ const MoveCard = () => {
 											pmv?.version_group?.name === version &&
 											pmv?.move_learn_method?.name === 'tutor' && (
 												<li>
-													<Image src={p?.sprites?.front_default} alt={p?.name} width={96} height={96} />
-													<MoveLink href={{ pathname: '/pokemon/[name]', query: { name: p.name }}} key={p?.name}>
+													<Image
+														src={p?.sprites?.front_default}
+														alt={p?.name}
+														width={96}
+														height={96}
+													/>
+													<MoveLink
+														href={{
+															pathname: '/pokemon/[name]',
+															query: { name: p.name },
+														}}
+														key={p?.name}
+													>
 														{p?.name.replace(/-/g, ' ')}
 													</MoveLink>
 													<MoveTypes>
 														{p?.types?.map((pt) => (
 															<Type id={pt.type.name} key={pt.type.name}>
-																<Image alt={pt?.type?.name} width={15} height={15} />
+																<Image
+																	alt={pt?.type?.name}
+																	width={15}
+																	height={15}
+																/>
 																<span>{pt?.type?.name}</span>
 															</Type>
 														))}
@@ -251,9 +313,17 @@ const MoveCard = () => {
 											pmv?.move_learn_method?.name === 'level-up' &&
 											pmv?.level_learned_at === 0 && (
 												<li>
-													<Image src={p?.sprites?.front_default} alt={p?.name} width={96} height={96} />
+													<Image
+														src={p?.sprites?.front_default}
+														alt={p?.name}
+														width={96}
+														height={96}
+													/>
 													<MoveLink
-														href={{ pathname: '/pokemon/[name]', query: { name: p.name }}}
+														href={{
+															pathname: '/pokemon/[name]',
+															query: { name: p.name },
+														}}
 														key={p?.name}
 													>
 														{p?.name.replace(/-/g, ' ')}
@@ -261,7 +331,11 @@ const MoveCard = () => {
 													<MoveTypes>
 														{p?.types?.map((pt) => (
 															<Type id={pt.type.name} key={pt.type.name}>
-																<Image alt={pt?.type?.name} width={15} height={15} />
+																<Image
+																	alt={pt?.type?.name}
+																	width={15}
+																	height={15}
+																/>
 																<span>{pt?.type?.name}</span>
 															</Type>
 														))}

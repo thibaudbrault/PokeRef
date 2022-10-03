@@ -1,7 +1,8 @@
 import React from 'react';
-import { Subtitle } from '../../../../components/BaseStyles/Headings';
-import { Type } from '../../../../components/BaseStyles/Themes';
+import { Subtitle } from '/components/BaseStyles/Headings';
+import { Type } from '/components/BaseStyles/Themes';
 import { TypeDamageSection, TypeDamageTable } from '../StyledTypeCard';
+import Image from 'next/image';
 
 function Damage({ type }) {
 	return (
@@ -12,9 +13,9 @@ function Damage({ type }) {
 					<tr>
 						<th>No damage to</th>
 						{type?.damage_relations?.no_damage_to?.map((ndt) => (
-							<td>
+							<td key={ndt.name}>
 								<Type id={ndt.name}>
-									<img alt={ndt.name} title={ndt.name} />
+									<Image alt={ndt.name} title={ndt.name} />
 								</Type>
 							</td>
 						))}
@@ -22,9 +23,9 @@ function Damage({ type }) {
 					<tr>
 						<th>Half damage to</th>
 						{type?.damage_relations?.half_damage_to?.map((hdt) => (
-							<td>
+							<td key={hdt.name}>
 								<Type id={hdt.name}>
-									<img alt={hdt.name} title={hdt.name} />
+									<Image alt={hdt.name} title={hdt.name} />
 								</Type>
 							</td>
 						))}
@@ -32,9 +33,9 @@ function Damage({ type }) {
 					<tr>
 						<th>Double damage to</th>
 						{type?.damage_relations?.double_damage_to?.map((ddt) => (
-							<td>
+							<td key={ddt.name}>
 								<Type id={ddt.name}>
-									<img alt={ddt.name} title={ddt.name} />
+									<Image alt={ddt.name} title={ddt.name} />
 								</Type>
 							</td>
 						))}
@@ -47,9 +48,9 @@ function Damage({ type }) {
 					<tr>
 						<th>No damage from</th>
 						{type?.damage_relations?.no_damage_from?.map((ndf) => (
-							<td>
+							<td key={ndf.name}>
 								<Type id={ndf.name}>
-									<img alt={ndf.name} title={ndf.name} />
+									<Image alt={ndf.name} title={ndf.name} />
 								</Type>
 							</td>
 						))}
@@ -57,9 +58,9 @@ function Damage({ type }) {
 					<tr>
 						<th>Half damage from</th>
 						{type?.damage_relations?.half_damage_from?.map((hdf) => (
-							<td>
+							<td key={hdf.name}>
 								<Type id={hdf.name}>
-									<img alt={hdf.name} title={hdf.name} />
+									<Image alt={hdf.name} title={hdf.name} />
 								</Type>
 							</td>
 						))}
@@ -67,9 +68,9 @@ function Damage({ type }) {
 					<tr>
 						<th>Double damage from</th>
 						{type?.damage_relations?.double_damage_from?.map((ddf) => (
-							<td>
+							<td key={ddf.name}>
 								<Type id={ddf.name}>
-									<img alt={ddf.name} title={ddf.name} />
+									<Image alt={ddf.name} title={ddf.name} />
 								</Type>
 							</td>
 						))}

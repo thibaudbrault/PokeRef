@@ -48,7 +48,12 @@ function Moves({
 					<>
 						<PokemonMovesTd>
 							<Type id={m?.type?.name} style={{ background: 'transparent' }}>
-								<Link href={{ pathname: '/type/[name]', query: { name: m.type.name }}}>
+								<Link
+									href={{
+										pathname: '/type/[name]',
+										query: { name: m.type.name },
+									}}
+								>
 									<Image
 										alt={m?.type?.name}
 										width={32}
@@ -105,7 +110,12 @@ function Moves({
 						{learn === 'egg' && <td>-</td>}
 						{learn === 'tutor' && <td>-</td>}
 						<td>
-							<TLink href={{ pathname: '/move/[name]', query: { name: pm.move.name }}}>
+							<TLink
+								href={{
+									pathname: '/move/[name]',
+									query: { name: pm.move.name },
+								}}
+							>
 								{pm?.move?.name.replace(/-/g, ' ')}
 							</TLink>
 						</td>

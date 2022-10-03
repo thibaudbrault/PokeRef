@@ -109,12 +109,20 @@ function PokemonCard() {
 	return (
 		<>
 			<Head>
-				<title>{name.charAt(0).toUpperCase() + name.slice(1)} | Pokémon | PokéRef</title>
-				<meta name="description" content={`Find every details about ${name}`} />
-				<meta property="og:title" content={`${name} | Pokémon | PokéRef`} />
-				<meta property="og:description" content={`Find every details about ${name}`} />
-				<meta property="og:url" content={`https://pokeref.app/pokemon/${name}`} />
-				<meta property="og:type" content="website" />
+				<title>
+					{name.charAt(0).toUpperCase() + name.slice(1)} | Pokémon | PokéRef
+				</title>
+				<meta name='description' content={`Find every details about ${name}`} />
+				<meta property='og:title' content={`${name} | Pokémon | PokéRef`} />
+				<meta
+					property='og:description'
+					content={`Find every details about ${name}`}
+				/>
+				<meta
+					property='og:url'
+					content={`https://pokeref.app/pokemon/${name}`}
+				/>
+				<meta property='og:type' content='website' />
 			</Head>
 			<MainBig>
 				{pokemon?.name?.includes('mega') ? (

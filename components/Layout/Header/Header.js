@@ -10,7 +10,6 @@ import { BsMoonStars, BsSun } from 'react-icons/bs';
 import Link from 'next/link';
 
 function Header({ themeToggler, theme }) {
-
 	return (
 		<HeaderContainer id='header'>
 			<H1>PokéRef</H1>

@@ -34,7 +34,9 @@ function Breeding({ pokemon, species, evolution }) {
 						<th>Egg groups</th>
 						<td>
 							{pokemon.id < 10000
-								? species?.egg_groups?.map((seg) => <p key={seg.name}>{seg?.name}</p>)
+								? species?.egg_groups?.map((seg) => (
+										<p key={seg.name}>{seg?.name}</p>
+								  ))
 								: '⠀'}
 						</td>
 					</tr>

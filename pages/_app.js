@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Head from "next/head";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ThemeProvider } from "styled-components";
+import Head from 'next/head';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ThemeProvider } from 'styled-components';
 
 import { darkTheme, lightTheme } from '/components/BaseStyles/Themes';
 
@@ -20,8 +20,7 @@ const queryClient = new QueryClient({
 });
 
 function MyApp({ Component, pageProps }) {
-
-  const loadTheme = () => {
+	const loadTheme = () => {
 		const localTheme = globalThis.window?.localStorage.getItem('theme');
 		return localTheme ?? 'dark';
 	};
@@ -37,26 +36,23 @@ function MyApp({ Component, pageProps }) {
 		theme === 'dark' ? setMode('light') : setMode('dark');
 	};
 
-  return (
-    <> 
-      <Head>
-        <meta
-					name='viewport'
-					content='width=device-width,initial-scale=1'
-				/>
-      </Head>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
-          <Header themeToggler={themeToggler} theme={theme} />
-          <Nav />
-					  <Reset />
-            <Component {...pageProps} />
-          <Footer />
-			  </ThemeProvider>
-			  <ReactQueryDevtools />
-		  </QueryClientProvider>
-    </> 
-  )
+	return (
+		<>
+			<Head>
+				<meta name='viewport' content='width=device-width,initial-scale=1' />
+			</Head>
+			<QueryClientProvider client={queryClient}>
+				<ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+					<Header themeToggler={themeToggler} theme={theme} />
+					<Nav />
+					<Reset />
+					<Component {...pageProps} />
+					<Footer />
+				</ThemeProvider>
+				<ReactQueryDevtools />
+			</QueryClientProvider>
+		</>
+	);
 }
 
-export default MyApp
+export default MyApp;

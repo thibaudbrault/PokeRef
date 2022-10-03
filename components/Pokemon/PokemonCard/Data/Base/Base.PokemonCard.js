@@ -42,7 +42,10 @@ function Base({ pokemon, species, game, location }) {
 						{pokemon?.abilities?.map((pa) => (
 							<p key={pa.ability.name}>
 								<TLink
-									href={{ pathname: '/ability/[name]', query: { name: pa.ability.name }}}
+									href={{
+										pathname: '/ability/[name]',
+										query: { name: pa.ability.name },
+									}}
 									key={pa.ability.name}
 								>
 									{pa?.ability?.name?.replace(/-/g, ' ')}

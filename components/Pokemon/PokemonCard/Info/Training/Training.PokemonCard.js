@@ -53,7 +53,13 @@ function Training({ pokemon, species }) {
 						<td>
 							{pokemon?.held_items?.length > 0
 								? pokemon?.held_items?.map((ph) => (
-										<Link href={{ pathname: '/item/[name]', query: { name: ph.item.name }}} key={ph.item.name}>
+										<Link
+											href={{
+												pathname: '/item/[name]',
+												query: { name: ph.item.name },
+											}}
+											key={ph.item.name}
+										>
 											<span>{ph?.item?.name?.replace(/-/g, ' ')}</span>
 										</Link>
 								  ))

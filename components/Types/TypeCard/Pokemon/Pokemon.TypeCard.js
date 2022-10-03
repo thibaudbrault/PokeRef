@@ -1,7 +1,8 @@
+import Image from 'next/image';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { H3, Span } from '../../../../components/BaseStyles/Headings';
-import { Section } from '../../../../components/BaseStyles/Sizing';
+import { H3, Span } from '/components/BaseStyles/Headings';
+import { Section } from '/components/BaseStyles/Sizing';
 import { TypeListSubtitle, TypePokemonList } from '../StyledTypeCard';
 
 function Pokemon({ type, pokedex }) {
@@ -21,7 +22,7 @@ function Pokemon({ type, pokedex }) {
 							p.name === tp.pokemon.name &&
 							p.id < 899 && (
 								<li>
-									<img
+									<Image
 										src={p.sprites.front_default}
 										alt={p.name}
 										loading='lazy'

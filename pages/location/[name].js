@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
 
-import { BackButton } from '../../../components/BaseStyles/Inputs';
-import { MainBig, Section } from '../../../components/BaseStyles/Sizing';
+import { BackButton } from '/components/BaseStyles/Inputs';
+import { MainBig, Section } from '/components/BaseStyles/Sizing';
 import { FaChevronLeft } from 'react-icons/fa';
-import Loader from '../../../components/Loader/Loader';
-import { useArea, useLocation } from '../../../helpers/DataFetch';
-import { CardTitle, Subtitle } from '../../../components/BaseStyles/Headings';
+import Loader from '/components/Loader/Loader';
+import { useArea, useLocation } from '/helpers/DataFetch';
+import { CardTitle, Subtitle } from '/components/BaseStyles/Headings';
 import {
 	LocationNavContainer,
 	LocationNav,
@@ -21,8 +20,8 @@ import {
 } from '../../../components/BaseStyles/Table';
 
 function LocationCard() {
-	const { name } = useParams();
-	const navigate = useNavigate();
+	const router = useRouter();
+	const { name } = router.query;
 
 	const [game, setGame] = useState('red');
 	const [toggleState, setToggleState] = useState(0);
@@ -92,6 +91,7 @@ function LocationCard() {
 						<button
 							className={toggleState === i ? 'button_active' : ''}
 							onClick={() => toggleTable(i)}
+							key={la.name}
 						>
 							<p>
 								{la.name
@@ -123,7 +123,7 @@ function LocationCard() {
 									(av) =>
 										av.version.name === game &&
 										av.encounter_details.map((ave) => (
-											<TRow>
+											<TRow key={a.pokemon.name}>
 												<TName>{a.pokemon.name}</TName>
 												<td>{ave.method.name.replace(/-/g, ' ')}</td>
 												<td>{ave.chance} %</td>
@@ -131,7 +131,9 @@ function LocationCard() {
 												{ave.condition_values.length !== 0 ? (
 													<td>
 														{ave.condition_values.map((avec) => (
-															<p>{avec.name.replace(/-/g, ' ')}</p>
+															<p key={avec.name}>
+																{avec.name.replace(/-/g, ' ')}
+															</p>
 														))}
 													</td>
 												) : (

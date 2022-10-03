@@ -18,7 +18,14 @@ function Desc({ move, version, machines }) {
 					<th>Type</th>
 					<td>
 						<MoveCardDataType id={move?.type?.name}>
-							<Link href={{ pathname: '/type/[name]', query: { name: move.type.name }}} key={move?.type?.name} passHref>
+							<Link
+								href={{
+									pathname: '/type/[name]',
+									query: { name: move.type.name },
+								}}
+								key={move?.type?.name}
+								passHref
+							>
 								<a>
 									<Image alt={move?.type?.name} width={20} height={20} />
 									<span>{move?.type?.name}</span>
@@ -31,7 +38,7 @@ function Desc({ move, version, machines }) {
 					<th>Category</th>
 					<MoveCardDataCategory id={move?.damage_class?.name}>
 						<div>
-							<Image alt={move?.damage_class?.name}  />
+							<Image alt={move?.damage_class?.name} />
 							<span>{move?.damage_class?.name}</span>
 						</div>
 					</MoveCardDataCategory>

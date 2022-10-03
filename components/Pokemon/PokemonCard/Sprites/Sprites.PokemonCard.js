@@ -14,31 +14,61 @@ function Sprites({ pokemon }) {
 				<H3>Sprites</H3>
 				<PokemonSpritesDiv>
 					<div>
-						<Image src={pokemon?.sprites?.front_default} alt={pokemon?.name} width={96} height={96} />
+						<Image
+							src={pokemon?.sprites?.front_default}
+							alt={pokemon?.name}
+							width={96}
+							height={96}
+						/>
 						<p>Front Default</p>
 					</div>
 					<div>
-						<Image src={pokemon?.sprites?.back_default} alt={pokemon?.name} width={96} height={96} />
+						<Image
+							src={pokemon?.sprites?.back_default}
+							alt={pokemon?.name}
+							width={96}
+							height={96}
+						/>
 						<p>Back Default</p>
 					</div>
 					{pokemon?.sprites?.front_female !== null && (
 						<div>
-							<Image src={pokemon?.sprites?.front_female} alt={pokemon?.name} width={96} height={96} />
+							<Image
+								src={pokemon?.sprites?.front_female}
+								alt={pokemon?.name}
+								width={96}
+								height={96}
+							/>
 							<p>Front Female</p>
 						</div>
 					)}
 					{pokemon?.sprites?.back_female !== null && (
 						<div>
-							<Image src={pokemon?.sprites?.back_female} alt={pokemon?.name} width={96} height={96} />
+							<Image
+								src={pokemon?.sprites?.back_female}
+								alt={pokemon?.name}
+								width={96}
+								height={96}
+							/>
 							<p>Back Female</p>
 						</div>
 					)}
 					<div>
-						<Image src={pokemon?.sprites?.front_shiny} alt={pokemon?.name} width={96} height={96} />
+						<Image
+							src={pokemon?.sprites?.front_shiny}
+							alt={pokemon?.name}
+							width={96}
+							height={96}
+						/>
 						<p>Front Shiny</p>
 					</div>
 					<div>
-						<Image src={pokemon?.sprites?.back_shiny} alt={pokemon?.name} width={96} height={96} />
+						<Image
+							src={pokemon?.sprites?.back_shiny}
+							alt={pokemon?.name}
+							width={96}
+							height={96}
+						/>
 						<p>Back Shiny</p>
 					</div>
 					{pokemon?.sprites?.front_shiny_female !== null && (
@@ -46,7 +76,8 @@ function Sprites({ pokemon }) {
 							<Image
 								src={pokemon?.sprites?.front_shiny_female}
 								alt={pokemon?.name}
-								width={96} height={96}
+								width={96}
+								height={96}
 							/>
 							<p>Front Shiny Female</p>
 						</div>
@@ -56,7 +87,8 @@ function Sprites({ pokemon }) {
 							<Image
 								src={pokemon?.sprites?.back_shiny_female}
 								alt={pokemon?.name}
-								width={96} height={96}
+								width={96}
+								height={96}
 							/>
 							<p>Back Shiny Female</p>
 						</div>
@@ -72,7 +104,8 @@ function Sprites({ pokemon }) {
 							<Image
 								src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon?.id}.gif`}
 								alt={pokemon?.name}
-								width={48} height={48}
+								width={48}
+								height={48}
 							/>
 							<p>Front Default</p>
 						</div>
@@ -80,7 +113,8 @@ function Sprites({ pokemon }) {
 							<Image
 								src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/${pokemon?.id}.gif`}
 								alt={pokemon?.name}
-								width={48} height={48}
+								width={48}
+								height={48}
 							/>
 							<p>Back Default</p>
 						</div>
@@ -89,7 +123,8 @@ function Sprites({ pokemon }) {
 								<Image
 									src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/female/${pokemon?.id}.gif`}
 									alt={pokemon?.name}
-									width={48} height={48}
+									width={48}
+									height={48}
 								/>
 								<p>Front Female</p>
 							</div>
@@ -99,7 +134,8 @@ function Sprites({ pokemon }) {
 								<Image
 									src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/female/${pokemon?.id}.gif`}
 									alt={pokemon?.name}
-									width={48} height={48}
+									width={48}
+									height={48}
 								/>
 								<p>Back Female</p>
 							</div>
@@ -108,7 +144,8 @@ function Sprites({ pokemon }) {
 							<Image
 								src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/${pokemon?.id}.gif`}
 								alt={pokemon?.name}
-								width={48} height={48}
+								width={48}
+								height={48}
 							/>
 							<p>Front Shiny</p>
 						</div>
@@ -116,7 +153,8 @@ function Sprites({ pokemon }) {
 							<Image
 								src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/${pokemon?.id}.gif`}
 								alt={pokemon?.name}
-								width={48} height={48}
+								width={48}
+								height={48}
 							/>
 							<p>Back Shiny</p>
 						</div>
@@ -125,7 +163,8 @@ function Sprites({ pokemon }) {
 								<Image
 									src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/female/${pokemon?.id}.gif`}
 									alt={pokemon?.name}
-									width={48} height={48}
+									width={48}
+									height={48}
 								/>
 								<p>Front Shiny Female</p>
 							</div>
@@ -135,7 +174,8 @@ function Sprites({ pokemon }) {
 								<Image
 									src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/female/${pokemon?.id}.gif`}
 									alt={pokemon?.name}
-									width={48} height={48}
+									width={48}
+									height={48}
 								/>
 								<p>Back Shiny Female</p>
 							</div>

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { H3, Span } from '../../../../components/BaseStyles/Headings';
-import { Section } from '../../../../components/BaseStyles/Sizing';
+import { H3, Span } from '/components/BaseStyles/Headings';
+import { Section } from '/components/BaseStyles/Sizing';
 import {
 	TableContainer,
 	THead,
@@ -14,6 +13,7 @@ import {
 	TypeMovesData,
 	TypeMovesName,
 } from '../StyledTypeCard';
+import Link from 'next/link';
 
 function Moves({ type, moves }) {
 	// Returns the number of moves from this type
@@ -46,7 +46,13 @@ function Moves({ type, moves }) {
 										m.name === tm.name && (
 											<TRow>
 												<TypeMovesName>
-													<Link to={`/moves/${m.name}`} key={m.name}>
+													<Link
+														href={{
+															pathname: '/move/[name]',
+															query: { name: m.name },
+														}}
+														key={m.name}
+													>
 														{tm.name.replace(/-/g, ' ')}
 													</Link>
 												</TypeMovesName>

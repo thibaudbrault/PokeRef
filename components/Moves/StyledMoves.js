@@ -24,7 +24,7 @@ export const StatusMoves = styled.td`
 		transition: 0.3s ease-in-out;
 
 		&:hover {
-				border-bottom: 1px solid ${({ theme }) => theme.secondary};
+			border-bottom: 1px solid ${({ theme }) => theme.secondary};
 		}
 	}
 `;
@@ -50,7 +50,7 @@ export const TType = styled.td`
 		text-align: center;
 		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 		color: #c4c4c4;
-		
+
 		& a {
 			cursor: pointer;
 			& img {

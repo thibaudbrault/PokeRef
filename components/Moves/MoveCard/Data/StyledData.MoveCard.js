@@ -43,7 +43,7 @@ export const MoveCardDataType = styled(Type)`
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		
+
 		& img {
 			vertical-align: middle;
 			cursor: pointer;

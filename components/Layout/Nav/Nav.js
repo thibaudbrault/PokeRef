@@ -10,59 +10,31 @@ function Nav() {
 		<MainNav>
 			<MainNavList>
 				<li>
-					<Link
-						href='/'
-					>
-						Pokémon
-					</Link>
+					<Link href='/'>Pokémon</Link>
 				</li>
 
 				<li>
-					<Link
-						href='/moves'
-					>
-						Moves
-					</Link>
+					<Link href='/moves'>Moves</Link>
 				</li>
 
 				<li>
-					<Link
-						href='/abilities'
-					>
-						Abilities
-					</Link>
+					<Link href='/abilities'>Abilities</Link>
 				</li>
 
 				<li>
-					<Link
-						href='/types'
-					>
-						Types
-					</Link>
+					<Link href='/types'>Types</Link>
 				</li>
 
 				<li>
-					<Link
-						href='/items'
-					>
-						Items
-					</Link>
+					<Link href='/items'>Items</Link>
 				</li>
 
 				<li>
-					<Link
-						href='/machines'
-					>
-						Machines
-					</Link>
+					<Link href='/machines'>Machines</Link>
 				</li>
 
 				<li>
-					<Link
-						href='/locations'
-					>
-						Locations
-					</Link>
+					<Link href='/locations'>Locations</Link>
 				</li>
 			</MainNavList>
 		</MainNav>

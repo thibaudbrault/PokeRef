@@ -65,10 +65,15 @@ function MovesTable({ moves, toggleState }) {
 							?.map((m) => (
 								<TRow key={m.id}>
 									<TName>
-										<Link href={{ pathname: '/move/[name]', query: { name: m.name }}} key={m.name} passHref>
-											<TLink>
-												{m?.name?.replace(/-/g, ' ')}
-											</TLink>
+										<Link
+											href={{
+												pathname: '/move/[name]',
+												query: { name: m.name },
+											}}
+											key={m.name}
+											passHref
+										>
+											<TLink>{m?.name?.replace(/-/g, ' ')}</TLink>
 										</Link>
 									</TName>
 									<TCategory id={m?.damage_class?.name}>
@@ -79,7 +84,13 @@ function MovesTable({ moves, toggleState }) {
 									</TCategory>
 									<TType>
 										<Type id={m.type.name}>
-											<Link href={{ pathname: '/type/[name]', query: { name: m.type.name }}} passHref>
+											<Link
+												href={{
+													pathname: '/type/[name]',
+													query: { name: m.type.name },
+												}}
+												passHref
+											>
 												<a>
 													<Image alt={m.type.name} width={15} height={15} />
 													<span>{m?.type?.name}</span>

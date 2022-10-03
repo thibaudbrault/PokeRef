@@ -4,14 +4,17 @@ import { MainBig } from '/components/BaseStyles/Sizing';
 import { LeftTitle } from '/components/BaseStyles/Headings';
 import { Input, ModifiedSearch } from '/components/BaseStyles/Inputs';
 import { Table, THead, TLink, TRow } from '/components/BaseStyles/Table';
-import { TCategoryItems, TEffectItems, TNameItems } from '/components/Items/StyledItems';
+import {
+	TCategoryItems,
+	TEffectItems,
+	TNameItems,
+} from '/components/Items/StyledItems';
 import { useItems } from '/helpers/DataFetch';
 import Loader from '/components/Loader/Loader';
 import Head from 'next/head';
 import Image from 'next/image';
 
 function Items() {
-
 	const [search, setSearch] = useState('');
 	const [filteredItems, setFilteredItems] = useState([]);
 
@@ -56,11 +59,17 @@ function Items() {
 		<>
 			<Head>
 				<title>Items | Pokeref</title>
-				<meta name="description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
-				<meta property="og:title" content="Items | Pokeref" />
-				<meta property="og:description" content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game" />
-				<meta property="og:url" content="https://pokeref.app/items" />
-				<meta property="og:type" content="website" />
+				<meta
+					name='description'
+					content='Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game'
+				/>
+				<meta property='og:title' content='Items | Pokeref' />
+				<meta
+					property='og:description'
+					content='Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game'
+				/>
+				<meta property='og:url' content='https://pokeref.app/items' />
+				<meta property='og:type' content='website' />
 			</Head>
 			<MainBig>
 				<LeftTitle>Items</LeftTitle>
@@ -94,9 +103,14 @@ function Items() {
 									<TRow key={i.name}>
 										<TNameItems>
 											<div>
-												{i.sprites.default !== null && 
-													<Image src={i.sprites.default} alt='' width={30} height={30} />
-												}
+												{i.sprites.default !== null && (
+													<Image
+														src={i.sprites.default}
+														alt=''
+														width={30}
+														height={30}
+													/>
+												)}
 												<TLink to={`/items/${i.name}`} key={i.name}>
 													<span>{i.name.replace(/-/g, ' ')}</span>
 												</TLink>

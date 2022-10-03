@@ -31,7 +31,14 @@ function StatusTable({ status, toggleState }) {
 									<TName>{s.name.replace(/-/g, ' ')}</TName>
 									<StatusMoves>
 										{s.moves.map((sm) => (
-											<Link href={{ pathname: '/move/[name]', query: { name: sm.name }}} key={sm.name} passHref>
+											<Link
+												href={{
+													pathname: '/move/[name]',
+													query: { name: sm.name },
+												}}
+												key={sm.name}
+												passHref
+											>
 												<a>{sm.name.replace(/-/g, ' ')}</a>
 											</Link>
 										))}
