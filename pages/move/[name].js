@@ -30,7 +30,6 @@ const MoveCard = () => {
 	const { name } = router.query;
 
 	// Import data fetch
-
 	const {
 		isLoading,
 		error,
