@@ -28,7 +28,10 @@ function Pokemon({ type, pokedex }) {
 										loading='lazy'
 									/>
 									<p>#{p?.id}</p>
-									<Link to={`/pokemon/${p.name}`} key={p.name}>
+									<Link href={{
+											pathname: '/pokemon/[name]',
+											query: { name: p.name },
+										}} key={p.name}>
 										{tp?.pokemon?.name?.replace(/-/g, ' ')}
 									</Link>
 								</li>

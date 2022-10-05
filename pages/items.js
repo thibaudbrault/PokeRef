@@ -111,7 +111,7 @@ function Items() {
 														height={30}
 													/>
 												)}
-												<TLink to={`/items/${i.name}`} key={i.name}>
+												<TLink href={{pathname: '/item/[name]', query: { name: i.name },}} key={i.name}>
 													<span>{i.name.replace(/-/g, ' ')}</span>
 												</TLink>
 											</div>
