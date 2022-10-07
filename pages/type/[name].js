@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React from 'react';
 
-import { BackButton } from '../../../components/BaseStyles/Inputs';
-import { MainBig } from '../../../components/BaseStyles/Sizing';
-import { CardTitle } from '../../../components/BaseStyles/Headings';
-import Damage from './Damage/Damage.TypeCard';
-import Moves from './Moves/Moves.TypeCard';
-import Pokemon from './Pokemon/Pokemon.TypeCard';
-import { useMoves, usePokedex, useType } from '../../../helpers/DataFetch';
-import Loader from '../../../components/Loader/Loader';
+import { BackButton } from '/components/BaseStyles/Inputs';
+import { MainBig } from '/components/BaseStyles/Sizing';
+import { CardTitle } from '/components/BaseStyles/Headings';
+import Damage from '/components/Types/TypeCard/Damage/Damage.TypeCard';
+import Moves from '/components/Types/TypeCard/Moves/Moves.TypeCard';
+import Pokemon from '/components/Types/TypeCard/Pokemon/Pokemon.TypeCard';
+import { useMoves, usePokedex, useType } from '/helpers/DataFetch';
+import Loader from '/components/Loader/Loader';
 import { FaChevronLeft } from 'react-icons/fa';
+import Head from 'next/head';
 
 const TypeCard = () => {
-	const { name } = useParams();
-	const navigate = useNavigate();
+	const router = useRouter();
+	const { name } = router.query;
 
 	const {
 		isLoading,
@@ -27,14 +27,6 @@ const TypeCard = () => {
 
 	const { data: moves } = useMoves();
 
-	const title = `${name}`;
-
-	useEffect(() => {
-		document.title = `${
-			title.charAt(0).toUpperCase() + title.slice(1)
-		} | Types | PokéRef`;
-	}, [title]);
-
 	if (error) {
 		return <p>{error}</p>;
 	}
@@ -44,20 +36,38 @@ const TypeCard = () => {
 	}
 
 	return (
-		<MainBig>
-			<CardTitle>{type?.name}</CardTitle>
+		<>
+			<Head>
+				<title>
+					{name.charAt(0).toUpperCase() + name.slice(1)} | Type | PokéRef
+				</title>
+				<meta name='description' content={`Find every details about the ${name} type`} />
+				<meta property='og:title' content={`${name} | Type | PokéRef`} />
+				<meta
+					property='og:description'
+					content={`Find every details about the ${name} type`}
+				/>
+				<meta
+					property='og:url'
+					content={`https://pokeref.app/type/${name}`}
+				/>
+				<meta property='og:type' content='website' />
+			</Head>
+			<MainBig>
+				<CardTitle>{type?.name}</CardTitle>
 
-			<Damage type={type} />
+				<Damage type={type} />
 
-			<Pokemon type={type} pokedex={pokedex} />
+				<Pokemon type={type} pokedex={pokedex} />
 
-			<Moves type={type} moves={moves} />
+				<Moves type={type} moves={moves} />
 
-			<BackButton onClick={() => navigate('/types')}>
-				{' '}
-				<FaChevronLeft /> Back to Types
-			</BackButton>
-		</MainBig>
+				<BackButton onClick={() => navigate('/types')}>
+					{' '}
+					<FaChevronLeft /> Back to Types
+				</BackButton>
+			</MainBig>
+		</>
 	);
 };
 

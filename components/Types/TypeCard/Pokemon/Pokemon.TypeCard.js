@@ -7,13 +7,21 @@ import { TypeListSubtitle, TypePokemonList } from '../StyledTypeCard';
 
 function Pokemon({ type, pokedex }) {
 	// Returns the number of pokemon with this type
-	const nbPokemon = type?.pokemon?.length;
+	const nbPokemon = [];
+	pokedex.forEach(fp => {
+		if (fp.name === type.pokmeon.name) {
+			if (fp.id < 899) {
+				nbPokemon.push(fp)
+			}
+		}
+		return nbPokemon
+	})
 
 	return (
 		<Section>
 			<H3>Pokémon</H3>
 			<TypeListSubtitle>
-				{nbPokemon} Pokémon are <Span>{type.name}</Span> type
+				{nbPokemon.length} Pokémon are <Span>{type.name}</Span> type
 			</TypeListSubtitle>
 			<TypePokemonList>
 				{type?.pokemon?.map((tp) =>
