@@ -10,14 +10,15 @@ import {
 	LocationNavContainer,
 	LocationNav,
 	LocationTable,
-} from '../StyledLocations';
-import Nav from './Nav/Nav.LocationCard';
+} from '/components/Locations/StyledLocations.js';
+import Nav from '/components/Locations/LocationCard/Nav/Nav.LocationCard';
 import {
 	TableContainer,
 	THead,
 	TName,
 	TRow,
-} from '../../../components/BaseStyles/Table';
+} from '/components/BaseStyles/Table';
+import { useRouter } from 'next/router';
 
 function LocationCard() {
 	const router = useRouter();

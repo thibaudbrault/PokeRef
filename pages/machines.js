@@ -13,6 +13,7 @@ import {
 } from '/components/Machines/StyledMachines';
 import Loader from '/components/Loader/Loader';
 import Head from 'next/head';
+import Link from 'next/link';
 
 function Machines() {
 	const [search, setSearch] = useState('');
@@ -181,15 +182,16 @@ function Machines() {
 									<TRow>
 										<TName>{ma?.item?.name.toUpperCase()}</TName>
 										<td>
-											<TLink
+											<Link
 												href={{
 													pathname: '/move/[name]',
 													query: { name: ma.move.name },
 												}}
 												key={ma?.move?.name}
+												passHref
 											>
-												{ma?.move?.name.replace(/-/g, ' ')}
-											</TLink>
+												<TLink>{ma?.move?.name.replace(/-/g, ' ')}</TLink>
+											</Link>
 										</td>
 									</TRow>
 								)

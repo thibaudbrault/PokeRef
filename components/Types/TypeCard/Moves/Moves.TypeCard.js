@@ -17,7 +17,7 @@ import Link from 'next/link';
 
 function Moves({ type, moves }) {
 	// Returns the number of moves from this type
-	const nbMoves = type?.moves?.length;
+	let nbMoves = document.querySelectorAll('.moveElement').length;
 
 	return (
 		<Section>
@@ -44,7 +44,7 @@ function Moves({ type, moves }) {
 								moves?.map(
 									(m) =>
 										m.name === tm.name && (
-											<TRow>
+											<TRow className='moveElement'>
 												<TypeMovesName>
 													<Link
 														href={{

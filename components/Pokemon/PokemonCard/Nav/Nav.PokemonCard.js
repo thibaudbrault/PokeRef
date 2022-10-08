@@ -295,7 +295,7 @@ function Nav({ pokemon, setGame, setVersion }) {
 						</div>
 					</li>
 				)}
-				{(pokemon?.id < 899 || pokemon?.id > 10000) && (
+				{(pokemon?.id < 905 || pokemon?.id > 10000) && (
 					<li>
 						<button>Gen VIII</button>
 						<div>

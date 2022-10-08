@@ -83,7 +83,7 @@ function Pokemon() {
 						{filteredPokedex?.map((p) => (
 							<PokedexElement key={p.id}>
 								<Sprites p={p} />
-								{p?.id < 899 && <p>#{p?.id?.toString()?.padStart(3, '0')}</p>}
+								{p?.id < 905 && <p>#{p?.id?.toString()?.padStart(3, '0')}</p>}
 								<h2>
 									<Link
 										href={{

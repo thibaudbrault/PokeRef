@@ -13,7 +13,7 @@ export const TNameItems = styled(TName)`
 			margin-right: 1rem;
 		}
 
-		& span {
+		& a {
 			cursor: pointer;
 		}
 	}

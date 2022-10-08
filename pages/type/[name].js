@@ -10,6 +10,7 @@ import { useMoves, usePokedex, useType } from '/helpers/DataFetch';
 import Loader from '/components/Loader/Loader';
 import { FaChevronLeft } from 'react-icons/fa';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const TypeCard = () => {
 	const router = useRouter();
@@ -41,16 +42,16 @@ const TypeCard = () => {
 				<title>
 					{name.charAt(0).toUpperCase() + name.slice(1)} | Type | PokéRef
 				</title>
-				<meta name='description' content={`Find every details about the ${name} type`} />
+				<meta
+					name='description'
+					content={`Find every details about the ${name} type`}
+				/>
 				<meta property='og:title' content={`${name} | Type | PokéRef`} />
 				<meta
 					property='og:description'
 					content={`Find every details about the ${name} type`}
 				/>
-				<meta
-					property='og:url'
-					content={`https://pokeref.app/type/${name}`}
-				/>
+				<meta property='og:url' content={`https://pokeref.app/type/${name}`} />
 				<meta property='og:type' content='website' />
 			</Head>
 			<MainBig>

@@ -18,6 +18,7 @@ import { FaChevronLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 function ItemCard() {
 	const router = useRouter();

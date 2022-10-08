@@ -13,6 +13,7 @@ import { useItems } from '/helpers/DataFetch';
 import Loader from '/components/Loader/Loader';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 
 function Items() {
 	const [search, setSearch] = useState('');
@@ -111,9 +112,16 @@ function Items() {
 														height={30}
 													/>
 												)}
-												<TLink href={{pathname: '/item/[name]', query: { name: i.name },}} key={i.name}>
-													<span>{i.name.replace(/-/g, ' ')}</span>
-												</TLink>
+												<Link
+													href={{
+														pathname: '/item/[name]',
+														query: { name: i.name },
+													}}
+													key={i.name}
+													passHref
+												>
+													<TLink>{i.name.replace(/-/g, ' ')}</TLink>
+												</Link>
 											</div>
 										</TNameItems>
 										<TCategoryItems>

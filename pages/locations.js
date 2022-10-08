@@ -74,7 +74,7 @@ function Locations() {
 											<li key={l.locations}>
 												<Link
 													href={{
-														pathname: '/locations/[name]',
+														pathname: '/location/[name]',
 														query: { name: ll.name },
 													}}
 													key={ll.name}

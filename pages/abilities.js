@@ -15,6 +15,7 @@ import { ModifiedMainBig } from '/components/BaseStyles/Sizing';
 import { useAbilities } from '/helpers/DataFetch';
 import Loader from '/components/Loader/Loader';
 import Head from 'next/head';
+import Link from 'next/link';
 
 function Abilities() {
 	const [search, setSearch] = useState('');
@@ -87,14 +88,15 @@ function Abilities() {
 								.map((a) => (
 									<TRow key={a.name}>
 										<TName>
-											<TLink
+											<Link
 												href={{
 													pathname: '/ability/[name]',
 													query: { name: a.name },
 												}}
+												passHref
 											>
-												{a.name.replace(/-/g, ' ')}
-											</TLink>
+												<TLink>{a.name.replace(/-/g, ' ')}</TLink>
+											</Link>
 										</TName>
 										<TEffect>
 											{a.flavor_text_entries.map(

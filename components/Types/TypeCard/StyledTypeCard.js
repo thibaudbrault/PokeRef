@@ -41,8 +41,6 @@ export const TypeDamageTable = styled(Table)`
 
 				& img {
 					display: inline-block;
-					width: 32px;
-					height: 32px;
 					transition: 0.3s ease-in-out;
 					&:hover {
 						transform: scale(1.05);
@@ -85,9 +83,6 @@ export const TypePokemonList = styled.ul`
 		transition: 0.3s ease-in-out;
 
 		& img {
-			width: 96px;
-			height: 96px;
-
 			@media ${device.sm} {
 				width: 72px;
 				height: 72px;
