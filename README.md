@@ -58,7 +58,15 @@
 
 <h4>Main goal</h4>
 
-My main goal for this site was to get better at React JS and to learn how to use an API and to use styled-components. I chose to use PokéAPI because there are a lot of tutorials to start from, the documentation is very clear and easy to use and there is a ton of information so I could make a bigger site with multiple pages.
+My main goal for this site was to get better at React JS and to learn how to use an API and to use Styled-Components. I chose to use PokéAPI because there are a lot of tutorials to start from, the documentation is very clear and easy to use and there is a ton of information so I could make a bigger site with multiple pages.
+
+<h4>Story of this project</h4>
+
+- Started by using vanilla JS + Sass to learn how to fetch data from an API in vanilla JS
+- Quickly moved to React JS + Sass to learn React by working on a big project
+- Moved to React JS + Styled-Components to learn a new way to write CSS. It was a good move for me because I really like Styled-Components because it has the advantages of Sass, is easily importable / exportable between files and supports theming.
+- Added React-Query to fetch data. It's a great library that makes it easy to manage caching, fetching, loading and erro handling for every data fetch.
+- Finally moved to Next JS (instead of CRA) + Styled-Components to learn to use Next JS. I chose to use Next JS to benefit from the image optimization given by the <Image /> component because the app has a lot of images to render and every optimization is welcome. I also chose it to benefit from the Server-Side Rendering.
 
 <h4>Contents</h4>
 
