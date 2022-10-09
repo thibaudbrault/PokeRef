@@ -49,7 +49,6 @@
 ✅Service Worker
 
 🛠Types relations for each pokémon  
-🛠Location page
 
 🔜Authentication with profile page and "create your team" functionality  
 🔜Animation on scroll
@@ -98,7 +97,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 <h2 id="acknowledgements">Acknowledgements</h2>
 
 A huge thanks to everyone that helped me by answering to my questions on Stack Overflow and Reddit.  
-A big thanks also to the PokeAPI team for creating such a huge, detailed and very well organized api.
+A big thanks also to the PokeAPI team for creating such a huge, detailed and very well organized API.
 
 <h4>Data</h4>
 
