@@ -182,6 +182,10 @@ export const PokedexImage = styled.div`
 	position: relative;
 	margin: 0 auto;
 
+	&:hover ${SpriteNormal} {
+		opacity: 0;
+	}
+
 	&:hover ${SpriteShiny} {
 		opacity: 1;
 	}

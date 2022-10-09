@@ -24,6 +24,7 @@ import Loader from '/components/Loader/Loader';
 import { Subtitle, Title } from '/components/BaseStyles/Headings';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Link from 'next/link';
 
 function PokemonCard() {
 	const router = useRouter();
@@ -171,9 +172,11 @@ function PokemonCard() {
 
 				<Sprites pokemon={pokemon} />
 
-				<BackButton onClick={() => navigate('/')}>
-					<FaChevronLeft /> Back to Pokemon
-				</BackButton>
+				<Link href='/' passHref>
+					<BackButton>
+						<FaChevronLeft /> Back to Pokemon
+					</BackButton>
+				</Link>
 			</MainBig>
 		</>
 	);

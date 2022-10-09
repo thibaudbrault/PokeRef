@@ -11,6 +11,7 @@ import Loader from '/components/Loader/Loader';
 import { FaChevronLeft } from 'react-icons/fa';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const TypeCard = () => {
 	const router = useRouter();
@@ -63,10 +64,11 @@ const TypeCard = () => {
 
 				<Moves type={type} moves={moves} />
 
-				<BackButton onClick={() => navigate('/types')}>
-					{' '}
-					<FaChevronLeft /> Back to Types
-				</BackButton>
+				<Link href='/types' passHref>
+					<BackButton>
+						<FaChevronLeft /> Back to Types
+					</BackButton>
+				</Link>
 			</MainBig>
 		</>
 	);

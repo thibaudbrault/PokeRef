@@ -127,10 +127,11 @@ function ItemCard() {
 					</ItemCardDescTable>
 				</ItemCardDescSection>
 
-				<BackButton onClick={() => navigate('/items')}>
-					{' '}
-					<FaChevronLeft /> Back to Items
-				</BackButton>
+				<Link href='/items' passHref>
+					<BackButton>
+						<FaChevronLeft /> Back to Items
+					</BackButton>
+				</Link>
 			</MainBig>
 		</>
 	);

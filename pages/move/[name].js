@@ -20,6 +20,7 @@ import LearnMethod from '/helpers/LearnMethod.PokemonCard';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const MoveCard = () => {
 	const router = useRouter();
@@ -348,10 +349,11 @@ const MoveCard = () => {
 					</MoveList>
 				</MoveLearnSection>
 
-				<BackButton onClick={() => navigate('/moves')}>
-					{' '}
-					<FaChevronLeft /> Back to Moves
-				</BackButton>
+				<Link href='/moves' passHref>
+					<BackButton>
+						<FaChevronLeft /> Back to Moves
+					</BackButton>
+				</Link>
 			</MainBig>
 		</>
 	);

@@ -29,6 +29,7 @@ import { FaChevronLeft } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const AbilityCard = () => {
 	const router = useRouter();
@@ -244,10 +245,11 @@ const AbilityCard = () => {
 					</TableContainer>
 				</AbilityCardSection>
 
-				<BackButton onClick={() => navigate('/abilities')}>
-					{' '}
-					<FaChevronLeft /> Back to Abilities
-				</BackButton>
+				<Link href='/abilities' passHref>
+					<BackButton>
+						<FaChevronLeft /> Back to Abilities
+					</BackButton>
+				</Link>
 			</MainBig>
 		</>
 	);

@@ -19,6 +19,7 @@ import {
 	TRow,
 } from '/components/BaseStyles/Table';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 function LocationCard() {
 	const router = useRouter();
@@ -128,7 +129,12 @@ function LocationCard() {
 												<TName>{a.pokemon.name}</TName>
 												<td>{ave.method.name.replace(/-/g, ' ')}</td>
 												<td>{ave.chance} %</td>
-												<td>{ave.max_level}</td>
+												<td>
+													{ave.max_level === ave.min_level 
+													? (<span>{ave.max_level}</span>)
+													: (<span>{ave.min_level} - {ave.max_level}</span>)
+													}
+												</td>
 												{ave.condition_values.length !== 0 ? (
 													<td>
 														{ave.condition_values.map((avec) => (
@@ -148,9 +154,11 @@ function LocationCard() {
 					</LocationTable>
 				</TableContainer>
 			</Section>
-			<BackButton onClick={() => navigate('/locations')}>
-				<FaChevronLeft /> Back to Locations
-			</BackButton>
+			<Link href='/locations' passHref>
+				<BackButton>
+					<FaChevronLeft /> Back to Locations
+				</BackButton>
+			</Link>
 		</MainBig>
 	);
 }

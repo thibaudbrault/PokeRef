@@ -44,7 +44,9 @@ export const ModifiedSearch = styled(Search)`
 	justify-content: flex-start;
 `;
 
-export const BackButton = styled.button`
+export const BackButton = styled.a`
+	display: flex;
+	align-items: center;
 	position: absolute;
 	bottom: 1rem;
 	padding: 1rem 1.5rem;
