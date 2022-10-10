@@ -105,9 +105,9 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 
 <h4>Dependencies</h4>
 
-<a href="https://www.npmjs.com/package/react-query" target="_blank">React Query</a>
-<a href="https://www.npmjs.com/package/eslint" target="_blank">ESLint</a>
-<a href="https://www.npmjs.com/package/prettier" target="_blank">Prettier</a>
+<a href="https://www.npmjs.com/package/react-query" target="_blank">React Query</a>  
+<a href="https://www.npmjs.com/package/eslint" target="_blank">ESLint</a>  
+<a href="https://www.npmjs.com/package/prettier" target="_blank">Prettier</a>  
 
 <h2 id="other">Other</h2>
 
