@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { MainBig } from '/components/BaseStyles/Sizing';
 import {
@@ -205,9 +205,9 @@ const AbilityCard = () => {
 														>
 															{p?.abilities?.length > 1
 																? p?.abilities[1]?.ability?.name?.replace(
-																		/-/g,
-																		' '
-																  )
+																	/-/g,
+																	' '
+																)
 																: '-'}
 														</TLink>
 													)
@@ -230,9 +230,9 @@ const AbilityCard = () => {
 														>
 															{p?.abilities?.length > 2
 																? p?.abilities[2]?.ability?.name?.replace(
-																		/-/g,
-																		' '
-																  )
+																	/-/g,
+																	' '
+																)
 																: '-'}
 														</TLink>
 													)

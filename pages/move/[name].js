@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { CardTitle, H3, Subtitle } from '/components/BaseStyles/Headings';
 import { MainBig } from '/components/BaseStyles/Sizing';

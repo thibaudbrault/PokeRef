@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { MainSmall } from '/components/BaseStyles/Sizing';
 import { ModifiedType, TypesList } from '/components/Types/StyledTypes';

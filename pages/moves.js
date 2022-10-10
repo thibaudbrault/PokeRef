@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { MainBig } from '/components/BaseStyles/Sizing';
 import { MethodNav } from '/components/BaseStyles/Navbars';
@@ -7,6 +7,7 @@ import MovesTable from '/components/Moves/Components/MovesTable.Moves';
 import StatusTable from '/components/Moves/Components/StatusTable.Moves';
 import Loader from '/components/Loader/Loader';
 import Head from 'next/head';
+import { dehydrate, QueryClient } from 'react-query';
 
 function Moves() {
 	const { isLoading, error, data: moves } = useMoves();
@@ -68,3 +69,14 @@ function Moves() {
 }
 
 export default Moves;
+
+export async function getStaticProps() {
+	const queryClient = new QueryClient();
+	await queryClient.prefetchQuery(['moves'], useMoves);
+
+	return {
+		props: {
+			dehydratedState: dehydrate(queryClient)
+		}
+	}
+}

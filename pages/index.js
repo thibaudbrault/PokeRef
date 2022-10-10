@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import {
 	PokedexElement,
@@ -17,6 +17,7 @@ import { FaAngleDown } from 'react-icons/fa';
 
 import Image from 'next/future/image';
 import Link from 'next/link';
+import { dehydrate, QueryClient } from 'react-query';
 
 function Pokemon() {
 	// Filters the pokemon returned with the filters
@@ -39,6 +40,8 @@ function Pokemon() {
 	} = usePokedex(
 		`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
 	);
+
+	console.log(isLoading)
 
 	if (error) {
 		return <p>{error}</p>;
@@ -130,3 +133,14 @@ function Pokemon() {
 }
 
 export default Pokemon;
+
+export async function getStaticProps() {
+	const queryClient = new QueryClient();
+	await queryClient.prefetchQuery(['pokedex'], usePokedex);
+
+	return {
+		props: {
+			dehydratedState: dehydrate(queryClient)
+		}
+	}
+}
