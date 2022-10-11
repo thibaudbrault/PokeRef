@@ -16,6 +16,7 @@ import { useAbilities } from '/helpers/DataFetch';
 import Loader from '/components/Loader/Loader';
 import Head from 'next/head';
 import Link from 'next/link';
+import { dehydrate, QueryClient } from 'react-query';
 
 function Abilities() {
 	const [search, setSearch] = useState('');
@@ -117,3 +118,14 @@ function Abilities() {
 }
 
 export default Abilities;
+
+export async function getStaticProps() {
+	const queryClient = new QueryClient();
+	await queryClient.prefetchQuery(['abilities'], useAbilities);
+
+	return {
+		props: {
+			dehydratedState: dehydrate(queryClient)
+		}
+	}
+}

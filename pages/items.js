@@ -14,6 +14,7 @@ import Loader from '/components/Loader/Loader';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { dehydrate, QueryClient } from 'react-query';
 
 function Items() {
 	const [search, setSearch] = useState('');
@@ -143,3 +144,14 @@ function Items() {
 }
 
 export default Items;
+
+export async function getStaticProps() {
+	const queryClient = new QueryClient();
+	await queryClient.prefetchQuery(['items'], useItems);
+
+	return {
+		props: {
+			dehydratedState: dehydrate(queryClient)
+		}
+	}
+}
