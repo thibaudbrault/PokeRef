@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { MainBig } from '/components/BaseStyles/Sizing';
 import {
 	LocationList,
-	LocationNav,
 	LocationSection,
 } from '/components/Locations/StyledLocations';
 import Loader from '/components/Loader/Loader';
@@ -11,6 +10,9 @@ import { useLocations } from '/helpers/DataFetch';
 import { regions } from '/helpers/DataMap';
 import Head from 'next/head';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const LocationsMethod = dynamic(() => import('/helpers/RegionsMethod.js'))
 
 function Locations() {
 	const [location, setLocation] = useState();
@@ -50,17 +52,7 @@ function Locations() {
 				<meta property='og:type' content='website' />
 			</Head>
 			<MainBig>
-				<LocationNav>
-					{Object.keys(regions).map((r, i) => (
-						<button
-							className={toggleState === i ? 'button_active' : ''}
-							onClick={() => toggleTable(i)}
-							key={regions[r]}
-						>
-							<p>{regions[r]}</p>
-						</button>
-					))}
-				</LocationNav>
+				<LocationsMethod toggleState={toggleState} toggleTable={toggleTable} />
 
 				<LocationSection>
 					{locations?.map(

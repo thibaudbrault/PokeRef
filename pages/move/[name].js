@@ -26,7 +26,7 @@ const Nav = dynamic(() =>
 const Data = dynamic(() =>
 	import('/components/Moves/MoveCard/Data/Data.MoveCard')
 );
-const LearnMethod = dynamic(() => import('/helpers/LearnMethod.PokemonCard'));
+const LearnMethod = dynamic(() => import('/helpers/LearnMethod'));
 
 function MoveCard() {
 	const router = useRouter();

@@ -13,7 +13,7 @@ import {
 } from '/components/BaseStyles/Table';
 import { H3, Span } from '/components/BaseStyles/Headings';
 import { Type } from '/components/BaseStyles/Themes';
-import LearnMethod from '/helpers/LearnMethod.PokemonCard';
+import LearnMethod from '/helpers/LearnMethod';
 import { learnMethod } from '/helpers/DataMap';
 import Link from 'next/link';
 import Image from 'next/future/image';
@@ -75,8 +75,8 @@ function Moves({
 						<PokemonMovesTd>
 							{m?.meta?.ailment !== null
 								? m?.meta?.ailment?.name
-										?.replace('none', '-')
-										.replace(/-/g, ' ')
+									?.replace('none', '-')
+									.replace(/-/g, ' ')
 								: '-'}
 						</PokemonMovesTd>
 					</>
@@ -137,8 +137,8 @@ function Moves({
 								{learn === 'level-up'
 									? 'Level'
 									: learn === 'machine'
-									? 'Machine'
-									: '-'}
+										? 'Machine'
+										: '-'}
 							</th>
 							<th>Name</th>
 							<th>Type</th>
