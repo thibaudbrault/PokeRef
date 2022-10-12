@@ -31,7 +31,7 @@ import Image from 'next/image';
 import Head from 'next/head';
 import Link from 'next/link';
 
-const AbilityCard = () => {
+function AbilityCard() {
 	const router = useRouter();
 	const { name } = router.query;
 
@@ -205,9 +205,9 @@ const AbilityCard = () => {
 														>
 															{p?.abilities?.length > 1
 																? p?.abilities[1]?.ability?.name?.replace(
-																	/-/g,
-																	' '
-																)
+																		/-/g,
+																		' '
+																  )
 																: '-'}
 														</TLink>
 													)
@@ -230,9 +230,9 @@ const AbilityCard = () => {
 														>
 															{p?.abilities?.length > 2
 																? p?.abilities[2]?.ability?.name?.replace(
-																	/-/g,
-																	' '
-																)
+																		/-/g,
+																		' '
+																  )
 																: '-'}
 														</TLink>
 													)
@@ -253,6 +253,6 @@ const AbilityCard = () => {
 			</MainBig>
 		</>
 	);
-};
+}
 
 export default AbilityCard;

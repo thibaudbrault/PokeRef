@@ -1,11 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { MainNav, MainNavList } from './StyledNav';
-import { useRouter } from 'next/router';
 
 function Nav() {
-	const router = useRouter();
-
 	return (
 		<MainNav>
 			<MainNavList>

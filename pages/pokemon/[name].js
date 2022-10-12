@@ -1,13 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
-import Data from '/components/Pokemon/PokemonCard/Data/Data.PokemonCard';
-import Info from '/components/Pokemon/PokemonCard/Info/Info.PokemonCard';
-import Stats from '/components/Pokemon/PokemonCard/Stats/Stats.PokemonCard';
-import Moves from '/components/Pokemon/PokemonCard/Moves/Moves.PokemonCard';
-import Sprites from '/components/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard';
-import Evolution from '/components/Pokemon/PokemonCard/Evolution/Evolution.PokemonCard';
-import Nav from '/components/Pokemon/PokemonCard/Nav/Nav.PokemonCard';
-
 import { MainBig } from '/components/BaseStyles/Sizing';
 import { BackButton } from '/components/BaseStyles/Inputs';
 import {
@@ -25,6 +16,29 @@ import { Subtitle, Title } from '/components/BaseStyles/Headings';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const Data = dynamic(() =>
+	import('/components/Pokemon/PokemonCard/Data/Data.PokemonCard')
+);
+const Info = dynamic(() =>
+	import('/components/Pokemon/PokemonCard/Info/Info.PokemonCard')
+);
+const Stats = dynamic(() =>
+	import('/components/Pokemon/PokemonCard/Stats/Stats.PokemonCard')
+);
+const Moves = dynamic(() =>
+	import('/components/Pokemon/PokemonCard/Moves/Moves.PokemonCard')
+);
+const Sprites = dynamic(() =>
+	import('/components/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard')
+);
+const Evolution = dynamic(() =>
+	import('/components/Pokemon/PokemonCard/Evolution/Evolution.PokemonCard')
+);
+const Nav = dynamic(() =>
+	import('/components/Pokemon/PokemonCard/Nav/Nav.PokemonCard')
+);
 
 function PokemonCard() {
 	const router = useRouter();

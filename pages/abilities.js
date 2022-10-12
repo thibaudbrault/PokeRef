@@ -125,7 +125,7 @@ export async function getStaticProps() {
 
 	return {
 		props: {
-			dehydratedState: dehydrate(queryClient)
-		}
-	}
+			dehydratedState: dehydrate(queryClient),
+		},
+	};
 }

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import { CardTitle, H3, Subtitle } from '/components/BaseStyles/Headings';
 import { MainBig } from '/components/BaseStyles/Sizing';
-import Data from '/components/Moves/MoveCard/Data/Data.MoveCard';
 import {
 	MoveLearnSection,
 	MoveLink,
@@ -13,16 +12,23 @@ import {
 import { BackButton } from '/components/BaseStyles/Inputs';
 import { Type } from '/components/BaseStyles/Themes';
 import { useMachines, useMove, usePokedex } from '/helpers/DataFetch';
-import Nav from '/components/Moves/MoveCard/Nav/Nav.MoveCard';
 import Loader from '/components/Loader/Loader';
 import { FaChevronLeft } from 'react-icons/fa';
-import LearnMethod from '/helpers/LearnMethod.PokemonCard';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
-const MoveCard = () => {
+const Nav = dynamic(() =>
+	import('/components/Moves/MoveCard/Nav/Nav.MoveCard')
+);
+const Data = dynamic(() =>
+	import('/components/Moves/MoveCard/Data/Data.MoveCard')
+);
+const LearnMethod = dynamic(() => import('/helpers/LearnMethod.PokemonCard'));
+
+function MoveCard() {
 	const router = useRouter();
 	const { name } = router.query;
 
@@ -357,6 +363,6 @@ const MoveCard = () => {
 			</MainBig>
 		</>
 	);
-};
+}
 
 export default MoveCard;

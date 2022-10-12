@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import { GenNav } from '../../../../components/BaseStyles/Navbars';
+import { GenNav } from '/components/BaseStyles/Navbars';
 
 function Nav({ setGame }) {
 	return (

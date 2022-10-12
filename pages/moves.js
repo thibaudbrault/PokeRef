@@ -3,11 +3,17 @@ import React, { useState } from 'react';
 import { MainBig } from '/components/BaseStyles/Sizing';
 import { MethodNav } from '/components/BaseStyles/Navbars';
 import { useMoves, useStatus } from '/helpers/DataFetch';
-import MovesTable from '/components/Moves/Components/MovesTable.Moves';
-import StatusTable from '/components/Moves/Components/StatusTable.Moves';
 import Loader from '/components/Loader/Loader';
 import Head from 'next/head';
 import { dehydrate, QueryClient } from 'react-query';
+import dynamic from 'next/dynamic';
+
+const MovesTable = dynamic(() =>
+	import('/components/Moves/Components/MovesTable.Moves')
+);
+const StatusTable = dynamic(() =>
+	import('/components/Moves/Components/StatusTable.Moves')
+);
 
 function Moves() {
 	const { isLoading, error, data: moves } = useMoves();
@@ -76,7 +82,7 @@ export async function getStaticProps() {
 
 	return {
 		props: {
-			dehydratedState: dehydrate(queryClient)
-		}
-	}
+			dehydratedState: dehydrate(queryClient),
+		},
+	};
 }

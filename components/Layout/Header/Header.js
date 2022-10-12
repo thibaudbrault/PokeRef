@@ -7,7 +7,6 @@ import {
 	HeaderContainer,
 } from './StyledHeader';
 import { BsMoonStars, BsSun } from 'react-icons/bs';
-import Link from 'next/link';
 
 function Header({ themeToggler, theme }) {
 	return (

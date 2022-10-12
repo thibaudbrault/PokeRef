@@ -6,18 +6,23 @@ import {
 	PokedexTypes,
 	PokedexVerticalText,
 	ToBottom,
-} from '../components/Pokemon/StyledPokemon.js';
-import { MainBig } from '../components/BaseStyles/Sizing';
-import { Type } from '../components/BaseStyles/Themes';
-import { usePokedex } from '../helpers/DataFetch';
-import Filters from '../components/Pokemon/Components/Filters.Pokemon';
-import Sprites from '../components/Pokemon/Components/Sprites.Pokemon';
-import Loader from '../components/Loader/Loader';
+} from '/components/Pokemon/StyledPokemon.js';
+import { MainBig } from '/components/BaseStyles/Sizing';
+import { Type } from '/components/BaseStyles/Themes';
+import { usePokedex } from '/helpers/DataFetch';
+import Loader from '/components/Loader/Loader';
 import { FaAngleDown } from 'react-icons/fa';
-
 import Image from 'next/future/image';
 import Link from 'next/link';
 import { dehydrate, QueryClient } from 'react-query';
+import dynamic from 'next/dynamic.js';
+
+const Filters = dynamic(() =>
+	import('/components/Pokemon/Components/Filters.Pokemon')
+);
+const Sprites = dynamic(() =>
+	import('/components/Pokemon/Components/Sprites.Pokemon')
+);
 
 function Pokemon() {
 	// Filters the pokemon returned with the filters
@@ -41,7 +46,7 @@ function Pokemon() {
 		`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
 	);
 
-	console.log(isLoading)
+	console.log(isLoading);
 
 	if (error) {
 		return <p>{error}</p>;
@@ -140,7 +145,7 @@ export async function getStaticProps() {
 
 	return {
 		props: {
-			dehydratedState: dehydrate(queryClient)
-		}
-	}
+			dehydratedState: dehydrate(queryClient),
+		},
+	};
 }

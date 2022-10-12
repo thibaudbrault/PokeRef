@@ -130,10 +130,13 @@ function LocationCard() {
 												<td>{ave.method.name.replace(/-/g, ' ')}</td>
 												<td>{ave.chance} %</td>
 												<td>
-													{ave.max_level === ave.min_level 
-													? (<span>{ave.max_level}</span>)
-													: (<span>{ave.min_level} - {ave.max_level}</span>)
-													}
+													{ave.max_level === ave.min_level ? (
+														<span>{ave.max_level}</span>
+													) : (
+														<span>
+															{ave.min_level} - {ave.max_level}
+														</span>
+													)}
 												</td>
 												{ave.condition_values.length !== 0 ? (
 													<td>

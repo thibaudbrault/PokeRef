@@ -1,19 +1,26 @@
 import React from 'react';
-
 import { BackButton } from '/components/BaseStyles/Inputs';
 import { MainBig } from '/components/BaseStyles/Sizing';
 import { CardTitle } from '/components/BaseStyles/Headings';
-import Damage from '/components/Types/TypeCard/Damage/Damage.TypeCard';
-import Moves from '/components/Types/TypeCard/Moves/Moves.TypeCard';
-import Pokemon from '/components/Types/TypeCard/Pokemon/Pokemon.TypeCard';
 import { useMoves, usePokedex, useType } from '/helpers/DataFetch';
 import Loader from '/components/Loader/Loader';
 import { FaChevronLeft } from 'react-icons/fa';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
-const TypeCard = () => {
+const Damage = dynamic(() =>
+	import('/components/Types/TypeCard/Damage/Damage.TypeCard')
+);
+const Moves = dynamic(() =>
+	import('/components/Types/TypeCard/Moves/Moves.TypeCard')
+);
+const Pokemon = dynamic(() =>
+	import('/components/Types/TypeCard/Pokemon/Pokemon.TypeCard')
+);
+
+function TypeCard() {
 	const router = useRouter();
 	const { name } = router.query;
 
@@ -72,6 +79,6 @@ const TypeCard = () => {
 			</MainBig>
 		</>
 	);
-};
+}
 
 export default TypeCard;

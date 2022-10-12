@@ -38,6 +38,8 @@
 
 <h2 id="roadmap">Roadmap</h2>
 
+<h4>Past, present and future</h4>
+
 ✅A page for every pokémon / move / ability / type / item  
 ✅Filter pokémon by name / form / generation / type  
 ✅Filter moves / abilities / machines by name  
@@ -48,10 +50,21 @@
 ✅Responsive  
 ✅Service Worker
 
-🛠Types relations for each pokémon  
+🛠Static-site generation implementation with Next JS
 
+🔜Types relations for each pokémon
 🔜Authentication with profile page and "create your team" functionality  
 🔜Animation on scroll
+
+<h4>Performance improvements</h4>
+
+✅Use of React-Query to fetch data only once by using `cacheTime: Infinity` and `staleTime: Infinity`. The data will very rarely change so there is no use in re-fetching it every x minutes / hours.  
+✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading fatser is very important.  
+✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded.
+
+🛠Implementing SSG with Next JS to generate the HTML at build time and loads the data faster.
+
+🔜Implement a Service Worker
 
 <h2 id="description">Description</h2>
 
@@ -66,7 +79,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - Quickly moved to React JS + Sass to learn React by working on a big project
 - Moved to React JS + Styled-Components to learn a new way to write CSS. It was a good move for me because I really like Styled-Components because it has the advantages of Sass, is easily importable / exportable between files and supports theming.
 - Added React-Query to fetch data. It's a great library that makes it easy to manage caching, fetching, loading and error handling for every data fetch.
-- Finally moved to Next JS (instead of CRA) + Styled-Components to learn to use Next JS. I chose to use Next JS to benefit from the image optimization given by the <Image /> component because the app has a lot of images to render and every optimization is welcome. I also chose it to benefit from the Server-Side Rendering.
+- Finally moved to Next JS (instead of CRA) + Styled-Components to learn to use Next JS. I chose to use Next JS to benefit from the image optimization given by the <Image /> component because the app has a lot of images to render and every optimization is welcome. I also chose it to benefit from the Static-Site generation.
 
 <h4>Problems encountered (ordered from the oldest to the most recent)</h4>
 
@@ -107,7 +120,7 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 
 <a href="https://www.npmjs.com/package/react-query" target="_blank">React Query</a>  
 <a href="https://www.npmjs.com/package/eslint" target="_blank">ESLint</a>  
-<a href="https://www.npmjs.com/package/prettier" target="_blank">Prettier</a>  
+<a href="https://www.npmjs.com/package/prettier" target="_blank">Prettier</a>
 
 <h2 id="other">Other</h2>
 
