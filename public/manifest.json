@@ -1,12 +1,13 @@
 {
 	"lang": "en",
-	"name": "PokéRef",
-	"app_name": "",
-	"start_url": "/public/index.html",
+	"name": "PokeRef",
+	"app_name": "PokeRef",
+	"short_name": "PokeRef",
+	"start_url": "/",
 	"display": "standalone",
 	"orientation": "portrait",
-	"theme_color": "#161616",
-	"background_color": "#c4c4c4",
+	"theme_color": "#c4c4c4",
+	"background_color": "#161616",
 	"icons": [
 		{
 			"src": "./favicons/favicon.ico",
