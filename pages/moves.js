@@ -75,14 +75,3 @@ function Moves() {
 }
 
 export default Moves;
-
-export async function getStaticProps() {
-	const queryClient = new QueryClient();
-	await queryClient.prefetchQuery(['moves'], useMoves);
-
-	return {
-		props: {
-			dehydratedState: dehydrate(queryClient),
-		},
-	};
-}

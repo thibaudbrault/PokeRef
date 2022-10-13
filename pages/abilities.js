@@ -118,14 +118,3 @@ function Abilities() {
 }
 
 export default Abilities;
-
-export async function getStaticProps() {
-	const queryClient = new QueryClient();
-	await queryClient.prefetchQuery(['abilities'], useAbilities);
-
-	return {
-		props: {
-			dehydratedState: dehydrate(queryClient),
-		},
-	};
-}

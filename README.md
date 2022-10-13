@@ -50,7 +50,7 @@
 ✅Responsive  
 ✅Service Worker
 
-🛠Static-site generation implementation with Next JS
+🛠SSG implementation with Next JS
 
 🔜Types relations for each pokémon
 🔜Authentication with profile page and "create your team" functionality  

@@ -46,8 +46,6 @@ function Pokemon() {
 		`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
 	);
 
-	console.log(isLoading);
-
 	if (error) {
 		return <p>{error}</p>;
 	}
@@ -138,14 +136,3 @@ function Pokemon() {
 }
 
 export default Pokemon;
-
-export async function getStaticProps() {
-	const queryClient = new QueryClient();
-	await queryClient.prefetchQuery(['pokedex'], usePokedex);
-
-	return {
-		props: {
-			dehydratedState: dehydrate(queryClient),
-		},
-	};
-}

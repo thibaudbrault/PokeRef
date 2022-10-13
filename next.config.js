@@ -4,11 +4,7 @@ const nextConfig = {
 	swcMinify: true,
 };
 
-const withPWA = require('next-pwa')({
-	dest: 'public'
-})
-
-module.exports = withPWA({
+module.exports = {
 	images: {
 		domains: ['raw.githubusercontent.com'],
 	},
@@ -17,4 +13,4 @@ module.exports = withPWA({
 			allowFutureImage: true,
 		},
 	},
-});
+};

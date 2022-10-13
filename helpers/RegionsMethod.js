@@ -2,7 +2,7 @@ import React from 'react';
 import { regions } from '/helpers/DataMap';
 import { LocationNav } from '/components/Locations/StyledLocations';
 
-function RegionsMethod() {
+function RegionsMethod({ toggleState, toggleTable }) {
     return (
         <LocationNav>
             {Object.keys(regions).map((r, i) => (
