@@ -4,7 +4,7 @@ import { MainBig } from '/components/BaseStyles/Sizing';
 import { CardTitle } from '/components/BaseStyles/Headings';
 import { useMoves, usePokedex, useType } from '/helpers/DataFetch';
 import Loader from '/components/Loader/Loader';
-import { FaChevronLeft } from 'react-icons/fa';
+import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';

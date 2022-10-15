@@ -7,22 +7,26 @@
 		"build": "next build && next export",
 		"start": "next start",
 		"lint": "next lint",
-		"format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
+		"format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
+		"test": "jest --watch"
 	},
 	"dependencies": {
+		"@meronex/icons": "^4.0.0",
 		"axios": "^0.27.2",
 		"next": "12.3.1",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
-		"react-icons": "^4.4.0",
 		"react-query": "^3.39.2",
 		"styled-components": "^5.3.6"
 	},
 	"devDependencies": {
+		"@testing-library/jest-dom": "^5.16.5",
+		"@testing-library/react": "^13.4.0",
 		"babel-plugin-styled-components": "^2.0.7",
 		"eslint": "8.24.0",
 		"eslint-config-next": "12.3.1",
 		"eslint-config-prettier": "^8.5.0",
+		"jest": "^29.2.0",
 		"prettier": "2.7.1"
 	}
 }

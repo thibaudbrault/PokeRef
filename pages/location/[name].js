@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { BackButton } from '/components/BaseStyles/Inputs';
 import { MainBig, Section } from '/components/BaseStyles/Sizing';
-import { FaChevronLeft } from 'react-icons/fa';
+import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
 import Loader from '/components/Loader/Loader';
 import { useArea, useLocation } from '/helpers/DataFetch';
 import { CardTitle, Subtitle } from '/components/BaseStyles/Headings';
@@ -64,9 +64,8 @@ function LocationCard() {
 	const title = `${name}`;
 
 	useEffect(() => {
-		document.title = `${
-			title.charAt(0).toUpperCase() + title.slice(1).replace(/-/g, ' ')
-		} | Locations | PokéRef`;
+		document.title = `${title.charAt(0).toUpperCase() + title.slice(1).replace(/-/g, ' ')
+			} | Locations | PokéRef`;
 	}, [title]);
 
 	if (error) {

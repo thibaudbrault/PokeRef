@@ -10,7 +10,7 @@ import {
 	useSpecies,
 	useTypes,
 } from '/helpers/DataFetch';
-import { FaChevronLeft } from 'react-icons/fa';
+import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
 import Loader from '/components/Loader/Loader';
 import { Subtitle, Title } from '/components/BaseStyles/Headings';
 import { useRouter } from 'next/router';

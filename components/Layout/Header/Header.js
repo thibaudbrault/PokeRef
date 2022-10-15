@@ -6,7 +6,8 @@ import {
 	HeaderBtnTheme,
 	HeaderContainer,
 } from './StyledHeader';
-import { BsMoonStars, BsSun } from 'react-icons/bs';
+import RiMoonClearLine from '@meronex/icons/ri/RiMoonClearLine';
+import RiSunLine from '@meronex/icons/ri/RiSunLine';
 
 function Header({ themeToggler, theme }) {
 	return (
@@ -14,7 +15,7 @@ function Header({ themeToggler, theme }) {
 			<H1>PokéRef</H1>
 			<HeaderBtnContainer>
 				<HeaderBtnTheme onClick={themeToggler} aria-label='Switch Theme'>
-					{theme === 'dark' ? <BsSun /> : <BsMoonStars />}
+					{theme === 'dark' ? <RiSunLine /> : <RiMoonClearLine />}
 				</HeaderBtnTheme>
 			</HeaderBtnContainer>
 		</HeaderContainer>

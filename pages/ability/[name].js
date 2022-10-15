@@ -25,7 +25,7 @@ import {
 import { BackButton } from '/components/BaseStyles/Inputs';
 import { useAbility, usePokedex } from '/helpers/DataFetch';
 import Loader from '/components/Loader/Loader';
-import { FaChevronLeft } from 'react-icons/fa';
+import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Head from 'next/head';
@@ -205,9 +205,9 @@ function AbilityCard() {
 														>
 															{p?.abilities?.length > 1
 																? p?.abilities[1]?.ability?.name?.replace(
-																		/-/g,
-																		' '
-																  )
+																	/-/g,
+																	' '
+																)
 																: '-'}
 														</TLink>
 													)
@@ -230,9 +230,9 @@ function AbilityCard() {
 														>
 															{p?.abilities?.length > 2
 																? p?.abilities[2]?.ability?.name?.replace(
-																		/-/g,
-																		' '
-																  )
+																	/-/g,
+																	' '
+																)
 																: '-'}
 														</TLink>
 													)

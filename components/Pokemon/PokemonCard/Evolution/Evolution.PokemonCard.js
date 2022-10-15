@@ -10,7 +10,7 @@ import {
 	PokemonEvolutionStages,
 	PokemonEvolutionText,
 } from './StyledEvolution.PokemonCard';
-import { FaChevronRight } from 'react-icons/fa';
+import FaChevronRight from '@meronex/icons/fa/FaChevronRight';
 import { usePokedex } from '/helpers/DataFetch';
 import SmallLoader from '/components/Loader/SmallLoader';
 import Image from 'next/image';
@@ -210,8 +210,8 @@ function Evolution({ evolution, pokemon }) {
 															{eed?.relative_physical_stats === 1
 																? ' Attack > Defense'
 																: eed?.relative_physical_stats === 0
-																? ' Attack = Defense'
-																: ' Defense > Attack'}
+																	? ' Attack = Defense'
+																	: ' Defense > Attack'}
 														</span>
 													</PokemonEvolutionText>
 												)}
@@ -455,8 +455,8 @@ function Evolution({ evolution, pokemon }) {
 																		{eeed?.relative_physical_stats === 1
 																			? ' Attack > Defense'
 																			: eeed?.relative_physical_stats === 0
-																			? ' Attack = Defense'
-																			: ' Defense > Attack'}
+																				? ' Attack = Defense'
+																				: ' Defense > Attack'}
 																	</span>
 																</PokemonEvolutionText>
 															)}

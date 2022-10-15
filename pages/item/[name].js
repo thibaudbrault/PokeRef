@@ -14,7 +14,7 @@ import {
 } from '/components/Items/ItemCard/StyledItemCard.js';
 import { useItem } from '/helpers/DataFetch';
 import Loader from '/components/Loader/Loader';
-import { FaChevronLeft } from 'react-icons/fa';
+import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';

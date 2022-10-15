@@ -13,7 +13,7 @@ import { BackButton } from '/components/BaseStyles/Inputs';
 import { Type } from '/components/BaseStyles/Themes';
 import { useMachines, useMove, usePokedex } from '/helpers/DataFetch';
 import Loader from '/components/Loader/Loader';
-import { FaChevronLeft } from 'react-icons/fa';
+import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
