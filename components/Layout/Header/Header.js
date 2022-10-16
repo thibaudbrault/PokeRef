@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { H1 } from '/components/BaseStyles/Headings';
+import { H1 } from '../../BaseStyles/Headings';
 import {
 	HeaderBtnContainer,
 	HeaderBtnTheme,

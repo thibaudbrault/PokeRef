@@ -6,15 +6,14 @@ import {
 	PokedexTypes,
 	PokedexVerticalText,
 	ToBottom,
-} from '/components/Pokemon/StyledPokemon.js';
-import { MainBig } from '/components/BaseStyles/Sizing';
-import { Type } from '/components/BaseStyles/Themes';
-import { usePokedex } from '/helpers/DataFetch';
-import Loader from '/components/Loader/Loader';
+} from '../components/Pokemon/StyledPokemon.js';
+import { MainBig } from '../components/BaseStyles/Sizing';
+import { Type } from '../components/BaseStyles/Themes';
+import { usePokedex } from '../helpers/DataFetch';
+import Loader from '../components/Loader/Loader';
 import FaAngleDown from '@meronex/icons/fa/FaAngleDown';
 import Image from 'next/future/image';
 import Link from 'next/link';
-import { dehydrate, QueryClient } from 'react-query';
 import dynamic from 'next/dynamic.js';
 
 const Filters = dynamic(() =>
