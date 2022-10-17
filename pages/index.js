@@ -30,11 +30,11 @@ function Pokemon() {
 	const [offset, setOffset] = useState(0);
 	//Modify the max number of pokemon displayed
 	const [limit, setLimit] = useState();
-	// Form of the pokemon (changed with a drodpown)
+	// Form of the pokemon (changed with a dropdown)
 	const [form, setForm] = useState('default');
-	// Type of the pokemon (changed with a drodpown)
+	// Type of the pokemon (changed with a dropdown)
 	const [type, setType] = useState('all');
-	// Generation of the pokemon (changed with a drodpown)
+	// Generation of the pokemon (changed with a dropdown)
 	const [generation, setGeneration] = useState('all');
 
 	const {

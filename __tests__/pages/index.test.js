@@ -4,9 +4,13 @@ import Pokemon from '../../pages/index'
 import '@testing-library/jest-dom'
 import { TestQueryProvider } from '../helpers/test-utils'
 
-test('Renders the Pokemon page', () => {
-    render(<Pokemon />, { wrapper: TestQueryProvider });
-
-    const { getByText } = render(<Pokemon />, { wrapper: TestQueryProvider });
-    expect(getByText('Form')).toBeInTheDocument();
+describe('Pokemon component', () => {
+    test('It renders', () => {
+        render(<Pokemon />, { wrapper: TestQueryProvider });
+    });
+    test('It has Form inside', async () => {
+        const { findByText } = render(<Pokemon />, { wrapper: TestQueryProvider });
+        const formText = await findByText('Form');
+        expect(formText).toBeInTheDocument();
+    })
 })

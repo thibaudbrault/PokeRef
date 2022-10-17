@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 
-import { MainBig } from '/components/BaseStyles/Sizing';
-import { MethodNav } from '/components/BaseStyles/Navbars';
-import { useMoves, useStatus } from '/helpers/DataFetch';
-import Loader from '/components/Loader/Loader';
+import { MainBig } from '../components/BaseStyles/Sizing';
+import { MethodNav } from '../components/BaseStyles/Navbars';
+import { useMoves, useStatus } from '../helpers/DataFetch';
+import Loader from '../components/Loader/Loader';
 import Head from 'next/head';
-import { dehydrate, QueryClient } from 'react-query';
 import dynamic from 'next/dynamic';
 
 const MovesTable = dynamic(() =>
-	import('/components/Moves/Components/MovesTable.Moves')
+	import('../components/Moves/Components/MovesTable.Moves')
 );
 const StatusTable = dynamic(() =>
-	import('/components/Moves/Components/StatusTable.Moves')
+	import('../components/Moves/Components/StatusTable.Moves')
 );
 
 function Moves() {
@@ -53,6 +52,7 @@ function Moves() {
 			<MainBig>
 				<MethodNav id='head'>
 					<button
+						id='btnMoves'
 						className={toggleState === 1 ? 'button_active' : ''}
 						onClick={() => toggleTable(1)}
 					>

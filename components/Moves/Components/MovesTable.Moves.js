@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { LeftTitle } from '/components/BaseStyles/Headings';
-import { Input, ModifiedSearch } from '/components/BaseStyles/Inputs';
+import { LeftTitle } from '../../BaseStyles/Headings';
+import { Input, ModifiedSearch } from '../../BaseStyles/Inputs';
 import {
 	Table,
 	TableContainer,
@@ -10,8 +10,8 @@ import {
 	TLink,
 	TName,
 	TRow,
-} from '/components/BaseStyles/Table';
-import { Type } from '/components/BaseStyles/Themes';
+} from '../../BaseStyles/Table';
+import { Type } from '../../BaseStyles/Themes';
 import { MovesSection, TCategory, TType } from '../StyledMoves';
 import Link from 'next/link';
 import Image from 'next/future/image';
@@ -59,7 +59,7 @@ function MovesTable({ moves, toggleState }) {
 							<th>Effect</th>
 						</tr>
 					</THead>
-					<tbody>
+					<tbody data-testid='movesBody'>
 						{filteredMoves
 							?.sort((a, b) => a.name.localeCompare(b.name))
 							?.map((m) => (

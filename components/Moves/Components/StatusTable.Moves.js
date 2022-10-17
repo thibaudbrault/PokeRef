@@ -6,7 +6,7 @@ import {
 	THead,
 	TName,
 	TRow,
-} from '/components/BaseStyles/Table';
+} from '../../BaseStyles/Table';
 import { ModifiedLeftTitle, MovesSection, StatusMoves } from '../StyledMoves';
 import Link from 'next/link';
 
