@@ -5,7 +5,7 @@ import { ModifiedType, TypesList } from '/components/Types/StyledTypes';
 import { useTypes } from '/helpers/DataFetch';
 import Loader from '/components/Loader/Loader';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'next/future/image';
 import Head from 'next/head';
 
 function Types() {
