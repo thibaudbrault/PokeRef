@@ -57,6 +57,7 @@ export const PokedexDropdown = styled.div`
 export const PokedexVerticalText = styled.p`
 	@supports (writing-mode: sideways-rl) {
 		display: block;
+		writing-mode: sideways-rl;
 	}
 	display: none;
 	font-size: 7rem;
