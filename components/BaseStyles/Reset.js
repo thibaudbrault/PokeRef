@@ -79,10 +79,6 @@ export const Reset = createGlobalStyle`
         transition: all 0.3s ease-in-out;
     }
 
-    main {
-        min-height: 100vh;
-    }
-
     @media(max-width: 890px) {
         html {
             font-size: 9px;

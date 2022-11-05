@@ -75,8 +75,8 @@ function Moves({
 						<PokemonMovesTd>
 							{m?.meta?.ailment !== null
 								? m?.meta?.ailment?.name
-									?.replace('none', '-')
-									.replace(/-/g, ' ')
+										?.replace('none', '-')
+										.replace(/-/g, ' ')
 								: '-'}
 						</PokemonMovesTd>
 					</>
@@ -137,8 +137,8 @@ function Moves({
 								{learn === 'level-up'
 									? 'Level'
 									: learn === 'machine'
-										? 'Machine'
-										: '-'}
+									? 'Machine'
+									: '-'}
 							</th>
 							<th>Name</th>
 							<th>Type</th>

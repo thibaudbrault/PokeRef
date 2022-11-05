@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 function _offline() {
-    return (
-        <main>
-            <p>Sorry but this app can not be displayed offline</p>
-        </main>
-    )
+	return (
+		<main>
+			<p>Sorry but this app can not be displayed offline</p>
+		</main>
+	);
 }
 
-export default _offline
+export default _offline;

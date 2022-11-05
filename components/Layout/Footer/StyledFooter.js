@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const FooterContainer = styled.footer`
-	padding: 1rem 0 0.5rem;
+	display: flex;
+	align-items: center;
+	height: 4vh;
 	background: hsla(29, 92%, 70%, 1);
 	background: linear-gradient(
 		0deg,

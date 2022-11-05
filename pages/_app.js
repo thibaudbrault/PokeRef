@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
+import { SessionProvider } from 'next-auth/react';
 
 import { darkTheme, lightTheme } from '../components/BaseStyles/Themes';
 
@@ -42,15 +43,17 @@ function MyApp({ Component, pageProps }) {
 			<Head>
 				<meta name='viewport' content='width=device-width,initial-scale=1' />
 			</Head>
-			<QueryClientProvider client={queryClient}>
-				<ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
-					<Header themeToggler={themeToggler} theme={theme} />
-					<Nav />
-					<Reset />
-					<Component {...pageProps} />
-					<Footer />
-				</ThemeProvider>
-			</QueryClientProvider>
+			<SessionProvider session={pageProps.session}>
+				<QueryClientProvider client={queryClient}>
+					<ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+						<Header themeToggler={themeToggler} theme={theme} />
+						<Nav />
+						<Reset />
+						<Component {...pageProps} />
+						<Footer />
+					</ThemeProvider>
+				</QueryClientProvider>
+			</SessionProvider>
 		</>
 	);
 }

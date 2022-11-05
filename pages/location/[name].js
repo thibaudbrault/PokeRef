@@ -64,8 +64,9 @@ function LocationCard() {
 	const title = `${name}`;
 
 	useEffect(() => {
-		document.title = `${title.charAt(0).toUpperCase() + title.slice(1).replace(/-/g, ' ')
-			} | Locations | PokéRef`;
+		document.title = `${
+			title.charAt(0).toUpperCase() + title.slice(1).replace(/-/g, ' ')
+		} | Locations | PokéRef`;
 	}, [title]);
 
 	if (error) {

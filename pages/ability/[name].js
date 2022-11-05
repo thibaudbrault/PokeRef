@@ -205,9 +205,9 @@ function AbilityCard() {
 														>
 															{p?.abilities?.length > 1
 																? p?.abilities[1]?.ability?.name?.replace(
-																	/-/g,
-																	' '
-																)
+																		/-/g,
+																		' '
+																  )
 																: '-'}
 														</TLink>
 													)
@@ -230,9 +230,9 @@ function AbilityCard() {
 														>
 															{p?.abilities?.length > 2
 																? p?.abilities[2]?.ability?.name?.replace(
-																	/-/g,
-																	' '
-																)
+																		/-/g,
+																		' '
+																  )
 																: '-'}
 														</TLink>
 													)

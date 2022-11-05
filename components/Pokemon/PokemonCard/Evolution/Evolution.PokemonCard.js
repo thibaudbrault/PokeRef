@@ -210,8 +210,8 @@ function Evolution({ evolution, pokemon }) {
 															{eed?.relative_physical_stats === 1
 																? ' Attack > Defense'
 																: eed?.relative_physical_stats === 0
-																	? ' Attack = Defense'
-																	: ' Defense > Attack'}
+																? ' Attack = Defense'
+																: ' Defense > Attack'}
 														</span>
 													</PokemonEvolutionText>
 												)}
@@ -455,8 +455,8 @@ function Evolution({ evolution, pokemon }) {
 																		{eeed?.relative_physical_stats === 1
 																			? ' Attack > Defense'
 																			: eeed?.relative_physical_stats === 0
-																				? ' Attack = Defense'
-																				: ' Defense > Attack'}
+																			? ' Attack = Defense'
+																			: ' Defense > Attack'}
 																	</span>
 																</PokemonEvolutionText>
 															)}

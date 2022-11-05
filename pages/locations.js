@@ -12,7 +12,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
-const LocationsMethod = dynamic(() => import('/helpers/RegionsMethod.js'))
+const LocationsMethod = dynamic(() => import('/helpers/RegionsMethod.js'));
 
 function Locations() {
 	const [location, setLocation] = useState();

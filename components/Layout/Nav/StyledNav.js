@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { device } from '../../BaseStyles/Sizing';
 
 export const MainNav = styled.nav`
+	min-height: 4vh;
 	max-width: 1700px;
 	margin: 0 auto;
 `;

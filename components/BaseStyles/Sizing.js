@@ -17,6 +17,7 @@ export const device = {
 };
 
 export const MainSmall = styled.main`
+	min-height: 100vh;
 	max-width: 1300px;
 	margin: 0 auto;
 	padding: 5rem;
@@ -27,6 +28,7 @@ export const MainSmall = styled.main`
 `;
 
 export const MainBig = styled.main`
+	min-height: 100vh;
 	position: relative;
 	max-width: 1700px;
 	margin: 0 auto;
@@ -35,6 +37,13 @@ export const MainBig = styled.main`
 	@media ${device.sm} {
 		padding: 3rem;
 	}
+`;
+
+export const MainAuth = styled(MainBig)`
+	min-height: 82vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;
 
 export const ModifiedMainBig = styled(MainBig)`
