@@ -50,7 +50,7 @@
 ✅Responsive  
 ✅Service Worker
 
-🛠SSG implementation with Next JS
+🛠Authentication with Supabase + list of favorites for users logged in
 
 🔜Types relations for each pokémon  
 🔜Authentication with profile page and "create your team" functionality  
@@ -62,9 +62,7 @@
 ✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important.  
 ✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded.
 
-🛠Implementing SSG with Next JS to generate the HTML at build time and loads the data faster.
-🛠Upgrade to Next JS 13.
-
+🔜Upgrade to Next JS 13.  
 🔜Implement a Service Worker.
 
 <h2 id="description">Description</h2>
@@ -107,6 +105,8 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
 - <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
 - <img src="https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7" />
+- <img src="https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white" />
+- <img src="https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white" />
 
 <h2 id="acknowledgements">Acknowledgements</h2>
 
