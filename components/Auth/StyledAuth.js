@@ -41,11 +41,6 @@ export const AuthForm = styled.form`
 	align-items: center;
 	justify-content: space-around;
 	flex-direction: column;
-
-	& p {
-		font-size: 1.7rem;
-		font-weight: 700;
-	}
 `;
 
 export const AuthTitle = styled.div`
@@ -58,6 +53,11 @@ export const AuthTitle = styled.div`
 	}
 `;
 
+export const AuthChoice = styled.p`
+	font-size: 1.7rem;
+	font-weight: 700;
+`;
+
 export const AuthInput = styled.div`
 	display: flex;
 	align-items: flex-start;
@@ -66,33 +66,43 @@ export const AuthInput = styled.div`
 	width: 85%;
 	margin: 0 auto;
 
-	& input {
+	& div {
 		width: 100%;
-		padding: 1rem;
 		margin-bottom: 2rem;
-		background: rgba(255, 255, 255, 0.3);
-		border: 1px solid ${({ theme }) => theme.main};
-		border-radius: 5px;
+		& input {
+			width: 100%;
+			padding: 1rem;
+			background: rgba(255, 255, 255, 0.3);
+			border: 1px solid ${({ theme }) => theme.main};
+			border-radius: 5px;
 
-		&:focus {
-			border: 1px solid ${({ theme }) => theme.red};
-			outline: none;
+			&:focus {
+				border: 1px solid ${({ theme }) => theme.red};
+				outline: none;
+			}
+		}
+		& p {
+			margin: 0.5rem 0 0 0.5rem;
+			color: ${({ theme }) => theme.red};
+			font-size: 1.3rem;
+			text-transform: capitalize;
 		}
 	}
+`;
 
-	& p {
-		width: 100%;
-		font-weight: 400;
-		text-align: center;
+export const AuthSwitch = styled.p`
+	width: 100%;
+	font-weight: 400;
+	text-align: center;
+	font-size: 1.7rem;
 
-		& a {
-			font-weight: 700;
-			cursor: pointer;
-			border-bottom: 1px solid transparent;
-			transition: 0.3s ease-in-out;
-			&:hover {
-				border-bottom: 1px solid ${({ theme }) => theme.main};
-			}
+	& a {
+		font-weight: 700;
+		cursor: pointer;
+		border-bottom: 1px solid transparent;
+		transition: 0.3s ease-in-out;
+		&:hover {
+			border-bottom: 1px solid ${({ theme }) => theme.main};
 		}
 	}
 `;

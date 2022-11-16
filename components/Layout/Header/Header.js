@@ -1,5 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
+import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
+
 import { H1 } from '../../BaseStyles/Headings';
 import {
 	HeaderBtnConnect,
@@ -9,10 +12,11 @@ import {
 } from './StyledHeader';
 import RiMoonClearLine from '@meronex/icons/ri/RiMoonClearLine';
 import RiSunLine from '@meronex/icons/ri/RiSunLine';
-import { useSession, signOut } from 'next-auth/react';
 
 function Header({ themeToggler, theme }) {
-	const { data: session } = useSession();
+
+	const session = useSession()
+	const supabase = useSupabaseClient()
 
 	return (
 		<HeaderContainer id='header'>

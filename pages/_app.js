@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
-import { SessionProvider } from 'next-auth/react';
+import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { SessionContextProvider } from '@supabase/auth-helpers-react'
 
 import { darkTheme, lightTheme } from '../components/BaseStyles/Themes';
 
@@ -22,6 +23,9 @@ const queryClient = new QueryClient({
 });
 
 function MyApp({ Component, pageProps }) {
+
+	const [supabaseClient] = useState(() => createBrowserSupabaseClient())
+
 	const loadTheme = () => {
 		const localTheme = globalThis.window?.localStorage.getItem('theme');
 		return localTheme ?? 'dark';
@@ -43,7 +47,10 @@ function MyApp({ Component, pageProps }) {
 			<Head>
 				<meta name='viewport' content='width=device-width,initial-scale=1' />
 			</Head>
-			<SessionProvider session={pageProps.session}>
+			<SessionContextProvider
+				supabaseClient={supabaseClient}
+				initialSession={pageProps.initialSession}
+			>
 				<QueryClientProvider client={queryClient}>
 					<ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
 						<Header themeToggler={themeToggler} theme={theme} />
@@ -53,7 +60,7 @@ function MyApp({ Component, pageProps }) {
 						<Footer />
 					</ThemeProvider>
 				</QueryClientProvider>
-			</SessionProvider>
+			</SessionContextProvider>
 		</>
 	);
 }

@@ -1,4 +1,3 @@
-import { getSession } from 'next-auth/react';
 import React from 'react';
 import { MainBig } from '../components/BaseStyles/Sizing';
 

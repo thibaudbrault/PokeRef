@@ -1,14 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
-import { signIn, signOut } from 'next-auth/react';
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
     AuthBtn,
     AuthButtons,
+    AuthChoice,
     AuthContainer,
     AuthForm,
     AuthImage,
     AuthInput,
     AuthSecBtn,
+    AuthSwitch,
     AuthTitle,
 } from '../components/Auth/StyledAuth';
 import { H2 } from '../components/BaseStyles/Headings';
@@ -16,20 +20,24 @@ import { MainAuth } from '../components/BaseStyles/Sizing';
 import GrGoogle from '@meronex/icons/gr/GrGoogle';
 import GrGithub from '@meronex/icons/gr/GrGithub';
 
-function Login() {
-    async function handleGoogleSignIn() {
-        signIn('google', { callbackUrl: 'http://localhost:3000' });
-    }
+const schema = yup.object({
+    email: yup.string().email().required(),
+    password: yup.string().required()
+}).required();
 
-    async function handleGithubSignIn() {
-        signIn('github', { callbackUrl: 'http://localhost:3000' });
-    }
+function Login() {
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
+
+    const submitForm = (data) => { }
 
     return (
         <MainAuth>
             <AuthContainer>
                 <AuthImage></AuthImage>
-                <AuthForm>
+                <AuthForm onSubmit={handleSubmit(submitForm)}>
                     <AuthTitle>
                         <H2>Login</H2>
                         <p>
@@ -37,16 +45,29 @@ function Login() {
                         </p>
                     </AuthTitle>
                     <AuthInput>
-                        <input type='email' name='email' id='email' placeholder='Email' />
-                        <input
-                            type='password'
-                            name='password'
-                            id='password'
-                            placeholder='Password'
-                        />
+                        <div>
+                            <input
+                                type='email'
+                                name='email'
+                                id='email'
+                                placeholder='Email'
+                                {...register('email')}
+                            />
+                            <p>{errors.email?.message}</p>
+                        </div>
+                        <div>
+                            <input
+                                type='password'
+                                name='password'
+                                id='password'
+                                placeholder='Password'
+                                {...register('password')}
+                            />
+                            <p>{errors.password?.message}</p>
+                        </div>
                         <AuthBtn type='submit'>Login</AuthBtn>
                     </AuthInput>
-                    <p>OR</p>
+                    <AuthChoice>OR</AuthChoice>
                     <AuthInput>
                         <AuthButtons>
                             <AuthSecBtn type='button' onClick={handleGoogleSignIn}>
@@ -62,9 +83,9 @@ function Login() {
                                 </span>
                             </AuthSecBtn>
                         </AuthButtons>
-                        <p>
+                        <AuthSwitch>
                             Don't have an account yet ? <Link href="/register">Register</Link>
-                        </p>
+                        </AuthSwitch>
                     </AuthInput>
                 </AuthForm>
             </AuthContainer>
