@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { LeftTitle } from '/components/BaseStyles/Headings';
-import { Input, ModifiedSearch } from '/components/BaseStyles/Inputs';
+import { LeftTitle } from '../components/BaseStyles/Headings';
+import { Input, ModifiedSearch } from '../components/BaseStyles/Inputs';
 import {
 	THead,
 	TName,
@@ -10,17 +10,16 @@ import {
 	TLink,
 	TableContainer,
 	ModifiedTable,
-} from '/components/BaseStyles/Table';
-import { ModifiedMainBig } from '/components/BaseStyles/Sizing';
-import { useAbilities } from '/helpers/DataFetch';
-import Loader from '/components/Loader/Loader';
+} from '../components/BaseStyles/Table';
+import { ModifiedMainBig } from '../components/BaseStyles/Sizing';
+import { useAbilities } from '../helpers/DataFetch';
+import Loader from '../components/Loader/Loader';
 import Head from 'next/head';
 import Link from 'next/link';
-import { dehydrate, QueryClient } from 'react-query';
 
 function Abilities() {
-	const [search, setSearch] = useState('');
-	const [filteredAbilities, setFilteredAbilities] = useState([]);
+	const [search, setSearch] = useState<string>('');
+	const [filteredAbilities, setFilteredAbilities] = useState<any>([]);
 	const { isLoading, error, data: abilities } = useAbilities();
 
 	// Filter the abilities returned when the user type the name in the search bar
@@ -34,6 +33,8 @@ function Abilities() {
 			)
 		);
 	}, [search, abilities]);
+
+	console.log(filteredAbilities)
 
 	if (error) {
 		return <p>{error}</p>;
@@ -85,8 +86,8 @@ function Abilities() {
 						</THead>
 						<tbody>
 							{filteredAbilities
-								?.sort((a, b) => a.name.localeCompare(b.name))
-								.map((a) => (
+								?.sort((a: { name: string; }, b: { name: any; }) => a.name.localeCompare(b.name))
+								.map((a: { name: string; flavor_text_entries: { language: { name: string; }; flavor_text: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal; }[]; }) => (
 									<TRow key={a.name}>
 										<TName>
 											<Link
@@ -101,7 +102,7 @@ function Abilities() {
 										</TName>
 										<TEffect>
 											{a.flavor_text_entries.map(
-												(af) =>
+												(af: { language: { name: string; }; flavor_text: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal; }) =>
 													af.language.name === 'en' && (
 														<span>{af.flavor_text}</span>
 													)

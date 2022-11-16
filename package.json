@@ -12,6 +12,8 @@
 	"dependencies": {
 		"@hookform/resolvers": "^2.9.10",
 		"@meronex/icons": "^4.0.0",
+		"@supabase/auth-helpers-nextjs": "^0.5.2",
+		"@supabase/auth-helpers-react": "^0.3.1",
 		"@supabase/auth-ui-react": "^0.2.6",
 		"@supabase/supabase-js": "^2.1.0",
 		"axios": "^0.27.2",
@@ -25,6 +27,7 @@
 		"yup": "^0.32.11"
 	},
 	"devDependencies": {
+		"@types/react": "18.0.25",
 		"babel-plugin-styled-components": "^2.0.7",
 		"eslint": "8.24.0",
 		"eslint-config-next": "12.3.1",

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
@@ -22,7 +23,7 @@ const queryClient = new QueryClient({
 	},
 });
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
 
 	const [supabaseClient] = useState(() => createBrowserSupabaseClient())
 

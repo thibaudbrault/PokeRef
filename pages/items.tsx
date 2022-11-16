@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 
-import { MainBig } from '/components/BaseStyles/Sizing';
-import { LeftTitle } from '/components/BaseStyles/Headings';
-import { Input, ModifiedSearch } from '/components/BaseStyles/Inputs';
-import { Table, THead, TLink, TRow } from '/components/BaseStyles/Table';
+import { MainBig } from '../components/BaseStyles/Sizing';
+import { LeftTitle } from '../components/BaseStyles/Headings';
+import { Input, ModifiedSearch } from '../components/BaseStyles/Inputs';
+import { Table, THead, TLink, TRow } from '../components/BaseStyles/Table';
 import {
 	TCategoryItems,
 	TEffectItems,
 	TNameItems,
-} from '/components/Items/StyledItems';
-import { useItems } from '/helpers/DataFetch';
-import Loader from '/components/Loader/Loader';
+} from '../components/Items/StyledItems';
+import { useItems } from '../helpers/DataFetch';
+import Loader from '../components/Loader/Loader';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { dehydrate, QueryClient } from 'react-query';
 
 function Items() {
-	const [search, setSearch] = useState('');
-	const [filteredItems, setFilteredItems] = useState([]);
+	const [search, setSearch] = useState<string | null>(null);
+	const [filteredItems, setFilteredItems] = useState(null);
 
 	const { isLoading, error, data: items } = useItems();
 
@@ -36,7 +36,7 @@ function Items() {
 		);
 	}, [search, items]);
 
-	function itemsToHide(i) {
+	function itemsToHide(i: { category: { name: string; }; }) {
 		return (
 			i?.category?.name !== 'dynamax-crystals' &&
 			i?.category?.name !== 'all-machines' &&
@@ -100,7 +100,7 @@ function Items() {
 					</THead>
 					<tbody>
 						{filteredItems?.map(
-							(i) =>
+							(i: { name?: any; sprites?: any; category: any; effect_entries?: any; }) =>
 								itemsToHide(i) && (
 									<TRow key={i.name}>
 										<TNameItems>
