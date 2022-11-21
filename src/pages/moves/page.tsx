@@ -24,8 +24,8 @@ function Moves() {
 		setToggleState(index);
 	};
 
-	if (error) {
-		return <p>{error}</p>;
+	if (error instanceof Error) {
+		return { error };
 	}
 
 	if (isLoading) {

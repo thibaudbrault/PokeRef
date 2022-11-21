@@ -22,13 +22,13 @@ function Items() {
 	const { isLoading, error, data: items } = useItems();
 
 	// Filter the items returned when the user type the name in the search bar
-	const filterItems = items
+	const filterItems = search ? (items
 		?.filter((items) => items.name
 			.replace(/-/g, ' ')
 			.toLowerCase()
 			.includes(search?.toLowerCase())
-		)
-		.sort(({ a, b }: Sort) => a.name.localeCompare(b.name));
+		)) : (items)
+			?.sort(({ a, b }: Sort) => a.name.localeCompare(b.name));
 
 	// New request when the user types a letter
 	useEffect(() => setFilteredItems(
@@ -48,8 +48,8 @@ function Items() {
 		);
 	}
 
-	if (error) {
-		return <p>{error}</p>;
+	if (error instanceof Error) {
+		return { error };
 	}
 
 	if (isLoading) {

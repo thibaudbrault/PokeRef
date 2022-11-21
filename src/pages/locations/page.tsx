@@ -27,8 +27,8 @@ function Locations() {
 		setLocation(regions[toggleState + 1]);
 	}, [toggleState]);
 
-	if (error) {
-		return <p>{error}</p>;
+	if (error instanceof Error) {
+		return { error };
 	}
 
 	if (isLoading) {

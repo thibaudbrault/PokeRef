@@ -23,11 +23,11 @@ function Abilities() {
 	const { isLoading, error, data: abilities } = useAbilities();
 
 	// Filter the abilities returned when the user type the name in the search bar
-	const filterAbilities = abilities?.filter((abilities) => abilities.name
+	const filterAbilities = search ? abilities?.filter((abilities) => abilities.name
 		.replace(/-/g, ' ')
 		.toLowerCase()
 		.includes(search?.toLowerCase())
-	);
+	) : abilities;
 
 	// New request when the user types a letter
 	useEffect(() => setFilteredAbilities(
@@ -36,8 +36,8 @@ function Abilities() {
 
 	console.log(filteredAbilities)
 
-	if (error) {
-		return <p>{error}</p>;
+	if (error instanceof Error) {
+		return { error };
 	}
 
 	if (isLoading) {

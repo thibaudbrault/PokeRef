@@ -46,8 +46,8 @@ function Pokemon(): JSX.Element {
 		`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
 	);
 
-	if (error) {
-		return <p>{error}</p>;
+	if (error instanceof Error) {
+		return { error };
 	}
 
 	if (isLoading) {

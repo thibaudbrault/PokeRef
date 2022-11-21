@@ -6,13 +6,12 @@ import { useTypes } from '../../helpers/DataFetch';
 import Loader from '../../components/Loader/Loader';
 import Link from 'next/link';
 import Image from 'next/image';
-import Head from 'next/head';
 
 function Types() {
 	const { isLoading, error, data: types } = useTypes();
 
-	if (error) {
-		return <p>{error}</p>;
+	if (error instanceof Error) {
+		return { error };
 	}
 
 	if (isLoading) {
@@ -21,20 +20,6 @@ function Types() {
 
 	return (
 		<>
-			<Head>
-				<title>Types | Pokeref</title>
-				<meta
-					name='description'
-					content='Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game'
-				/>
-				<meta property='og:title' content='Types | Pokeref' />
-				<meta
-					property='og:description'
-					content='Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game'
-				/>
-				<meta property='og:url' content='https://pokeref.app/types' />
-				<meta property='og:type' content='website' />
-			</Head>
 			<MainSmall>
 				<TypesList>
 					{types?.map((t) => (

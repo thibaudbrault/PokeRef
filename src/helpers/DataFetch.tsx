@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 
 // Fetch all pokemon
-export function usePokedex(url) {
+export function usePokedex(url: string) {
 	return useQuery(['pokedex', url], () =>
 		axios
 			.get(url)
@@ -10,7 +10,7 @@ export function usePokedex(url) {
 				return res.data.results;
 			})
 			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
+				return Promise.all(results.map((res: { url: string; }) => axios.get(res.url)));
 			})
 			.then((results) => {
 				return results.map((res) => res.data);
@@ -27,7 +27,7 @@ export function useMoves() {
 				return res.data.results;
 			})
 			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
+				return Promise.all(results.map((res: { url: string; }) => axios.get(res.url)));
 			})
 			.then((results) => {
 				return results.map((res) => res.data);
@@ -44,7 +44,7 @@ export function useStatus() {
 				return res.data.results;
 			})
 			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
+				return Promise.all(results.map((res: { url: string; }) => axios.get(res.url)));
 			})
 			.then((results) => {
 				return results.map((res) => res.data);
@@ -61,7 +61,7 @@ export function useAbilities() {
 				return res.data.results;
 			})
 			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
+				return Promise.all(results.map((res: { url: string; }) => axios.get(res.url)));
 			})
 			.then((results) => {
 				return results.map((res) => res.data);
@@ -78,7 +78,7 @@ export function useTypes() {
 				return res.data.results;
 			})
 			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
+				return Promise.all(results.map((res: { url: string; }) => axios.get(res.url)));
 			})
 			.then((results) => {
 				return results.map((res) => res.data);
@@ -95,7 +95,7 @@ export function useMachines() {
 				return res.data.results;
 			})
 			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
+				return Promise.all(results.map((res: { url: string; }) => axios.get(res.url)));
 			})
 			.then((results) => {
 				return results.map((res) => res.data);
@@ -112,7 +112,7 @@ export function useItems() {
 				return res.data.results;
 			})
 			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
+				return Promise.all(results.map((res: { url: string; }) => axios.get(res.url)));
 			})
 			.then((results) => {
 				return results.map((res) => res.data);
@@ -129,7 +129,7 @@ export function useLocations() {
 				return res.data.results;
 			})
 			.then((results) => {
-				return Promise.all(results.map((res) => axios.get(res.url)));
+				return Promise.all(results.map((res: { url: string; }) => axios.get(res.url)));
 			})
 			.then((results) => {
 				return results.map((res) => res.data);
@@ -138,7 +138,7 @@ export function useLocations() {
 }
 
 // Fetch single pokemon
-export function usePokemon(url) {
+export function usePokemon(url: string) {
 	return useQuery(['pokemon', url], () =>
 		axios
 			.get(url)
@@ -152,7 +152,7 @@ export function usePokemon(url) {
 }
 
 // Fetch single move
-export function useMove(url) {
+export function useMove(url: string) {
 	return useQuery(['move', url], () =>
 		axios
 			.get(url)
@@ -166,7 +166,7 @@ export function useMove(url) {
 }
 
 // Fetch single ability
-export function useAbility(url) {
+export function useAbility(url: string) {
 	return useQuery(['ability', url], () =>
 		axios
 			.get(url)
@@ -180,7 +180,7 @@ export function useAbility(url) {
 }
 
 // Fetch single pokemon species
-export function useSpecies(url) {
+export function useSpecies(url: string) {
 	return useQuery(['species', url], () =>
 		axios
 			.get(url)
@@ -194,7 +194,7 @@ export function useSpecies(url) {
 }
 
 // Fetch location for a single pokemon
-export function usePokemonLocation(url) {
+export function usePokemonLocation(url: string) {
 	return useQuery(['pokemonLocation', url], () =>
 		axios
 			.get(url)
@@ -208,7 +208,7 @@ export function usePokemonLocation(url) {
 }
 
 // Fetch evolution chain of a single pokemon
-export function useEvolution(url) {
+export function useEvolution(url: string) {
 	return useQuery(['evolution', url], () =>
 		axios
 			.get(url)
@@ -222,7 +222,7 @@ export function useEvolution(url) {
 }
 
 // Fetch single type
-export function useType(url) {
+export function useType(url: string) {
 	return useQuery(['type', url], () =>
 		axios
 			.get(url)
@@ -236,7 +236,7 @@ export function useType(url) {
 }
 
 // Fetch single item
-export function useItem(url) {
+export function useItem(url: string) {
 	return useQuery(['item', url], () =>
 		axios
 			.get(url)
@@ -250,7 +250,7 @@ export function useItem(url) {
 }
 
 // Fetch single location
-export function useLocation(url) {
+export function useLocation(url: string) {
 	return useQuery(['location', url], () =>
 		axios
 			.get(url)
@@ -264,7 +264,7 @@ export function useLocation(url) {
 }
 
 // Fetch single area
-export function useArea(url) {
+export function useArea(url: string) {
 	return useQuery(['area', url], () =>
 		axios
 			.get(url)

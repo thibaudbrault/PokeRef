@@ -22,11 +22,11 @@ function Machines() {
 	const { isLoading, error, data: machines } = useMachines();
 
 	// Filter the moves returned when the user type the name in the search bar
-	const filterMachines = machines?.filter((machines: Machines) => machines.move.name
+	const filterMachines = search ? machines?.filter((machines: Machines) => machines.move.name
 		.replace(/-/g, ' ')
 		.toLowerCase()
 		.includes(search?.toLowerCase())
-	);
+	) : machines;
 
 	// New request when the user types a letter
 	useEffect(() => setFilteredMachines(
@@ -36,8 +36,8 @@ function Machines() {
 	// Set default version for the list of returned machines to 'red-blue'
 	const [version, setVersion] = useState('red-blue');
 
-	if (error) {
-		return <p>{error}</p>;
+	if (error instanceof Error) {
+		return { error };
 	}
 
 	if (isLoading) {
