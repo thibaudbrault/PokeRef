@@ -1,128 +1,129 @@
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/26466516/141659551-d7ba5630-7200-46fe-863b-87818dae970a.png" alt="Next.js TypeScript Starter">
-</p>
-
-<br />
-
-<div align="center"><strong>Non-opinionated TypeScript starter for Next.js</strong></div>
-<div align="center">Highly scalable foundation with the best DX. All the tools you need to build your next project.</div>
-
-<br />
-
 <div align="center">
-  <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&style=flat-square&color=5e17eb&labelColor=000000" alt="PRs welcome!" />
-
-  <img alt="License" src="https://img.shields.io/github/license/jpedroschmitz/typescript-nextjs-starter?style=flat-square&color=5e17eb&labelColor=000000">
-
-  <a href="https://twitter.com/intent/follow?screen_name=jpedroschmitz">
-    <img src="https://img.shields.io/twitter/follow/jpedroschmitz?style=flat-square&color=5e17eb&labelColor=000000" alt="Follow @jpedroschmitz" />
-  </a>
+  
+  ![PokéRef](/public/readme%20images/Pok%C3%A9Ref.png)
 </div>
 
+---
+
 <div align="center">
-  <sub>Created by <a href="https://twitter.com/jpedroschmitz">João Pedro</a> with the help of many <a href="https://github.com/jpedroschmitz/typescript-nextjs-starter/graphs/contributors">wonderful contributors</a>.</sub>
+
+![GitHub repo size](https://img.shields.io/github/repo-size/thibaudbrault/pokeref)
+![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
+![GitHub last commit](https://img.shields.io/github/last-commit/thibaudbrault/pokeref)
+![Lines of code](https://img.shields.io/tokei/lines/github/thibaudbrault/pokeref)
+
 </div>
 
-<br />
+<h3 align="center">PokéRef is a pokémon encyclopedia built using React JS, Styled-Components and PokéAPI</h3>  
+<p align="center">You'll find a ton of information on every pokémon, moves, abilities, items and much more</p>  
+<div align="center">
+  <a href="https://pokeref.app/">Live version</a>  
+</div>  
+  
+<p align="center">Leave a 🌟 if you like my project 👍</p>
 
-## Features
+---
 
-- ⚡️ Next.js 13
-- ⚛️ React 18
-- ⛑ TypeScript
-- 📏 ESLint — To find and fix problems in your code
-- 💖 Prettier — Code Formatter for consistent style
-- 🐶 Husky — For running scripts before committing
-- 🚓 Commitlint — To make sure your commit messages follow the convention
-- 🖌 Renovate — To keep your dependencies up to date
-- 🚫 lint-staged — Run ESLint and Prettier against staged Git files
-- 👷 PR Workflow — Run Type Check & Linters on Pull Requests
-- ⚙️ EditorConfig - Consistent coding styles across editors and IDEs
-- 🗂 Path Mapping — Import components or images using the `@` prefix
+<details open="open">  
+  <summary>Table of contents</summary>
 
-## Quick Start
+1.  [Roadmap](#roadmap)
+2.  [Description](#description)
+3.  [Technologies](#technologies)
+4.  [Acknowledgements](#acknowledgements)
+5.  [Other](#other)
 
-The best way to start with this template is using [Create Next App](https://nextjs.org/docs/api-reference/create-next-app).
+</details>
 
-```
-# yarn
-yarn create next-app -e https://github.com/jpedroschmitz/typescript-nextjs-starter
-# npm
-npx create-next-app -e https://github.com/jpedroschmitz/typescript-nextjs-starter
-# pnpm
-pnpm create next-app -e https://github.com/jpedroschmitz/typescript-nextjs-starter
-```
+<h2 id="roadmap">Roadmap</h2>
 
-### Development
+<h4>Past, present and future</h4>
 
-To start the project locally, run:
+✅A page for every pokémon / move / ability / type / item  
+✅Filter pokémon by name / form / generation / type  
+✅Filter moves / abilities / machines by name  
+✅Change certain data according to the game selected  
+✅Dark mode  
+✅404 page  
+✅Autocomplete  
+✅Responsive  
+✅Service Worker
 
-```bash
-pnpm dev
-```
+🛠SSG implementation with Next JS
 
-Open `http://localhost:3000` with your browser to see the result.
+🔜Types relations for each pokémon  
+🔜Authentication with profile page and "create your team" functionality  
+🔜Animation on scroll
 
-## Testimonials
+<h4>Performance improvements</h4>
 
-> [**“This starter is by far the best TypeScript starter for Next.js. Feature packed but un-opinionated at the same time!”**](https://github.com/jpedroschmitz/typescript-nextjs-starter/issues/87#issue-789642190)<br>
-> — Arafat Zahan
+✅Use of React-Query to fetch data only once by using `cacheTime: Infinity` and `staleTime: Infinity`. The data will very rarely change so there is no use in re-fetching it every x minutes / hours.  
+✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important.  
+✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded.
 
-> [**“I can really recommend the Next.js Typescript Starter repo as a solid foundation for your future Next.js projects.”**](https://corfitz.medium.com/create-a-custom-create-next-project-command-2a6b35a1c8e6)<br>
-> — Corfitz
+🛠Implementing SSG with Next JS to generate the HTML at build time and loads the data faster.
+🛠Upgrade to Next JS 13.
 
-> [**“Brilliant work!”**](https://github.com/jpedroschmitz/typescript-nextjs-starter/issues/87#issuecomment-769314539)<br>
-> — Soham Dasgupta
+🔜Implement a Service Worker.
 
-## Showcase
+<h2 id="description">Description</h2>
 
-List of websites that started off with Next.js TypeScript Starter:
+<h4>Main goal</h4>
 
-- [dowhile.io](https://dowhile.io)
-- [hygraph.com](https://hygraph.com)
-- [nextlevelweek.com](https://nextlevelweek.com)
-- [rocketseat.com.br](https://www.rocketseat.com.br)
-- [unfork.vercel.app](https://unfork.vercel.app)
-- [Add yours](https://github.com/jpedroschmitz/typescript-nextjs-starter/edit/main/README.md)
+My main goal for this site was to get better at React JS and to learn how to use an API and to use Styled-Components.  
+I chose to use PokéAPI because there are a lot of tutorials to start from, the documentation is very clear and easy to use and there is a ton of information so I could make a bigger site with multiple pages.
 
-## Documentation
+<h4>Story of this project</h4>
 
-### Requirements
+- Started by using vanilla JS + Sass to learn how to fetch data from an API in vanilla JS
+- Quickly moved to React JS + Sass to learn React by working on a big project
+- Moved to React JS + Styled-Components to learn a new way to write CSS. It was a good move for me because I really like Styled-Components because it has the advantages of Sass, is easily importable / exportable between files and supports theming.
+- Added React-Query to fetch data. It's a great library that makes it easy to manage caching, fetching, loading and error handling for every data fetch.
+- Finally moved to Next JS (instead of CRA) + Styled-Components to learn to use Next JS. I chose to use Next JS to benefit from the image optimization given by the <Image /> component because the app has a lot of images to render and every optimization is welcome. I also chose it to benefit from the Static-Site generation.
 
-- Node.js >= 12.22.0
-- pnpm 7
+<h4>Problems encountered (ordered from the oldest to the most recent)</h4>
 
-### Directory Structure
+- Learning to fetch data from an API and use this data. That was the first time that I've used an API and at first I had problems to understand how the fetch API worked and how to use and display the data returned.
+- Moving to Styled-Components. Not a big problem because it uses nesting like Sass so I didn't have to modify a lot of CSS, but I had to learn how to create global styles and how to create themes and switch between them.
+- Implementing an infinite scroll (now removed) in React with <a href="https://www.npmjs.com/package/react-infinite-scroll-component" target="_blank">react-infinite-scroll-component</a>. I had problems with creating the function that fetches more data and the function that says when there are more elements to return. Maybe I'll try to implement it with React-Query but it's currently not a priority.
+- Virtualizing the moves, abilities and items pages' lists. I tried to implement it by using <a href="https://github.com/bvaughn/react-virtualized" target="_blank">react-virtualized</a> and <a href="https://github.com/petyosi/react-virtuoso" target="_blank">react-virtuoso</a>, but I had a few problems (the main one being that it did not take into account the sorting of the list and returned the list without it).
+- Implementing React-Query. I had to learn how to modify my custom hooks to make it work with React-Query and how to import the data from the hooks. It took me some time to make the transition works, but I don't regret it because my code is more readable (mainly the part where I import my hooks, but also the way I handle the loading state to return an animation while the data is being fetched) and it's an easy way to cache data.
+- Moving from CRA to Next. The main problem I had was learning to use dynamic routing and when I understood it the migration became easier. It still took me some time because I had to move all my files in other folders, change the paths in imports, implement the <Image /> component along with a width and height, correct some problems with the images (the creation of multiple spans wrapping the image that was solved by using next/future/image before moving to Next 13) and a few other problems with <Link /> component (the fact that it can't have multiple children and it needs to have a 'href' instead of the 'to' used in react-router to give the path).
 
-- [`.github`](.github) — GitHub configuration including the CI workflow.<br>
-- [`.husky`](.husky) — Husky configuration and hooks.<br>
-- [`public`](./public) — Static assets such as robots.txt, images, and favicon.<br>
-- [`src`](./src) — Application source code, including pages, components, styles.
+<h4>Contents</h4>
 
-### Scripts
+- All the 898 pokémon + regional variants, mega and gmax
+- Moves : basic data, effect, pokémon that can learn it, ...
+- Abilities : effect, pokémon that have this ability (normal or hidden), ...
+- Types : effectiveness against other types, pokémon with this type, ...
+- Items : effect, flinch power, ...
+- Machines : list of TM and HM for every game
+- Locations : every place and the pokémon that can be encountered
 
-- `pnpm dev` — Starts the application in development mode at `http://localhost:3000`.
-- `pnpm build` — Creates an optimized production build of your application.
-- `pnpm start` — Starts the application in production mode.
-- `pnpm type-check` — Validate code using TypeScript compiler.
-- `pnpm lint` — Runs ESLint for all files in the `src` directory.
-- `pnpm format` — Runs Prettier for all files in the `src` directory.
+<h2 id="technologies">Technologies</h2>
 
-### Path Mapping
+- <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
+- <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
+- <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
+- <img src="https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7" />
 
-TypeScript are pre-configured with custom path mappings. To import components or files, use the `@` prefix.
+<h2 id="acknowledgements">Acknowledgements</h2>
 
-```tsx
-import { Button } from '@/components/Button';
+A huge thanks to everyone that helped me by answering to my questions on Stack Overflow and Reddit.  
+A big thanks also to the PokeAPI team for creating such a huge, detailed and very well organized API.
 
-// To import images or other files from the public folder
-import avatar from '@/public/avatar.png';
-```
+<h4>Data</h4>
 
-### Switch to Yarn/npm
+<a href="https://pokeapi.co/docs/v2" target="_blank">PokéAPi</a>
 
-This starter uses pnpm by default, but this choice is yours. If you'd like to switch to Yarn/npm, delete the `pnpm-lock.yaml` file, install the dependencies with Yarn/npm, change the CI workflow, and Husky Git hooks to use Yarn/npm commands.
+<h4>Dependencies</h4>
 
-## License
+<a href="https://www.npmjs.com/package/react-query" target="_blank">React Query</a>  
+<a href="https://www.npmjs.com/package/eslint" target="_blank">ESLint</a>  
+<a href="https://www.npmjs.com/package/prettier" target="_blank">Prettier</a>
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for more information.
+<h2 id="other">Other</h2>
+
+![Dependabot](https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot&logoColor=white)
+![GitHub](https://img.shields.io/github/license/thibaudbrault/pokeref)
