@@ -16,25 +16,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7
-
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Check types
-        run: pnpm type-check
+        run: npm type-check
 
       - name: Check linting
-        run: pnpm lint
+        run: npm lint
 
       - name: Check commits messages
         uses: wagoid/commitlint-github-action@v5
