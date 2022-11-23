@@ -1,39 +1,39 @@
 interface LearnMethod {
-	1: string;
-	2: string;
-	3: string;
-	4: string;
-	[key: string]: string
+  1: string;
+  2: string;
+  3: string;
+  4: string;
+  [key: string]: string;
 }
 
 export const learnMethod: LearnMethod = {
-	1: 'level-up',
-	2: 'machine',
-	3: 'egg',
-	4: 'tutor',
+  1: `level-up`,
+  2: `machine`,
+  3: `egg`,
+  4: `tutor`,
 };
 
 interface Regions {
-	1: string;
-	2: string;
-	3: string;
-	4: string;
-	5: string;
-	6: string;
-	7: string;
-	8: string;
-	[key: string]: string;
+  1: string;
+  2: string;
+  3: string;
+  4: string;
+  5: string;
+  6: string;
+  7: string;
+  8: string;
+  [key: string]: string;
 }
 
 export const regions: Regions = {
-	1: 'kanto',
-	2: 'johto',
-	3: 'hoenn',
-	4: 'sinnoh',
-	5: 'unova',
-	6: 'kalos',
-	7: 'alola',
-	8: 'galar',
+  1: `kanto`,
+  2: `johto`,
+  3: `hoenn`,
+  4: `sinnoh`,
+  5: `unova`,
+  6: `kalos`,
+  7: `alola`,
+  8: `galar`,
 };
 
 // export const generations = [

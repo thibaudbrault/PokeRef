@@ -3,39 +3,39 @@ import Link from 'next/link';
 import { MainNav, MainNavList } from './StyledNav';
 
 function Nav() {
-	return (
-		<MainNav>
-			<MainNavList>
-				<li>
-					<Link href='/'>Pokémon</Link>
-				</li>
+  return (
+    <MainNav>
+      <MainNavList>
+        <li>
+          <Link href="/">Pokémon</Link>
+        </li>
 
-				<li>
-					<Link href='/moves'>Moves</Link>
-				</li>
+        <li>
+          <Link href="/moves">Moves</Link>
+        </li>
 
-				<li>
-					<Link href='/abilities'>Abilities</Link>
-				</li>
+        <li>
+          <Link href="/abilities">Abilities</Link>
+        </li>
 
-				<li>
-					<Link href='/types'>Types</Link>
-				</li>
+        <li>
+          <Link href="/types">Types</Link>
+        </li>
 
-				<li>
-					<Link href='/items'>Items</Link>
-				</li>
+        <li>
+          <Link href="/items">Items</Link>
+        </li>
 
-				<li>
-					<Link href='/machines'>Machines</Link>
-				</li>
+        <li>
+          <Link href="/machines">Machines</Link>
+        </li>
 
-				<li>
-					<Link href='/locations'>Locations</Link>
-				</li>
-			</MainNavList>
-		</MainNav>
-	);
+        <li>
+          <Link href="/locations">Locations</Link>
+        </li>
+      </MainNavList>
+    </MainNav>
+  );
 }
 
 export default Nav;

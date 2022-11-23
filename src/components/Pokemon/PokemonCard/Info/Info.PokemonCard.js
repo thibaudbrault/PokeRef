@@ -6,13 +6,13 @@ import Training from './Training/Training.PokemonCard';
 import { PokemonInfoSection } from './StyledInfo.PokemonCard';
 
 function Info({ pokemon, species, evolution }) {
-	return (
-		<PokemonInfoSection>
-			<Breeding pokemon={pokemon} species={species} evolution={evolution} />
-			<Training pokemon={pokemon} species={species} />
-			<Forms pokemon={pokemon} species={species} />
-		</PokemonInfoSection>
-	);
+  return (
+    <PokemonInfoSection>
+      <Breeding pokemon={pokemon} species={species} evolution={evolution} />
+      <Training pokemon={pokemon} species={species} />
+      <Forms pokemon={pokemon} species={species} />
+    </PokemonInfoSection>
+  );
 }
 
 export default Info;
