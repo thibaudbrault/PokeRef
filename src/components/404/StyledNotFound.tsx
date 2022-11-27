@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MainBig } from '../../components/Common/Sizing';
+import { MainBig } from '../Common/Sizing';
 
 export const NotFoundMain = styled(MainBig)`
   display: flex;

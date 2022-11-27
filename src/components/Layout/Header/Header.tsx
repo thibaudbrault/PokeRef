@@ -10,7 +10,7 @@ import {
 } from './StyledHeader';
 import RiMoonClearLine from '@meronex/icons/ri/RiMoonClearLine';
 import RiSunLine from '@meronex/icons/ri/RiSunLine';
-import { useSession, signOut } from 'next-auth/react';
+// import { useSession, signOut } from 'next-auth/react';
 
 type Props = {
   themeToggler: () => void;
@@ -18,7 +18,7 @@ type Props = {
 };
 
 function Header({ themeToggler, theme }: Props) {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   return (
     <HeaderContainer id="header">
@@ -27,19 +27,19 @@ function Header({ themeToggler, theme }: Props) {
         <HeaderBtnTheme onClick={themeToggler} aria-label="Switch Theme">
           {theme === `dark` ? <RiSunLine /> : <RiMoonClearLine />}
         </HeaderBtnTheme>
-        {session ? (
+        {/* {session ? (
           <>
             <button onClick={signOut}>Log Out</button>
             <Link href="/profile">Profile</Link>
           </>
-        ) : (
-          <HeaderBtnConnect>
-            <Link href="/login" passHref>
-              Login
-            </Link>
-            <Link href="/register">Register</Link>
-          </HeaderBtnConnect>
-        )}
+        ) : ( */}
+        <HeaderBtnConnect>
+          <Link href="/login" passHref>
+            Login
+          </Link>
+          <Link href="/register">Register</Link>
+        </HeaderBtnConnect>
+        {/* )} */}
       </HeaderBtnContainer>
     </HeaderContainer>
   );

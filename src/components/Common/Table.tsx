@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
 export const TableContainer = styled.div`
   width: 100%;
@@ -75,7 +76,7 @@ export const TName = styled.td`
   font-weight: 700;
 `;
 
-export const TLink = styled.a`
+export const TLink = styled(Link)`
   text-transform: capitalize;
   border-bottom: 1px solid transparent;
   cursor: pointer;

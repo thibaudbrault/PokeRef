@@ -1,5 +1,5 @@
 import React from 'react';
-import { Move } from '@/types/types';
+import { Machines, Moves } from '@/types/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -9,19 +9,9 @@ import {
 } from '../StyledData.MoveCard';
 
 type Props = {
-  move: Move;
+  move: Moves;
   version: string;
-  machines: {
-    version_group: {
-      name: string;
-    };
-    move: {
-      name: string;
-    };
-    item: {
-      name: string;
-    };
-  }[];
+  machines: Machines[];
 };
 
 function Desc({ move, version, machines }: Props) {
@@ -64,7 +54,7 @@ function Desc({ move, version, machines }: Props) {
           (ma) =>
             ma?.version_group?.name === version &&
             ma?.move?.name === move?.name && (
-              <tr>
+              <tr key={ma.move.name}>
                 <th>Machine / Record</th>
                 <td>
                   <span>{ma?.item?.name.toUpperCase()}</span>

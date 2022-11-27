@@ -57,7 +57,7 @@ export const MoveText = styled.p`
   font-size: 1.5rem;
 `;
 
-export const MoveLink = styled.a`
+export const MoveLink = styled(Link)`
   font-weight: 700;
   text-transform: capitalize;
   cursor: pointer;

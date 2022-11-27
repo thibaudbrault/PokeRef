@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Table } from '../../../components/Common/Table';
+import { Table } from '../../Common/Table';
 
 export const AbilityCardSection = styled.section`
   margin: 5rem 0;

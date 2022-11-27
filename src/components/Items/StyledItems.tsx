@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TName } from '../../components/Common/Table';
+import { TName } from '../Common/Table';
 
 export const TNameItems = styled(TName)`
   display: table-cell;

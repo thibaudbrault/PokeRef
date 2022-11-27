@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { usePokedex } from '../../helpers/DataFetch';
 import {
@@ -14,16 +16,18 @@ function Autocomplete() {
     `https://pokeapi.co/api/v2/pokemon?offset=0&limit=905`,
   );
 
-  const [pokedexMatch, setPokedexMatch] = useState<Pokemon[]>([]);
+  const [pokedexMatch, setPokedexMatch] = useState<Pokemon[] | null>(null);
 
   const searchPokedex = (text: string) => {
     if (!text) {
       setPokedexMatch([]);
     } else {
-      const matches = pokedex?.filter((pokedex) => {
-        const regex = new RegExp(`${text}`, `gi`);
-        return pokedex?.name?.match(regex);
-      });
+      const matches =
+        pokedexMatch &&
+        pokedex?.filter((pokedex) => {
+          const regex = new RegExp(`${text}`, `gi`);
+          return pokedex?.name?.match(regex);
+        });
       setPokedexMatch(matches?.slice(0, 5));
     }
   };

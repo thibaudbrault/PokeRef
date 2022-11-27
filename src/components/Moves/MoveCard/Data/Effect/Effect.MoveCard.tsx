@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import { Move } from '@/types/types';
+import { Moves } from '@/types/types';
 import { H3, H4, Span } from '../../../../Common/Headings';
 import {
   MoveCardDataList,
@@ -11,7 +11,7 @@ import {
 } from '../StyledData.MoveCard';
 
 type Props = {
-  move: Move;
+  move: Moves;
   version: string;
 };
 

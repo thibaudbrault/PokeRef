@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Key } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LeftTitle } from '../../Common/Headings';
 import { Input, ModifiedSearch } from '../../Common/Inputs';
 import {
@@ -14,10 +14,10 @@ import { Type } from '../../Common/Themes';
 import { MovesSection, TCategory, TType } from '../StyledMoves';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Move, Sort } from '@/types/types';
+import { Moves } from '@/types/types';
 
 type Props = {
-  moves: Move[];
+  moves: Moves[];
   toggleState: number;
 };
 
@@ -29,7 +29,7 @@ function MovesTable({ moves, toggleState }: Props) {
   useEffect(
     () =>
       setFilteredMoves(
-        moves.filter((moves: { name: string }) =>
+        moves.filter((moves: Moves) =>
           moves.name
             .replace(/-/g, ` `)
             .toLowerCase()
@@ -68,20 +68,19 @@ function MovesTable({ moves, toggleState }: Props) {
           </THead>
           <tbody data-testid="movesBody">
             {filteredMoves
-              ?.sort(({ a, b }: Sort) => a.name.localeCompare(b.name))
-              ?.map((m) => (
+              ?.sort((a, b) => a.name.localeCompare(b.name))
+              ?.map((m: Moves) => (
                 <TRow key={m.id}>
                   <TName>
-                    <Link
+                    <TLink
                       href={{
                         pathname: `/move/[name]`,
                         query: { name: m.name },
                       }}
                       key={m.name}
-                      passHref
                     >
-                      <TLink>{m?.name?.replace(/-/g, ` `)}</TLink>
-                    </Link>
+                      {m?.name?.replace(/-/g, ` `)}
+                    </TLink>
                   </TName>
                   <TCategory id={m?.damage_class?.name}>
                     <div>
@@ -96,34 +95,18 @@ function MovesTable({ moves, toggleState }: Props) {
                           pathname: `/type/[name]`,
                           query: { name: m.type.name },
                         }}
-                        passHref
                       >
-                        <a>
-                          <Image alt={m.type.name} width={15} height={15} />
-                          <span>{m?.type?.name}</span>
-                        </a>
+                        <Image alt={m.type.name} width={15} height={15} />
+                        <span>{m?.type?.name}</span>
                       </Link>
                     </Type>
                   </TType>
                   <TEffect>
                     {m?.flavor_text_entries?.map(
-                      (mf: {
-                        language: { name: string };
-                        flavor_text:
-                          | string
-                          | number
-                          | boolean
-                          | React.ReactElement<
-                              any,
-                              string | React.JSXElementConstructor<any>
-                            >
-                          | React.ReactFragment
-                          | null
-                          | undefined;
-                      }) =>
+                      (mf) =>
                         mf.language.name === `en` &&
                         mf.flavor_text !== `Dummy Data` && (
-                          <span>{mf?.flavor_text}</span>
+                          <span key={mf.flavor_text}>{mf?.flavor_text}</span>
                         ),
                     )}
                   </TEffect>

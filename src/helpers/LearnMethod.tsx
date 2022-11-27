@@ -4,7 +4,7 @@ import { MethodNav } from '../components/Common/Navbars';
 
 type Props = {
   toggleState: number;
-  toggleTable: (i: number) => {};
+  toggleTable: (i: number) => void;
 };
 
 function LearnMethod({ toggleState, toggleTable }: Props) {
