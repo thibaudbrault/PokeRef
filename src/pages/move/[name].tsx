@@ -49,8 +49,8 @@ function MoveCard() {
   const [version, setVersion] = useState(`ultra-sun-ultra-moon`);
 
   // Switch between the different tables for the method to learn the move
-  const [toggleState, setToggleState] = useState(0);
-  const toggleTable = (index) => {
+  const [toggleState, setToggleState] = useState<number>(0);
+  const toggleTable = (index: number) => {
     setToggleState(index);
   };
 
@@ -105,7 +105,7 @@ function MoveCard() {
                       pmv?.version_group?.name === version &&
                       pmv?.move_learn_method?.name === `level-up` &&
                       pmv?.level_learned_at > 1 && (
-                        <li>
+                        <li key={p.name}>
                           <Image
                             src={p?.sprites?.front_default}
                             alt={p?.name}
@@ -159,7 +159,7 @@ function MoveCard() {
                       pmv?.version_group?.name === version &&
                       pmv?.move_learn_method?.name === `machine` &&
                       pmv?.level_learned_at === 0 && (
-                        <li>
+                        <li key={p.name}>
                           <Image
                             src={p?.sprites?.front_default}
                             alt={p?.name}
@@ -214,7 +214,7 @@ function MoveCard() {
                       (pmv?.move_learn_method?.name === `egg` ||
                         (pmv?.move_learn_method?.name === `level-up` &&
                           pmv?.level_learned_at === 1)) && (
-                        <li>
+                        <li key={p.name}>
                           <Image
                             src={p?.sprites?.front_default}
                             alt={p?.name}
@@ -266,7 +266,7 @@ function MoveCard() {
                     (pmv) =>
                       pmv?.version_group?.name === version &&
                       pmv?.move_learn_method?.name === `tutor` && (
-                        <li>
+                        <li key={p.name}>
                           <Image
                             src={p?.sprites?.front_default}
                             alt={p?.name}
@@ -320,7 +320,7 @@ function MoveCard() {
                       pmv?.version_group?.name === version &&
                       pmv?.move_learn_method?.name === `level-up` &&
                       pmv?.level_learned_at === 0 && (
-                        <li>
+                        <li key={p.name}>
                           <Image
                             src={p?.sprites?.front_default}
                             alt={p?.name}

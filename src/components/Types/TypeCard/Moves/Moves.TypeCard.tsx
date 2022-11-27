@@ -10,9 +10,14 @@ import {
   TypeMovesName,
 } from '../StyledTypeCard';
 import Link from 'next/link';
-import { Sort } from '@/types/types';
+import { Moves, Types } from '@/types/types';
 
-function Moves({ type, moves }) {
+type Props = {
+  type: Types;
+  moves: Moves;
+};
+
+function Moves({ type, moves }: Props) {
   // Returns the number of moves from this type
   const nbMoves = document.querySelectorAll(`.moveElement`).length;
 
@@ -39,9 +44,9 @@ function Moves({ type, moves }) {
               ?.sort((a, b) => a.name.localeCompare(b.name))
               .map((tm) =>
                 moves?.map(
-                  (m) =>
+                  (m: Moves) =>
                     m.name === tm.name && (
-                      <TRow className="moveElement">
+                      <TRow key={tm.name} className="moveElement">
                         <TypeMovesName>
                           <Link
                             href={{

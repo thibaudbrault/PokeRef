@@ -107,7 +107,7 @@ function Abilities() {
                       {a.flavor_text_entries.map(
                         (af) =>
                           af.language.name === `en` && (
-                            <span>{af.flavor_text}</span>
+                            <span key={af.flavor_text}>{af.flavor_text}</span>
                           ),
                       )}
                     </TEffect>

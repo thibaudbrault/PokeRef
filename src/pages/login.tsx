@@ -3,7 +3,7 @@ import Link from 'next/link';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { signIn, signOut } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import {
   AuthBtn,
   AuthButtons,
@@ -37,7 +37,9 @@ function Login() {
     resolver: yupResolver(schema),
   });
 
-  const submitForm = (data) => {};
+  const submitForm = (data) => {
+    console.log(data);
+  };
 
   async function handleGoogleSignIn() {
     signIn(`google`, { callbackUrl: `http://localhost:3000` });
@@ -91,7 +93,8 @@ function Login() {
               </AuthSecBtn>
             </AuthButtons>
             <AuthSwitch>
-              Don't have an account yet ? <Link href="/register">Register</Link>
+              Don&#39t have an account yet ?{` `}
+              <Link href="/register">Register</Link>
             </AuthSwitch>
           </AuthInput>
         </AuthForm>

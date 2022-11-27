@@ -61,11 +61,11 @@ function Locations() {
             (l: Locations) =>
               l?.name === location &&
               location !== `galar` && (
-                <LocationList>
+                <LocationList key={l.name}>
                   {l?.locations
                     ?.sort(({ a, b }: Sort) => a.name.localeCompare(b.name))
                     ?.map((ll) => (
-                      <li key={l.name}>
+                      <li key={ll.name}>
                         <Link
                           href={{
                             pathname: `/location/[name]`,

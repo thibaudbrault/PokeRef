@@ -63,7 +63,9 @@ function ItemCard() {
               <h3>Effect</h3>
               {item?.effect_entries?.map(
                 (ie) =>
-                  ie?.language?.name === `en` && <p>{ie?.short_effect}</p>,
+                  ie?.language?.name === `en` && (
+                    <p key={ie.short_effect}>{ie?.short_effect}</p>
+                  ),
               )}
             </ItemCardDataEffect>
             {item?.cost !== 0 && (
@@ -116,7 +118,7 @@ function ItemCard() {
             <tbody>
               {item?.flavor_text_entries?.map((ift) =>
                 ift?.language?.name === `en` ? (
-                  <tr>
+                  <tr key={ift.text}>
                     <th>{ift?.version_group?.name?.replace(/-/g, ` `)}</th>
                     <td>{ift?.text}</td>
                   </tr>

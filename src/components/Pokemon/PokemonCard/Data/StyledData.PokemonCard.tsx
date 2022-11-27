@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Pulse } from '../../../../components/Common/Keyframes';
-import { device, Section } from '../../../../components/Common/Sizing';
-import { Table } from '../../../../components/Common/Table';
+import { Pulse } from '../../../Common/Keyframes';
+import { device, Section } from '../../../Common/Sizing';
+import { Table } from '../../../Common/Table';
 
 export const PokemonDataSection = styled(Section)`
   display: grid;

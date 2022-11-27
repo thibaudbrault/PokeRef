@@ -81,14 +81,17 @@ function AbilityCard() {
           <AbilityCardEffect>
             <H3>Effect</H3>
             {ability?.effect_entries?.map(
-              (ae) => ae?.language?.name === `en` && <p>{ae?.effect}</p>,
+              (ae) =>
+                ae?.language?.name === `en` && (
+                  <p key={ae.effect}>{ae?.effect}</p>
+                ),
             )}
           </AbilityCardEffect>
           {ability?.effect_entries?.map(
             (ae) =>
               ae?.language?.name === `en` &&
               ae?.effect?.includes(`\n\nOverworld:`) && (
-                <AbilityCardEffect>
+                <AbilityCardEffect key={ae.effect}>
                   <H4>Overworld</H4>
                   <p>
                     {ae.effect
@@ -106,7 +109,7 @@ function AbilityCard() {
             <tbody>
               {ability?.flavor_text_entries?.map((af) =>
                 af?.language?.name === `en` ? (
-                  <tr>
+                  <tr key={ae.flavor_text}>
                     <th>{af?.version_group?.name?.replace(/-/g, ` `)}</th>
                     <td>{af?.flavor_text}</td>
                   </tr>
@@ -145,6 +148,7 @@ function AbilityCard() {
                         (p) =>
                           p.name === ap.pokemon.name && (
                             <Image
+                              key={p.name}
                               src={p.sprites.front_default}
                               alt="-"
                               loading="lazy"
@@ -170,6 +174,7 @@ function AbilityCard() {
                         (p) =>
                           p.name === ap.pokemon.name && (
                             <TLink
+                              key={p.abilities[0].ability.name}
                               href={{
                                 pathname: `/ability/[name]`,
                                 query: { name: p?.abilities[0]?.ability?.name },
@@ -193,6 +198,7 @@ function AbilityCard() {
                         (p) =>
                           p.name === ap.pokemon.name && (
                             <TLink
+                              key={p.abilities[1].ability.name}
                               href={{
                                 pathname: `/ability/[name]`,
                                 query: { name: p?.abilities[1]?.ability?.name },
@@ -218,6 +224,7 @@ function AbilityCard() {
                         (p) =>
                           p.name === ap.pokemon.name && (
                             <TLink
+                              key={p.abilities[2].ability.name}
                               href={{
                                 pathname: `/ability/[name]`,
                                 query: { name: p?.abilities[2]?.ability?.name },

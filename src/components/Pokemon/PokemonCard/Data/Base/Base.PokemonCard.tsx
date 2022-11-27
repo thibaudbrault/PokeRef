@@ -29,7 +29,9 @@ function Base({ pokemon, species, game, location }) {
                 l?.version_details?.map(
                   (lv) =>
                     lv?.version?.name === game && (
-                      <p>{l?.location_area?.name?.replace(/-/g, ` `)}</p>
+                      <p key={l.location_area.name}>
+                        {l?.location_area?.name?.replace(/-/g, ` `)}
+                      </p>
                     ),
                 ),
               )}
@@ -68,7 +70,10 @@ function Base({ pokemon, species, game, location }) {
           <td>
             {pokemon.id < 10000
               ? species?.genera?.map(
-                  (sg) => sg?.language?.name === `en` && <p>{sg?.genus}</p>,
+                  (sg) =>
+                    sg?.language?.name === `en` && (
+                      <p key={sg.genus}>{sg?.genus}</p>
+                    ),
                 )
               : `⠀`}
           </td>

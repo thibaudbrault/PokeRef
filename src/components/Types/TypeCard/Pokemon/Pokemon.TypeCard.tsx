@@ -21,7 +21,7 @@ function Pokemon({ type, pokedex }) {
             (p) =>
               p.name === tp.pokemon.name &&
               p.id < 905 && (
-                <li className="pokemonElement">
+                <li key={p.name} className="pokemonElement">
                   <Image
                     src={p.sprites.front_default}
                     alt={p.name}

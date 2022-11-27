@@ -21,7 +21,7 @@ function Training({ pokemon, species }: Props) {
               {pokemon?.stats?.map(
                 (ps) =>
                   ps?.effort !== 0 && (
-                    <p>
+                    <p key={ps.effort}>
                       {ps?.effort} {ps?.stat?.name?.replace(/-/g, ` `)}
                     </p>
                   ),

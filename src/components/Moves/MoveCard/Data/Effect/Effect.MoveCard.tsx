@@ -109,13 +109,13 @@ function Effect({ move, version }: Props) {
             <MoveCardDataStat>
               {move?.stat_changes?.map((ms) =>
                 ms?.change < 0 ? (
-                  <li>
+                  <li key={ms.stat.name}>
                     This move lower the target's{` `}
                     <Span>{ms?.stat?.name?.replace(/-/g, ` `)}</Span> by{` `}
                     {ms?.change} stage
                   </li>
                 ) : (
-                  <li>
+                  <li key={ms.stat.name}>
                     This move raises the target's <Span>{ms?.stat?.name}</Span>
                     {` `}
                     by {ms?.change} stage

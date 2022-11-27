@@ -92,7 +92,7 @@ function Moves({
     pm?.version_group_details?.map(
       (pmv: PokemonMoves['version_group_details']) =>
         isLearnedMove(pmv) && (
-          <TRow>
+          <TRow key={pmv.level_learned_at}>
             {(() => {
               if (learn === `level-up` && pmv?.level_learned_at === 0) {
                 return (
@@ -109,7 +109,9 @@ function Moves({
                 (ma: Machines) =>
                   ma?.move?.name === pm?.move?.name &&
                   ma?.version_group?.name === version && (
-                    <PokemonMovesMachine>{ma?.item?.name}</PokemonMovesMachine>
+                    <PokemonMovesMachine key={ma.item.name}>
+                      {ma?.item?.name}
+                    </PokemonMovesMachine>
                   ),
               )}
             {learn === `egg` && <td>-</td>}

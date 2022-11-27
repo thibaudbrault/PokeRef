@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Subtitle } from '../../../components/Common/Headings';
-import { device } from '../../../components/Common/Sizing';
-import { Table, TName } from '../../../components/Common/Table';
+import { Subtitle } from '../../Common/Headings';
+import { device } from '../../Common/Sizing';
+import { Table, TName } from '../../Common/Table';
 
 export const TypeDamageSection = styled.section`
   margin: 5rem 0;

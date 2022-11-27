@@ -184,7 +184,7 @@ function Machines() {
             {filteredMachines?.map(
               (ma: Machines) =>
                 ma?.version_group?.name === version && (
-                  <TRow>
+                  <TRow key={ma.item.name}>
                     <TName>{ma?.item?.name.toUpperCase()}</TName>
                     <td>
                       <Link
