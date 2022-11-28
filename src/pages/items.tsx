@@ -9,7 +9,7 @@ import {
   TEffectItems,
   TNameItems,
 } from '../components/Items/StyledItems';
-import { useItems } from '../../src/helpers/DataFetch';
+import { useItems } from '../../src/hooks/DataFetch';
 import Loader from '../components/Loader/Loader';
 import Image from 'next/image';
 import { Items, Sort } from '@/types/types';

@@ -12,7 +12,7 @@ import {
   ModifiedTable,
 } from '../components/Common/Table';
 import { ModifiedMainBig } from '../components/Common/Sizing';
-import { useAbilities } from '../helpers/DataFetch';
+import { useAbilities } from '../hooks/DataFetch';
 import Loader from '../components/Loader/Loader';
 import { Abilities, Sort } from '@/types/types';
 import Head from 'next/head';

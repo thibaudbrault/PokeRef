@@ -11,7 +11,7 @@ import {
 } from '../../components/Moves/MoveCard/StyledMoveCard.js';
 import { BackButton } from '../../components/Common/Inputs';
 import { Type } from '../../components/Common/Themes';
-import { useMachines, useMove, usePokedex } from '../../helpers/DataFetch';
+import { useMachines, useMove, usePokedex } from '../../hooks/DataFetch';
 import Loader from '../../components/Loader/Loader';
 import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
 import Image from 'next/image';
@@ -26,7 +26,7 @@ const Nav = dynamic(
 const Data = dynamic(
   () => import(`../../components/Moves/MoveCard/Data/Data.MoveCard`),
 );
-const LearnMethod = dynamic(() => import(`../../helpers/LearnMethod`));
+const LearnMethod = dynamic(() => import(`../../utils/LearnMethod`));
 
 function MoveCard() {
   const router = useRouter();

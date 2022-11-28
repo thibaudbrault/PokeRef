@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -22,6 +23,14 @@ const queryClient = new QueryClient({
   },
 });
 
+const ErrorFallback = ({ error: Error, resetErrorBoundary }) => {
+  <div role="alert">
+    <p>Something went wrong:</p>
+    <pre>{error.message}</pre>
+    <button onClick={resetErrorBoundary}>Try again</button>
+  </div>
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
   const loadTheme: () => string = () => {
     const localTheme = globalThis.window?.localStorage.getItem(`theme`);
@@ -43,17 +52,19 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
       </Head>
-      {/* <SessionProvider> */}
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
-          <Header themeToggler={themeToggler} theme={theme} />
-          <Nav />
-          <Reset />
-          <Component {...pageProps} />
-          <Footer />
-        </ThemeProvider>
-      </QueryClientProvider>
-      {/* </SessionProvider> */}
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        {/* <SessionProvider> */}
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
+            <Header themeToggler={themeToggler} theme={theme} />
+            <Nav />
+            <Reset />
+            <Component {...pageProps} />
+            <Footer />
+          </ThemeProvider>
+        </QueryClientProvider>
+        {/* </SessionProvider> */}
+      </ErrorBoundary>
     </>
   );
 }

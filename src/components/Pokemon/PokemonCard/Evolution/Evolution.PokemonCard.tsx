@@ -11,7 +11,7 @@ import {
   PokemonEvolutionText,
 } from './StyledEvolution.PokemonCard';
 import FaChevronRight from '@meronex/icons/fa/FaChevronRight';
-import { usePokedex } from '../../../../helpers/DataFetch';
+import { usePokedex } from '../../../../hooks/DataFetch';
 import SmallLoader from '../../../Loader/SmallLoader';
 import Image from 'next/image';
 import Link from 'next/link';

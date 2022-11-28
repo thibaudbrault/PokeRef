@@ -8,7 +8,7 @@ import {
 } from '../components/Pokemon/StyledPokemon';
 import { MainBig } from '../components/Common/Sizing';
 import { Type } from '../components/Common/Themes';
-import { usePokedex } from '../helpers/DataFetch';
+import { usePokedex } from '../hooks/DataFetch';
 import Loader from '../components/Loader/Loader';
 import FaAngleDown from '@meronex/icons/fa/FaAngleDown';
 import Image from 'next/image';

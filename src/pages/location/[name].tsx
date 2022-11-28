@@ -4,7 +4,7 @@ import { BackButton } from '../../components/Common/Inputs';
 import { MainBig, Section } from '../../components/Common/Sizing';
 import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
 import Loader from '../../components/Loader/Loader';
-import { useArea, useLocation } from '../../helpers/DataFetch';
+import { useArea, useLocation } from '../../hooks/DataFetch';
 import { CardTitle, Subtitle } from '../../components/Common/Headings';
 import {
   LocationNavContainer,

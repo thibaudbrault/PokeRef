@@ -2,7 +2,7 @@ import React from 'react';
 import { BackButton } from '../../components/Common/Inputs';
 import { MainBig } from '../../components/Common/Sizing';
 import { CardTitle } from '../../components/Common/Headings';
-import { useMoves, usePokedex, useType } from '../../helpers/DataFetch';
+import { useMoves, usePokedex, useType } from '../../hooks/DataFetch';
 import Loader from '../../components/Loader/Loader';
 import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
 import Head from 'next/head';

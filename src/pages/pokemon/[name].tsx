@@ -9,7 +9,7 @@ import {
   usePokemonLocation,
   useSpecies,
   useTypes,
-} from '../../helpers/DataFetch';
+} from '../../hooks/DataFetch';
 import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
 import Loader from '../../components/Loader/Loader';
 import { Subtitle, Title } from '../../components/Common/Headings';

@@ -6,15 +6,15 @@ import {
   LocationSection,
 } from '../components/Locations/StyledLocations';
 import Loader from '../components/Loader/Loader';
-import { useLocations } from '../../src/helpers/DataFetch';
-import { regions } from '../../src/helpers/DataMap';
+import { useLocations } from '../../src/hooks/DataFetch';
+import { regions } from '../../src/utils/DataMap';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Locations, Sort } from '@/types/types';
 import Head from 'next/head';
 
 const RegionsMethod = dynamic(
-  () => import(`../../src/helpers/RegionsMethod.jsx`),
+  () => import(`../../src/utils/RegionsMethod.jsx`),
 );
 
 function Locations() {

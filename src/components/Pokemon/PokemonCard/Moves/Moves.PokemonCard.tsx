@@ -8,8 +8,8 @@ import {
 import { THead, TRow, TLink, TableContainer } from '../../../Common/Table';
 import { H3, Span } from '../../../Common/Headings';
 import { Type } from '../../../Common/Themes';
-import LearnMethod from '../../../../helpers/LearnMethod';
-import { learnMethod } from '../../../../helpers/DataMap';
+import LearnMethod from '../../../../utils/LearnMethod';
+import { learnMethod } from '../../../../utils/DataMap';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Machines, Moves, Pokemon, PokemonMoves } from '@/types/types';

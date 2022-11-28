@@ -12,7 +12,7 @@ import {
   ItemCardDescTable,
   ItemCardDescTitle,
 } from '../../components/Items/ItemCard/StyledItemCard.js';
-import { useItem } from '../../helpers/DataFetch';
+import { useItem } from '../../hooks/DataFetch';
 import Loader from '../../components/Loader/Loader';
 import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
 import Link from 'next/link';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { MainBig } from '../components/Common/Sizing';
 import { MethodNav } from '../components/Common/Navbars';
-import { useMoves, useStatus } from '../../src/helpers/DataFetch';
+import { useMoves, useStatus } from '../../src/hooks/DataFetch';
 import Loader from '../components/Loader/Loader';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';

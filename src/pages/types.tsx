@@ -2,7 +2,7 @@ import React from 'react';
 
 import { MainSmall } from '../components/Common/Sizing';
 import { ModifiedType, TypesList } from '../components/Types/StyledTypes';
-import { useTypes } from '../../src/helpers/DataFetch';
+import { useTypes } from '../../src/hooks/DataFetch';
 import Loader from '../components/Loader/Loader';
 import Link from 'next/link';
 import Image from 'next/image';

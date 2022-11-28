@@ -6,7 +6,7 @@ import { Input } from '../components/Common/Inputs';
 import { LeftTitle } from '../components/Common/Headings';
 import { THead, TLink, TName, TRow } from '../components/Common/Table';
 import { MainBig } from '../components/Common/Sizing';
-import { useMachines } from '../../src/helpers/DataFetch';
+import { useMachines } from '../../src/hooks/DataFetch';
 import {
   MachinesSearch,
   MachinesTable,

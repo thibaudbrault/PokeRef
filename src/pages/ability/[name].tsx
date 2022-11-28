@@ -23,7 +23,7 @@ import {
   TRow,
 } from '../../components/Common/Table';
 import { BackButton } from '../../components/Common/Inputs';
-import { useAbility, usePokedex } from '../../helpers/DataFetch';
+import { useAbility, usePokedex } from '../../hooks/DataFetch';
 import Loader from '../../components/Loader/Loader';
 import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
 import { useRouter } from 'next/router';
