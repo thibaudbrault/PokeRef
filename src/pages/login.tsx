@@ -21,10 +21,15 @@ import { MainAuth } from '../components/Common/Sizing';
 import GrGoogle from '@meronex/icons/gr/GrGoogle';
 import GrGithub from '@meronex/icons/gr/GrGithub';
 
+type FormInput = {
+  email: string,
+  password: string
+}
+
 const schema = yup
   .object({
     email: yup.string().email().required(),
-    password: yup.string().required(),
+    password: yup.string().min(6).required(),
   })
   .required();
 
@@ -33,11 +38,11 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
+  } = useForm<FormInput>({
+    resolver: yupResolver<yup.AnyObjectSchema>(schema),
   });
 
-  const submitForm = (data) => {
+  const submitForm = (data: FormInput) => {
     console.log(data);
   };
 
@@ -62,17 +67,21 @@ function Login() {
           </AuthTitle>
           <AuthInput>
             <div>
-              <input type="email" name="email" id="email" placeholder="Email" />
-              <p>{errors.email?.message}</p>
+              <input type="email" id="email" placeholder="Email" {...register("email")} />
+              {typeof errors.email?.message === 'string' &&
+                <p>{errors.email?.message}</p>
+              }
             </div>
             <div>
               <input
                 type="password"
-                name="password"
                 id="password"
                 placeholder="Password"
+                {...register("password")}
               />
-              <p>{errors.password?.message}</p>
+              {typeof errors.password?.message === 'string' &&
+                <p>{errors.password?.message}</p>
+              }
             </div>
             <AuthBtn type="submit">Login</AuthBtn>
           </AuthInput>
@@ -93,7 +102,7 @@ function Login() {
               </AuthSecBtn>
             </AuthButtons>
             <AuthSwitch>
-              Don&#39t have an account yet ?{` `}
+              Don't have an account yet ?{` `}
               <Link href="/register">Register</Link>
             </AuthSwitch>
           </AuthInput>

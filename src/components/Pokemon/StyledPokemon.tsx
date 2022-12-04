@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 import { Search } from '../Common/Inputs';
 import { device } from '../Common/Sizing';
@@ -153,7 +154,7 @@ export const PokedexElement = styled.div`
   }
 `;
 
-export const SpriteNormal = styled.img`
+export const SpriteNormal = styled(Image)`
   width: 96px;
   height: 96px;
   position: relative;
@@ -167,7 +168,7 @@ export const SpriteNormal = styled.img`
   }
 `;
 
-export const SpriteShiny = styled.img`
+export const SpriteShiny = styled(Image)`
   width: 96px;
   height: 96px;
   position: absolute;
@@ -186,12 +187,9 @@ export const PokedexImage = styled.div`
   position: relative;
   margin: 0 auto;
 
-  &:hover ${SpriteNormal} {
-    opacity: 0;
-  }
-
   &:hover ${SpriteShiny} {
     opacity: 1;
+    z-index: 99;
   }
 `;
 

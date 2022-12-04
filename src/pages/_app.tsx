@@ -12,6 +12,7 @@ import Header from '../components/Layout/Header/Header';
 import Nav from '../components/Layout/Nav/Nav';
 import Footer from '../components/Layout/Footer/Footer';
 import { Reset } from '../components/Common/Reset';
+import { SessionProvider } from 'next-auth/react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,7 +24,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const ErrorFallback = ({ error: Error, resetErrorBoundary }) => {
+const ErrorFallback = ({ error, resetErrorBoundary }) => {
   <div role="alert">
     <p>Something went wrong:</p>
     <pre>{error.message}</pre>
@@ -53,17 +54,17 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
       </Head>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        {/* <SessionProvider> */}
-        <QueryClientProvider client={queryClient}>
-          <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
-            <Header themeToggler={themeToggler} theme={theme} />
-            <Nav />
-            <Reset />
-            <Component {...pageProps} />
-            <Footer />
-          </ThemeProvider>
-        </QueryClientProvider>
-        {/* </SessionProvider> */}
+        <SessionProvider>
+          <QueryClientProvider client={queryClient}>
+            <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
+              <Header themeToggler={themeToggler} theme={theme} />
+              <Nav />
+              <Reset />
+              <Component {...pageProps} />
+              <Footer />
+            </ThemeProvider>
+          </QueryClientProvider>
+        </SessionProvider>
       </ErrorBoundary>
     </>
   );

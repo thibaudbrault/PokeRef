@@ -19,7 +19,8 @@ function Sprites({ p }: Props) {
         <SpriteNormal
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${p.id}.png`}
           alt={p.name}
-          loading="lazy"
+          width={96}
+          height={96}
         />
       )}
       {p.id > 151 && p.id < 252 && (
@@ -27,12 +28,14 @@ function Sprites({ p }: Props) {
           <SpriteNormal
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/${p.id}.png`}
             alt={p.name}
-            loading="lazy"
+            width={96}
+            height={96}
           />
           <SpriteShiny
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/shiny/${p.id}.png`}
             alt={p.name}
-            loading="lazy"
+            width={96}
+            height={96}
           />
         </>
       )}
@@ -41,12 +44,14 @@ function Sprites({ p }: Props) {
           <SpriteNormal
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/${p.id}.png`}
             alt={p.name}
-            loading="lazy"
+            width={96}
+            height={96}
           />
           <SpriteShiny
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/shiny/${p.id}.png`}
             alt={p.name}
-            loading="lazy"
+            width={96}
+            height={96}
           />
         </>
       )}
@@ -55,12 +60,14 @@ function Sprites({ p }: Props) {
           <SpriteNormal
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/platinum/${p.id}.png`}
             alt={p.name}
-            loading="lazy"
+            width={96}
+            height={96}
           />
           <SpriteShiny
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/platinum/shiny/${p.id}.png`}
             alt={p.name}
-            loading="lazy"
+            width={96}
+            height={96}
           />
         </>
       )}
@@ -69,23 +76,31 @@ function Sprites({ p }: Props) {
           <SpriteNormal
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${p.id}.png`}
             alt={p.name}
-            loading="lazy"
+            width={96}
+            height={96}
           />
           <SpriteShiny
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/shiny/${p.id}.png`}
             alt={p.name}
-            loading="lazy"
+            width={96}
+            height={96}
           />
         </>
       )}
-      {p.id > 649 && (
+      {p.id > 649 && p.sprites.front_default && (
         <>
           <SpriteNormal
             src={p.sprites.front_default}
             alt={p.name}
-            loading="lazy"
+            width={96}
+            height={96}
           />
-          <SpriteShiny src={p.sprites.front_shiny} alt="" loading="lazy" />
+          <SpriteShiny
+            src={p.sprites.front_shiny}
+            alt={p.name}
+            width={96}
+            height={96}
+          />
         </>
       )}
     </PokedexImage>

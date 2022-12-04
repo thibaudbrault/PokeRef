@@ -1,10 +1,15 @@
 import React from 'react';
+import { getSession, useSession } from 'next-auth/react';
 import { MainBig } from '../components/Common/Sizing';
+import { ProfileTitle } from '@/components/Auth/StyledProfile';
 
 function Profile() {
+
+  const { data: session } = useSession();
+
   return (
     <MainBig>
-      <h2>Profile</h2>
+      <ProfileTitle>{session?.user?.name}'s favorites Pokemon</ProfileTitle>
     </MainBig>
   );
 }
