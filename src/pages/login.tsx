@@ -47,11 +47,11 @@ function Login() {
   };
 
   async function handleGoogleSignIn() {
-    signIn(`google`, { callbackUrl: `http://localhost:3000` });
+    await signIn(`google`, { callbackUrl: `http://localhost:3000` });
   }
 
   async function handleGithubSignIn() {
-    signIn(`github`, { callbackUrl: `http://localhost:3000` });
+    await signIn(`github`, { callbackUrl: `http://localhost:3000` });
   }
 
   return (
