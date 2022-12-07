@@ -85,12 +85,12 @@ function Pokedex(): JSX.Element {
         />
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
         <PokedexList>
-          <div>
+          <ul>
             {filteredPokedex?.map((p: Pokemon) => (
               <PokedexElement key={p.id}>
                 <Sprites p={p} />
                 {p?.id < 905 && <p>#{p?.id?.toString()?.padStart(3, `0`)}</p>}
-                <h2>
+                <h2 data-testid="pokemonName">
                   <Link
                     href={{
                       pathname: `/pokemon/[name]`,
@@ -122,7 +122,7 @@ function Pokedex(): JSX.Element {
                 </PokedexTypes>
               </PokedexElement>
             ))}
-          </div>
+          </ul>
         </PokedexList>
         <ToBottom href="#footer" aria-label="To Bottom">
           <FaAngleDown />

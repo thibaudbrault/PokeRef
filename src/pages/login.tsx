@@ -22,9 +22,9 @@ import GrGoogle from '@meronex/icons/gr/GrGoogle';
 import GrGithub from '@meronex/icons/gr/GrGithub';
 
 type FormInput = {
-  email: string,
-  password: string
-}
+  email: string;
+  password: string;
+};
 
 const schema = yup
   .object({
@@ -67,21 +67,26 @@ function Login() {
           </AuthTitle>
           <AuthInput>
             <div>
-              <input type="email" id="email" placeholder="Email" {...register("email")} />
-              {typeof errors.email?.message === 'string' &&
+              <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                {...register(`email`)}
+              />
+              {typeof errors.email?.message === `string` && (
                 <p>{errors.email?.message}</p>
-              }
+              )}
             </div>
             <div>
               <input
                 type="password"
                 id="password"
                 placeholder="Password"
-                {...register("password")}
+                {...register(`password`)}
               />
-              {typeof errors.password?.message === 'string' &&
+              {typeof errors.password?.message === `string` && (
                 <p>{errors.password?.message}</p>
-              }
+              )}
             </div>
             <AuthBtn type="submit">Login</AuthBtn>
           </AuthInput>

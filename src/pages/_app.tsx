@@ -29,8 +29,8 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
     <p>Something went wrong:</p>
     <pre>{error.message}</pre>
     <button onClick={resetErrorBoundary}>Try again</button>
-  </div>
-}
+  </div>;
+};
 
 function MyApp({ Component, pageProps }: AppProps) {
   const loadTheme: () => string = () => {

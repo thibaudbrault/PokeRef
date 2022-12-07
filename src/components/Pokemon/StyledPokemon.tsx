@@ -77,7 +77,7 @@ export const PokedexList = styled.div`
   max-width: 1300px;
   margin: 0 auto;
 
-  & div {
+  & ul {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -85,7 +85,7 @@ export const PokedexList = styled.div`
   }
 `;
 
-export const PokedexElement = styled.div`
+export const PokedexElement = styled.li`
   width: 21rem;
   height: 32rem;
   margin: 3rem;
