@@ -26,7 +26,7 @@ function Autocomplete() {
           const regex = new RegExp(`${text}`, `gi`);
           return pokedex?.name?.match(regex);
         });
-      setPokedexMatch(matches?.slice(0, 5));
+      setPokedexMatch(matches?.slice(0, 5)!);
     }
   };
 
