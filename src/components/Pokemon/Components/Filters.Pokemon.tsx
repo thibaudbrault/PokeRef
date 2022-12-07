@@ -110,11 +110,8 @@ function Filters({
   }, [
     pokedex,
     form,
-    type,
     generation,
-    setFilteredPokedex,
-    setOffset,
-    setLimit,
+    type
   ]);
 
   return (

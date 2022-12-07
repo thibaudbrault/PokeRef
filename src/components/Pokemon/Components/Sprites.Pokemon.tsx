@@ -87,7 +87,7 @@ function Sprites({ p }: Props) {
           />
         </>
       )}
-      {p.id > 649 && p.sprites.front_default && (
+      {p.id > 649 && p.sprites.front_shiny && (
         <>
           <SpriteNormal
             src={p.sprites.front_default}
@@ -102,6 +102,14 @@ function Sprites({ p }: Props) {
             height={96}
           />
         </>
+      )}
+      {!p.sprites.front_shiny && (
+        <SpriteNormal
+          src={p.sprites.front_default}
+          alt={p.name}
+          width={96}
+          height={96}
+        />
       )}
     </PokedexImage>
   );
