@@ -4,7 +4,6 @@ import { MainBig } from '../components/Common/Sizing';
 import { ProfileTitle } from '@/components/Auth/StyledProfile';
 
 function Profile() {
-
   const { data: session } = useSession();
 
   return (

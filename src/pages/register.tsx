@@ -17,12 +17,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 type FormInput = {
-  username: string,
-  email: string,
-  password: string,
-  cpassword: string
-}
-
+  username: string;
+  email: string;
+  password: string;
+  cpassword: string;
+};
 
 const schema = yup
   .object({
@@ -33,9 +32,7 @@ const schema = yup
   })
   .required();
 
-
 function Register() {
-
   const {
     register,
     handleSubmit,
@@ -63,7 +60,7 @@ function Register() {
                 type="text"
                 id="username"
                 placeholder="Username"
-                {...register("username")}
+                {...register(`username`)}
               />
             </div>
             <div>
@@ -71,18 +68,18 @@ function Register() {
                 type="email"
                 id="email"
                 placeholder="Email"
-                {...register("email")}
+                {...register(`email`)}
               />
-              {typeof errors.email?.message === 'string' &&
+              {typeof errors.email?.message === `string` && (
                 <p>{errors.email?.message}</p>
-              }
+              )}
             </div>
             <div>
               <input
                 type="password"
                 id="password"
                 placeholder="Password"
-                {...register("password")}
+                {...register(`password`)}
               />
             </div>
             <div>
@@ -90,7 +87,7 @@ function Register() {
                 type="password"
                 id="cpassword"
                 placeholder="Confirm Password"
-                {...register("cpassword")}
+                {...register(`cpassword`)}
               />
             </div>
             <AuthBtn type="submit">Register</AuthBtn>

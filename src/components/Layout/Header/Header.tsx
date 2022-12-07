@@ -12,7 +12,6 @@ import {
 import RiMoonClearLine from '@meronex/icons/ri/RiMoonClearLine';
 import RiSunLine from '@meronex/icons/ri/RiSunLine';
 import { useSession, signOut } from 'next-auth/react';
-import Image from 'next/image';
 
 type Props = {
   themeToggler: () => void;
@@ -22,7 +21,7 @@ type Props = {
 function Header({ themeToggler, theme }: Props) {
   const { data: session } = useSession();
 
-  console.log(session)
+  console.log(session);
 
   return (
     <HeaderContainer id="header">
@@ -34,9 +33,7 @@ function Header({ themeToggler, theme }: Props) {
         {session ? (
           <HeaderBtnConnected>
             <button onClick={signOut}>Log Out</button>
-            <Link href="/profile">
-              Profile
-            </Link>
+            <Link href="/profile">Profile</Link>
           </HeaderBtnConnected>
         ) : (
           <HeaderBtnConnect>
