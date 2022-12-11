@@ -58,12 +58,12 @@ function Locations() {
         <RegionsMethod toggleState={toggleState} toggleTable={toggleTable} />
         <LocationSection>
           {locations?.map(
-            (l: Locations.Locations) =>
+            (l: Locations.Regions) =>
               l.name === location &&
               location !== `galar` && (
                 <LocationList key={l.name}>
                   {l.locations
-                    .sort(({ a, b }) => a.name.localeCompare(b.name))
+                    .sort((a, b) => a.name.localeCompare(b.name))
                     .map((ll) => (
                       <li key={ll.name}>
                         <Link

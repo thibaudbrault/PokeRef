@@ -11,7 +11,6 @@ import Header from '../components/Layout/Header/Header';
 import Nav from '../components/Layout/Nav/Nav';
 import Footer from '../components/Layout/Footer/Footer';
 import { Reset } from '../components/Common/Reset';
-import { SessionProvider } from 'next-auth/react';
 
 const queryClient = new QueryClient({
   defaultOptions: {

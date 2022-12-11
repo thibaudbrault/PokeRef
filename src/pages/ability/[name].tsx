@@ -30,6 +30,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Head from 'next/head';
 import Link from 'next/link';
+import { Abilities } from '@/types/types';
 
 function AbilityCard() {
   const router = useRouter();
@@ -59,7 +60,7 @@ function AbilityCard() {
     <>
       <Head>
         <title>
-          {name.charAt(0).toUpperCase() + name.slice(1)} | Ability | PokéRef
+          {name?.charAt(0).toUpperCase() + name?.slice(1)} | Ability | PokéRef
         </title>
         <meta name="description" content={`Find every details about ${name}`} />
         <meta property="og:title" content={`${name} | Ability | PokéRef`} />
@@ -82,12 +83,12 @@ function AbilityCard() {
           <AbilityCardEffect>
             <H3>Effect</H3>
             {ability.effect_entries.map(
-              (ae) =>
+              (ae: Abilities.EffectEntries) =>
                 ae.language.name === `en` && <p key={ae.effect}>{ae.effect}</p>,
             )}
           </AbilityCardEffect>
           {ability.effect_entries.map(
-            (ae) =>
+            (ae: Abilities.EffectEntries) =>
               ae.language.name === `en` &&
               ae.effect.includes(`\n\nOverworld:`) && (
                 <AbilityCardEffect key={ae.effect}>
@@ -106,9 +107,9 @@ function AbilityCard() {
           <H3>Game descriptions</H3>
           <AbilityCardTable>
             <tbody>
-              {ability.flavor_text_entries.map((af) =>
+              {ability.flavor_text_entries.map((af: Abilities.FlavorText) =>
                 af.language.name === `en` ? (
-                  <tr key={ae.flavor_text}>
+                  <tr key={af.flavor_text}>
                     <th>{af.version_group.name.replace(/-/g, ` `)}</th>
                     <td>{af.flavor_text}</td>
                   </tr>
@@ -140,10 +141,10 @@ function AbilityCard() {
                 </tr>
               </THead>
               <tbody>
-                {ability.pokemon.map((ap) => (
+                {ability.pokemon.map((ap: Abilities.Pokemon) => (
                   <TRow key={ap.pokemon.name}>
                     <td>
-                      {pokedex.map(
+                      {pokedex?.map(
                         (p) =>
                           p.name === ap.pokemon.name && (
                             <Image
@@ -159,7 +160,7 @@ function AbilityCard() {
                     </td>
                     <TName>
                       <TLink
-                        to={{
+                        href={{
                           pathname: `/pokemon/[name]`,
                           query: { name: ap.pokemon.name },
                         }}
@@ -169,7 +170,7 @@ function AbilityCard() {
                       </TLink>
                     </TName>
                     <td>
-                      {pokedex.map(
+                      {pokedex?.map(
                         (p) =>
                           p.name === ap.pokemon.name && (
                             <TLink
@@ -190,7 +191,7 @@ function AbilityCard() {
                       )}
                     </td>
                     <td>
-                      {pokedex.map(
+                      {pokedex?.map(
                         (p) =>
                           p.name === ap.pokemon.name && (
                             <TLink
@@ -213,7 +214,7 @@ function AbilityCard() {
                       )}
                     </td>
                     <td>
-                      {pokedex.map(
+                      {pokedex?.map(
                         (p) =>
                           p.name === ap.pokemon.name && (
                             <TLink

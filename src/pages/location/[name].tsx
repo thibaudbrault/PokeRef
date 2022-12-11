@@ -20,6 +20,7 @@ import {
 } from '../../components/Common/Table';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { Locations } from '@/types/types';
 
 function LocationCard() {
   const router = useRouter();
@@ -89,7 +90,7 @@ function LocationCard() {
       </Subtitle>
       <LocationNavContainer>
         <LocationNav>
-          {location.areas.map((la, i) => (
+          {location.areas.map((la: Locations.Locations, i: number) => (
             <button
               className={toggleState === i ? `button_active` : ``}
               onClick={() => toggleTable(i)}
@@ -120,7 +121,7 @@ function LocationCard() {
               </tr>
             </THead>
             <tbody>
-              {area.pokemon_encounters.map((a) =>
+              {area.pokemon_encounters.map((a: Locations.Pokemon) =>
                 a.version_details.map(
                   (av) =>
                     av.version.name === game &&

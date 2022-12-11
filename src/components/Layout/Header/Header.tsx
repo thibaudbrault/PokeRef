@@ -3,7 +3,6 @@ import Link from 'next/link';
 
 import { H1 } from '../../Common/Headings';
 import {
-  HeaderBtnConnect,
   HeaderBtnConnected,
   HeaderBtnContainer,
   HeaderBtnTheme,

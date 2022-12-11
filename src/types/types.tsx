@@ -1,3 +1,12 @@
+export type Sort = {
+  a: {
+    name: string;
+  };
+  b: {
+    name: string;
+  };
+};
+
 export type BaseName = {
   id?: number;
   url: string;
@@ -141,14 +150,28 @@ export namespace Moves {
 }
 
 export namespace Abilities {
-  export type FlavorText = {
+  export type EffectEntries = {
+    effect: string;
+    short_effect: string;
     language: BaseName;
+  };
+
+  export type FlavorText = {
     flavor_text: string;
+    language: BaseName;
+    version_group: BaseName;
+  };
+
+  export type Pokemon = {
+    is_hidden: boolean;
+    pokemon: BaseName;
   };
 
   export type Abilities = {
     name: string;
+    effect_entries: EffectEntries[];
     flavor_text_entries: FlavorText[];
+    pokemon: Pokemon[];
   };
 }
 
@@ -187,12 +210,25 @@ export namespace Items {
   export type EffectEntries = {
     effect: string;
     short_effect: string;
+    language: BaseName;
+  };
+
+  export type FlavorText = {
+    text: string;
+    version_group: BaseName;
+    language: BaseName;
+  };
+
+  export type Held = {
+    pokemon: BaseName;
   };
 
   export type Items = {
     name: string;
     category: BaseName;
     effect_entries: EffectEntries[];
+    flavor_text_entries: FlavorText[];
+    held_by_pokemon: Held[];
     sprites: {
       default: string;
     };
@@ -201,6 +237,49 @@ export namespace Items {
 
 export namespace Locations {
   export type Locations = {
+    name: string;
+    region: BaseName;
+    names: {
+      name: string;
+      language: BaseName;
+    };
+    areas: BaseName[];
+  };
+
+  export type Encounter = {
+    encounter_method: BaseName;
+    version_details: BaseName[];
+  };
+
+  export type PokemonDetails = {
+    min_level: number;
+    max_level: number;
+    chance: number;
+    condition_values: BaseName[];
+    method: BaseName;
+  };
+
+  export type Pokemon = {
+    pokemon: BaseName;
+    version_details: {
+      version: BaseName;
+      max_chance: number;
+      encounter_details: PokemonDetails[];
+    }[];
+  };
+
+  export type Area = {
+    name: string;
+    encounter_method_rates: Encounter[];
+    location: BaseName;
+    names: {
+      name: string;
+      language: BaseName;
+    };
+    pokemon_encounters: Pokemon[];
+  };
+
+  export type Regions = {
     name: string;
     locations: BaseName[];
   };

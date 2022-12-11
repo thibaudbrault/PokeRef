@@ -14,7 +14,7 @@ import {
 import { ModifiedMainBig } from '../components/Common/Sizing';
 import { useAbilities } from '../hooks/DataFetch';
 import Loader from '../components/Loader/Loader';
-import { Abilities } from '@/types/types';
+import { Abilities, Sort } from '@/types/types';
 import Head from 'next/head';
 
 function Abilities() {
@@ -90,14 +90,14 @@ function Abilities() {
             </THead>
             <tbody>
               {filteredAbilities
-                .sort((a, b) => a.name.localeCompare(b.name))
+                .sort(({ a, b }: Sort) => a.name.localeCompare(b.name))
                 .map((a: Abilities.Abilities) => (
                   <TRow key={a.name}>
                     <TName>
                       <TLink
                         href={{
                           pathname: `/ability/[name]`,
-                          query: { name: a.name },
+                          query: { name: a?.name },
                         }}
                       >
                         {a.name.replace(/-/g, ` `)}

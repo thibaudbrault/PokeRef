@@ -19,6 +19,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { Pokemon } from '@/types/types';
 
 const Nav = dynamic(
   () => import(`../../components/Moves/MoveCard/Nav/Nav.MoveCard`),
@@ -66,7 +67,7 @@ function MoveCard() {
     <>
       <Head>
         <title>
-          {name.charAt(0).toUpperCase() + name.slice(1)} | Moves | PokéRef
+          {name?.charAt(0).toUpperCase() + name?.slice(1)} | Moves | PokéRef
         </title>
         <meta name="description" content={`Find every details about ${name}`} />
         <meta property="og:title" content={`${name} | Moves | PokéRef`} />
@@ -78,8 +79,8 @@ function MoveCard() {
         <meta property="og:type" content="website" />
       </Head>
       <MainBig>
-        <CardTitle>{move?.name?.replace(/-/g, ` `)}</CardTitle>
-        <Subtitle>{move?.generation?.name?.replace(/-/g, ` `)}</Subtitle>
+        <CardTitle>{move.name.replace(/-/g, ` `)}</CardTitle>
+        <Subtitle>{move.generation.name.replace(/-/g, ` `)}</Subtitle>
 
         <Nav move={move} setVersion={setVersion} />
 
@@ -96,19 +97,19 @@ function MoveCard() {
             vary in other games. Check the respective pokédex pages for details.
           </MoveText>
           <MoveList>
-            {pokedex?.map((p) =>
-              p?.moves?.map(
+            {pokedex?.map((p: Pokemon.Pokemon) =>
+              p.moves.map(
                 (pm) =>
-                  pm?.move?.name === move?.name &&
-                  pm?.version_group_details?.map(
+                  pm.move.name === move.name &&
+                  pm.version_group_details.map(
                     (pmv) =>
-                      pmv?.version_group?.name === version &&
-                      pmv?.move_learn_method?.name === `level-up` &&
-                      pmv?.level_learned_at > 1 && (
+                      pmv.version_group.name === version &&
+                      pmv.move_learn_method.name === `level-up` &&
+                      pmv.level_learned_at > 1 && (
                         <li key={p.name}>
                           <Image
-                            src={p?.sprites?.front_default}
-                            alt={p?.name}
+                            src={p.sprites.front_default}
+                            alt={p.name}
                             width={96}
                             height={96}
                           />
@@ -117,20 +118,20 @@ function MoveCard() {
                               pathname: `/pokemon/[name]`,
                               query: { name: p.name },
                             }}
-                            key={p?.name}
+                            key={p.name}
                           >
-                            {p?.name.replace(/-/g, ` `)}
+                            {p.name.replace(/-/g, ` `)}
                           </MoveLink>
-                          <p>Level {pmv?.level_learned_at}</p>
+                          <p>Level {pmv.level_learned_at}</p>
                           <MoveTypes>
-                            {p?.types?.map((pt) => (
+                            {p.types.map((pt) => (
                               <Type id={pt.type.name} key={pt.type.name}>
                                 <Image
-                                  alt={pt?.type?.name}
+                                  alt={pt.type.name}
                                   width={15}
                                   height={15}
                                 />
-                                <span>{pt?.type?.name}</span>
+                                <span>{pt.type.name}</span>
                               </Type>
                             ))}
                           </MoveTypes>
@@ -150,19 +151,19 @@ function MoveCard() {
             vary in other games. Check the respective pokédex pages for details.
           </MoveText>
           <MoveList>
-            {pokedex?.map((p) =>
-              p?.moves?.map(
+            {pokedex?.map((p: Pokemon.Pokemon) =>
+              p.moves.map(
                 (pm) =>
-                  pm?.move?.name === move?.name &&
-                  pm?.version_group_details?.map(
+                  pm.move.name === move.name &&
+                  pm.version_group_details.map(
                     (pmv) =>
-                      pmv?.version_group?.name === version &&
-                      pmv?.move_learn_method?.name === `machine` &&
-                      pmv?.level_learned_at === 0 && (
+                      pmv.version_group.name === version &&
+                      pmv.move_learn_method.name === `machine` &&
+                      pmv.level_learned_at === 0 && (
                         <li key={p.name}>
                           <Image
-                            src={p?.sprites?.front_default}
-                            alt={p?.name}
+                            src={p.sprites.front_default}
+                            alt={p.name}
                             width={96}
                             height={96}
                           />
@@ -171,19 +172,19 @@ function MoveCard() {
                               pathname: `/pokemon/[name]`,
                               query: { name: p.name },
                             }}
-                            key={p?.name}
+                            key={p.name}
                           >
-                            {p?.name.replace(/-/g, ` `)}
+                            {p.name.replace(/-/g, ` `)}
                           </MoveLink>
                           <MoveTypes>
-                            {p?.types?.map((pt) => (
+                            {p.types.map((pt) => (
                               <Type id={pt.type.name} key={pt.type.name}>
                                 <Image
-                                  alt={pt?.type?.name}
+                                  alt={pt.type.name}
                                   width={15}
                                   height={15}
                                 />
-                                <span>{pt?.type?.name}</span>
+                                <span>{pt.type.name}</span>
                               </Type>
                             ))}
                           </MoveTypes>
@@ -204,20 +205,20 @@ function MoveCard() {
             details.
           </MoveText>
           <MoveList>
-            {pokedex?.map((p) =>
-              p?.moves?.map(
+            {pokedex?.map((p: Pokemon.Pokemon) =>
+              p.moves.map(
                 (pm) =>
-                  pm?.move?.name === move?.name &&
-                  pm?.version_group_details?.map(
+                  pm.move.name === move.name &&
+                  pm.version_group_details.map(
                     (pmv) =>
-                      pmv?.version_group?.name === version &&
-                      (pmv?.move_learn_method?.name === `egg` ||
-                        (pmv?.move_learn_method?.name === `level-up` &&
-                          pmv?.level_learned_at === 1)) && (
+                      pmv.version_group.name === version &&
+                      (pmv.move_learn_method.name === `egg` ||
+                        (pmv.move_learn_method.name === `level-up` &&
+                          pmv.level_learned_at === 1)) && (
                         <li key={p.name}>
                           <Image
-                            src={p?.sprites?.front_default}
-                            alt={p?.name}
+                            src={p.sprites.front_default}
+                            alt={p.name}
                             width={96}
                             height={96}
                           />
@@ -226,19 +227,19 @@ function MoveCard() {
                               pathname: `/pokemon/[name]`,
                               query: { name: p.name },
                             }}
-                            key={p?.name}
+                            key={p.name}
                           >
-                            {p?.name.replace(/-/g, ` `)}
+                            {p.name.replace(/-/g, ` `)}
                           </MoveLink>
                           <MoveTypes>
-                            {p?.types?.map((pt) => (
+                            {p.types.map((pt) => (
                               <Type id={pt.type.name} key={pt.type.name}>
                                 <Image
-                                  alt={pt?.type?.name}
+                                  alt={pt.type.name}
                                   width={15}
                                   height={15}
                                 />
-                                <span>{pt?.type?.name}</span>
+                                <span>{pt.type.name}</span>
                               </Type>
                             ))}
                           </MoveTypes>
@@ -258,18 +259,18 @@ function MoveCard() {
             vary in other games. Check the respective pokédex pages for details.
           </MoveText>
           <MoveList>
-            {pokedex?.map((p) =>
-              p?.moves?.map(
+            {pokedex?.map((p: Pokemon.Pokemon) =>
+              p.moves.map(
                 (pm) =>
-                  pm?.move?.name === move?.name &&
-                  pm?.version_group_details?.map(
+                  pm.move.name === move.name &&
+                  pm.version_group_details.map(
                     (pmv) =>
-                      pmv?.version_group?.name === version &&
-                      pmv?.move_learn_method?.name === `tutor` && (
+                      pmv.version_group.name === version &&
+                      pmv.move_learn_method.name === `tutor` && (
                         <li key={p.name}>
                           <Image
-                            src={p?.sprites?.front_default}
-                            alt={p?.name}
+                            src={p.sprites.front_default}
+                            alt={p.name}
                             width={96}
                             height={96}
                           />
@@ -278,19 +279,19 @@ function MoveCard() {
                               pathname: `/pokemon/[name]`,
                               query: { name: p.name },
                             }}
-                            key={p?.name}
+                            key={p.name}
                           >
-                            {p?.name.replace(/-/g, ` `)}
+                            {p.name.replace(/-/g, ` `)}
                           </MoveLink>
                           <MoveTypes>
-                            {p?.types?.map((pt) => (
+                            {p.types.map((pt) => (
                               <Type id={pt.type.name} key={pt.type.name}>
                                 <Image
-                                  alt={pt?.type?.name}
+                                  alt={pt.type.name}
                                   width={15}
                                   height={15}
                                 />
-                                <span>{pt?.type?.name}</span>
+                                <span>{pt.type.name}</span>
                               </Type>
                             ))}
                           </MoveTypes>
@@ -311,19 +312,19 @@ function MoveCard() {
             details.
           </MoveText>
           <MoveList>
-            {pokedex?.map((p) =>
-              p?.moves?.map(
+            {pokedex?.map((p: Pokemon.Pokemon) =>
+              p.moves.map(
                 (pm) =>
-                  pm?.move?.name === move?.name &&
-                  pm?.version_group_details?.map(
+                  pm.move.name === move.name &&
+                  pm.version_group_details.map(
                     (pmv) =>
-                      pmv?.version_group?.name === version &&
-                      pmv?.move_learn_method?.name === `level-up` &&
-                      pmv?.level_learned_at === 0 && (
+                      pmv.version_group.name === version &&
+                      pmv.move_learn_method.name === `level-up` &&
+                      pmv.level_learned_at === 0 && (
                         <li key={p.name}>
                           <Image
-                            src={p?.sprites?.front_default}
-                            alt={p?.name}
+                            src={p.sprites.front_default}
+                            alt={p.name}
                             width={96}
                             height={96}
                           />
@@ -332,19 +333,19 @@ function MoveCard() {
                               pathname: `/pokemon/[name]`,
                               query: { name: p.name },
                             }}
-                            key={p?.name}
+                            key={p.name}
                           >
-                            {p?.name.replace(/-/g, ` `)}
+                            {p.name.replace(/-/g, ` `)}
                           </MoveLink>
                           <MoveTypes>
-                            {p?.types?.map((pt) => (
+                            {p.types.map((pt) => (
                               <Type id={pt.type.name} key={pt.type.name}>
                                 <Image
-                                  alt={pt?.type?.name}
+                                  alt={pt.type.name}
                                   width={15}
                                   height={15}
                                 />
-                                <span>{pt?.type?.name}</span>
+                                <span>{pt.type.name}</span>
                               </Type>
                             ))}
                           </MoveTypes>

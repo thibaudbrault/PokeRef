@@ -48,7 +48,7 @@ function TypeCard() {
     <>
       <Head>
         <title>
-          {name.charAt(0).toUpperCase() + name.slice(1)} | Type | PokéRef
+          {name?.charAt(0).toUpperCase() + name?.slice(1)} | Type | PokéRef
         </title>
         <meta
           name="description"

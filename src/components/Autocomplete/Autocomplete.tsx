@@ -14,9 +14,9 @@ function Autocomplete() {
     `https://pokeapi.co/api/v2/pokemon?offset=0&limit=905`,
   );
 
-  const [pokedexMatch, setPokedexMatch] = useState<Pokemon.Pokemon[] | null>(
-    null,
-  );
+  const [pokedexMatch, setPokedexMatch] = useState<
+    Pokemon.Pokemon[] | null | undefined
+  >(null);
 
   const searchPokedex = (text: string) => {
     if (!text) {
@@ -28,7 +28,7 @@ function Autocomplete() {
           const regex = new RegExp(`${text}`, `gi`);
           return pokedex.name.match(regex);
         });
-      setPokedexMatch(matches.slice(0, 5));
+      setPokedexMatch(matches?.slice(0, 5));
     }
   };
 
