@@ -11,7 +11,6 @@ import {
 } from './StyledHeader';
 import { RiMoonClearLine } from '@meronex/icons/ri';
 import { RiSunLine } from '@meronex/icons/ri';
-import { useSession, signOut } from 'next-auth/react';
 
 type Props = {
   themeToggler: () => void;
@@ -28,19 +27,9 @@ function Header({ themeToggler, theme }: Props) {
         <HeaderBtnTheme onClick={themeToggler} aria-label="Switch Theme">
           {theme === `dark` ? <RiSunLine /> : <RiMoonClearLine />}
         </HeaderBtnTheme>
-        {session ? (
           <HeaderBtnConnected>
-            <button onClick={signOut}>Log Out</button>
-            <Link href="/profile">Profile</Link>
+            <Link href="/">Favorites</Link>
           </HeaderBtnConnected>
-        ) : (
-          <HeaderBtnConnect>
-            <Link href="/login" passHref>
-              Login
-            </Link>
-            <Link href="/register">Register</Link>
-          </HeaderBtnConnect>
-        )}
       </HeaderBtnContainer>
     </HeaderContainer>
   );

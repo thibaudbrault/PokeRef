@@ -4,7 +4,6 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
-// import { SessionProvider } from 'next-auth/react';
 
 import { darkTheme, lightTheme } from '../components/Common/Themes';
 
@@ -54,7 +53,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
       </Head>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <SessionProvider>
           <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
               <Header themeToggler={themeToggler} theme={theme} />
@@ -64,7 +62,6 @@ function MyApp({ Component, pageProps }: AppProps) {
               <Footer />
             </ThemeProvider>
           </QueryClientProvider>
-        </SessionProvider>
       </ErrorBoundary>
     </>
   );
