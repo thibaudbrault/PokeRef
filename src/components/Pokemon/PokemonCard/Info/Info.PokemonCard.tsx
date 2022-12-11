@@ -6,9 +6,9 @@ import { PokemonInfoSection } from './StyledInfo.PokemonCard';
 import { Evolution, Pokemon, Species } from '@/types/types';
 
 type Props = {
-  pokemon: Pokemon;
-  species: Species;
-  evolution: Evolution;
+  pokemon: Pokemon.Pokemon;
+  species: Species.Species;
+  evolution: Evolution.Evolution;
 };
 
 function Info({ pokemon, species, evolution }: Props) {

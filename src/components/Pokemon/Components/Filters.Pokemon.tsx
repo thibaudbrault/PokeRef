@@ -2,10 +2,10 @@ import { Pokemon } from '@/types/types';
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import Autocomplete from '../../Autocomplete/Autocomplete';
 import { PokedexDropdown, PokedexSearch } from '../StyledPokemon';
+import { formFilters, genFilters } from '../../../utils/DataMap';
 
 type Props = {
-  pokedex: Pokemon[];
-  setFilteredPokedex: Dispatch<SetStateAction<any[]>>;
+  pokedex: Pokemon.Pokemon[];
   setOffset: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;
   type: string;
@@ -18,7 +18,6 @@ type Props = {
 
 function Filters({
   pokedex,
-  setFilteredPokedex,
   setOffset,
   setLimit,
   type,
@@ -28,91 +27,43 @@ function Filters({
   generation,
   setGeneration,
 }: Props) {
+  const genFiltersFn = (generation: string, pokedex: Pokemon.Pokemon) => {
+    genFilters.forEach((g) => {
+      g.generation === generation && (setOffset(g.offset), setLimit(g.limit));
+      return pokedex;
+    });
+  };
+
+  const formFiltersFn = (form: string, pokedex: Pokemon.Pokemon) => {
+    formFilters.forEach((f) => {
+      f.form === form && (setOffset(f.offset), setLimit(f.limit));
+      return pokedex.name.includes(f.form);
+    });
+  };
+
   // Return all pokemon when the type is 'all'
   // Modify the returned pokemon according to the options selected in the filters
   // Modify the offset then filter with a word in the pokemon's name or with the pokemon's id
-
   useEffect(() => {
-    setFilteredPokedex(
-      pokedex
-        .filter((pokedex) => {
-          return (
-            type === `all` ||
-            pokedex.types.map((pt) => pt.type.name).includes(type)
-          );
-        })
-        .filter((pokedex) => {
-          if (form === `default` && generation === `all`) {
-            setOffset(0);
-            setLimit(905);
-            return pokedex;
-          } else if (form === `regional - alola`) {
-            setOffset(995);
-            setLimit(30);
-            return pokedex?.name?.includes(`alola`);
-          } else if (form === `regional - galar`) {
-            setOffset(1065);
-            setLimit(25);
-            return pokedex?.name?.includes(`galar`);
-          } else if (form === `regional - hisui`) {
-            setOffset(1133);
-            setLimit(20);
-            return (
-              pokedex?.name?.includes(`hisui`) ||
-              pokedex?.name?.includes(`origin`)
-            );
-          } else if (form === `mega`) {
-            setOffset(937);
-            setLimit(70);
-            return (
-              pokedex?.name?.includes(`-mega`) ||
-              pokedex?.name?.includes(`primal`)
-            );
-          } else if (form === `gmax`) {
-            setOffset(1099);
-            setLimit(35);
-            return pokedex?.name?.includes(`gmax`);
-          } else if (generation === `gen1`) {
-            setOffset(0);
-            setLimit(151);
-            return pokedex;
-          } else if (generation === `gen2`) {
-            setOffset(151);
-            setLimit(100);
-            return pokedex;
-          } else if (generation === `gen3`) {
-            setOffset(251);
-            setLimit(135);
-            return pokedex;
-          } else if (generation === `gen4`) {
-            setOffset(386);
-            setLimit(107);
-            return pokedex;
-          } else if (generation === `gen5`) {
-            setOffset(493);
-            setLimit(156);
-            return pokedex;
-          } else if (generation === `gen6`) {
-            setOffset(649);
-            setLimit(72);
-            return pokedex;
-          } else if (generation === `gen7`) {
-            setOffset(721);
-            setLimit(88);
-            return pokedex;
-          } else if (generation === `gen8`) {
-            setOffset(809);
-            setLimit(96);
-            return pokedex;
-          }
-        }),
-    );
-  }, [
-    pokedex,
-    form,
-    generation,
-    type
-  ]);
+    pokedex
+      .filter((pokedex) => {
+        return (
+          type === `all` ||
+          pokedex.types.map((pt) => pt.type.name).includes(type)
+        );
+      })
+      .filter((pokedex) => {
+        if (form === `default` && generation === `all`) {
+          setOffset(0);
+          setLimit(905);
+          return pokedex;
+        } else if (form !== `default`) {
+          return formFiltersFn(form, pokedex);
+        } else if (generation !== `all`) {
+          return genFiltersFn(generation, pokedex);
+        }
+      });
+  }, [pokedex, form, generation, type]);
 
   return (
     <>

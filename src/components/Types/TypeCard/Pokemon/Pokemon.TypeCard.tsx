@@ -4,8 +4,14 @@ import { H3, Span } from '../../../Common/Headings';
 import { Section } from '../../../Common/Sizing';
 import { TypeListSubtitle, TypePokemonList } from '../StyledTypeCard';
 import Link from 'next/link';
+import { Pokemon, Types } from '@/types/types';
 
-function Pokemon({ type, pokedex }) {
+type Props = {
+  type: Types.Types;
+  pokedex: Pokemon.Pokemon[];
+};
+
+function Pokemon({ type, pokedex }: Props) {
   // Returns the number of pokemon with this type
   const nbPokemon = document.querySelectorAll(`.pokemonElement`).length;
 

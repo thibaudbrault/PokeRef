@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { Pokemon, Species } from '@/types/types';
 
 type Props = {
-  pokemon: Pokemon;
-  species: Species;
+  pokemon: Pokemon.Pokemon;
+  species: Species.Species;
 };
 
 function Forms({ pokemon, species }: Props) {
@@ -19,7 +19,7 @@ function Forms({ pokemon, species }: Props) {
             <th>Alternative forms</th>
             <td>
               {pokemon.id < 10000
-                ? species?.forms_switchable === true
+                ? species.forms_switchable === true
                   ? `Yes`
                   : `No`
                 : `⠀`}
@@ -29,15 +29,15 @@ function Forms({ pokemon, species }: Props) {
             <th>Varieties</th>
             <td>
               {pokemon.id < 10000
-                ? species?.varieties?.map((sv) => (
+                ? species.varieties.map((sv) => (
                     <Link
                       href={{
                         pathname: `/pokemon/[name]`,
                         query: { name: sv.pokemon.name },
                       }}
-                      key={sv?.pokemon?.name}
+                      key={sv.pokemon.name}
                     >
-                      <span>{sv?.pokemon?.name?.replace(/-/g, ` `)}</span>
+                      <span>{sv.pokemon.name.replace(/-/g, ` `)}</span>
                     </Link>
                   ))
                 : `⠀`}
@@ -47,7 +47,7 @@ function Forms({ pokemon, species }: Props) {
             <th>Gender differences</th>
             <td>
               {pokemon.id < 10000
-                ? species?.has_gender_differences === true
+                ? species.has_gender_differences === true
                   ? `Yes`
                   : `No`
                 : `⠀`}

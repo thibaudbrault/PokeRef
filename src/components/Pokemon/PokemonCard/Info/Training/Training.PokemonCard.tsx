@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { Pokemon, Species } from '@/types/types';
 
 type Props = {
-  pokemon: Pokemon;
-  species: Species;
+  pokemon: Pokemon.Pokemon;
+  species: Species.Species;
 };
 
 function Training({ pokemon, species }: Props) {
@@ -18,11 +18,11 @@ function Training({ pokemon, species }: Props) {
           <tr>
             <th>EV yield</th>
             <td>
-              {pokemon?.stats?.map(
+              {pokemon.stats.map(
                 (ps) =>
-                  ps?.effort !== 0 && (
+                  ps.effort !== 0 && (
                     <p key={ps.effort}>
-                      {ps?.effort} {ps?.stat?.name?.replace(/-/g, ` `)}
+                      {ps.effort} {ps.stat.name.replace(/-/g, ` `)}
                     </p>
                   ),
               )}
@@ -30,25 +30,25 @@ function Training({ pokemon, species }: Props) {
           </tr>
           <tr>
             <th>Catch rate</th>
-            <td>{pokemon.id < 10000 ? <p>{species?.capture_rate}</p> : `⠀`}</td>
+            <td>{pokemon.id < 10000 ? <p>{species.capture_rate}</p> : `⠀`}</td>
           </tr>
           <tr>
             <th>Base happiness</th>
             <td>
-              {pokemon.id < 10000 ? <p>{species?.base_happiness}</p> : `⠀`}
+              {pokemon.id < 10000 ? <p>{species.base_happiness}</p> : `⠀`}
             </td>
           </tr>
           <tr>
             <th>Base experience</th>
             <td>
-              <p>{pokemon?.base_experience}</p>
+              <p>{pokemon.base_experience}</p>
             </td>
           </tr>
           <tr>
             <th>Growth rate</th>
             <td>
               {pokemon.id < 10000 ? (
-                <p>{species?.growth_rate?.name.replace(/-/g, ` `)}</p>
+                <p>{species.growth_rate.name.replace(/-/g, ` `)}</p>
               ) : (
                 `⠀`
               )}
@@ -57,8 +57,8 @@ function Training({ pokemon, species }: Props) {
           <tr>
             <th>Held items</th>
             <td>
-              {pokemon?.held_items?.length > 0
-                ? pokemon?.held_items?.map((ph) => (
+              {pokemon.held_items.length > 0
+                ? pokemon.held_items.map((ph) => (
                     <Link
                       href={{
                         pathname: `/item/[name]`,
@@ -66,7 +66,7 @@ function Training({ pokemon, species }: Props) {
                       }}
                       key={ph.item.name}
                     >
-                      <span>{ph?.item?.name?.replace(/-/g, ` `)}</span>
+                      <span>{ph.item.name.replace(/-/g, ` `)}</span>
                     </Link>
                   ))
                 : `None`}

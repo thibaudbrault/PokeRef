@@ -12,7 +12,7 @@ import {
 import { useItems } from '../../src/hooks/DataFetch';
 import Loader from '../components/Loader/Loader';
 import Image from 'next/image';
-import { Items, Sort } from '@/types/types';
+import { Items } from '@/types/types';
 import Head from 'next/head';
 
 function Items() {
@@ -27,23 +27,23 @@ function Items() {
         items.name
           .replace(/-/g, ` `)
           .toLowerCase()
-          .includes(search?.toLowerCase()),
+          .includes(search.toLowerCase()),
       )
-    : items?.sort(({ a, b }: Sort) => a.name.localeCompare(b.name));
+    : items?.sort((a, b) => a.name.localeCompare(b.name));
 
   // New request when the user types a letter
   useEffect(() => setFilteredItems(filterItems), [search, filterItems]);
 
-  function itemsToHide(i: Items) {
+  function itemsToHide(i: Items.Items) {
     return (
-      i?.category?.name !== `dynamax-crystals` &&
-      i?.category?.name !== `all-machines` &&
-      i?.category?.name !== `all-mail` &&
-      i?.category?.name !== `unused` &&
-      i?.category?.name !== `data-cards` &&
-      i?.category?.name !== `plot-advancement` &&
-      i?.category?.name !== `species-candies` &&
-      i?.category?.name !== `gameplay`
+      i.category.name !== `dynamax-crystals` &&
+      i.category.name !== `all-machines` &&
+      i.category.name !== `all-mail` &&
+      i.category.name !== `unused` &&
+      i.category.name !== `data-cards` &&
+      i.category.name !== `plot-advancement` &&
+      i.category.name !== `species-candies` &&
+      i.category.name !== `gameplay`
     );
   }
 
@@ -97,8 +97,8 @@ function Items() {
             </tr>
           </THead>
           <tbody>
-            {filteredItems?.map(
-              (i: Items) =>
+            {filteredItems.map(
+              (i: Items.Items) =>
                 itemsToHide(i) && (
                   <TRow key={i.name}>
                     <TNameItems>

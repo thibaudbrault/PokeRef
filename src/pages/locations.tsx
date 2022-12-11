@@ -10,7 +10,7 @@ import { useLocations } from '../../src/hooks/DataFetch';
 import { regions } from '../../src/utils/DataMap';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { Locations, Sort } from '@/types/types';
+import { Locations } from '@/types/types';
 import Head from 'next/head';
 
 const RegionsMethod = dynamic(
@@ -58,13 +58,13 @@ function Locations() {
         <RegionsMethod toggleState={toggleState} toggleTable={toggleTable} />
         <LocationSection>
           {locations?.map(
-            (l: Locations) =>
-              l?.name === location &&
+            (l: Locations.Locations) =>
+              l.name === location &&
               location !== `galar` && (
                 <LocationList key={l.name}>
-                  {l?.locations
-                    ?.sort(({ a, b }: Sort) => a.name.localeCompare(b.name))
-                    ?.map((ll) => (
+                  {l.locations
+                    .sort(({ a, b }) => a.name.localeCompare(b.name))
+                    .map((ll) => (
                       <li key={ll.name}>
                         <Link
                           href={{
@@ -73,9 +73,9 @@ function Locations() {
                           }}
                           key={ll.name}
                         >
-                          {ll?.name
-                            ?.replace(/-/g, ` `)
-                            ?.replace(
+                          {ll.name
+                            .replace(/-/g, ` `)
+                            .replace(
                               /kanto|johto|hoenn|sinnoh|unova|kalos|alola/g,
                               ``,
                             )}

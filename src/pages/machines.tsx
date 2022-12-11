@@ -12,7 +12,6 @@ import {
   MachinesTable,
 } from '../components/Machines/StyledMachines';
 import Loader from '../components/Loader/Loader';
-import Link from 'next/link';
 import { Machines } from '@/types/types';
 import Head from 'next/head';
 
@@ -24,11 +23,11 @@ function Machines() {
 
   // Filter the moves returned when the user type the name in the search bar
   const filterMachines = search
-    ? machines?.filter((machines: Machines) =>
+    ? machines?.filter((machines: Machines.Machines) =>
         machines.move.name
           .replace(/-/g, ` `)
           .toLowerCase()
-          .includes(search?.toLowerCase()),
+          .includes(search.toLowerCase()),
       )
     : machines;
 
@@ -181,22 +180,22 @@ function Machines() {
             </tr>
           </THead>
           <tbody>
-            {filteredMachines?.map(
-              (ma: Machines) =>
-                ma?.version_group?.name === version && (
+            {filteredMachines.map(
+              (ma: Machines.Machines) =>
+                ma.version_group.name === version && (
                   <TRow key={ma.item.name}>
-                    <TName>{ma?.item?.name.toUpperCase()}</TName>
+                    <TName>{ma.item.name.toUpperCase()}</TName>
                     <td>
-                      <Link
+                      <TLink
                         href={{
                           pathname: `/move/[name]`,
                           query: { name: ma.move.name },
                         }}
-                        key={ma?.move?.name}
+                        key={ma.move.name}
                         passHref
                       >
-                        <TLink>{ma?.move?.name.replace(/-/g, ` `)}</TLink>
-                      </Link>
+                        {ma.move.name.replace(/-/g, ` `)}
+                      </TLink>
                     </td>
                   </TRow>
                 ),

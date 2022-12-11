@@ -4,7 +4,7 @@ import { MainBig } from '../../components/Common/Sizing';
 import { CardTitle } from '../../components/Common/Headings';
 import { useMoves, usePokedex, useType } from '../../hooks/DataFetch';
 import Loader from '../../components/Loader/Loader';
-import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -36,8 +36,8 @@ function TypeCard() {
 
   const { data: moves } = useMoves();
 
-  if (error) {
-    return <p>{error}</p>;
+  if (error instanceof Error) {
+    return { error };
   }
 
   if (isLoading) {
@@ -63,7 +63,7 @@ function TypeCard() {
         <meta property="og:type" content="website" />
       </Head>
       <MainBig>
-        <CardTitle>{type?.name}</CardTitle>
+        <CardTitle>{type.name}</CardTitle>
 
         <Damage type={type} />
 

@@ -1,31 +1,15 @@
-interface LearnMethod {
-  1: string;
-  2: string;
-  3: string;
-  4: string;
+type DataMap = {
   [key: string]: string;
-}
+};
 
-export const learnMethod: LearnMethod = {
+export const learnMethod: DataMap = {
   1: `level-up`,
   2: `machine`,
   3: `egg`,
   4: `tutor`,
 };
 
-interface Regions {
-  1: string;
-  2: string;
-  3: string;
-  4: string;
-  5: string;
-  6: string;
-  7: string;
-  8: string;
-  [key: string]: string;
-}
-
-export const regions: Regions = {
+export const regions: DataMap = {
   1: `kanto`,
   2: `johto`,
   3: `hoenn`,
@@ -35,6 +19,29 @@ export const regions: Regions = {
   7: `alola`,
   8: `galar`,
 };
+
+// interface pokedexFilters {
+//   [key: string]:
+// }
+
+export const genFilters = [
+  { generation: `gen1`, offset: 0, limit: 151 },
+  { generation: `gen2`, offset: 151, limit: 100 },
+  { generation: `gen3`, offset: 251, limit: 135 },
+  { generation: `gen4`, offset: 386, limit: 107 },
+  { generation: `gen5`, offset: 493, limit: 156 },
+  { generation: `gen6`, offset: 649, limit: 72 },
+  { generation: `gen7`, offset: 721, limit: 88 },
+  { generation: `gen8`, offset: 809, limit: 96 },
+];
+
+export const formFilters = [
+  { form: `regional - alola`, offset: 995, limit: 30 },
+  { form: `regional - galar`, offset: 1065, limit: 25 },
+  { form: `regional - hisui`, offset: 1133, limit: 20 },
+  { form: `mega`, offset: 937, limit: 70 },
+  { form: `mega`, offset: 937, limit: 70 },
+];
 
 // export const generations = [
 // 	{

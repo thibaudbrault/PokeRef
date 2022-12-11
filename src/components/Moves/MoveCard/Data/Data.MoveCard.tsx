@@ -5,8 +5,8 @@ import Effect from './Effect/Effect.MoveCard';
 import { MoveCardDataSection } from './StyledData.MoveCard';
 
 type Props = {
-  move: Moves;
-  machine: Machines;
+  move: Moves.Moves;
+  machine: Machines.Machines[];
   version: string;
 };
 

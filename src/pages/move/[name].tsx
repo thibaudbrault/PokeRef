@@ -13,7 +13,7 @@ import { BackButton } from '../../components/Common/Inputs';
 import { Type } from '../../components/Common/Themes';
 import { useMachines, useMove, usePokedex } from '../../hooks/DataFetch';
 import Loader from '../../components/Loader/Loader';
-import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -54,8 +54,8 @@ function MoveCard() {
     setToggleState(index);
   };
 
-  if (error) {
-    return <p>{error}</p>;
+  if (error instanceof Error) {
+    return { error };
   }
 
   if (isLoading) {
@@ -83,7 +83,7 @@ function MoveCard() {
 
         <Nav move={move} setVersion={setVersion} />
 
-        <Data move={move} machines={machines} version={version} />
+        <Data move={move} machine={machines} version={version} />
 
         <LearnMethod toggleState={toggleState} toggleTable={toggleTable} />
 

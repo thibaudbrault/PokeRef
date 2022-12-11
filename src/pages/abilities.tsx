@@ -14,7 +14,7 @@ import {
 import { ModifiedMainBig } from '../components/Common/Sizing';
 import { useAbilities } from '../hooks/DataFetch';
 import Loader from '../components/Loader/Loader';
-import { Abilities, Sort } from '@/types/types';
+import { Abilities } from '@/types/types';
 import Head from 'next/head';
 
 function Abilities() {
@@ -28,7 +28,7 @@ function Abilities() {
         abilities.name
           .replace(/-/g, ` `)
           .toLowerCase()
-          .includes(search?.toLowerCase()),
+          .includes(search.toLowerCase()),
       )
     : abilities;
 
@@ -90,8 +90,8 @@ function Abilities() {
             </THead>
             <tbody>
               {filteredAbilities
-                ?.sort(({ a, b }: Sort) => a.name.localeCompare(b.name))
-                .map((a: Abilities) => (
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((a: Abilities.Abilities) => (
                   <TRow key={a.name}>
                     <TName>
                       <TLink

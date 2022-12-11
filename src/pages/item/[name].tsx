@@ -14,7 +14,7 @@ import {
 } from '../../components/Items/ItemCard/StyledItemCard.js';
 import { useItem } from '../../hooks/DataFetch';
 import Loader from '../../components/Loader/Loader';
-import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
@@ -30,8 +30,8 @@ function ItemCard() {
     data: item,
   } = useItem(`https://pokeapi.co/api/v2/item/${name}`);
 
-  if (error) {
-    return <p>{error}</p>;
+  if (error instanceof Error) {
+    return { error };
   }
 
   if (isLoading) {

@@ -18,8 +18,8 @@ import {
 } from '../components/Auth/StyledAuth';
 import { H2 } from '../components/Common/Headings';
 import { MainAuth } from '../components/Common/Sizing';
-import GrGoogle from '@meronex/icons/gr/GrGoogle';
-import GrGithub from '@meronex/icons/gr/GrGithub';
+import { GrGoogle } from '@meronex/icons/gr';
+import { GrGithub } from '@meronex/icons/gr';
 
 type FormInput = {
   email: string;

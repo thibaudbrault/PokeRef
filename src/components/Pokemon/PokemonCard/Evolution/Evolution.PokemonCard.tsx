@@ -10,7 +10,7 @@ import {
   PokemonEvolutionStages,
   PokemonEvolutionText,
 } from './StyledEvolution.PokemonCard';
-import FaChevronRight from '@meronex/icons/fa/FaChevronRight';
+import { FaChevronRight } from '@meronex/icons/fa';
 import { usePokedex } from '../../../../hooks/DataFetch';
 import SmallLoader from '../../../Loader/SmallLoader';
 import Image from 'next/image';
@@ -18,7 +18,7 @@ import Link from 'next/link';
 import { Evolution } from '@/types/types';
 
 type Props = {
-  evolution: Evolution;
+  evolution: Evolution.Evolution;
 };
 
 function Evolution({ evolution }: Props) {
@@ -44,10 +44,10 @@ function Evolution({ evolution }: Props) {
           <div>
             {pokedex?.map(
               (p) =>
-                p?.name === evolution?.chain?.species?.name && (
+                p.name === evolution.chain.species.name && (
                   <Image
                     key={p.name}
-                    src={p?.sprites?.front_default}
+                    src={p.sprites.front_default}
                     alt=""
                     width={96}
                     height={96}
@@ -57,23 +57,23 @@ function Evolution({ evolution }: Props) {
             <Link
               href={{
                 pathname: `/pokemon/[name]`,
-                query: { name: evolution?.chain?.species?.name },
+                query: { name: evolution.chain.species.name },
               }}
             >
-              {evolution?.chain?.species?.name}
+              {evolution.chain.species.name}
             </Link>
           </div>
         </PokemonEvolutionBase>
-        {evolution?.chain?.evolves_to?.length !== 0 && (
+        {evolution.chain.evolves_to.length !== 0 && (
           <PokemonEvolution>
             <PokemonEvolutionStages>
-              {evolution?.chain?.evolves_to?.map((ee) => (
+              {evolution.chain.evolves_to.map((ee) => (
                 <PokemonEvolutionElement key={evolution.chain.species.name}>
                   <div>
-                    {ee?.evolution_details?.map((eed) => (
+                    {ee.evolution_details.map((eed) => (
                       <>
-                        {eed?.gender &&
-                          (eed?.gender === 1 ? (
+                        {eed.gender &&
+                          (eed.gender === 1 ? (
                             <PokemonEvolutionText>
                               <span> Female</span>
                             </PokemonEvolutionText>
@@ -82,167 +82,167 @@ function Evolution({ evolution }: Props) {
                               <span> Male</span>
                             </PokemonEvolutionText>
                           ))}
-                        {eed?.held_item && eed?.trigger?.name === `trade` && (
+                        {eed.held_item && eed.trigger.name === `trade` && (
                           <PokemonEvolutionText>
                             Trade holding
                             <span>
                               {` `}
-                              {eed?.held_item?.name?.replace(/-/g, ` `)}
+                              {eed.held_item.name.replace(/-/g, ` `)}
                             </span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.held_item && eed?.trigger?.name === `level-up` && (
+                        {eed.held_item && eed.trigger.name === `level-up` && (
                           <PokemonEvolutionText>
                             Level up holding{` `}
                             <span>
                               {` `}
-                              {eed?.held_item?.name?.replace(/-/g, ` `)}
+                              {eed.held_item.name.replace(/-/g, ` `)}
                             </span>
                             {` `}
-                            during the <span> {eed?.time_fo_day}</span>
+                            during the <span> {eed.time_of_day}</span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.item && (
+                        {eed.item && (
                           <PokemonEvolutionText>
                             Use{` `}
-                            <span> {eed?.item?.name?.replace(/-/g, ` `)}</span>
+                            <span> {eed.item.name.replace(/-/g, ` `)}</span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.known_move && (
+                        {eed.known_move && (
                           <PokemonEvolutionText>
                             Learn{` `}
                             <span>
                               {` `}
-                              {eed?.known_move?.name?.replace(/-/g, ` `)}
+                              {eed.known_move.name.replace(/-/g, ` `)}
                             </span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.known_move_type && eed?.min_affection && (
+                        {eed.known_move_type && eed.min_affection && (
                           <PokemonEvolutionText>
                             Level up with{` `}
-                            <span> {eed?.min_affection}+ affection</span>
+                            <span> {eed.min_affection}+ affection</span>
                             {` `}
                             while knowing a{` `}
                             <span>
                               {` `}
-                              {eed?.known_move_type?.name?.replace(/-/g, ` `)}
+                              {eed.known_move_type.name.replace(/-/g, ` `)}
                             </span>
                             {` `}
                             type move
                           </PokemonEvolutionText>
                         )}
-                        {eed?.known_move_type && eed?.min_happiness && (
+                        {eed.known_move_type && eed.min_happiness && (
                           <PokemonEvolutionText>
                             Level up with{` `}
-                            <span> {eed?.min_happiness}+ happiness</span>
+                            <span> {eed.min_happiness}+ happiness</span>
                             {` `}
                             while knowing a{` `}
                             <span>
                               {` `}
-                              {eed?.known_move_type?.name?.replace(/-/g, ` `)}
+                              {eed.known_move_type.name.replace(/-/g, ` `)}
                             </span>
                             {` `}
                             type move
                           </PokemonEvolutionText>
                         )}
-                        {eed?.location && (
+                        {eed.location && (
                           <PokemonEvolutionText>
                             Level up at{` `}
                             <span>
                               {` `}
-                              {eed?.location?.name?.replace(/-/g, ` `)}
+                              {eed.location.name.replace(/-/g, ` `)}
                             </span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.min_beauty && (
+                        {eed.min_beauty && (
                           <PokemonEvolutionText>
                             Level up with{` `}
-                            <span> {eed?.min_beauty}+ beauty</span>
+                            <span> {eed.min_beauty}+ beauty</span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.min_happiness && eed?.time_of_day !== `` && (
+                        {eed.min_happiness && eed.time_of_day !== `` && (
                           <PokemonEvolutionText>
                             Level up with{` `}
-                            <span> {eed?.min_happiness}+ happiness</span> during
-                            the <span> {eed?.time_of_day}</span>
+                            <span> {eed.min_happiness}+ happiness</span> during
+                            the <span> {eed.time_of_day}</span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.min_happiness && eed?.time_of_day === `` && (
+                        {eed.min_happiness && eed.time_of_day === `` && (
                           <PokemonEvolutionText>
                             Level up with{` `}
-                            <span> {eed?.min_happiness}+ happiness</span>
+                            <span> {eed.min_happiness}+ happiness</span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.min_level &&
-                          eed?.time_of_day === `` &&
-                          !eed?.party_type &&
-                          !eed?.relative_physical_stats &&
-                          eed?.turn_upside_down === false && (
+                        {eed.min_level &&
+                          eed.time_of_day === `` &&
+                          !eed.party_type &&
+                          !eed.relative_physical_stats &&
+                          eed.turn_upside_down === false && (
                             <PokemonEvolutionText>
-                              Level <span> {eed?.min_level}</span>
+                              Level <span> {eed.min_level}</span>
                             </PokemonEvolutionText>
                           )}
-                        {eed?.min_level && eed?.time_of_day !== `` && (
+                        {eed.min_level && eed.time_of_day !== `` && (
                           <PokemonEvolutionText>
-                            Level <span> {eed?.min_level}</span> during the{` `}
-                            <span> {eed?.time_of_day}</span>
+                            Level <span> {eed.min_level}</span> during the{` `}
+                            <span> {eed.time_of_day}</span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.need_overwolrd_rain === true && (
+                        {eed.needs_overworld_rain === true && (
                           <PokemonEvolutionText>
-                            Level <span> {eed?.min_level}</span> while{` `}
+                            Level <span> {eed.min_level}</span> while{` `}
                             <span>raining</span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.party_species && (
+                        {eed.party_species && (
                           <PokemonEvolutionText>
                             Level up with a{` `}
                             <span>
                               {` `}
-                              {eed?.party_species?.name?.replace(/-/g, ` `)}
+                              {eed.party_species.name.replace(/-/g, ` `)}
                             </span>
                             {` `}
                             in the party
                           </PokemonEvolutionText>
                         )}
-                        {eed?.party_type && (
+                        {eed.party_type && (
                           <PokemonEvolutionText>
-                            Level <span> {eed?.min_level}</span> with a{` `}
-                            <span> {eed?.party_type?.name}</span> type pokémon
-                            in the party
+                            Level <span> {eed.min_level}</span> with a{` `}
+                            <span> {eed.party_type.name}</span> type pokémon in
+                            the party
                           </PokemonEvolutionText>
                         )}
-                        {eed?.relative_physical_stats && (
+                        {eed.relative_physical_stats && (
                           <PokemonEvolutionText>
-                            Level <span> {eed?.min_level}</span> with
+                            Level <span> {eed.min_level}</span> with
                             <span>
-                              {eed?.relative_physical_stats === 1
+                              {eed.relative_physical_stats === 1
                                 ? ` Attack > Defense`
-                                : eed?.relative_physical_stats === 0
+                                : eed.relative_physical_stats === 0
                                 ? ` Attack = Defense`
                                 : ` Defense > Attack`}
                             </span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.trade_species && (
+                        {eed.trade_species && (
                           <PokemonEvolutionText>
-                            Trade with <span> {eed?.trade_species?.name}</span>
+                            Trade with <span> {eed.trade_species.name}</span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.turn_upside_down === true && (
+                        {eed.turn_upside_down === true && (
                           <PokemonEvolutionText>
-                            Level <span> {eed?.min_level} </span> while{` `}
+                            Level <span> {eed.min_level} </span> while{` `}
                             <span>holding the console upside-down</span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.trigger?.name === `shed` && (
+                        {eed.trigger.name === `shed` && (
                           <PokemonEvolutionText>
                             Level <span>20</span> with an{` `}
                             <span>empty slot in the party</span> and an{` `}
                             <span>extra PokéBall</span>
                           </PokemonEvolutionText>
                         )}
-                        {eed?.trigger?.name === `take-damage` && (
+                        {eed.trigger.name === `take-damage` && (
                           <PokemonEvolutionText>
                             Travel{` `}
                             <span>under the stone bridge in Dusty Bowl</span>
@@ -257,12 +257,12 @@ function Evolution({ evolution }: Props) {
                     <FaChevronRight />
                   </div>
                   <div>
-                    {pokedex.map(
+                    {pokedex?.map(
                       (p) =>
-                        p?.name === ee?.species?.name && (
+                        p.name === ee.species.name && (
                           <Image
                             key={p.name}
-                            src={p?.sprites?.front_default}
+                            src={p.sprites.front_default}
                             alt=""
                             width={96}
                             height={96}
@@ -275,24 +275,24 @@ function Evolution({ evolution }: Props) {
                         query: { name: ee.species.name },
                       }}
                     >
-                      {ee?.species?.name?.replace(/-/g, ` `)}
+                      {ee.species.name.replace(/-/g, ` `)}
                     </Link>
                   </div>
                 </PokemonEvolutionElement>
               ))}
             </PokemonEvolutionStages>
-            {evolution?.chain?.evolves_to?.map(
+            {evolution.chain.evolves_to.map(
               (ee) =>
-                ee?.evolves_to?.length !== 0 && (
+                ee.evolves_to.length !== 0 && (
                   <PokemonEvolutionFinal key={ee.species.name}>
-                    {ee?.evolves_to?.map((eee) => (
+                    {ee.evolves_to.map((eee) => (
                       <PokemonEvolutionStages key={ee.species.name}>
                         <PokemonEvolutionElement>
                           <div>
-                            {eee?.evolution_details?.map((eeed) => (
+                            {eee.evolution_details.map((eeed) => (
                               <>
-                                {eeed?.gender &&
-                                  (eeed?.gender === 1 ? (
+                                {eeed.gender &&
+                                  (eeed.gender === 1 ? (
                                     <PokemonEvolutionText>
                                       <span> Female</span>
                                     </PokemonEvolutionText>
@@ -301,68 +301,59 @@ function Evolution({ evolution }: Props) {
                                       <span> Male</span>
                                     </PokemonEvolutionText>
                                   ))}
-                                {eeed?.held_item &&
-                                  eeed?.trigger?.name === `trade` && (
+                                {eeed.held_item &&
+                                  eeed.trigger.name === `trade` && (
                                     <PokemonEvolutionText>
                                       Trade holding
                                       <span>
                                         {` `}
-                                        {eeed?.held_item?.name?.replace(
-                                          /-/g,
-                                          ` `,
-                                        )}
+                                        {eeed.held_item.name.replace(/-/g, ` `)}
                                       </span>
                                     </PokemonEvolutionText>
                                   )}
-                                {eeed?.held_item &&
-                                  eeed?.trigger?.name === `level-up` && (
+                                {eeed.held_item &&
+                                  eeed.trigger.name === `level-up` && (
                                     <PokemonEvolutionText>
                                       Level up holding{` `}
                                       <span>
                                         {` `}
-                                        {eeed?.held_item?.name?.replace(
-                                          /-/g,
-                                          ` `,
-                                        )}
+                                        {eeed.held_item.name.replace(/-/g, ` `)}
                                       </span>
                                       {` `}
                                       during the{` `}
-                                      <span> {eeed?.time_fo_day}</span>
+                                      <span> {eeed.time_of_day}</span>
                                     </PokemonEvolutionText>
                                   )}
-                                {eeed?.item && (
+                                {eeed.item && (
                                   <PokemonEvolutionText>
                                     Use{` `}
                                     <span>
                                       {` `}
-                                      {eeed?.item?.name?.replace(/-/g, ` `)}
+                                      {eeed.item.name.replace(/-/g, ` `)}
                                     </span>
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.known_move && (
+                                {eeed.known_move && (
                                   <PokemonEvolutionText>
                                     Learn{` `}
                                     <span>
                                       {` `}
-                                      {eeed?.known_move?.name?.replace(
-                                        /-/g,
-                                        ` `,
-                                      )}
+                                      {eeed.known_move.name.replace(/-/g, ` `)}
                                     </span>
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.known_move_type && eeed?.min_affection && (
+                                {eeed.known_move_type && eeed.min_affection && (
                                   <PokemonEvolutionText>
                                     Level up with{` `}
                                     <span>
                                       {` `}
-                                      {eeed?.min_affection}+ affection
+                                      {eeed.min_affection}+ affection
                                     </span>
                                     {` `}
                                     while knowing a{` `}
                                     <span>
                                       {` `}
-                                      {eeed?.known_move_type?.name?.replace(
+                                      {eeed.known_move_type.name.replace(
                                         /-/g,
                                         ` `,
                                       )}
@@ -371,18 +362,18 @@ function Evolution({ evolution }: Props) {
                                     type move
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.known_move_type && eeed?.min_happiness && (
+                                {eeed.known_move_type && eeed.min_happiness && (
                                   <PokemonEvolutionText>
                                     Level up with{` `}
                                     <span>
                                       {` `}
-                                      {eeed?.min_happiness}+ happiness
+                                      {eeed.min_happiness}+ happiness
                                     </span>
                                     {` `}
                                     while knowing a{` `}
                                     <span>
                                       {` `}
-                                      {eeed?.known_move_type?.name?.replace(
+                                      {eeed.known_move_type.name.replace(
                                         /-/g,
                                         ` `,
                                       )}
@@ -391,72 +382,70 @@ function Evolution({ evolution }: Props) {
                                     type move
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.location && (
+                                {eeed.location && (
                                   <PokemonEvolutionText>
                                     Level up at{` `}
                                     <span>
                                       {` `}
-                                      {eeed?.location?.name?.replace(/-/g, ` `)}
+                                      {eeed.location.name.replace(/-/g, ` `)}
                                     </span>
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.min_beauty && (
+                                {eeed.min_beauty && (
                                   <PokemonEvolutionText>
                                     Level up with{` `}
-                                    <span> {eeed?.min_beauty}+ beauty</span>
+                                    <span> {eeed.min_beauty}+ beauty</span>
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.min_happiness &&
-                                  eeed?.time_of_day !== `` && (
-                                    <PokemonEvolutionText>
-                                      Level up with{` `}
-                                      <span>
-                                        {` `}
-                                        {eeed?.min_happiness}+ happiness
-                                      </span>
+                                {eeed.min_happiness && eeed.time_of_day !== `` && (
+                                  <PokemonEvolutionText>
+                                    Level up with{` `}
+                                    <span>
                                       {` `}
-                                      during the{` `}
-                                      <span> {eeed?.time_of_day}</span>
-                                    </PokemonEvolutionText>
-                                  )}
-                                {eeed?.min_happiness &&
-                                  eeed?.time_of_day === `` && (
-                                    <PokemonEvolutionText>
-                                      Level up with{` `}
-                                      <span>
-                                        {` `}
-                                        {eeed?.min_happiness}+ happiness
-                                      </span>
-                                    </PokemonEvolutionText>
-                                  )}
-                                {eeed?.min_level &&
-                                  eeed?.time_of_day === `` &&
-                                  !eeed?.party_type &&
-                                  !eeed?.relative_physical_stats &&
-                                  eeed?.turn_upside_down === false && (
-                                    <PokemonEvolutionText>
-                                      Level <span> {eeed?.min_level}</span>
-                                    </PokemonEvolutionText>
-                                  )}
-                                {eeed?.min_level && eeed?.time_of_day !== `` && (
-                                  <PokemonEvolutionText>
-                                    Level <span> {eeed?.min_level}</span> during
-                                    the <span> {eeed?.time_of_day}</span>
+                                      {eeed.min_happiness}+ happiness
+                                    </span>
+                                    {` `}
+                                    during the{` `}
+                                    <span> {eeed.time_of_day}</span>
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.need_overwolrd_rain === true && (
+                                {eeed.min_happiness && eeed.time_of_day === `` && (
                                   <PokemonEvolutionText>
-                                    Level <span> {eeed?.min_level}</span> while
+                                    Level up with{` `}
+                                    <span>
+                                      {` `}
+                                      {eeed.min_happiness}+ happiness
+                                    </span>
+                                  </PokemonEvolutionText>
+                                )}
+                                {eeed.min_level &&
+                                  eeed.time_of_day === `` &&
+                                  !eeed.party_type &&
+                                  !eeed.relative_physical_stats &&
+                                  eeed.turn_upside_down === false && (
+                                    <PokemonEvolutionText>
+                                      Level <span> {eeed.min_level}</span>
+                                    </PokemonEvolutionText>
+                                  )}
+                                {eeed.min_level && eeed.time_of_day !== `` && (
+                                  <PokemonEvolutionText>
+                                    Level <span> {eeed.min_level}</span> during
+                                    the <span> {eeed.time_of_day}</span>
+                                  </PokemonEvolutionText>
+                                )}
+                                {eeed.needs_overworld_rain === true && (
+                                  <PokemonEvolutionText>
+                                    Level <span> {eeed.min_level}</span> while
                                     {` `}
                                     <span>raining</span>
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.party_species && (
+                                {eeed.party_species && (
                                   <PokemonEvolutionText>
                                     Level up with a{` `}
                                     <span>
                                       {` `}
-                                      {eeed?.party_species?.name?.replace(
+                                      {eeed.party_species.name.replace(
                                         /-/g,
                                         ` `,
                                       )}
@@ -465,40 +454,40 @@ function Evolution({ evolution }: Props) {
                                     in the party
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.party_type && (
+                                {eeed.party_type && (
                                   <PokemonEvolutionText>
-                                    Level <span> {eeed?.min_level}</span> with a
+                                    Level <span> {eeed.min_level}</span> with a
                                     {` `}
-                                    <span> {eeed?.party_type?.name}</span> type
+                                    <span> {eeed.party_type.name}</span> type
                                     pokémon in the party
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.relative_physical_stats && (
+                                {eeed.relative_physical_stats && (
                                   <PokemonEvolutionText>
-                                    Level <span> {eeed?.min_level}</span> with
+                                    Level <span> {eeed.min_level}</span> with
                                     <span>
-                                      {eeed?.relative_physical_stats === 1
+                                      {eeed.relative_physical_stats === 1
                                         ? ` Attack > Defense`
-                                        : eeed?.relative_physical_stats === 0
+                                        : eeed.relative_physical_stats === 0
                                         ? ` Attack = Defense`
                                         : ` Defense > Attack`}
                                     </span>
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.trade_species && (
+                                {eeed.trade_species && (
                                   <PokemonEvolutionText>
                                     Trade with{` `}
-                                    <span> {eeed?.trade_species?.name}</span>
+                                    <span> {eeed.trade_species.name}</span>
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.turn_upside_down === true && (
+                                {eeed.turn_upside_down === true && (
                                   <PokemonEvolutionText>
-                                    Level <span> {eeed?.min_level} </span> while
+                                    Level <span> {eeed.min_level} </span> while
                                     {` `}
                                     <span>holding the console upside-down</span>
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.trigger?.name === `shed` && (
+                                {eeed.trigger.name === `shed` && (
                                   <PokemonEvolutionText>
                                     Level <span>20</span> with an{` `}
                                     <span>empty slot in the party</span> and an
@@ -506,7 +495,7 @@ function Evolution({ evolution }: Props) {
                                     <span>extra PokéBall</span>
                                   </PokemonEvolutionText>
                                 )}
-                                {eeed?.trigger?.name === `take-damage` && (
+                                {eeed.trigger.name === `take-damage` && (
                                   <PokemonEvolutionText>
                                     Travel{` `}
                                     <span>
@@ -523,12 +512,12 @@ function Evolution({ evolution }: Props) {
                             <FaChevronRight />
                           </div>
                           <div>
-                            {pokedex.map(
+                            {pokedex?.map(
                               (p) =>
-                                p?.name === eee?.species?.name && (
+                                p.name === eee.species.name && (
                                   <Image
                                     key={p.name}
-                                    src={p?.sprites?.front_default}
+                                    src={p.sprites.front_default}
                                     alt=""
                                     width={96}
                                     height={96}
@@ -541,7 +530,7 @@ function Evolution({ evolution }: Props) {
                                 query: { name: eee.species.name },
                               }}
                             >
-                              {eee?.species?.name?.replace(/-/g, ` `)}
+                              {eee.species.name.replace(/-/g, ` `)}
                             </Link>
                           </div>
                         </PokemonEvolutionElement>

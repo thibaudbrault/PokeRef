@@ -3,8 +3,13 @@ import { Subtitle } from '../../../Common/Headings';
 import { Type } from '../../../Common/Themes';
 import { TypeDamageSection, TypeDamageTable } from '../StyledTypeCard';
 import Image from 'next/image';
+import { Types } from '@/types/types';
 
-function Damage({ type }) {
+type Props = {
+  type: Types.Types;
+};
+
+function Damage({ type }: Props) {
   return (
     <TypeDamageSection>
       <div>

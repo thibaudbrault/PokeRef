@@ -10,7 +10,7 @@ import { MainBig } from '../components/Common/Sizing';
 import { Type } from '../components/Common/Themes';
 import { usePokedex } from '../hooks/DataFetch';
 import Loader from '../components/Loader/Loader';
-import FaAngleDown from '@meronex/icons/fa/FaAngleDown';
+import { FaAngleDown } from '@meronex/icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -24,9 +24,7 @@ const Sprites = dynamic(
   () => import(`../components/Pokemon/Components/Sprites.Pokemon`),
 );
 
-function Pokedex(): JSX.Element {
-  // Filters the pokemon returned with the filters
-  const [filteredPokedex, setFilteredPokedex] = useState<Pokemon[]>([]);
+function Pokedex() {
   // Modify the first pokemon displayed
   const [offset, setOffset] = useState<number>(0);
   //Modify the max number of pokemon displayed
@@ -73,7 +71,6 @@ function Pokedex(): JSX.Element {
       <MainBig>
         <Filters
           pokedex={pokedex}
-          setFilteredPokedex={setFilteredPokedex}
           setOffset={setOffset}
           setLimit={setLimit}
           form={form}
@@ -86,10 +83,10 @@ function Pokedex(): JSX.Element {
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
         <PokedexList>
           <ul>
-            {filteredPokedex?.map((p: Pokemon) => (
+            {pokedex?.map((p: Pokemon.Pokemon) => (
               <PokedexElement key={p.id}>
                 <Sprites p={p} />
-                {p?.id < 905 && <p>#{p?.id?.toString()?.padStart(3, `0`)}</p>}
+                {p.id < 905 && <p>#{p.id.toString().padStart(3, `0`)}</p>}
                 <h2 data-testid="pokemonName">
                   <Link
                     href={{
@@ -98,15 +95,15 @@ function Pokedex(): JSX.Element {
                     }}
                     key={p.name}
                   >
-                    {p?.name
-                      ?.replace(/-/g, ` `)
+                    {p.name
+                      .replace(/-/g, ` `)
                       .replace(`single strike`, ``)
                       .replace(`rapid strike`, ``)
                       .replace(`red meteor`, ``)}
                   </Link>
                 </h2>
                 <PokedexTypes>
-                  {p?.types?.map((pt) => (
+                  {p.types.map((pt) => (
                     <Type id={pt.type.name} key={pt.type.name}>
                       <Link
                         href={{
@@ -115,7 +112,7 @@ function Pokedex(): JSX.Element {
                         }}
                       >
                         <Image alt={pt.type.name} />
-                        <span>{pt?.type?.name}</span>
+                        <span>{pt.type.name}</span>
                       </Link>
                     </Type>
                   ))}
