@@ -38,11 +38,11 @@ function Types() {
       </Head>
       <MainSmall>
         <TypesList>
-          {types?.map((t: Types) => (
+          {types?.map((t: Types.Types) => (
             <li key={t.name}>
               <ModifiedType id={t.name}>
                 <Link
-                  href={{ pathname: `/type/[name]`, query: { name: t.name } }}
+                  href={{ pathname: `/type/[name]`, query: { name: t?.name } }}
                   key={t.name}
                 >
                   <Image alt={t.name} />

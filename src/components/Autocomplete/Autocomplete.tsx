@@ -14,19 +14,21 @@ function Autocomplete() {
     `https://pokeapi.co/api/v2/pokemon?offset=0&limit=905`,
   );
 
-  const [pokedexMatch, setPokedexMatch] = useState<Pokemon[] | null>(null);
+  const [pokedexMatch, setPokedexMatch] = useState<Pokemon.Pokemon[] | null>(
+    null,
+  );
 
   const searchPokedex = (text: string) => {
     if (!text) {
-      setPokedexMatch([]);
+      setPokedexMatch(null);
     } else {
       const matches =
         pokedexMatch &&
         pokedex?.filter((pokedex) => {
           const regex = new RegExp(`${text}`, `gi`);
-          return pokedex?.name?.match(regex);
+          return pokedex.name.match(regex);
         });
-      setPokedexMatch(matches?.slice(0, 5)!);
+      setPokedexMatch(matches.slice(0, 5));
     }
   };
 
@@ -44,7 +46,7 @@ function Autocomplete() {
             pokedexMatch.map((pm) => (
               <li key={pm.name}>
                 <Image
-                  src={pm?.sprites?.front_default}
+                  src={pm.sprites.front_default}
                   alt=""
                   width={39}
                   height={39}
@@ -56,10 +58,10 @@ function Autocomplete() {
                   }}
                   className="bold"
                 >
-                  {pm?.name}
+                  {pm.name}
                 </AutocompleteLink>
                 <AutocompleteId>
-                  #{pm?.id?.toString()?.padStart(3, `0`)}
+                  #{pm.id.toString().padStart(3, `0`)}
                 </AutocompleteId>
               </li>
             ))}

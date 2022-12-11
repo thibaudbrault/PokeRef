@@ -12,14 +12,14 @@ import LearnMethod from '../../../../utils/LearnMethod';
 import { learnMethod } from '../../../../utils/DataMap';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Machines, Moves, Pokemon, PokemonMoves } from '@/types/types';
+import { Machines, Moves, Pokemon } from '@/types/types';
 
 type Props = {
   toggleState: number;
   toggleTable: () => void;
-  pokemon: Pokemon;
-  moves: Moves[];
-  machines: Machines[];
+  pokemon: Pokemon.Pokemon;
+  moves: Moves.Moves[];
+  machines: Machines.Machines[];
   version: string;
 };
 
@@ -39,14 +39,13 @@ function Moves({
     setLearn(learnMethod[toggleState + 1]);
   }, [toggleState]);
 
-  const isLearnedMoveForVersion =
-    (version: string) => (pmv: PokemonMoves['version_group_details']) =>
-      pmv?.version_group?.name === version &&
-      pmv?.move_learn_method?.name === learn;
+  const isLearnedMoveForVersion = (version: string) => (pmv) =>
+    pmv?.version_group?.name === version &&
+    pmv?.move_learn_method?.name === learn;
 
   const isLearnedMove = isLearnedMoveForVersion(version);
 
-  const moveInfoTable = (pm: PokemonMoves) =>
+  const moveInfoTable = (pm: Pokemon.Moves) =>
     moves?.map(
       (m) =>
         m?.name === pm?.move?.name && (
@@ -88,9 +87,9 @@ function Moves({
         ),
     );
 
-  const dataMoves = pokemon?.moves?.map((pm: PokemonMoves) =>
-    pm?.version_group_details?.map(
-      (pmv: PokemonMoves['version_group_details']) =>
+  const dataMoves = pokemon?.moves?.map((pm: Pokemon.Moves) =>
+    pm.version_group_details.map(
+      (pmv) =>
         isLearnedMove(pmv) && (
           <TRow key={pmv.level_learned_at}>
             {(() => {
@@ -106,7 +105,7 @@ function Moves({
             })()}
             {learn === `machine` &&
               machines?.map(
-                (ma: Machines) =>
+                (ma: Machines.Machines) =>
                   ma?.move?.name === pm?.move?.name &&
                   ma?.version_group?.name === version && (
                     <PokemonMovesMachine key={ma.item.name}>

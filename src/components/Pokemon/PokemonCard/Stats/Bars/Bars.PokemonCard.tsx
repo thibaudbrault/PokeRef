@@ -8,7 +8,7 @@ import {
 } from '../StyledStats.PokemonCard';
 
 type Props = {
-  pokemon: Pokemon;
+  pokemon: Pokemon.Pokemon;
 };
 
 function Bars({ pokemon }: Props) {

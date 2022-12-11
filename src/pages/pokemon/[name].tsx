@@ -10,7 +10,7 @@ import {
   useSpecies,
   useTypes,
 } from '../../hooks/DataFetch';
-import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import Loader from '../../components/Loader/Loader';
 import { Subtitle, Title } from '../../components/Common/Headings';
 import { useRouter } from 'next/router';
@@ -107,18 +107,18 @@ function PokemonCard() {
 
   // Toggle for moves table
   const [toggleState, setToggleState] = useState(0);
-  const toggleTable = (index) => {
+  const toggleTable = (index: number) => {
     setToggleState(index);
   };
 
   // Toggle for types table
   const [toggleType, setToggleType] = useState(1);
-  const toggleTypeTable = (index) => {
+  const toggleTypeTable = (index: number) => {
     setToggleType(index);
   };
 
-  if (error) {
-    return <p>{error}</p>;
+  if (error instanceof Error) {
+    return { error };
   }
 
   if (isLoading) {

@@ -6,8 +6,16 @@ import {
   PokemonDataSection,
   PokemonDataSprite,
 } from './StyledData.PokemonCard';
+import { Pokemon, Species } from '@/types/types';
 
-function Data({ pokemon, species, location, game }) {
+type Props = {
+  pokemon: Pokemon.Pokemon;
+  species: Species.Species;
+  location: Pokemon.PokemonLocation[];
+  game: string;
+};
+
+function Data({ pokemon, species, location, game }: Props) {
   return (
     <PokemonDataSection>
       <div>

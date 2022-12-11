@@ -25,7 +25,7 @@ import {
 import { BackButton } from '../../components/Common/Inputs';
 import { useAbility, usePokedex } from '../../hooks/DataFetch';
 import Loader from '../../components/Loader/Loader';
-import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Head from 'next/head';
@@ -45,8 +45,8 @@ function AbilityCard() {
     `https://pokeapi.co/api/v2/pokemon?limit=1300`,
   );
 
-  if (error) {
-    return <p>{error}</p>;
+  if (error instanceof Error) {
+    return { error };
   }
 
   if (isLoading) {
@@ -73,24 +73,23 @@ function AbilityCard() {
         />
         <meta property="og:type" content="website" />
       </Head>
+
       <MainBig>
-        <CardTitle>{ability?.name?.replace(/-/g, ` `)}</CardTitle>
-        <Subtitle>{ability?.generation?.name?.replace(/-/g, ` `)}</Subtitle>
+        <CardTitle>{ability.name.replace(/-/g, ` `)}</CardTitle>
+        <Subtitle>{ability.generation.name.replace(/-/g, ` `)}</Subtitle>
 
         <AbilityCardSection>
           <AbilityCardEffect>
             <H3>Effect</H3>
-            {ability?.effect_entries?.map(
+            {ability.effect_entries.map(
               (ae) =>
-                ae?.language?.name === `en` && (
-                  <p key={ae.effect}>{ae?.effect}</p>
-                ),
+                ae.language.name === `en` && <p key={ae.effect}>{ae.effect}</p>,
             )}
           </AbilityCardEffect>
-          {ability?.effect_entries?.map(
+          {ability.effect_entries.map(
             (ae) =>
-              ae?.language?.name === `en` &&
-              ae?.effect?.includes(`\n\nOverworld:`) && (
+              ae.language.name === `en` &&
+              ae.effect.includes(`\n\nOverworld:`) && (
                 <AbilityCardEffect key={ae.effect}>
                   <H4>Overworld</H4>
                   <p>
@@ -107,11 +106,11 @@ function AbilityCard() {
           <H3>Game descriptions</H3>
           <AbilityCardTable>
             <tbody>
-              {ability?.flavor_text_entries?.map((af) =>
-                af?.language?.name === `en` ? (
+              {ability.flavor_text_entries.map((af) =>
+                af.language.name === `en` ? (
                   <tr key={ae.flavor_text}>
-                    <th>{af?.version_group?.name?.replace(/-/g, ` `)}</th>
-                    <td>{af?.flavor_text}</td>
+                    <th>{af.version_group.name.replace(/-/g, ` `)}</th>
+                    <td>{af.flavor_text}</td>
                   </tr>
                 ) : (
                   ``
@@ -123,7 +122,7 @@ function AbilityCard() {
 
         <AbilityCardSection>
           <H3>
-            Pokemon with <Span>{ability?.name?.replace(/-/g, ` `)}</Span>
+            Pokemon with <Span>{ability.name.replace(/-/g, ` `)}</Span>
           </H3>
           <TableContainer>
             <ModifiedTable>
@@ -141,10 +140,10 @@ function AbilityCard() {
                 </tr>
               </THead>
               <tbody>
-                {ability?.pokemon?.map((ap) => (
+                {ability.pokemon.map((ap) => (
                   <TRow key={ap.pokemon.name}>
                     <td>
-                      {pokedex?.map(
+                      {pokedex.map(
                         (p) =>
                           p.name === ap.pokemon.name && (
                             <Image
@@ -170,76 +169,67 @@ function AbilityCard() {
                       </TLink>
                     </TName>
                     <td>
-                      {pokedex?.map(
+                      {pokedex.map(
                         (p) =>
                           p.name === ap.pokemon.name && (
                             <TLink
                               key={p.abilities[0].ability.name}
                               href={{
                                 pathname: `/ability/[name]`,
-                                query: { name: p?.abilities[0]?.ability?.name },
+                                query: { name: p.abilities[0].ability.name },
                               }}
                               className={
-                                p?.abilities[0]?.ability?.name === ability?.name
+                                p.abilities[0].ability.name === ability.name
                                   ? `bold`
                                   : ``
                               }
                             >
-                              {p?.abilities[0]?.ability?.name?.replace(
-                                /-/g,
-                                ` `,
-                              )}
+                              {p.abilities[0].ability.name.replace(/-/g, ` `)}
                             </TLink>
                           ),
                       )}
                     </td>
                     <td>
-                      {pokedex?.map(
+                      {pokedex.map(
                         (p) =>
                           p.name === ap.pokemon.name && (
                             <TLink
                               key={p.abilities[1].ability.name}
                               href={{
                                 pathname: `/ability/[name]`,
-                                query: { name: p?.abilities[1]?.ability?.name },
+                                query: { name: p.abilities[1].ability.name },
                               }}
                               className={
-                                p?.abilities[1]?.ability?.name === ability?.name
+                                p.abilities[1].ability.name === ability.name
                                   ? `bold`
                                   : ``
                               }
                             >
-                              {p?.abilities?.length > 1
-                                ? p?.abilities[1]?.ability?.name?.replace(
-                                    /-/g,
-                                    ` `,
-                                  )
+                              {p.abilities.length > 1
+                                ? p.abilities[1].ability.name.replace(/-/g, ` `)
                                 : `-`}
                             </TLink>
                           ),
                       )}
                     </td>
                     <td>
-                      {pokedex?.map(
+                      {pokedex.map(
                         (p) =>
                           p.name === ap.pokemon.name && (
                             <TLink
                               key={p.abilities[2].ability.name}
                               href={{
                                 pathname: `/ability/[name]`,
-                                query: { name: p?.abilities[2]?.ability?.name },
+                                query: { name: p.abilities[2].ability.name },
                               }}
                               className={
-                                p?.abilities[2]?.ability?.name === ability?.name
+                                p.abilities[2].ability.name === ability.name
                                   ? `bold`
                                   : ``
                               }
                             >
-                              {p?.abilities?.length > 2
-                                ? p?.abilities[2]?.ability?.name?.replace(
-                                    /-/g,
-                                    ` `,
-                                  )
+                              {p.abilities.length > 2
+                                ? p.abilities[2].ability.name.replace(/-/g, ` `)
                                 : `-`}
                             </TLink>
                           ),

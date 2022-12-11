@@ -15,7 +15,7 @@ function Nav({ move, setVersion }: Props) {
   return (
     <GenNav>
       <ol>
-        {move?.generation?.name === `generation-i` && (
+        {move.generation.name === `generation-i` && (
           <li>
             <button>Gen I</button>
             <div>
@@ -24,8 +24,8 @@ function Nav({ move, setVersion }: Props) {
             </div>
           </li>
         )}
-        {(move?.generation?.name === `generation-i` ||
-          move?.generation?.name === `generation-ii`) && (
+        {(move.generation.name === `generation-i` ||
+          move.generation.name === `generation-ii`) && (
           <li>
             <button>Gen II</button>
             <div>
@@ -36,9 +36,9 @@ function Nav({ move, setVersion }: Props) {
             </div>
           </li>
         )}
-        {(move?.generation?.name === `generation-i` ||
-          move?.generation?.name === `generation-ii` ||
-          move?.generation?.name === `generation-iii`) && (
+        {(move.generation.name === `generation-i` ||
+          move.generation.name === `generation-ii` ||
+          move.generation.name === `generation-iii`) && (
           <li>
             <button>Gen III</button>
             <div>
@@ -52,10 +52,10 @@ function Nav({ move, setVersion }: Props) {
             </div>
           </li>
         )}
-        {(move?.generation?.name === `generation-i` ||
-          move?.generation?.name === `generation-ii` ||
-          move?.generation?.name === `generation-iii` ||
-          move?.generation?.name === `generation-iv`) && (
+        {(move.generation.name === `generation-i` ||
+          move.generation.name === `generation-ii` ||
+          move.generation.name === `generation-iii` ||
+          move.generation.name === `generation-iv`) && (
           <li>
             <button>Gen IV</button>
             <div>
@@ -69,11 +69,11 @@ function Nav({ move, setVersion }: Props) {
             </div>
           </li>
         )}
-        {(move?.generation?.name === `generation-i` ||
-          move?.generation?.name === `generation-ii` ||
-          move?.generation?.name === `generation-iii` ||
-          move?.generation?.name === `generation-iv` ||
-          move?.generation?.name === `generation-v`) && (
+        {(move.generation.name === `generation-i` ||
+          move.generation.name === `generation-ii` ||
+          move.generation.name === `generation-iii` ||
+          move.generation.name === `generation-iv` ||
+          move.generation.name === `generation-v`) && (
           <li>
             <button>Gen V</button>
             <div>
@@ -86,12 +86,12 @@ function Nav({ move, setVersion }: Props) {
             </div>
           </li>
         )}
-        {(move?.generation?.name === `generation-i` ||
-          move?.generation?.name === `generation-ii` ||
-          move?.generation?.name === `generation-iii` ||
-          move?.generation?.name === `generation-iv` ||
-          move?.generation?.name === `generation-v` ||
-          move?.generation?.name === `generation-vi`) && (
+        {(move.generation.name === `generation-i` ||
+          move.generation.name === `generation-ii` ||
+          move.generation.name === `generation-iii` ||
+          move.generation.name === `generation-iv` ||
+          move.generation.name === `generation-v` ||
+          move.generation.name === `generation-vi`) && (
           <li>
             <button>Gen VI</button>
             <div>
@@ -102,13 +102,13 @@ function Nav({ move, setVersion }: Props) {
             </div>
           </li>
         )}
-        {(move?.generation?.name === `generation-i` ||
-          move?.generation?.name === `generation-ii` ||
-          move?.generation?.name === `generation-iii` ||
-          move?.generation?.name === `generation-iv` ||
-          move?.generation?.name === `generation-v` ||
-          move?.generation?.name === `generation-vi` ||
-          move?.generation?.name === `generation-vii`) && (
+        {(move.generation.name === `generation-i` ||
+          move.generation.name === `generation-ii` ||
+          move.generation.name === `generation-iii` ||
+          move.generation.name === `generation-iv` ||
+          move.generation.name === `generation-v` ||
+          move.generation.name === `generation-vi` ||
+          move.generation.name === `generation-vii`) && (
           <li>
             <button>Gen VII</button>
             <div>
@@ -124,14 +124,14 @@ function Nav({ move, setVersion }: Props) {
             </div>
           </li>
         )}
-        {(move?.generation?.name === `generation-i` ||
-          move?.generation?.name === `generation-ii` ||
-          move?.generation?.name === `generation-iii` ||
-          move?.generation?.name === `generation-iv` ||
-          move?.generation?.name === `generation-v` ||
-          move?.generation?.name === `generation-vi` ||
-          move?.generation?.name === `generation-vii` ||
-          move?.generation?.name === `generation-viii`) && (
+        {(move.generation.name === `generation-i` ||
+          move.generation.name === `generation-ii` ||
+          move.generation.name === `generation-iii` ||
+          move.generation.name === `generation-iv` ||
+          move.generation.name === `generation-v` ||
+          move.generation.name === `generation-vi` ||
+          move.generation.name === `generation-vii` ||
+          move.generation.name === `generation-viii`) && (
           <li>
             <button>Gen VIII</button>
             <div>

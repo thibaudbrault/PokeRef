@@ -1,11 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { Dispatch, SetStateAction } from 'react';
+import { Pokemon } from '@/types/types';
 import { GenNav } from '../../../Common/Navbars';
 
 type Props = {
-  pokemon: {
-    id: number;
-  };
+  pokemon: Pokemon.Pokemon;
   setGame: Dispatch<SetStateAction<string>>;
   setVersion: Dispatch<SetStateAction<string>>;
 };

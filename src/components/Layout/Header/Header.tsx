@@ -9,8 +9,8 @@ import {
   HeaderBtnTheme,
   HeaderContainer,
 } from './StyledHeader';
-import RiMoonClearLine from '@meronex/icons/ri/RiMoonClearLine';
-import RiSunLine from '@meronex/icons/ri/RiSunLine';
+import { RiMoonClearLine } from '@meronex/icons/ri';
+import { RiSunLine } from '@meronex/icons/ri';
 import { useSession, signOut } from 'next-auth/react';
 
 type Props = {
@@ -20,8 +20,6 @@ type Props = {
 
 function Header({ themeToggler, theme }: Props) {
   const { data: session } = useSession();
-
-  console.log(session);
 
   return (
     <HeaderContainer id="header">

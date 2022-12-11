@@ -8,7 +8,11 @@ import {
 } from './StyledSprites.PokemonCard';
 import { Pokemon } from '@/types/types';
 
-function Sprites({ pokemon }: Pokemon) {
+type Props = {
+  pokemon: Pokemon.Pokemon;
+};
+
+function Sprites({ pokemon }: Props) {
   return (
     <>
       <Section>
@@ -16,8 +20,8 @@ function Sprites({ pokemon }: Pokemon) {
         <PokemonSpritesDiv>
           <div>
             <Image
-              src={pokemon?.sprites?.front_default}
-              alt={pokemon?.name}
+              src={pokemon.sprites.front_default}
+              alt={pokemon.name}
               width={96}
               height={96}
             />
@@ -25,29 +29,29 @@ function Sprites({ pokemon }: Pokemon) {
           </div>
           <div>
             <Image
-              src={pokemon?.sprites?.back_default}
-              alt={pokemon?.name}
+              src={pokemon.sprites.back_default}
+              alt={pokemon.name}
               width={96}
               height={96}
             />
             <p>Back Default</p>
           </div>
-          {pokemon?.sprites?.front_female !== null && (
+          {pokemon.sprites.front_female !== null && (
             <div>
               <Image
-                src={pokemon?.sprites?.front_female}
-                alt={pokemon?.name}
+                src={pokemon.sprites.front_female}
+                alt={pokemon.name}
                 width={96}
                 height={96}
               />
               <p>Front Female</p>
             </div>
           )}
-          {pokemon?.sprites?.back_female !== null && (
+          {pokemon.sprites.back_female !== null && (
             <div>
               <Image
-                src={pokemon?.sprites?.back_female}
-                alt={pokemon?.name}
+                src={pokemon.sprites.back_female}
+                alt={pokemon.name}
                 width={96}
                 height={96}
               />
@@ -56,8 +60,8 @@ function Sprites({ pokemon }: Pokemon) {
           )}
           <div>
             <Image
-              src={pokemon?.sprites?.front_shiny}
-              alt={pokemon?.name}
+              src={pokemon.sprites.front_shiny}
+              alt={pokemon.name}
               width={96}
               height={96}
             />
@@ -65,29 +69,29 @@ function Sprites({ pokemon }: Pokemon) {
           </div>
           <div>
             <Image
-              src={pokemon?.sprites?.back_shiny}
-              alt={pokemon?.name}
+              src={pokemon.sprites.back_shiny}
+              alt={pokemon.name}
               width={96}
               height={96}
             />
             <p>Back Shiny</p>
           </div>
-          {pokemon?.sprites?.front_shiny_female !== null && (
+          {pokemon.sprites.front_shiny_female !== null && (
             <div>
               <Image
-                src={pokemon?.sprites?.front_shiny_female}
-                alt={pokemon?.name}
+                src={pokemon.sprites.front_shiny_female}
+                alt={pokemon.name}
                 width={96}
                 height={96}
               />
               <p>Front Shiny Female</p>
             </div>
           )}
-          {pokemon?.sprites?.back_shiny_female !== null && (
+          {pokemon.sprites.back_shiny_female !== null && (
             <div>
               <Image
-                src={pokemon?.sprites?.back_shiny_female}
-                alt={pokemon?.name}
+                src={pokemon.sprites.back_shiny_female}
+                alt={pokemon.name}
                 width={96}
                 height={96}
               />
@@ -97,14 +101,14 @@ function Sprites({ pokemon }: Pokemon) {
         </PokemonSpritesDiv>
       </Section>
 
-      {pokemon?.id < 650 && (
+      {pokemon.id < 650 && (
         <Section>
           <H3>Animated Sprites</H3>
           <PokemonAnimatedSpritesDiv>
             <div>
               <Image
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon?.id}.gif`}
-                alt={pokemon?.name}
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif`}
+                alt={pokemon.name}
                 width={48}
                 height={48}
               />
@@ -112,29 +116,29 @@ function Sprites({ pokemon }: Pokemon) {
             </div>
             <div>
               <Image
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/${pokemon?.id}.gif`}
-                alt={pokemon?.name}
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/${pokemon.id}.gif`}
+                alt={pokemon.name}
                 width={48}
                 height={48}
               />
               <p>Back Default</p>
             </div>
-            {pokemon?.sprites?.front_female !== null && (
+            {pokemon.sprites.front_female !== null && (
               <div>
                 <Image
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/female/${pokemon?.id}.gif`}
-                  alt={pokemon?.name}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/female/${pokemon.id}.gif`}
+                  alt={pokemon.name}
                   width={48}
                   height={48}
                 />
                 <p>Front Female</p>
               </div>
             )}
-            {pokemon?.sprites?.back_female !== null && (
+            {pokemon.sprites.back_female !== null && (
               <div>
                 <Image
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/female/${pokemon?.id}.gif`}
-                  alt={pokemon?.name}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/female/${pokemon.id}.gif`}
+                  alt={pokemon.name}
                   width={48}
                   height={48}
                 />
@@ -143,8 +147,8 @@ function Sprites({ pokemon }: Pokemon) {
             )}
             <div>
               <Image
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/${pokemon?.id}.gif`}
-                alt={pokemon?.name}
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/${pokemon.id}.gif`}
+                alt={pokemon.name}
                 width={48}
                 height={48}
               />
@@ -152,29 +156,29 @@ function Sprites({ pokemon }: Pokemon) {
             </div>
             <div>
               <Image
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/${pokemon?.id}.gif`}
-                alt={pokemon?.name}
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/${pokemon.id}.gif`}
+                alt={pokemon.name}
                 width={48}
                 height={48}
               />
               <p>Back Shiny</p>
             </div>
-            {pokemon?.sprites?.front_shiny_female !== null && (
+            {pokemon.sprites.front_shiny_female !== null && (
               <div>
                 <Image
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/female/${pokemon?.id}.gif`}
-                  alt={pokemon?.name}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/female/${pokemon.id}.gif`}
+                  alt={pokemon.name}
                   width={48}
                   height={48}
                 />
                 <p>Front Shiny Female</p>
               </div>
             )}
-            {pokemon?.sprites?.back_shiny_female !== null && (
+            {pokemon.sprites.back_shiny_female !== null && (
               <div>
                 <Image
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/female/${pokemon?.id}.gif`}
-                  alt={pokemon?.name}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/female/${pokemon.id}.gif`}
+                  alt={pokemon.name}
                   width={48}
                   height={48}
                 />

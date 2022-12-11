@@ -13,8 +13,8 @@ import Link from 'next/link';
 import { Moves, Types } from '@/types/types';
 
 type Props = {
-  type: Types;
-  moves: Moves;
+  type: Types.Types;
+  moves: Moves.Moves[];
 };
 
 function Moves({ type, moves }: Props) {
@@ -44,7 +44,7 @@ function Moves({ type, moves }: Props) {
               ?.sort((a, b) => a.name.localeCompare(b.name))
               .map((tm) =>
                 moves?.map(
-                  (m: Moves) =>
+                  (m) =>
                     m.name === tm.name && (
                       <TRow key={tm.name} className="moveElement">
                         <TypeMovesName>

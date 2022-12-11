@@ -9,16 +9,11 @@ import {
 } from '../../Common/Table';
 import { ModifiedLeftTitle, MovesSection, StatusMoves } from '../StyledMoves';
 import Link from 'next/link';
+import { Moves } from '@/types/types';
 
 type Props = {
-  status: any[];
+  status: Moves.Status[];
   toggleState: number;
-};
-
-type Status = {
-  id: number;
-  name: string;
-  moves: any[];
 };
 
 function StatusTable({ status, toggleState }: Props) {
@@ -35,13 +30,13 @@ function StatusTable({ status, toggleState }: Props) {
           </THead>
           <tbody>
             {status
-              ?.filter((s: Status) => s.name !== `none`)
-              ?.sort((a, b) => a?.name?.localeCompare(b.name))
-              ?.map((s: Status) => (
+              .filter((s) => s.name !== `none`)
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map((s: Moves.Status) => (
                 <TRow key={s.id}>
                   <TName>{s.name.replace(/-/g, ` `)}</TName>
                   <StatusMoves>
-                    {s.moves.map((sm: Status) => (
+                    {s.moves.map((sm) => (
                       <Link
                         href={{
                           pathname: `/move/[name]`,

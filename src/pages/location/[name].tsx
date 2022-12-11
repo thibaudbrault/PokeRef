@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { BackButton } from '../../components/Common/Inputs';
 import { MainBig, Section } from '../../components/Common/Sizing';
-import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import Loader from '../../components/Loader/Loader';
 import { useArea, useLocation } from '../../hooks/DataFetch';
 import { CardTitle, Subtitle } from '../../components/Common/Headings';
@@ -33,33 +33,33 @@ function LocationCard() {
     data: location,
   } = useLocation(`https://pokeapi.co/api/v2/location/${name}`);
 
-  const toggleTable = (index) => {
+  const toggleTable = (index: number) => {
     setToggleState(index);
   };
 
-  const areaUrl = location?.areas[toggleState]?.url;
+  const areaUrl = location.areas[toggleState].url;
 
   const { data: area } = useArea(areaUrl);
 
   useEffect(() => {
-    if (location?.region?.name === `kanto`) {
+    if (location.region.name === `kanto`) {
       setGame(`yellow`);
-    } else if (location?.region?.name === `johto`) {
+    } else if (location.region.name === `johto`) {
       setGame(`crystal`);
-    } else if (location?.region?.name === `johto`) {
+    } else if (location.region.name === `johto`) {
       setGame(`crystal`);
-    } else if (location?.region?.name === `hoenn`) {
+    } else if (location.region.name === `hoenn`) {
       setGame(`emerald`);
-    } else if (location?.region?.name === `sinnoh`) {
+    } else if (location.region.name === `sinnoh`) {
       setGame(`platinum`);
-    } else if (location?.region?.name === `unova`) {
+    } else if (location.region.name === `unova`) {
       setGame(`black-2`);
-    } else if (location?.region?.name === `kalos`) {
+    } else if (location.region.name === `kalos`) {
       setGame(`x`);
-    } else if (location?.region?.name === `alola`) {
+    } else if (location.region.name === `alola`) {
       setGame(`ultra-sun`);
     }
-  }, [location?.region?.name]);
+  }, [location.region.name]);
 
   const title = `${name}`;
 
@@ -69,8 +69,8 @@ function LocationCard() {
     } | Locations | PokéRef`;
   }, [title]);
 
-  if (error) {
-    return <p>{error}</p>;
+  if (error instanceof Error) {
+    return { error };
   }
 
   if (isLoading) {
@@ -85,7 +85,7 @@ function LocationCard() {
           .replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/, ``)}
       </CardTitle>
       <Subtitle>
-        {location?.region?.name} - {game.replace(/-/g, ` `)}
+        {location.region.name} - {game.replace(/-/g, ` `)}
       </Subtitle>
       <LocationNavContainer>
         <LocationNav>
@@ -120,7 +120,7 @@ function LocationCard() {
               </tr>
             </THead>
             <tbody>
-              {area?.pokemon_encounters?.map((a) =>
+              {area.pokemon_encounters.map((a) =>
                 a.version_details.map(
                   (av) =>
                     av.version.name === game &&

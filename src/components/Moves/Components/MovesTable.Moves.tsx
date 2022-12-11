@@ -17,19 +17,19 @@ import Image from 'next/image';
 import { Moves } from '@/types/types';
 
 type Props = {
-  moves: Moves[];
+  moves: Moves.Moves[];
   toggleState: number;
 };
 
 function MovesTable({ moves, toggleState }: Props) {
   const [search, setSearch] = useState<string>(``);
-  const [filteredMoves, setFilteredMoves] = useState<any[]>([]);
+  const [filteredMoves, setFilteredMoves] = useState<Moves.Moves[]>([]);
 
   // Filter the moves returned when the user type the name in the search bar
   useEffect(
     () =>
       setFilteredMoves(
-        moves.filter((moves: Moves) =>
+        moves.filter((moves: Moves.Moves) =>
           moves.name
             .replace(/-/g, ` `)
             .toLowerCase()
@@ -68,8 +68,8 @@ function MovesTable({ moves, toggleState }: Props) {
           </THead>
           <tbody data-testid="movesBody">
             {filteredMoves
-              ?.sort((a, b) => a.name.localeCompare(b.name))
-              ?.map((m: Moves) => (
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map((m: Moves.Moves) => (
                 <TRow key={m.id}>
                   <TName>
                     <TLink
@@ -79,13 +79,13 @@ function MovesTable({ moves, toggleState }: Props) {
                       }}
                       key={m.name}
                     >
-                      {m?.name?.replace(/-/g, ` `)}
+                      {m.name.replace(/-/g, ` `)}
                     </TLink>
                   </TName>
-                  <TCategory id={m?.damage_class?.name}>
+                  <TCategory id={m.damage_class.name}>
                     <div>
                       <Image alt={m.damage_class.name} width={20} height={20} />
-                      <span>{m?.damage_class?.name}</span>
+                      <span>{m.damage_class.name}</span>
                     </div>
                   </TCategory>
                   <TType>
@@ -97,16 +97,16 @@ function MovesTable({ moves, toggleState }: Props) {
                         }}
                       >
                         <Image alt={m.type.name} width={15} height={15} />
-                        <span>{m?.type?.name}</span>
+                        <span>{m.type.name}</span>
                       </Link>
                     </Type>
                   </TType>
                   <TEffect>
-                    {m?.flavor_text_entries?.map(
+                    {m.flavor_text_entries.map(
                       (mf) =>
                         mf.language.name === `en` &&
                         mf.flavor_text !== `Dummy Data` && (
-                          <span key={mf.flavor_text}>{mf?.flavor_text}</span>
+                          <span key={mf.flavor_text}>{mf.flavor_text}</span>
                         ),
                     )}
                   </TEffect>

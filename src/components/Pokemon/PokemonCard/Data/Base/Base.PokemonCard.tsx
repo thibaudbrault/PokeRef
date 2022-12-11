@@ -1,14 +1,22 @@
 import React from 'react';
+import { Pokemon, Species } from '@/types/types';
 import { TLink } from '../../../../Common/Table';
 import {
   PokemonDataLocation,
   PokemonDataTable,
 } from '../StyledData.PokemonCard';
 
-function Base({ pokemon, species, game, location }) {
+type Props = {
+  pokemon: Pokemon.Pokemon;
+  species: Species.Species;
+  location: Pokemon.PokemonLocation[];
+  game: string;
+};
+
+function Base({ pokemon, species, game, location }: Props) {
   // Convert height and weight to meters and kilograms and round the number
-  const height = (pokemon?.height * 0.1).toFixed(2);
-  const weight = (pokemon?.weight * 0.1).toFixed(2);
+  const height = (pokemon.height * 0.1).toFixed(2);
+  const weight = (pokemon.weight * 0.1).toFixed(2);
 
   return (
     <PokemonDataTable>
@@ -16,21 +24,21 @@ function Base({ pokemon, species, game, location }) {
         <tr>
           <th>National number</th>
           <td>
-            {pokemon?.id > 10000
+            {pokemon.id > 10000
               ? ``
-              : `# ${pokemon?.id?.toString()?.padStart(3, `0`)}`}
+              : `# ${pokemon.id.toString().padStart(3, `0`)}`}
           </td>
         </tr>
         <PokemonDataLocation>
           <th>Locations</th>
           <td>
-            {location?.length !== 0 &&
-              location?.map((l) =>
-                l?.version_details?.map(
+            {location.length !== 0 &&
+              location.map((l) =>
+                l.version_details.map(
                   (lv) =>
-                    lv?.version?.name === game && (
+                    lv.version.name === game && (
                       <p key={l.location_area.name}>
-                        {l?.location_area?.name?.replace(/-/g, ` `)}
+                        {l.location_area.name.replace(/-/g, ` `)}
                       </p>
                     ),
                 ),
@@ -41,7 +49,7 @@ function Base({ pokemon, species, game, location }) {
         <tr>
           <th>Abilities</th>
           <td>
-            {pokemon?.abilities?.map((pa) => (
+            {pokemon.abilities.map((pa) => (
               <p key={pa.ability.name}>
                 <TLink
                   href={{
@@ -50,9 +58,9 @@ function Base({ pokemon, species, game, location }) {
                   }}
                   key={pa.ability.name}
                 >
-                  {pa?.ability?.name?.replace(/-/g, ` `)}
+                  {pa.ability.name.replace(/-/g, ` `)}
                 </TLink>
-                {pa?.is_hidden && <>‌‌ (hidden ability)</>}
+                {pa.is_hidden && <>‌‌ (hidden ability)</>}
               </p>
             ))}
           </td>
@@ -69,10 +77,10 @@ function Base({ pokemon, species, game, location }) {
           <th>Category</th>
           <td>
             {pokemon.id < 10000
-              ? species?.genera?.map(
+              ? species.genera.map(
                   (sg) =>
-                    sg?.language?.name === `en` && (
-                      <p key={sg.genus}>{sg?.genus}</p>
+                    sg.language.name === `en` && (
+                      <p key={sg.genus}>{sg.genus}</p>
                     ),
                 )
               : `⠀`}
@@ -80,11 +88,11 @@ function Base({ pokemon, species, game, location }) {
         </tr>
         <tr>
           <th>Shape</th>
-          <td>{pokemon.id < 10000 ? <p>{species?.shape?.name}</p> : `⠀`}</td>
+          <td>{pokemon.id < 10000 ? <p>{species.shape.name}</p> : `⠀`}</td>
         </tr>
         <tr>
           <th>Color</th>
-          <td>{pokemon.id < 10000 ? <p>{species?.color?.name}</p> : `⠀`}</td>
+          <td>{pokemon.id < 10000 ? <p>{species.color.name}</p> : `⠀`}</td>
         </tr>
       </tbody>
     </PokemonDataTable>
