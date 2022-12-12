@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MainBig } from '../../components/Common/Sizing';
-import { BackButton } from '../../components/Common/Inputs';
+import { MainBig } from '../../components/CommonStyles/Sizing';
 import {
   useEvolution,
   useMachines,
@@ -10,38 +9,51 @@ import {
   useSpecies,
   useTypes,
 } from '../../hooks/DataFetch';
-import { FaChevronLeft } from '@meronex/icons/fa';
-import Loader from '../../components/Loader/Loader';
-import { Subtitle, Title } from '../../components/Common/Headings';
+import Loader from '../../components/ui/Loader/Loader';
+import { Subtitle, Title } from '../../components/CommonStyles/Headings';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { speciesFilters } from '@/utils/DataArrays';
+import { Species } from '@/types/types';
+import BackBtn from '@/components/ui/BackBtn';
 
 const Data = dynamic(
-  () => import(`../../components/Pokemon/PokemonCard/Data/Data.PokemonCard`),
+  () =>
+    import(`../../components/pages/Pokemon/PokemonCard/Data/Data.PokemonCard`),
 );
 const Info = dynamic(
-  () => import(`../../components/Pokemon/PokemonCard/Info/Info.PokemonCard`),
+  () =>
+    import(`../../components/pages/Pokemon/PokemonCard/Info/Info.PokemonCard`),
 );
 const Stats = dynamic(
-  () => import(`../../components/Pokemon/PokemonCard/Stats/Stats.PokemonCard`),
+  () =>
+    import(
+      `../../components/pages/Pokemon/PokemonCard/Stats/Stats.PokemonCard`
+    ),
 );
 const Moves = dynamic(
-  () => import(`../../components/Pokemon/PokemonCard/Moves/Moves.PokemonCard`),
+  () =>
+    import(
+      `../../components/pages/Pokemon/PokemonCard/Moves/Moves.PokemonCard`
+    ),
 );
 const Sprites = dynamic(
   () =>
-    import(`../../components/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard`),
-);
-const Evolution = dynamic(
-  () =>
     import(
-      `../../components/Pokemon/PokemonCard/Evolution/Evolution.PokemonCard`
+      `../../components/pages/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard`
     ),
 );
+const Evolution = dynamic(
+  (() =>
+    import(
+      `../../components/pages/Pokemon/PokemonCard/Evolution/Evolution.PokemonCard`
+    )) as any,
+);
 const Nav = dynamic(
-  () => import(`../../components/Pokemon/PokemonCard/Nav/Nav.PokemonCard`),
+  () =>
+    import(`../../components/pages/Pokemon/PokemonCard/Nav/Nav.PokemonCard`),
 );
 
 function PokemonCard() {
@@ -61,7 +73,7 @@ function PokemonCard() {
 
   const { data: moves } = useMoves();
 
-  const evolutionChainUrl = species?.evolution_chain?.url;
+  const evolutionChainUrl = species.evolution_chain.url;
 
   const { data: evolution } = useEvolution(`${evolutionChainUrl}`);
 
@@ -77,29 +89,38 @@ function PokemonCard() {
   const [game, setGame] = useState(``);
   const [version, setVersion] = useState(``);
 
+  const speciesFiltersFn = (species: Species.Species) => {
+    speciesFilters.forEach((s) => {
+      species.id > s.min &&
+        species.id < s.max &&
+        (setGame(s.game), setVersion(s.version));
+      return species;
+    });
+  };
+
   useEffect(() => {
-    if (species?.id < 152) {
+    if (species.id < 152) {
       setGame(`yellow`);
       setVersion(`yellow`);
-    } else if (species?.id > 151 && species?.id < 252) {
+    } else if (species.id > 151 && species.id < 252) {
       setGame(`crystal`);
       setVersion(`crystal`);
-    } else if (species?.id > 251 && species?.id < 387) {
+    } else if (species.id > 251 && species.id < 387) {
       setGame(`emerald`);
       setVersion(`emerald`);
-    } else if (species?.id > 386 && species?.id < 494) {
+    } else if (species.id > 386 && species.id < 494) {
       setGame(`platinum`);
       setVersion(`platinum`);
-    } else if (species?.id > 493 && species?.id < 650) {
+    } else if (species.id > 493 && species.id < 650) {
       setGame(`black-2`);
       setVersion(`black-2-white-2`);
-    } else if (species?.id > 649 && species?.id < 722) {
+    } else if (species.id > 649 && species.id < 722) {
       setGame(`x`);
       setVersion(`x-y`);
-    } else if (species?.id > 721 && species?.id < 810) {
+    } else if (species.id > 721 && species.id < 810) {
       setGame(`ultra-sun`);
       setVersion(`ultra-sun-ultra-moon`);
-    } else if (species?.id > 809 && species?.id < 898) {
+    } else if (species.id > 809 && species.id < 898) {
       setGame(`sword`);
       setVersion(`sword-shield`);
     }
@@ -129,7 +150,9 @@ function PokemonCard() {
     <>
       <Head>
         <title>
-          {name?.charAt(0).toUpperCase() + name?.slice(1)} | Pokémon | PokéRef
+          {typeof name === `string` &&
+            name.charAt(0).toUpperCase() + name.slice(1)}
+          {` `}| Pokémon | PokéRef
         </title>
         <meta name="description" content={`Find every details about ${name}`} />
         <meta property="og:title" content={`${name} | Pokémon | PokéRef`} />
@@ -144,21 +167,16 @@ function PokemonCard() {
         <meta property="og:type" content="website" />
       </Head>
       <MainBig>
-        {pokemon?.name?.includes(`mega`) ? (
+        {pokemon.name.includes(`mega`) ? (
           <Title>
-            {pokemon?.name?.replace(/-/g, ` `).split(` `).reverse().join(` `)}
+            {pokemon.name.replace(/-/g, ` `).split(` `).reverse().join(` `)}
           </Title>
         ) : (
-          <Title>{pokemon?.name?.replace(/-/g, ` `)}</Title>
+          <Title>{pokemon.name.replace(/-/g, ` `)}</Title>
         )}
-        <Subtitle>{species?.generation?.name?.replace(/-/g, ` `)}</Subtitle>
+        <Subtitle>{species.generation.name.replace(/-/g, ` `)}</Subtitle>
 
-        <Nav
-          pokemon={pokemon}
-          species={species}
-          setGame={setGame}
-          setVersion={setVersion}
-        />
+        <Nav pokemon={pokemon} setGame={setGame} setVersion={setVersion} />
 
         <Data
           pokemon={pokemon}
@@ -167,7 +185,7 @@ function PokemonCard() {
           game={game}
         />
 
-        <Evolution evolution={evolution} pokemon={pokemon} />
+        <Evolution evolution={evolution} />
 
         <Info pokemon={pokemon} species={species} evolution={evolution} />
 
@@ -175,7 +193,7 @@ function PokemonCard() {
           toggleType={toggleType}
           toggleTypeTable={toggleTypeTable}
           pokemon={pokemon}
-          type={types}
+          types={types}
         />
 
         <Moves
@@ -191,9 +209,7 @@ function PokemonCard() {
         <Sprites pokemon={pokemon} />
 
         <Link href="/" passHref>
-          <BackButton>
-            <FaChevronLeft /> Back to Pokemon
-          </BackButton>
+          <BackBtn name="Pokedex" />
         </Link>
       </MainBig>
     </>

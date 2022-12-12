@@ -1,23 +1,23 @@
 import React from 'react';
-import { BackButton } from '../../components/Common/Inputs';
-import { MainBig } from '../../components/Common/Sizing';
-import { CardTitle } from '../../components/Common/Headings';
+import { MainBig } from '../../components/CommonStyles/Sizing';
+import { CardTitle } from '../../components/CommonStyles/Headings';
 import { useMoves, usePokedex, useType } from '../../hooks/DataFetch';
-import Loader from '../../components/Loader/Loader';
-import { FaChevronLeft } from '@meronex/icons/fa';
+import Loader from '../../components/ui/Loader/Loader';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import BackBtn from '@/components/ui/BackBtn';
 
 const Damage = dynamic(
-  () => import(`../../components/Types/TypeCard/Damage/Damage.TypeCard`),
+  () => import(`../../components/pages/Types/TypeCard/Damage/Damage.TypeCard`),
 );
 const Moves = dynamic(
-  () => import(`../../components/Types/TypeCard/Moves/Moves.TypeCard`),
+  () => import(`../../components/pages/Types/TypeCard/Moves/Moves.TypeCard`),
 );
 const Pokemon = dynamic(
-  () => import(`../../components/Types/TypeCard/Pokemon/Pokemon.TypeCard`),
+  () =>
+    import(`../../components/pages/Types/TypeCard/Pokemon/Pokemon.TypeCard`),
 );
 
 function TypeCard() {
@@ -48,7 +48,9 @@ function TypeCard() {
     <>
       <Head>
         <title>
-          {name?.charAt(0).toUpperCase() + name?.slice(1)} | Type | PokéRef
+          {typeof name === `string` &&
+            name?.charAt(0).toUpperCase() + name?.slice(1)}
+          {` `}| Type | PokéRef
         </title>
         <meta
           name="description"
@@ -72,9 +74,7 @@ function TypeCard() {
         <Moves type={type} moves={moves} />
 
         <Link href="/types" passHref>
-          <BackButton>
-            <FaChevronLeft /> Back to Types
-          </BackButton>
+          <BackBtn name="Types" />
         </Link>
       </MainBig>
     </>

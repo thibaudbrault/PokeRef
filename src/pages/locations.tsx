@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-import { MainBig } from '../components/Common/Sizing';
+import { MainBig } from '../components/CommonStyles/Sizing';
 import {
   LocationList,
   LocationSection,
-} from '../components/Locations/StyledLocations';
-import Loader from '../components/Loader/Loader';
+} from '../components/pages/Locations/Styled.Locations';
+import Loader from '../components/ui/Loader/Loader';
 import { useLocations } from '../../src/hooks/DataFetch';
-import { regions } from '../../src/utils/DataMap';
+import { regions } from '../utils/DataArrays';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Locations } from '@/types/types';

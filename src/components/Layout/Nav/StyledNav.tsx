@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../../Common/Sizing';
+import { device } from '../../CommonStyles/Sizing';
 
 export const MainNav = styled.nav`
   min-height: 4vh;

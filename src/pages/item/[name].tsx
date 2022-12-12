@@ -1,7 +1,10 @@
 import React from 'react';
-import { MainBig } from '../../components/Common/Sizing';
-import { CardTitle, Span, Subtitle } from '../../components/Common/Headings';
-import { BackButton } from '../../components/Common/Inputs';
+import { MainBig } from '../../components/CommonStyles/Sizing';
+import {
+  CardTitle,
+  Span,
+  Subtitle,
+} from '../../components/CommonStyles/Headings';
 import {
   ItemCardDataCost,
   ItemCardDataEffect,
@@ -11,15 +14,15 @@ import {
   ItemCardDescSection,
   ItemCardDescTable,
   ItemCardDescTitle,
-} from '../../components/Items/ItemCard/StyledItemCard.js';
+} from '../../components/pages/Items/ItemCard/Styled.ItemCard.jsx';
 import { useItem } from '../../hooks/DataFetch';
-import Loader from '../../components/Loader/Loader';
-import { FaChevronLeft } from '@meronex/icons/fa';
+import Loader from '../../components/ui/Loader/Loader';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Items } from '@/types/types';
+import BackBtn from '@/components/ui/BackBtn';
 
 function ItemCard() {
   const router = useRouter();
@@ -43,7 +46,9 @@ function ItemCard() {
     <>
       <Head>
         <title>
-          {name?.charAt(0).toUpperCase() + name?.slice(1)} | Items | PokéRef
+          {typeof name === `string` &&
+            name?.charAt(0).toUpperCase() + name?.slice(1)}
+          {` `}| Items | PokéRef
         </title>
         <meta name="description" content={`Find every details about ${name}`} />
         <meta property="og:title" content={`${name} | Items | PokéRef`} />
@@ -132,9 +137,7 @@ function ItemCard() {
         </ItemCardDescSection>
 
         <Link href="/items" passHref>
-          <BackButton>
-            <FaChevronLeft /> Back to Items
-          </BackButton>
+          <BackBtn name="Items" />
         </Link>
       </MainBig>
     </>

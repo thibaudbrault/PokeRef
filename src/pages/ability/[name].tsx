@@ -1,19 +1,19 @@
 import React from 'react';
 
-import { MainBig } from '../../components/Common/Sizing';
+import { MainBig } from '../../components/CommonStyles/Sizing';
 import {
   AbilityCardEffect,
   AbilityCardSection,
   AbilityCardTable,
   Sup,
-} from '../../components/Abilities/AbilityCard/StyledAbilityCard';
+} from '../../components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import {
   CardTitle,
   H3,
   H4,
   Span,
   Subtitle,
-} from '../../components/Common/Headings';
+} from '../../components/CommonStyles/Headings';
 import {
   TableContainer,
   ModifiedTable,
@@ -21,16 +21,15 @@ import {
   TLink,
   TName,
   TRow,
-} from '../../components/Common/Table';
-import { BackButton } from '../../components/Common/Inputs';
+} from '../../components/CommonStyles/Table';
 import { useAbility, usePokedex } from '../../hooks/DataFetch';
-import Loader from '../../components/Loader/Loader';
-import { FaChevronLeft } from '@meronex/icons/fa';
+import Loader from '../../components/ui/Loader/Loader';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Abilities } from '@/types/types';
+import BackBtn from '@/components/ui/BackBtn';
 
 function AbilityCard() {
   const router = useRouter();
@@ -60,7 +59,9 @@ function AbilityCard() {
     <>
       <Head>
         <title>
-          {name?.charAt(0).toUpperCase() + name?.slice(1)} | Ability | PokéRef
+          {typeof name === `string` &&
+            name?.charAt(0).toUpperCase() + name?.slice(1)}
+          {` `}| Ability | PokéRef
         </title>
         <meta name="description" content={`Find every details about ${name}`} />
         <meta property="og:title" content={`${name} | Ability | PokéRef`} />
@@ -244,9 +245,7 @@ function AbilityCard() {
         </AbilityCardSection>
 
         <Link href="/abilities" passHref>
-          <BackButton>
-            <FaChevronLeft /> Back to Abilities
-          </BackButton>
+          <BackBtn name="Abilities" />
         </Link>
       </MainBig>
     </>

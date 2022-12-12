@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-import { MainBig } from '../components/Common/Sizing';
-import { LeftTitle } from '../components/Common/Headings';
-import { Input, ModifiedSearch } from '../components/Common/Inputs';
-import { Table, THead, TLink, TRow } from '../components/Common/Table';
+import { MainBig } from '../components/CommonStyles/Sizing';
+import { LeftTitle } from '../components/CommonStyles/Headings';
+import { Input, ModifiedSearch } from '../components/CommonStyles/Inputs';
+import { Table, THead, TLink, TRow } from '../components/CommonStyles/Table';
 import {
   TCategoryItems,
   TEffectItems,
   TNameItems,
-} from '../components/Items/StyledItems';
+} from '../components/pages/Items/Styled.Items';
 import { useItems } from '../../src/hooks/DataFetch';
-import Loader from '../components/Loader/Loader';
+import Loader from '../components/ui/Loader/Loader';
 import Image from 'next/image';
 import { Items } from '@/types/types';
 import Head from 'next/head';

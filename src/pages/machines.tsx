@@ -1,17 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from 'react';
 
-import { GenNav } from '../components/Common/Navbars';
-import { Input } from '../components/Common/Inputs';
-import { LeftTitle } from '../components/Common/Headings';
-import { THead, TLink, TName, TRow } from '../components/Common/Table';
-import { MainBig } from '../components/Common/Sizing';
+import { GenNav } from '../components/CommonStyles/Navbars';
+import { Input } from '../components/CommonStyles/Inputs';
+import { LeftTitle } from '../components/CommonStyles/Headings';
+import { THead, TLink, TName, TRow } from '../components/CommonStyles/Table';
+import { MainBig } from '../components/CommonStyles/Sizing';
 import { useMachines } from '../../src/hooks/DataFetch';
 import {
   MachinesSearch,
   MachinesTable,
-} from '../components/Machines/StyledMachines';
-import Loader from '../components/Loader/Loader';
+} from '../components/pages/Machines/Styled.Machines';
+import Loader from '../components/ui/Loader/Loader';
 import { Machines } from '@/types/types';
 import Head from 'next/head';
 

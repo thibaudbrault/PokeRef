@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { H1 } from '../../Common/Headings';
+import { H1 } from '../../CommonStyles/Headings';
 import {
   HeaderBtnConnected,
   HeaderBtnContainer,

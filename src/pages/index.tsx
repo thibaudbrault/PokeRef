@@ -5,11 +5,11 @@ import {
   PokedexTypes,
   PokedexVerticalText,
   ToBottom,
-} from '../components/Pokemon/StyledPokemon';
-import { MainBig } from '../components/Common/Sizing';
-import { Type } from '../components/Common/Themes';
+} from '../components/pages/Pokemon/Styled.Pokemon';
+import { MainBig } from '../components/CommonStyles/Sizing';
+import { Type } from '../components/CommonStyles/Themes';
 import { usePokedex } from '../hooks/DataFetch';
-import Loader from '../components/Loader/Loader';
+import Loader from '../components/ui/Loader/Loader';
 import { FaAngleDown } from '@meronex/icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,10 +18,10 @@ import { Pokemon } from '@/types/types';
 import Head from 'next/head';
 
 const Filters = dynamic(
-  () => import(`../components/Pokemon/Components/Filters.Pokemon`),
+  () => import(`../components/pages/Pokemon/Components/Filters.Pokemon`),
 );
 const Sprites = dynamic(
-  () => import(`../components/Pokemon/Components/Sprites.Pokemon`),
+  () => import(`../components/pages/Pokemon/Components/Sprites.Pokemon`),
 );
 
 function Pokedex() {

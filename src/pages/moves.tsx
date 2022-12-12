@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
-import { MainBig } from '../components/Common/Sizing';
-import { MethodNav } from '../components/Common/Navbars';
+import { MainBig } from '../components/CommonStyles/Sizing';
+import { MethodNav } from '../components/CommonStyles/Navbars';
 import { useMoves, useStatus } from '../../src/hooks/DataFetch';
-import Loader from '../components/Loader/Loader';
+import Loader from '../components/ui/Loader/Loader';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
 const MovesTable = dynamic(
-  () => import(`../components/Moves/Components/MovesTable.Moves`),
+  () => import(`../components/pages/Moves/Components/MovesTable.Moves`),
 );
 const StatusTable = dynamic(
-  () => import(`../components/Moves/Components/StatusTable.Moves`),
+  () => import(`../components/pages/Moves/Components/StatusTable.Moves`),
 );
 
 function Moves() {

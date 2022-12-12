@@ -303,6 +303,7 @@ export namespace Species {
   };
 
   export type Species = {
+    id: number;
     gender_rate: number;
     hatch_counter: number;
     capture_rate: number;

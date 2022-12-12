@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
 
-import { CardTitle, H3, Subtitle } from '../../components/Common/Headings';
-import { MainBig } from '../../components/Common/Sizing';
+import {
+  CardTitle,
+  H3,
+  Subtitle,
+} from '../../components/CommonStyles/Headings';
+import { MainBig } from '../../components/CommonStyles/Sizing';
 import {
   MoveLearnSection,
   MoveLink,
   MoveList,
   MoveText,
   MoveTypes,
-} from '../../components/Moves/MoveCard/StyledMoveCard.js';
-import { BackButton } from '../../components/Common/Inputs';
-import { Type } from '../../components/Common/Themes';
+} from '../../components/pages/Moves/MoveCard/Styled.MoveCard.jsx';
+import { Type } from '../../components/CommonStyles/Themes';
 import { useMachines, useMove, usePokedex } from '../../hooks/DataFetch';
-import Loader from '../../components/Loader/Loader';
-import { FaChevronLeft } from '@meronex/icons/fa';
+import Loader from '../../components/ui/Loader/Loader';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Pokemon } from '@/types/types';
+import BackBtn from '@/components/ui/BackBtn';
 
 const Nav = dynamic(
-  () => import(`../../components/Moves/MoveCard/Nav/Nav.MoveCard`),
+  () => import(`../../components/pages/Moves/MoveCard/Nav/Nav.MoveCard`),
 );
 const Data = dynamic(
-  () => import(`../../components/Moves/MoveCard/Data/Data.MoveCard`),
+  () => import(`../../components/pages/Moves/MoveCard/Data/Data.MoveCard`),
 );
 const LearnMethod = dynamic(() => import(`../../utils/LearnMethod`));
 
@@ -67,7 +70,9 @@ function MoveCard() {
     <>
       <Head>
         <title>
-          {name?.charAt(0).toUpperCase() + name?.slice(1)} | Moves | PokéRef
+          {typeof name === `string` &&
+            name?.charAt(0).toUpperCase() + name?.slice(1)}
+          {` `}| Moves | PokéRef
         </title>
         <meta name="description" content={`Find every details about ${name}`} />
         <meta property="og:title" content={`${name} | Moves | PokéRef`} />
@@ -358,9 +363,7 @@ function MoveCard() {
         </MoveLearnSection>
 
         <Link href="/moves" passHref>
-          <BackButton>
-            <FaChevronLeft /> Back to Moves
-          </BackButton>
+          <BackBtn name="Moves" />
         </Link>
       </MainBig>
     </>

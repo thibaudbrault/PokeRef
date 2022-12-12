@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Input } from '../Common/Inputs';
-import { device } from '../Common/Sizing';
-import { TLink } from '../Common/Table';
+import { Input } from '../CommonStyles/Inputs';
+import { device } from '../CommonStyles/Sizing';
+import { TLink } from '../CommonStyles/Table';
 
 export const AutocompleteInput = styled(Input)`
   min-width: 25rem;

@@ -1,9 +1,12 @@
 import React from 'react';
 
-import { MainSmall } from '../components/Common/Sizing';
-import { ModifiedType, TypesList } from '../components/Types/StyledTypes';
+import { MainSmall } from '../components/CommonStyles/Sizing';
+import {
+  ModifiedType,
+  TypesList,
+} from '../components/pages/Types/Styled.Types';
 import { useTypes } from '../../src/hooks/DataFetch';
-import Loader from '../components/Loader/Loader';
+import Loader from '../components/ui/Loader/Loader';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';

@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react';
 
-import { BackButton } from '../../components/Common/Inputs';
-import { MainBig, Section } from '../../components/Common/Sizing';
-import { FaChevronLeft } from '@meronex/icons/fa';
-import Loader from '../../components/Loader/Loader';
+import { MainBig, Section } from '../../components/CommonStyles/Sizing';
+import Loader from '../../components/ui/Loader/Loader';
 import { useArea, useLocation } from '../../hooks/DataFetch';
-import { CardTitle, Subtitle } from '../../components/Common/Headings';
+import { CardTitle, Subtitle } from '../../components/CommonStyles/Headings';
 import {
   LocationNavContainer,
   LocationNav,
   LocationTable,
-} from '../../components/Locations/StyledLocations.js';
-import Nav from '../../components/Locations/LocationCard/Nav/Nav.LocationCard';
+} from '../../components/pages/Locations/Styled.Locations.jsx';
+import Nav from '../../components/pages/Locations/LocationCard/Nav/Nav.LocationCard';
 import {
   TableContainer,
   THead,
   TName,
   TRow,
-} from '../../components/Common/Table';
+} from '../../components/CommonStyles/Table';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import Link from 'next/link';
 import { Locations } from '@/types/types';
+import BackBtn from '@/components/ui/BackBtn';
 
 function LocationCard() {
   const router = useRouter();
@@ -79,91 +79,109 @@ function LocationCard() {
   }
 
   return (
-    <MainBig>
-      <CardTitle>
-        {location.name
-          .replace(/-/g, ` `)
-          .replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/, ``)}
-      </CardTitle>
-      <Subtitle>
-        {location.region.name} - {game.replace(/-/g, ` `)}
-      </Subtitle>
-      <LocationNavContainer>
-        <LocationNav>
-          {location.areas.map((la: Locations.Locations, i: number) => (
-            <button
-              className={toggleState === i ? `button_active` : ``}
-              onClick={() => toggleTable(i)}
-              key={la.name}
-            >
-              <p>
-                {la.name
-                  .replace(/-/g, ` `)
-                  .replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/, ``)
-                  .replace(/area/, ``)}
-              </p>
-            </button>
-          ))}
-        </LocationNav>
-        <span>No information and / or not present in this game</span>
-      </LocationNavContainer>
-      <Nav setGame={setGame} />
-      <Section>
-        <TableContainer>
-          <LocationTable>
-            <THead>
-              <tr>
-                <th>Pokemon</th>
-                <th>Location</th>
-                <th>Probability</th>
-                <th>Level</th>
-                <th>Condition</th>
-              </tr>
-            </THead>
-            <tbody>
-              {area.pokemon_encounters.map((a: Locations.Pokemon) =>
-                a.version_details.map(
-                  (av) =>
-                    av.version.name === game &&
-                    av.encounter_details.map((ave) => (
-                      <TRow key={a.pokemon.name}>
-                        <TName>{a.pokemon.name}</TName>
-                        <td>{ave.method.name.replace(/-/g, ` `)}</td>
-                        <td>{ave.chance} %</td>
-                        <td>
-                          {ave.max_level === ave.min_level ? (
-                            <span>{ave.max_level}</span>
-                          ) : (
-                            <span>
-                              {ave.min_level} - {ave.max_level}
-                            </span>
-                          )}
-                        </td>
-                        {ave.condition_values.length !== 0 ? (
+    <>
+      <Head>
+        <title>
+          {typeof name === `string` &&
+            name?.charAt(0).toUpperCase() + name?.slice(1)}
+          {` `}| Location | PokéRef
+        </title>
+        <meta name="description" content={`Find every details about ${name}`} />
+        <meta property="og:title" content={`${name} | Location | PokéRef`} />
+        <meta
+          property="og:description"
+          content={`Find every details about ${name}`}
+        />
+        <meta
+          property="og:url"
+          content={`https://pokeref.app/location/${name}`}
+        />
+        <meta property="og:type" content="website" />
+      </Head>
+      <MainBig>
+        <CardTitle>
+          {location.name
+            .replace(/-/g, ` `)
+            .replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/, ``)}
+        </CardTitle>
+        <Subtitle>
+          {location.region.name} - {game.replace(/-/g, ` `)}
+        </Subtitle>
+        <LocationNavContainer>
+          <LocationNav>
+            {location.areas.map((la: Locations.Locations, i: number) => (
+              <button
+                className={toggleState === i ? `button_active` : ``}
+                onClick={() => toggleTable(i)}
+                key={la.name}
+              >
+                <p>
+                  {la.name
+                    .replace(/-/g, ` `)
+                    .replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/, ``)
+                    .replace(/area/, ``)}
+                </p>
+              </button>
+            ))}
+          </LocationNav>
+          <span>No information and / or not present in this game</span>
+        </LocationNavContainer>
+        <Nav setGame={setGame} />
+        <Section>
+          <TableContainer>
+            <LocationTable>
+              <THead>
+                <tr>
+                  <th>Pokemon</th>
+                  <th>Location</th>
+                  <th>Probability</th>
+                  <th>Level</th>
+                  <th>Condition</th>
+                </tr>
+              </THead>
+              <tbody>
+                {area.pokemon_encounters.map((a: Locations.Pokemon) =>
+                  a.version_details.map(
+                    (av) =>
+                      av.version.name === game &&
+                      av.encounter_details.map((ave) => (
+                        <TRow key={a.pokemon.name}>
+                          <TName>{a.pokemon.name}</TName>
+                          <td>{ave.method.name.replace(/-/g, ` `)}</td>
+                          <td>{ave.chance} %</td>
                           <td>
-                            {ave.condition_values.map((avec) => (
-                              <p key={avec.name}>
-                                {avec.name.replace(/-/g, ` `)}
-                              </p>
-                            ))}
+                            {ave.max_level === ave.min_level ? (
+                              <span>{ave.max_level}</span>
+                            ) : (
+                              <span>
+                                {ave.min_level} - {ave.max_level}
+                              </span>
+                            )}
                           </td>
-                        ) : (
-                          <td>-</td>
-                        )}
-                      </TRow>
-                    )),
-                ),
-              )}
-            </tbody>
-          </LocationTable>
-        </TableContainer>
-      </Section>
-      <Link href="/locations" passHref>
-        <BackButton>
-          <FaChevronLeft /> Back to Locations
-        </BackButton>
-      </Link>
-    </MainBig>
+                          {ave.condition_values.length !== 0 ? (
+                            <td>
+                              {ave.condition_values.map((avec) => (
+                                <p key={avec.name}>
+                                  {avec.name.replace(/-/g, ` `)}
+                                </p>
+                              ))}
+                            </td>
+                          ) : (
+                            <td>-</td>
+                          )}
+                        </TRow>
+                      )),
+                  ),
+                )}
+              </tbody>
+            </LocationTable>
+          </TableContainer>
+        </Section>
+        <Link href="/locations" passHref>
+          <BackBtn name="Locations" />
+        </Link>
+      </MainBig>
+    </>
   );
 }
 

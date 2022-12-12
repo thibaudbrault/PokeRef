@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { LeftTitle } from '../components/Common/Headings';
-import { Input, ModifiedSearch } from '../components/Common/Inputs';
+import { LeftTitle } from '../components/CommonStyles/Headings';
+import { Input, ModifiedSearch } from '../components/CommonStyles/Inputs';
 import {
   THead,
   TName,
@@ -10,10 +10,10 @@ import {
   TLink,
   TableContainer,
   ModifiedTable,
-} from '../components/Common/Table';
-import { ModifiedMainBig } from '../components/Common/Sizing';
+} from '../components/CommonStyles/Table';
+import { ModifiedMainBig } from '../components/CommonStyles/Sizing';
 import { useAbilities } from '../hooks/DataFetch';
-import Loader from '../components/Loader/Loader';
+import Loader from '../components/ui/Loader/Loader';
 import { Abilities, Sort } from '@/types/types';
 import Head from 'next/head';
 
