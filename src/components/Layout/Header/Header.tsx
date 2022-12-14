@@ -21,8 +21,8 @@ function Header({ themeToggler, theme }: Props) {
     <HeaderContainer id="header">
       <H1>PokéRef</H1>
       <HeaderBtnContainer>
-        <HeaderBtnTheme onClick={themeToggler} aria-label="Switch Theme">
-          {theme === `dark` ? <RiSunLine /> : <RiMoonClearLine />}
+        <HeaderBtnTheme onClick={themeToggler} aria-label="Switch Theme" data-testid="themeBtn">
+          {theme === `dark` ? <RiSunLine data-testid="sun" /> : <RiMoonClearLine data-testid="moon" />}
         </HeaderBtnTheme>
         <HeaderBtnConnected>
           <Link href="/">Favorites</Link>
