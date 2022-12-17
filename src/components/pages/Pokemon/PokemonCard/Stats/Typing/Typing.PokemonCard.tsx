@@ -1,6 +1,6 @@
 import React from 'react';
-import { H3 } from '../../../../CommonStyles/Headings';
-import { MethodNav } from '../../../../CommonStyles/Navbars';
+import { H3 } from '../../../../../CommonStyles/Headings';
+import { MethodNav } from '../../../../../CommonStyles/Navbars';
 import {
   PokemonTypesContainer,
   PokemonTypesTable,

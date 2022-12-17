@@ -10,7 +10,7 @@ type Props = {
 function LearnMethod({ toggleState, toggleTable }: Props) {
   return (
     <MethodNav>
-      {Object.keys(learnMethod).map((l, i) => (
+      {Object.keys(learnMethod)?.map((l, i) => (
         <button
           className={toggleState === i ? `button_active` : ``}
           onClick={() => toggleTable(i)}

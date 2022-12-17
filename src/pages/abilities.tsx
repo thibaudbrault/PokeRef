@@ -25,11 +25,11 @@ function Abilities() {
   // Filter the abilities returned when the user type the name in the search bar
   const filterAbilities = search
     ? abilities?.filter((abilities) =>
-        abilities.name
-          .replace(/-/g, ` `)
-          .toLowerCase()
-          .includes(search.toLowerCase()),
-      )
+      abilities.name
+        .replace(/-/g, ` `)
+        .toLowerCase()
+        .includes(search.toLowerCase()),
+    )
     : abilities;
 
   // New request when the user types a letter
@@ -91,7 +91,7 @@ function Abilities() {
             <tbody>
               {filteredAbilities
                 .sort(({ a, b }: Sort) => a.name.localeCompare(b.name))
-                .map((a: Abilities.Abilities) => (
+                ?.map((a: Abilities.Abilities) => (
                   <TRow key={a.name}>
                     <TName>
                       <TLink
@@ -104,7 +104,7 @@ function Abilities() {
                       </TLink>
                     </TName>
                     <TEffect>
-                      {a.flavor_text_entries.map(
+                      {a.flavor_text_entries?.map(
                         (af) =>
                           af.language.name === `en` && (
                             <span key={af.flavor_text}>{af.flavor_text}</span>

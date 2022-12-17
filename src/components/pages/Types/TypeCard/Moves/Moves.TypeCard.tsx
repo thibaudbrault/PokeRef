@@ -1,7 +1,7 @@
 import React from 'react';
-import { H3, Span } from '../../../CommonStyles/Headings';
-import { Section } from '../../../CommonStyles/Sizing';
-import { TableContainer, THead, TRow } from '../../../CommonStyles/Table';
+import { H3, Span } from '../../../../CommonStyles/Headings';
+import { Section } from '../../../../CommonStyles/Sizing';
+import { TableContainer, THead, TRow } from '../../../../CommonStyles/Table';
 import {
   TypeListSubtitle,
   TypeMovesTable,
@@ -42,7 +42,7 @@ function Moves({ type, moves }: Props) {
           <tbody className="type_container_table_body">
             {type?.moves
               ?.sort((a, b) => a.name.localeCompare(b.name))
-              .map((tm) =>
+              ?.map((tm) =>
                 moves?.map(
                   (m) =>
                     m.name === tm.name && (

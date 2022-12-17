@@ -10,7 +10,7 @@ type Props = {
 function RegionsMethod({ toggleState, toggleTable }: Props) {
   return (
     <LocationNav>
-      {Object.keys(regions).map((r, i) => (
+      {Object.keys(regions)?.map((r, i) => (
         <button
           className={toggleState === i ? `button_active` : ``}
           onClick={() => toggleTable(i)}

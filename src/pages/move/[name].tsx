@@ -103,10 +103,10 @@ function MoveCard() {
           </MoveText>
           <MoveList>
             {pokedex?.map((p: Pokemon.Pokemon) =>
-              p.moves.map(
+              p.moves?.map(
                 (pm) =>
                   pm.move.name === move.name &&
-                  pm.version_group_details.map(
+                  pm.version_group_details?.map(
                     (pmv) =>
                       pmv.version_group.name === version &&
                       pmv.move_learn_method.name === `level-up` &&
@@ -129,7 +129,7 @@ function MoveCard() {
                           </MoveLink>
                           <p>Level {pmv.level_learned_at}</p>
                           <MoveTypes>
-                            {p.types.map((pt) => (
+                            {p.types?.map((pt) => (
                               <Type id={pt.type.name} key={pt.type.name}>
                                 <Image
                                   alt={pt.type.name}
@@ -157,10 +157,10 @@ function MoveCard() {
           </MoveText>
           <MoveList>
             {pokedex?.map((p: Pokemon.Pokemon) =>
-              p.moves.map(
+              p.moves?.map(
                 (pm) =>
                   pm.move.name === move.name &&
-                  pm.version_group_details.map(
+                  pm.version_group_details?.map(
                     (pmv) =>
                       pmv.version_group.name === version &&
                       pmv.move_learn_method.name === `machine` &&
@@ -182,7 +182,7 @@ function MoveCard() {
                             {p.name.replace(/-/g, ` `)}
                           </MoveLink>
                           <MoveTypes>
-                            {p.types.map((pt) => (
+                            {p.types?.map((pt) => (
                               <Type id={pt.type.name} key={pt.type.name}>
                                 <Image
                                   alt={pt.type.name}
@@ -211,10 +211,10 @@ function MoveCard() {
           </MoveText>
           <MoveList>
             {pokedex?.map((p: Pokemon.Pokemon) =>
-              p.moves.map(
+              p.moves?.map(
                 (pm) =>
                   pm.move.name === move.name &&
-                  pm.version_group_details.map(
+                  pm.version_group_details?.map(
                     (pmv) =>
                       pmv.version_group.name === version &&
                       (pmv.move_learn_method.name === `egg` ||
@@ -237,7 +237,7 @@ function MoveCard() {
                             {p.name.replace(/-/g, ` `)}
                           </MoveLink>
                           <MoveTypes>
-                            {p.types.map((pt) => (
+                            {p.types?.map((pt) => (
                               <Type id={pt.type.name} key={pt.type.name}>
                                 <Image
                                   alt={pt.type.name}
@@ -265,10 +265,10 @@ function MoveCard() {
           </MoveText>
           <MoveList>
             {pokedex?.map((p: Pokemon.Pokemon) =>
-              p.moves.map(
+              p.moves?.map(
                 (pm) =>
                   pm.move.name === move.name &&
-                  pm.version_group_details.map(
+                  pm.version_group_details?.map(
                     (pmv) =>
                       pmv.version_group.name === version &&
                       pmv.move_learn_method.name === `tutor` && (
@@ -289,7 +289,7 @@ function MoveCard() {
                             {p.name.replace(/-/g, ` `)}
                           </MoveLink>
                           <MoveTypes>
-                            {p.types.map((pt) => (
+                            {p.types?.map((pt) => (
                               <Type id={pt.type.name} key={pt.type.name}>
                                 <Image
                                   alt={pt.type.name}
@@ -318,10 +318,10 @@ function MoveCard() {
           </MoveText>
           <MoveList>
             {pokedex?.map((p: Pokemon.Pokemon) =>
-              p.moves.map(
+              p.moves?.map(
                 (pm) =>
                   pm.move.name === move.name &&
-                  pm.version_group_details.map(
+                  pm.version_group_details?.map(
                     (pmv) =>
                       pmv.version_group.name === version &&
                       pmv.move_learn_method.name === `level-up` &&
@@ -343,7 +343,7 @@ function MoveCard() {
                             {p.name.replace(/-/g, ` `)}
                           </MoveLink>
                           <MoveTypes>
-                            {p.types.map((pt) => (
+                            {p.types?.map((pt) => (
                               <Type id={pt.type.name} key={pt.type.name}>
                                 <Image
                                   alt={pt.type.name}

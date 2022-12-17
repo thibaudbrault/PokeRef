@@ -83,12 +83,12 @@ function AbilityCard() {
         <AbilityCardSection>
           <AbilityCardEffect>
             <H3>Effect</H3>
-            {ability.effect_entries.map(
+            {ability.effect_entries?.map(
               (ae: Abilities.EffectEntries) =>
                 ae.language.name === `en` && <p key={ae.effect}>{ae.effect}</p>,
             )}
           </AbilityCardEffect>
-          {ability.effect_entries.map(
+          {ability.effect_entries?.map(
             (ae: Abilities.EffectEntries) =>
               ae.language.name === `en` &&
               ae.effect.includes(`\n\nOverworld:`) && (
@@ -108,7 +108,7 @@ function AbilityCard() {
           <H3>Game descriptions</H3>
           <AbilityCardTable>
             <tbody>
-              {ability.flavor_text_entries.map((af: Abilities.FlavorText) =>
+              {ability.flavor_text_entries?.map((af: Abilities.FlavorText) =>
                 af.language.name === `en` ? (
                   <tr key={af.flavor_text}>
                     <th>{af.version_group.name.replace(/-/g, ` `)}</th>
@@ -142,7 +142,7 @@ function AbilityCard() {
                 </tr>
               </THead>
               <tbody>
-                {ability.pokemon.map((ap: Abilities.Pokemon) => (
+                {ability.pokemon?.map((ap: Abilities.Pokemon) => (
                   <TRow key={ap.pokemon.name}>
                     <td>
                       {pokedex?.map(

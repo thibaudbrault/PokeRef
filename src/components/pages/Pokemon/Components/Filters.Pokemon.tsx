@@ -1,8 +1,8 @@
 import { Pokemon } from '@/types/types';
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
-import Autocomplete from '../../Autocomplete/Autocomplete';
+import Autocomplete from '../../../Autocomplete/Autocomplete';
 import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
-import { formFilters, genFilters } from '../../../utils/DataArrays';
+import { formFilters, genFilters } from '../../../../utils/DataArrays';
 
 type Props = {
   pokedex: Pokemon.Pokemon[];
@@ -49,7 +49,7 @@ function Filters({
       .filter((pokedex) => {
         return (
           type === `all` ||
-          pokedex.types.map((pt) => pt.type.name).includes(type)
+          pokedex.types?.map((pt) => pt.type.name).includes(type)
         );
       })
       .filter((pokedex) => {

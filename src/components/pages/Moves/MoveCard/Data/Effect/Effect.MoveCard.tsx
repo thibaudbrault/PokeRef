@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import { Moves } from '@/types/types';
-import { H3, H4, Span } from '../../../../CommonStyles/Headings';
+import { H3, H4, Span } from '../../../../../CommonStyles/Headings';
 import {
   MoveCardDataList,
   MoveCardDataMeta,
@@ -26,7 +26,7 @@ function Effect({ move, version }: Props) {
             <i>{move.name.replace(/-/g, ` `)}</i>
             {` `}
           </Span>
-          {move.effect_entries.map(
+          {move.effect_entries?.map(
             (me) =>
               me.language.name === `en` && (
                 <>
@@ -38,7 +38,7 @@ function Effect({ move, version }: Props) {
           )}
           {` `}
           <br />
-          {move.flavor_text_entries.map(
+          {move.flavor_text_entries?.map(
             (mf) =>
               mf.language.name === `en` &&
               mf.version_group.name === version && <>{mf.flavor_text}</>,
@@ -103,7 +103,7 @@ function Effect({ move, version }: Props) {
           <>
             <H4>Stat modification</H4>
             <MoveCardDataStat>
-              {move.stat_changes.map((ms) =>
+              {move.stat_changes?.map((ms) =>
                 ms.change < 0 ? (
                   <li key={ms.stat.name}>
                     This move lower the target's{` `}
@@ -128,7 +128,7 @@ function Effect({ move, version }: Props) {
           <>
             <H4>Changes</H4>
             <MoveCardDataStat>
-              {move.past_values.map((mp) => (
+              {move.past_values?.map((mp) => (
                 <>
                   {mp.power !== null && (
                     <li>

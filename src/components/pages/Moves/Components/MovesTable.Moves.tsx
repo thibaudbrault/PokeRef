@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { LeftTitle } from '../../CommonStyles/Headings';
-import { Input, ModifiedSearch } from '../../CommonStyles/Inputs';
+import { LeftTitle } from '../../../CommonStyles/Headings';
+import { Input, ModifiedSearch } from '../../../CommonStyles/Inputs';
 import {
   Table,
   TableContainer,
@@ -9,8 +9,8 @@ import {
   TLink,
   TName,
   TRow,
-} from '../../CommonStyles/Table';
-import { Type } from '../../CommonStyles/Themes';
+} from '../../../CommonStyles/Table';
+import { Type } from '../../../CommonStyles/Themes';
 import { MovesSection, TCategory, TType } from '../Styled.Moves';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -69,7 +69,7 @@ function MovesTable({ moves, toggleState }: Props) {
           <tbody data-testid="movesBody">
             {filteredMoves
               .sort((a, b) => a.name.localeCompare(b.name))
-              .map((m: Moves.Moves) => (
+              ?.map((m: Moves.Moves) => (
                 <TRow key={m.id}>
                   <TName>
                     <TLink
@@ -102,7 +102,7 @@ function MovesTable({ moves, toggleState }: Props) {
                     </Type>
                   </TType>
                   <TEffect>
-                    {m.flavor_text_entries.map(
+                    {m.flavor_text_entries?.map(
                       (mf) =>
                         mf.language.name === `en` &&
                         mf.flavor_text !== `Dummy Data` && (

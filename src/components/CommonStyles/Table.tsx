@@ -41,7 +41,6 @@ export const Table = styled.table`
   }
 
   & td {
-    min-width: 200px;
     padding: 1.5rem;
     font-size: 1.5rem;
     border: 1px solid rgba(130, 130, 130, 0.2);
@@ -92,7 +91,7 @@ export const TLink = styled(Link)`
 `;
 
 export const TEffect = styled.td`
-  text-align: center;
+  text-align: start;
 
   & span {
     display: none;

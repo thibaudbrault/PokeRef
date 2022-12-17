@@ -1,5 +1,5 @@
 import React from 'react';
-import { H3 } from '../../../../CommonStyles/Headings';
+import { H3 } from '../../../../../CommonStyles/Headings';
 import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
 import Link from 'next/link';
 import { Pokemon, Species } from '@/types/types';
@@ -18,7 +18,7 @@ function Training({ pokemon, species }: Props) {
           <tr>
             <th>EV yield</th>
             <td>
-              {pokemon.stats.map(
+              {pokemon.stats?.map(
                 (ps) =>
                   ps.effort !== 0 && (
                     <p key={ps.effort}>
@@ -57,18 +57,18 @@ function Training({ pokemon, species }: Props) {
           <tr>
             <th>Held items</th>
             <td>
-              {pokemon.held_items.length > 0
-                ? pokemon.held_items.map((ph) => (
-                    <Link
-                      href={{
-                        pathname: `/item/[name]`,
-                        query: { name: ph.item.name },
-                      }}
-                      key={ph.item.name}
-                    >
-                      <span>{ph.item.name.replace(/-/g, ` `)}</span>
-                    </Link>
-                  ))
+              {pokemon?.held_items?.length > 0
+                ? pokemon?.held_items?.map((ph) => (
+                  <Link
+                    href={{
+                      pathname: `/item/[name]`,
+                      query: { name: ph.item.name },
+                    }}
+                    key={ph.item.name}
+                  >
+                    <span>{ph.item.name.replace(/-/g, ` `)}</span>
+                  </Link>
+                ))
                 : `None`}
             </td>
           </tr>

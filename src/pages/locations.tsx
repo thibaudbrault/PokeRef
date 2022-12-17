@@ -64,7 +64,7 @@ function Locations() {
                 <LocationList key={l.name}>
                   {l.locations
                     .sort((a, b) => a.name.localeCompare(b.name))
-                    .map((ll) => (
+                    ?.map((ll) => (
                       <li key={ll.name}>
                         <Link
                           href={{

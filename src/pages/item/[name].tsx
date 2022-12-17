@@ -67,7 +67,7 @@ function ItemCard() {
           <div>
             <ItemCardDataEffect>
               <h3>Effect</h3>
-              {item.effect_entries.map(
+              {item.effect_entries?.map(
                 (ie: Items.EffectEntries) =>
                   ie.language.name === `en` && (
                     <p key={ie.short_effect}>{ie.short_effect}</p>
@@ -82,7 +82,7 @@ function ItemCard() {
             {item.held_by_pokemon.length !== 0 && (
               <ItemCardDataHeld>
                 Held by :
-                {item.held_by_pokemon.map((ih: Items.Held) => (
+                {item.held_by_pokemon?.map((ih: Items.Held) => (
                   <Link
                     href={{
                       pathname: `/pokemon/[name]`,
@@ -122,7 +122,7 @@ function ItemCard() {
           <ItemCardDescTitle>Game descriptions</ItemCardDescTitle>
           <ItemCardDescTable>
             <tbody>
-              {item.flavor_text_entries.map((ift: Items.FlavorText) =>
+              {item.flavor_text_entries?.map((ift: Items.FlavorText) =>
                 ift.language.name === `en` ? (
                   <tr key={ift.text}>
                     <th>{ift.version_group.name.replace(/-/g, ` `)}</th>

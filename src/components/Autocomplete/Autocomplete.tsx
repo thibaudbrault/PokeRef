@@ -43,7 +43,7 @@ function Autocomplete() {
       <AutocompleteContainer>
         <ul>
           {pokedexMatch &&
-            pokedexMatch.map((pm) => (
+            pokedexMatch?.map((pm) => (
               <li key={pm.name}>
                 <Image
                   src={pm.sprites.front_default}

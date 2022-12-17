@@ -91,7 +91,7 @@ function Pokedex() {
                   <Link
                     href={{
                       pathname: `/pokemon/[name]`,
-                      query: { name: p.name },
+                      query: { name: p?.name },
                     }}
                     key={p.name}
                   >
@@ -103,7 +103,7 @@ function Pokedex() {
                   </Link>
                 </h2>
                 <PokedexTypes>
-                  {p.types.map((pt) => (
+                  {p.types?.map((pt) => (
                     <Type id={pt.type.name} key={pt.type.name}>
                       <Link
                         href={{

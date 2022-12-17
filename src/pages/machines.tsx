@@ -24,11 +24,11 @@ function Machines() {
   // Filter the moves returned when the user type the name in the search bar
   const filterMachines = search
     ? machines?.filter((machines: Machines.Machines) =>
-        machines.move.name
-          .replace(/-/g, ` `)
-          .toLowerCase()
-          .includes(search.toLowerCase()),
-      )
+      machines.move.name
+        .replace(/-/g, ` `)
+        .toLowerCase()
+        .includes(search.toLowerCase()),
+    )
     : machines;
 
   // New request when the user types a letter
@@ -180,7 +180,7 @@ function Machines() {
             </tr>
           </THead>
           <tbody>
-            {filteredMachines.map(
+            {filteredMachines?.map(
               (ma: Machines.Machines) =>
                 ma.version_group.name === version && (
                   <TRow key={ma.item.name}>

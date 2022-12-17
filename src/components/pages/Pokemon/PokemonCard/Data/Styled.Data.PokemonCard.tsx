@@ -4,6 +4,7 @@ import { device, Section } from '../../../../CommonStyles/Sizing';
 import { Table } from '../../../../CommonStyles/Table';
 
 export const PokemonDataSection = styled(Section)`
+  position: relative;
   display: grid;
   align-items: center;
   grid-template-columns: 55% 35%;
@@ -15,6 +16,28 @@ export const PokemonDataSection = styled(Section)`
     justify-content: center;
     flex-direction: column-reverse;
   }
+`;
+
+export const PokemonDataCatch = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.main};
+  cursor: pointer;
+`;
+
+export const PokemonDataCaught = styled(PokemonDataCatch)`
+  opacity: 0.7;
 `;
 
 export const PokemonDataSprite = styled.div`

@@ -65,9 +65,8 @@ function LocationCard() {
   const title = `${name}`;
 
   useEffect(() => {
-    document.title = `${
-      title.charAt(0).toUpperCase() + title.slice(1).replace(/-/g, ` `)
-    } | Locations | PokéRef`;
+    document.title = `${title.charAt(0).toUpperCase() + title.slice(1).replace(/-/g, ` `)
+      } | Locations | PokéRef`;
   }, [title]);
 
   if (error instanceof Error) {
@@ -109,7 +108,7 @@ function LocationCard() {
         </Subtitle>
         <LocationNavContainer>
           <LocationNav>
-            {location.areas.map((la: Locations.Locations, i: number) => (
+            {location.areas?.map((la: Locations.Locations, i: number) => (
               <button
                 className={toggleState === i ? `button_active` : ``}
                 onClick={() => toggleTable(i)}
@@ -140,11 +139,11 @@ function LocationCard() {
                 </tr>
               </THead>
               <tbody>
-                {area.pokemon_encounters.map((a: Locations.Pokemon) =>
-                  a.version_details.map(
+                {area.pokemon_encounters?.map((a: Locations.Pokemon) =>
+                  a.version_details?.map(
                     (av) =>
                       av.version.name === game &&
-                      av.encounter_details.map((ave) => (
+                      av.encounter_details?.map((ave) => (
                         <TRow key={a.pokemon.name}>
                           <TName>{a.pokemon.name}</TName>
                           <td>{ave.method.name.replace(/-/g, ` `)}</td>
@@ -160,7 +159,7 @@ function LocationCard() {
                           </td>
                           {ave.condition_values.length !== 0 ? (
                             <td>
-                              {ave.condition_values.map((avec) => (
+                              {ave.condition_values?.map((avec) => (
                                 <p key={avec.name}>
                                   {avec.name.replace(/-/g, ` `)}
                                 </p>

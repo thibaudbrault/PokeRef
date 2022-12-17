@@ -24,11 +24,11 @@ function Items() {
   // Filter the items returned when the user type the name in the search bar
   const filterItems = search
     ? items?.filter((items) =>
-        items.name
-          .replace(/-/g, ` `)
-          .toLowerCase()
-          .includes(search.toLowerCase()),
-      )
+      items.name
+        .replace(/-/g, ` `)
+        .toLowerCase()
+        .includes(search.toLowerCase()),
+    )
     : items?.sort((a, b) => a.name.localeCompare(b.name));
 
   // New request when the user types a letter
@@ -97,7 +97,7 @@ function Items() {
             </tr>
           </THead>
           <tbody>
-            {filteredItems.map(
+            {filteredItems?.map(
               (i: Items.Items) =>
                 itemsToHide(i) && (
                   <TRow key={i.name}>
@@ -126,7 +126,7 @@ function Items() {
                       {i.category.name.replace(/-/g, ` `)}
                     </TCategoryItems>
                     <TEffectItems>
-                      {i.effect_entries.map((ie) => (
+                      {i.effect_entries?.map((ie) => (
                         <span key={ie.short_effect}>{ie.short_effect}</span>
                       ))}
                     </TEffectItems>

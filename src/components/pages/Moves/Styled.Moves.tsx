@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { LeftTitle } from '../CommonStyles/Headings';
-import { DamageClass } from '../CommonStyles/Themes';
+import { LeftTitle } from '../../CommonStyles/Headings';
+import { DamageClass } from '../../CommonStyles/Themes';
 
 export const ModifiedLeftTitle = styled(LeftTitle)`
   margin-top: 5rem;
@@ -8,6 +8,10 @@ export const ModifiedLeftTitle = styled(LeftTitle)`
 
 export const MovesSection = styled.section`
   display: ${(props) => (props.visibility ? `block` : `none`)};
+
+  & td {
+    min-width: 200px;
+  }
 `;
 
 export const StatusMoves = styled.td`

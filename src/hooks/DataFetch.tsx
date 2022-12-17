@@ -11,11 +11,11 @@ export function usePokedex(url: string) {
       })
       .then((results) => {
         return Promise.all(
-          results.map((res: { url: string }) => axios.get(res.url)),
+          results?.map((res: { url: string }) => axios.get(res.url)),
         );
       })
       .then((results) => {
-        return results.map((res) => res.data);
+        return results?.map((res) => res.data);
       }),
   );
 }
@@ -30,11 +30,11 @@ export function useMoves() {
       })
       .then((results) => {
         return Promise.all(
-          results.map((res: { url: string }) => axios.get(res.url)),
+          results?.map((res: { url: string }) => axios.get(res.url)),
         );
       })
       .then((results) => {
-        return results.map((res) => res.data);
+        return results?.map((res) => res.data);
       }),
   );
 }
@@ -49,11 +49,11 @@ export function useStatus() {
       })
       .then((results) => {
         return Promise.all(
-          results.map((res: { url: string }) => axios.get(res.url)),
+          results?.map((res: { url: string }) => axios.get(res.url)),
         );
       })
       .then((results) => {
-        return results.map((res) => res.data);
+        return results?.map((res) => res.data);
       }),
   );
 }
@@ -68,11 +68,11 @@ export function useAbilities() {
       })
       .then((results) => {
         return Promise.all(
-          results.map((res: { url: string }) => axios.get(res.url)),
+          results?.map((res: { url: string }) => axios.get(res.url)),
         );
       })
       .then((results) => {
-        return results.map((res) => res.data);
+        return results?.map((res) => res.data);
       }),
   );
 }
@@ -87,11 +87,11 @@ export function useTypes() {
       })
       .then((results) => {
         return Promise.all(
-          results.map((res: { url: string }) => axios.get(res.url)),
+          results?.map((res: { url: string }) => axios.get(res.url)),
         );
       })
       .then((results) => {
-        return results.map((res) => res.data);
+        return results?.map((res) => res.data);
       }),
   );
 }
@@ -106,11 +106,11 @@ export function useMachines() {
       })
       .then((results) => {
         return Promise.all(
-          results.map((res: { url: string }) => axios.get(res.url)),
+          results?.map((res: { url: string }) => axios.get(res.url)),
         );
       })
       .then((results) => {
-        return results.map((res) => res.data);
+        return results?.map((res) => res.data);
       }),
   );
 }
@@ -125,11 +125,11 @@ export function useItems() {
       })
       .then((results) => {
         return Promise.all(
-          results.map((res: { url: string }) => axios.get(res.url)),
+          results?.map((res: { url: string }) => axios.get(res.url)),
         );
       })
       .then((results) => {
-        return results.map((res) => res.data);
+        return results?.map((res) => res.data);
       }),
   );
 }
@@ -144,11 +144,11 @@ export function useLocations() {
       })
       .then((results) => {
         return Promise.all(
-          results.map((res: { url: string }) => axios.get(res.url)),
+          results?.map((res: { url: string }) => axios.get(res.url)),
         );
       })
       .then((results) => {
-        return results.map((res) => res.data);
+        return results?.map((res) => res.data);
       }),
   );
 }
@@ -162,6 +162,7 @@ export function usePokemon(url: string) {
         return results.data;
       })
       .then((results) => {
+        console.log(results)
         return results;
       }),
   );

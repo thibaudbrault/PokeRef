@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 import { H1 } from '../../CommonStyles/Headings';
 import {
-  HeaderBtnConnected,
   HeaderBtnContainer,
+  HeaderBtnFavorites,
   HeaderBtnTheme,
   HeaderContainer,
 } from './StyledHeader';
@@ -24,9 +24,9 @@ function Header({ themeToggler, theme }: Props) {
         <HeaderBtnTheme onClick={themeToggler} aria-label="Switch Theme" data-testid="themeBtn">
           {theme === `dark` ? <RiSunLine data-testid="sun" /> : <RiMoonClearLine data-testid="moon" />}
         </HeaderBtnTheme>
-        <HeaderBtnConnected>
+        <HeaderBtnFavorites>
           <Link href="/">Favorites</Link>
-        </HeaderBtnConnected>
+        </HeaderBtnFavorites>
       </HeaderBtnContainer>
     </HeaderContainer>
   );

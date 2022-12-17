@@ -1,5 +1,5 @@
 import React from 'react';
-import { H3 } from '../../../../CommonStyles/Headings';
+import { H3 } from '../../../../../CommonStyles/Headings';
 import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
 import Link from 'next/link';
 import { Pokemon, Species } from '@/types/types';
@@ -29,17 +29,17 @@ function Forms({ pokemon, species }: Props) {
             <th>Varieties</th>
             <td>
               {pokemon.id < 10000
-                ? species.varieties.map((sv) => (
-                    <Link
-                      href={{
-                        pathname: `/pokemon/[name]`,
-                        query: { name: sv.pokemon.name },
-                      }}
-                      key={sv.pokemon.name}
-                    >
-                      <span>{sv.pokemon.name.replace(/-/g, ` `)}</span>
-                    </Link>
-                  ))
+                ? species.varieties?.map((sv) => (
+                  <Link
+                    href={{
+                      pathname: `/pokemon/[name]`,
+                      query: { name: sv.pokemon.name },
+                    }}
+                    key={sv.pokemon.name}
+                  >
+                    <span>{sv.pokemon.name.replace(/-/g, ` `)}</span>
+                  </Link>
+                ))
                 : `⠀`}
             </td>
           </tr>

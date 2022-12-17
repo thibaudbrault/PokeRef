@@ -48,7 +48,7 @@ export const BackButton = styled.a`
   display: flex;
   align-items: center;
   position: absolute;
-  bottom: 1rem;
+  bottom: 2rem;
   padding: 1rem 1.5rem;
   font-size: 1.5rem;
   font-weight: 700;

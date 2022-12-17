@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const FooterContainer = styled.footer`
   display: flex;
   align-items: center;
-  height: 4vh;
+  height: 5vh;
   background: hsla(29, 92%, 70%, 1);
   background: linear-gradient(
     0deg,
@@ -45,9 +45,18 @@ export const CenterFooter = styled.div`
 
 export const RightFooter = styled.div`
   justify-self: right;
-  font-size: 2rem;
+  height: 3vh;
+  width: 3vh;
 
   & a {
+    display: block;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
+    
+    & svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 `;

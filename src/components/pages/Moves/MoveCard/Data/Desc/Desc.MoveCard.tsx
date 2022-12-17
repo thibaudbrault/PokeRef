@@ -31,12 +31,9 @@ function Desc({ move, version, machines }: Props) {
                   query: { name: move.type.name },
                 }}
                 key={move.type.name}
-                passHref
               >
-                <a>
-                  <Image alt={move.type.name} width={20} height={20} />
-                  <span>{move.type.name}</span>
-                </a>
+                <Image alt={move.type.name} width={20} height={20} />
+                <span>{move.type.name}</span>
               </Link>
             </MoveCardDataType>
           </td>
@@ -50,7 +47,7 @@ function Desc({ move, version, machines }: Props) {
             </div>
           </MoveCardDataCategory>
         </tr>
-        {machines.map(
+        {machines?.map(
           (ma) =>
             ma.version_group.name === version &&
             ma.move.name === move.name && (
