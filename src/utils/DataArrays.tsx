@@ -36,8 +36,29 @@ export const formFilters = [
   { form: `regional - galar`, offset: 1065, limit: 25 },
   { form: `regional - hisui`, offset: 1133, limit: 20 },
   { form: `mega`, offset: 937, limit: 70 },
-  { form: `mega`, offset: 937, limit: 70 },
+  { form: `gmax`, offset: 1099, limit: 40 },
 ];
+
+export const typeFilters = [
+  { type: 'bug' },
+  { type: 'dark' },
+  { type: 'dragon' },
+  { type: 'electric' },
+  { type: 'fairy' },
+  { type: 'fighting' },
+  { type: 'fire' },
+  { type: 'flying' },
+  { type: 'ghost' },
+  { type: 'grass' },
+  { type: 'ground' },
+  { type: 'ice' },
+  { type: 'normal' },
+  { type: 'poison' },
+  { type: 'psychic' },
+  { type: 'rock' },
+  { type: 'steel' },
+  { type: 'water' }
+]
 
 export const speciesFilters = [
   {

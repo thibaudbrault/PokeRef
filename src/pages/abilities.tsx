@@ -17,7 +17,7 @@ import Loader from '../components/ui/Loader/Loader';
 import { Abilities, Sort } from '@/types/types';
 import Head from 'next/head';
 
-function Abilities() {
+function AbilitiesPage() {
   const [search, setSearch] = useState<string | null>(null);
   const [filteredAbilities, setFilteredAbilities] = useState<any>([]);
   const { isLoading, error, data: abilities } = useAbilities();
@@ -90,7 +90,7 @@ function Abilities() {
             </THead>
             <tbody>
               {filteredAbilities
-                .sort(({ a, b }: Sort) => a.name.localeCompare(b.name))
+                ?.sort((a, b) => a.name.localeCompare(b.name))
                 ?.map((a: Abilities.Abilities) => (
                   <TRow key={a.name}>
                     <TName>
@@ -121,4 +121,4 @@ function Abilities() {
   );
 }
 
-export default Abilities;
+export default AbilitiesPage;

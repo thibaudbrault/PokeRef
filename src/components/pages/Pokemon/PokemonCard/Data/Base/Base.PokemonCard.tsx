@@ -77,7 +77,7 @@ function Base({ pokemon, species, game, location }: Props) {
           <th>Category</th>
           <td>
             {pokemon.id < 10000
-              ? species.genera?.map(
+              ? species?.genera?.map(
                 (sg) =>
                   sg.language.name === `en` && (
                     <p key={sg.genus}>{sg.genus}</p>

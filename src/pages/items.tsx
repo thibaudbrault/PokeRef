@@ -15,7 +15,7 @@ import Image from 'next/image';
 import { Items } from '@/types/types';
 import Head from 'next/head';
 
-function Items() {
+function ItemsPage() {
   const [search, setSearch] = useState<string | null>(null);
   const [filteredItems, setFilteredItems] = useState<any>(null);
 
@@ -140,4 +140,4 @@ function Items() {
   );
 }
 
-export default Items;
+export default ItemsPage;

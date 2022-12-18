@@ -7,6 +7,14 @@ export const TypesList = styled.ul`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+
+  & li {
+    transition: 0.3s ease-in-out;
+    
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
 `;
 
 export const ModifiedType = styled(Type)`

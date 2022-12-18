@@ -12,7 +12,7 @@ import Image from 'next/image';
 import Head from 'next/head';
 import { Types } from '@/types/types';
 
-function Types() {
+function TypesPage() {
   const { isLoading, error, data: types } = useTypes();
 
   if (error instanceof Error) {
@@ -60,4 +60,4 @@ function Types() {
   );
 }
 
-export default Types;
+export default TypesPage;

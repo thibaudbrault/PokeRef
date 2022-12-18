@@ -20,9 +20,6 @@ function Desc({ pokemon, species, game, caught, setCaught }: Props) {
   const handleClick = () => {
     setCaught(true)
     let pokemons = JSON.parse(localStorage.getItem('pokemon') || '[]')
-    let pokemonData = {
-      pokemon: pokemon
-    }
     pokemons.push(pokemon)
     localStorage.setItem('pokemon', JSON.stringify(pokemons))
   }

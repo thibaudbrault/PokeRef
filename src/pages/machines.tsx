@@ -15,7 +15,7 @@ import Loader from '../components/ui/Loader/Loader';
 import { Machines } from '@/types/types';
 import Head from 'next/head';
 
-function Machines() {
+function MachinesPage() {
   const [search, setSearch] = useState<string | null>(null);
   const [filteredMachines, setFilteredMachines] = useState<any>([]);
 
@@ -207,4 +207,4 @@ function Machines() {
   );
 }
 
-export default Machines;
+export default MachinesPage;

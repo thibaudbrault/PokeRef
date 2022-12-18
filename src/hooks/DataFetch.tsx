@@ -162,7 +162,6 @@ export function usePokemon(url: string) {
         return results.data;
       })
       .then((results) => {
-        console.log(results)
         return results;
       }),
   );

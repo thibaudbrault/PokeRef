@@ -33,6 +33,7 @@ export const GenNav = styled.nav`
         position: absolute;
         white-space: nowrap;
         background: #c4c4c4;
+        border-radius: 5px;
 
         & button {
           display: block;

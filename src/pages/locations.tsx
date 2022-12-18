@@ -14,10 +14,10 @@ import { Locations } from '@/types/types';
 import Head from 'next/head';
 
 const RegionsMethod = dynamic(
-  () => import(`../../src/utils/RegionsMethod.jsx`),
+  () => import(`../utils/RegionsMethod`),
 );
 
-function Locations() {
+function LocationsPage() {
   const [location, setLocation] = useState<string | null>(null);
   const [toggleState, setToggleState] = useState<number>(0);
   const { isLoading, error, data: locations } = useLocations();
@@ -97,4 +97,4 @@ function Locations() {
   );
 }
 
-export default Locations;
+export default LocationsPage;

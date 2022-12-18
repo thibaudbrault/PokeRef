@@ -25,7 +25,7 @@ function Header({ themeToggler, theme }: Props) {
           {theme === `dark` ? <RiSunLine data-testid="sun" /> : <RiMoonClearLine data-testid="moon" />}
         </HeaderBtnTheme>
         <HeaderBtnFavorites>
-          <Link href="/">Favorites</Link>
+          <Link href="/favorites">Your PC</Link>
         </HeaderBtnFavorites>
       </HeaderBtnContainer>
     </HeaderContainer>
