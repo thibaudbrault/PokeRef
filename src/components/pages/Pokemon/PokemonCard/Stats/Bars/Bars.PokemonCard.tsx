@@ -1,6 +1,6 @@
 import { Pokemon } from '@/types/types';
 import React from 'react';
-import { H3 } from '../../../../CommonStyles/Headings';
+import { H3 } from '@/components/common/styles/Headings';
 import {
   PokemonStatsBars,
   PokemonStatsText,

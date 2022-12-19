@@ -1,10 +1,6 @@
 import React from 'react';
-import { MainBig } from '../../components/CommonStyles/Sizing';
-import {
-  CardTitle,
-  Span,
-  Subtitle,
-} from '../../components/CommonStyles/Headings';
+import { MainBig } from '@/components/common/styles/Sizing';
+import { CardTitle, Span, Subtitle } from '@/components/common/styles/Headings';
 import {
   ItemCardDataCost,
   ItemCardDataEffect,
@@ -14,15 +10,15 @@ import {
   ItemCardDescSection,
   ItemCardDescTable,
   ItemCardDescTitle,
-} from '../../components/pages/Items/ItemCard/Styled.ItemCard.jsx';
-import { useItem } from '../../hooks/DataFetch';
-import Loader from '../../components/ui/Loader/Loader';
+} from '@/components/pages/Items/ItemCard/Styled.ItemCard.jsx';
+import { useItem } from '@/hooks/DataFetch';
+import Loader from '@/components/common/ui/Loader/Loader';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Items } from '@/types/types';
-import BackBtn from '@/components/ui/BackBtn';
+import BackBtn from '@/components/common/ui/BackBtn';
 
 function ItemCard() {
   const router = useRouter();
@@ -67,7 +63,7 @@ function ItemCard() {
           <div>
             <ItemCardDataEffect>
               <h3>Effect</h3>
-              {item.effect_entries.map(
+              {item.effect_entries?.map(
                 (ie: Items.EffectEntries) =>
                   ie.language.name === `en` && (
                     <p key={ie.short_effect}>{ie.short_effect}</p>
@@ -82,7 +78,7 @@ function ItemCard() {
             {item.held_by_pokemon.length !== 0 && (
               <ItemCardDataHeld>
                 Held by :
-                {item.held_by_pokemon.map((ih: Items.Held) => (
+                {item.held_by_pokemon?.map((ih: Items.Held) => (
                   <Link
                     href={{
                       pathname: `/pokemon/[name]`,
@@ -122,7 +118,7 @@ function ItemCard() {
           <ItemCardDescTitle>Game descriptions</ItemCardDescTitle>
           <ItemCardDescTable>
             <tbody>
-              {item.flavor_text_entries.map((ift: Items.FlavorText) =>
+              {item.flavor_text_entries?.map((ift: Items.FlavorText) =>
                 ift.language.name === `en` ? (
                   <tr key={ift.text}>
                     <th>{ift.version_group.name.replace(/-/g, ` `)}</th>

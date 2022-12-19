@@ -5,21 +5,22 @@ import {
   LeftFooter,
   CenterFooter,
   RightFooter,
-} from './StyledFooter';
+} from './Styled.Footer';
+import { FaGithub } from '@meronex/icons/fa';
 
-function Footer(): JSX.Element {
+function Footer() {
   return (
     <FooterContainer id="footer">
       <FooterInner>
-        <LeftFooter>
-          Created by Thibaud Brault
-          <br />
-          Powered by PokéApi
-        </LeftFooter>
+        <LeftFooter>Created by Thibaud Brault</LeftFooter>
         <CenterFooter>PokéRef</CenterFooter>
         <RightFooter>
-          <a href="#header" aria-label="Go up">
-            <i className="fas fa-arrow-up"></i>
+          <a
+            href="https://github.com/thibaudbrault/PokeRef"
+            aria-label="Github"
+            target="_blank"
+          >
+            <FaGithub />
           </a>
         </RightFooter>
       </FooterInner>

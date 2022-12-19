@@ -1,8 +1,8 @@
 import { Pokemon } from '@/types/types';
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
-import Autocomplete from '../../Autocomplete/Autocomplete';
+import Autocomplete from '@/components/autocomplete/Autocomplete';
 import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
-import { formFilters, genFilters } from '../../../utils/DataArrays';
+import { formFilters, genFilters } from '@/utils/DataArrays';
 
 type Props = {
   pokedex: Pokemon.Pokemon[];
@@ -41,16 +41,14 @@ function Filters({
     });
   };
 
-  // Return all pokemon when the type is 'all'
-  // Modify the returned pokemon according to the options selected in the filters
-  // Modify the offset then filter with a word in the pokemon's name or with the pokemon's id
   useEffect(() => {
     pokedex
       .filter((pokedex) => {
-        return (
-          type === `all` ||
-          pokedex.types.map((pt) => pt.type.name).includes(type)
-        );
+        if (type === 'all') {
+          return pokedex;
+        } else {
+          return pokedex.types.filter((pt) => pt.type.name === type);
+        }
       })
       .filter((pokedex) => {
         if (form === `default` && generation === `all`) {
@@ -65,11 +63,12 @@ function Filters({
       });
   }, [pokedex, form, generation, type]);
 
+  console.log(pokedex.map((p) => p.name.includes(form)));
+
   return (
     <>
       <PokedexSearch>
         <Autocomplete />
-
         <PokedexDropdown>
           <label htmlFor="form">Form</label>
           <select

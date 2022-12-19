@@ -1,18 +1,15 @@
 import React from 'react';
 
-import { MainSmall } from '../components/CommonStyles/Sizing';
-import {
-  ModifiedType,
-  TypesList,
-} from '../components/pages/Types/Styled.Types';
-import { useTypes } from '../../src/hooks/DataFetch';
-import Loader from '../components/ui/Loader/Loader';
+import { MainSmall } from '@/components/common/styles/Sizing';
+import { ModifiedType, TypesList } from '@/components/pages/Types/Styled.Types';
+import { useTypes } from '@/hooks/DataFetch';
+import Loader from '@/components/common/ui/Loader/Loader';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
 import { Types } from '@/types/types';
 
-function Types() {
+function TypesPage() {
   const { isLoading, error, data: types } = useTypes();
 
   if (error instanceof Error) {
@@ -60,4 +57,4 @@ function Types() {
   );
 }
 
-export default Types;
+export default TypesPage;

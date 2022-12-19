@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { ModifiedSearch } from '../../CommonStyles/Inputs';
-import { device } from '../../CommonStyles/Sizing';
-import { Table } from '../../CommonStyles/Table';
+import { ModifiedSearch } from '../../common/styles/Inputs';
+import { device } from '../../common/styles/Sizing';
+import { Table } from '../../common/styles/Table';
 
 export const MachinesSearch = styled(ModifiedSearch)`
   @media ${device.sm} {

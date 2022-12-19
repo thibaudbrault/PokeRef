@@ -5,12 +5,12 @@ import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
 
-import { darkTheme, lightTheme } from '../components/CommonStyles/Themes';
+import { darkTheme, lightTheme } from '@/components/common/styles/Themes';
 
-import Header from '../components/Layout/Header/Header';
-import Nav from '../components/Layout/Nav/Nav';
-import Footer from '../components/Layout/Footer/Footer';
-import { Reset } from '../components/CommonStyles/Reset';
+import Header from '@/components/layout/Header/Header';
+import Nav from '@/components/layout/Nav/Nav';
+import Footer from '@/components/layout/Footer/Footer';
+import { Reset } from '@/components/common/styles/Reset';
 
 const queryClient = new QueryClient({
   defaultOptions: {

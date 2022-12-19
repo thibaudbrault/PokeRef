@@ -10,11 +10,11 @@ import {
   TRow,
   TLink,
   TableContainer,
-} from '../../../CommonStyles/Table';
-import { H3, Span } from '../../../CommonStyles/Headings';
-import { Type } from '../../../CommonStyles/Themes';
-import LearnMethod from '../../../../utils/LearnMethod';
-import { learnMethod } from '../../../../utils/DataArrays';
+} from '@/components/common/styles/Table';
+import { H3, Span } from '@/components/common/styles/Headings';
+import { Type } from '@/components/common/styles/Themes';
+import LearnMethod from '@/utils/LearnMethod';
+import { learnMethod } from '@/utils/DataArrays';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Machines, Moves, Pokemon } from '@/types/types';
@@ -28,7 +28,7 @@ type Props = {
   version: string;
 };
 
-function Moves({
+function MovesPokemon({
   toggleState,
   toggleTable,
   pokemon,
@@ -50,7 +50,7 @@ function Moves({
   const isLearnedMove = isLearnedMoveForVersion(version);
 
   const moveInfoTable = (pm: Pokemon.Moves) =>
-    moves.map(
+    moves?.map(
       (m) =>
         m.name === pm.move.name && (
           <>
@@ -87,8 +87,8 @@ function Moves({
         ),
     );
 
-  const dataMoves = pokemon.moves.map((pm: Pokemon.Moves) =>
-    pm.version_group_details.map(
+  const dataMoves = pokemon.moves?.map((pm: Pokemon.Moves) =>
+    pm.version_group_details?.map(
       (pmv) =>
         isLearnedMove(pmv) && (
           <TRow key={pmv.level_learned_at}>
@@ -104,7 +104,7 @@ function Moves({
               }
             })()}
             {learn === `machine` &&
-              machines.map(
+              machines?.map(
                 (ma: Machines.Machines) =>
                   ma.move.name === pm.move.name &&
                   ma.version_group.name === version && (
@@ -166,4 +166,4 @@ function Moves({
   );
 }
 
-export default Moves;
+export default MovesPokemon;

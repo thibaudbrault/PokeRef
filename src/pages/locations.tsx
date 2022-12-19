@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
-import { MainBig } from '../components/CommonStyles/Sizing';
+import { MainBig } from '@/components/common/styles/Sizing';
 import {
   LocationList,
   LocationSection,
-} from '../components/pages/Locations/Styled.Locations';
-import Loader from '../components/ui/Loader/Loader';
-import { useLocations } from '../../src/hooks/DataFetch';
-import { regions } from '../utils/DataArrays';
+} from '@/components/pages/Locations/Styled.Locations';
+import Loader from '@/components/common/ui/Loader/Loader';
+import { useLocations } from '@/hooks/DataFetch';
+import { regions } from '@/utils/DataArrays';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Locations } from '@/types/types';
 import Head from 'next/head';
 
-const RegionsMethod = dynamic(
-  () => import(`../../src/utils/RegionsMethod.jsx`),
-);
+const RegionsMethod = dynamic(() => import(`@/utils/RegionsMethod`));
 
-function Locations() {
+function LocationsPage() {
   const [location, setLocation] = useState<string | null>(null);
   const [toggleState, setToggleState] = useState<number>(0);
   const { isLoading, error, data: locations } = useLocations();
@@ -64,7 +62,7 @@ function Locations() {
                 <LocationList key={l.name}>
                   {l.locations
                     .sort((a, b) => a.name.localeCompare(b.name))
-                    .map((ll) => (
+                    ?.map((ll) => (
                       <li key={ll.name}>
                         <Link
                           href={{
@@ -97,4 +95,4 @@ function Locations() {
   );
 }
 
-export default Locations;
+export default LocationsPage;

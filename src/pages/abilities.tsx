@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { LeftTitle } from '../components/CommonStyles/Headings';
-import { Input, ModifiedSearch } from '../components/CommonStyles/Inputs';
+import { LeftTitle } from '../components/common/styles/Headings';
+import { Input, ModifiedSearch } from '../components/common/styles/Inputs';
 import {
   THead,
   TName,
@@ -10,14 +10,14 @@ import {
   TLink,
   TableContainer,
   ModifiedTable,
-} from '../components/CommonStyles/Table';
-import { ModifiedMainBig } from '../components/CommonStyles/Sizing';
+} from '../components/common/styles/Table';
+import { ModifiedMainBig } from '../components/common/styles/Sizing';
 import { useAbilities } from '../hooks/DataFetch';
-import Loader from '../components/ui/Loader/Loader';
-import { Abilities, Sort } from '@/types/types';
+import Loader from '@/components/common/ui/Loader/Loader';
+import { Abilities } from '@/types/types';
 import Head from 'next/head';
 
-function Abilities() {
+function AbilitiesPage() {
   const [search, setSearch] = useState<string | null>(null);
   const [filteredAbilities, setFilteredAbilities] = useState<any>([]);
   const { isLoading, error, data: abilities } = useAbilities();
@@ -90,8 +90,8 @@ function Abilities() {
             </THead>
             <tbody>
               {filteredAbilities
-                .sort(({ a, b }: Sort) => a.name.localeCompare(b.name))
-                .map((a: Abilities.Abilities) => (
+                ?.sort((a, b) => a.name.localeCompare(b.name))
+                ?.map((a: Abilities.Abilities) => (
                   <TRow key={a.name}>
                     <TName>
                       <TLink
@@ -104,7 +104,7 @@ function Abilities() {
                       </TLink>
                     </TName>
                     <TEffect>
-                      {a.flavor_text_entries.map(
+                      {a.flavor_text_entries?.map(
                         (af) =>
                           af.language.name === `en` && (
                             <span key={af.flavor_text}>{af.flavor_text}</span>
@@ -121,4 +121,4 @@ function Abilities() {
   );
 }
 
-export default Abilities;
+export default AbilitiesPage;

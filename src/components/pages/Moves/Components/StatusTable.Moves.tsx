@@ -6,7 +6,7 @@ import {
   THead,
   TName,
   TRow,
-} from '../../CommonStyles/Table';
+} from '@/components/common/styles/Table';
 import { ModifiedLeftTitle, MovesSection, StatusMoves } from '../Styled.Moves';
 import Link from 'next/link';
 import { Moves } from '@/types/types';
@@ -16,9 +16,9 @@ type Props = {
   toggleState: number;
 };
 
-function StatusTable({ status, toggleState }: Props) {
+function StatusTable({ status }: Props) {
   return (
-    <MovesSection visibility={toggleState === 2}>
+    <MovesSection>
       <ModifiedLeftTitle>Status</ModifiedLeftTitle>
       <TableContainer>
         <ModifiedTable>
@@ -30,13 +30,13 @@ function StatusTable({ status, toggleState }: Props) {
           </THead>
           <tbody>
             {status
-              .filter((s) => s.name !== `none`)
-              .sort((a, b) => a.name.localeCompare(b.name))
-              .map((s: Moves.Status) => (
+              ?.filter((s) => s.name !== `none`)
+              ?.sort((a, b) => a.name.localeCompare(b.name))
+              ?.map((s: Moves.Status) => (
                 <TRow key={s.id}>
                   <TName>{s.name.replace(/-/g, ` `)}</TName>
                   <StatusMoves>
-                    {s.moves.map((sm) => (
+                    {s.moves?.map((sm) => (
                       <Link
                         href={{
                           pathname: `/move/[name]`,

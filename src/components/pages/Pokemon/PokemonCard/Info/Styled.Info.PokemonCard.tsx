@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import { device, Section } from '../../../../CommonStyles/Sizing';
-import { Table } from '../../../../CommonStyles/Table';
+import { device, Section } from '../../../../common/styles/Sizing';
+import { Table } from '../../../../common/styles/Table';
 
 export const PokemonInfoSection = styled(Section)`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 4rem;
 
-  @media ${device.sm} {
+  @media ${device.lg} {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,22 +36,18 @@ export const PokemonInfoTable = styled(Table)`
   }
 
   & td {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     font-size: 1.7rem;
     font-weight: 700;
     text-transform: capitalize;
+    text-align: start;
 
     & a {
       width: fit-content;
       display: block;
-      border-bottom: 1px solid transparent;
       transition: 0.3s ease-in-out;
 
       &:hover {
-        border-bottom: 1px solid ${({ theme }) => theme.secondary};
+        text-decoration: underline;
       }
 
       & span {

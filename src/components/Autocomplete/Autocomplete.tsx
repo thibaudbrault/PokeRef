@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { usePokedex } from '../../hooks/DataFetch';
+import { usePokedex } from '@/hooks/DataFetch';
 import {
   AutocompleteContainer,
   AutocompleteId,
@@ -43,7 +43,7 @@ function Autocomplete() {
       <AutocompleteContainer>
         <ul>
           {pokedexMatch &&
-            pokedexMatch.map((pm) => (
+            pokedexMatch?.map((pm) => (
               <li key={pm.name}>
                 <Image
                   src={pm.sprites.front_default}

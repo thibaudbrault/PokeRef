@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MainBig } from '../../components/CommonStyles/Sizing';
+import { MainBig } from '../../components/common/styles/Sizing';
 import {
   useEvolution,
   useMachines,
@@ -9,15 +9,15 @@ import {
   useSpecies,
   useTypes,
 } from '../../hooks/DataFetch';
-import Loader from '../../components/ui/Loader/Loader';
-import { Subtitle, Title } from '../../components/CommonStyles/Headings';
+import Loader from '../../components/common/ui/Loader/Loader';
+import { Subtitle, Title } from '../../components/common/styles/Headings';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { speciesFilters } from '@/utils/DataArrays';
 import { Species } from '@/types/types';
-import BackBtn from '@/components/ui/BackBtn';
+import BackBtn from '@/components/common/ui/BackBtn';
 
 const Data = dynamic(
   () =>
@@ -33,7 +33,7 @@ const Stats = dynamic(
       `../../components/pages/Pokemon/PokemonCard/Stats/Stats.PokemonCard`
     ),
 );
-const Moves = dynamic(
+const MovesPokemon = dynamic(
   () =>
     import(
       `../../components/pages/Pokemon/PokemonCard/Moves/Moves.PokemonCard`
@@ -45,7 +45,7 @@ const Sprites = dynamic(
       `../../components/pages/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard`
     ),
 );
-const Evolution = dynamic(
+const EvolutionPokemon = dynamic(
   (() =>
     import(
       `../../components/pages/Pokemon/PokemonCard/Evolution/Evolution.PokemonCard`
@@ -57,8 +57,16 @@ const Nav = dynamic(
 );
 
 function PokemonCard() {
+  const [name, setName] = useState('');
   const router = useRouter();
-  const { name } = router.query;
+
+  const [caught, setCaught] = useState(false);
+
+  useEffect(() => {
+    if (router && router.query && typeof router.query.name === 'string') {
+      setName(router.query.name);
+    }
+  }, [router]);
 
   // Import data fetch
   const {
@@ -73,7 +81,7 @@ function PokemonCard() {
 
   const { data: moves } = useMoves();
 
-  const evolutionChainUrl = species.evolution_chain.url;
+  const evolutionChainUrl = species?.evolution_chain?.url;
 
   const { data: evolution } = useEvolution(`${evolutionChainUrl}`);
 
@@ -99,28 +107,28 @@ function PokemonCard() {
   };
 
   useEffect(() => {
-    if (species.id < 152) {
+    if (species?.id < 152) {
       setGame(`yellow`);
       setVersion(`yellow`);
-    } else if (species.id > 151 && species.id < 252) {
+    } else if (species?.id > 151 && species?.id < 252) {
       setGame(`crystal`);
       setVersion(`crystal`);
-    } else if (species.id > 251 && species.id < 387) {
+    } else if (species?.id > 251 && species?.id < 387) {
       setGame(`emerald`);
       setVersion(`emerald`);
-    } else if (species.id > 386 && species.id < 494) {
+    } else if (species?.id > 386 && species?.id < 494) {
       setGame(`platinum`);
       setVersion(`platinum`);
-    } else if (species.id > 493 && species.id < 650) {
+    } else if (species?.id > 493 && species?.id < 650) {
       setGame(`black-2`);
       setVersion(`black-2-white-2`);
-    } else if (species.id > 649 && species.id < 722) {
+    } else if (species?.id > 649 && species?.id < 722) {
       setGame(`x`);
       setVersion(`x-y`);
-    } else if (species.id > 721 && species.id < 810) {
+    } else if (species?.id > 721 && species?.id < 810) {
       setGame(`ultra-sun`);
       setVersion(`ultra-sun-ultra-moon`);
-    } else if (species.id > 809 && species.id < 898) {
+    } else if (species?.id > 809 && species?.id < 898) {
       setGame(`sword`);
       setVersion(`sword-shield`);
     }
@@ -167,14 +175,14 @@ function PokemonCard() {
         <meta property="og:type" content="website" />
       </Head>
       <MainBig>
-        {pokemon.name.includes(`mega`) ? (
+        {pokemon?.name?.includes(`mega`) ? (
           <Title>
-            {pokemon.name.replace(/-/g, ` `).split(` `).reverse().join(` `)}
+            {pokemon?.name?.replace(/-/g, ` `).split(` `).reverse().join(` `)}
           </Title>
         ) : (
-          <Title>{pokemon.name.replace(/-/g, ` `)}</Title>
+          <Title>{pokemon?.name?.replace(/-/g, ` `)}</Title>
         )}
-        <Subtitle>{species.generation.name.replace(/-/g, ` `)}</Subtitle>
+        <Subtitle>{species?.generation?.name.replace(/-/g, ` `)}</Subtitle>
 
         <Nav pokemon={pokemon} setGame={setGame} setVersion={setVersion} />
 
@@ -183,9 +191,11 @@ function PokemonCard() {
           species={species}
           location={location}
           game={game}
+          caught={caught}
+          setCaught={setCaught}
         />
 
-        <Evolution evolution={evolution} />
+        <EvolutionPokemon evolution={evolution} />
 
         <Info pokemon={pokemon} species={species} evolution={evolution} />
 
@@ -196,7 +206,7 @@ function PokemonCard() {
           types={types}
         />
 
-        <Moves
+        <MovesPokemon
           toggleState={toggleState}
           toggleTable={toggleTable}
           pokemon={pokemon}

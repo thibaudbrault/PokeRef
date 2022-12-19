@@ -1,12 +1,20 @@
 import styled from 'styled-components';
-import { Type } from '../../CommonStyles/Themes';
-import { device } from '../../CommonStyles/Sizing';
+import { Type } from '../../common/styles/Themes';
+import { device } from '../../common/styles/Sizing';
 
 export const TypesList = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+
+  & li {
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
 `;
 
 export const ModifiedType = styled(Type)`

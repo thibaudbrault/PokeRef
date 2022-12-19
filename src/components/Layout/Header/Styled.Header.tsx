@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../../CommonStyles/Sizing';
+import { device } from '../../common/styles/Sizing';
 
 export const HeaderContainer = styled.header`
   width: 80%;
@@ -25,6 +25,7 @@ export const HeaderBtnContainer = styled.div`
 
 export const HeaderBtnTheme = styled.button`
   width: 3rem;
+  height: 3rem;
   margin-right: 2rem;
   background: none;
   border: none;
@@ -56,26 +57,14 @@ export const HeaderBtnAccount = styled.div`
   }
 `;
 
-export const HeaderBtnConnected = styled.div`
-  & button {
-    padding: 0.7rem 1.5rem;
-    background: none;
-    border: 1px solid ${({ theme }) => theme.secondary};
-    border-radius: 5px;
-    color: ${({ theme }) => theme.secondary};
-    font-size: 1.3rem;
-    font-weight: 700;
-    cursor: pointer;
-  }
-
+export const HeaderBtnFavorites = styled.div`
   & a {
-    margin-left: 2rem;
     padding: 0.7rem 1.5rem;
     background: ${({ theme }) => theme.secondary};
     border: 1px solid transparent;
     border-radius: 5px;
     color: ${({ theme }) => theme.main};
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 700;
     cursor: pointer;
     transition: 0.3s ease-in-out;
@@ -84,10 +73,6 @@ export const HeaderBtnConnected = styled.div`
       background: transparent;
       border-color: ${({ theme }) => theme.secondary};
       color: ${({ theme }) => theme.secondary};
-    }
-
-    @media ${device.xs} {
-      margin: 0 1rem;
     }
   }
 `;

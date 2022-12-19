@@ -1,5 +1,5 @@
 import React from 'react';
-import { H3 } from '../../../../CommonStyles/Headings';
+import { H3 } from '@/components/common/styles/Headings';
 import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
 import { Evolution, Pokemon, Species } from '@/types/types';
 
@@ -41,7 +41,7 @@ function Breeding({ pokemon, species, evolution }: Props) {
             <th>Egg groups</th>
             <td>
               {pokemon.id < 10000
-                ? species.egg_groups.map((seg) => (
+                ? species.egg_groups?.map((seg) => (
                     <p key={seg.name}>{seg.name}</p>
                   ))
                 : `⠀`}
@@ -56,8 +56,8 @@ function Breeding({ pokemon, species, evolution }: Props) {
           <tr>
             <th>Baby trigger item</th>
             <td>
-              {pokemon.id < 10000 && evolution.baby_trigger_item !== null ? (
-                <p>{evolution.baby_trigger_item?.name.replace(/-/g, ` `)}</p>
+              {pokemon.id < 10000 && evolution?.baby_trigger_item !== null ? (
+                <p>{evolution?.baby_trigger_item?.name.replace(/-/g, ` `)}</p>
               ) : (
                 `None`
               )}

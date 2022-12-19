@@ -1,5 +1,5 @@
 import React from 'react';
-import { H3 } from '../../../CommonStyles/Headings';
+import { H3 } from '@/components/common/styles/Headings';
 import {
   PokemonEvolution,
   PokemonEvolutionBase,
@@ -11,8 +11,8 @@ import {
   PokemonEvolutionText,
 } from './Styled.Evolution.PokemonCard';
 import { FaChevronRight } from '@meronex/icons/fa';
-import { usePokedex } from '../../../../hooks/DataFetch';
-import SmallLoader from '../../../Loader/SmallLoader';
+import { usePokedex } from '@/hooks/DataFetch';
+import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Evolution } from '@/types/types';
@@ -21,7 +21,7 @@ type Props = {
   evolution: Evolution.Evolution;
 };
 
-function Evolution({ evolution }: Props) {
+function EvolutionPokemon({ evolution }: Props) {
   const {
     isLoading,
     error,
@@ -44,7 +44,7 @@ function Evolution({ evolution }: Props) {
           <div>
             {pokedex?.map(
               (p) =>
-                p.name === evolution.chain.species.name && (
+                p?.name === evolution?.chain?.species?.name && (
                   <Image
                     key={p.name}
                     src={p.sprites.front_default}
@@ -57,20 +57,20 @@ function Evolution({ evolution }: Props) {
             <Link
               href={{
                 pathname: `/pokemon/[name]`,
-                query: { name: evolution.chain.species.name },
+                query: { name: evolution?.chain?.species?.name },
               }}
             >
-              {evolution.chain.species.name}
+              {evolution?.chain?.species?.name}
             </Link>
           </div>
         </PokemonEvolutionBase>
-        {evolution.chain.evolves_to.length !== 0 && (
+        {evolution?.chain?.evolves_to?.length !== 0 && (
           <PokemonEvolution>
             <PokemonEvolutionStages>
-              {evolution.chain.evolves_to.map((ee) => (
-                <PokemonEvolutionElement key={evolution.chain.species.name}>
+              {evolution?.chain?.evolves_to?.map((ee) => (
+                <PokemonEvolutionElement key={evolution?.chain?.species?.name}>
                   <div>
-                    {ee.evolution_details.map((eed) => (
+                    {ee?.evolution_details?.map((eed) => (
                       <>
                         {eed.gender &&
                           (eed.gender === 1 ? (
@@ -281,15 +281,15 @@ function Evolution({ evolution }: Props) {
                 </PokemonEvolutionElement>
               ))}
             </PokemonEvolutionStages>
-            {evolution.chain.evolves_to.map(
+            {evolution?.chain?.evolves_to?.map(
               (ee) =>
-                ee.evolves_to.length !== 0 && (
+                ee?.evolves_to?.length !== 0 && (
                   <PokemonEvolutionFinal key={ee.species.name}>
-                    {ee.evolves_to.map((eee) => (
+                    {ee?.evolves_to?.map((eee) => (
                       <PokemonEvolutionStages key={ee.species.name}>
                         <PokemonEvolutionElement>
                           <div>
-                            {eee.evolution_details.map((eeed) => (
+                            {eee?.evolution_details?.map((eeed) => (
                               <>
                                 {eeed.gender &&
                                   (eeed.gender === 1 ? (
@@ -546,4 +546,4 @@ function Evolution({ evolution }: Props) {
   );
 }
 
-export default Evolution;
+export default EvolutionPokemon;

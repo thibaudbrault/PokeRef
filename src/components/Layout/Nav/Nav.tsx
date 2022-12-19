@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { MainNav, MainNavList } from './StyledNav';
+import { MainNav, MainNavList } from './Styled.Nav';
 
 function Nav() {
   return (

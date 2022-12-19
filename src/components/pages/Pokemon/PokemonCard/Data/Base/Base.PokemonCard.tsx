@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pokemon, Species } from '@/types/types';
-import { TLink } from '../../../../CommonStyles/Table';
+import { TLink } from '@/components/common/styles/Table';
 import {
   PokemonDataLocation,
   PokemonDataTable,
@@ -24,17 +24,17 @@ function Base({ pokemon, species, game, location }: Props) {
         <tr>
           <th>National number</th>
           <td>
-            {pokemon.id > 10000
+            {pokemon?.id > 10000
               ? ``
-              : `# ${pokemon.id.toString().padStart(3, `0`)}`}
+              : `# ${pokemon?.id?.toString()?.padStart(3, `0`)}`}
           </td>
         </tr>
         <PokemonDataLocation>
           <th>Locations</th>
           <td>
-            {location.length !== 0 &&
-              location.map((l) =>
-                l.version_details.map(
+            {location?.length !== 0 &&
+              location?.map((l) =>
+                l.version_details?.map(
                   (lv) =>
                     lv.version.name === game && (
                       <p key={l.location_area.name}>
@@ -49,7 +49,7 @@ function Base({ pokemon, species, game, location }: Props) {
         <tr>
           <th>Abilities</th>
           <td>
-            {pokemon.abilities.map((pa) => (
+            {pokemon.abilities?.map((pa) => (
               <p key={pa.ability.name}>
                 <TLink
                   href={{
@@ -77,7 +77,7 @@ function Base({ pokemon, species, game, location }: Props) {
           <th>Category</th>
           <td>
             {pokemon.id < 10000
-              ? species.genera.map(
+              ? species?.genera?.map(
                   (sg) =>
                     sg.language.name === `en` && (
                       <p key={sg.genus}>{sg.genus}</p>

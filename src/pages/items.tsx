@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
-import { MainBig } from '../components/CommonStyles/Sizing';
-import { LeftTitle } from '../components/CommonStyles/Headings';
-import { Input, ModifiedSearch } from '../components/CommonStyles/Inputs';
-import { Table, THead, TLink, TRow } from '../components/CommonStyles/Table';
+import { MainBig } from '@/components/common/styles/Sizing';
+import { LeftTitle } from '@/components/common/styles/Headings';
+import { Input, ModifiedSearch } from '@/components/common/styles/Inputs';
+import { Table, THead, TLink, TRow } from '@/components/common/styles/Table';
 import {
   TCategoryItems,
   TEffectItems,
   TNameItems,
-} from '../components/pages/Items/Styled.Items';
-import { useItems } from '../../src/hooks/DataFetch';
-import Loader from '../components/ui/Loader/Loader';
+} from '@/components/pages/Items/Styled.Items';
+import { useItems } from '@/@/src/hooks/DataFetch';
+import Loader from '@/components/common/ui/Loader/Loader';
 import Image from 'next/image';
 import { Items } from '@/types/types';
 import Head from 'next/head';
 
-function Items() {
+function ItemsPage() {
   const [search, setSearch] = useState<string | null>(null);
   const [filteredItems, setFilteredItems] = useState<any>(null);
 
@@ -97,7 +97,7 @@ function Items() {
             </tr>
           </THead>
           <tbody>
-            {filteredItems.map(
+            {filteredItems?.map(
               (i: Items.Items) =>
                 itemsToHide(i) && (
                   <TRow key={i.name}>
@@ -126,7 +126,7 @@ function Items() {
                       {i.category.name.replace(/-/g, ` `)}
                     </TCategoryItems>
                     <TEffectItems>
-                      {i.effect_entries.map((ie) => (
+                      {i.effect_entries?.map((ie) => (
                         <span key={ie.short_effect}>{ie.short_effect}</span>
                       ))}
                     </TEffectItems>
@@ -140,4 +140,4 @@ function Items() {
   );
 }
 
-export default Items;
+export default ItemsPage;

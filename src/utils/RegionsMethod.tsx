@@ -1,6 +1,6 @@
 import React from 'react';
 import { regions } from './DataArrays';
-import { LocationNav } from '../components/pages/Locations/Styled.Locations';
+import { LocationNav } from '@/components/pages/Locations/Styled.Locations';
 
 type Props = {
   toggleState: number;
@@ -10,7 +10,7 @@ type Props = {
 function RegionsMethod({ toggleState, toggleTable }: Props) {
   return (
     <LocationNav>
-      {Object.keys(regions).map((r, i) => (
+      {Object.keys(regions)?.map((r, i) => (
         <button
           className={toggleState === i ? `button_active` : ``}
           onClick={() => toggleTable(i)}

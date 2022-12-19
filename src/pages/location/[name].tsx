@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react';
 
-import { MainBig, Section } from '../../components/CommonStyles/Sizing';
-import Loader from '../../components/ui/Loader/Loader';
-import { useArea, useLocation } from '../../hooks/DataFetch';
-import { CardTitle, Subtitle } from '../../components/CommonStyles/Headings';
+import { MainBig, Section } from '@/components/common/styles/Sizing';
+import Loader from '@/components/common/ui/Loader/Loader';
+import { useArea, useLocation } from '@/hooks/DataFetch';
+import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
 import {
   LocationNavContainer,
   LocationNav,
   LocationTable,
-} from '../../components/pages/Locations/Styled.Locations.jsx';
-import Nav from '../../components/pages/Locations/LocationCard/Nav/Nav.LocationCard';
+} from '@/components/pages/Locations/Styled.Locations.jsx';
+import Nav from '@/components/pages/Locations/LocationCard/Nav/Nav.LocationCard';
 import {
   TableContainer,
   THead,
   TName,
   TRow,
-} from '../../components/CommonStyles/Table';
+} from '@/components/common/styles/Table';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Locations } from '@/types/types';
-import BackBtn from '@/components/ui/BackBtn';
+import BackBtn from '@/components/common/ui/BackBtn';
 
 function LocationCard() {
   const router = useRouter();
@@ -109,7 +109,7 @@ function LocationCard() {
         </Subtitle>
         <LocationNavContainer>
           <LocationNav>
-            {location.areas.map((la: Locations.Locations, i: number) => (
+            {location.areas?.map((la: Locations.Locations, i: number) => (
               <button
                 className={toggleState === i ? `button_active` : ``}
                 onClick={() => toggleTable(i)}
@@ -140,11 +140,11 @@ function LocationCard() {
                 </tr>
               </THead>
               <tbody>
-                {area.pokemon_encounters.map((a: Locations.Pokemon) =>
-                  a.version_details.map(
+                {area.pokemon_encounters?.map((a: Locations.Pokemon) =>
+                  a.version_details?.map(
                     (av) =>
                       av.version.name === game &&
-                      av.encounter_details.map((ave) => (
+                      av.encounter_details?.map((ave) => (
                         <TRow key={a.pokemon.name}>
                           <TName>{a.pokemon.name}</TName>
                           <td>{ave.method.name.replace(/-/g, ` `)}</td>
@@ -160,7 +160,7 @@ function LocationCard() {
                           </td>
                           {ave.condition_values.length !== 0 ? (
                             <td>
-                              {ave.condition_values.map((avec) => (
+                              {ave.condition_values?.map((avec) => (
                                 <p key={avec.name}>
                                   {avec.name.replace(/-/g, ` `)}
                                 </p>

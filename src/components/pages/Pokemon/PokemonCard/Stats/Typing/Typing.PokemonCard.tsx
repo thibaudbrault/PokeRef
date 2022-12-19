@@ -1,11 +1,9 @@
-import React from 'react';
-import { H3 } from '../../../../CommonStyles/Headings';
-import { MethodNav } from '../../../../CommonStyles/Navbars';
-import {
-  PokemonTypesContainer,
-  PokemonTypesTable,
-} from '../Styled.Stats.PokemonCard';
+import React, { useState } from 'react';
+import { H3 } from '@/components/common/styles/Headings';
+import { MethodNav } from '@/components/common/styles/Navbars';
+import { PokemonTypesContainer } from '../Styled.Stats.PokemonCard';
 import { Pokemon } from '@/types/types';
+import Table from './Table.Typing.PokemonCard';
 
 type Props = {
   pokemon: Pokemon.Pokemon;
@@ -15,79 +13,33 @@ type Props = {
 };
 
 function Typing({ pokemon, types, toggleType, toggleTypeTable }: Props) {
+  const [toggle, setToggle] = useState(1);
+  const pageShown = () => {
+    if (toggle === 1) {
+      return <Table target="to" />;
+    } else if (toggle === 2) {
+      return <Table target="from" />;
+    }
+  };
+
   return (
     <PokemonTypesContainer>
       <H3>Types relations</H3>
       <MethodNav>
         <button
-          className={toggleType === 1 ? `button_active` : ``}
-          onClick={() => toggleTypeTable(1)}
+          className={toggle === 1 ? `button_active` : ``}
+          onClick={() => setToggle(1)}
         >
           <p>Attack</p>
         </button>
         <button
-          className={toggleType === 2 ? `button_active` : ``}
-          onClick={() => toggleTypeTable(2)}
+          className={toggle === 2 ? `button_active` : ``}
+          onClick={() => setToggle(2)}
         >
           <p>Defense</p>
         </button>
       </MethodNav>
-      <PokemonTypesTable visibility={toggleType === 1}>
-        <tbody>
-          <tr>
-            <th>0x damage to</th>
-            <td></td>
-          </tr>
-          <tr>
-            <th>1/4x damage to</th>
-            <td></td>
-          </tr>
-          <tr>
-            <th>1/2x damage to</th>
-            <td></td>
-          </tr>
-          <tr>
-            <th>1x damage to</th>
-            <td></td>
-          </tr>
-          <tr>
-            <th>2x damage to</th>
-            <td></td>
-          </tr>
-          <tr>
-            <th>4x damage to</th>
-            <td></td>
-          </tr>
-        </tbody>
-      </PokemonTypesTable>
-      <PokemonTypesTable visibility={toggleType === 2}>
-        <tbody>
-          <tr>
-            <th>0x damage from</th>
-            <td></td>
-          </tr>
-          <tr>
-            <th>1/4x damage from</th>
-            <td></td>
-          </tr>
-          <tr>
-            <th>1/2x damage from</th>
-            <td></td>
-          </tr>
-          <tr>
-            <th>1x damage from</th>
-            <td></td>
-          </tr>
-          <tr>
-            <th>2x damage from</th>
-            <td></td>
-          </tr>
-          <tr>
-            <th>4x damage from</th>
-            <td></td>
-          </tr>
-        </tbody>
-      </PokemonTypesTable>
+      {pageShown()}
     </PokemonTypesContainer>
   );
 }

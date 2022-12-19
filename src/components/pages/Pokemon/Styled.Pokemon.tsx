@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-import { Search } from '../../CommonStyles/Inputs';
-import { device } from '../../CommonStyles/Sizing';
+import { Search } from '../../common/styles/Inputs';
+import { device } from '../../common/styles/Sizing';
 
 export const PokedexSearch = styled(Search)`
   @media ${device.sm} {

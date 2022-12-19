@@ -23,10 +23,10 @@ function Sprite({ pokemon, species }: Props) {
         layout="responsive"
       />
       <>
-        {species.is_legendary === true && (
+        {species?.is_legendary === true && (
           <PokemonDataLeg>Legendary</PokemonDataLeg>
         )}
-        {species.is_mythical === true && (
+        {species?.is_mythical === true && (
           <PokemonDataMyt>Mythical</PokemonDataMyt>
         )}
       </>
