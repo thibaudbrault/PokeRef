@@ -6,7 +6,7 @@ import {
   THead,
   TName,
   TRow,
-} from '../../../CommonStyles/Table';
+} from '@/components/common/styles/Table';
 import { ModifiedLeftTitle, MovesSection, StatusMoves } from '../Styled.Moves';
 import Link from 'next/link';
 import { Moves } from '@/types/types';
@@ -16,9 +16,9 @@ type Props = {
   toggleState: number;
 };
 
-function StatusTable({ status, toggleState }: Props) {
+function StatusTable({ status }: Props) {
   return (
-    <MovesSection visibility={toggleState === 2}>
+    <MovesSection>
       <ModifiedLeftTitle>Status</ModifiedLeftTitle>
       <TableContainer>
         <ModifiedTable>

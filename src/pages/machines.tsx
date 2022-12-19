@@ -1,17 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from 'react';
 
-import { GenNav } from '../components/CommonStyles/Navbars';
-import { Input } from '../components/CommonStyles/Inputs';
-import { LeftTitle } from '../components/CommonStyles/Headings';
-import { THead, TLink, TName, TRow } from '../components/CommonStyles/Table';
-import { MainBig } from '../components/CommonStyles/Sizing';
-import { useMachines } from '../../src/hooks/DataFetch';
+import { GenNav } from '@/components/common/styles/Navbars';
+import { Input } from '@/components/common/styles/Inputs';
+import { LeftTitle } from '@/components/common/styles/Headings';
+import { THead, TLink, TName, TRow } from '@/components/common/styles/Table';
+import { MainBig } from '@/components/common/styles/Sizing';
+import { useMachines } from '@/hooks/DataFetch';
 import {
   MachinesSearch,
   MachinesTable,
-} from '../components/pages/Machines/Styled.Machines';
-import Loader from '../components/ui/Loader/Loader';
+} from '@/components/pages/Machines/Styled.Machines';
+import Loader from '@/components/common/ui/Loader/Loader';
 import { Machines } from '@/types/types';
 import Head from 'next/head';
 
@@ -24,11 +24,11 @@ function MachinesPage() {
   // Filter the moves returned when the user type the name in the search bar
   const filterMachines = search
     ? machines?.filter((machines: Machines.Machines) =>
-      machines.move.name
-        .replace(/-/g, ` `)
-        .toLowerCase()
-        .includes(search.toLowerCase()),
-    )
+        machines.move.name
+          .replace(/-/g, ` `)
+          .toLowerCase()
+          .includes(search.toLowerCase()),
+      )
     : machines;
 
   // New request when the user types a letter

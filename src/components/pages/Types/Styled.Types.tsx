@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Type } from '../../CommonStyles/Themes';
-import { device } from '../../CommonStyles/Sizing';
+import { Type } from '../../common/styles/Themes';
+import { device } from '../../common/styles/Sizing';
 
 export const TypesList = styled.ul`
   display: flex;
@@ -10,7 +10,7 @@ export const TypesList = styled.ul`
 
   & li {
     transition: 0.3s ease-in-out;
-    
+
     &:hover {
       transform: scale(1.03);
     }

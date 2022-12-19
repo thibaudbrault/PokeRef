@@ -4,8 +4,8 @@ import {
   CardTitle,
   H3,
   Subtitle,
-} from '../../components/CommonStyles/Headings';
-import { MainBig } from '../../components/CommonStyles/Sizing';
+} from '../../components/common/styles/Headings';
+import { MainBig } from '../../components/common/styles/Sizing';
 import {
   MoveLearnSection,
   MoveLink,
@@ -13,16 +13,16 @@ import {
   MoveText,
   MoveTypes,
 } from '../../components/pages/Moves/MoveCard/Styled.MoveCard.jsx';
-import { Type } from '../../components/CommonStyles/Themes';
+import { Type } from '../../components/common/styles/Themes';
 import { useMachines, useMove, usePokedex } from '../../hooks/DataFetch';
-import Loader from '../../components/ui/Loader/Loader';
+import Loader from '../../components/common/ui/Loader/Loader';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Pokemon } from '@/types/types';
-import BackBtn from '@/components/ui/BackBtn';
+import BackBtn from '@/components/common/ui/BackBtn';
 
 const Nav = dynamic(
   () => import(`../../components/pages/Moves/MoveCard/Nav/Nav.MoveCard`),

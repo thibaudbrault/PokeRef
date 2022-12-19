@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
-import { MainBig } from '../components/CommonStyles/Sizing';
+import { MainBig } from '@/components/common/styles/Sizing';
 import {
   LocationList,
   LocationSection,
-} from '../components/pages/Locations/Styled.Locations';
-import Loader from '../components/ui/Loader/Loader';
-import { useLocations } from '../../src/hooks/DataFetch';
-import { regions } from '../utils/DataArrays';
+} from '@/components/pages/Locations/Styled.Locations';
+import Loader from '@/components/common/ui/Loader/Loader';
+import { useLocations } from '@/hooks/DataFetch';
+import { regions } from '@/utils/DataArrays';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Locations } from '@/types/types';
 import Head from 'next/head';
 
-const RegionsMethod = dynamic(
-  () => import(`../utils/RegionsMethod`),
-);
+const RegionsMethod = dynamic(() => import(`@/utils/RegionsMethod`));
 
 function LocationsPage() {
   const [location, setLocation] = useState<string | null>(null);

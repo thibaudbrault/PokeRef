@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import { H3, Span } from '../../../../CommonStyles/Headings';
-import { Section } from '../../../../CommonStyles/Sizing';
+import { H3, Span } from '@/components/common/styles/Headings';
+import { Section } from '@/components/common/styles/Sizing';
 import { TypeListSubtitle, TypePokemonList } from '../Styled.TypeCard';
 import Link from 'next/link';
 import { Pokemon, Types } from '@/types/types';

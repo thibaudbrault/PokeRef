@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Wiggle } from '../../CommonStyles/Keyframes';
+import { Wiggle } from '@/components/common/styles/Keyframes';
 
 export const LoadingImg = styled.div`
   position: relative;

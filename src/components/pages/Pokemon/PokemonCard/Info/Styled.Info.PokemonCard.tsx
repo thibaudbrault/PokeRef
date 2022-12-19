@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { device, Section } from '../../../../CommonStyles/Sizing';
-import { Table } from '../../../../CommonStyles/Table';
+import { device, Section } from '../../../../common/styles/Sizing';
+import { Table } from '../../../../common/styles/Table';
 
 export const PokemonInfoSection = styled(Section)`
   display: grid;

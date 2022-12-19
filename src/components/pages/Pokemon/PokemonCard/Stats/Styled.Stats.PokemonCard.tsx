@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../../../../CommonStyles/Sizing';
+import { device } from '../../../../common/styles/Sizing';
 import { PokemonInfoTable } from '../Info/Styled.Info.PokemonCard';
 
 export const PokemonStatsSection = styled.section`

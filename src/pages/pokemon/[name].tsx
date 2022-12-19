@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MainBig } from '../../components/CommonStyles/Sizing';
+import { MainBig } from '../../components/common/styles/Sizing';
 import {
   useEvolution,
   useMachines,
@@ -9,16 +9,15 @@ import {
   useSpecies,
   useTypes,
 } from '../../hooks/DataFetch';
-import Loader from '../../components/ui/Loader/Loader';
-import { Subtitle, Title } from '../../components/CommonStyles/Headings';
+import Loader from '../../components/common/ui/Loader/Loader';
+import { Subtitle, Title } from '../../components/common/styles/Headings';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { speciesFilters } from '@/utils/DataArrays';
 import { Species } from '@/types/types';
-import BackBtn from '@/components/ui/BackBtn';
-
+import BackBtn from '@/components/common/ui/BackBtn';
 
 const Data = dynamic(
   () =>
@@ -58,16 +57,16 @@ const Nav = dynamic(
 );
 
 function PokemonCard() {
-  const [name, setName] = useState("")
+  const [name, setName] = useState('');
   const router = useRouter();
 
-  const [caught, setCaught] = useState(false)
+  const [caught, setCaught] = useState(false);
 
   useEffect(() => {
     if (router && router.query && typeof router.query.name === 'string') {
-      setName(router.query.name)
+      setName(router.query.name);
     }
-  }, [router])
+  }, [router]);
 
   // Import data fetch
   const {

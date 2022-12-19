@@ -21,7 +21,13 @@ function Data({ pokemon, species, location, game, caught, setCaught }: Props) {
   return (
     <PokemonDataSection>
       <div>
-        <Desc species={species} pokemon={pokemon} game={game} caught={caught} setCaught={setCaught} />
+        <Desc
+          species={species}
+          pokemon={pokemon}
+          game={game}
+          caught={caught}
+          setCaught={setCaught}
+        />
         <Base
           species={species}
           pokemon={pokemon}

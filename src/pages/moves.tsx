@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
 
-import { MainBig } from '../components/CommonStyles/Sizing';
-import { MethodNav } from '../components/CommonStyles/Navbars';
-import { useMoves, useStatus } from '../../src/hooks/DataFetch';
-import Loader from '../components/ui/Loader/Loader';
+import { MainBig } from '@/components/common/styles/Sizing';
+import { MethodNav } from '@/components/common/styles/Navbars';
+import { useMoves, useStatus } from '@/hooks/DataFetch';
+import Loader from '@/components/common/ui/Loader/Loader';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
 const MovesTable = dynamic(
-  () => import(`../components/pages/Moves/Components/MovesTable.Moves`),
+  () => import(`@/components/pages/Moves/Components/MovesTable.Moves`),
 );
 const StatusTable = dynamic(
-  () => import(`../components/pages/Moves/Components/StatusTable.Moves`),
+  () => import(`@/components/pages/Moves/Components/StatusTable.Moves`),
 );
 
 function Moves() {
   const { isLoading, error, data: moves } = useMoves();
   const { data: status } = useStatus();
 
-  // Switch between the 'moves' table and the 'status' table
-  // Default is the 'moves' table (1)
-  const [toggleState, setToggleState] = useState<number>(1);
-  const toggleTable = (index: number) => {
-    setToggleState(index);
+  const [toggle, setToggle] = useState(1);
+  const pageShown = () => {
+    if (toggle === 1) {
+      return <MovesTable moves={moves} />;
+    } else if (toggle === 2) {
+      return <StatusTable status={status} />;
+    }
   };
 
   if (error instanceof Error) {
@@ -53,22 +55,20 @@ function Moves() {
         <MethodNav id="head">
           <button
             id="btnMoves"
-            className={toggleState === 1 ? `button_active` : ``}
-            onClick={() => toggleTable(1)}
+            className={toggle === 1 ? `button_active` : ``}
+            onClick={() => setToggle(1)}
           >
             <p>Moves</p>
           </button>
           <button
-            className={toggleState === 2 ? `button_active` : ``}
-            onClick={() => toggleTable(2)}
+            className={toggle === 2 ? `button_active` : ``}
+            onClick={() => setToggle(2)}
           >
             <p>Status</p>
           </button>
         </MethodNav>
 
-        <MovesTable moves={moves} toggleState={toggleState} />
-
-        <StatusTable status={status} toggleState={toggleState} />
+        {pageShown()}
       </MainBig>
     </>
   );

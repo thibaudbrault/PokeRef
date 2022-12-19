@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { LeftTitle } from '../components/CommonStyles/Headings';
-import { Input, ModifiedSearch } from '../components/CommonStyles/Inputs';
+import { LeftTitle } from '../components/common/styles/Headings';
+import { Input, ModifiedSearch } from '../components/common/styles/Inputs';
 import {
   THead,
   TName,
@@ -10,11 +10,11 @@ import {
   TLink,
   TableContainer,
   ModifiedTable,
-} from '../components/CommonStyles/Table';
-import { ModifiedMainBig } from '../components/CommonStyles/Sizing';
+} from '../components/common/styles/Table';
+import { ModifiedMainBig } from '../components/common/styles/Sizing';
 import { useAbilities } from '../hooks/DataFetch';
-import Loader from '../components/ui/Loader/Loader';
-import { Abilities, Sort } from '@/types/types';
+import Loader from '@/components/common/ui/Loader/Loader';
+import { Abilities } from '@/types/types';
 import Head from 'next/head';
 
 function AbilitiesPage() {
@@ -25,11 +25,11 @@ function AbilitiesPage() {
   // Filter the abilities returned when the user type the name in the search bar
   const filterAbilities = search
     ? abilities?.filter((abilities) =>
-      abilities.name
-        .replace(/-/g, ` `)
-        .toLowerCase()
-        .includes(search.toLowerCase()),
-    )
+        abilities.name
+          .replace(/-/g, ` `)
+          .toLowerCase()
+          .includes(search.toLowerCase()),
+      )
     : abilities;
 
   // New request when the user types a letter

@@ -57,8 +57,8 @@ export const typeFilters = [
   { type: 'psychic' },
   { type: 'rock' },
   { type: 'steel' },
-  { type: 'water' }
-]
+  { type: 'water' },
+];
 
 export const speciesFilters = [
   {

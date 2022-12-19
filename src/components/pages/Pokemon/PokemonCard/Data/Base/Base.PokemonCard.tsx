@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pokemon, Species } from '@/types/types';
-import { TLink } from '../../../../../CommonStyles/Table';
+import { TLink } from '@/components/common/styles/Table';
 import {
   PokemonDataLocation,
   PokemonDataTable,
@@ -78,11 +78,11 @@ function Base({ pokemon, species, game, location }: Props) {
           <td>
             {pokemon.id < 10000
               ? species?.genera?.map(
-                (sg) =>
-                  sg.language.name === `en` && (
-                    <p key={sg.genus}>{sg.genus}</p>
-                  ),
-              )
+                  (sg) =>
+                    sg.language.name === `en` && (
+                      <p key={sg.genus}>{sg.genus}</p>
+                    ),
+                )
               : `⠀`}
           </td>
         </tr>

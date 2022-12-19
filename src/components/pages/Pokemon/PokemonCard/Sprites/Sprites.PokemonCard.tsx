@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import { H3 } from '../../../../CommonStyles/Headings';
-import { Section } from '../../../../CommonStyles/Sizing';
+import { H3 } from '@/components/common/styles/Headings';
+import { Section } from '@/components/common/styles/Sizing';
 import {
   PokemonAnimatedSpritesDiv,
   PokemonSpritesDiv,

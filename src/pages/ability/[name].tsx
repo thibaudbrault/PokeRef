@@ -1,19 +1,19 @@
 import React from 'react';
 
-import { MainBig } from '../../components/CommonStyles/Sizing';
+import { MainBig } from '@/components/common/styles/Sizing';
 import {
   AbilityCardEffect,
   AbilityCardSection,
   AbilityCardTable,
   Sup,
-} from '../../components/pages/Abilities/AbilityCard/Styled.AbilityCard';
+} from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import {
   CardTitle,
   H3,
   H4,
   Span,
   Subtitle,
-} from '../../components/CommonStyles/Headings';
+} from '@/components/common/styles/Headings';
 import {
   TableContainer,
   ModifiedTable,
@@ -21,15 +21,15 @@ import {
   TLink,
   TName,
   TRow,
-} from '../../components/CommonStyles/Table';
-import { useAbility, usePokedex } from '../../hooks/DataFetch';
-import Loader from '../../components/ui/Loader/Loader';
+} from '@/components/common/styles/Table';
+import { useAbility, usePokedex } from '@/hooks/DataFetch';
+import Loader from '@/components/common/ui/Loader/Loader';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Abilities } from '@/types/types';
-import BackBtn from '@/components/ui/BackBtn';
+import BackBtn from '@/components/common/ui/BackBtn';
 
 function AbilityCard() {
   const router = useRouter();

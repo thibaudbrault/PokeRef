@@ -1,10 +1,6 @@
 import React from 'react';
-import { MainBig } from '../../components/CommonStyles/Sizing';
-import {
-  CardTitle,
-  Span,
-  Subtitle,
-} from '../../components/CommonStyles/Headings';
+import { MainBig } from '@/components/common/styles/Sizing';
+import { CardTitle, Span, Subtitle } from '@/components/common/styles/Headings';
 import {
   ItemCardDataCost,
   ItemCardDataEffect,
@@ -14,15 +10,15 @@ import {
   ItemCardDescSection,
   ItemCardDescTable,
   ItemCardDescTitle,
-} from '../../components/pages/Items/ItemCard/Styled.ItemCard.jsx';
-import { useItem } from '../../hooks/DataFetch';
-import Loader from '../../components/ui/Loader/Loader';
+} from '@/components/pages/Items/ItemCard/Styled.ItemCard.jsx';
+import { useItem } from '@/hooks/DataFetch';
+import Loader from '@/components/common/ui/Loader/Loader';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Items } from '@/types/types';
-import BackBtn from '@/components/ui/BackBtn';
+import BackBtn from '@/components/common/ui/BackBtn';
 
 function ItemCard() {
   const router = useRouter();

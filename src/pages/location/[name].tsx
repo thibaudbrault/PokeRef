@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react';
 
-import { MainBig, Section } from '../../components/CommonStyles/Sizing';
-import Loader from '../../components/ui/Loader/Loader';
-import { useArea, useLocation } from '../../hooks/DataFetch';
-import { CardTitle, Subtitle } from '../../components/CommonStyles/Headings';
+import { MainBig, Section } from '@/components/common/styles/Sizing';
+import Loader from '@/components/common/ui/Loader/Loader';
+import { useArea, useLocation } from '@/hooks/DataFetch';
+import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
 import {
   LocationNavContainer,
   LocationNav,
   LocationTable,
-} from '../../components/pages/Locations/Styled.Locations.jsx';
-import Nav from '../../components/pages/Locations/LocationCard/Nav/Nav.LocationCard';
+} from '@/components/pages/Locations/Styled.Locations.jsx';
+import Nav from '@/components/pages/Locations/LocationCard/Nav/Nav.LocationCard';
 import {
   TableContainer,
   THead,
   TName,
   TRow,
-} from '../../components/CommonStyles/Table';
+} from '@/components/common/styles/Table';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Locations } from '@/types/types';
-import BackBtn from '@/components/ui/BackBtn';
+import BackBtn from '@/components/common/ui/BackBtn';
 
 function LocationCard() {
   const router = useRouter();
@@ -65,8 +65,9 @@ function LocationCard() {
   const title = `${name}`;
 
   useEffect(() => {
-    document.title = `${title.charAt(0).toUpperCase() + title.slice(1).replace(/-/g, ` `)
-      } | Locations | PokéRef`;
+    document.title = `${
+      title.charAt(0).toUpperCase() + title.slice(1).replace(/-/g, ` `)
+    } | Locations | PokéRef`;
   }, [title]);
 
   if (error instanceof Error) {

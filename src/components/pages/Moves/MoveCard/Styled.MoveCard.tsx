@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { device, Section } from '../../../CommonStyles/Sizing';
+import { device, Section } from '../../../common/styles/Sizing';
 
 export const MoveLearnSection = styled(Section)`
   display: ${(props) => (props.visibility ? `block` : `none`)};

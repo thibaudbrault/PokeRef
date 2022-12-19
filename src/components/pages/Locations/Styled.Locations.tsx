@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { MethodNav } from '../../CommonStyles/Navbars';
-import { device } from '../../CommonStyles/Sizing';
-import { ModifiedTable } from '../../CommonStyles/Table';
+import { MethodNav } from '../../common/styles/Navbars';
+import { device } from '../../common/styles/Sizing';
+import { ModifiedTable } from '../../common/styles/Table';
 
 export const LocationSection = styled.section`
   & p {

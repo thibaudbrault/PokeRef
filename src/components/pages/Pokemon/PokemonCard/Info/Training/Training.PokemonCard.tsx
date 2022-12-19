@@ -1,5 +1,5 @@
 import React from 'react';
-import { H3 } from '../../../../../CommonStyles/Headings';
+import { H3 } from '@/components/common/styles/Headings';
 import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
 import Link from 'next/link';
 import { Pokemon, Species } from '@/types/types';
@@ -59,16 +59,16 @@ function Training({ pokemon, species }: Props) {
             <td>
               {pokemon?.held_items?.length > 0
                 ? pokemon?.held_items?.map((ph) => (
-                  <Link
-                    href={{
-                      pathname: `/item/[name]`,
-                      query: { name: ph.item.name },
-                    }}
-                    key={ph.item.name}
-                  >
-                    <span>{ph.item.name.replace(/-/g, ` `)}</span>
-                  </Link>
-                ))
+                    <Link
+                      href={{
+                        pathname: `/item/[name]`,
+                        query: { name: ph.item.name },
+                      }}
+                      key={ph.item.name}
+                    >
+                      <span>{ph.item.name.replace(/-/g, ` `)}</span>
+                    </Link>
+                  ))
                 : `None`}
             </td>
           </tr>

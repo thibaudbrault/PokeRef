@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { usePokedex } from '../../hooks/DataFetch';
+import { usePokedex } from '@/hooks/DataFetch';
 import {
   AutocompleteContainer,
   AutocompleteId,

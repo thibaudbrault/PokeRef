@@ -1,9 +1,14 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Span } from '../../../../../CommonStyles/Headings';
-import { Type } from '../../../../../CommonStyles/Themes';
-import { PokemonDataCatch, PokemonDataCaught, PokemonDataDesc, PokemonDataTypes } from '../Styled.Data.PokemonCard';
+import { Span } from '@/components/common/styles/Headings';
+import { Type } from '@/components/common/styles/Themes';
+import {
+  PokemonDataCatch,
+  PokemonDataCaught,
+  PokemonDataDesc,
+  PokemonDataTypes,
+} from '../Styled.Data.PokemonCard';
 import { Pokemon, Species } from '@/types/types';
 
 type Props = {
@@ -15,19 +20,17 @@ type Props = {
 };
 
 function Desc({ pokemon, species, game, caught, setCaught }: Props) {
-
-
   const handleClick = () => {
-    setCaught(true)
-    let pokemons = JSON.parse(localStorage.getItem('pokemon') || '[]')
-    pokemons.push(pokemon)
-    localStorage.setItem('pokemon', JSON.stringify(pokemons))
-  }
+    setCaught(true);
+    let pokemons = JSON.parse(localStorage.getItem('pokemon') || '[]');
+    pokemons.push(pokemon);
+    localStorage.setItem('pokemon', JSON.stringify(pokemons));
+  };
 
   return (
     <>
       <ul>
-        {pokemon.id < 10000 &&
+        {pokemon.id < 10000 && (
           <PokemonDataDesc>
             {species?.flavor_text_entries?.map(
               (sf) =>
@@ -43,12 +46,15 @@ function Desc({ pokemon, species, game, caught, setCaught }: Props) {
               </Span>
             </p>
           </PokemonDataDesc>
-        }
+        )}
         <PokemonDataTypes>
           {pokemon?.types?.map((pt) => (
             <Type id={pt.type.name} key={pt.type.name}>
               <Link
-                href={{ pathname: `/type/[name]`, query: { name: pt.type.name } }}
+                href={{
+                  pathname: `/type/[name]`,
+                  query: { name: pt.type.name },
+                }}
               >
                 <Image alt={pt.type.name} width={25} height={25} />
                 <span>{pt.type.name}</span>

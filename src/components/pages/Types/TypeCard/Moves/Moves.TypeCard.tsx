@@ -1,7 +1,7 @@
 import React from 'react';
-import { H3, Span } from '../../../../CommonStyles/Headings';
-import { Section } from '../../../../CommonStyles/Sizing';
-import { TableContainer, THead, TRow } from '../../../../CommonStyles/Table';
+import { H3, Span } from '@/components/common/styles/Headings';
+import { Section } from '@/components/common/styles/Sizing';
+import { TableContainer, THead, TRow } from '@/components/common/styles/Table';
 import {
   TypeListSubtitle,
   TypeMovesTable,

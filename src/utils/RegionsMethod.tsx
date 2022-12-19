@@ -1,6 +1,6 @@
 import React from 'react';
 import { regions } from './DataArrays';
-import { LocationNav } from '../components/pages/Locations/Styled.Locations';
+import { LocationNav } from '@/components/pages/Locations/Styled.Locations';
 
 type Props = {
   toggleState: number;

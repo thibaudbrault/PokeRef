@@ -1,6 +1,6 @@
 import React from 'react';
-import { Subtitle } from '../../../../CommonStyles/Headings';
-import { Type } from '../../../../CommonStyles/Themes';
+import { Subtitle } from '@/components/common/styles/Headings';
+import { Type } from '@/components/common/styles/Themes';
 import { TypeDamageSection, TypeDamageTable } from '../Styled.TypeCard';
 import Image from 'next/image';
 import { Types } from '@/types/types';

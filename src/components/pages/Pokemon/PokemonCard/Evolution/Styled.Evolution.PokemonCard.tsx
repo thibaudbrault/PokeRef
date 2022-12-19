@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device, Section } from '../../../../CommonStyles/Sizing';
+import { device, Section } from '../../../../common/styles/Sizing';
 
 export const PokemonEvolutionSection = styled(Section)`
   @media ${device.sm} {

@@ -5,11 +5,11 @@ import {
   PokedexTypes,
   PokedexVerticalText,
   ToBottom,
-} from '../components/pages/Pokemon/Styled.Pokemon';
-import { MainBig } from '../components/CommonStyles/Sizing';
-import { Type } from '../components/CommonStyles/Themes';
-import { usePokedex } from '../hooks/DataFetch';
-import Loader from '../components/ui/Loader/Loader';
+} from '@/components/pages/Pokemon/Styled.Pokemon';
+import { MainBig } from '@/components/common/styles/Sizing';
+import { Type } from '@/components/common/styles/Themes';
+import { usePokedex } from '@/hooks/DataFetch';
+import Loader from '@/components/common/ui/Loader/Loader';
 import { FaAngleDown } from '@meronex/icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';

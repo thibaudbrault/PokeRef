@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../../CommonStyles/Sizing';
+import { device } from '../../common/styles/Sizing';
 
 export const HeaderContainer = styled.header`
   width: 80%;
@@ -58,7 +58,6 @@ export const HeaderBtnAccount = styled.div`
 `;
 
 export const HeaderBtnFavorites = styled.div`
-
   & a {
     padding: 0.7rem 1.5rem;
     background: ${({ theme }) => theme.secondary};

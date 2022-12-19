@@ -1,6 +1,6 @@
 import React from 'react';
 import { learnMethod } from './DataArrays';
-import { MethodNav } from '../components/CommonStyles/Navbars';
+import { MethodNav } from '@/components/common/styles/Navbars';
 
 type Props = {
   toggleState: number;

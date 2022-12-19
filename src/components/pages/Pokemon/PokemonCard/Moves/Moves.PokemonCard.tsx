@@ -10,11 +10,11 @@ import {
   TRow,
   TLink,
   TableContainer,
-} from '../../../../CommonStyles/Table';
-import { H3, Span } from '../../../../CommonStyles/Headings';
-import { Type } from '../../../../CommonStyles/Themes';
-import LearnMethod from '../../../../../utils/LearnMethod';
-import { learnMethod } from '../../../../../utils/DataArrays';
+} from '@/components/common/styles/Table';
+import { H3, Span } from '@/components/common/styles/Headings';
+import { Type } from '@/components/common/styles/Themes';
+import LearnMethod from '@/utils/LearnMethod';
+import { learnMethod } from '@/utils/DataArrays';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Machines, Moves, Pokemon } from '@/types/types';
@@ -143,8 +143,8 @@ function MovesPokemon({
                 {learn === `level-up`
                   ? `Level`
                   : learn === `machine`
-                    ? `Machine`
-                    : `-`}
+                  ? `Machine`
+                  : `-`}
               </th>
               <th>Name</th>
               <th>Type</th>

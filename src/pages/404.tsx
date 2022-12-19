@@ -3,7 +3,7 @@ import {
   NotFoundMain,
   NotFoundImg,
   NotFoundText,
-} from '../components/pages/404/Styled.NotFound';
+} from '@/components/pages/404/Styled.NotFound';
 
 function NotFound() {
   return (
