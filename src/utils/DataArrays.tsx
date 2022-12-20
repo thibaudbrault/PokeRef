@@ -20,6 +20,17 @@ export const regions: Record<string, string> = {
   8: `galar`,
 };
 
+export const generations: Record<string, string> = {
+  1: `generation I`,
+  2: `generation II`,
+  3: `generation III`,
+  4: `generation IV`,
+  5: `generation V`,
+  6: `generation VI`,
+  7: `generation VII`,
+  8: `generation VIII`,
+}
+
 export const genFilters = [
   { generation: `gen1`, offset: 0, limit: 151 },
   { generation: `gen2`, offset: 151, limit: 100 },

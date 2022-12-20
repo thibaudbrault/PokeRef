@@ -29,6 +29,7 @@ export const PokedexDropdown = styled.div`
     background: transparent;
     border: 1px solid ${({ theme }) => theme.secondary};
     border-radius: 5px;
+    text-transform: capitalize;
     transition: 0.3s ease-in-out;
 
     &:focus {
@@ -38,6 +39,7 @@ export const PokedexDropdown = styled.div`
     & option {
       color: ${({ theme }) => theme.secondary};
       background: ${({ theme }) => theme.main};
+      text-transform: capitalize;
     }
   }
 
