@@ -43,6 +43,7 @@ export const GenNav = styled.nav`
           margin: 1rem;
           text-align: left;
           color: #161616;
+          text-transform: capitalize;
           cursor: pointer;
           &:hover {
             color: ${({ theme }) => theme.red};

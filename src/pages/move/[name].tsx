@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 
-import {
-  CardTitle,
-  H3,
-  Subtitle,
-} from '../../components/common/styles/Headings';
-import { MainBig } from '../../components/common/styles/Sizing';
+import { CardTitle, H3, Subtitle } from '@/components/common/styles/Headings';
+import { MainBig } from '@/components/common/styles/Sizing';
 import {
   MoveLearnSection,
   MoveLink,
   MoveList,
   MoveText,
   MoveTypes,
-} from '../../components/pages/Moves/MoveCard/Styled.MoveCard.jsx';
-import { Type } from '../../components/common/styles/Themes';
-import { useMachines, useMove, usePokedex } from '../../hooks/DataFetch';
-import Loader from '../../components/common/ui/Loader/Loader';
+} from '@/components/pages/Moves/MoveCard/Styled.MoveCard.jsx';
+import { Type } from '@/components/common/styles/Themes';
+import { useMachines, useMove, usePokedex } from '@/hooks/DataFetch';
+import Loader from '@/components/common/ui/Loader/Loader';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -25,12 +21,14 @@ import { Pokemon } from '@/types/types';
 import BackBtn from '@/components/common/ui/BackBtn';
 
 const Nav = dynamic(
-  () => import(`../../components/pages/Moves/MoveCard/Nav/Nav.MoveCard`),
+  () => import(`@/components/pages/Moves/MoveCard/Nav/Nav.MoveCard`),
 );
 const Data = dynamic(
-  () => import(`../../components/pages/Moves/MoveCard/Data/Data.MoveCard`),
+  () => import(`@/components/pages/Moves/MoveCard/Data/Data.MoveCard`),
 );
-const LearnMethod = dynamic(() => import(`../../utils/LearnMethod`));
+const LearnMethod = dynamic(() =>
+  import(`@/utils/ObjectsMap`).then((res) => res.LearnMethod),
+);
 
 function MoveCard() {
   const router = useRouter();

@@ -13,7 +13,7 @@ import {
 } from '@/components/common/styles/Table';
 import { H3, Span } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
-import LearnMethod from '@/utils/LearnMethod';
+import { LearnMethod } from '@/utils/ObjectsMap';
 import { learnMethod } from '@/utils/DataArrays';
 import Link from 'next/link';
 import Image from 'next/image';

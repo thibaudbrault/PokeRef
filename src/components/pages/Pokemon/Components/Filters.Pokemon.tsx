@@ -2,8 +2,8 @@ import { Pokemon } from '@/types/types';
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import Autocomplete from '@/components/autocomplete/Autocomplete';
 import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
-import { formFilters, genFilters, typeFilters } from '@/utils/DataArrays';
-import GenerationsMethod from '@/utils/GenerationsMethod';
+import { formFilters, genFilters } from '@/utils/DataArrays';
+import { GenerationsMethod, TypesMethod } from '@/utils/ObjectsMap';
 
 type Props = {
   pokedex: Pokemon.Pokemon[];
@@ -45,7 +45,7 @@ function Filters({
   useEffect(() => {
     pokedex
       .filter((pokedex) => {
-        if (type === 'all') {
+        if (type === `all`) {
           return pokedex;
         } else {
           return pokedex.types.filter((pt) => pt.type.name === type);
@@ -119,11 +119,7 @@ function Filters({
             }}
           >
             <option value="all">All</option>
-            {typeFilters.map(type => (
-              <option value={type.type}>
-                {type.type.charAt(0).toUpperCase() + type.type.slice(1)}
-              </option>
-            ))}
+            <TypesMethod />
           </select>
         </PokedexDropdown>
       </PokedexSearch>

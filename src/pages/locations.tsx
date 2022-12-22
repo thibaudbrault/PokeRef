@@ -13,7 +13,9 @@ import dynamic from 'next/dynamic';
 import { Locations } from '@/types/types';
 import Head from 'next/head';
 
-const RegionsMethod = dynamic(() => import(`@/utils/RegionsMethod`));
+const RegionsMethod = dynamic(() =>
+  import(`@/utils/ObjectsMap`).then((res) => res.RegionsMethod),
+);
 
 function LocationsPage() {
   const [location, setLocation] = useState<string | null>(null);

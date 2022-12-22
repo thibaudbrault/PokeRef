@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Span } from '@/components/common/styles/Headings';
@@ -22,9 +22,9 @@ type Props = {
 function Desc({ pokemon, species, game, caught, setCaught }: Props) {
   const handleClick = () => {
     setCaught(true);
-    let pokemons = JSON.parse(localStorage.getItem('pokemon') || '[]');
+    const pokemons = JSON.parse(localStorage.getItem(`pokemon`) || `[]`);
     pokemons.push(pokemon);
-    localStorage.setItem('pokemon', JSON.stringify(pokemons));
+    localStorage.setItem(`pokemon`, JSON.stringify(pokemons));
   };
 
   return (

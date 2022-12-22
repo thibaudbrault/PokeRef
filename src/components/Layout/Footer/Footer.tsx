@@ -19,6 +19,7 @@ function Footer() {
             href="https://github.com/thibaudbrault/PokeRef"
             aria-label="Github"
             target="_blank"
+            rel="noreferrer"
           >
             <FaGithub />
           </a>
