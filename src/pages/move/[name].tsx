@@ -14,7 +14,7 @@ import { Type } from '../../components/Common/Themes';
 import { useMachines, useMove, usePokedex } from '../../hooks/DataFetch';
 import Loader from '../../components/Loader/Loader';
 import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
-import Image from 'next/image';
+import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -302,7 +302,7 @@ function MoveCard() {
           </MoveList>
         </MoveLearnSection>
 
-        <MoveLearnSection visibility={toggleState === 5}>
+        <MoveLearnSection visibility={toggleState === 4}>
           <H3>Learned when evolving</H3>
           <MoveText>
             Learned when the pokémon is evolving no matter its level. Data from
