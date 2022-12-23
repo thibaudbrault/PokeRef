@@ -306,7 +306,7 @@ function MoveCard() {
           </MoveList>
         </MoveLearnSection>
 
-        <MoveLearnSection visibility={toggleState === 5}>
+        <MoveLearnSection visibility={toggleState === 4}>
           <H3>Learned when evolving</H3>
           <MoveText>
             Learned when the pokémon is evolving no matter its level. Data from
