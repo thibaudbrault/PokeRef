@@ -94,8 +94,7 @@ function MoveCard() {
         <MoveLearnSection visibility={toggleState === 0}>
           <H3>Learned by leveling up</H3>
           <MoveText>
-            Learned when the pokémon reach a ceratin level. Data from Pokémon
-            {` `}
+            Learned when the pokémon reach a certain level. Data from Pokémon{' '}
             <span>{version.replace(/-/g, ` `)}</span>. These information may
             vary in other games. Check the respective pokédex pages for details.
           </MoveText>
@@ -149,7 +148,7 @@ function MoveCard() {
         <MoveLearnSection visibility={toggleState === 1}>
           <H3>Learned from a TM / HM</H3>
           <MoveText>
-            Learned by using a TM or a HM. Data from Pokémon{` `}
+            Learned by using a TM or a HM. Data from Pokémon{' '}
             <span>{version.replace(/-/g, ` `)}</span>. These information may
             vary in other games. Check the respective pokédex pages for details.
           </MoveText>
@@ -257,7 +256,7 @@ function MoveCard() {
         <MoveLearnSection visibility={toggleState === 3}>
           <H3>Learned from the move tutor</H3>
           <MoveText>
-            Learned by going to the move tutor. Data from Pokémon{` `}
+            Learned by going to the move tutor. Data from Pokémon{' '}
             <span>{version.replace(/-/g, ` `)}</span>. These information may
             vary in other games. Check the respective pokédex pages for details.
           </MoveText>

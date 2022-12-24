@@ -25,6 +25,7 @@ const Sprites = dynamic(
 );
 
 function Pokedex() {
+  const [filteredPokedex, setFilteredPokedex] = useState<Pokemon.Pokemon[]>([]);
   // Modify the first pokemon displayed
   const [offset, setOffset] = useState<number>(0);
   //Modify the max number of pokemon displayed
@@ -71,6 +72,7 @@ function Pokedex() {
       <MainBig>
         <Filters
           pokedex={pokedex}
+          setFilteredPokedex={setFilteredPokedex}
           setOffset={setOffset}
           setLimit={setLimit}
           form={form}
@@ -83,7 +85,7 @@ function Pokedex() {
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
         <PokedexList>
           <ul>
-            {pokedex?.map((p: Pokemon.Pokemon) => (
+            {filteredPokedex?.map((p: Pokemon.Pokemon) => (
               <PokedexElement key={p.id}>
                 <Sprites p={p} />
                 {p.id < 905 && <p>#{p.id.toString().padStart(3, `0`)}</p>}

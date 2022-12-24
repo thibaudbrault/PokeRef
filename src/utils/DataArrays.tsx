@@ -16,48 +16,49 @@ export const regions: Record<string, string> = {
   8: `galar`,
 };
 
-export const generations: Record<string, string> = {
-  1: `generation I`,
-  2: `generation II`,
-  3: `generation III`,
-  4: `generation IV`,
-  5: `generation V`,
-  6: `generation VI`,
-  7: `generation VII`,
-  8: `generation VIII`,
+type Generations = {
+  [key: string]: {
+    name: string;
+    value: string;
+  };
 };
 
-interface Filters {
-  offset: number;
-  limit: number;
-}
+export const generations: Generations = {
+  1: { name: `generation I`, value: 'gen1' },
+  2: { name: `generation II`, value: 'gen2' },
+  3: { name: `generation III`, value: 'gen3' },
+  4: { name: `generation IV`, value: 'gen4' },
+  5: { name: `generation V`, value: 'gen5' },
+  6: { name: `generation VI`, value: 'gen6' },
+  7: { name: `generation VII`, value: 'gen7' },
+  8: { name: `generation VIII`, value: 'gen8' },
+};
 
-interface GenFilters extends Filters {
-  generation: string;
-}
+type ObjectFilters = {
+  [key: string]: {
+    offset: number;
+    limit: number;
+  };
+};
 
-interface FormFilters extends Filters {
-  form: string;
-}
+export const genFilters: ObjectFilters = {
+  gen1: { offset: 0, limit: 151 },
+  gen2: { offset: 151, limit: 100 },
+  gen3: { offset: 251, limit: 135 },
+  gen4: { offset: 386, limit: 107 },
+  gen5: { offset: 493, limit: 156 },
+  gen6: { offset: 649, limit: 72 },
+  gen7: { offset: 721, limit: 88 },
+  gen8: { offset: 809, limit: 96 },
+};
 
-export const genFilters: GenFilters[] = [
-  { generation: `gen1`, offset: 0, limit: 151 },
-  { generation: `gen2`, offset: 151, limit: 100 },
-  { generation: `gen3`, offset: 251, limit: 135 },
-  { generation: `gen4`, offset: 386, limit: 107 },
-  { generation: `gen5`, offset: 493, limit: 156 },
-  { generation: `gen6`, offset: 649, limit: 72 },
-  { generation: `gen7`, offset: 721, limit: 88 },
-  { generation: `gen8`, offset: 809, limit: 96 },
-];
-
-export const formFilters: FormFilters[] = [
-  { form: `regional - alola`, offset: 995, limit: 30 },
-  { form: `regional - galar`, offset: 1065, limit: 25 },
-  { form: `regional - hisui`, offset: 1133, limit: 20 },
-  { form: `mega`, offset: 937, limit: 70 },
-  { form: `gmax`, offset: 1099, limit: 40 },
-];
+export const formFilters: ObjectFilters = {
+  alola: { offset: 995, limit: 30 },
+  galar: { offset: 1065, limit: 25 },
+  hisui: { offset: 1133, limit: 20 },
+  mega: { offset: 937, limit: 70 },
+  gmax: { offset: 1099, limit: 40 },
+};
 
 export const types: Record<string, string> = {
   1: `bug`,

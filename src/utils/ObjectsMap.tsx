@@ -12,8 +12,9 @@ export const GenerationsMethod = () => {
   return (
     <>
       {Object.keys(generations)?.map((g) => (
-        <option value={generations[g]} key={generations[g]}>
-          {generations[g].charAt(0).toUpperCase() + generations[g].slice(1)}
+        <option value={generations[g].value} key={generations[g].value}>
+          {generations[g].name.charAt(0).toUpperCase() +
+            generations[g].name.slice(1)}
         </option>
       ))}
     </>
