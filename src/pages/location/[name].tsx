@@ -8,7 +8,7 @@ import {
   LocationNavContainer,
   LocationNav,
   LocationTable,
-} from '@/components/pages/Locations/Styled.Locations.jsx';
+} from '@/components/pages/Locations/Styled.Locations';
 import Nav from '@/components/pages/Locations/LocationCard/Nav/Nav.LocationCard';
 import {
   TableContainer,
@@ -38,29 +38,29 @@ function LocationCard() {
     setToggleState(index);
   };
 
-  const areaUrl = location.areas[toggleState].url;
+  const areaUrl = location?.areas[toggleState].url;
 
   const { data: area } = useArea(areaUrl);
 
   useEffect(() => {
-    if (location.region.name === `kanto`) {
+    if (location?.region.name === `kanto`) {
       setGame(`yellow`);
-    } else if (location.region.name === `johto`) {
+    } else if (location?.region.name === `johto`) {
       setGame(`crystal`);
-    } else if (location.region.name === `johto`) {
+    } else if (location?.region.name === `johto`) {
       setGame(`crystal`);
-    } else if (location.region.name === `hoenn`) {
+    } else if (location?.region.name === `hoenn`) {
       setGame(`emerald`);
-    } else if (location.region.name === `sinnoh`) {
+    } else if (location?.region.name === `sinnoh`) {
       setGame(`platinum`);
-    } else if (location.region.name === `unova`) {
+    } else if (location?.region.name === `unova`) {
       setGame(`black-2`);
-    } else if (location.region.name === `kalos`) {
+    } else if (location?.region.name === `kalos`) {
       setGame(`x`);
-    } else if (location.region.name === `alola`) {
+    } else if (location?.region.name === `alola`) {
       setGame(`ultra-sun`);
     }
-  }, [location.region.name]);
+  }, [location?.region.name]);
 
   const title = `${name}`;
 
@@ -111,9 +111,9 @@ function LocationCard() {
           <LocationNav>
             {location.areas?.map((la: Locations.Locations, i: number) => (
               <button
+                key={la.name}
                 className={toggleState === i ? `button_active` : ``}
                 onClick={() => toggleTable(i)}
-                key={la.name}
               >
                 <p>
                   {la.name
@@ -140,13 +140,13 @@ function LocationCard() {
                 </tr>
               </THead>
               <tbody>
-                {area.pokemon_encounters?.map((a: Locations.Pokemon) =>
+                {area?.pokemon_encounters?.map((a: Locations.Pokemon) =>
                   a.version_details?.map(
                     (av) =>
                       av.version.name === game &&
                       av.encounter_details?.map((ave) => (
                         <TRow key={a.pokemon.name}>
-                          <TName>{a.pokemon.name}</TName>
+                          <TName>{a.pokemon.name.replace(/-/g, ` `)}</TName>
                           <td>{ave.method.name.replace(/-/g, ` `)}</td>
                           <td>{ave.chance} %</td>
                           <td>

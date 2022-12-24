@@ -2,11 +2,12 @@ import { Pokemon } from '@/types/types';
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import Autocomplete from '@/components/autocomplete/Autocomplete';
 import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
-import { formFilters, genFilters, typeFilters } from '@/utils/DataArrays';
-import GenerationsMethod from '@/utils/GenerationsMethod';
+import { formFilters, genFilters } from '@/utils/DataArrays';
+import { GenerationsMethod, TypesMethod } from '@/utils/ObjectsMap';
 
 type Props = {
   pokedex: Pokemon.Pokemon[];
+  setFilteredPokedex: Dispatch<SetStateAction<Pokemon.Pokemon[]>>;
   setOffset: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;
   type: string;
@@ -19,6 +20,7 @@ type Props = {
 
 function Filters({
   pokedex,
+  setFilteredPokedex,
   setOffset,
   setLimit,
   type,
@@ -28,43 +30,36 @@ function Filters({
   generation,
   setGeneration,
 }: Props) {
-  const genFiltersFn = (generation: string, pokedex: Pokemon.Pokemon) => {
-    genFilters.forEach((g) => {
-      g.generation === generation && (setOffset(g.offset), setLimit(g.limit));
-      return pokedex;
-    });
-  };
-
-  const formFiltersFn = (form: string, pokedex: Pokemon.Pokemon) => {
-    formFilters.forEach((f) => {
-      f.form === form && (setOffset(f.offset), setLimit(f.limit));
-      return pokedex.name.includes(f.form);
-    });
+  const getFilterPokemon = () => {
+    setFilteredPokedex(
+      pokedex
+        .filter((pokedex) => {
+          if (type === `all`) {
+            return pokedex;
+          }
+          return pokedex.types.map((pt) => pt.type.name).includes(type);
+        })
+        .filter((pokedex) => {
+          if (form === `default` && generation === `all`) {
+            setOffset(0);
+            setLimit(905);
+            return pokedex;
+          } else if (form !== `default`) {
+            setOffset(formFilters[form].offset);
+            setLimit(formFilters[form].limit);
+            return pokedex.name.includes(form);
+          } else if (generation !== `all`) {
+            setOffset(genFilters?.[generation].offset);
+            setLimit(genFilters?.[generation].limit);
+            return pokedex;
+          }
+        }),
+    );
   };
 
   useEffect(() => {
-    pokedex
-      .filter((pokedex) => {
-        if (type === 'all') {
-          return pokedex;
-        } else {
-          return pokedex.types.filter((pt) => pt.type.name === type);
-        }
-      })
-      .filter((pokedex) => {
-        if (form === `default` && generation === `all`) {
-          setOffset(0);
-          setLimit(905);
-          return pokedex;
-        } else if (form !== `default`) {
-          return formFiltersFn(form, pokedex);
-        } else if (generation !== `all`) {
-          return genFiltersFn(generation, pokedex);
-        }
-      });
+    getFilterPokemon();
   }, [pokedex, form, generation, type]);
-
-  console.log(pokedex.map((p) => p.name.includes(form)));
 
   return (
     <>
@@ -83,9 +78,9 @@ function Filters({
             }}
           >
             <option value="default">Default</option>
-            <option value="regional - alola">Regional - Alola</option>
-            <option value="regional - galar">Regional - Galar</option>
-            <option value="regional - hisui">Regional - Hisui</option>
+            <option value="alola">Regional - Alola</option>
+            <option value="galar">Regional - Galar</option>
+            <option value="hisui">Regional - Hisui</option>
             <option value="mega">Mega</option>
             <option value="gmax">Gmax</option>
           </select>
@@ -119,11 +114,7 @@ function Filters({
             }}
           >
             <option value="all">All</option>
-            {typeFilters.map(type => (
-              <option value={type.type}>
-                {type.type.charAt(0).toUpperCase() + type.type.slice(1)}
-              </option>
-            ))}
+            <TypesMethod />
           </select>
         </PokedexDropdown>
       </PokedexSearch>

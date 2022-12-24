@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from 'react';
 
 import { GenNav } from '@/components/common/styles/Navbars';
@@ -14,6 +13,7 @@ import {
 import Loader from '@/components/common/ui/Loader/Loader';
 import { Machines } from '@/types/types';
 import Head from 'next/head';
+import { genNav } from '@/utils/DataArrays';
 
 function MachinesPage() {
   const [search, setSearch] = useState<string | null>(null);
@@ -83,92 +83,23 @@ function MachinesPage() {
 
         <GenNav>
           <ol>
-            <li>
-              <button>Gen I</button>
-              <div>
-                <button onClick={() => setVersion(`red-blue`)}>
-                  Red / Blue
-                </button>
-                <button onClick={() => setVersion(`yellow`)}>Yellow</button>
-              </div>
-            </li>
-            <li>
-              <button>Gen II</button>
-              <div>
-                <button onClick={() => setVersion(`gold-silver`)}>
-                  Gold / Silver
-                </button>
-                <button onClick={() => setVersion(`crystal`)}>Crystal</button>
-              </div>
-            </li>
-            <li>
-              <button>Gen III</button>
-              <div>
-                <button onClick={() => setVersion(`ruby-sapphire`)}>
-                  Ruby / Sapphire
-                </button>
-                <button onClick={() => setVersion(`emerald`)}>Emerald</button>
-                <button onClick={() => setVersion(`firered-leafgreen`)}>
-                  FireRed / GreenLeaf
-                </button>
-              </div>
-            </li>
-            <li>
-              <button>Gen IV</button>
-              <div>
-                <button onClick={() => setVersion(`diamond-pearl`)}>
-                  Diamond / Pearl
-                </button>
-                <button onClick={() => setVersion(`platinum`)}>Platinum</button>
-                <button onClick={() => setVersion(`heartgold-soulsilver`)}>
-                  HeartGold / SoulSilver
-                </button>
-              </div>
-            </li>
-            <li>
-              <button>Gen V</button>
-              <div>
-                <button onClick={() => setVersion(`black-white`)}>
-                  Black / White
-                </button>
-                <button onClick={() => setVersion(`black-2-white-2`)}>
-                  Black 2 / White 2
-                </button>
-              </div>
-            </li>
-            <li>
-              <button>Gen VI</button>
-              <div>
-                <button onClick={() => setVersion(`x-y`)}>X / Y</button>
-                <button onClick={() => setVersion(`omega-ruby-alpha-sapphire`)}>
-                  Omega Ruby Alpha / Sapphire
-                </button>
-              </div>
-            </li>
-            <li>
-              <button>Gen VII</button>
-              <div>
-                <button onClick={() => setVersion(`sun-moon`)}>
-                  Sun / Moon
-                </button>
-                <button onClick={() => setVersion(`ultra-sun-ultra-moon`)}>
-                  Ultra Sun / Ultra Moon
-                </button>
-                <button
-                  onClick={() => setVersion(`lets-go-pikachu-lets-go-eevee`)}
-                >
-                  Let's Go Pikachu / Let's Go Eevee
-                </button>
-              </div>
-            </li>
-            <li>
-              <button>Gen VIII</button>
-              <div>
-                <button onClick={() => setVersion(`sword-shield`)}>
-                  Sword / Shield
-                </button>
-              </div>
-            </li>
+            {genNav.map((g) => (
+              <li key={g.gen}>
+                <button>{g.gen}</button>
+                <div>
+                  {g.details.map((gd) => (
+                    <button
+                      key={gd.version}
+                      onClick={() => {
+                        setVersion(gd.version);
+                      }}
+                    >
+                      {gd.game}
+                    </button>
+                  ))}
+                </div>
+              </li>
+            ))}
           </ol>
         </GenNav>
 

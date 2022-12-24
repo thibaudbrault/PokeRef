@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 
-import {
-  CardTitle,
-  H3,
-  Subtitle,
-} from '../../components/common/styles/Headings';
-import { MainBig } from '../../components/common/styles/Sizing';
+import { CardTitle, H3, Subtitle } from '@/components/common/styles/Headings';
+import { MainBig } from '@/components/common/styles/Sizing';
 import {
   MoveLearnSection,
   MoveLink,
   MoveList,
   MoveText,
   MoveTypes,
-} from '../../components/pages/Moves/MoveCard/Styled.MoveCard.jsx';
-import { Type } from '../../components/common/styles/Themes';
-import { useMachines, useMove, usePokedex } from '../../hooks/DataFetch';
-import Loader from '../../components/common/ui/Loader/Loader';
+} from '@/components/pages/Moves/MoveCard/Styled.MoveCard.jsx';
+import { Type } from '@/components/common/styles/Themes';
+import { useMachines, useMove, usePokedex } from '@/hooks/DataFetch';
+import Loader from '@/components/common/ui/Loader/Loader';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -25,12 +21,14 @@ import { Pokemon } from '@/types/types';
 import BackBtn from '@/components/common/ui/BackBtn';
 
 const Nav = dynamic(
-  () => import(`../../components/pages/Moves/MoveCard/Nav/Nav.MoveCard`),
+  () => import(`@/components/pages/Moves/MoveCard/Nav/Nav.MoveCard`),
 );
 const Data = dynamic(
-  () => import(`../../components/pages/Moves/MoveCard/Data/Data.MoveCard`),
+  () => import(`@/components/pages/Moves/MoveCard/Data/Data.MoveCard`),
 );
-const LearnMethod = dynamic(() => import(`../../utils/LearnMethod`));
+const LearnMethod = dynamic(() =>
+  import(`@/utils/ObjectsMap`).then((res) => res.LearnMethod),
+);
 
 function MoveCard() {
   const router = useRouter();
@@ -96,8 +94,7 @@ function MoveCard() {
         <MoveLearnSection visibility={toggleState === 0}>
           <H3>Learned by leveling up</H3>
           <MoveText>
-            Learned when the pokémon reach a ceratin level. Data from Pokémon
-            {` `}
+            Learned when the pokémon reach a certain level. Data from Pokémon{' '}
             <span>{version.replace(/-/g, ` `)}</span>. These information may
             vary in other games. Check the respective pokédex pages for details.
           </MoveText>
@@ -151,7 +148,7 @@ function MoveCard() {
         <MoveLearnSection visibility={toggleState === 1}>
           <H3>Learned from a TM / HM</H3>
           <MoveText>
-            Learned by using a TM or a HM. Data from Pokémon{` `}
+            Learned by using a TM or a HM. Data from Pokémon{' '}
             <span>{version.replace(/-/g, ` `)}</span>. These information may
             vary in other games. Check the respective pokédex pages for details.
           </MoveText>
@@ -259,7 +256,7 @@ function MoveCard() {
         <MoveLearnSection visibility={toggleState === 3}>
           <H3>Learned from the move tutor</H3>
           <MoveText>
-            Learned by going to the move tutor. Data from Pokémon{` `}
+            Learned by going to the move tutor. Data from Pokémon{' '}
             <span>{version.replace(/-/g, ` `)}</span>. These information may
             vary in other games. Check the respective pokédex pages for details.
           </MoveText>
@@ -308,7 +305,7 @@ function MoveCard() {
           </MoveList>
         </MoveLearnSection>
 
-        <MoveLearnSection visibility={toggleState === 5}>
+        <MoveLearnSection visibility={toggleState === 4}>
           <H3>Learned when evolving</H3>
           <MoveText>
             Learned when the pokémon is evolving no matter its level. Data from

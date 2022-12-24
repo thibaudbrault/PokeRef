@@ -15,14 +15,14 @@ function Favorites() {
   const [reload, setReload] = useState(false);
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem('pokemon') || '[]');
+    const favorites = JSON.parse(localStorage.getItem(`pokemon`) || `[]`);
     if (favorites) {
       setFavorites(favorites);
     }
   }, [reload]);
 
   const handleClick = () => {
-    localStorage.removeItem('pokemon');
+    localStorage.removeItem(`pokemon`);
     setReload(!reload);
   };
 
@@ -34,7 +34,7 @@ function Favorites() {
           <PokedexList>
             <ul>
               {favorites.map((f: Pokemon.Pokemon) => (
-                <PokedexElement>
+                <PokedexElement key={f.id}>
                   <Image
                     src={f?.sprites.front_default}
                     alt={f.name}

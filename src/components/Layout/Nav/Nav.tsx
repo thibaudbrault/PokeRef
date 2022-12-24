@@ -7,23 +7,22 @@ type NavArray = {
 }[];
 
 function Nav() {
-
   const navArray: NavArray = [
-    { name: "pokémon" },
-    { name: "moves" },
-    { name: "abilities" },
-    { name: "types" },
-    { name: "items" },
-    { name: "machines" },
-    { name: "locations" }
-  ]
+    { name: `pokémon` },
+    { name: `moves` },
+    { name: `abilities` },
+    { name: `types` },
+    { name: `items` },
+    { name: `machines` },
+    { name: `locations` },
+  ];
 
   return (
     <MainNav>
       <MainNavList>
-        {navArray.map(nav => (
-          <li>
-            <Link href={nav.name === "pokémon" ? "/" : `/${nav.name}`}>
+        {navArray.map((nav) => (
+          <li key={nav.name}>
+            <Link href={nav.name === `pokémon` ? `/` : `/${nav.name}`}>
               {nav.name}
             </Link>
           </li>
