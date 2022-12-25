@@ -138,7 +138,7 @@ export function useItems() {
 export function useLocations() {
   return useQuery([`locations`], () =>
     axios
-      .get(`https://pokeapi.co/api/v2/region?limit=7`)
+      .get(`https://pokeapi.co/api/v2/region?limit=8`)
       .then((res) => {
         return res.data.results;
       })

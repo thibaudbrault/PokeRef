@@ -19,16 +19,12 @@ const RegionsMethod = dynamic(() =>
 
 function LocationsPage() {
   const [location, setLocation] = useState<string | null>(null);
-  const [toggleState, setToggleState] = useState<number>(0);
+  const [toggle, setToggle] = useState<number>(0);
   const { isLoading, error, data: locations } = useLocations();
 
-  const toggleTable = (index: number) => {
-    setToggleState(index);
-  };
-
   useEffect(() => {
-    setLocation(regions[toggleState + 1]);
-  }, [toggleState]);
+    setLocation(regions[toggle + 1]);
+  }, [toggle]);
 
   if (error instanceof Error) {
     return { error };
@@ -55,7 +51,7 @@ function LocationsPage() {
         <meta property="og:type" content="website" />
       </Head>
       <MainBig>
-        <RegionsMethod toggleState={toggleState} toggleTable={toggleTable} />
+        <RegionsMethod toggle={toggle} setToggle={setToggle} />
         <LocationSection>
           {locations?.map(
             (l: Locations.Regions) =>
@@ -87,9 +83,11 @@ function LocationsPage() {
           )}
         </LocationSection>
 
-        {location === `galar` ? (
+        {location === `galar` || location === `hisui` ? (
           <LocationSection>
-            <p>No data for Galar</p>
+            <p>
+              No data for {location.charAt(0).toUpperCase() + location.slice(1)}
+            </p>
           </LocationSection>
         ) : null}
       </MainBig>

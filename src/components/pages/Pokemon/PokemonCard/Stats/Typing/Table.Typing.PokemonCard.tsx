@@ -1,5 +1,5 @@
 import React from 'react';
-import { PokemonTypesTable } from '../Styled.Stats.PokemonCard';
+import { PokemonInfoTable } from '../../Info/Styled.Info.PokemonCard';
 
 type Props = {
   target: string;
@@ -7,7 +7,7 @@ type Props = {
 
 function Table({ target }: Props) {
   return (
-    <PokemonTypesTable>
+    <PokemonInfoTable>
       <tbody>
         <tr>
           <th>0x damage {target}</th>
@@ -34,7 +34,7 @@ function Table({ target }: Props) {
           <td></td>
         </tr>
       </tbody>
-    </PokemonTypesTable>
+    </PokemonInfoTable>
   );
 }
 

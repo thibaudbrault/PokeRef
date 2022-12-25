@@ -1,10 +1,6 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { device, Section } from '../../../common/styles/Sizing';
-
-export const MoveLearnSection = styled(Section)`
-  display: ${(props) => (props.visibility ? `block` : `none`)};
-`;
+import { device } from '../../../common/styles/Sizing';
 
 export const MoveList = styled.ul`
   display: flex;

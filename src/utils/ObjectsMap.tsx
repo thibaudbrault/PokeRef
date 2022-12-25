@@ -4,10 +4,8 @@ import { MethodNav } from '@/components/common/styles/Navbars';
 import { LocationNav } from '@/components/pages/Locations/Styled.Locations';
 
 type Props = {
-  toggleState?: number;
-  toggleTable?: (i: number) => void;
-  toggle?: number;
-  setToggle?: Dispatch<SetStateAction<number>>;
+  toggle: number;
+  setToggle: Dispatch<SetStateAction<number>>;
 };
 
 export const GenerationsMethod = () => {
@@ -29,7 +27,7 @@ export const LearnMethod = ({ toggle, setToggle }: Props) => {
       {Object.keys(learnMethod)?.map((l, i) => (
         <button
           className={toggle === i ? `button_active` : ``}
-          onClick={() => setToggle?.(i)}
+          onClick={() => setToggle(i)}
           key={learnMethod[l]}
         >
           <p>{learnMethod[l].replace(/-/g, ` `)}</p>
@@ -39,13 +37,13 @@ export const LearnMethod = ({ toggle, setToggle }: Props) => {
   );
 };
 
-export const RegionsMethod = ({ toggleState, toggleTable }: Props) => {
+export const RegionsMethod = ({ toggle, setToggle }: Props) => {
   return (
     <LocationNav>
       {Object.keys(regions)?.map((r, i) => (
         <button
-          className={toggleState === i ? `button_active` : ``}
-          onClick={() => toggleTable?.(i)}
+          className={toggle === i ? `button_active` : ``}
+          onClick={() => setToggle(i)}
           key={regions[r]}
         >
           <p>{regions[r]}</p>
