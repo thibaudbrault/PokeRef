@@ -46,6 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const themeToggler = () => {
     theme === `dark` ? setMode(`light`) : setMode(`dark`);
   };
+
   return (
     <>
       <Head>
