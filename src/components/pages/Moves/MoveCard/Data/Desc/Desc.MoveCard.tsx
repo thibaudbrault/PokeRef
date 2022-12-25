@@ -11,7 +11,7 @@ import {
 type Props = {
   move: Moves.Moves;
   version: string;
-  machines: Machines.Machines[];
+  machines?: Machines.Machines[];
 };
 
 function Desc({ move, version, machines }: Props) {

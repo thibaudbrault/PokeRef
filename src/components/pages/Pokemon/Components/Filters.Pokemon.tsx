@@ -6,7 +6,7 @@ import { formFilters, genFilters } from '@/utils/DataArrays';
 import { GenerationsMethod, TypesMethod } from '@/utils/ObjectsMap';
 
 type Props = {
-  pokedex: Pokemon.Pokemon[];
+  pokedex?: Pokemon.Pokemon[];
   setFilteredPokedex: Dispatch<SetStateAction<Pokemon.Pokemon[]>>;
   setOffset: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;
@@ -31,30 +31,32 @@ function Filters({
   setGeneration,
 }: Props) {
   const getFilterPokemon = () => {
-    setFilteredPokedex(
-      pokedex
-        .filter((pokedex) => {
-          if (type === `all`) {
-            return pokedex;
-          }
-          return pokedex.types.map((pt) => pt.type.name).includes(type);
-        })
-        .filter((pokedex) => {
-          if (form === `default` && generation === `all`) {
-            setOffset(0);
-            setLimit(905);
-            return pokedex;
-          } else if (form !== `default`) {
-            setOffset(formFilters[form].offset);
-            setLimit(formFilters[form].limit);
-            return pokedex.name.includes(form);
-          } else if (generation !== `all`) {
-            setOffset(genFilters?.[generation].offset);
-            setLimit(genFilters?.[generation].limit);
-            return pokedex;
-          }
-        }),
-    );
+    if (pokedex) {
+      setFilteredPokedex(
+        pokedex
+          .filter((pokedex) => {
+            if (type === `all`) {
+              return pokedex;
+            }
+            return pokedex.types.map((pt) => pt.type.name).includes(type);
+          })
+          .filter((pokedex) => {
+            if (form === `default` && generation === `all`) {
+              setOffset(0);
+              setLimit(905);
+              return pokedex;
+            } else if (form !== `default`) {
+              setOffset(formFilters[form].offset);
+              setLimit(formFilters[form].limit);
+              return pokedex.name.includes(form);
+            } else if (generation !== `all`) {
+              setOffset(genFilters?.[generation].offset);
+              setLimit(genFilters?.[generation].limit);
+              return pokedex;
+            }
+          }),
+      );
+    }
   };
 
   useEffect(() => {

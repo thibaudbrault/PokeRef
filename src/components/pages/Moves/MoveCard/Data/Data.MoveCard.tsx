@@ -6,14 +6,14 @@ import { MoveCardDataSection } from './Styled.Data.MoveCard';
 
 type Props = {
   move: Moves.Moves;
-  machine: Machines.Machines[];
+  machines?: Machines.Machines[];
   version: string;
 };
 
-function Data({ move, machine, version }: Props) {
+function Data({ move, machines, version }: Props) {
   return (
     <MoveCardDataSection>
-      <Desc move={move} machines={machine} version={version} />
+      <Desc move={move} machines={machines} version={version} />
       <Effect move={move} version={version} />
     </MoveCardDataSection>
   );

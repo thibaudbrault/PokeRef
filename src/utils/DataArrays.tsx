@@ -3,6 +3,7 @@ export const learnMethod: Record<string, string> = {
   2: `machine`,
   3: `egg`,
   4: `tutor`,
+  5: `evolving`,
 };
 
 export const regions: Record<string, string> = {
@@ -24,14 +25,14 @@ type Generations = {
 };
 
 export const generations: Generations = {
-  1: { name: `generation I`, value: 'gen1' },
-  2: { name: `generation II`, value: 'gen2' },
-  3: { name: `generation III`, value: 'gen3' },
-  4: { name: `generation IV`, value: 'gen4' },
-  5: { name: `generation V`, value: 'gen5' },
-  6: { name: `generation VI`, value: 'gen6' },
-  7: { name: `generation VII`, value: 'gen7' },
-  8: { name: `generation VIII`, value: 'gen8' },
+  1: { name: `generation I`, value: `gen1` },
+  2: { name: `generation II`, value: `gen2` },
+  3: { name: `generation III`, value: `gen3` },
+  4: { name: `generation IV`, value: `gen4` },
+  5: { name: `generation V`, value: `gen5` },
+  6: { name: `generation VI`, value: `gen6` },
+  7: { name: `generation VII`, value: `gen7` },
+  8: { name: `generation VIII`, value: `gen8` },
 };
 
 type ObjectFilters = {
