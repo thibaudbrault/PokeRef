@@ -39,11 +39,11 @@ export const MainBig = styled.main`
   }
 `;
 
-export const MainAuth = styled(MainBig)`
-  min-height: 82vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const MainDashboard = styled(MainBig)`
+  width: 90%;
+  margin: 5% auto;
+  border: 1px solid ${({ theme }) => theme.secondary};
+  border-radius: 5px;
 `;
 
 export const ModifiedMainBig = styled(MainBig)`
