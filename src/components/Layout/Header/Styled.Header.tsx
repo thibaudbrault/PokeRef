@@ -64,14 +64,14 @@ export const HeaderBtnFavorites = styled.div`
 
 export const HeaderBtnDash = styled.div`
   & a {
-      padding: 0.7rem 1.5rem;
-      background: transparent;
-      border: 1px solid ${({ theme }) => theme.secondary};
-      border-radius: 5px;
-      color: ${({ theme }) => theme.secondary};
-      font-size: 1.3rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.3s ease-in-out;
-    }
+    padding: 0.7rem 1.5rem;
+    background: transparent;
+    border: 1px solid ${({ theme }) => theme.secondary};
+    border-radius: 5px;
+    color: ${({ theme }) => theme.secondary};
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
 `;
