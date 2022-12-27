@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { device } from '../../../../common/styles/Sizing';
-import { PokemonInfoTable } from '../Info/Styled.Info.PokemonCard';
 
 export const PokemonStatsSection = styled.section`
   margin-bottom: 5rem;
