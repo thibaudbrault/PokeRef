@@ -1,24 +1,15 @@
 import React, { useState } from 'react';
 
-import { CardTitle, H3, Subtitle } from '@/components/common/styles/Headings';
+import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
-import {
-  MoveLearnSection,
-  MoveLink,
-  MoveList,
-  MoveText,
-  MoveTypes,
-} from '@/components/pages/Moves/MoveCard/Styled.MoveCard.jsx';
-import { Type } from '@/components/common/styles/Themes';
 import { useMachines, useMove, usePokedex } from '@/hooks/DataFetch';
 import Loader from '@/components/common/ui/Loader/Loader';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { Pokemon } from '@/types/types';
 import BackBtn from '@/components/common/ui/BackBtn';
+import List from '@/components/pages/Moves/MoveCard/List/List.MoveCard';
 
 const Nav = dynamic(
   () => import(`@/components/pages/Moves/MoveCard/Nav/Nav.MoveCard`),
@@ -51,10 +42,7 @@ function MoveCard() {
   const [version, setVersion] = useState(`ultra-sun-ultra-moon`);
 
   // Switch between the different tables for the method to learn the move
-  const [toggleState, setToggleState] = useState<number>(0);
-  const toggleTable = (index: number) => {
-    setToggleState(index);
-  };
+  const [toggle, setToggle] = useState(0);
 
   if (error instanceof Error) {
     return { error };
@@ -87,277 +75,16 @@ function MoveCard() {
 
         <Nav move={move} setVersion={setVersion} />
 
-        <Data move={move} machine={machines} version={version} />
+        <Data move={move} machines={machines} version={version} />
 
-        <LearnMethod toggleState={toggleState} toggleTable={toggleTable} />
+        <LearnMethod toggle={toggle} setToggle={setToggle} />
 
-        <MoveLearnSection visibility={toggleState === 0}>
-          <H3>Learned by leveling up</H3>
-          <MoveText>
-            Learned when the pokémon reach a certain level. Data from Pokémon{' '}
-            <span>{version.replace(/-/g, ` `)}</span>. These information may
-            vary in other games. Check the respective pokédex pages for details.
-          </MoveText>
-          <MoveList>
-            {pokedex?.map((p: Pokemon.Pokemon) =>
-              p.moves?.map(
-                (pm) =>
-                  pm.move.name === move.name &&
-                  pm.version_group_details?.map(
-                    (pmv) =>
-                      pmv.version_group.name === version &&
-                      pmv.move_learn_method.name === `level-up` &&
-                      pmv.level_learned_at > 1 && (
-                        <li key={p.name}>
-                          <Image
-                            src={p.sprites.front_default}
-                            alt={p.name}
-                            width={96}
-                            height={96}
-                          />
-                          <MoveLink
-                            href={{
-                              pathname: `/pokemon/[name]`,
-                              query: { name: p.name },
-                            }}
-                            key={p.name}
-                          >
-                            {p.name.replace(/-/g, ` `)}
-                          </MoveLink>
-                          <p>Level {pmv.level_learned_at}</p>
-                          <MoveTypes>
-                            {p.types?.map((pt) => (
-                              <Type id={pt.type.name} key={pt.type.name}>
-                                <Image
-                                  alt={pt.type.name}
-                                  width={15}
-                                  height={15}
-                                />
-                                <span>{pt.type.name}</span>
-                              </Type>
-                            ))}
-                          </MoveTypes>
-                        </li>
-                      ),
-                  ),
-              ),
-            )}
-          </MoveList>
-        </MoveLearnSection>
-
-        <MoveLearnSection visibility={toggleState === 1}>
-          <H3>Learned from a TM / HM</H3>
-          <MoveText>
-            Learned by using a TM or a HM. Data from Pokémon{' '}
-            <span>{version.replace(/-/g, ` `)}</span>. These information may
-            vary in other games. Check the respective pokédex pages for details.
-          </MoveText>
-          <MoveList>
-            {pokedex?.map((p: Pokemon.Pokemon) =>
-              p.moves?.map(
-                (pm) =>
-                  pm.move.name === move.name &&
-                  pm.version_group_details?.map(
-                    (pmv) =>
-                      pmv.version_group.name === version &&
-                      pmv.move_learn_method.name === `machine` &&
-                      pmv.level_learned_at === 0 && (
-                        <li key={p.name}>
-                          <Image
-                            src={p.sprites.front_default}
-                            alt={p.name}
-                            width={96}
-                            height={96}
-                          />
-                          <MoveLink
-                            href={{
-                              pathname: `/pokemon/[name]`,
-                              query: { name: p.name },
-                            }}
-                            key={p.name}
-                          >
-                            {p.name.replace(/-/g, ` `)}
-                          </MoveLink>
-                          <MoveTypes>
-                            {p.types?.map((pt) => (
-                              <Type id={pt.type.name} key={pt.type.name}>
-                                <Image
-                                  alt={pt.type.name}
-                                  width={15}
-                                  height={15}
-                                />
-                                <span>{pt.type.name}</span>
-                              </Type>
-                            ))}
-                          </MoveTypes>
-                        </li>
-                      ),
-                  ),
-              ),
-            )}
-          </MoveList>
-        </MoveLearnSection>
-
-        <MoveLearnSection visibility={toggleState === 2}>
-          <H3>Learned from the move relearner / by breeding</H3>
-          <MoveText>
-            Learned via the move relearner or through breeding. Data from
-            Pokémon <span>{version.replace(/-/g, ` `)}</span>. These information
-            may vary in other games. Check the respective pokédex pages for
-            details.
-          </MoveText>
-          <MoveList>
-            {pokedex?.map((p: Pokemon.Pokemon) =>
-              p.moves?.map(
-                (pm) =>
-                  pm.move.name === move.name &&
-                  pm.version_group_details?.map(
-                    (pmv) =>
-                      pmv.version_group.name === version &&
-                      (pmv.move_learn_method.name === `egg` ||
-                        (pmv.move_learn_method.name === `level-up` &&
-                          pmv.level_learned_at === 1)) && (
-                        <li key={p.name}>
-                          <Image
-                            src={p.sprites.front_default}
-                            alt={p.name}
-                            width={96}
-                            height={96}
-                          />
-                          <MoveLink
-                            href={{
-                              pathname: `/pokemon/[name]`,
-                              query: { name: p.name },
-                            }}
-                            key={p.name}
-                          >
-                            {p.name.replace(/-/g, ` `)}
-                          </MoveLink>
-                          <MoveTypes>
-                            {p.types?.map((pt) => (
-                              <Type id={pt.type.name} key={pt.type.name}>
-                                <Image
-                                  alt={pt.type.name}
-                                  width={15}
-                                  height={15}
-                                />
-                                <span>{pt.type.name}</span>
-                              </Type>
-                            ))}
-                          </MoveTypes>
-                        </li>
-                      ),
-                  ),
-              ),
-            )}
-          </MoveList>
-        </MoveLearnSection>
-
-        <MoveLearnSection visibility={toggleState === 3}>
-          <H3>Learned from the move tutor</H3>
-          <MoveText>
-            Learned by going to the move tutor. Data from Pokémon{' '}
-            <span>{version.replace(/-/g, ` `)}</span>. These information may
-            vary in other games. Check the respective pokédex pages for details.
-          </MoveText>
-          <MoveList>
-            {pokedex?.map((p: Pokemon.Pokemon) =>
-              p.moves?.map(
-                (pm) =>
-                  pm.move.name === move.name &&
-                  pm.version_group_details?.map(
-                    (pmv) =>
-                      pmv.version_group.name === version &&
-                      pmv.move_learn_method.name === `tutor` && (
-                        <li key={p.name}>
-                          <Image
-                            src={p.sprites.front_default}
-                            alt={p.name}
-                            width={96}
-                            height={96}
-                          />
-                          <MoveLink
-                            href={{
-                              pathname: `/pokemon/[name]`,
-                              query: { name: p.name },
-                            }}
-                            key={p.name}
-                          >
-                            {p.name.replace(/-/g, ` `)}
-                          </MoveLink>
-                          <MoveTypes>
-                            {p.types?.map((pt) => (
-                              <Type id={pt.type.name} key={pt.type.name}>
-                                <Image
-                                  alt={pt.type.name}
-                                  width={15}
-                                  height={15}
-                                />
-                                <span>{pt.type.name}</span>
-                              </Type>
-                            ))}
-                          </MoveTypes>
-                        </li>
-                      ),
-                  ),
-              ),
-            )}
-          </MoveList>
-        </MoveLearnSection>
-
-        <MoveLearnSection visibility={toggleState === 4}>
-          <H3>Learned when evolving</H3>
-          <MoveText>
-            Learned when the pokémon is evolving no matter its level. Data from
-            Pokémon <span>{version.replace(/-/g, ` `)}</span>. These information
-            may vary in other games. Check the respective pokédex pages for
-            details.
-          </MoveText>
-          <MoveList>
-            {pokedex?.map((p: Pokemon.Pokemon) =>
-              p.moves?.map(
-                (pm) =>
-                  pm.move.name === move.name &&
-                  pm.version_group_details?.map(
-                    (pmv) =>
-                      pmv.version_group.name === version &&
-                      pmv.move_learn_method.name === `level-up` &&
-                      pmv.level_learned_at === 0 && (
-                        <li key={p.name}>
-                          <Image
-                            src={p.sprites.front_default}
-                            alt={p.name}
-                            width={96}
-                            height={96}
-                          />
-                          <MoveLink
-                            href={{
-                              pathname: `/pokemon/[name]`,
-                              query: { name: p.name },
-                            }}
-                            key={p.name}
-                          >
-                            {p.name.replace(/-/g, ` `)}
-                          </MoveLink>
-                          <MoveTypes>
-                            {p.types?.map((pt) => (
-                              <Type id={pt.type.name} key={pt.type.name}>
-                                <Image
-                                  alt={pt.type.name}
-                                  width={15}
-                                  height={15}
-                                />
-                                <span>{pt.type.name}</span>
-                              </Type>
-                            ))}
-                          </MoveTypes>
-                        </li>
-                      ),
-                  ),
-              ),
-            )}
-          </MoveList>
-        </MoveLearnSection>
+        <List
+          toggle={toggle}
+          pokedex={pokedex}
+          moveName={move.name}
+          version={version}
+        />
 
         <Link href="/moves" passHref>
           <BackBtn name="Moves" />

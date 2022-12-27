@@ -5,6 +5,7 @@ import { H1 } from '@/components/common/styles/Headings';
 import {
   HeaderBtnContainer,
   HeaderBtnFavorites,
+  HeaderBtnDash,
   HeaderBtnTheme,
   HeaderContainer,
 } from './Styled.Header';
@@ -32,6 +33,9 @@ function Header({ themeToggler, theme }: Props) {
             <RiMoonClearLine data-testid="moon" />
           )}
         </HeaderBtnTheme>
+        <HeaderBtnDash>
+          <Link href="/dashboard">Dashboard</Link>
+        </HeaderBtnDash>
         <HeaderBtnFavorites>
           <Link href="/favorites">Your PC</Link>
         </HeaderBtnFavorites>

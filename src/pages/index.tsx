@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   PokedexElement,
   PokedexList,
@@ -10,7 +10,7 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import { Type } from '@/components/common/styles/Themes';
 import { usePokedex } from '@/hooks/DataFetch';
 import Loader from '@/components/common/ui/Loader/Loader';
-import { FaAngleDown } from '@meronex/icons/fa';
+import { FaAngleDown, FaAngleUp } from '@meronex/icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -36,6 +36,35 @@ function Pokedex() {
   const [type, setType] = useState<string>(`all`);
   // Generation of the pokemon (changed with a dropdown)
   const [generation, setGeneration] = useState<string>(`all`);
+
+  const [scrollDir, setScrollDir] = useState(`down`);
+  useEffect(() => {
+    const threshold = 0;
+    let lastScrollY = window.pageYOffset;
+    let ticking = false;
+
+    const updateScrollDir = () => {
+      const scrollY = window.pageYOffset;
+
+      if (Math.abs(scrollY - lastScrollY) < threshold) {
+        ticking = false;
+        return;
+      }
+      setScrollDir(scrollY > lastScrollY ? `down` : `up`);
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollDir);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener(`scroll`, onScroll);
+    return () => window.removeEventListener(`scroll`, onScroll);
+  }, [scrollDir]);
 
   const {
     isLoading,
@@ -123,9 +152,15 @@ function Pokedex() {
             ))}
           </ul>
         </PokedexList>
-        <ToBottom href="#footer" aria-label="To Bottom">
-          <FaAngleDown />
-        </ToBottom>
+        {scrollDir === `down` ? (
+          <ToBottom href="#footer" aria-label="To Bottom">
+            <FaAngleDown />
+          </ToBottom>
+        ) : (
+          <ToBottom href="#header" aria-label="To Top">
+            <FaAngleUp />
+          </ToBottom>
+        )}
       </MainBig>
     </>
   );

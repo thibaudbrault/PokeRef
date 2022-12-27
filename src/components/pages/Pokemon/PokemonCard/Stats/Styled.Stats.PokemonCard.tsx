@@ -61,7 +61,3 @@ export const PokemonTypesContainer = styled.div`
     margin-top: 1rem;
   }
 `;
-
-export const PokemonTypesTable = styled(PokemonInfoTable)`
-  display: ${(props) => (props.visibility ? `table` : `none`)};
-`;
