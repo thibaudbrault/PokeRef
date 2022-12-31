@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -22,7 +22,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const ErrorFallback = ({ error, resetErrorBoundary }) => {
+const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   <div role="alert">
     <p>Something went wrong:</p>
     <pre>{error.message}</pre>
