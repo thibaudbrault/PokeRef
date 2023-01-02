@@ -191,8 +191,6 @@ function PokemonCard() {
           species={species}
           location={location}
           game={game}
-          caught={caught}
-          setCaught={setCaught}
         />
 
         <EvolutionPokemon evolution={evolution} />

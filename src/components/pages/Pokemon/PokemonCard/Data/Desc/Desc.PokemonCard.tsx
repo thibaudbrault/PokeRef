@@ -15,17 +15,9 @@ type Props = {
   pokemon: Pokemon.Pokemon;
   species: Species.Species;
   game: string;
-  caught: boolean;
-  setCaught: Dispatch<SetStateAction<boolean>>;
 };
 
-function Desc({ pokemon, species, game, caught, setCaught }: Props) {
-  const handleClick = () => {
-    setCaught(true);
-    const pokemons = JSON.parse(localStorage.getItem(`pokemon`) || `[]`);
-    pokemons.push(pokemon);
-    localStorage.setItem(`pokemon`, JSON.stringify(pokemons));
-  };
+function Desc({ pokemon, species, game }: Props) {
 
   return (
     <>
@@ -63,8 +55,8 @@ function Desc({ pokemon, species, game, caught, setCaught }: Props) {
           ))}
         </PokemonDataTypes>
       </ul>
-      {!caught ? (
-        <PokemonDataCatch onClick={handleClick}>
+      {true ? (
+        <PokemonDataCatch>
           <Image src={`/pokeball.svg`} alt="" width={20} height={20} />
           Catch !
         </PokemonDataCatch>
