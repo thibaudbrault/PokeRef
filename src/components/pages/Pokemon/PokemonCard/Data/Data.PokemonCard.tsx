@@ -13,11 +13,9 @@ type Props = {
   species: Species.Species;
   location: Pokemon.PokemonLocation[];
   game: string;
-  caught: boolean;
-  setCaught: Dispatch<SetStateAction<boolean>>;
 };
 
-function Data({ pokemon, species, location, game, caught, setCaught }: Props) {
+function Data({ pokemon, species, location, game }: Props) {
   return (
     <PokemonDataSection>
       <div>
@@ -25,8 +23,6 @@ function Data({ pokemon, species, location, game, caught, setCaught }: Props) {
           species={species}
           pokemon={pokemon}
           game={game}
-          caught={caught}
-          setCaught={setCaught}
         />
         <Base
           species={species}
