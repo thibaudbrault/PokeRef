@@ -1,6 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '@/firebase-config';
+import { addDoc, collection } from 'firebase/firestore/lite';
 
 import {
   AuthBtn,
@@ -13,11 +19,6 @@ import {
 } from '@/components/pages/Auth/Styled.Auth';
 import { H2 } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/firebase';
-import { useRouter } from 'next/router';
 
 type FormInput = {
   username: string;
@@ -37,6 +38,7 @@ const schema = yup
 
 function Register() {
   const router = useRouter();
+  const usersCollectionRef = collection(db, `users`);
 
   const {
     register,
@@ -49,6 +51,10 @@ function Register() {
   const submitForm = async (data: FormInput) => {
     try {
       await createUserWithEmailAndPassword(auth, data.email, data.password);
+      await addDoc(usersCollectionRef, {
+        name: data.username,
+        email: data.email,
+      });
       router.push(`/`);
     } catch (error) {
       if (error instanceof Error) {
