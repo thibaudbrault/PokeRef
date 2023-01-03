@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Span } from '@/components/common/styles/Headings';
@@ -18,7 +18,6 @@ type Props = {
 };
 
 function Desc({ pokemon, species, game }: Props) {
-
   return (
     <>
       <ul>

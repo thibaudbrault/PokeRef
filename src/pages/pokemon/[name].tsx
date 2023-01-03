@@ -60,8 +60,6 @@ function PokemonCard() {
   const [name, setName] = useState(``);
   const router = useRouter();
 
-  const [caught, setCaught] = useState(false);
-
   useEffect(() => {
     if (router && router.query && typeof router.query.name === `string`) {
       setName(router.query.name);

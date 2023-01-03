@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '@/firebase-config';
-import { addDoc, collection } from 'firebase/firestore/lite';
+import { doc, setDoc } from 'firebase/firestore/lite';
 
 import {
   AuthBtn,
@@ -38,7 +38,6 @@ const schema = yup
 
 function Register() {
   const router = useRouter();
-  const usersCollectionRef = collection(db, `users`);
 
   const {
     register,
@@ -51,9 +50,11 @@ function Register() {
   const submitForm = async (data: FormInput) => {
     try {
       await createUserWithEmailAndPassword(auth, data.email, data.password);
-      await addDoc(usersCollectionRef, {
+      const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+      await setDoc(usersCollectionRef, {
         name: data.username,
         email: data.email,
+        favorites: [],
       });
       router.push(`/`);
     } catch (error) {

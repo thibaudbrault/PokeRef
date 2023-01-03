@@ -12,7 +12,8 @@ import {
 import { RiMoonClearLine } from '@meronex/icons/ri';
 import { RiSunLine } from '@meronex/icons/ri';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
-import { auth } from '@/firebase-config';
+import { auth, db } from '@/firebase-config';
+import { collection } from 'firebase/firestore/lite';
 
 type Props = {
   themeToggler: () => void;
@@ -21,6 +22,8 @@ type Props = {
 
 function Header({ themeToggler, theme }: Props) {
   const [user, setUser] = useState<User | null>();
+  // const [users, setUsers] = useState([]);
+  // const usersCollectionRef = collection(db, `users`);
 
   onAuthStateChanged(auth, (currentUser) => {
     return setUser(currentUser);
@@ -29,6 +32,20 @@ function Header({ themeToggler, theme }: Props) {
   const logout = async () => {
     await signOut(auth);
   };
+
+  // const fetchUsers = async () => {
+  //   await getDocs(usersCollectionRef)
+  //     .then((QuerySnapshot) => {
+  //       const newData = QuerySnapshot.docs
+  //         .map((doc) => ({ ...doc.data(), id: doc.id }));
+  //       setUsers(newData);
+  //       console.log(newData)
+  //     })
+  // }
+
+  // useEffect(() => {
+  //   fetchUsers()
+  // }, [])
 
   return (
     <HeaderContainer id="header">
