@@ -11,6 +11,7 @@ import Header from '@/components/layout/Header/Header';
 import Nav from '@/components/layout/Nav/Nav';
 import Footer from '@/components/layout/Footer/Footer';
 import { Reset } from '@/components/common/styles/Reset';
+import { Toaster } from 'react-hot-toast';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -55,6 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
+            <Toaster />
             <Header themeToggler={themeToggler} theme={theme} />
             <Nav />
             <Reset />

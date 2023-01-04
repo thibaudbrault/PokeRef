@@ -61,6 +61,9 @@ function Filters({
 
   useEffect(() => {
     getFilterPokemon();
+
+    //NOTE: EsLint wants to add the function above in the dependency array
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokedex, form, generation, type]);
 
   return (

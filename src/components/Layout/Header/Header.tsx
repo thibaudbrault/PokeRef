@@ -12,8 +12,7 @@ import {
 import { RiMoonClearLine } from '@meronex/icons/ri';
 import { RiSunLine } from '@meronex/icons/ri';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
-import { auth, db } from '@/firebase-config';
-import { collection } from 'firebase/firestore/lite';
+import { auth } from '@/firebase-config';
 
 type Props = {
   themeToggler: () => void;

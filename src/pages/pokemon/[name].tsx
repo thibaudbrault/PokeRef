@@ -15,8 +15,8 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { speciesFilters } from '@/utils/DataArrays';
-import { Species } from '@/types/types';
+// import { speciesFilters } from '@/utils/DataArrays';
+// import { Species } from '@/types/types';
 import BackBtn from '@/components/common/ui/BackBtn';
 
 const Data = dynamic(
@@ -95,14 +95,14 @@ function PokemonCard() {
   const [game, setGame] = useState(``);
   const [version, setVersion] = useState(``);
 
-  const speciesFiltersFn = (species: Species.Species) => {
-    speciesFilters.forEach((s) => {
-      species.id > s.min &&
-        species.id < s.max &&
-        (setGame(s.game), setVersion(s.version));
-      return species;
-    });
-  };
+  // const speciesFiltersFn = (species: Species.Species) => {
+  //   speciesFilters.forEach((s) => {
+  //     species.id > s.min &&
+  //       species.id < s.max &&
+  //       (setGame(s.game), setVersion(s.version));
+  //     return species;
+  //   });
+  // };
 
   useEffect(() => {
     if (species?.id < 152) {

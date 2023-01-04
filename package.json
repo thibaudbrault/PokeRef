@@ -39,6 +39,7 @@
     "react-dom": "18.2.0",
     "react-error-boundary": "3.1.4",
     "react-hook-form": "7.41.3",
+    "react-hot-toast": "2.4.0",
     "react-query": "^3.39.2",
     "styled-components": "^5.3.6",
     "yup": "0.32.11"

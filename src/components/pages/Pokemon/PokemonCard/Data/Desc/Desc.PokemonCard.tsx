@@ -10,6 +10,15 @@ import {
   PokemonDataTypes,
 } from '../Styled.Data.PokemonCard';
 import { Pokemon, Species } from '@/types/types';
+import { auth, db } from '@/firebase-config';
+import toast from 'react-hot-toast';
+import {
+  arrayUnion,
+  collection,
+  doc,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore/lite';
 
 type Props = {
   pokemon: Pokemon.Pokemon;
@@ -18,6 +27,36 @@ type Props = {
 };
 
 function Desc({ pokemon, species, game }: Props) {
+  const usersCollectionRef = collection(db, `users`);
+  const user = auth.currentUser;
+
+  const catchPokemon = async () => {
+    if (user) {
+      toast.success(`You caught the pokémon`, {
+        style: {
+          fontSize: `1.7rem`,
+        },
+      });
+      const { uid } = user;
+      await setDoc(
+        doc(usersCollectionRef, uid),
+        {
+          favorites: pokemon.name,
+        },
+        { merge: true },
+      );
+      await updateDoc(doc(usersCollectionRef, uid), {
+        favorites: arrayUnion(pokemon.name),
+      });
+    } else {
+      toast.error(`You need to log in`, {
+        style: {
+          fontSize: `1.7rem`,
+        },
+      });
+    }
+  };
+
   return (
     <>
       <ul>
@@ -47,7 +86,7 @@ function Desc({ pokemon, species, game }: Props) {
                   query: { name: pt.type.name },
                 }}
               >
-                <Image alt={pt.type.name} width={25} height={25} />
+                <Image alt={pt.type.name} width={25} height={25} src={``} />
                 <span>{pt.type.name}</span>
               </Link>
             </Type>
@@ -55,7 +94,7 @@ function Desc({ pokemon, species, game }: Props) {
         </PokemonDataTypes>
       </ul>
       {true ? (
-        <PokemonDataCatch>
+        <PokemonDataCatch onClick={catchPokemon}>
           <Image src={`/pokeball.svg`} alt="" width={20} height={20} />
           Catch !
         </PokemonDataCatch>

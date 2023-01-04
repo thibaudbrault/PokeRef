@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { H3 } from '@/components/common/styles/Headings';
 import { MethodNav } from '@/components/common/styles/Navbars';
 import { PokemonTypesContainer } from '../Styled.Stats.PokemonCard';
-import { Pokemon } from '@/types/types';
+// import { Pokemon } from '@/types/types';
 import Table from './Table.Typing.PokemonCard';
 
-type Props = {
-  pokemon: Pokemon.Pokemon;
-  types: Pokemon.Types;
-  toggleType: number;
-  toggleTypeTable: (arg0: number) => void;
-};
+// type Props = {
+//   pokemon: Pokemon.Pokemon;
+//   types: Pokemon.Types;
+//   toggleType: number;
+//   toggleTypeTable: (arg0: number) => void;
+// };
 
-function Typing({ pokemon, types, toggleType, toggleTypeTable }: Props) {
+function Typing() {
   const [toggle, setToggle] = useState(1);
   const pageShown = () => {
     if (toggle === 1) {
