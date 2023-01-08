@@ -3,12 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Span } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
-import {
-  PokemonDataCatch,
-  PokemonDataCaught,
-  PokemonDataDesc,
-  PokemonDataTypes,
-} from '../Styled.Data.PokemonCard';
+import { PokemonDataDesc, PokemonDataTypes } from '../Styled.Data.PokemonCard';
 import { Pokemon, Species } from '@/types/types';
 import { auth, db } from '@/firebase-config';
 import toast from 'react-hot-toast';
@@ -93,17 +88,6 @@ function Desc({ pokemon, species, game }: Props) {
           ))}
         </PokemonDataTypes>
       </ul>
-      {true ? (
-        <PokemonDataCatch onClick={catchPokemon}>
-          <Image src={`/pokeball.svg`} alt="" width={20} height={20} />
-          Catch !
-        </PokemonDataCatch>
-      ) : (
-        <PokemonDataCaught>
-          <Image src={`/pokeball.svg`} alt="" width={20} height={20} />
-          Caught !
-        </PokemonDataCaught>
-      )}
     </>
   );
 }

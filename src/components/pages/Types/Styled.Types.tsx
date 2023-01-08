@@ -20,7 +20,7 @@ export const TypesList = styled.ul`
 export const ModifiedType = styled(Type)`
   width: 20rem;
   margin: 3rem;
-  border-radius: 10px;
+  border-radius: 5px;
 
   & a {
     display: flex;

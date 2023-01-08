@@ -12,6 +12,7 @@ import Nav from '@/components/layout/Nav/Nav';
 import Footer from '@/components/layout/Footer/Footer';
 import { Reset } from '@/components/common/styles/Reset';
 import { Toaster } from 'react-hot-toast';
+import NextNProgress from 'nextjs-progressbar';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,6 +58,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
             <Toaster />
+            <NextNProgress />
             <Header themeToggler={themeToggler} theme={theme} />
             <Nav />
             <Reset />

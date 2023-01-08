@@ -44,3 +44,6 @@ next-env.d.ts
 
 # firebase
 firebase-config.js
+
+#turbo
+.turbo

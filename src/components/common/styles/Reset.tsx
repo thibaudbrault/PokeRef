@@ -77,6 +77,32 @@ export const Reset = createGlobalStyle`
         font-family: 'Quicksand', sans-serif;
         font-weight: 400;
         transition: all 0.3s ease-in-out;
+        
+        & #nprogress {
+            & .bar {
+                background: hsla(29, 92%, 70%, 1);
+                background: linear-gradient(
+                    0deg,
+                    hsla(29, 92%, 70%, 1) 0%,
+                    hsla(0, 87%, 73%, 1) 100%
+                );
+                background: -moz-linear-gradient(
+                    0deg,
+                    hsla(29, 92%, 70%, 1) 0%,
+                    hsla(0, 87%, 73%, 1) 100%
+                );
+                background: -webkit-linear-gradient(
+                    0deg,
+                    hsla(29, 92%, 70%, 1) 0%,
+                    hsla(0, 87%, 73%, 1) 100%
+                );
+            }
+
+            & .spinner-icon {
+                border-top-color: ${({ theme }) => theme.secondary};
+                border-left-color: ${({ theme }) => theme.secondary};
+            }
+        }
     }
 
     @media(max-width: 890px) {

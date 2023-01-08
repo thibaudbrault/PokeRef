@@ -16,6 +16,8 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Pokemon } from '@/types/types';
 import Head from 'next/head';
+import { useStateWithCallback } from '@/hooks/useStateWithCallback';
+import { Options, OptionsOffsetLimit } from '@/utils/DataArrays';
 
 const Filters = dynamic(
   () => import(`../components/pages/Pokemon/Components/Filters.Pokemon`),
@@ -31,11 +33,12 @@ function Pokedex() {
   //Modify the max number of pokemon displayed
   const [limit, setLimit] = useState<number>(905);
   // Form of the pokemon (changed with a dropdown)
-  const [form, setForm] = useState<string>(`default`);
+  const [form, setForm] = useStateWithCallback<OptionsOffsetLimit | null>(null);
   // Type of the pokemon (changed with a dropdown)
-  const [type, setType] = useState<string>(`all`);
+  const [type, setType] = useStateWithCallback<Options[]>([]);
   // Generation of the pokemon (changed with a dropdown)
-  const [generation, setGeneration] = useState<string>(`all`);
+  const [generation, setGeneration] =
+    useStateWithCallback<OptionsOffsetLimit | null>(null);
 
   const [scrollDir, setScrollDir] = useState(`down`);
   useEffect(() => {
@@ -142,7 +145,7 @@ function Pokedex() {
                           query: { name: pt.type.name },
                         }}
                       >
-                        <Image alt={pt.type.name} />
+                        <Image alt={pt.type.name} src={``} />
                         <span>{pt.type.name}</span>
                       </Link>
                     </Type>

@@ -18,28 +18,6 @@ export const PokemonDataSection = styled(Section)`
   }
 `;
 
-export const PokemonDataCatch = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 2rem;
-  font-weight: 700;
-  padding: 0.5rem 1rem;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  background: ${({ theme }) => theme.secondary};
-  color: ${({ theme }) => theme.main};
-  cursor: pointer;
-`;
-
-export const PokemonDataCaught = styled(PokemonDataCatch)`
-  opacity: 0.7;
-`;
-
 export const PokemonDataSprite = styled.div`
   display: flex;
   align-items: center;
@@ -146,7 +124,6 @@ export const PokemonDataLeg = styled(PokemonDataPill)`
 
   &:hover {
     background: none;
-    color: #161616;
   }
 `;
 

@@ -9,6 +9,8 @@ export const AutocompleteInput = styled(Input)`
 
   & input {
     width: 100%;
+    height: 100%;
+    padding: 0 1rem;
   }
 
   @media ${device.lg} {

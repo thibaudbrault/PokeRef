@@ -1,21 +1,27 @@
-import { Pokemon } from '@/types/types';
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
+import Select from 'react-select';
+import { Pokemon } from '@/types/types';
 import Autocomplete from '@/components/autocomplete/Autocomplete';
 import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
-import { formFilters, genFilters } from '@/utils/DataArrays';
-import { GenerationsMethod, TypesMethod } from '@/utils/ObjectsMap';
+import {
+  Options,
+  generationsOptions,
+  typeOptions,
+  OptionsOffsetLimit,
+  formOptions,
+} from '@/utils/DataArrays';
 
 type Props = {
   pokedex?: Pokemon.Pokemon[];
   setFilteredPokedex: Dispatch<SetStateAction<Pokemon.Pokemon[]>>;
   setOffset: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;
-  type: string;
-  setType: Dispatch<SetStateAction<string>>;
-  form: string;
-  setForm: Dispatch<SetStateAction<string>>;
-  generation: string;
-  setGeneration: Dispatch<SetStateAction<string>>;
+  form: OptionsOffsetLimit | null;
+  setForm: Dispatch<SetStateAction<OptionsOffsetLimit | null>>;
+  generation: OptionsOffsetLimit | null;
+  setGeneration: Dispatch<SetStateAction<OptionsOffsetLimit | null>>;
+  type: Options[] | null;
+  setType: Dispatch<SetStateAction<Options[]>>;
 };
 
 function Filters({
@@ -35,28 +41,59 @@ function Filters({
       setFilteredPokedex(
         pokedex
           .filter((pokedex) => {
-            if (type === `all`) {
+            if (!type?.length) {
               return pokedex;
+            } else if (type.length === 1) {
+              return pokedex.types
+                .map((pt) => pt.type.name)
+                .includes(type[0].value);
+            } else if (type.length === 2 && pokedex.types.length === 2) {
+              return (
+                pokedex.types[0].type.name.includes(
+                  type[0].value || type?.[1].value,
+                ) ||
+                pokedex?.types?.[1].type.name.includes(
+                  type[0].value || type?.[1].value,
+                )
+              );
             }
-            return pokedex.types.map((pt) => pt.type.name).includes(type);
           })
           .filter((pokedex) => {
-            if (form === `default` && generation === `all`) {
+            if (!form && !generation) {
               setOffset(0);
               setLimit(905);
               return pokedex;
-            } else if (form !== `default`) {
-              setOffset(formFilters[form].offset);
-              setLimit(formFilters[form].limit);
-              return pokedex.name.includes(form);
-            } else if (generation !== `all`) {
-              setOffset(genFilters?.[generation].offset);
-              setLimit(genFilters?.[generation].limit);
+            } else if (form) {
+              setOffset(form.offset);
+              setLimit(form.limit);
+              return pokedex.name.includes(form.value);
+            } else if (generation) {
+              setOffset(generation.offset);
+              setLimit(generation.limit);
               return pokedex;
             }
           }),
       );
     }
+  };
+
+  console.log(type?.[0] && type?.[0].value);
+  console.log(type?.[1] && type?.[1].value);
+
+  const handleFormSelect = (option: OptionsOffsetLimit) => {
+    setForm(option);
+    setGeneration(null);
+    setType([]);
+  };
+
+  const handleGenSelect = (option: OptionsOffsetLimit) => {
+    setGeneration(option);
+    setForm(null);
+    setType([]);
+  };
+
+  const handleTypeSelect = (option: Options[]) => {
+    setType(option);
   };
 
   useEffect(() => {
@@ -72,55 +109,56 @@ function Filters({
         <Autocomplete />
         <PokedexDropdown>
           <label htmlFor="form">Form</label>
-          <select
+          <Select
             name="form"
             id="form"
             value={form}
-            onChange={(e) => {
-              setForm(e.target.value);
-              setGeneration(`all`);
-              setType(`all`);
+            className="selectOptions"
+            classNamePrefix="select"
+            options={formOptions}
+            getOptionValue={(option) => option.value}
+            placeholder="Default"
+            onChange={(option) => {
+              handleFormSelect(option);
             }}
-          >
-            <option value="default">Default</option>
-            <option value="alola">Regional - Alola</option>
-            <option value="galar">Regional - Galar</option>
-            <option value="hisui">Regional - Hisui</option>
-            <option value="mega">Mega</option>
-            <option value="gmax">Gmax</option>
-          </select>
+          />
         </PokedexDropdown>
 
-        <PokedexDropdown className={form === `default` ? `` : `hidden`}>
+        <PokedexDropdown>
           <label htmlFor="generation">Generation</label>
-          <select
+          <Select
             name="generation"
             id="generation"
             value={generation}
-            onChange={(e) => {
-              setGeneration(e.target.value);
-              setForm(`default`);
-              setType(`all`);
+            className="selectOptions"
+            classNamePrefix="select"
+            options={generationsOptions}
+            getOptionValue={(option) => option.value}
+            placeholder="All"
+            onChange={(option) => {
+              handleGenSelect(option);
             }}
-          >
-            <option value="all">All</option>
-            <GenerationsMethod />
-          </select>
+          />
         </PokedexDropdown>
 
         <PokedexDropdown>
           <label htmlFor="type">Type</label>
-          <select
+          <Select
+            isMulti
+            isClearable
+            isSearchable={false}
             name="type"
             id="type"
-            value={type}
-            onChange={(e) => {
-              setType(e.target.value);
+            className="selectOptions"
+            classNamePrefix="select"
+            options={typeOptions}
+            getOptionValue={(option) => option.value}
+            placeholder="All"
+            isOptionDisabled={() => type?.length >= 2}
+            onChange={(option) => {
+              handleTypeSelect(option);
             }}
-          >
-            <option value="all">All</option>
-            <TypesMethod />
-          </select>
+          />
         </PokedexDropdown>
       </PokedexSearch>
       <hr />

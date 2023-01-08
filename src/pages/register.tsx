@@ -19,6 +19,7 @@ import {
 } from '@/components/pages/Auth/Styled.Auth';
 import { H2 } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
+import { toast } from 'react-hot-toast';
 
 type FormInput = {
   username: string;
@@ -54,12 +55,20 @@ function Register() {
       await setDoc(usersCollectionRef, {
         name: data.username,
         email: data.email,
-        favorites: [],
+      });
+      toast.success(`Congrats 🎉! Your account is now created`, {
+        style: {
+          fontSize: `1.7rem`,
+        },
       });
       router.push(`/`);
     } catch (error) {
       if (error instanceof Error) {
-        console.log(error.message);
+        toast.error(error.message, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        });
       }
     }
   };

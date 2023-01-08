@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 import { H1 } from '@/components/common/styles/Headings';
@@ -21,30 +21,17 @@ type Props = {
 
 function Header({ themeToggler, theme }: Props) {
   const [user, setUser] = useState<User | null>();
-  // const [users, setUsers] = useState([]);
   // const usersCollectionRef = collection(db, `users`);
-
-  onAuthStateChanged(auth, (currentUser) => {
-    return setUser(currentUser);
-  });
 
   const logout = async () => {
     await signOut(auth);
   };
 
-  // const fetchUsers = async () => {
-  //   await getDocs(usersCollectionRef)
-  //     .then((QuerySnapshot) => {
-  //       const newData = QuerySnapshot.docs
-  //         .map((doc) => ({ ...doc.data(), id: doc.id }));
-  //       setUsers(newData);
-  //       console.log(newData)
-  //     })
-  // }
-
-  // useEffect(() => {
-  //   fetchUsers()
-  // }, [])
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      return setUser(currentUser);
+    });
+  }, []);
 
   return (
     <HeaderContainer id="header">
@@ -64,7 +51,7 @@ function Header({ themeToggler, theme }: Props) {
         {user ? (
           <HeaderBtnConnected>
             <button onClick={logout}>Sign Out</button>
-            <Link href="/">Profile</Link>
+            <Link href="/profile">Profile</Link>
           </HeaderBtnConnected>
         ) : (
           <HeaderBtnConnect>

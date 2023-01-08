@@ -18,7 +18,7 @@ export const MoveList = styled.ul`
     margin: 3rem;
     padding: 2rem 3rem;
     background: rgba(255, 255, 255, 0.4);
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 1.5rem;
     text-align: center;
     border: 1px solid transparent;

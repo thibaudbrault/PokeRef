@@ -10,7 +10,7 @@ export const Search = styled.div`
 
 export const Input = styled.div`
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   flex-direction: column;
 

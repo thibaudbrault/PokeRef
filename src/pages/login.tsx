@@ -22,6 +22,7 @@ import { GrGithub } from '@meronex/icons/gr';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
 import { useRouter } from 'next/router';
+import { toast } from 'react-hot-toast';
 
 type FormInput = {
   email: string;
@@ -49,10 +50,15 @@ function Login() {
   const submitForm = async (data: FormInput) => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
+      toast.success(`Welcome back`, {
+        style: {
+          fontSize: `1.7rem`,
+        },
+      });
       router.push(`/`);
     } catch (error) {
       if (error instanceof Error) {
-        console.log(error.message);
+        toast.error(error.message);
       }
     }
   };
