@@ -45,7 +45,7 @@ function TypesPage() {
                   href={{ pathname: `/type/[name]`, query: { name: t?.name } }}
                   key={t.name}
                 >
-                  <Image alt={t.name} />
+                  <Image alt={t.name} src={``} />
                   <h2>{t.name}</h2>
                 </Link>
               </ModifiedType>

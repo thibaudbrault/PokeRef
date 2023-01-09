@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
-import Select from 'react-select';
+import Select, { MultiValue, SingleValue } from 'react-select';
 import { Pokemon } from '@/types/types';
 import Autocomplete from '@/components/autocomplete/Autocomplete';
 import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
@@ -48,13 +48,8 @@ function Filters({
                 .map((pt) => pt.type.name)
                 .includes(type[0].value);
             } else if (type.length === 2 && pokedex.types.length === 2) {
-              return (
-                pokedex.types[0].type.name.includes(
-                  type[0].value || type?.[1].value,
-                ) ||
-                pokedex?.types?.[1].type.name.includes(
-                  type[0].value || type?.[1].value,
-                )
+              return pokedex.types.every((pt) =>
+                type.find((t) => t.value.includes(pt.type.name)),
               );
             }
           })
@@ -77,23 +72,22 @@ function Filters({
     }
   };
 
-  console.log(type?.[0] && type?.[0].value);
-  console.log(type?.[1] && type?.[1].value);
-
-  const handleFormSelect = (option: OptionsOffsetLimit) => {
+  const handleFormSelect = (option: SingleValue<OptionsOffsetLimit>) => {
     setForm(option);
     setGeneration(null);
     setType([]);
   };
 
-  const handleGenSelect = (option: OptionsOffsetLimit) => {
+  const handleGenSelect = (option: SingleValue<OptionsOffsetLimit>) => {
     setGeneration(option);
     setForm(null);
     setType([]);
   };
 
-  const handleTypeSelect = (option: Options[]) => {
-    setType(option);
+  const handleTypeSelect = (option: MultiValue<Options>) => {
+    if (option) {
+      setType(option);
+    }
   };
 
   useEffect(() => {
@@ -117,7 +111,7 @@ function Filters({
             classNamePrefix="select"
             options={formOptions}
             getOptionValue={(option) => option.value}
-            placeholder="Default"
+            placeholder="Select"
             onChange={(option) => {
               handleFormSelect(option);
             }}
@@ -134,7 +128,7 @@ function Filters({
             classNamePrefix="select"
             options={generationsOptions}
             getOptionValue={(option) => option.value}
-            placeholder="All"
+            placeholder="Select"
             onChange={(option) => {
               handleGenSelect(option);
             }}
@@ -153,7 +147,7 @@ function Filters({
             classNamePrefix="select"
             options={typeOptions}
             getOptionValue={(option) => option.value}
-            placeholder="All"
+            placeholder="Select"
             isOptionDisabled={() => type?.length >= 2}
             onChange={(option) => {
               handleTypeSelect(option);
