@@ -88,11 +88,11 @@ function Base({ pokemon, species, game, location }: Props) {
         </tr>
         <tr>
           <th>Shape</th>
-          <td>{pokemon.id < 10000 ? <p>{species.shape.name}</p> : `⠀`}</td>
+          <td>{pokemon.id < 10000 ? <p>{species?.shape.name}</p> : `⠀`}</td>
         </tr>
         <tr>
           <th>Color</th>
-          <td>{pokemon.id < 10000 ? <p>{species.color.name}</p> : `⠀`}</td>
+          <td>{pokemon.id < 10000 ? <p>{species?.color.name}</p> : `⠀`}</td>
         </tr>
       </tbody>
     </PokemonDataTable>

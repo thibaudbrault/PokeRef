@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 import { H1 } from '@/components/common/styles/Headings';
 import {
+  HeaderBtnConnect,
+  HeaderBtnConnected,
   HeaderBtnContainer,
-  HeaderBtnFavorites,
-  HeaderBtnDash,
   HeaderBtnTheme,
   HeaderContainer,
-} from './Styled.Header';
+} from '@/components/layout/Header/Styled.Header';
 import { RiMoonClearLine } from '@meronex/icons/ri';
 import { RiSunLine } from '@meronex/icons/ri';
+import { onAuthStateChanged, signOut, User } from 'firebase/auth';
+import { auth } from '@/firebase-config';
 
 type Props = {
   themeToggler: () => void;
@@ -18,6 +20,19 @@ type Props = {
 };
 
 function Header({ themeToggler, theme }: Props) {
+  const [user, setUser] = useState<User | null>();
+  // const usersCollectionRef = collection(db, `users`);
+
+  const logout = async () => {
+    await signOut(auth);
+  };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      return setUser(currentUser);
+    });
+  }, []);
+
   return (
     <HeaderContainer id="header">
       <H1>PokéRef</H1>
@@ -33,12 +48,17 @@ function Header({ themeToggler, theme }: Props) {
             <RiMoonClearLine data-testid="moon" />
           )}
         </HeaderBtnTheme>
-        <HeaderBtnDash>
-          <Link href="/dashboard">Dashboard</Link>
-        </HeaderBtnDash>
-        <HeaderBtnFavorites>
-          <Link href="/favorites">Your PC</Link>
-        </HeaderBtnFavorites>
+        {user ? (
+          <HeaderBtnConnected>
+            <button onClick={logout}>Sign Out</button>
+            <Link href="/profile">Profile</Link>
+          </HeaderBtnConnected>
+        ) : (
+          <HeaderBtnConnect>
+            <Link href="/login">Login</Link>
+            <Link href="/register">Register</Link>
+          </HeaderBtnConnect>
+        )}
       </HeaderBtnContainer>
     </HeaderContainer>
   );

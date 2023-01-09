@@ -77,7 +77,7 @@ export const TypePokemonList = styled.ul`
     @include flex;
     flex-direction: column;
     background: rgba(255, 255, 255, 0.4);
-    border-radius: 10px;
+    border-radius: 5px;
     text-align: center;
     border: 1px solid transparent;
     transition: 0.3s ease-in-out;

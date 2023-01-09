@@ -11,8 +11,8 @@ type Props = {
 
 function Breeding({ pokemon, species, evolution }: Props) {
   // Returns the gender rate for male and female in percent
-  const female = (species.gender_rate / 8) * 100;
-  const male = 100 - (species.gender_rate / 8) * 100;
+  const female = (species?.gender_rate / 8) * 100;
+  const male = 100 - (species?.gender_rate / 8) * 100;
 
   return (
     <div>
@@ -23,7 +23,7 @@ function Breeding({ pokemon, species, evolution }: Props) {
             <th>Gender</th>
             <td>
               {pokemon.id < 10000 ? (
-                species.gender_rate !== -1 ? (
+                species?.gender_rate !== -1 ? (
                   <p>
                     {male}% male
                     <br />
@@ -41,7 +41,7 @@ function Breeding({ pokemon, species, evolution }: Props) {
             <th>Egg groups</th>
             <td>
               {pokemon.id < 10000
-                ? species.egg_groups?.map((seg) => (
+                ? species?.egg_groups?.map((seg) => (
                     <p key={seg.name}>{seg.name}</p>
                   ))
                 : `⠀`}
@@ -67,7 +67,7 @@ function Breeding({ pokemon, species, evolution }: Props) {
             <th>Habitat</th>
             <td>
               {pokemon.id < 10000 ? (
-                species.habitat !== null ? (
+                species?.habitat !== null ? (
                   <p>{species.habitat.name}</p>
                 ) : (
                   `Undiscovered`

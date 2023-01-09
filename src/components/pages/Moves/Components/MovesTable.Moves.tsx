@@ -84,7 +84,12 @@ function MovesTable({ moves }: Props) {
                   </TName>
                   <TCategory id={m.damage_class.name}>
                     <div>
-                      <Image alt={m.damage_class.name} width={20} height={20} />
+                      <Image
+                        alt={m.damage_class.name}
+                        width={20}
+                        height={20}
+                        src={``}
+                      />
                       <span>{m.damage_class.name}</span>
                     </div>
                   </TCategory>
@@ -96,7 +101,12 @@ function MovesTable({ moves }: Props) {
                           query: { name: m.type.name },
                         }}
                       >
-                        <Image alt={m.type.name} width={15} height={15} />
+                        <Image
+                          alt={m.type.name}
+                          width={15}
+                          height={15}
+                          src={``}
+                        />
                         <span>{m.type.name}</span>
                       </Link>
                     </Type>

@@ -1,9 +1,10 @@
-import Image from 'next/image';
+import ImageWithFallback from '@/utils/ImageWithFallback';
 import styled from 'styled-components';
 import { Search } from '../../common/styles/Inputs';
 import { device } from '../../common/styles/Sizing';
 
 export const PokedexSearch = styled(Search)`
+  align-items: stretch;
   @media ${device.sm} {
     padding: 0 5rem;
   }
@@ -11,7 +12,7 @@ export const PokedexSearch = styled(Search)`
 
 export const PokedexDropdown = styled.div`
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   flex-direction: column;
   margin: 0 0.5rem;
@@ -22,29 +23,96 @@ export const PokedexDropdown = styled.div`
     justify-self: flex-start;
   }
 
-  & select {
-    min-width: 15rem;
-    padding: 0.5rem;
-    color: ${({ theme }) => theme.secondary};
-    background: transparent;
-    border: 1px solid ${({ theme }) => theme.secondary};
-    border-radius: 5px;
-    text-transform: capitalize;
-    transition: 0.3s ease-in-out;
+  & .selectOptions {
+    & .select__control {
+      min-width: 15rem;
+      padding: 0 0.5rem;
+      color: ${({ theme }) => theme.secondary};
+      background: transparent;
+      border: 1px solid ${({ theme }) => theme.secondary};
+      border-radius: 5px;
+      text-transform: capitalize;
+      font-size: 1.3rem;
+      transition: 0.3s ease-in-out;
 
-    &:focus {
-      border: 1px solid ${({ theme }) => theme.red};
+      &--is-focused {
+        outline: none;
+        border: 1px solid ${({ theme }) => theme.red};
+        box-shadow: none;
+      }
+
+      & .select__input-container {
+        color: ${({ theme }) => theme.secondary} !important;
+
+        &::first-letter {
+          text-transform: uppercase;
+        }
+      }
+
+      & .select__placeholder {
+        color: ${({ theme }) => theme.secondary};
+      }
+
+      & .select__indicator-separator {
+        background-color: ${({ theme }) => theme.secondary};
+      }
+
+      & .select__dropdown-indicator {
+        color: ${({ theme }) => theme.secondary};
+      }
     }
 
-    & option {
+    & .select__menu {
       color: ${({ theme }) => theme.secondary};
       background: ${({ theme }) => theme.main};
       text-transform: capitalize;
-    }
-  }
+      font-size: 1.3rem;
 
-  .hidden {
-    display: none !important;
+      & .select__option {
+        cursor: pointer;
+        background-color: transparent;
+        &--is-focused {
+          background-color: transparent;
+          color: ${({ theme }) => theme.red};
+        }
+      }
+    }
+
+    & .select__multi-value {
+      background-color: ${({ theme }) => theme.secondary};
+      color: ${({ theme }) => theme.main};
+
+      &__remove {
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+          background-color: transparent;
+          color: ${({ theme }) => theme.red};
+        }
+      }
+
+      & .select__input {
+        color: white !important;
+      }
+    }
+
+    & .select__single-value {
+      padding: 3px;
+      border-radius: 2px;
+      background-color: ${({ theme }) => theme.secondary};
+      color: ${({ theme }) => theme.main};
+    }
+
+    & .select__clear-indicator {
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        background-color: transparent;
+        color: ${({ theme }) => theme.red};
+      }
+    }
   }
 
   &:last-of-type {
@@ -156,7 +224,7 @@ export const PokedexElement = styled.li`
   }
 `;
 
-export const SpriteNormal = styled(Image)`
+export const SpriteNormal = styled(ImageWithFallback)`
   width: 96px;
   height: 96px;
   position: relative;
@@ -170,7 +238,7 @@ export const SpriteNormal = styled(Image)`
   }
 `;
 
-export const SpriteShiny = styled(Image)`
+export const SpriteShiny = styled(ImageWithFallback)`
   width: 96px;
   height: 96px;
   position: absolute;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -11,6 +11,8 @@ import Header from '@/components/layout/Header/Header';
 import Nav from '@/components/layout/Nav/Nav';
 import Footer from '@/components/layout/Footer/Footer';
 import { Reset } from '@/components/common/styles/Reset';
+import { Toaster } from 'react-hot-toast';
+import NextNProgress from 'nextjs-progressbar';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +24,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const ErrorFallback = ({ error, resetErrorBoundary }) => {
+const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   <div role="alert">
     <p>Something went wrong:</p>
     <pre>{error.message}</pre>
@@ -55,6 +57,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
+            <Toaster />
+            <NextNProgress />
             <Header themeToggler={themeToggler} theme={theme} />
             <Nav />
             <Reset />

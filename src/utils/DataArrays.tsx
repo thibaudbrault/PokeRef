@@ -43,17 +43,6 @@ type ObjectFilters = {
   };
 };
 
-export const genFilters: ObjectFilters = {
-  gen1: { offset: 0, limit: 151 },
-  gen2: { offset: 151, limit: 100 },
-  gen3: { offset: 251, limit: 135 },
-  gen4: { offset: 386, limit: 107 },
-  gen5: { offset: 493, limit: 156 },
-  gen6: { offset: 649, limit: 72 },
-  gen7: { offset: 721, limit: 88 },
-  gen8: { offset: 809, limit: 96 },
-};
-
 export const formFilters: ObjectFilters = {
   alola: { offset: 995, limit: 30 },
   galar: { offset: 1065, limit: 25 },
@@ -62,26 +51,57 @@ export const formFilters: ObjectFilters = {
   gmax: { offset: 1099, limit: 40 },
 };
 
-export const types: Record<string, string> = {
-  1: `bug`,
-  2: `dark`,
-  3: `dragon`,
-  4: `electric`,
-  5: `fairy`,
-  6: `fighting`,
-  7: `fire`,
-  8: `flying`,
-  9: `ghost`,
-  10: `grass`,
-  11: `ground`,
-  12: `ice`,
-  13: `normal`,
-  14: `poison`,
-  15: `psychic`,
-  16: `rock`,
-  17: `steel`,
-  18: `water`,
-};
+export interface Options {
+  value: string;
+  label: string;
+}
+
+export interface OptionsOffsetLimit extends Options {
+  offset: number;
+  limit: number;
+}
+
+export const formOptions: OptionsOffsetLimit[] = [
+  { label: `Default`, value: ``, offset: 0, limit: 905 },
+  { label: `Alola`, value: `alola`, offset: 995, limit: 30 },
+  { label: `Galar`, value: `galar`, offset: 1065, limit: 25 },
+  { label: `Hisui`, value: `hisui`, offset: 1133, limit: 20 },
+  { label: `Mega`, value: `mega`, offset: 937, limit: 70 },
+  { label: `Gmax`, value: `gmax`, offset: 1099, limit: 40 },
+];
+
+export const generationsOptions: OptionsOffsetLimit[] = [
+  { label: `All`, value: ``, offset: 0, limit: 905 },
+  { label: `Generation I`, value: `gen1`, offset: 0, limit: 151 },
+  { label: `Generation II`, value: `gen2`, offset: 151, limit: 100 },
+  { label: `Generation III`, value: `gen3`, offset: 251, limit: 135 },
+  { label: `Generation IV`, value: `gen4`, offset: 386, limit: 107 },
+  { label: `Generation V`, value: `gen5`, offset: 493, limit: 156 },
+  { label: `Generation VI`, value: `gen6`, offset: 649, limit: 72 },
+  { label: `Generation VII`, value: `gen7`, offset: 721, limit: 88 },
+  { label: `Generation VIII`, value: `gen8`, offset: 809, limit: 96 },
+];
+
+export const typeOptions: Options[] = [
+  { value: `bug`, label: `Bug` },
+  { value: `dark`, label: `Dark` },
+  { value: `dragon`, label: `Dragon` },
+  { value: `electric`, label: `Electric` },
+  { value: `fairy`, label: `Fairy` },
+  { value: `fighting`, label: `Fighting` },
+  { value: `fire`, label: `Fire` },
+  { value: `flying`, label: `Flying` },
+  { value: `ghost`, label: `Ghost` },
+  { value: `grass`, label: `Grass` },
+  { value: `ground`, label: `Ground` },
+  { value: `ice`, label: `Ice` },
+  { value: `normal`, label: `Normal` },
+  { value: `poison`, label: `Poison` },
+  { value: `psychic`, label: `Psychic` },
+  { value: `rock`, label: `Rock` },
+  { value: `steel`, label: `Steel` },
+  { value: `water`, label: `Water` },
+];
 
 type SpeciesFilters = {
   game: string;

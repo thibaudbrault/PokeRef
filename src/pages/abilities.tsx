@@ -38,8 +38,6 @@ function AbilitiesPage() {
     [search, filterAbilities],
   );
 
-  console.log(filteredAbilities);
-
   if (error instanceof Error) {
     return { error };
   }

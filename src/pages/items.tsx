@@ -126,9 +126,15 @@ function ItemsPage() {
                       {i.category.name.replace(/-/g, ` `)}
                     </TCategoryItems>
                     <TEffectItems>
-                      {i.effect_entries?.map((ie) => (
-                        <span key={ie.short_effect}>{ie.short_effect}</span>
-                      ))}
+                      {i.effect_entries.length ? (
+                        i.effect_entries?.map((ie) => (
+                          <span key={ie.short_effect}>{ie.short_effect}</span>
+                        ))
+                      ) : (
+                        <span className="unavailable">
+                          No description available
+                        </span>
+                      )}
                     </TEffectItems>
                   </TRow>
                 ),

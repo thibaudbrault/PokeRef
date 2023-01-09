@@ -1,30 +1,55 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Span } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
-import {
-  PokemonDataCatch,
-  PokemonDataCaught,
-  PokemonDataDesc,
-  PokemonDataTypes,
-} from '../Styled.Data.PokemonCard';
+import { PokemonDataDesc, PokemonDataTypes } from '../Styled.Data.PokemonCard';
 import { Pokemon, Species } from '@/types/types';
+import { auth, db } from '@/firebase-config';
+import toast from 'react-hot-toast';
+import {
+  arrayUnion,
+  collection,
+  doc,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore/lite';
 
 type Props = {
   pokemon: Pokemon.Pokemon;
   species: Species.Species;
   game: string;
-  caught: boolean;
-  setCaught: Dispatch<SetStateAction<boolean>>;
 };
 
-function Desc({ pokemon, species, game, caught, setCaught }: Props) {
-  const handleClick = () => {
-    setCaught(true);
-    const pokemons = JSON.parse(localStorage.getItem(`pokemon`) || `[]`);
-    pokemons.push(pokemon);
-    localStorage.setItem(`pokemon`, JSON.stringify(pokemons));
+function Desc({ pokemon, species, game }: Props) {
+  const usersCollectionRef = collection(db, `users`);
+  const user = auth.currentUser;
+
+  const catchPokemon = async () => {
+    if (user) {
+      toast.success(`You caught the pokémon`, {
+        style: {
+          fontSize: `1.7rem`,
+        },
+      });
+      const { uid } = user;
+      await setDoc(
+        doc(usersCollectionRef, uid),
+        {
+          favorites: pokemon.name,
+        },
+        { merge: true },
+      );
+      await updateDoc(doc(usersCollectionRef, uid), {
+        favorites: arrayUnion(pokemon.name),
+      });
+    } else {
+      toast.error(`You need to log in`, {
+        style: {
+          fontSize: `1.7rem`,
+        },
+      });
+    }
   };
 
   return (
@@ -56,24 +81,13 @@ function Desc({ pokemon, species, game, caught, setCaught }: Props) {
                   query: { name: pt.type.name },
                 }}
               >
-                <Image alt={pt.type.name} width={25} height={25} />
+                <Image alt={pt.type.name} width={25} height={25} src={``} />
                 <span>{pt.type.name}</span>
               </Link>
             </Type>
           ))}
         </PokemonDataTypes>
       </ul>
-      {!caught ? (
-        <PokemonDataCatch onClick={handleClick}>
-          <Image src={`/pokeball.svg`} alt="" width={20} height={20} />
-          Catch !
-        </PokemonDataCatch>
-      ) : (
-        <PokemonDataCaught>
-          <Image src={`/pokeball.svg`} alt="" width={20} height={20} />
-          Caught !
-        </PokemonDataCaught>
-      )}
     </>
   );
 }
