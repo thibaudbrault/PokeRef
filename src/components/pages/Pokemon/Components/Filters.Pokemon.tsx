@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
-import Select, { MultiValue, SingleValue } from 'react-select';
+import { MultiValue, SingleValue } from 'react-select';
 import { Pokemon } from '@/types/types';
 import Autocomplete from '@/components/autocomplete/Autocomplete';
 import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
@@ -10,6 +10,7 @@ import {
   OptionsOffsetLimit,
   formOptions,
 } from '@/utils/DataArrays';
+import { Dropdown } from '@/components/common/styles/Inputs';
 
 type Props = {
   pokedex?: Pokemon.Pokemon[];
@@ -103,7 +104,7 @@ function Filters({
         <Autocomplete />
         <PokedexDropdown>
           <label htmlFor="form">Form</label>
-          <Select
+          <Dropdown
             name="form"
             id="form"
             value={form}
@@ -120,7 +121,7 @@ function Filters({
 
         <PokedexDropdown>
           <label htmlFor="generation">Generation</label>
-          <Select
+          <Dropdown
             name="generation"
             id="generation"
             value={generation}
@@ -137,7 +138,7 @@ function Filters({
 
         <PokedexDropdown>
           <label htmlFor="type">Type</label>
-          <Select
+          <Dropdown
             isMulti
             isClearable
             isSearchable={false}
