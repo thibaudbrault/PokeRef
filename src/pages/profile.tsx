@@ -3,15 +3,17 @@ import { H2 } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import { auth } from '@/firebase-config';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
-import { Dropdown } from '@/components/common/styles/Inputs';
 import { usePokedex } from '@/hooks/DataFetch';
 import { ProfileList } from '@/components/pages/Profile/Styled.Profile';
+import Loader from '@/components/common/ui/Loader/Loader';
+import ProfileCard from '@/components/pages/Profile/Components/ProfileCard';
+import { Pokemon } from '@/types/types';
 
 function Profile() {
   const router = useRouter();
-
-  const [pokemon, setPokemon] = useState(null);
+  const [pokemon, setPokemon] = useState<Pokemon.Pokemon | null>(null);
+  const [pokemonAbility, setPokemonAbility] =
+    useState<Pokemon.Abilities | null>(null);
 
   const {
     isLoading,
@@ -23,53 +25,28 @@ function Profile() {
     if (!auth.currentUser) {
       router.push(`/`);
     }
-  });
+  }, []);
+
+  if (error instanceof Error) {
+    return { error };
+  }
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <MainBig>
       <H2>Create teams</H2>
       <section>
         <ProfileList>
-          <li>
-            <Image src="" alt="Empty" width={96} height={96} />
-            <Dropdown
-              isClearable
-              id="name"
-              name="name"
-              value={pokemon}
-              className="selectOptions"
-              classNamePrefix="select"
-              options={pokedex}
-              getOptionLabel={(option) => option.name}
-              getOptionValue={(option) => option.name}
-              placeholder="Name"
-              // onChange={(option) => {
-              //   handleFormSelect(option);
-              // }}
-            />
-          </li>
-          <li>
-            <Image src="" alt="Empty" width={96} height={96} />
-            <Dropdown
-              isClearable
-              id="name"
-              name="name"
-              value={pokemon}
-              className="selectOptions"
-              classNamePrefix="select"
-              options={pokedex}
-              getOptionLabel={(option) => option.name}
-              getOptionValue={(option) => option.name}
-              placeholder="Name"
-              // onChange={(option) => {
-              //   handleFormSelect(option);
-              // }}
-            />
-          </li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+          <ProfileCard
+            pokedex={pokedex}
+            pokemon={pokemon}
+            setPokemon={setPokemon}
+            pokemonAbility={pokemonAbility}
+            setPokemonAbility={setPokemonAbility}
+          />
         </ProfileList>
       </section>
     </MainBig>

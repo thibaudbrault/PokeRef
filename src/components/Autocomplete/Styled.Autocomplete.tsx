@@ -44,7 +44,7 @@ export const AutocompleteContainer = styled.div`
 export const AutocompleteLink = styled(TLink)`
   font-size: 1.7rem;
   &:hover {
-    border-bottom: 1px solid ${({ theme }) => theme.main};
+    text-decoration: underline;
   }
 `;
 
