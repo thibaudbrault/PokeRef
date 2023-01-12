@@ -14,6 +14,7 @@ function Profile() {
   const [pokemon, setPokemon] = useState<Pokemon.Pokemon | null>(null);
   const [pokemonAbility, setPokemonAbility] =
     useState<Pokemon.Abilities | null>(null);
+  const [pokemonMove, setPokemonMove] = useState<Pokemon.Moves | null>(null);
 
   const {
     isLoading,
@@ -46,7 +47,16 @@ function Profile() {
             setPokemon={setPokemon}
             pokemonAbility={pokemonAbility}
             setPokemonAbility={setPokemonAbility}
+            pokemonMove={pokemonMove}
+            setPokemonMove={setPokemonMove}
           />
+          {/* <ProfileCard
+            pokedex={pokedex}
+            pokemon={pokemon}
+            setPokemon={setPokemon}
+            pokemonAbility={pokemonAbility}
+            setPokemonAbility={setPokemonAbility}
+          /> */}
         </ProfileList>
       </section>
     </MainBig>
