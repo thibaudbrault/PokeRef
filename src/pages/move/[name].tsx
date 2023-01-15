@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import { useMachines, useMove, usePokedex } from '@/hooks/DataFetch';
