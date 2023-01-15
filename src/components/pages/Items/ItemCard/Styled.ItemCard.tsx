@@ -5,7 +5,6 @@ export const ItemCardDataSection = styled.section`
   margin: 5rem 0;
   display: grid;
   grid-template-columns: 75% 25%;
-  align-items: center;
 `;
 
 export const ItemCardDataEffect = styled.div`
@@ -25,12 +24,19 @@ export const ItemCardDataEffect = styled.div`
 export const ItemCardDataCost = styled.p`
   margin: 0 0 1rem;
   font-size: 1.7rem;
-  font-weight: 700;
+
+  & span {
+    font-weight: 700;
+  }
 `;
 
 export const ItemCardDataHeld = styled.p`
   margin: 0 0 1rem;
   font-size: 1.7rem;
+
+  & span {
+    font-weight: 700;
+  }
 
   & a {
     display: inline-block;
@@ -41,6 +47,12 @@ export const ItemCardDataHeld = styled.p`
 
 export const ItemCardDataFling = styled.p`
   font-size: 1.7rem;
+`;
+
+export const ItemCardDataImage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ItemCardDescSection = styled.section`

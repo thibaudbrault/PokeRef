@@ -1,28 +1,20 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Dropdown } from '@/components/common/styles/Inputs';
 import { Pokemon } from '@/types/types';
-import { ProfileListLeft } from '../Styled.Profile';
+import { ProfileListLeft, ProfileListRight } from '../Styled.Profile';
+import MovesProfileCard from './Moves.ProfileCard';
 
 type Props = {
   pokedex?: Pokemon.Pokemon[];
-  pokemon: Pokemon.Pokemon | null;
-  setPokemon: Dispatch<SetStateAction<Pokemon.Pokemon | null>>;
-  pokemonAbility: Pokemon.Abilities | null;
-  setPokemonAbility: Dispatch<SetStateAction<Pokemon.Abilities | null>>;
-  pokemonMove: Pokemon.Moves | null;
-  setPokemonMove: Dispatch<SetStateAction<Pokemon.Moves | null>>;
 };
 
-function ProfileCard({
-  pokedex,
-  pokemon,
-  setPokemon,
-  pokemonAbility,
-  setPokemonAbility,
-  pokemonMove,
-  setPokemonMove,
-}: Props) {
+function ProfileCard({ pokedex }: Props) {
+  const [pokemon, setPokemon] = useState<Pokemon.Pokemon | null>(null);
+  const [pokemonAbility, setPokemonAbility] =
+    useState<Pokemon.Abilities | null>(null);
+  const [pokemonMove, setPokemonMove] = useState<Pokemon.Moves | null>(null);
+
   const clearAllOptions = (option: Pokemon.Pokemon) => {
     console.log(option);
     setPokemon(option);
@@ -74,23 +66,18 @@ function ProfileCard({
           }}
         />
       </ProfileListLeft>
-      <div>
-        <Dropdown
-          isClearable
-          id="item"
-          name="item"
-          value={pokemonMove}
-          className="selectOptions"
-          classNamePrefix="select"
-          options={pokemon?.moves}
-          getOptionLabel={(option) => option.move.name.replace(/-/g, ` `)}
-          getOptionValue={(option) => option.move.name.replace(/-/g, ` `)}
-          placeholder="Moves"
-          onChange={(option) => {
-            setPokemonMove(option);
-          }}
-        />
-      </div>
+      <ProfileListRight>
+        {Array(4)
+          .fill(true)
+          .map((_, i) => (
+            <MovesProfileCard
+              key={i}
+              pokemon={pokemon}
+              pokemonMove={pokemonMove}
+              setPokemonMove={setPokemonMove}
+            />
+          ))}
+      </ProfileListRight>
     </li>
   );
 }

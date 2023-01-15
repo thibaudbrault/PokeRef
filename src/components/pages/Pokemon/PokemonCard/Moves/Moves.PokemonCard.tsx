@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   PokemonMovesSection,
   PokemonMovesTd,
@@ -14,35 +14,21 @@ import {
 import { H3, Span } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
 import { LearnMethod } from '@/utils/ObjectsMap';
-import { learnMethod } from '@/utils/DataArrays';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Machines, Moves, Pokemon } from '@/types/types';
 
 type Props = {
-  toggleState: number;
-  toggleTable: (arg0: number) => void;
   pokemon: Pokemon.Pokemon;
   moves: Moves.Moves[];
   machines: Machines.Machines[];
   version: string;
 };
 
-function MovesPokemon({
-  toggleState,
-  toggleTable,
-  pokemon,
-  moves,
-  machines,
-  version,
-}: Props) {
+function MovesPokemon({ pokemon, moves, machines, version }: Props) {
   // Changes according to the table selected
-  const [learn, setLearn] = useState<string | null>(null);
-
-  // Switch between tables and returns different moves according to the selected table
-  useEffect(() => {
-    setLearn(learnMethod[toggleState + 1]);
-  }, [toggleState]);
+  const [learn, setLearn] = useState<string>(`level-up`);
+  const [toggle, setToggle] = useState<number>(0);
 
   const isLearnedMoveForVersion = (version: string) => (pmv) =>
     pmv.version_group.name === version && pmv.move_learn_method.name === learn;
@@ -134,7 +120,7 @@ function MovesPokemon({
   return (
     <PokemonMovesSection>
       <H3>Moves</H3>
-      <LearnMethod toggleState={toggleState} toggleTable={toggleTable} />
+      <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
       <TableContainer>
         <PokemonMovesTable>
           <THead>

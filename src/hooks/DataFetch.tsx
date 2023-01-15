@@ -147,7 +147,7 @@ export function useItems() {
 
 // Fetch all locations
 export function useLocations() {
-  return useQuery<Locations.Locations[], Error>([`locations`], () =>
+  return useQuery<Locations.Regions[], Error>([`locations`], () =>
     axios
       .get(`https://pokeapi.co/api/v2/region?limit=8`)
       .then((res) => {

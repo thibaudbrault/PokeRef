@@ -10,6 +10,9 @@ type Props = {
 };
 
 function Training({ pokemon, species }: Props) {
+  const filterEffort =
+    pokemon.stats && pokemon.stats.find((ps) => ps.effort !== 0);
+
   return (
     <div>
       <H3>Training</H3>
@@ -18,14 +21,11 @@ function Training({ pokemon, species }: Props) {
           <tr>
             <th>EV yield</th>
             <td>
-              {pokemon.stats?.map(
-                (ps) =>
-                  ps.effort !== 0 && (
-                    <p key={ps.effort}>
-                      {ps.effort} {ps.stat.name.replace(/-/g, ` `)}
-                    </p>
-                  ),
-              )}
+              <p>
+                {filterEffort?.effort}
+                {` `}
+                {filterEffort?.stat.name.replace(/-/g, ` `)}
+              </p>
             </td>
           </tr>
           <tr>

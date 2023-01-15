@@ -94,9 +94,6 @@ export const TEffect = styled.td`
   text-align: start;
 
   & span {
-    display: none;
-    &:first-child {
-      display: block;
-    }
+    display: block;
   }
 `;

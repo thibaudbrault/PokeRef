@@ -25,3 +25,9 @@ export const ProfileListLeft = styled.div`
     align-self: center;
   }
 `;
+
+export const ProfileListRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;

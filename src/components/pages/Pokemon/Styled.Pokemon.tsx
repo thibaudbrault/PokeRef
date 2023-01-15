@@ -189,15 +189,18 @@ export const PokedexTypes = styled.div`
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
     color: #c4c4c4;
     border: 1px solid rgba(22, 22, 22, 0.2);
+    cursor: pointer;
 
     & img {
       height: 1.5rem;
       max-height: 1.5rem;
+      cursor: pointer;
     }
 
     & span {
       padding-left: 0.5rem;
       font-family: 'Press Start 2P';
+      cursor: pointer;
     }
   }
 

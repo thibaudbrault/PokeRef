@@ -6,11 +6,12 @@ import {
   ItemCardDataEffect,
   ItemCardDataFling,
   ItemCardDataHeld,
+  ItemCardDataImage,
   ItemCardDataSection,
   ItemCardDescSection,
   ItemCardDescTable,
   ItemCardDescTitle,
-} from '@/components/pages/Items/ItemCard/Styled.ItemCard.jsx';
+} from '@/components/pages/Items/ItemCard/Styled.ItemCard';
 import { useItem } from '@/hooks/DataFetch';
 import Loader from '@/components/common/ui/Loader/Loader';
 import Link from 'next/link';
@@ -29,6 +30,10 @@ function ItemCard() {
     error,
     data: item,
   } = useItem(`https://pokeapi.co/api/v2/item/${name}`);
+
+  const filterEffect = item?.effect_entries.find(
+    (ie) => ie.language.name === `en`,
+  );
 
   if (error instanceof Error) {
     return { error };
@@ -56,29 +61,25 @@ function ItemCard() {
         <meta property="og:type" content="website" />
       </Head>
       <MainBig>
-        <CardTitle>{item.name.replace(/-/g, ` `)}</CardTitle>
-        <Subtitle>{item.category.name.replace(/-/g, ` `)}</Subtitle>
-
+        <CardTitle>{item?.name.replace(/-/g, ` `)}</CardTitle>
+        <Subtitle>{item?.category.name.replace(/-/g, ` `)}</Subtitle>
         <ItemCardDataSection>
           <div>
             <ItemCardDataEffect>
               <h3>Effect</h3>
-              {item.effect_entries?.map(
-                (ie: Items.EffectEntries) =>
-                  ie.language.name === `en` && (
-                    <p key={ie.short_effect}>{ie.short_effect}</p>
-                  ),
-              )}
+              <p key={filterEffect?.short_effect}>
+                {filterEffect?.short_effect}
+              </p>
             </ItemCardDataEffect>
-            {item.cost !== 0 && (
+            {item?.cost !== 0 && (
               <ItemCardDataCost>
-                Cost : {item.cost} Pokédollars
+                <span>Cost :</span> {item?.cost} Pokédollars
               </ItemCardDataCost>
             )}
-            {item.held_by_pokemon.length !== 0 && (
+            {item?.held_by_pokemon.length !== 0 && (
               <ItemCardDataHeld>
-                Held by :
-                {item.held_by_pokemon?.map((ih: Items.Held) => (
+                <span>Held by :</span>
+                {item?.held_by_pokemon?.map((ih: Items.Held) => (
                   <Link
                     href={{
                       pathname: `/pokemon/[name]`,
@@ -91,34 +92,36 @@ function ItemCard() {
                 ))}
               </ItemCardDataHeld>
             )}
-            <ItemCardDataFling>
-              When the pokémon holds{` `}
-              <Span>{item.name.replace(/-/g, ` `)}</Span> the move{` `}
-              <i>Fling</i> has {item.fling_power} power.
-              {item.fling_effect.name !== undefined &&
-                item.fling_effect.name !== `berry-effect` &&
-                item.fling_effect.name !== `herb-effect` &&
-                ` The move will ${item.fling_effect.name.replace(
-                  /-/g,
-                  ` `,
-                )} the target.`}
-            </ItemCardDataFling>
+            {item?.fling_effect && (
+              <ItemCardDataFling>
+                When the pokémon holds{` `}
+                <Span>{item?.name.replace(/-/g, ` `)}</Span> the move{` `}
+                <i>Fling</i> has {item?.fling_power} power.
+                {item?.fling_effect.name &&
+                  item?.fling_effect.name !== `berry-effect` &&
+                  item?.fling_effect.name !== `herb-effect` &&
+                  ` The move will ${item?.fling_effect.name.replace(
+                    /-/g,
+                    ` `,
+                  )} the target.`}
+              </ItemCardDataFling>
+            )}
           </div>
-          <div>
+          <ItemCardDataImage>
             <Image
-              src={item.sprites.default}
-              alt={item.name}
+              src={item?.sprites?.default}
+              alt={item?.name}
               width={96}
               height={96}
             />
-          </div>
+          </ItemCardDataImage>
         </ItemCardDataSection>
 
         <ItemCardDescSection>
           <ItemCardDescTitle>Game descriptions</ItemCardDescTitle>
           <ItemCardDescTable>
             <tbody>
-              {item.flavor_text_entries?.map((ift: Items.FlavorText) =>
+              {item?.flavor_text_entries?.map((ift: Items.FlavorText) =>
                 ift.language.name === `en` ? (
                   <tr key={ift.text}>
                     <th>{ift.version_group.name.replace(/-/g, ` `)}</th>
