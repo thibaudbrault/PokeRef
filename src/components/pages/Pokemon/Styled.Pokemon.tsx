@@ -1,9 +1,10 @@
-import Image from 'next/image';
+import ImageWithFallback from '@/utils/ImageWithFallback';
 import styled from 'styled-components';
 import { Search } from '../../common/styles/Inputs';
 import { device } from '../../common/styles/Sizing';
 
 export const PokedexSearch = styled(Search)`
+  align-items: stretch;
   @media ${device.sm} {
     padding: 0 5rem;
   }
@@ -11,7 +12,7 @@ export const PokedexSearch = styled(Search)`
 
 export const PokedexDropdown = styled.div`
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   flex-direction: column;
   margin: 0 0.5rem;
@@ -20,31 +21,6 @@ export const PokedexDropdown = styled.div`
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     justify-self: flex-start;
-  }
-
-  & select {
-    min-width: 15rem;
-    padding: 0.5rem;
-    color: ${({ theme }) => theme.secondary};
-    background: transparent;
-    border: 1px solid ${({ theme }) => theme.secondary};
-    border-radius: 5px;
-    text-transform: capitalize;
-    transition: 0.3s ease-in-out;
-
-    &:focus {
-      border: 1px solid ${({ theme }) => theme.red};
-    }
-
-    & option {
-      color: ${({ theme }) => theme.secondary};
-      background: ${({ theme }) => theme.main};
-      text-transform: capitalize;
-    }
-  }
-
-  .hidden {
-    display: none !important;
   }
 
   &:last-of-type {
@@ -156,7 +132,7 @@ export const PokedexElement = styled.li`
   }
 `;
 
-export const SpriteNormal = styled(Image)`
+export const SpriteNormal = styled(ImageWithFallback)`
   width: 96px;
   height: 96px;
   position: relative;
@@ -170,7 +146,7 @@ export const SpriteNormal = styled(Image)`
   }
 `;
 
-export const SpriteShiny = styled(Image)`
+export const SpriteShiny = styled(ImageWithFallback)`
   width: 96px;
   height: 96px;
   position: absolute;
@@ -213,15 +189,18 @@ export const PokedexTypes = styled.div`
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
     color: #c4c4c4;
     border: 1px solid rgba(22, 22, 22, 0.2);
+    cursor: pointer;
 
     & img {
       height: 1.5rem;
       max-height: 1.5rem;
+      cursor: pointer;
     }
 
     & span {
       padding-left: 0.5rem;
       font-family: 'Press Start 2P';
+      cursor: pointer;
     }
   }
 

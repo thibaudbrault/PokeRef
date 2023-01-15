@@ -18,6 +18,11 @@ function Base({ pokemon, species, game, location }: Props) {
   const height = (pokemon.height * 0.1).toFixed(2);
   const weight = (pokemon.weight * 0.1).toFixed(2);
 
+  const filterGenera =
+    pokemon.id < 10000
+      ? species.genera.find((sg) => sg.language.name === `en`)
+      : ``;
+
   return (
     <PokemonDataTable>
       <tbody>
@@ -76,23 +81,16 @@ function Base({ pokemon, species, game, location }: Props) {
         <tr>
           <th>Category</th>
           <td>
-            {pokemon.id < 10000
-              ? species?.genera?.map(
-                  (sg) =>
-                    sg.language.name === `en` && (
-                      <p key={sg.genus}>{sg.genus}</p>
-                    ),
-                )
-              : `⠀`}
+            <p>{filterGenera.genus}</p>
           </td>
         </tr>
         <tr>
           <th>Shape</th>
-          <td>{pokemon.id < 10000 ? <p>{species.shape.name}</p> : `⠀`}</td>
+          <td>{pokemon.id < 10000 ? <p>{species?.shape.name}</p> : `⠀`}</td>
         </tr>
         <tr>
           <th>Color</th>
-          <td>{pokemon.id < 10000 ? <p>{species.color.name}</p> : `⠀`}</td>
+          <td>{pokemon.id < 10000 ? <p>{species?.color.name}</p> : `⠀`}</td>
         </tr>
       </tbody>
     </PokemonDataTable>

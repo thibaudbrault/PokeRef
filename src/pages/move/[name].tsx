@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import { useMachines, useMove, usePokedex } from '@/hooks/DataFetch';
@@ -70,8 +69,8 @@ function MoveCard() {
         <meta property="og:type" content="website" />
       </Head>
       <MainBig>
-        <CardTitle>{move.name.replace(/-/g, ` `)}</CardTitle>
-        <Subtitle>{move.generation.name.replace(/-/g, ` `)}</Subtitle>
+        <CardTitle>{move?.name.replace(/-/g, ` `)}</CardTitle>
+        <Subtitle>{move?.generation.name.replace(/-/g, ` `)}</Subtitle>
 
         <Nav move={move} setVersion={setVersion} />
 
@@ -82,7 +81,7 @@ function MoveCard() {
         <List
           toggle={toggle}
           pokedex={pokedex}
-          moveName={move.name}
+          moveName={move?.name}
           version={version}
         />
 

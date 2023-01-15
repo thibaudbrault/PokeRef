@@ -6,8 +6,6 @@ type Props = {
   setGame: Dispatch<SetStateAction<string>>;
 };
 
-console.log(genNav);
-
 function Nav({ setGame }: Props) {
   return (
     <GenNav>

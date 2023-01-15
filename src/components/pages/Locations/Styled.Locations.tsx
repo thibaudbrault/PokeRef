@@ -80,4 +80,18 @@ export const LocationTable = styled(ModifiedTable)`
   & td {
     text-transform: capitalize;
   }
+
+  & span {
+    position: absolute;
+    width: 100%;
+    margin-top: 2rem;
+    display: none;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  & tbody:empty + span {
+    display: block;
+  }
 `;

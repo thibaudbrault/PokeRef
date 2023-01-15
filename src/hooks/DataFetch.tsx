@@ -1,9 +1,20 @@
-import axios from 'axios';
 import { useQuery } from 'react-query';
+import axios from 'axios';
+import {
+  Abilities,
+  Evolution,
+  Items,
+  Locations,
+  Machines,
+  Moves,
+  Pokemon,
+  Species,
+  Types,
+} from '@/types/types';
 
 // Fetch all pokemon
 export function usePokedex(url: string) {
-  return useQuery([`pokedex`, url], () =>
+  return useQuery<Pokemon.Pokemon[], Error>([`pokedex`, url], () =>
     axios
       .get(url)
       .then((res) => {
@@ -22,7 +33,7 @@ export function usePokedex(url: string) {
 
 // Fetch all moves
 export function useMoves() {
-  return useQuery([`moves`], () =>
+  return useQuery<Moves.Moves[], Error>([`moves`], () =>
     axios
       .get(`https://pokeapi.co/api/v2/move?limit=826`)
       .then((res) => {
@@ -41,7 +52,7 @@ export function useMoves() {
 
 // Fetch all status
 export function useStatus() {
-  return useQuery([`status`], () =>
+  return useQuery<Moves.Status[], Error>([`status`], () =>
     axios
       .get(`https://pokeapi.co/api/v2/move-ailment?limit=22`)
       .then((res) => {
@@ -60,7 +71,7 @@ export function useStatus() {
 
 // Fetch all abilities
 export function useAbilities() {
-  return useQuery([`abilities`], () =>
+  return useQuery<Abilities.Abilities[], Error>([`abilities`], () =>
     axios
       .get(`https://pokeapi.co/api/v2/ability?limit=267`)
       .then((res) => {
@@ -79,7 +90,7 @@ export function useAbilities() {
 
 // Fetch all types
 export function useTypes() {
-  return useQuery([`types`], () =>
+  return useQuery<Types.Types[], Error>([`types`], () =>
     axios
       .get(`https://pokeapi.co/api/v2/type?limit=18`)
       .then((res) => {
@@ -98,7 +109,7 @@ export function useTypes() {
 
 // Fetch all machines
 export function useMachines() {
-  return useQuery([`machines`], () =>
+  return useQuery<Machines.Machines[], Error>([`machines`], () =>
     axios
       .get(`https://pokeapi.co/api/v2/machine?limit=1700`)
       .then((res) => {
@@ -117,7 +128,7 @@ export function useMachines() {
 
 // Fetch all items
 export function useItems() {
-  return useQuery([`items`], () =>
+  return useQuery<Items.Items[], Error>([`items`], () =>
     axios
       .get(`https://pokeapi.co/api/v2/item?limit=1608`)
       .then((res) => {
@@ -136,7 +147,7 @@ export function useItems() {
 
 // Fetch all locations
 export function useLocations() {
-  return useQuery([`locations`], () =>
+  return useQuery<Locations.Regions[], Error>([`locations`], () =>
     axios
       .get(`https://pokeapi.co/api/v2/region?limit=8`)
       .then((res) => {
@@ -155,7 +166,7 @@ export function useLocations() {
 
 // Fetch single pokemon
 export function usePokemon(url: string) {
-  return useQuery([`pokemon`, url], () =>
+  return useQuery<Pokemon.Pokemon, Error>([`pokemon`, url], () =>
     axios
       .get(url)
       .then((results) => {
@@ -169,7 +180,7 @@ export function usePokemon(url: string) {
 
 // Fetch single move
 export function useMove(url: string) {
-  return useQuery([`move`, url], () =>
+  return useQuery<Moves.Moves, Error>([`move`, url], () =>
     axios
       .get(url)
       .then((results) => {
@@ -183,7 +194,7 @@ export function useMove(url: string) {
 
 // Fetch single ability
 export function useAbility(url: string) {
-  return useQuery([`ability`, url], () =>
+  return useQuery<Abilities.Abilities, Error>([`ability`, url], () =>
     axios
       .get(url)
       .then((results) => {
@@ -197,7 +208,7 @@ export function useAbility(url: string) {
 
 // Fetch single pokemon species
 export function useSpecies(url: string) {
-  return useQuery([`species`, url], () =>
+  return useQuery<Species.Species, Error>([`species`, url], () =>
     axios
       .get(url)
       .then((results) => {
@@ -211,21 +222,23 @@ export function useSpecies(url: string) {
 
 // Fetch location for a single pokemon
 export function usePokemonLocation(url: string) {
-  return useQuery([`pokemonLocation`, url], () =>
-    axios
-      .get(url)
-      .then((results) => {
-        return results.data;
-      })
-      .then((results) => {
-        return results;
-      }),
+  return useQuery<Pokemon.PokemonLocation, Error>(
+    [`pokemonLocation`, url],
+    () =>
+      axios
+        .get(url)
+        .then((results) => {
+          return results.data;
+        })
+        .then((results) => {
+          return results;
+        }),
   );
 }
 
 // Fetch evolution chain of a single pokemon
 export function useEvolution(url: string) {
-  return useQuery([`evolution`, url], () =>
+  return useQuery<Evolution.Evolution, Error>([`evolution`, url], () =>
     axios
       .get(url)
       .then((results) => {
@@ -239,7 +252,7 @@ export function useEvolution(url: string) {
 
 // Fetch single type
 export function useType(url: string) {
-  return useQuery([`type`, url], () =>
+  return useQuery<Types.Types, Error>([`type`, url], () =>
     axios
       .get(url)
       .then((results) => {
@@ -253,7 +266,7 @@ export function useType(url: string) {
 
 // Fetch single item
 export function useItem(url: string) {
-  return useQuery([`item`, url], () =>
+  return useQuery<Items.Items, Error>([`item`, url], () =>
     axios
       .get(url)
       .then((results) => {
@@ -267,7 +280,7 @@ export function useItem(url: string) {
 
 // Fetch single location
 export function useLocation(url: string) {
-  return useQuery([`location`, url], () =>
+  return useQuery<Locations.Locations, Error>([`location`, url], () =>
     axios
       .get(url)
       .then((results) => {
@@ -281,7 +294,7 @@ export function useLocation(url: string) {
 
 // Fetch single area
 export function useArea(url: string) {
-  return useQuery([`area`, url], () =>
+  return useQuery<Locations.Area, Error>([`area`, url], () =>
     axios
       .get(url)
       .then((results) => {

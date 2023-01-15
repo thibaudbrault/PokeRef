@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Select from 'react-select';
 
 export const Search = styled.div`
   display: flex;
@@ -10,7 +11,7 @@ export const Search = styled.div`
 
 export const Input = styled.div`
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   flex-direction: column;
 
@@ -36,6 +37,102 @@ export const Input = styled.div`
     &::placeholder {
       color: ${({ theme }) => theme.secondary};
       opacity: 0.8;
+    }
+  }
+`;
+
+export const Dropdown = styled(Select)`
+  & .select__control {
+    min-width: 15rem;
+    padding: 0 0.5rem;
+    color: ${({ theme }) => theme.secondary};
+    background: transparent;
+    border: 1px solid ${({ theme }) => theme.secondary};
+    border-radius: 5px;
+    text-transform: capitalize;
+    font-size: 1.3rem;
+    transition: 0.3s ease-in-out;
+
+    &--is-focused {
+      outline: none;
+      border: 1px solid ${({ theme }) => theme.red};
+      box-shadow: none;
+
+      &:hover {
+        border-color: ${({ theme }) => theme.red};
+      }
+    }
+
+    & .select__input-container {
+      color: ${({ theme }) => theme.secondary} !important;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+
+    & .select__placeholder {
+      color: ${({ theme }) => theme.secondary};
+    }
+
+    & .select__indicator-separator {
+      background-color: ${({ theme }) => theme.secondary};
+    }
+
+    & .select__dropdown-indicator {
+      color: ${({ theme }) => theme.secondary};
+    }
+  }
+
+  & .select__menu {
+    color: ${({ theme }) => theme.secondary};
+    background: ${({ theme }) => theme.main};
+    text-transform: capitalize;
+    font-size: 1.3rem;
+
+    & .select__option {
+      cursor: pointer;
+      background-color: transparent;
+      &--is-focused {
+        background-color: transparent;
+        color: ${({ theme }) => theme.red};
+      }
+    }
+  }
+
+  & .select__multi-value {
+    background-color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.main};
+
+    &__remove {
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        background-color: transparent;
+        color: ${({ theme }) => theme.red};
+      }
+    }
+
+    & .select__input {
+      color: white !important;
+    }
+  }
+
+  & .select__single-value {
+    padding: 3px;
+    border-radius: 2px;
+    background-color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.main};
+  }
+
+  & .select__clear-indicator {
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      background-color: transparent;
+      color: ${({ theme }) => theme.red};
     }
   }
 `;

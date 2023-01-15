@@ -9,6 +9,8 @@ export const AutocompleteInput = styled(Input)`
 
   & input {
     width: 100%;
+    height: 100%;
+    padding: 0 1rem;
   }
 
   @media ${device.lg} {
@@ -42,7 +44,7 @@ export const AutocompleteContainer = styled.div`
 export const AutocompleteLink = styled(TLink)`
   font-size: 1.7rem;
   &:hover {
-    border-bottom: 1px solid ${({ theme }) => theme.main};
+    text-decoration: underline;
   }
 `;
 

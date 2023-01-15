@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { generations, learnMethod, regions, types } from './DataArrays';
+import { learnMethod, regions } from './DataArrays';
 import { MethodNav } from '@/components/common/styles/Navbars';
 import { LocationNav } from '@/components/pages/Locations/Styled.Locations';
 
@@ -8,26 +8,16 @@ type Props = {
   setToggle: Dispatch<SetStateAction<number>>;
 };
 
-export const GenerationsMethod = () => {
-  return (
-    <>
-      {Object.keys(generations)?.map((g) => (
-        <option value={generations[g].value} key={generations[g].value}>
-          {generations[g].name.charAt(0).toUpperCase() +
-            generations[g].name.slice(1)}
-        </option>
-      ))}
-    </>
-  );
-};
-
-export const LearnMethod = ({ toggle, setToggle }: Props) => {
+export const LearnMethod = ({ toggle, setToggle, setLearn }: Props) => {
   return (
     <MethodNav>
       {Object.keys(learnMethod)?.map((l, i) => (
         <button
           className={toggle === i ? `button_active` : ``}
-          onClick={() => setToggle(i)}
+          onClick={() => {
+            setToggle(i);
+            setLearn(learnMethod[l]);
+          }}
           key={learnMethod[l]}
         >
           <p>{learnMethod[l].replace(/-/g, ` `)}</p>
@@ -50,17 +40,5 @@ export const RegionsMethod = ({ toggle, setToggle }: Props) => {
         </button>
       ))}
     </LocationNav>
-  );
-};
-
-export const TypesMethod = () => {
-  return (
-    <>
-      {Object.keys(types)?.map((t) => (
-        <option value={types[t]} key={types[t]}>
-          {types[t].charAt(0).toUpperCase() + types[t].slice(1)}
-        </option>
-      ))}
-    </>
   );
 };

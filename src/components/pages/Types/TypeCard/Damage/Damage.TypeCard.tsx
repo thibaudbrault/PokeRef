@@ -25,6 +25,7 @@ function Damage({ type }: Props) {
                     title={ndt.name}
                     width={32}
                     height={32}
+                    src={``}
                   />
                 </Type>
               </td>
@@ -40,6 +41,7 @@ function Damage({ type }: Props) {
                     title={hdt.name}
                     width={32}
                     height={32}
+                    src={``}
                   />
                 </Type>
               </td>
@@ -55,6 +57,7 @@ function Damage({ type }: Props) {
                     title={ddt.name}
                     width={32}
                     height={32}
+                    src={``}
                   />
                 </Type>
               </td>
@@ -75,6 +78,7 @@ function Damage({ type }: Props) {
                     title={ndf.name}
                     width={32}
                     height={32}
+                    src={``}
                   />
                 </Type>
               </td>
@@ -90,6 +94,7 @@ function Damage({ type }: Props) {
                     title={hdf.name}
                     width={32}
                     height={32}
+                    src={``}
                   />
                 </Type>
               </td>
@@ -105,6 +110,7 @@ function Damage({ type }: Props) {
                     title={ddf.name}
                     width={32}
                     height={32}
+                    src={``}
                   />
                 </Type>
               </td>

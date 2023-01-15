@@ -169,6 +169,7 @@ export namespace Abilities {
 
   export type Abilities = {
     name: string;
+    generation: BaseName;
     effect_entries: EffectEntries[];
     flavor_text_entries: FlavorText[];
     pokemon: Pokemon[];
@@ -224,10 +225,15 @@ export namespace Items {
   };
 
   export type Items = {
+    attributes: BaseName[];
+    baby_trigger_for?: BaseName;
     name: string;
+    cost: number;
     category: BaseName;
     effect_entries: EffectEntries[];
     flavor_text_entries: FlavorText[];
+    fling_effect?: BaseName;
+    fling_power?: number;
     held_by_pokemon: Held[];
     sprites: {
       default: string;

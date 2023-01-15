@@ -5,13 +5,17 @@ export const PokemonStatsSection = styled.section`
   margin-bottom: 5rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  column-gap: 2rem;
+  gap: 2rem;
 
-  @media ${device.sm} {
+  @media ${device.lg} {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    & div {
+      width: 100%;
+    }
   }
 `;
 

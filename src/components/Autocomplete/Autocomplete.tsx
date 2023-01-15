@@ -5,7 +5,7 @@ import {
   AutocompleteId,
   AutocompleteInput,
   AutocompleteLink,
-} from './StyledAutocomplete';
+} from './Styled.Autocomplete';
 import Image from 'next/image';
 import { Pokemon } from '@/types/types';
 
@@ -15,16 +15,17 @@ function Autocomplete() {
   );
 
   const [pokedexMatch, setPokedexMatch] = useState<
-    Pokemon.Pokemon[] | null | undefined
-  >(null);
+    Pokemon.Pokemon[] | undefined
+  >([]);
+  const [searchText, setSearchText] = useState(``);
 
   const searchPokedex = (text: string) => {
-    if (!text) {
-      setPokedexMatch(null);
-    } else {
-      const matches =
+    let matches = [];
+    setSearchText(text);
+    if (text.length > 0) {
+      matches =
         pokedexMatch &&
-        pokedex?.filter((pokedex) => {
+        pokedex?.filter((pokedex: Pokemon.Pokemon) => {
           const regex = new RegExp(`${text}`, `gi`);
           return pokedex.name.match(regex);
         });
@@ -40,33 +41,35 @@ function Autocomplete() {
         placeholder="Pokémon Name"
         onChange={(e) => searchPokedex(e.target.value)}
       />
-      <AutocompleteContainer>
-        <ul>
-          {pokedexMatch &&
-            pokedexMatch?.map((pm) => (
-              <li key={pm.name}>
-                <Image
-                  src={pm.sprites.front_default}
-                  alt=""
-                  width={39}
-                  height={39}
-                />
-                <AutocompleteLink
-                  href={{
-                    pathname: `/pokemon/[name]`,
-                    query: { name: pm.name },
-                  }}
-                  className="bold"
-                >
-                  {pm.name}
-                </AutocompleteLink>
-                <AutocompleteId>
-                  #{pm.id.toString().padStart(3, `0`)}
-                </AutocompleteId>
-              </li>
-            ))}
-        </ul>
-      </AutocompleteContainer>
+      {searchText && (
+        <AutocompleteContainer>
+          <ul>
+            {pokedexMatch &&
+              pokedexMatch?.map((pm) => (
+                <li key={pm.name}>
+                  <Image
+                    src={pm.sprites.front_default}
+                    alt=""
+                    width={39}
+                    height={39}
+                  />
+                  <AutocompleteLink
+                    href={{
+                      pathname: `/pokemon/[name]`,
+                      query: { name: pm.name },
+                    }}
+                    className="bold"
+                  >
+                    {pm.name}
+                  </AutocompleteLink>
+                  <AutocompleteId>
+                    #{pm.id.toString().padStart(3, `0`)}
+                  </AutocompleteId>
+                </li>
+              ))}
+          </ul>
+        </AutocompleteContainer>
+      )}
     </AutocompleteInput>
   );
 }

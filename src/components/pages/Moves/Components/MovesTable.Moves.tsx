@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { LeftTitle } from '@/components/common/styles/Headings';
 import { Input, ModifiedSearch } from '@/components/common/styles/Inputs';
 import {
@@ -23,20 +23,20 @@ type Props = {
 
 function MovesTable({ moves }: Props) {
   const [search, setSearch] = useState<string>(``);
-  const [filteredMoves, setFilteredMoves] = useState<Moves.Moves[]>([]);
 
-  // Filter the moves returned when the user type the name in the search bar
-  useEffect(
-    () =>
-      setFilteredMoves(
-        moves.filter((moves: Moves.Moves) =>
-          moves.name
-            .replace(/-/g, ` `)
-            .toLowerCase()
-            .includes(search.toLowerCase()),
-        ),
-      ),
-    [search, moves],
+  const filterMoves = search
+    ? moves.filter((moves: Moves.Moves) =>
+        moves.name
+          .replace(/-/g, ` `)
+          .toLowerCase()
+          .includes(search.toLowerCase()),
+      )
+    : moves;
+
+  const filterEffect = filterMoves.map((m) =>
+    m.flavor_text_entries.find(
+      (mf) => mf.language.name === `en` && mf.flavor_text !== `Dummy Data`,
+    ),
   );
 
   return (
@@ -67,9 +67,9 @@ function MovesTable({ moves }: Props) {
             </tr>
           </THead>
           <tbody data-testid="movesBody">
-            {filteredMoves
+            {filterMoves
               .sort((a, b) => a.name.localeCompare(b.name))
-              ?.map((m: Moves.Moves) => (
+              ?.map((m: Moves.Moves, i) => (
                 <TRow key={m.id}>
                   <TName>
                     <TLink
@@ -84,7 +84,12 @@ function MovesTable({ moves }: Props) {
                   </TName>
                   <TCategory id={m.damage_class.name}>
                     <div>
-                      <Image alt={m.damage_class.name} width={20} height={20} />
+                      <Image
+                        alt={m.damage_class.name}
+                        width={20}
+                        height={20}
+                        src={``}
+                      />
                       <span>{m.damage_class.name}</span>
                     </div>
                   </TCategory>
@@ -96,19 +101,18 @@ function MovesTable({ moves }: Props) {
                           query: { name: m.type.name },
                         }}
                       >
-                        <Image alt={m.type.name} width={15} height={15} />
+                        <Image
+                          alt={m.type.name}
+                          width={15}
+                          height={15}
+                          src={``}
+                        />
                         <span>{m.type.name}</span>
                       </Link>
                     </Type>
                   </TType>
                   <TEffect>
-                    {m.flavor_text_entries?.map(
-                      (mf) =>
-                        mf.language.name === `en` &&
-                        mf.flavor_text !== `Dummy Data` && (
-                          <span key={mf.flavor_text}>{mf.flavor_text}</span>
-                        ),
-                    )}
+                    <span>{filterEffect?.[i]?.flavor_text}</span>
                   </TEffect>
                 </TRow>
               ))}

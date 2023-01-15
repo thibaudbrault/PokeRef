@@ -15,8 +15,8 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { speciesFilters } from '@/utils/DataArrays';
-import { Species } from '@/types/types';
+// import { speciesFilters } from '@/utils/DataArrays';
+// import { Species } from '@/types/types';
 import BackBtn from '@/components/common/ui/BackBtn';
 
 const Data = dynamic(
@@ -60,8 +60,6 @@ function PokemonCard() {
   const [name, setName] = useState(``);
   const router = useRouter();
 
-  const [caught, setCaught] = useState(false);
-
   useEffect(() => {
     if (router && router.query && typeof router.query.name === `string`) {
       setName(router.query.name);
@@ -97,14 +95,14 @@ function PokemonCard() {
   const [game, setGame] = useState(``);
   const [version, setVersion] = useState(``);
 
-  const speciesFiltersFn = (species: Species.Species) => {
-    speciesFilters.forEach((s) => {
-      species.id > s.min &&
-        species.id < s.max &&
-        (setGame(s.game), setVersion(s.version));
-      return species;
-    });
-  };
+  // const speciesFiltersFn = (species: Species.Species) => {
+  //   speciesFilters.forEach((s) => {
+  //     species.id > s.min &&
+  //       species.id < s.max &&
+  //       (setGame(s.game), setVersion(s.version));
+  //     return species;
+  //   });
+  // };
 
   useEffect(() => {
     if (species?.id < 152) {
@@ -133,12 +131,6 @@ function PokemonCard() {
       setVersion(`sword-shield`);
     }
   }, [species]);
-
-  // Toggle for moves table
-  const [toggleState, setToggleState] = useState(0);
-  const toggleTable = (index: number) => {
-    setToggleState(index);
-  };
 
   // Toggle for types table
   const [toggleType, setToggleType] = useState(1);
@@ -191,8 +183,6 @@ function PokemonCard() {
           species={species}
           location={location}
           game={game}
-          caught={caught}
-          setCaught={setCaught}
         />
 
         <EvolutionPokemon evolution={evolution} />
@@ -207,8 +197,6 @@ function PokemonCard() {
         />
 
         <MovesPokemon
-          toggleState={toggleState}
-          toggleTable={toggleTable}
           pokemon={pokemon}
           moves={moves}
           machines={machines}
