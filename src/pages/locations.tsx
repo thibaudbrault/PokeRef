@@ -1,30 +1,20 @@
-import React, { useState, useEffect } from 'react';
-
+import React from 'react';
 import { MainBig } from '@/components/common/styles/Sizing';
-import {
-  LocationList,
-  LocationSection,
-} from '@/components/pages/Locations/Styled.Locations';
+import { LocationSection } from '@/components/pages/Locations/Styled.Locations';
 import Loader from '@/components/common/ui/Loader/Loader';
-import { useLocations } from '@/hooks/DataFetch';
-import { regions } from '@/utils/DataArrays';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { Locations } from '@/types/types';
-import Head from 'next/head';
+import { useToggleLocation } from '../components/pages/Locations/Hooks/useToggleLocation';
+import HeadingLocations from '@/components/pages/Locations/Heading';
 
+const ListLocations = dynamic(
+  () => import(`@/components/pages/Locations/Components/List.Locations`),
+);
 const RegionsMethod = dynamic(() =>
   import(`@/utils/ObjectsMap`).then((res) => res.RegionsMethod),
 );
 
 function LocationsPage() {
-  const [location, setLocation] = useState<string | null>(null);
-  const [toggle, setToggle] = useState<number>(0);
-  const { isLoading, error, data: locations } = useLocations();
-
-  useEffect(() => {
-    setLocation(regions[toggle + 1]);
-  }, [toggle]);
+  const { isLoading, error, toggle, setToggle, location } = useToggleLocation();
 
   if (error instanceof Error) {
     return { error };
@@ -36,53 +26,12 @@ function LocationsPage() {
 
   return (
     <>
-      <Head>
-        <title>Locations | Pokeref</title>
-        <meta
-          name="description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:title" content="Locations | Pokeref" />
-        <meta
-          property="og:description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:url" content="https://pokeref.app/locations" />
-        <meta property="og:type" content="website" />
-      </Head>
+      <HeadingLocations />
       <MainBig>
         <RegionsMethod toggle={toggle} setToggle={setToggle} />
         <LocationSection>
-          {locations?.map(
-            (l: Locations.Regions) =>
-              l.name === location &&
-              location !== `galar` && (
-                <LocationList key={l.name}>
-                  {l.locations
-                    .sort((a, b) => a.name.localeCompare(b.name))
-                    ?.map((ll) => (
-                      <li key={ll.name}>
-                        <Link
-                          href={{
-                            pathname: `/location/[name]`,
-                            query: { name: ll.name },
-                          }}
-                          key={ll.name}
-                        >
-                          {ll.name
-                            .replace(/-/g, ` `)
-                            .replace(
-                              /kanto|johto|hoenn|sinnoh|unova|kalos|alola/g,
-                              ``,
-                            )}
-                        </Link>
-                      </li>
-                    ))}
-                </LocationList>
-              ),
-          )}
+          <ListLocations location={location} />
         </LocationSection>
-
         {location === `galar` || location === `hisui` ? (
           <LocationSection>
             <p>

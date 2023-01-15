@@ -38,37 +38,39 @@ function LocationCard() {
     setToggleState(index);
   };
 
-  const areaUrl = location?.areas[toggleState].url;
+  const areaUrl = location?.areas[toggleState]?.url;
 
   const { data: area } = useArea(areaUrl);
 
-  useEffect(() => {
-    if (location?.region.name === `kanto`) {
-      setGame(`yellow`);
-    } else if (location?.region.name === `johto`) {
-      setGame(`crystal`);
-    } else if (location?.region.name === `johto`) {
-      setGame(`crystal`);
-    } else if (location?.region.name === `hoenn`) {
-      setGame(`emerald`);
-    } else if (location?.region.name === `sinnoh`) {
-      setGame(`platinum`);
-    } else if (location?.region.name === `unova`) {
-      setGame(`black-2`);
-    } else if (location?.region.name === `kalos`) {
-      setGame(`x`);
-    } else if (location?.region.name === `alola`) {
-      setGame(`ultra-sun`);
+  const gameUsed = () => {
+    switch (location?.region.name) {
+      case `kanto`:
+        setGame(`yellow`);
+        break;
+      case `johto`:
+        setGame(`crystal`);
+        break;
+      case `hoenn`:
+        setGame(`emerald`);
+        break;
+      case `sinnoh`:
+        setGame(`platinum`);
+        break;
+      case `unova`:
+        setGame(`black-2`);
+        break;
+      case `kalos`:
+        setGame(`x`);
+        break;
+      case `alola`:
+        setGame(`ultra-sun`);
+        break;
     }
-  }, [location?.region.name]);
-
-  const title = `${name}`;
+  };
 
   useEffect(() => {
-    document.title = `${
-      title.charAt(0).toUpperCase() + title.slice(1).replace(/-/g, ` `)
-    } | Locations | PokéRef`;
-  }, [title]);
+    gameUsed();
+  }, [location?.region.name]);
 
   if (error instanceof Error) {
     return { error };
@@ -100,16 +102,16 @@ function LocationCard() {
       </Head>
       <MainBig>
         <CardTitle>
-          {location.name
+          {location?.name
             .replace(/-/g, ` `)
             .replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/, ``)}
         </CardTitle>
         <Subtitle>
-          {location.region.name} - {game.replace(/-/g, ` `)}
+          {location?.region.name} - {game.replace(/-/g, ` `)}
         </Subtitle>
         <LocationNavContainer>
           <LocationNav>
-            {location.areas?.map((la: Locations.Locations, i: number) => (
+            {location?.areas?.map((la, i) => (
               <button
                 key={la.name}
                 className={toggleState === i ? `button_active` : ``}
@@ -124,7 +126,7 @@ function LocationCard() {
               </button>
             ))}
           </LocationNav>
-          <span>No information and / or not present in this game</span>
+          <span>There is no information about this area</span>
         </LocationNavContainer>
         <Nav setGame={setGame} />
         <Section>
@@ -174,6 +176,7 @@ function LocationCard() {
                   ),
                 )}
               </tbody>
+              <span>This area is not present in this game</span>
             </LocationTable>
           </TableContainer>
         </Section>

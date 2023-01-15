@@ -8,13 +8,16 @@ type Props = {
   setToggle: Dispatch<SetStateAction<number>>;
 };
 
-export const LearnMethod = ({ toggle, setToggle }: Props) => {
+export const LearnMethod = ({ toggle, setToggle, setLearn }: Props) => {
   return (
     <MethodNav>
       {Object.keys(learnMethod)?.map((l, i) => (
         <button
           className={toggle === i ? `button_active` : ``}
-          onClick={() => setToggle(i)}
+          onClick={() => {
+            setToggle(i);
+            setLearn(learnMethod[l]);
+          }}
           key={learnMethod[l]}
         >
           <p>{learnMethod[l].replace(/-/g, ` `)}</p>

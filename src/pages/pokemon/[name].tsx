@@ -132,12 +132,6 @@ function PokemonCard() {
     }
   }, [species]);
 
-  // Toggle for moves table
-  const [toggleState, setToggleState] = useState(0);
-  const toggleTable = (index: number) => {
-    setToggleState(index);
-  };
-
   // Toggle for types table
   const [toggleType, setToggleType] = useState(1);
   const toggleTypeTable = (index: number) => {
@@ -203,8 +197,6 @@ function PokemonCard() {
         />
 
         <MovesPokemon
-          toggleState={toggleState}
-          toggleTable={toggleTable}
           pokemon={pokemon}
           moves={moves}
           machines={machines}
