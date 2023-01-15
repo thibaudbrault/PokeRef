@@ -1,15 +1,16 @@
 import React from 'react';
+import { MainSmall } from '@/components/common/styles/Sizing';
+import { TypesList } from '@/components/pages/Types/Styled.Types';
+import { useTypes } from '@/hooks/DataFetch';
+import Loader from '@/components/common/ui/Loader/Loader';
+import HeadingTypes from '@/components/pages/Types/Heading';
+import dynamic from 'next/dynamic';
 
-import { MainSmall } from '../components/Common/Sizing';
-import { ModifiedType, TypesList } from '../components/Types/StyledTypes';
-import { useTypes } from '../../src/hooks/DataFetch';
-import Loader from '../components/Loader/Loader';
-import Link from 'next/link';
-import Image from 'next/image';
-import Head from 'next/head';
-import { Types } from '@/types/types';
+const ListTypes = dynamic(
+  () => import(`@/components/pages/Types/Components/List.Types`),
+);
 
-function Types() {
+function TypesPage() {
   const { isLoading, error, data: types } = useTypes();
 
   if (error instanceof Error) {
@@ -22,39 +23,14 @@ function Types() {
 
   return (
     <>
-      <Head>
-        <title>Types | Pokeref</title>
-        <meta
-          name="description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:title" content="Types | Pokeref" />
-        <meta
-          property="og:description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:url" content="https://pokeref.app/types" />
-        <meta property="og:type" content="website" />
-      </Head>
+      <HeadingTypes />
       <MainSmall>
         <TypesList>
-          {types?.map((t: Types) => (
-            <li key={t.name}>
-              <ModifiedType id={t.name}>
-                <Link
-                  href={{ pathname: `/type/[name]`, query: { name: t.name } }}
-                  key={t.name}
-                >
-                  <Image alt={t.name} />
-                  <h2>{t.name}</h2>
-                </Link>
-              </ModifiedType>
-            </li>
-          ))}
+          <ListTypes types={types} />
         </TypesList>
       </MainSmall>
     </>
   );
 }
 
-export default Types;
+export default TypesPage;

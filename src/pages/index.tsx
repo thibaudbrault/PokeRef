@@ -1,42 +1,40 @@
 import React, { useState } from 'react';
 import {
-  PokedexElement,
   PokedexList,
-  PokedexTypes,
   PokedexVerticalText,
-  ToBottom,
-} from '../components/Pokemon/StyledPokemon';
-import { MainBig } from '../components/Common/Sizing';
-import { Type } from '../components/Common/Themes';
-import { usePokedex } from '../hooks/DataFetch';
-import Loader from '../components/Loader/Loader';
-import FaAngleDown from '@meronex/icons/fa/FaAngleDown';
-import Image from 'next/image';
-import Link from 'next/link';
+} from '@/components/pages/Pokemon/Styled.Pokemon';
+import { MainBig } from '@/components/common/styles/Sizing';
+import { usePokedex } from '@/hooks/DataFetch';
+import Loader from '@/components/common/ui/Loader/Loader';
 import dynamic from 'next/dynamic';
 import { Pokemon } from '@/types/types';
-import Head from 'next/head';
+import { useStateWithCallback } from '@/hooks/useStateWithCallback';
+import { Options, OptionsOffsetLimit } from '@/utils/DataArrays';
+import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
+import HeadingPokemon from '@/components/pages/Pokemon/Heading';
 
 const Filters = dynamic(
-  () => import(`../components/Pokemon/Components/Filters.Pokemon`),
+  () => import(`@/components/pages/Pokemon/Components/Filters.Pokemon`),
 );
-const Sprites = dynamic(
-  () => import(`../components/Pokemon/Components/Sprites.Pokemon`),
+const ListPokemon = dynamic(
+  () => import(`@/components/pages/Pokemon/Components/List.Pokemon`),
 );
 
-function Pokedex(): JSX.Element {
-  // Filters the pokemon returned with the filters
-  const [filteredPokedex, setFilteredPokedex] = useState<Pokemon[]>([]);
+function Pokedex() {
+  const [filteredPokedex, setFilteredPokedex] = useState<Pokemon.Pokemon[]>([]);
   // Modify the first pokemon displayed
   const [offset, setOffset] = useState<number>(0);
   //Modify the max number of pokemon displayed
   const [limit, setLimit] = useState<number>(905);
   // Form of the pokemon (changed with a dropdown)
-  const [form, setForm] = useState<string>(`default`);
+  const [form, setForm] = useStateWithCallback<OptionsOffsetLimit | null>(null);
   // Type of the pokemon (changed with a dropdown)
-  const [type, setType] = useState<string>(`all`);
+  const [type, setType] = useStateWithCallback<Options[]>([]);
   // Generation of the pokemon (changed with a dropdown)
-  const [generation, setGeneration] = useState<string>(`all`);
+  const [generation, setGeneration] =
+    useStateWithCallback<OptionsOffsetLimit | null>(null);
+
+  const { scrollBtn } = useScrollDir();
 
   const {
     isLoading,
@@ -56,20 +54,7 @@ function Pokedex(): JSX.Element {
 
   return (
     <>
-      <Head>
-        <meta
-          name="description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:title" content="Pokeref | A pokemon encyclopedia" />
-        <meta
-          property="og:description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:url" content="https://pokeref.app/" />
-        <meta property="og:type" content="website" />
-        <title>Pokeref | A pokemon encyclopedia</title>
-      </Head>
+      <HeadingPokemon />
       <MainBig>
         <Filters
           pokedex={pokedex}
@@ -86,47 +71,10 @@ function Pokedex(): JSX.Element {
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
         <PokedexList>
           <ul>
-            {filteredPokedex?.map((p: Pokemon) => (
-              <PokedexElement key={p.id}>
-                <Sprites p={p} />
-                {p?.id < 905 && <p>#{p?.id?.toString()?.padStart(3, `0`)}</p>}
-                <h2 data-testid="pokemonName">
-                  <Link
-                    href={{
-                      pathname: `/pokemon/[name]`,
-                      query: { name: p.name },
-                    }}
-                    key={p.name}
-                  >
-                    {p?.name
-                      ?.replace(/-/g, ` `)
-                      .replace(`single strike`, ``)
-                      .replace(`rapid strike`, ``)
-                      .replace(`red meteor`, ``)}
-                  </Link>
-                </h2>
-                <PokedexTypes>
-                  {p?.types?.map((pt) => (
-                    <Type id={pt.type.name} key={pt.type.name}>
-                      <Link
-                        href={{
-                          pathname: `/type/[name]`,
-                          query: { name: pt.type.name },
-                        }}
-                      >
-                        <Image alt={pt.type.name} />
-                        <span>{pt?.type?.name}</span>
-                      </Link>
-                    </Type>
-                  ))}
-                </PokedexTypes>
-              </PokedexElement>
-            ))}
+            <ListPokemon filteredPokedex={filteredPokedex} />
           </ul>
         </PokedexList>
-        <ToBottom href="#footer" aria-label="To Bottom">
-          <FaAngleDown />
-        </ToBottom>
+        {scrollBtn()}
       </MainBig>
     </>
   );

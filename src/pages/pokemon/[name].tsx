@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MainBig } from '../../components/Common/Sizing';
-import { BackButton } from '../../components/Common/Inputs';
+import { MainBig } from '../../components/common/styles/Sizing';
 import {
   useEvolution,
   useMachines,
@@ -10,43 +9,62 @@ import {
   useSpecies,
   useTypes,
 } from '../../hooks/DataFetch';
-import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
-import Loader from '../../components/Loader/Loader';
-import { Subtitle, Title } from '../../components/Common/Headings';
+import Loader from '../../components/common/ui/Loader/Loader';
+import { Subtitle, Title } from '../../components/common/styles/Headings';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+// import { speciesFilters } from '@/utils/DataArrays';
+// import { Species } from '@/types/types';
+import BackBtn from '@/components/common/ui/BackBtn';
 
 const Data = dynamic(
-  () => import(`../../components/Pokemon/PokemonCard/Data/Data.PokemonCard`),
+  () =>
+    import(`../../components/pages/Pokemon/PokemonCard/Data/Data.PokemonCard`),
 );
 const Info = dynamic(
-  () => import(`../../components/Pokemon/PokemonCard/Info/Info.PokemonCard`),
+  () =>
+    import(`../../components/pages/Pokemon/PokemonCard/Info/Info.PokemonCard`),
 );
 const Stats = dynamic(
-  () => import(`../../components/Pokemon/PokemonCard/Stats/Stats.PokemonCard`),
+  () =>
+    import(
+      `../../components/pages/Pokemon/PokemonCard/Stats/Stats.PokemonCard`
+    ),
 );
-const Moves = dynamic(
-  () => import(`../../components/Pokemon/PokemonCard/Moves/Moves.PokemonCard`),
+const MovesPokemon = dynamic(
+  () =>
+    import(
+      `../../components/pages/Pokemon/PokemonCard/Moves/Moves.PokemonCard`
+    ),
 );
 const Sprites = dynamic(
   () =>
-    import(`../../components/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard`),
-);
-const Evolution = dynamic(
-  () =>
     import(
-      `../../components/Pokemon/PokemonCard/Evolution/Evolution.PokemonCard`
+      `../../components/pages/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard`
     ),
 );
+const EvolutionPokemon = dynamic(
+  (() =>
+    import(
+      `../../components/pages/Pokemon/PokemonCard/Evolution/Evolution.PokemonCard`
+    )) as any,
+);
 const Nav = dynamic(
-  () => import(`../../components/Pokemon/PokemonCard/Nav/Nav.PokemonCard`),
+  () =>
+    import(`../../components/pages/Pokemon/PokemonCard/Nav/Nav.PokemonCard`),
 );
 
 function PokemonCard() {
+  const [name, setName] = useState(``);
   const router = useRouter();
-  const { name } = router.query;
+
+  useEffect(() => {
+    if (router && router.query && typeof router.query.name === `string`) {
+      setName(router.query.name);
+    }
+  }, [router]);
 
   // Import data fetch
   const {
@@ -77,6 +95,15 @@ function PokemonCard() {
   const [game, setGame] = useState(``);
   const [version, setVersion] = useState(``);
 
+  // const speciesFiltersFn = (species: Species.Species) => {
+  //   speciesFilters.forEach((s) => {
+  //     species.id > s.min &&
+  //       species.id < s.max &&
+  //       (setGame(s.game), setVersion(s.version));
+  //     return species;
+  //   });
+  // };
+
   useEffect(() => {
     if (species?.id < 152) {
       setGame(`yellow`);
@@ -105,20 +132,14 @@ function PokemonCard() {
     }
   }, [species]);
 
-  // Toggle for moves table
-  const [toggleState, setToggleState] = useState(0);
-  const toggleTable = (index) => {
-    setToggleState(index);
-  };
-
   // Toggle for types table
   const [toggleType, setToggleType] = useState(1);
-  const toggleTypeTable = (index) => {
+  const toggleTypeTable = (index: number) => {
     setToggleType(index);
   };
 
-  if (error) {
-    return <p>{error}</p>;
+  if (error instanceof Error) {
+    return { error };
   }
 
   if (isLoading) {
@@ -129,7 +150,9 @@ function PokemonCard() {
     <>
       <Head>
         <title>
-          {name.charAt(0).toUpperCase() + name.slice(1)} | Pokémon | PokéRef
+          {typeof name === `string` &&
+            name.charAt(0).toUpperCase() + name.slice(1)}
+          {` `}| Pokémon | PokéRef
         </title>
         <meta name="description" content={`Find every details about ${name}`} />
         <meta property="og:title" content={`${name} | Pokémon | PokéRef`} />
@@ -151,14 +174,9 @@ function PokemonCard() {
         ) : (
           <Title>{pokemon?.name?.replace(/-/g, ` `)}</Title>
         )}
-        <Subtitle>{species?.generation?.name?.replace(/-/g, ` `)}</Subtitle>
+        <Subtitle>{species?.generation?.name.replace(/-/g, ` `)}</Subtitle>
 
-        <Nav
-          pokemon={pokemon}
-          species={species}
-          setGame={setGame}
-          setVersion={setVersion}
-        />
+        <Nav pokemon={pokemon} setGame={setGame} setVersion={setVersion} />
 
         <Data
           pokemon={pokemon}
@@ -167,7 +185,7 @@ function PokemonCard() {
           game={game}
         />
 
-        <Evolution evolution={evolution} pokemon={pokemon} />
+        <EvolutionPokemon evolution={evolution} />
 
         <Info pokemon={pokemon} species={species} evolution={evolution} />
 
@@ -175,12 +193,10 @@ function PokemonCard() {
           toggleType={toggleType}
           toggleTypeTable={toggleTypeTable}
           pokemon={pokemon}
-          type={types}
+          types={types}
         />
 
-        <Moves
-          toggleState={toggleState}
-          toggleTable={toggleTable}
+        <MovesPokemon
           pokemon={pokemon}
           moves={moves}
           machines={machines}
@@ -191,9 +207,7 @@ function PokemonCard() {
         <Sprites pokemon={pokemon} />
 
         <Link href="/" passHref>
-          <BackButton>
-            <FaChevronLeft /> Back to Pokemon
-          </BackButton>
+          <BackBtn name="Pokedex" />
         </Link>
       </MainBig>
     </>

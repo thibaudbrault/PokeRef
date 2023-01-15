@@ -1,44 +1,26 @@
-import React, { useState, useEffect } from 'react';
-
-import { LeftTitle } from '../components/Common/Headings';
-import { Input, ModifiedSearch } from '../components/Common/Inputs';
+import React from 'react';
+import { LeftTitle } from '@/components/common/styles/Headings';
 import {
   THead,
-  TName,
-  TRow,
-  TEffect,
-  TLink,
   TableContainer,
   ModifiedTable,
-} from '../components/Common/Table';
-import { ModifiedMainBig } from '../components/Common/Sizing';
-import { useAbilities } from '../hooks/DataFetch';
-import Loader from '../components/Loader/Loader';
-import { Abilities, Sort } from '@/types/types';
-import Head from 'next/head';
+} from '@/components/common/styles/Table';
+import { ModifiedMainBig } from '@/components/common/styles/Sizing';
+import Loader from '@/components/common/ui/Loader/Loader';
+import ModifiedSearchUi from '@/components/common/ui/ModifiedSearch.ui';
+import { useFilterAbilities } from '@/components/pages/Abilities/Hooks/useFilterAbilities';
+import dynamic from 'next/dynamic';
 
-function Abilities() {
-  const [search, setSearch] = useState<string | null>(null);
-  const [filteredAbilities, setFilteredAbilities] = useState<any>([]);
-  const { isLoading, error, data: abilities } = useAbilities();
+const HeadingAbilities = dynamic(
+  () => import(`@/components/pages/Abilities/Heading`),
+);
+const ListAbilities = dynamic(
+  () => import(`@/components/pages/Abilities/Components/List.Abilities`),
+);
 
-  // Filter the abilities returned when the user type the name in the search bar
-  const filterAbilities = search
-    ? abilities?.filter((abilities) =>
-        abilities.name
-          .replace(/-/g, ` `)
-          .toLowerCase()
-          .includes(search?.toLowerCase()),
-      )
-    : abilities;
-
-  // New request when the user types a letter
-  useEffect(
-    () => setFilteredAbilities(filterAbilities),
-    [search, filterAbilities],
-  );
-
-  console.log(filteredAbilities);
+function AbilitiesPage() {
+  const { setSearch, isLoading, error, filterAbilities, filterEffect } =
+    useFilterAbilities();
 
   if (error instanceof Error) {
     return { error };
@@ -50,69 +32,23 @@ function Abilities() {
 
   return (
     <>
-      <Head>
-        <title>Abilities | Pokeref</title>
-        <meta
-          name="description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:title" content="Abilities | Pokeref" />
-        <meta
-          property="og:description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:url" content="https://pokeref.app/abilities" />
-        <meta property="og:type" content="website" />
-      </Head>
+      <HeadingAbilities />
       <ModifiedMainBig>
         <LeftTitle>Abilities</LeftTitle>
-        <ModifiedSearch>
-          <Input>
-            <label htmlFor="searchBar">Search</label>
-            <input
-              type="text"
-              placeholder="Ability Name"
-              name="searchBar"
-              id="searchBar"
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
-            />
-          </Input>
-        </ModifiedSearch>
+        <ModifiedSearchUi placeholder="Ability Name" setSearch={setSearch} />
         <TableContainer>
           <ModifiedTable>
             <THead>
-              <tr className="abilities_table_head_row">
-                <th className="abilities_table_head_row_element">Name</th>
-                <th className="abilities_table_head_row_element">Effect</th>
+              <tr>
+                <th>Name</th>
+                <th>Effect</th>
               </tr>
             </THead>
             <tbody>
-              {filteredAbilities
-                ?.sort(({ a, b }: Sort) => a.name.localeCompare(b.name))
-                .map((a: Abilities) => (
-                  <TRow key={a.name}>
-                    <TName>
-                      <TLink
-                        href={{
-                          pathname: `/ability/[name]`,
-                          query: { name: a.name },
-                        }}
-                      >
-                        {a.name.replace(/-/g, ` `)}
-                      </TLink>
-                    </TName>
-                    <TEffect>
-                      {a.flavor_text_entries.map(
-                        (af) =>
-                          af.language.name === `en` && (
-                            <span key={af.flavor_text}>{af.flavor_text}</span>
-                          ),
-                      )}
-                    </TEffect>
-                  </TRow>
-                ))}
+              <ListAbilities
+                filterAbilities={filterAbilities}
+                filterEffect={filterEffect}
+              />
             </tbody>
           </ModifiedTable>
         </TableContainer>
@@ -121,4 +57,4 @@ function Abilities() {
   );
 }
 
-export default Abilities;
+export default AbilitiesPage;

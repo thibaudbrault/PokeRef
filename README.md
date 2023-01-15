@@ -50,10 +50,9 @@
 ✅Responsive  
 ✅Service Worker
 
-🛠Authentication + list of favorites for users logged in
+🛠List of favorites stored in localStorage
 
-🔜Types relations for each pokémon  
-🔜Authentication with profile page and "create your team" functionality  
+🔜Types relations for each pokémon    
 🔜Animation on scroll
 
 <h4>Performance improvements</h4>
@@ -62,7 +61,7 @@
 ✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important.  
 ✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded.
 
-🛠Upgrade to Next JS 13.
+🛠Refactoring the code.
 
 🔜Implement a Service Worker.
 
@@ -80,6 +79,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - Moved to React JS + Styled-Components to learn a new way to write CSS. It was a good move for me because I really like Styled-Components because it has the advantages of Sass, is easily importable / exportable between files and supports theming.
 - Added React-Query to fetch data. It's a great library that makes it easy to manage caching, fetching, loading and error handling for every data fetch.
 - Finally moved to Next JS (instead of CRA) + Styled-Components to learn to use Next JS. I chose to use Next JS to benefit from the image optimization given by the <Image /> component because the app has a lot of images to render and every optimization is welcome. I also chose it to benefit from the Static-Site generation.
+- Upgraded to Next 13. There were some problems that made the transition to using the app folder instead of the pages one not possible, but I benefited from the changes to the <Image /> component (it no longer creates spans) and the <Link /> component (it no longer need to have an anchor tag inside).
 
 <h4>Problems encountered (ordered from the oldest to the most recent)</h4>
 
@@ -88,7 +88,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - Implementing an infinite scroll (now removed) in React with <a href="https://www.npmjs.com/package/react-infinite-scroll-component" target="_blank">react-infinite-scroll-component</a>. I had problems with creating the function that fetches more data and the function that says when there are more elements to return. Maybe I'll try to implement it with React-Query but it's currently not a priority.
 - Virtualizing the moves, abilities and items pages' lists. I tried to implement it by using <a href="https://github.com/bvaughn/react-virtualized" target="_blank">react-virtualized</a> and <a href="https://github.com/petyosi/react-virtuoso" target="_blank">react-virtuoso</a>, but I had a few problems (the main one being that it did not take into account the sorting of the list and returned the list without it).
 - Implementing React-Query. I had to learn how to modify my custom hooks to make it work with React-Query and how to import the data from the hooks. It took me some time to make the transition works, but I don't regret it because my code is more readable (mainly the part where I import my hooks, but also the way I handle the loading state to return an animation while the data is being fetched) and it's an easy way to cache data.
-- Moving from CRA to Next. The main problem I had was learning to use dynamic routing and when I understood it the migration became easier. It still took me some time because I had to move all my files in other folders, change the paths in imports, implement the <Image /> component along with a width and height, correct some problems with the images (the creation of multiple spans wrapping the image that was solved by using next/future/image before moving to Next 13) and a few other problems with <Link /> component (the fact that it can't have multiple children and it needs to have a 'href' instead of the 'to' used in react-router to give the path).
+- Moving from CRA to Next. The main problem I had was learning to use dynamic routing and when I understood it the migration became easier. It still took me some time because I had to move all my files in other folders, change the paths in imports, implement the <Image /> component along with a width and height, correct some problems with the images (the creation of multiple spans wrapping the image that was solved by using next/future/image before moving to Next 13) and a few other problems with the <Link /> component (the fact that it can't have multiple children, that it needs to have a 'href' instead of the 'to' used in react-router to give the path and that you need to put an anchor tag inside the Link and use passHref).
 
 <h4>Contents</h4>
 

@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-import { H1 } from '../../Common/Headings';
+import { H1 } from '@/components/common/styles/Headings';
 import {
   HeaderBtnConnect,
   HeaderBtnConnected,
   HeaderBtnContainer,
   HeaderBtnTheme,
   HeaderContainer,
-} from './StyledHeader';
-import RiMoonClearLine from '@meronex/icons/ri/RiMoonClearLine';
-import RiSunLine from '@meronex/icons/ri/RiSunLine';
-import { useSession, signOut } from 'next-auth/react';
+} from '@/components/layout/Header/Styled.Header';
+import { RiMoonClearLine } from '@meronex/icons/ri';
+import { RiSunLine } from '@meronex/icons/ri';
+import { onAuthStateChanged, signOut, User } from 'firebase/auth';
+import { auth } from '@/firebase-config';
 
 type Props = {
   themeToggler: () => void;
@@ -19,27 +20,42 @@ type Props = {
 };
 
 function Header({ themeToggler, theme }: Props) {
-  const { data: session } = useSession();
+  const [user, setUser] = useState<User | null>();
+  // const usersCollectionRef = collection(db, `users`);
 
-  console.log(session);
+  const logout = async () => {
+    await signOut(auth);
+  };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      return setUser(currentUser);
+    });
+  }, []);
 
   return (
     <HeaderContainer id="header">
       <H1>PokéRef</H1>
       <HeaderBtnContainer>
-        <HeaderBtnTheme onClick={themeToggler} aria-label="Switch Theme">
-          {theme === `dark` ? <RiSunLine /> : <RiMoonClearLine />}
+        <HeaderBtnTheme
+          onClick={themeToggler}
+          aria-label="Switch Theme"
+          data-testid="themeBtn"
+        >
+          {theme === `dark` ? (
+            <RiSunLine data-testid="sun" />
+          ) : (
+            <RiMoonClearLine data-testid="moon" />
+          )}
         </HeaderBtnTheme>
-        {session ? (
+        {user ? (
           <HeaderBtnConnected>
-            <button onClick={signOut}>Log Out</button>
+            <button onClick={logout}>Sign Out</button>
             <Link href="/profile">Profile</Link>
           </HeaderBtnConnected>
         ) : (
           <HeaderBtnConnect>
-            <Link href="/login" passHref>
-              Login
-            </Link>
+            <Link href="/login">Login</Link>
             <Link href="/register">Register</Link>
           </HeaderBtnConnect>
         )}

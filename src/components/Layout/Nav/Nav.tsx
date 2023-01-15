@@ -1,38 +1,32 @@
 import React from 'react';
 import Link from 'next/link';
-import { MainNav, MainNavList } from './StyledNav';
+import { MainNav, MainNavList } from './Styled.Nav';
+
+type NavArray = {
+  name: string;
+}[];
 
 function Nav() {
+  const navArray: NavArray = [
+    { name: `pokémon` },
+    { name: `moves` },
+    { name: `abilities` },
+    { name: `types` },
+    { name: `items` },
+    { name: `machines` },
+    { name: `locations` },
+  ];
+
   return (
     <MainNav>
       <MainNavList>
-        <li>
-          <Link href="/">Pokémon</Link>
-        </li>
-
-        <li>
-          <Link href="/moves">Moves</Link>
-        </li>
-
-        <li>
-          <Link href="/abilities">Abilities</Link>
-        </li>
-
-        <li>
-          <Link href="/types">Types</Link>
-        </li>
-
-        <li>
-          <Link href="/items">Items</Link>
-        </li>
-
-        <li>
-          <Link href="/machines">Machines</Link>
-        </li>
-
-        <li>
-          <Link href="/locations">Locations</Link>
-        </li>
+        {navArray.map((nav) => (
+          <li key={nav.name}>
+            <Link href={nav.name === `pokémon` ? `/` : `/${nav.name}`}>
+              {nav.name}
+            </Link>
+          </li>
+        ))}
       </MainNavList>
     </MainNav>
   );

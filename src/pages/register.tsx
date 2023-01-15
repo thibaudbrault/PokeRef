@@ -1,6 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '@/firebase-config';
+import { doc, setDoc } from 'firebase/firestore/lite';
 
 import {
   AuthBtn,
@@ -10,11 +16,10 @@ import {
   AuthInput,
   AuthSwitch,
   AuthTitle,
-} from '../components/Auth/StyledAuth';
-import { H2 } from '../components/Common/Headings';
-import { MainAuth } from '../components/Common/Sizing';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+} from '@/components/pages/Auth/Styled.Auth';
+import { H2 } from '@/components/common/styles/Headings';
+import { MainBig } from '@/components/common/styles/Sizing';
+import { toast } from 'react-hot-toast';
 
 type FormInput = {
   username: string;
@@ -33,6 +38,8 @@ const schema = yup
   .required();
 
 function Register() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -41,12 +48,33 @@ function Register() {
     resolver: yupResolver<yup.AnyObjectSchema>(schema),
   });
 
-  const submitForm = (data: FormInput) => {
-    console.log(data);
+  const submitForm = async (data: FormInput) => {
+    try {
+      await createUserWithEmailAndPassword(auth, data.email, data.password);
+      const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+      await setDoc(usersCollectionRef, {
+        name: data.username,
+        email: data.email,
+      });
+      toast.success(`Congrats 🎉! Your account is now created`, {
+        style: {
+          fontSize: `1.7rem`,
+        },
+      });
+      router.push(`/`);
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        });
+      }
+    }
   };
 
   return (
-    <MainAuth>
+    <MainBig>
       <AuthContainer>
         <AuthImage2></AuthImage2>
         <AuthForm onSubmit={handleSubmit(submitForm)}>
@@ -97,7 +125,7 @@ function Register() {
           </AuthSwitch>
         </AuthForm>
       </AuthContainer>
-    </MainAuth>
+    </MainBig>
   );
 }
 

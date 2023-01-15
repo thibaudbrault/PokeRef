@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
-// import { SessionProvider } from 'next-auth/react';
 
-import { darkTheme, lightTheme } from '../components/Common/Themes';
+import { darkTheme, lightTheme } from '@/components/common/styles/Themes';
 
-import Header from '../components/Layout/Header/Header';
-import Nav from '../components/Layout/Nav/Nav';
-import Footer from '../components/Layout/Footer/Footer';
-import { Reset } from '../components/Common/Reset';
-import { SessionProvider } from 'next-auth/react';
+import Header from '@/components/layout/Header/Header';
+import Nav from '@/components/layout/Nav/Nav';
+import Footer from '@/components/layout/Footer/Footer';
+import { Reset } from '@/components/common/styles/Reset';
+import { Toaster } from 'react-hot-toast';
+import NextNProgress from 'nextjs-progressbar';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,7 +24,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const ErrorFallback = ({ error, resetErrorBoundary }) => {
+const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   <div role="alert">
     <p>Something went wrong:</p>
     <pre>{error.message}</pre>
@@ -48,23 +48,24 @@ function MyApp({ Component, pageProps }: AppProps) {
   const themeToggler = () => {
     theme === `dark` ? setMode(`light`) : setMode(`dark`);
   };
+
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
       </Head>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <SessionProvider>
-          <QueryClientProvider client={queryClient}>
-            <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
-              <Header themeToggler={themeToggler} theme={theme} />
-              <Nav />
-              <Reset />
-              <Component {...pageProps} />
-              <Footer />
-            </ThemeProvider>
-          </QueryClientProvider>
-        </SessionProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
+            <Toaster />
+            <NextNProgress />
+            <Header themeToggler={themeToggler} theme={theme} />
+            <Nav />
+            <Reset />
+            <Component {...pageProps} />
+            <Footer />
+          </ThemeProvider>
+        </QueryClientProvider>
       </ErrorBoundary>
     </>
   );

@@ -1,23 +1,23 @@
 import React from 'react';
-import { BackButton } from '../../components/Common/Inputs';
-import { MainBig } from '../../components/Common/Sizing';
-import { CardTitle } from '../../components/Common/Headings';
+import { MainBig } from '../../components/common/styles/Sizing';
+import { CardTitle } from '../../components/common/styles/Headings';
 import { useMoves, usePokedex, useType } from '../../hooks/DataFetch';
-import Loader from '../../components/Loader/Loader';
-import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
+import Loader from '../../components/common/ui/Loader/Loader';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import BackBtn from '@/components/common/ui/BackBtn';
 
 const Damage = dynamic(
-  () => import(`../../components/Types/TypeCard/Damage/Damage.TypeCard`),
+  () => import(`../../components/pages/Types/TypeCard/Damage/Damage.TypeCard`),
 );
 const Moves = dynamic(
-  () => import(`../../components/Types/TypeCard/Moves/Moves.TypeCard`),
+  () => import(`../../components/pages/Types/TypeCard/Moves/Moves.TypeCard`),
 );
 const Pokemon = dynamic(
-  () => import(`../../components/Types/TypeCard/Pokemon/Pokemon.TypeCard`),
+  () =>
+    import(`../../components/pages/Types/TypeCard/Pokemon/Pokemon.TypeCard`),
 );
 
 function TypeCard() {
@@ -36,8 +36,8 @@ function TypeCard() {
 
   const { data: moves } = useMoves();
 
-  if (error) {
-    return <p>{error}</p>;
+  if (error instanceof Error) {
+    return { error };
   }
 
   if (isLoading) {
@@ -48,7 +48,9 @@ function TypeCard() {
     <>
       <Head>
         <title>
-          {name.charAt(0).toUpperCase() + name.slice(1)} | Type | PokéRef
+          {typeof name === `string` &&
+            name?.charAt(0).toUpperCase() + name?.slice(1)}
+          {` `}| Type | PokéRef
         </title>
         <meta
           name="description"
@@ -63,7 +65,7 @@ function TypeCard() {
         <meta property="og:type" content="website" />
       </Head>
       <MainBig>
-        <CardTitle>{type?.name}</CardTitle>
+        <CardTitle>{type.name}</CardTitle>
 
         <Damage type={type} />
 
@@ -72,9 +74,7 @@ function TypeCard() {
         <Moves type={type} moves={moves} />
 
         <Link href="/types" passHref>
-          <BackButton>
-            <FaChevronLeft /> Back to Types
-          </BackButton>
+          <BackBtn name="Types" />
         </Link>
       </MainBig>
     </>

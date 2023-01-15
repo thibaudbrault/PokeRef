@@ -1,34 +1,20 @@
-import React, { useState, useEffect } from 'react';
-
-import { MainBig } from '../components/Common/Sizing';
-import {
-  LocationList,
-  LocationSection,
-} from '../components/Locations/StyledLocations';
-import Loader from '../components/Loader/Loader';
-import { useLocations } from '../../src/hooks/DataFetch';
-import { regions } from '../../src/utils/DataMap';
-import Link from 'next/link';
+import React from 'react';
+import { MainBig } from '@/components/common/styles/Sizing';
+import { LocationSection } from '@/components/pages/Locations/Styled.Locations';
+import Loader from '@/components/common/ui/Loader/Loader';
 import dynamic from 'next/dynamic';
-import { Locations, Sort } from '@/types/types';
-import Head from 'next/head';
+import { useToggleLocation } from '../components/pages/Locations/Hooks/useToggleLocation';
+import HeadingLocations from '@/components/pages/Locations/Heading';
 
-const RegionsMethod = dynamic(
-  () => import(`../../src/utils/RegionsMethod.jsx`),
+const ListLocations = dynamic(
+  () => import(`@/components/pages/Locations/Components/List.Locations`),
+);
+const RegionsMethod = dynamic(() =>
+  import(`@/utils/ObjectsMap`).then((res) => res.RegionsMethod),
 );
 
-function Locations() {
-  const [location, setLocation] = useState<string | null>(null);
-  const [toggleState, setToggleState] = useState<number>(0);
-  const { isLoading, error, data: locations } = useLocations();
-
-  const toggleTable = (index: number) => {
-    setToggleState(index);
-  };
-
-  useEffect(() => {
-    setLocation(regions[toggleState + 1]);
-  }, [toggleState]);
+function LocationsPage() {
+  const { isLoading, error, toggle, setToggle, location } = useToggleLocation();
 
   if (error instanceof Error) {
     return { error };
@@ -40,56 +26,17 @@ function Locations() {
 
   return (
     <>
-      <Head>
-        <title>Locations | Pokeref</title>
-        <meta
-          name="description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:title" content="Locations | Pokeref" />
-        <meta
-          property="og:description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:url" content="https://pokeref.app/locations" />
-        <meta property="og:type" content="website" />
-      </Head>
+      <HeadingLocations />
       <MainBig>
-        <RegionsMethod toggleState={toggleState} toggleTable={toggleTable} />
+        <RegionsMethod toggle={toggle} setToggle={setToggle} />
         <LocationSection>
-          {locations?.map(
-            (l: Locations) =>
-              l?.name === location &&
-              location !== `galar` && (
-                <LocationList key={l.name}>
-                  {l?.locations
-                    ?.sort(({ a, b }: Sort) => a.name.localeCompare(b.name))
-                    ?.map((ll) => (
-                      <li key={ll.name}>
-                        <Link
-                          href={{
-                            pathname: `/location/[name]`,
-                            query: { name: ll.name },
-                          }}
-                          key={ll.name}
-                        >
-                          {ll?.name
-                            ?.replace(/-/g, ` `)
-                            ?.replace(
-                              /kanto|johto|hoenn|sinnoh|unova|kalos|alola/g,
-                              ``,
-                            )}
-                        </Link>
-                      </li>
-                    ))}
-                </LocationList>
-              ),
-          )}
+          <ListLocations location={location} />
         </LocationSection>
-
-        {location === `galar` ? (
+        {location === `galar` || location === `hisui` ? (
           <LocationSection>
-            <p>No data for Galar</p>
+            <p>
+              No data for {location.charAt(0).toUpperCase() + location.slice(1)}
+            </p>
           </LocationSection>
         ) : null}
       </MainBig>
@@ -97,4 +44,4 @@ function Locations() {
   );
 }
 
-export default Locations;
+export default LocationsPage;
