@@ -4,7 +4,6 @@ import {
   AbilityCardEffect,
   AbilityCardSection,
   AbilityCardTable,
-  Sup,
 } from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import {
   CardTitle,
@@ -13,11 +12,6 @@ import {
   Span,
   Subtitle,
 } from '@/components/common/styles/Headings';
-import {
-  TableContainer,
-  ModifiedTable,
-  THead,
-} from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -25,17 +19,12 @@ import BackBtn from '@/components/common/ui/BackBtn';
 import { useFilterAbility } from '@/components/pages/Abilities/AbilityCard/Hooks/useFilterAbility';
 import HeadingAbility from '@/components/pages/Abilities/AbilityCard/Heading';
 import dynamic from 'next/dynamic';
+import TableAbilitycard from '@/components/pages/Abilities/AbilityCard/Components/Table.Abilitycard';
 
 const DescAbilityCard = dynamic(
   () =>
     import(
       `@/components/pages/Abilities/AbilityCard/Components/Desc.AbilityCard`
-    ),
-);
-const ListAbilityCard = dynamic(
-  () =>
-    import(
-      `@/components/pages/Abilities/AbilityCard/Components/List.AbilityCard`
     ),
 );
 
@@ -100,28 +89,8 @@ function AbilityCard() {
           <H3>
             Pokemon with <Span>{ability?.name.replace(/-/g, ` `)}</Span>
           </H3>
-          <TableContainer>
-            <ModifiedTable>
-              <THead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>
-                    1<Sup>st</Sup> ability
-                  </th>
-                  <th>
-                    2<Sup>nd</Sup> ability
-                  </th>
-                  <th>Hidden ability</th>
-                </tr>
-              </THead>
-              <tbody>
-                <ListAbilityCard ability={ability} pokedex={pokedex} />
-              </tbody>
-            </ModifiedTable>
-          </TableContainer>
+          <TableAbilitycard ability={ability} pokedex={pokedex} />
         </AbilityCardSection>
-
         <Link href="/abilities" passHref>
           <BackBtn name="Abilities" />
         </Link>
