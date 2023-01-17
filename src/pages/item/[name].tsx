@@ -64,15 +64,16 @@ function ItemCard() {
             <FlingItemCard item={item} />
           </div>
           <ItemCardDataImage>
-            <Image
-              src={item?.sprites?.default}
-              alt={item?.name}
-              width={96}
-              height={96}
-            />
+            {item &&
+              <Image
+                src={item?.sprites?.default}
+                alt={item?.name}
+                width={96}
+                height={96}
+              />
+            }
           </ItemCardDataImage>
         </ItemCardDataSection>
-
         <ItemCardDescSection>
           <ItemCardDescTitle>Game descriptions</ItemCardDescTitle>
           <ItemCardDescTable>
