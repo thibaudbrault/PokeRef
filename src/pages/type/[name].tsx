@@ -1,28 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MainBig } from '../../components/common/styles/Sizing';
 import { CardTitle } from '../../components/common/styles/Headings';
 import { useMoves, usePokedex, useType } from '../../hooks/DataFetch';
 import Loader from '../../components/common/ui/Loader/Loader';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import BackBtn from '@/components/common/ui/BackBtn';
+import HeadingType from '@/components/pages/Types/TypeCard/Heading';
 
-const Damage = dynamic(
+const DamageType = dynamic(
   () => import(`../../components/pages/Types/TypeCard/Damage/Damage.TypeCard`),
 );
-const Moves = dynamic(
+const MovesType = dynamic(
   () => import(`../../components/pages/Types/TypeCard/Moves/Moves.TypeCard`),
 );
-const Pokemon = dynamic(
+const PokemonType = dynamic(
   () =>
     import(`../../components/pages/Types/TypeCard/Pokemon/Pokemon.TypeCard`),
 );
 
 function TypeCard() {
   const router = useRouter();
-  const { name } = router.query;
+  const [name, setName] = useState<string>('');
+
+  useEffect(() => {
+    if (router.isReady) {
+      setName(router.query.name)
+    }
+  }, [router.isReady])
 
   const {
     isLoading,
@@ -46,32 +52,15 @@ function TypeCard() {
 
   return (
     <>
-      <Head>
-        <title>
-          {typeof name === `string` &&
-            name?.charAt(0).toUpperCase() + name?.slice(1)}
-          {` `}| Type | PokéRef
-        </title>
-        <meta
-          name="description"
-          content={`Find every details about the ${name} type`}
-        />
-        <meta property="og:title" content={`${name} | Type | PokéRef`} />
-        <meta
-          property="og:description"
-          content={`Find every details about the ${name} type`}
-        />
-        <meta property="og:url" content={`https://pokeref.app/type/${name}`} />
-        <meta property="og:type" content="website" />
-      </Head>
+      <HeadingType name={name} />
       <MainBig>
-        <CardTitle>{type.name}</CardTitle>
+        <CardTitle>{type?.name}</CardTitle>
 
-        <Damage type={type} />
+        <DamageType type={type} />
 
-        <Pokemon type={type} pokedex={pokedex} />
+        <PokemonType type={type} pokedex={pokedex} />
 
-        <Moves type={type} moves={moves} />
+        <MovesType type={type} moves={moves} />
 
         <Link href="/types" passHref>
           <BackBtn name="Types" />

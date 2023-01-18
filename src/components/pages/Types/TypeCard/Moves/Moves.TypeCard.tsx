@@ -13,19 +13,19 @@ import Link from 'next/link';
 import { Moves, Types } from '@/types/types';
 
 type Props = {
-  type: Types.Types;
-  moves: Moves.Moves[];
+  type?: Types.Types;
+  moves?: Moves.Moves[];
 };
 
-function Moves({ type, moves }: Props) {
+function MovesType({ type, moves }: Props) {
   // Returns the number of moves from this type
-  const nbMoves = document.querySelectorAll(`.moveElement`).length;
+  let nbMoves = document.querySelectorAll(`.moveElement`).length;
 
   return (
     <Section>
       <H3>Moves</H3>
       <TypeListSubtitle>
-        {nbMoves} moves are <Span>{type.name}</Span> type
+        {nbMoves} moves are <Span>{type?.name}</Span> type
       </TypeListSubtitle>
       <TableContainer>
         <TypeMovesTable>
@@ -53,7 +53,6 @@ function Moves({ type, moves }: Props) {
                               pathname: `/move/[name]`,
                               query: { name: m.name },
                             }}
-                            key={m.name}
                           >
                             {tm.name.replace(/-/g, ` `)}
                           </Link>
@@ -80,7 +79,7 @@ function Moves({ type, moves }: Props) {
       </TableContainer>
       {type?.name !== `fairy` && (
         <TypeMovesComment>
-          <Span>{type.name}</Span> attacks were{` `}
+          <Span>{type?.name}</Span> attacks were{` `}
           <Span>{type?.move_damage_class?.name}</Span> before Gen IV
         </TypeMovesComment>
       )}
@@ -88,4 +87,4 @@ function Moves({ type, moves }: Props) {
   );
 }
 
-export default Moves;
+export default MovesType;
