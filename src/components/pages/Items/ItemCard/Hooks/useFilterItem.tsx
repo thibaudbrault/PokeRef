@@ -1,13 +1,13 @@
 import { useItem } from "@/hooks/DataFetch";
 
-export const useFilterItem = () => {
+export const useFilterItem = (name: string | string[] | undefined) => {
     const {
         isLoading,
         error,
         data: item,
     } = useItem(`https://pokeapi.co/api/v2/item/${name}`);
 
-    const filterEffect = item?.effect_entries.find(
+    const filterEffect = item && item?.effect_entries?.find(
         (ie) => ie.language.name === `en`,
     );
 

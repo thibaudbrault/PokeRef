@@ -35,7 +35,7 @@ function ItemCard() {
   const router = useRouter();
   const { name } = router.query;
 
-  const { isLoading, error, item, filterEffect } = useFilterItem()
+  const { isLoading, error, item, filterEffect } = useFilterItem(name)
 
   if (error instanceof Error) {
     return { error };

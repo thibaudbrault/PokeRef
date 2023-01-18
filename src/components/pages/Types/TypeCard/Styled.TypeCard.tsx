@@ -19,6 +19,7 @@ export const TypeDamageSection = styled.section`
 
 export const TypeDamageTable = styled(Table)`
   width: 100%;
+  height: 100%;
   margin-top: 0.5rem;
 
   & tr {

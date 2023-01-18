@@ -2,21 +2,18 @@ import React, { } from 'react';
 import { MainBig, Section } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
-import {
-  LocationNavContainer,
-  LocationTable,
-} from '@/components/pages/Locations/Styled.Locations';
+import { LocationTable } from '@/components/pages/Locations/Styled.Locations';
 import Nav from '@/components/pages/Locations/LocationCard/Components/Nav.LocationCard';
-import {
-  TableContainer,
-  THead,
-} from '@/components/common/styles/Table';
+import { TableContainer } from '@/components/common/styles/Table';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import BackBtn from '@/components/common/ui/BackBtn';
 import { useSwitchGame } from '@/components/pages/Locations/LocationCard/Hooks/useSwitchGame';
 import dynamic from 'next/dynamic';
 
+const TableHead = dynamic(
+  () => import('@/components/common/ui/TableHead')
+);
 const HeadingLocation = dynamic(
   () => import('@/components/pages/Locations/LocationCard/Heading')
 );
@@ -33,6 +30,8 @@ function LocationCard() {
 
   const { game, setGame, isLoading, error, toggleState, toggleTable, location, area } = useSwitchGame(name)
 
+  const tableHead: string[] = ['Pokemon', 'Location', 'Probability', 'Level', 'Condition']
+
   if (error instanceof Error) {
     return { error };
   }
@@ -40,8 +39,6 @@ function LocationCard() {
   if (isLoading) {
     return <Loader />;
   }
-
-  console.log(area)
 
   return (
     <>
@@ -55,25 +52,13 @@ function LocationCard() {
         <Subtitle>
           {location?.region.name} - {game.replace(/-/g, ` `)}
         </Subtitle>
-        <LocationNavContainer>
-          <AreaLocationCard location={location} toggleState={toggleState} toggleTable={toggleTable} />
-        </LocationNavContainer>
+        <AreaLocationCard location={location} toggleState={toggleState} toggleTable={toggleTable} />
         <Nav setGame={setGame} />
         <Section>
           <TableContainer>
             <LocationTable>
-              <THead>
-                <tr>
-                  <th>Pokemon</th>
-                  <th>Location</th>
-                  <th>Probability</th>
-                  <th>Level</th>
-                  <th>Condition</th>
-                </tr>
-              </THead>
-              <tbody>
-                <TableLocationCard area={area} game={game} />
-              </tbody>
+              <TableHead array={tableHead} />
+              <TableLocationCard area={area} game={game} />
               <span>This area is not present in this game</span>
             </LocationTable>
           </TableContainer>

@@ -11,23 +11,22 @@ type Props = {
 
 function TableLocationCard({ area, game }: Props) {
     return (
-        <>
+        <tbody>
             {area?.pokemon_encounters?.map((a) =>
-                a.version_details?.map(
-                    (av) =>
-                        av.version.name === game &&
-                        av.encounter_details?.map((ave) => (
-                            <TRow key={a.pokemon.name}>
-                                <TName>{a.pokemon.name.replace(/-/g, ` `)}</TName>
-                                <td>{ave.method.name.replace(/-/g, ` `)}</td>
-                                <td>{ave.chance} %</td>
-                                <ChanceLocationCard ave={ave} />
-                                <ConditionLocationCard ave={ave} />
-                            </TRow>
-                        )),
+                a.version_details?.map((av) =>
+                    av.version.name === game &&
+                    av.encounter_details?.map((ave) => (
+                        <TRow key={a.pokemon.name}>
+                            <TName>{a.pokemon.name.replace(/-/g, ` `)}</TName>
+                            <td>{ave.method.name.replace(/-/g, ` `)}</td>
+                            <td>{ave.chance} %</td>
+                            <ChanceLocationCard ave={ave} />
+                            <ConditionLocationCard ave={ave} />
+                        </TRow>
+                    )),
                 ),
             )}
-        </>
+        </tbody>
     )
 }
 

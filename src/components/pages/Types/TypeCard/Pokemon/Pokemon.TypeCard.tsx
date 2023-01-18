@@ -7,19 +7,19 @@ import Link from 'next/link';
 import { Pokemon, Types } from '@/types/types';
 
 type Props = {
-  type: Types.Types;
-  pokedex: Pokemon.Pokemon[];
+  type?: Types.Types;
+  pokedex?: Pokemon.Pokemon[];
 };
 
-function Pokemon({ type, pokedex }: Props) {
+function PokemonType({ type, pokedex }: Props) {
   // Returns the number of pokemon with this type
-  const nbPokemon = document.querySelectorAll(`.pokemonElement`).length;
+  let nbPokemon = document.querySelectorAll(`.pokemonElement`).length;
 
   return (
     <Section>
       <H3>Pokémon</H3>
       <TypeListSubtitle>
-        {nbPokemon} Pokémon are <Span>{type.name}</Span> type
+        {nbPokemon} Pokémon are <Span>{type?.name}</Span> type
       </TypeListSubtitle>
       <TypePokemonList>
         {type?.pokemon?.map((tp) =>
@@ -41,7 +41,6 @@ function Pokemon({ type, pokedex }: Props) {
                       pathname: `/pokemon/[name]`,
                       query: { name: p.name },
                     }}
-                    key={p.name}
                   >
                     {tp?.pokemon?.name?.replace(/-/g, ` `)}
                   </Link>
@@ -54,4 +53,4 @@ function Pokemon({ type, pokedex }: Props) {
   );
 }
 
-export default Pokemon;
+export default PokemonType;

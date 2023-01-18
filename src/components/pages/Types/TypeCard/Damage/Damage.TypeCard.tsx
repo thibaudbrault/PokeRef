@@ -6,10 +6,10 @@ import Image from 'next/image';
 import { Types } from '@/types/types';
 
 type Props = {
-  type: Types.Types;
+  type?: Types.Types;
 };
 
-function Damage({ type }: Props) {
+function DamageType({ type }: Props) {
   return (
     <TypeDamageSection>
       <div>
@@ -122,4 +122,4 @@ function Damage({ type }: Props) {
   );
 }
 
-export default Damage;
+export default DamageType;

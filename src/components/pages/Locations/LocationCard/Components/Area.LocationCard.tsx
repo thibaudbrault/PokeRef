@@ -1,6 +1,6 @@
 import { Locations } from '@/types/types'
 import React from 'react'
-import { LocationNav } from '../../Styled.Locations'
+import { LocationNav, LocationNavContainer } from '../../Styled.Locations'
 
 type Props = {
     location?: Locations.Locations;
@@ -10,7 +10,7 @@ type Props = {
 
 function AreaLocationCard({ location, toggleState, toggleTable }: Props) {
     return (
-        <>
+        <LocationNavContainer>
             <LocationNav>
                 {location?.areas?.map((la, i) => (
                     <button
@@ -28,7 +28,7 @@ function AreaLocationCard({ location, toggleState, toggleTable }: Props) {
                 ))}
             </LocationNav>
             <span>There is no information about this area</span>
-        </>
+        </LocationNavContainer>
     )
 }
 
