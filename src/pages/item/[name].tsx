@@ -5,37 +5,33 @@ import {
   ItemCardDataEffect,
   ItemCardDataImage,
   ItemCardDataSection,
-  ItemCardDescSection,
-  ItemCardDescTable,
-  ItemCardDescTitle,
 } from '@/components/pages/Items/ItemCard/Styled.ItemCard';
 import Loader from '@/components/common/ui/Loader/Loader';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import BackBtn from '@/components/common/ui/BackBtn';
 import HeadingItem from '@/components/pages/Items/ItemCard/Heading';
 import { useFilterItem } from '@/components/pages/Items/ItemCard/Hooks/useFilterItem';
 import dynamic from 'next/dynamic';
+import { useRouterIsReady } from '@/hooks/useRouterIsReady';
 
 const DescItemcard = dynamic(
-  () => import('@/components/pages/Items/ItemCard/Components/Desc.Itemcard')
+  () => import(`@/components/pages/Items/ItemCard/Components/Desc.Itemcard`),
 );
 const FlingItemCard = dynamic(
-  () => import('@/components/pages/Items/ItemCard/Components/Fling.ItemCard')
+  () => import(`@/components/pages/Items/ItemCard/Components/Fling.ItemCard`),
 );
 const HeldItemcard = dynamic(
-  () => import('@/components/pages/Items/ItemCard/Components/Held.Itemcard')
+  () => import(`@/components/pages/Items/ItemCard/Components/Held.Itemcard`),
 );
 const CostItemCard = dynamic(
-  () => import('@/components/pages/Items/ItemCard/Components/Cost.ItemCard')
+  () => import(`@/components/pages/Items/ItemCard/Components/Cost.ItemCard`),
 );
 
 function ItemCard() {
-  const router = useRouter();
-  const { name } = router.query;
+  const { name } = useRouterIsReady();
 
-  const { isLoading, error, item, filterEffect } = useFilterItem(name)
+  const { isLoading, error, item, filterEffect } = useFilterItem(name);
 
   if (error instanceof Error) {
     return { error };
@@ -64,25 +60,17 @@ function ItemCard() {
             <FlingItemCard item={item} />
           </div>
           <ItemCardDataImage>
-            {item &&
+            {item && (
               <Image
                 src={item?.sprites?.default}
                 alt={item?.name}
                 width={96}
                 height={96}
               />
-            }
+            )}
           </ItemCardDataImage>
         </ItemCardDataSection>
-        <ItemCardDescSection>
-          <ItemCardDescTitle>Game descriptions</ItemCardDescTitle>
-          <ItemCardDescTable>
-            <tbody>
-              <DescItemcard item={item} />
-            </tbody>
-          </ItemCardDescTable>
-        </ItemCardDescSection>
-
+        <DescItemcard item={item} />
         <Link href="/items" passHref>
           <BackBtn name="Items" />
         </Link>

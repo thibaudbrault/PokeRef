@@ -13,7 +13,7 @@ type Props = {
 
 function PokemonType({ type, pokedex }: Props) {
   // Returns the number of pokemon with this type
-  let nbPokemon = document.querySelectorAll(`.pokemonElement`).length;
+  const nbPokemon = document.querySelectorAll(`.pokemonElement`).length;
 
   return (
     <Section>

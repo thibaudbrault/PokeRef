@@ -7,7 +7,7 @@ type Props = {
 
 function NavMachines({ setVersion }: Props) {
   return (
-    <>
+    <ol>
       {genNav.map((g) => (
         <li key={g.gen}>
           <button>{g.gen}</button>
@@ -25,7 +25,7 @@ function NavMachines({ setVersion }: Props) {
           </div>
         </li>
       ))}
-    </>
+    </ol>
   );
 }
 

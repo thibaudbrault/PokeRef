@@ -1,6 +1,6 @@
 import React from 'react';
 import { useToggleLocation } from '@/components/pages/Locations/Hooks/useToggleLocation';
-import { LocationList } from '../Styled.Locations';
+import { LocationList, LocationSection } from '../Styled.Locations';
 import Link from 'next/link';
 
 type Props = {
@@ -11,7 +11,7 @@ function ListLocations({ location }: Props) {
   const { locations } = useToggleLocation();
 
   return (
-    <>
+    <LocationSection>
       {locations?.map(
         (l) =>
           l.name === location &&
@@ -40,7 +40,7 @@ function ListLocations({ location }: Props) {
             </LocationList>
           ),
       )}
-    </>
+    </LocationSection>
   );
 }
 

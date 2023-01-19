@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { MainBig } from '../../components/common/styles/Sizing';
-import { CardTitle } from '../../components/common/styles/Headings';
-import { useMoves, usePokedex, useType } from '../../hooks/DataFetch';
-import Loader from '../../components/common/ui/Loader/Loader';
-import { useRouter } from 'next/router';
+import React from 'react';
+import { MainBig } from '@/components/common/styles/Sizing';
+import { CardTitle } from '@/components/common/styles/Headings';
+import { useMoves, usePokedex, useType } from '@/hooks/DataFetch';
+import Loader from '@/components/common/ui/Loader/Loader';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import BackBtn from '@/components/common/ui/BackBtn';
 import HeadingType from '@/components/pages/Types/TypeCard/Heading';
+import { useRouterIsReady } from '@/hooks/useRouterIsReady';
 
 const DamageType = dynamic(
   () => import(`../../components/pages/Types/TypeCard/Damage/Damage.TypeCard`),
@@ -21,14 +21,7 @@ const PokemonType = dynamic(
 );
 
 function TypeCard() {
-  const router = useRouter();
-  const [name, setName] = useState<string>('');
-
-  useEffect(() => {
-    if (router.isReady) {
-      setName(router.query.name)
-    }
-  }, [router.isReady])
+  const { name } = useRouterIsReady();
 
   const {
     isLoading,
