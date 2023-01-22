@@ -25,7 +25,7 @@ function Pokedex() {
   // Modify the first pokemon displayed
   const [offset, setOffset] = useState<number>(0);
   //Modify the max number of pokemon displayed
-  const [limit, setLimit] = useState<number>(905);
+  const [limit, setLimit] = useState<number>(1008);
   // Form of the pokemon (changed with a dropdown)
   const [form, setForm] = useStateWithCallback<OptionsOffsetLimit | null>(null);
   // Type of the pokemon (changed with a dropdown)
@@ -43,6 +43,8 @@ function Pokedex() {
   } = usePokedex(
     `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,
   );
+
+  console.log(pokedex)
 
   if (error instanceof Error) {
     return { error };

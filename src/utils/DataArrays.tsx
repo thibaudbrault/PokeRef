@@ -62,16 +62,16 @@ export interface OptionsOffsetLimit extends Options {
 }
 
 export const formOptions: OptionsOffsetLimit[] = [
-  { label: `Default`, value: ``, offset: 0, limit: 905 },
-  { label: `Alola`, value: `alola`, offset: 995, limit: 30 },
-  { label: `Galar`, value: `galar`, offset: 1065, limit: 25 },
-  { label: `Hisui`, value: `hisui`, offset: 1133, limit: 20 },
-  { label: `Mega`, value: `mega`, offset: 937, limit: 70 },
-  { label: `Gmax`, value: `gmax`, offset: 1099, limit: 40 },
+  { label: `Default`, value: ``, offset: 0, limit: 1008 },
+  { label: `Alola`, value: `alola`, offset: 1097, limit: 30 },
+  { label: `Galar`, value: `galar`, offset: 1167, limit: 25 },
+  { label: `Hisui`, value: `hisui`, offset: 1235, limit: 20 },
+  { label: `Mega`, value: `mega`, offset: 1039, limit: 60 },
+  { label: `Gmax`, value: `gmax`, offset: 1201, limit: 40 },
 ];
 
 export const generationsOptions: OptionsOffsetLimit[] = [
-  { label: `All`, value: ``, offset: 0, limit: 905 },
+  { label: `All`, value: ``, offset: 0, limit: 1008 },
   { label: `Generation I`, value: `gen1`, offset: 0, limit: 151 },
   { label: `Generation II`, value: `gen2`, offset: 151, limit: 100 },
   { label: `Generation III`, value: `gen3`, offset: 251, limit: 135 },
@@ -80,6 +80,7 @@ export const generationsOptions: OptionsOffsetLimit[] = [
   { label: `Generation VI`, value: `gen6`, offset: 649, limit: 72 },
   { label: `Generation VII`, value: `gen7`, offset: 721, limit: 88 },
   { label: `Generation VIII`, value: `gen8`, offset: 809, limit: 96 },
+  { label: `Generation IX`, value: `gen9`, offset: 905, limit: 103 },
 ];
 
 export const typeOptions: Options[] = [
@@ -341,3 +342,30 @@ export const genNav: GenNav = [
     ],
   },
 ];
+
+export const formatOptions = [
+  { value: 'gen9vgc2023', label: 'Gen 9 - VGC 2023' },
+  { value: 'gen9ou', label: 'Gen 9 - OverUsed' },
+  { value: 'gen9uu', label: 'Gen 9 - UnderUsed' },
+  { value: 'gen9monotype', label: 'Gen 9 - Monotype' },
+  { value: 'gen9ubers', label: 'Gen 9 - Ubers' },
+  { value: 'gen9lc', label: 'Gen 9 - Little cup' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+  // { value: '', label: '' },
+]

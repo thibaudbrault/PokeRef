@@ -26,7 +26,7 @@ function PokemonType({ type, pokedex }: Props) {
           pokedex?.map(
             (p) =>
               p.name === tp.pokemon.name &&
-              p.id < 905 && (
+              p.id < 1008 && (
                 <li key={p.name} className="pokemonElement">
                   <Image
                     src={p.sprites.front_default}

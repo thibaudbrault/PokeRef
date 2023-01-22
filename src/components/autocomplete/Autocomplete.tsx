@@ -11,7 +11,7 @@ import { Pokemon } from '@/types/types';
 
 function Autocomplete() {
   const { data: pokedex } = usePokedex(
-    `https://pokeapi.co/api/v2/pokemon?offset=0&limit=905`,
+    `https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`,
   );
 
   const [pokedexMatch, setPokedexMatch] = useState<

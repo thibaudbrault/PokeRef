@@ -57,7 +57,7 @@ function Filters({
           .filter((pokedex) => {
             if (!form && !generation) {
               setOffset(0);
-              setLimit(905);
+              setLimit(1008);
               return pokedex;
             } else if (form) {
               setOffset(form.offset);
@@ -72,6 +72,8 @@ function Filters({
       );
     }
   };
+
+  console.log(form)
 
   const handleFormSelect = (option: SingleValue<OptionsOffsetLimit>) => {
     setForm(option);
