@@ -44,8 +44,6 @@ function Pokedex() {
     `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,
   );
 
-  console.log(pokedex)
-
   if (error instanceof Error) {
     return { error };
   }

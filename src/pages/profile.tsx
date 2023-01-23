@@ -3,62 +3,47 @@ import { H2 } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import { auth, db } from '@/firebase-config';
 import { useRouter } from 'next/router';
-import { usePokedex } from '@/hooks/DataFetch';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';
-import axios from 'axios';
-import Select from 'react-select';
 import { formatOptions } from '../utils/DataArrays';
 import { Dropdown } from '@/components/common/styles/Inputs';
+import { useFormat } from '../hooks/DataFetch';
+import { ProfileList } from '@/components/pages/Profile/Styled.Profile';
 
 function Profile() {
   const router = useRouter();
-  const [user, setUser] = useState<DocumentData | undefined>()
-  const [test, setTest] = useState([])
+  const [user, setUser] = useState<DocumentData | undefined>();
+  const [formatValue, setFormatValue] = useState();
+  const [formatQuery, setFormatQuery] = useState(`gen9vgc2023`);
 
-  let team = []
+  const team = [];
 
   const {
     isLoading,
     error,
-    data: pokedex,
-  } = usePokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`);
+    data: format,
+  } = useFormat(
+    `https://raw.githubusercontent.com/pkmn/smogon/main/data/stats/${formatQuery}.json`,
+  );
 
   const getUserDoc = async () => {
     const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
-    const docSnap = await getDoc(usersCollectionRef)
-    setUser(docSnap.data())
-  }
-
-  const getTest = async () => {
-    try {
-      const res = await axios.get(`https://raw.githubusercontent.com/pkmn/smogon/main/data/stats/${testValue}.json`)
-      setTest(res.data.pokemon)
-      console.log(res.data.pokemon)
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
-  const testArr = [
-    { name: 'gen9vgc2023' },
-    { name: 'gen9uu' },
-  ]
+    const docSnap = await getDoc(usersCollectionRef);
+    setUser(docSnap.data());
+  };
 
   const setValue = (option) => {
-    setTestValue(option.value)
-  }
-
-  const [testValue, setTestValue] = useState('gen9vgc2023')
-  console.log(testValue)
+    setFormatValue(option);
+    setFormatQuery(option.value);
+  };
 
   useEffect(() => {
     if (!auth.currentUser) {
       router.push(`/`);
+    } else {
+      getUserDoc();
     }
-    getUserDoc();
-    getTest();
-  }, [testValue]);
+  }, [formatValue]);
 
   if (error instanceof Error) {
     return { error };
@@ -68,6 +53,8 @@ function Profile() {
     return <Loader />;
   }
 
+  console.log(format);
+
   return (
     <MainBig>
       <section>
@@ -75,25 +62,28 @@ function Profile() {
         <Dropdown
           id="name"
           name="name"
-          value={test}
+          defaultInputValue={`gen9vgc2023`}
+          value={formatValue}
           className="selectOptions"
           classNamePrefix="select"
           options={formatOptions}
-          placeholder="Name"
+          placeholder="Format"
           onChange={(option) => {
-            console.log(option)
             setValue(option);
           }}
         />
-        <div>
-          {Object.entries(test).map(([key, value]) => (
-            <li className="travelcompany-input">
-              <span className="input-label">
-                {key} : {value.count}
-              </span>
-            </li>
-          ))}
-        </div>
+        <ProfileList>
+          {format &&
+            Object.entries(format?.pokemon)
+              .slice(0, 6)
+              .map(([key, value]) => (
+                <li key={key}>
+                  <span>
+                    {key} : {(value.usage.weighted * 100).toFixed(2)}%
+                  </span>
+                </li>
+              ))}
+        </ProfileList>
       </section>
       <section>
         <H2>{user?.name}'s teams</H2>

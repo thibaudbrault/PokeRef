@@ -344,12 +344,12 @@ export const genNav: GenNav = [
 ];
 
 export const formatOptions = [
-  { value: 'gen9vgc2023', label: 'Gen 9 - VGC 2023' },
-  { value: 'gen9ou', label: 'Gen 9 - OverUsed' },
-  { value: 'gen9uu', label: 'Gen 9 - UnderUsed' },
-  { value: 'gen9monotype', label: 'Gen 9 - Monotype' },
-  { value: 'gen9ubers', label: 'Gen 9 - Ubers' },
-  { value: 'gen9lc', label: 'Gen 9 - Little cup' },
+  { value: `gen9vgc2023`, label: `Gen 9 - VGC 2023` },
+  { value: `gen9ou`, label: `Gen 9 - OverUsed` },
+  { value: `gen9uu`, label: `Gen 9 - UnderUsed` },
+  { value: `gen9monotype`, label: `Gen 9 - Monotype` },
+  { value: `gen9ubers`, label: `Gen 9 - Ubers` },
+  { value: `gen9lc`, label: `Gen 9 - Little cup` },
   // { value: '', label: '' },
   // { value: '', label: '' },
   // { value: '', label: '' },
@@ -368,4 +368,4 @@ export const formatOptions = [
   // { value: '', label: '' },
   // { value: '', label: '' },
   // { value: '', label: '' },
-]
+];

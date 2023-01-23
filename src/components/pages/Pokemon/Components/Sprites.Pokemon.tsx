@@ -99,14 +99,14 @@ function Sprites({ p }: Props) {
       {p.id > 649 && p.sprites.front_shiny && (
         <>
           <SpriteNormal
-            src={p.sprites?.front_default || ''}
+            src={p.sprites?.front_default || ``}
             alt={p.name}
             width={96}
             height={96}
             fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
           />
           <SpriteShiny
-            src={p.sprites?.front_shiny || ''}
+            src={p.sprites?.front_shiny || ``}
             alt={p.name}
             width={96}
             height={96}
@@ -116,7 +116,7 @@ function Sprites({ p }: Props) {
       )}
       {!p.sprites.front_shiny && (
         <SpriteNormal
-          src={p.sprites?.front_default || ''}
+          src={p.sprites?.front_default || ``}
           alt={p.name}
           width={96}
           height={96}

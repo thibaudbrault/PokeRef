@@ -73,8 +73,6 @@ function Filters({
     }
   };
 
-  console.log(form)
-
   const handleFormSelect = (option: SingleValue<OptionsOffsetLimit>) => {
     setForm(option);
     setGeneration(null);
