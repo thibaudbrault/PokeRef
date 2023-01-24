@@ -111,7 +111,6 @@ function Filters({
             className="selectOptions"
             classNamePrefix="select"
             options={formOptions}
-            getOptionValue={(option) => option.value}
             placeholder="Select"
             onChange={(option) => {
               handleFormSelect(option);
@@ -128,7 +127,6 @@ function Filters({
             className="selectOptions"
             classNamePrefix="select"
             options={generationsOptions}
-            getOptionValue={(option) => option.value}
             placeholder="Select"
             onChange={(option) => {
               handleGenSelect(option);
@@ -147,7 +145,6 @@ function Filters({
             className="selectOptions"
             classNamePrefix="select"
             options={typeOptions}
-            getOptionValue={(option) => option.value}
             placeholder="Select"
             isOptionDisabled={() => type?.length >= 2}
             onChange={(option) => {

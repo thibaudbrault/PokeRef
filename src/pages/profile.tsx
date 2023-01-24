@@ -5,16 +5,21 @@ import { auth, db } from '@/firebase-config';
 import { useRouter } from 'next/router';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';
-import { formatOptions } from '../utils/DataArrays';
+import { formatOptions, Options } from '@/utils/DataArrays';
 import { Dropdown } from '@/components/common/styles/Inputs';
-import { useFormat } from '../hooks/DataFetch';
-import { ProfileList } from '@/components/pages/Profile/Styled.Profile';
+import { useFormat } from '@/hooks/DataFetch';
+import {
+  ProfileInputs,
+  ProfileList,
+} from '@/components/pages/Profile/Styled.Profile';
+import { SingleValue } from 'react-select';
 
 function Profile() {
   const router = useRouter();
   const [user, setUser] = useState<DocumentData | undefined>();
-  const [formatValue, setFormatValue] = useState();
-  const [formatQuery, setFormatQuery] = useState(`gen9vgc2023`);
+  const [formatValue, setFormatValue] = useState<Options>();
+  const [formatQuery, setFormatQuery] = useState<string>(`gen9vgc2023`);
+  const [pokemon, setPokemon] = useState<Options | null>();
 
   const team = [];
 
@@ -32,9 +37,10 @@ function Profile() {
     setUser(docSnap.data());
   };
 
-  const setValue = (option) => {
+  const setFormat = (option: Options) => {
     setFormatValue(option);
     setFormatQuery(option.value);
+    setPokemon(null);
   };
 
   useEffect(() => {
@@ -53,25 +59,39 @@ function Profile() {
     return <Loader />;
   }
 
-  console.log(format);
-
   return (
     <MainBig>
       <section>
         <H2>Create teams</H2>
-        <Dropdown
-          id="name"
-          name="name"
-          defaultInputValue={`gen9vgc2023`}
-          value={formatValue}
-          className="selectOptions"
-          classNamePrefix="select"
-          options={formatOptions}
-          placeholder="Format"
-          onChange={(option) => {
-            setValue(option);
-          }}
-        />
+        <ProfileInputs>
+          <Dropdown
+            id="format"
+            name="format"
+            value={formatValue}
+            className="selectOptions"
+            classNamePrefix="select"
+            options={formatOptions}
+            placeholder="Format"
+            onChange={(option) => {
+              setFormat(option);
+            }}
+          />
+          <Dropdown
+            id="pokemon"
+            name="pokemon"
+            value={pokemon}
+            className="selectOptions"
+            classNamePrefix="select"
+            options={Object.keys(format.pokemon).map((o) => ({
+              value: o,
+              label: o,
+            }))}
+            placeholder="Pokemon"
+            onChange={(option) => {
+              setPokemon(option);
+            }}
+          />
+        </ProfileInputs>
         <ProfileList>
           {format &&
             Object.entries(format?.pokemon)
