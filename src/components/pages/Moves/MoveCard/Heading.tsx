@@ -5,27 +5,24 @@ type Props = {
   name: string | string[] | undefined;
 };
 
-function HeadingLocation({ name }: Props) {
+function HeadingMove({ name }: Props) {
   return (
     <Head>
       <title>
         {typeof name === `string` &&
           name?.charAt(0).toUpperCase() + name?.slice(1)}
-        {` `}| Location | PokéRef
+        {` `}| Moves | PokéRef
       </title>
       <meta name="description" content={`Find every details about ${name}`} />
-      <meta property="og:title" content={`${name} | Location | PokéRef`} />
+      <meta property="og:title" content={`${name} | Moves | PokéRef`} />
       <meta
         property="og:description"
         content={`Find every details about ${name}`}
       />
-      <meta
-        property="og:url"
-        content={`https://pokeref.app/location/${name}`}
-      />
+      <meta property="og:url" content={`https://pokeref.app/move/${name}`} />
       <meta property="og:type" content="website" />
     </Head>
   );
 }
 
-export default HeadingLocation;
+export default HeadingMove;

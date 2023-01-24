@@ -21,7 +21,7 @@ function Sprites({ p }: Props) {
           alt={p.name}
           width={96}
           height={96}
-          fallbackSrc={`/MissingNo.png`}
+          fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
         />
       )}
       {p.id > 151 && p.id < 252 && (
@@ -31,14 +31,14 @@ function Sprites({ p }: Props) {
             alt={p.name}
             width={96}
             height={96}
-            fallbackSrc={`/MissingNo.png`}
+            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
           />
           <SpriteShiny
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/shiny/${p.id}.png`}
             alt={p.name}
             width={96}
             height={96}
-            fallbackSrc={`/MissingNo.png`}
+            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
           />
         </>
       )}
@@ -49,14 +49,14 @@ function Sprites({ p }: Props) {
             alt={p.name}
             width={96}
             height={96}
-            fallbackSrc={`/MissingNo.png`}
+            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
           />
           <SpriteShiny
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/shiny/${p.id}.png`}
             alt={p.name}
             width={96}
             height={96}
-            fallbackSrc={`/MissingNo.png`}
+            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
           />
         </>
       )}
@@ -67,14 +67,14 @@ function Sprites({ p }: Props) {
             alt={p.name}
             width={96}
             height={96}
-            fallbackSrc={`/MissingNo.png`}
+            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
           />
           <SpriteShiny
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/platinum/shiny/${p.id}.png`}
             alt={p.name}
             width={96}
             height={96}
-            fallbackSrc={`/MissingNo.png`}
+            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
           />
         </>
       )}
@@ -85,42 +85,42 @@ function Sprites({ p }: Props) {
             alt={p.name}
             width={96}
             height={96}
-            fallbackSrc={`/MissingNo.png`}
+            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
           />
           <SpriteShiny
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/shiny/${p.id}.png`}
             alt={p.name}
             width={96}
             height={96}
-            fallbackSrc={`/MissingNo.png`}
+            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
           />
         </>
       )}
       {p.id > 649 && p.sprites.front_shiny && (
         <>
           <SpriteNormal
-            src={p.sprites?.front_default}
+            src={p.sprites?.front_default || ``}
             alt={p.name}
             width={96}
             height={96}
-            fallbackSrc={`/MissingNo.png`}
+            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
           />
           <SpriteShiny
-            src={p.sprites?.front_shiny}
+            src={p.sprites?.front_shiny || ``}
             alt={p.name}
             width={96}
             height={96}
-            fallbackSrc={`/MissingNo.png`}
+            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
           />
         </>
       )}
       {!p.sprites.front_shiny && (
         <SpriteNormal
-          src={p.sprites?.front_default}
+          src={p.sprites?.front_default || ``}
           alt={p.name}
           width={96}
           height={96}
-          fallbackSrc={`/MissingNo.png`}
+          fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
         />
       )}
     </PokedexImage>

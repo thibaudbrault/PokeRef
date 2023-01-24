@@ -13,7 +13,7 @@ type Props = {
 
 function PokemonType({ type, pokedex }: Props) {
   // Returns the number of pokemon with this type
-  let nbPokemon = document.querySelectorAll(`.pokemonElement`).length;
+  const nbPokemon = document.querySelectorAll(`.pokemonElement`).length;
 
   return (
     <Section>
@@ -26,7 +26,7 @@ function PokemonType({ type, pokedex }: Props) {
           pokedex?.map(
             (p) =>
               p.name === tp.pokemon.name &&
-              p.id < 905 && (
+              p.id < 1008 && (
                 <li key={p.name} className="pokemonElement">
                   <Image
                     src={p.sprites.front_default}

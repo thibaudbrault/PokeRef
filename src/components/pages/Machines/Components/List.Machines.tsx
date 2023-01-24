@@ -9,7 +9,7 @@ type Props = {
 
 function ListMachines({ filterMachines, version }: Props) {
   return (
-    <>
+    <tbody>
       {filterMachines?.map(
         (ma) =>
           ma.version_group.name === version && (
@@ -30,7 +30,7 @@ function ListMachines({ filterMachines, version }: Props) {
             </TRow>
           ),
       )}
-    </>
+    </tbody>
   );
 }
 

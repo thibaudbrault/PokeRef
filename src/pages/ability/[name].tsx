@@ -3,7 +3,6 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import {
   AbilityCardEffect,
   AbilityCardSection,
-  AbilityCardTable,
 } from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import {
   CardTitle,
@@ -13,13 +12,13 @@ import {
   Subtitle,
 } from '@/components/common/styles/Headings';
 import Loader from '@/components/common/ui/Loader/Loader';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import BackBtn from '@/components/common/ui/BackBtn';
 import { useFilterAbility } from '@/components/pages/Abilities/AbilityCard/Hooks/useFilterAbility';
 import HeadingAbility from '@/components/pages/Abilities/AbilityCard/Heading';
 import dynamic from 'next/dynamic';
 import TableAbilitycard from '@/components/pages/Abilities/AbilityCard/Components/Table.Abilitycard';
+import { useRouterIsReady } from '@/hooks/useRouterIsReady';
 
 const DescAbilityCard = dynamic(
   () =>
@@ -29,8 +28,7 @@ const DescAbilityCard = dynamic(
 );
 
 function AbilityCard() {
-  const router = useRouter();
-  const { name } = router.query;
+  const { name } = useRouterIsReady();
 
   const {
     isLoading,
@@ -75,16 +73,7 @@ function AbilityCard() {
             </AbilityCardEffect>
           )}
         </AbilityCardSection>
-
-        <AbilityCardSection>
-          <H3>Game descriptions</H3>
-          <AbilityCardTable>
-            <tbody>
-              <DescAbilityCard filterDesc={filterDesc} />
-            </tbody>
-          </AbilityCardTable>
-        </AbilityCardSection>
-
+        <DescAbilityCard filterDesc={filterDesc} />
         <AbilityCardSection>
           <H3>
             Pokemon with <Span>{ability?.name.replace(/-/g, ` `)}</Span>

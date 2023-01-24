@@ -11,13 +11,13 @@ import {
 } from '../../hooks/DataFetch';
 import Loader from '../../components/common/ui/Loader/Loader';
 import { Subtitle, Title } from '../../components/common/styles/Headings';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 // import { speciesFilters } from '@/utils/DataArrays';
 // import { Species } from '@/types/types';
 import BackBtn from '@/components/common/ui/BackBtn';
+import { useRouterIsReady } from '@/hooks/useRouterIsReady';
 
 const Data = dynamic(
   () =>
@@ -57,14 +57,7 @@ const Nav = dynamic(
 );
 
 function PokemonCard() {
-  const [name, setName] = useState(``);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (router && router.query && typeof router.query.name === `string`) {
-      setName(router.query.name);
-    }
-  }, [router]);
+  const { name } = useRouterIsReady();
 
   // Import data fetch
   const {

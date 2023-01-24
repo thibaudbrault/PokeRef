@@ -29,9 +29,7 @@ function LocationsPage() {
       <HeadingLocations />
       <MainBig>
         <RegionsMethod toggle={toggle} setToggle={setToggle} />
-        <LocationSection>
-          <ListLocations location={location} />
-        </LocationSection>
+        <ListLocations location={location} />
         {location === `galar` || location === `hisui` ? (
           <LocationSection>
             <p>

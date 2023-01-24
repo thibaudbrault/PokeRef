@@ -23,7 +23,7 @@ function ListItems({ filterItems }: Props) {
   }
 
   return (
-    <>
+    <tbody>
       {filterItems?.map(
         (i: Items.Items) =>
           itemsToHide(i) && (
@@ -64,7 +64,7 @@ function ListItems({ filterItems }: Props) {
             </TRow>
           ),
       )}
-    </>
+    </tbody>
   );
 }
 

@@ -135,6 +135,7 @@ export namespace Moves {
     priority: number;
     power: number;
     meta: Meta;
+    generation: BaseName;
     effect_entries: Effect[];
     flavor_text_entries: FlavorText[];
     stat_changes: StatChanges[];

@@ -25,7 +25,7 @@ function Pokedex() {
   // Modify the first pokemon displayed
   const [offset, setOffset] = useState<number>(0);
   //Modify the max number of pokemon displayed
-  const [limit, setLimit] = useState<number>(905);
+  const [limit, setLimit] = useState<number>(1008);
   // Form of the pokemon (changed with a dropdown)
   const [form, setForm] = useStateWithCallback<OptionsOffsetLimit | null>(null);
   // Type of the pokemon (changed with a dropdown)
@@ -70,9 +70,7 @@ function Pokedex() {
         />
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
         <PokedexList>
-          <ul>
-            <ListPokemon filteredPokedex={filteredPokedex} />
-          </ul>
+          <ListPokemon filteredPokedex={filteredPokedex} />
         </PokedexList>
         {scrollBtn()}
       </MainBig>

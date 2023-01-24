@@ -29,6 +29,7 @@
   "dependencies": {
     "@hookform/resolvers": "2.9.10",
     "@meronex/icons": "4.0.0",
+    "@sentry/nextjs": "7.31.1",
     "axios": "^0.27.2",
     "firebase": "9.15.0",
     "jest-cli": "29.3.1",

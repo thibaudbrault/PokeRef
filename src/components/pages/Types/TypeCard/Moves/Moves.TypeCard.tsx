@@ -19,7 +19,7 @@ type Props = {
 
 function MovesType({ type, moves }: Props) {
   // Returns the number of moves from this type
-  let nbMoves = document.querySelectorAll(`.moveElement`).length;
+  const nbMoves = document.querySelectorAll(`.moveElement`).length;
 
   return (
     <Section>

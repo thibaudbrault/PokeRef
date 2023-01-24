@@ -305,3 +305,13 @@ export function useArea(url: string) {
       }),
   );
 }
+
+//Fetch format
+export function useFormat(url: string) {
+  return useQuery([`format`, url], () =>
+    axios.get(url).then((results) => {
+      console.log(results.data);
+      return results.data;
+    }),
+  );
+}

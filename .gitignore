@@ -47,3 +47,5 @@ firebase-config.js
 
 #turbo
 .turbo
+# Sentry
+.sentryclirc

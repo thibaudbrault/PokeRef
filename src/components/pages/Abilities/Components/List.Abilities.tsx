@@ -9,7 +9,7 @@ type Props = {
 
 function ListAbilities({ filterAbilities, filterEffect }: Props) {
   return (
-    <>
+    <tbody>
       {filterAbilities
         ?.sort((a, b) => a.name.localeCompare(b.name))
         ?.map((a, i) => (
@@ -29,7 +29,7 @@ function ListAbilities({ filterAbilities, filterEffect }: Props) {
             </TEffect>
           </TRow>
         ))}
-    </>
+    </tbody>
   );
 }
 
