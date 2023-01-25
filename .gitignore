@@ -42,9 +42,6 @@ next-env.d.ts
 # vscode
 /.vscode
 
-# firebase
-firebase-config.js
-
 #turbo
 .turbo
 # Sentry
