@@ -41,18 +41,19 @@
 <h4>Past, present and future</h4>
 
 ✅A page for every pokémon / move / ability / type / item  
-✅Filter pokémon by name / form / generation / type  
+✅Filter pokémon by name / form / generation / type (possibility to filter by one or two types) 
 ✅Filter moves / abilities / machines by name  
 ✅Change certain data according to the game selected  
 ✅Dark mode  
 ✅404 page  
-✅Autocomplete  
-✅Responsive  
-✅Service Worker
+✅Autocomplete search  
+✅Responsive
 
-🛠List of favorites stored in localStorage
+🛠Profile page with possibility to save a team  
+🛠Implementing Typescript
 
-🔜Types relations for each pokémon    
+🔜Using React-Table for my tables  
+🔜Types relations for each pokémon  
 🔜Animation on scroll
 
 <h4>Performance improvements</h4>
@@ -86,9 +87,10 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - Learning to fetch data from an API and use this data. That was the first time that I've used an API and at first I had problems to understand how the fetch API worked and how to use and display the data returned.
 - Moving to Styled-Components. Not a big problem because it uses nesting like Sass so I didn't have to modify a lot of CSS, but I had to learn how to create global styles and how to create themes and switch between them.
 - Implementing an infinite scroll (now removed) in React with <a href="https://www.npmjs.com/package/react-infinite-scroll-component" target="_blank">react-infinite-scroll-component</a>. I had problems with creating the function that fetches more data and the function that says when there are more elements to return. Maybe I'll try to implement it with React-Query but it's currently not a priority.
-- Virtualizing the moves, abilities and items pages' lists. I tried to implement it by using <a href="https://github.com/bvaughn/react-virtualized" target="_blank">react-virtualized</a> and <a href="https://github.com/petyosi/react-virtuoso" target="_blank">react-virtuoso</a>, but I had a few problems (the main one being that it did not take into account the sorting of the list and returned the list without it).
+- Tried to virtualize the moves, abilities and items pages' lists. I tried to implement it by using <a href="https://github.com/bvaughn/react-virtualized" target="_blank">react-virtualized</a> and <a href="https://github.com/petyosi/react-virtuoso" target="_blank">react-virtuoso</a>, but I had a few problems (the main one being that it did not take into account the sorting of the list and returned the list without it).
 - Implementing React-Query. I had to learn how to modify my custom hooks to make it work with React-Query and how to import the data from the hooks. It took me some time to make the transition works, but I don't regret it because my code is more readable (mainly the part where I import my hooks, but also the way I handle the loading state to return an animation while the data is being fetched) and it's an easy way to cache data.
 - Moving from CRA to Next. The main problem I had was learning to use dynamic routing and when I understood it the migration became easier. It still took me some time because I had to move all my files in other folders, change the paths in imports, implement the <Image /> component along with a width and height, correct some problems with the images (the creation of multiple spans wrapping the image that was solved by using next/future/image before moving to Next 13) and a few other problems with the <Link /> component (the fact that it can't have multiple children, that it needs to have a 'href' instead of the 'to' used in react-router to give the path and that you need to put an anchor tag inside the Link and use passHref).
+- Converting all the files to Typescript and declare all the types. Currently working on it and nearlt finished.
 
 <h4>Contents</h4>
 
@@ -103,11 +105,11 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 <h2 id="technologies">Technologies</h2>
 
 - <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
+- <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
 - <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
 - <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
+- <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white" />
 - <img src="https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7" />
-- <img src="https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white" />
-- <img src="https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white" />
 
 <h2 id="acknowledgements">Acknowledgements</h2>
 
@@ -117,10 +119,14 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 <h4>Data</h4>
 
 <a href="https://pokeapi.co/docs/v2" target="_blank">PokéAPi</a>
+<a href="https://github.com/pkmn/smogon" target="_blank">Smogon</a>
 
 <h4>Dependencies</h4>
 
 <a href="https://www.npmjs.com/package/react-query" target="_blank">React Query</a>  
+<a href="https://www.npmjs.com/package/react-hook-form" target="_blank">React Hook Form</a>  
+<a href="https://www.npmjs.com/package/react-select" target="_blank">React Select</a>  
+<a href="https://www.npmjs.com/package/yup" target="_blank">Yup</a>  
 <a href="https://www.npmjs.com/package/eslint" target="_blank">ESLint</a>  
 <a href="https://www.npmjs.com/package/prettier" target="_blank">Prettier</a>
 
