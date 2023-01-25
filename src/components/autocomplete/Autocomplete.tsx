@@ -20,7 +20,7 @@ function Autocomplete() {
   const [searchText, setSearchText] = useState(``);
 
   const searchPokedex = (text: string) => {
-    let matches = [];
+    let matches: Pokemon.Pokemon[] | undefined = [];
     setSearchText(text);
     if (text.length > 0) {
       matches =
