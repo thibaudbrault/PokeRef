@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 
-export const darkTheme = {
+export type Theme = {
+  main: string;
+  secondary: string;
+  red: string;
+  purple: string;
+  background: string;
+}
+
+export const darkTheme: Theme = {
   main: `#161616`,
   secondary: `#c4c4c4`,
   red: `#cc0000`,
@@ -8,7 +16,7 @@ export const darkTheme = {
   background: `url("https://www.transparenttextures.com/patterns/asfalt-dark.png")`,
 };
 
-export const lightTheme = {
+export const lightTheme: Theme = {
   main: `#c4c4c4`,
   secondary: `#161616`,
   red: `#cc0000`,
