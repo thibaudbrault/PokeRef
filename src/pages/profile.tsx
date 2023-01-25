@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { H2 } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
-import { auth, db } from '@/firebase-config';
+import { auth, db } from '../firebase-config';
 import { useRouter } from 'next/router';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';

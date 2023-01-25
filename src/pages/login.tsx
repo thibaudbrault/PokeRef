@@ -20,7 +20,7 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import { GrGoogle } from '@meronex/icons/gr';
 import { GrGithub } from '@meronex/icons/gr';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
+import { auth, signInWithGithub, signInWithGoogle } from '../firebase-config';
 import { useRouter } from 'next/router';
 import { toast } from 'react-hot-toast';
 
