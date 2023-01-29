@@ -30,7 +30,6 @@ export const ModifiedType = styled(Type)`
     padding: 3rem;
 
     & img {
-      width: 5rem;
       cursor: pointer;
     }
 

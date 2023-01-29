@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { device } from '../../common/styles/Sizing';
 
@@ -5,6 +6,10 @@ export const MainNav = styled.nav`
   min-height: 4vh;
   max-width: 1700px;
   margin: 0 auto;
+
+  @media ${device.md} {
+    display: none;
+  }
 `;
 
 export const MainNavList = styled.ul`
@@ -85,6 +90,33 @@ export const MainNavList = styled.ul`
 
     @media ${device.lg} {
       margin-bottom: 2rem;
+    }
+  }
+`;
+
+export const ResponsiveNav = styled(motion.nav)`
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: ${({ theme }) => theme.main};
+  z-index: 3;
+`;
+
+export const ResponsiveNavList = styled.ul`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3rem;
+
+  & li {
+    & a {
+      font-size: 4rem;
+      text-transform: capitalize;
+      cursor: pointer;
     }
   }
 `;

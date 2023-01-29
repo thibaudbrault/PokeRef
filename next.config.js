@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
-const { withSentryConfig } = require('@sentry/nextjs');
 
-const moduleExports = {
+const nextConfig = {
   compiler: {
     styledComponents: true
   },
@@ -13,13 +12,6 @@ const moduleExports = {
   images: {
     domains: ['raw.githubusercontent.com', 'lh3.googleusercontent.com', 'play.pokemonshowdown.com']
   },
-  sentry: {
-    hideSourceMaps: true,
-  },
 };
 
-const sentryWebpackPluginOptions = {
-  silent: true,
-};
-
-module.exports = withSentryConfig(moduleExports, sentryWebpackPluginOptions);
+module.exports = nextConfig;

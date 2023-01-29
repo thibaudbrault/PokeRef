@@ -1,12 +1,32 @@
 import ImageWithFallback from '@/utils/ImageWithFallback';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 import styled from 'styled-components';
 import { Search } from '../../common/styles/Inputs';
 import { device } from '../../common/styles/Sizing';
 
 export const PokedexSearch = styled(Search)`
   align-items: stretch;
-  @media ${device.sm} {
-    padding: 0 5rem;
+  gap: 1rem;
+  
+  @media ${device.md} {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+      "search search search"
+      "form generation type"
+    ;
+    row-gap: 2rem;
+    column-gap: 4rem;
+  }
+
+  @media ${device.xs} {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+      "search ."
+      "generation type"
+    ;
   }
 `;
 
@@ -15,21 +35,11 @@ export const PokedexDropdown = styled.div`
   align-items: start;
   justify-content: center;
   flex-direction: column;
-  margin: 0 0.5rem;
 
   & label {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     justify-self: flex-start;
-  }
-
-  &:last-of-type {
-    margin-left: 0.5rem;
-    margin-right: 0;
-  }
-
-  @media ${device.lg} {
-    margin-top: 1rem;
   }
 `;
 
@@ -63,7 +73,7 @@ export const PokedexList = styled.div`
   }
 `;
 
-export const PokedexElement = styled.li`
+export const PokedexElement = styled(motion.li)`
   width: 21rem;
   height: 32rem;
   margin: 3rem;
@@ -133,32 +143,18 @@ export const PokedexElement = styled.li`
 `;
 
 export const SpriteNormal = styled(ImageWithFallback)`
-  width: 96px;
-  height: 96px;
   position: relative;
   top: 0;
   left: 0;
   transition: 0.3s ease-in-out;
-
-  @media ${device.sm} {
-    width: 72px;
-    height: 72px;
-  }
 `;
 
 export const SpriteShiny = styled(ImageWithFallback)`
-  width: 96px;
-  height: 96px;
   position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
   transition: 0.3s ease-in-out;
-
-  @media ${device.sm} {
-    width: 72px;
-    height: 72px;
-  }
 `;
 
 export const PokedexImage = styled.div`
@@ -169,6 +165,13 @@ export const PokedexImage = styled.div`
     opacity: 1;
     z-index: 99;
   }
+`;
+
+export const LoadingImage = styled(Image)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
 `;
 
 export const PokedexTypes = styled.div`
@@ -192,8 +195,6 @@ export const PokedexTypes = styled.div`
     cursor: pointer;
 
     & img {
-      height: 1.5rem;
-      max-height: 1.5rem;
       cursor: pointer;
     }
 

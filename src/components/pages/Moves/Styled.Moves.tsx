@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { LeftTitle } from '../../common/styles/Headings';
-import { DamageClass } from '../../common/styles/Themes';
 
 export const ModifiedLeftTitle = styled(LeftTitle)`
   margin-top: 5rem;
@@ -31,13 +30,14 @@ export const StatusMoves = styled.td`
   }
 `;
 
-export const TCategory = styled(DamageClass)`
+export const TCategory = styled.td`
   & div {
     display: flex;
     align-items: center;
     justify-content: center;
 
     & span {
+      text-transform: capitalize;
       padding-left: 0.5rem;
     }
   }

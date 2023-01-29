@@ -41,8 +41,3 @@ next-env.d.ts
 
 # vscode
 /.vscode
-
-#turbo
-.turbo
-# Sentry
-.sentryclirc

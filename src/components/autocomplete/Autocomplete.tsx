@@ -8,6 +8,7 @@ import {
 } from './Styled.Autocomplete';
 import Image from 'next/image';
 import { Pokemon } from '@/types/types';
+import ImageWithFallback from '@/utils/ImageWithFallback';
 
 function Autocomplete() {
   const { data: pokedex } = usePokedex(
@@ -47,11 +48,12 @@ function Autocomplete() {
             {pokedexMatch &&
               pokedexMatch?.map((pm) => (
                 <li key={pm.name}>
-                  <Image
-                    src={pm.sprites.front_default}
+                  <ImageWithFallback
+                    src={pm.sprites.front_default || ``}
                     alt=""
                     width={39}
                     height={39}
+                    fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
                   />
                   <AutocompleteLink
                     href={{

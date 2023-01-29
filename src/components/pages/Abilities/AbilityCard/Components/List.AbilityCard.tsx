@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { TRow, TName, TLink } from '@/components/common/styles/Table';
 import { Abilities, Pokemon } from '@/types/types';
 import DataAbilityCard from './Data.AbilityCard';
+import ImageWithFallback from '@/utils/ImageWithFallback';
 
 type Props = {
   ability?: Abilities.Abilities;
@@ -18,20 +19,15 @@ function ListAbilityCard({ ability, pokedex }: Props) {
             p.name === ap.pokemon.name && (
               <TRow key={ap.pokemon.name}>
                 <td>
-                  {p.sprites.front_default ? (
-                    <Image
-                      key={p.name}
-                      src={p.sprites.front_default}
-                      alt="-"
-                      loading="lazy"
-                      width={64}
-                      height={64}
-                    />
-                  ) : (
-                    `-`
-                  )}
-                </td>
-                <TName>
+                  <ImageWithFallback
+                    key={p.name}
+                    src={p.sprites.front_default || ``}
+                    alt="-"
+                    loading="lazy"
+                    width={64}
+                    height={64}
+                    fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+                  />
                   <TLink
                     href={{
                       pathname: `/pokemon/[name]`,
@@ -41,7 +37,7 @@ function ListAbilityCard({ ability, pokedex }: Props) {
                   >
                     {ap.pokemon.name.replace(/-/g, ` `)}
                   </TLink>
-                </TName>
+                </td>
                 <DataAbilityCard p={p} ability={ability} />
               </TRow>
             ),

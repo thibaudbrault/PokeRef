@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { device } from '../../common/styles/Sizing';
 
 export const HeaderContainer = styled.header`
@@ -21,16 +21,7 @@ export const HeaderContainer = styled.header`
 export const HeaderBtnContainer = styled.div`
   display: flex;
   align-items: center;
-
-  & .cl-userButton-root {
-    width: 3rem;
-    height: 3rem;
-
-    & div {
-      width: 100%;
-      height: 100%;
-    }
-  }
+  gap: 1rem;
 `;
 
 export const HeaderBtnTheme = styled.button`
@@ -43,6 +34,9 @@ export const HeaderBtnTheme = styled.button`
 `;
 
 export const HeaderBtnConnect = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
   & a {
     padding: 0.7rem 1.5rem;
     background: ${({ theme }) => theme.secondary};
@@ -55,14 +49,9 @@ export const HeaderBtnConnect = styled.div`
     transition: 0.3s ease-in-out;
 
     &:first-of-type {
-      margin: 0 2rem;
       background: transparent;
       border-color: ${({ theme }) => theme.secondary};
       color: ${({ theme }) => theme.secondary};
-
-      @media ${device.xs} {
-        margin: 0 1rem;
-      }
     }
 
     &:hover {
@@ -71,9 +60,16 @@ export const HeaderBtnConnect = styled.div`
       color: ${({ theme }) => theme.secondary};
     }
   }
+  
+  @media ${device.md} {
+    display: none;
+  }
 `;
 
 export const HeaderBtnConnected = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
   & a,
   button {
     padding: 0.7rem 1.5rem;
@@ -94,13 +90,35 @@ export const HeaderBtnConnected = styled.div`
   }
 
   & :first-child {
-    margin: 0 2rem;
     background: transparent;
     border-color: ${({ theme }) => theme.secondary};
     color: ${({ theme }) => theme.secondary};
-
-    @media ${device.xs} {
-      margin: 0 1rem;
-    }
   }
+
+  @media ${device.md} {
+    display: none;
+  }
+`;
+
+export const BurgerOpen = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 5vh;
+  right: 5vw;
+  z-index: 4;
+  padding: 1rem;
+  border: none;
+  border-radius: 50px;
+  background-color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.main};
+  font-size: 3rem;
+`;
+
+export const BurgerClose = styled.button`
+  font-size: 3rem;
+  background: transparent;
+  border: none;
+  color: ${({ theme }) => theme.secondary};
 `;

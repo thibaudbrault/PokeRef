@@ -4,7 +4,7 @@ import { device } from './Sizing';
 export const GenNav = styled.nav`
   position: relative;
   padding: 5rem 0;
-  z-index: 100;
+  z-index: 2;
 
   & ol {
     display: flex;
@@ -131,7 +131,7 @@ export const MethodNav = styled.nav`
       position: relative;
       text-transform: capitalize;
       padding: 1rem 1.5rem;
-      z-index: 99;
+      z-index: 2;
       cursor: pointer;
       transition: 0.3s ease-in-out;
       &:hover {

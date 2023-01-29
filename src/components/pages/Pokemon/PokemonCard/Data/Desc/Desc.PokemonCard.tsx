@@ -44,7 +44,12 @@ function Desc({ pokemon, species, game }: Props) {
                   query: { name: pt.type.name },
                 }}
               >
-                <Image alt={pt.type.name} width={25} height={25} src={``} />
+                <Image
+                  src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${pt.type.name}.png`}
+                  alt={pt.type.name}
+                  width={25}
+                  height={25}
+                />
                 <span>{pt.type.name}</span>
               </Link>
             </Type>

@@ -6,6 +6,7 @@ import { LocationNav } from '@/components/pages/Locations/Styled.Locations';
 type Props = {
   toggle: number;
   setToggle: Dispatch<SetStateAction<number>>;
+  setLearn: Dispatch<SetStateAction<any>>;
 };
 
 export const LearnMethod = ({ toggle, setToggle, setLearn }: Props) => {

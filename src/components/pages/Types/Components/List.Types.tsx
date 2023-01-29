@@ -18,7 +18,12 @@ function ListTypes({ types }: Props) {
               href={{ pathname: `/type/[name]`, query: { name: t?.name } }}
               key={t.name}
             >
-              <Image alt={t.name} src={``} />
+              <Image
+                src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${t.name}.png`}
+                alt={t.name}
+                width={50}
+                height={50}
+              />
               <h2>{t.name}</h2>
             </Link>
           </ModifiedType>

@@ -99,8 +99,7 @@ export const Reset = createGlobalStyle`
             }
 
             & .spinner-icon {
-                border-top-color: ${({ theme }) => theme.secondary};
-                border-left-color: ${({ theme }) => theme.secondary};
+                display: none;
             }
         }
     }

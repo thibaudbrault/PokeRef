@@ -70,7 +70,9 @@ function Pokedex() {
         />
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
         <PokedexList>
-          <ListPokemon filteredPokedex={filteredPokedex} />
+          <ListPokemon
+            filteredPokedex={filteredPokedex}
+          />
         </PokedexList>
         {scrollBtn()}
       </MainBig>

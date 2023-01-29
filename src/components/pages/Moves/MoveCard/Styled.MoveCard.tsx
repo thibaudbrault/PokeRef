@@ -1,21 +1,22 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { device } from '../../../common/styles/Sizing';
+import { device, MainBig } from '../../../common/styles/Sizing';
 
 export const MoveList = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 5rem;
 
   & li {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 18rem;
-    height: 25rem;
     margin: 3rem;
+    width: 21rem;
+    height: 32rem;
     padding: 2rem 3rem;
     background: rgba(255, 255, 255, 0.4);
     border-radius: 5px;
@@ -24,23 +25,20 @@ export const MoveList = styled.ul`
     border: 1px solid transparent;
     transition: 0.3s ease-in-out;
 
-    & img {
-      @media ${device.sm} {
-        width: 54px;
-        height: 54px;
-      }
-    }
-
     &:hover {
       border: 1px solid ${({ theme }) => theme.red};
     }
 
     @media ${device.sm} {
-      width: 14rem;
-      height: 21rem;
-      margin: 1.5rem;
-      padding: 1rem 2rem;
+      width: 18rem;
+      height: 27rem;
+      margin: 2rem;
+      padding: 1.5rem 2.5rem;
     }
+  }
+
+  &:empty {
+    margin-bottom: 0;
   }
 
   @media ${device.sm} {
@@ -54,9 +52,9 @@ export const MoveText = styled.p`
 `;
 
 export const MoveLink = styled(Link)`
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-family: 'Press Start 2P';
   text-transform: capitalize;
-  cursor: pointer;
   transition: 0.3s ease-in-out;
 
   &:hover {
@@ -64,45 +62,17 @@ export const MoveLink = styled(Link)`
   }
 `;
 
-export const MoveTypes = styled.div`
+export const MoveListEmpty = styled.span`
   width: 100%;
-  height: 50%;
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  font-size: 1.5rem;
+  margin-bottom: 5rem;
+  display: none;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+`;
 
-  & div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 5px;
-
-    & img {
-      display: inline-block;
-    }
-
-    & span {
-      padding-left: 0.5rem;
-      text-transform: capitalize;
-      color: #161616;
-    }
-
-    &:first-of-type {
-      margin-bottom: 1rem;
-
-      @media ${device.sm} {
-        margin-bottom: 0.5rem;
-      }
-    }
-  }
-
-  @media ${device.sm} {
-    margin-top: 0.5rem;
-    font-size: 1.3rem;
+export const MoveMainBig = styled(MainBig)`
+  & ${MoveList}:empty + ${MoveListEmpty} {
+    display: block;
   }
 `;

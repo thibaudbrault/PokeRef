@@ -71,32 +71,24 @@ export const TypePokemonList = styled.ul`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 14rem;
-    height: 21rem;
     margin: 3rem;
+    width: 21rem;
+    height: 32rem;
     padding: 2rem 3rem;
-    @include flex;
-    flex-direction: column;
     background: rgba(255, 255, 255, 0.4);
     border-radius: 5px;
+    font-size: 1.5rem;
     text-align: center;
     border: 1px solid transparent;
     transition: 0.3s ease-in-out;
 
-    & img {
-      @media ${device.sm} {
-        width: 72px;
-        height: 72px;
-      }
-    }
-
     & p {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
     }
 
     & a {
-      font-size: 1.7rem;
-      font-weight: 700;
+      font-size: 1.5rem;
+      font-family: 'Press Start 2P';
       text-transform: capitalize;
       cursor: pointer;
       transition: 0.3s ease-in-out;
@@ -108,6 +100,13 @@ export const TypePokemonList = styled.ul`
 
     &:hover {
       border: 1px solid ${({ theme }) => theme.red};
+    }
+
+    @media ${device.sm} {
+      width: 18rem;
+      height: 27rem;
+      margin: 2rem;
+      padding: 1.5rem 2.5rem;
     }
   }
 `;

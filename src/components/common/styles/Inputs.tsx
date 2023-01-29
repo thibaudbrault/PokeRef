@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import Select from 'react-select';
+import { device } from './Sizing';
 
-export const Search = styled.div`
+export const Search = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -134,6 +135,10 @@ export const Dropdown = styled(Select)`
       background-color: transparent;
       color: ${({ theme }) => theme.red};
     }
+  }
+
+  @media ${device.md} {
+    width: 100%;
   }
 `;
 

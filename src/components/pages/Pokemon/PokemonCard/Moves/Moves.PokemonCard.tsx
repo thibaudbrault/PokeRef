@@ -49,6 +49,7 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
                   }}
                 >
                   <Image
+                    src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${m.type.name}.png`}
                     alt={m.type.name}
                     width={32}
                     height={32}
@@ -129,8 +130,8 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
                 {learn === `level-up`
                   ? `Level`
                   : learn === `machine`
-                  ? `Machine`
-                  : `-`}
+                    ? `Machine`
+                    : `-`}
               </th>
               <th>Name</th>
               <th>Type</th>

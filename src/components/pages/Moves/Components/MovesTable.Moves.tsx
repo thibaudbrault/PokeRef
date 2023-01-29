@@ -26,11 +26,11 @@ function MovesTable({ moves }: Props) {
 
   const filterMoves = search
     ? moves.filter((moves: Moves.Moves) =>
-        moves.name
-          .replace(/-/g, ` `)
-          .toLowerCase()
-          .includes(search.toLowerCase()),
-      )
+      moves.name
+        .replace(/-/g, ` `)
+        .toLowerCase()
+        .includes(search.toLowerCase()),
+    )
     : moves;
 
   const filterEffect = filterMoves.map((m) =>
@@ -82,13 +82,13 @@ function MovesTable({ moves }: Props) {
                       {m.name.replace(/-/g, ` `)}
                     </TLink>
                   </TName>
-                  <TCategory id={m.damage_class.name}>
+                  <TCategory>
                     <div>
                       <Image
+                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/seals/home/move-${m.damage_class.name}.png`}
                         alt={m.damage_class.name}
                         width={20}
                         height={20}
-                        src={``}
                       />
                       <span>{m.damage_class.name}</span>
                     </div>
@@ -105,7 +105,7 @@ function MovesTable({ moves }: Props) {
                           alt={m.type.name}
                           width={15}
                           height={15}
-                          src={``}
+                          src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${m.type.name}.png`}
                         />
                         <span>{m.type.name}</span>
                       </Link>

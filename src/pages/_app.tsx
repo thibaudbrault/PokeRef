@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
-
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { darkTheme, lightTheme } from '@/components/common/styles/Themes';
 
 import Header from '@/components/layout/Header/Header';
@@ -33,6 +33,9 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
 };
 
 function MyApp({ Component, pageProps }: AppProps) {
+
+  const [navOpen, setNavOpen] = useState(false)
+
   const loadTheme: () => string = () => {
     const localTheme = globalThis.window?.localStorage.getItem(`theme`);
     return localTheme ?? `dark`;
@@ -59,11 +62,12 @@ function MyApp({ Component, pageProps }: AppProps) {
           <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
             <Toaster />
             <NextNProgress />
-            <Header themeToggler={themeToggler} theme={theme} />
-            <Nav />
+            <Header navOpen={navOpen} setNavOpen={setNavOpen} themeToggler={themeToggler} theme={theme} />
+            <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
             <Reset />
             <Component {...pageProps} />
             <Footer />
+            <ReactQueryDevtools />
           </ThemeProvider>
         </QueryClientProvider>
       </ErrorBoundary>

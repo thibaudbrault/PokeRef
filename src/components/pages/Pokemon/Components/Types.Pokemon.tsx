@@ -17,7 +17,12 @@ function TypesPokemon({ p }: Props) {
           query: { name: pt.type.name },
         }}
       >
-        <Image alt={pt.type.name} src={``} />
+        <Image
+          src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${pt.type.name}.png`}
+          alt={pt.type.name}
+          width={15}
+          height={15}
+        />
         <span>{pt.type.name}</span>
       </Link>
     </Type>

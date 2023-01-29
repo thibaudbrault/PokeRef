@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { device, Section } from '../../../../common/styles/Sizing';
 import { Table } from '../../../../common/styles/Table';
-import { DamageClass, Type } from '../../../../common/styles/Themes';
+import { Type } from '../../../../common/styles/Themes';
 
 export const MoveCardDataSection = styled(Section)`
   display: grid;
@@ -59,7 +59,7 @@ export const MoveCardDataType = styled(Type)`
   }
 `;
 
-export const MoveCardDataCategory = styled(DamageClass)`
+export const MoveCardDataCategory = styled.td`
   & div {
     display: flex;
     align-items: center;
@@ -67,11 +67,16 @@ export const MoveCardDataCategory = styled(DamageClass)`
     padding: 0.5rem 1.5rem;
 
     & img {
-      height: 3.5rem;
       vertical-align: middle;
+
+      @media ${device.sm} {
+        width: 25px;
+        height: 25px;
+      }
     }
 
     & span {
+      text-transform: capitalize;
       padding-left: 0.5rem;
       vertical-align: middle;
     }

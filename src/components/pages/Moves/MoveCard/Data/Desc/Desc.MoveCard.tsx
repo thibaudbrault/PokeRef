@@ -24,16 +24,21 @@ function Desc({ move, version, machines }: Props) {
         <tr>
           <th>Type</th>
           <td>
-            <MoveCardDataType id={move.type.name}>
+            <MoveCardDataType id={move?.type?.name}>
               <Link
                 href={{
                   pathname: `/type/[name]`,
-                  query: { name: move.type.name },
+                  query: { name: move?.type?.name },
                 }}
-                key={move.type.name}
+                key={move?.type?.name}
               >
-                <Image alt={move.type.name} width={20} height={20} />
-                <span>{move.type.name}</span>
+                <Image
+                  src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${move?.type?.name}.png`}
+                  alt={move?.type?.name}
+                  width={20}
+                  height={20}
+                />
+                <span>{move?.type?.name}</span>
               </Link>
             </MoveCardDataType>
           </td>
@@ -42,7 +47,12 @@ function Desc({ move, version, machines }: Props) {
           <th>Category</th>
           <MoveCardDataCategory id={move.damage_class.name}>
             <div>
-              <Image alt={move.damage_class.name} />
+              <Image
+                src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/seals/home/move-${move.damage_class.name}.png`}
+                alt={move.damage_class.name}
+                width={35}
+                height={35}
+              />
               <span>{move.damage_class.name}</span>
             </div>
           </MoveCardDataCategory>

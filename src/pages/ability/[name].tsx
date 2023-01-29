@@ -54,8 +54,8 @@ function AbilityCard() {
     <>
       <HeadingAbility name={name} />
       <MainBig>
-        <CardTitle>{ability?.name.replace(/-/g, ` `)}</CardTitle>
-        <Subtitle>{ability?.generation.name.replace(/-/g, ` `)}</Subtitle>
+        <CardTitle>{ability?.name?.replace(/-/g, ` `)}</CardTitle>
+        <Subtitle>{ability?.generation?.name?.replace(/-/g, ` `)}</Subtitle>
 
         <AbilityCardSection>
           <AbilityCardEffect>
@@ -76,7 +76,7 @@ function AbilityCard() {
         <DescAbilityCard filterDesc={filterDesc} />
         <AbilityCardSection>
           <H3>
-            Pokemon with <Span>{ability?.name.replace(/-/g, ` `)}</Span>
+            Pokemon with <Span>{ability?.name?.replace(/-/g, ` `)}</Span>
           </H3>
           <TableAbilitycard ability={ability} pokedex={pokedex} />
         </AbilityCardSection>

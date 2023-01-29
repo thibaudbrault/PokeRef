@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
-
+import { Spin as Hamburger } from 'hamburger-react'
 import { H1 } from '@/components/common/styles/Headings';
 import {
+  BurgerClose,
+  BurgerOpen,
   HeaderBtnConnect,
   HeaderBtnConnected,
   HeaderBtnContainer,
@@ -13,13 +15,16 @@ import { RiMoonClearLine } from '@meronex/icons/ri';
 import { RiSunLine } from '@meronex/icons/ri';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { auth } from '@/firebase-config';
+import { FiMenu, FiX } from '@meronex/icons/fi';
 
 type Props = {
+  navOpen: boolean;
+  setNavOpen: Dispatch<SetStateAction<boolean>>;
   themeToggler: () => void;
   theme: string;
 };
 
-function Header({ themeToggler, theme }: Props) {
+function Header({ navOpen, setNavOpen, themeToggler, theme }: Props) {
   const [user, setUser] = useState<User | null>();
   // const usersCollectionRef = collection(db, `users`);
 
@@ -59,6 +64,24 @@ function Header({ themeToggler, theme }: Props) {
             <Link href="/register">Register</Link>
           </HeaderBtnConnect>
         )}
+        {navOpen ? (
+          <BurgerOpen onClick={() => setNavOpen(!navOpen)}>
+            <FiX />
+          </BurgerOpen>
+        ) : (
+          <BurgerClose onClick={() => setNavOpen(!navOpen)}>
+            <FiMenu />
+          </BurgerClose>
+        )}
+        {/* <Hamburger
+          responsive={true}
+          toggled={navOpen}
+          toggle={setNavOpen}
+          rounded
+          size={30}
+          label='Show menu'
+          hideOutline={false}
+        /> */}
       </HeaderBtnContainer>
     </HeaderContainer>
   );

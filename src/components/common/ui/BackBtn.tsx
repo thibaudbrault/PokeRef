@@ -6,11 +6,10 @@ type Props = {
   name: string;
 };
 
-const BackButton = styled.a`
+const BackButton = styled.span`
   display: flex;
   align-items: center;
-  position: absolute;
-  bottom: 2rem;
+  width: fit-content;
   padding: 1rem 1.5rem;
   font-size: 1.5rem;
   font-weight: 700;

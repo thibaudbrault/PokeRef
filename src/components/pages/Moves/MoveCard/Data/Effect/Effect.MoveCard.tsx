@@ -23,7 +23,7 @@ function Effect({ move, version }: Props) {
 
         <MoveCardDataText>
           <Span>
-            <i>{move.name.replace(/-/g, ` `)}</i>
+            <i>{move?.name?.replace(/-/g, ` `)}</i>
             {` `}
           </Span>
           {move.effect_entries?.map(
@@ -46,52 +46,52 @@ function Effect({ move, version }: Props) {
         </MoveCardDataText>
 
         <MoveCardDataMeta>
-          {move.meta.ailment.name !== `none` && (
+          {move?.meta.ailment?.name !== `none` && (
             <li>
               Status : <Span>{move.meta.ailment.name}</Span>
             </li>
           )}
-          {move.meta.ailment_chance !== 0 && (
+          {move?.meta?.ailment_chance !== 0 && (
             <li>
               Has a {move.meta.ailment_chance}% chance to{` `}
               {move.meta.ailment.name} the target
             </li>
           )}
-          {move.meta.crit_rate !== 0 && (
+          {move?.meta?.crit_rate !== 0 && (
             <li>
               Increase the chance of landing a critical hit by{` `}
               {move.meta.crit_rate} stage
             </li>
           )}
-          {move.meta.drain !== 0 && (
+          {move?.meta?.drain !== 0 && (
             <li>
               Drains {move.meta.drain}% of the damage inflicted to heal the user
             </li>
           )}
-          {move.meta.flinch_chance !== 0 && (
+          {move?.meta?.flinch_chance !== 0 && (
             <li>
               Has a {move.meta.flinch_chance}% of causing the target to flinch
             </li>
           )}
-          {move.meta.healing !== 0 && (
+          {move?.meta?.healing !== 0 && (
             <li>
               Recovers {move.meta.flinch_chance}% of the user's maximum HP
             </li>
           )}
-          {move.meta.min_hits !== null && (
+          {move?.meta?.min_hits !== null && (
             <li>
               This move hits between {move.meta.min_hits} and{` `}
               {move.meta.max_hits} times
             </li>
           )}
-          {move.meta.min_turns !== null &&
+          {move?.meta?.min_turns !== null &&
             move.meta.min_turns !== move.meta.max_turns && (
               <li>
                 This move last between {move.meta.min_turns} and{` `}
                 {move.meta.max_turns} turns
               </li>
             )}
-          {move.meta.min_turns !== null &&
+          {move?.meta?.min_turns !== null &&
             move.meta.min_turns === move.meta.max_turns && (
               <li>This move last {move.meta.min_turns} turns</li>
             )}

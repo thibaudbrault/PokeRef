@@ -26,8 +26,7 @@ function TableAbilitycard({ ability, pokedex }: Props) {
       <ModifiedTable>
         <THead>
           <tr>
-            <th>#</th>
-            <th>Name</th>
+            <th>Pokémon</th>
             <th>
               1<Sup>st</Sup> ability
             </th>

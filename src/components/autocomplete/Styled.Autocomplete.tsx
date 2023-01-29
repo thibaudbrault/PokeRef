@@ -1,27 +1,22 @@
 import styled from 'styled-components';
 import { Input } from '@/components/common/styles/Inputs';
-import { device } from '@/components/common/styles/Sizing';
 import { TLink } from '@/components/common/styles/Table';
 
 export const AutocompleteInput = styled(Input)`
   min-width: 25rem;
-  margin-right: 0.5rem;
+  grid-area: search;
 
   & input {
     width: 100%;
     height: 100%;
     padding: 0 1rem;
   }
-
-  @media ${device.lg} {
-    margin-top: 1rem;
-  }
 `;
 
 export const AutocompleteContainer = styled.div`
   width: 100%;
   position: relative;
-  z-index: 99;
+  z-index: 2;
 
   & ul {
     width: 100%;
