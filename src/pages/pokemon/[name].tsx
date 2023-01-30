@@ -8,7 +8,7 @@ import {
   usePokemonLocation,
   useSpecies,
   useTypes,
-} from '../../hooks/DataFetch';
+} from '../../utils/DataFetch';
 import Loader from '../../components/common/ui/Loader/Loader';
 import { Subtitle, Title } from '../../components/common/styles/Headings';
 import Head from 'next/head';

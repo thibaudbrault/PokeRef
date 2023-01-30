@@ -31,6 +31,20 @@ export function usePokedex(url: string) {
   );
 }
 
+export const getPokedex = async (url: string) => {
+  try {
+    const res = await axios.get(url);
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string; }) => axios.get(res.url))
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err)
+  }
+};
+
 // Fetch all moves
 export function useMoves() {
   return useQuery<Moves.Moves[], Error>([`moves`], () =>
@@ -49,6 +63,20 @@ export function useMoves() {
       }),
   );
 }
+
+export const getMoves = async () => {
+  try {
+    const res = await axios.get(`https://pokeapi.co/api/v2/move?limit=826`);
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string; }) => axios.get(res.url))
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err)
+  }
+};
 
 // Fetch all status
 export function useStatus() {
@@ -69,6 +97,20 @@ export function useStatus() {
   );
 }
 
+export const getStatus = async () => {
+  try {
+    const res = await axios.get(`https://pokeapi.co/api/v2/move-ailment?limit=22`);
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string; }) => axios.get(res.url))
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err)
+  }
+};
+
 // Fetch all abilities
 export function useAbilities() {
   return useQuery<Abilities.Abilities[], Error>([`abilities`], () =>
@@ -87,6 +129,20 @@ export function useAbilities() {
       }),
   );
 }
+
+export const getAbilities = async () => {
+  try {
+    const res = await axios.get(`https://pokeapi.co/api/v2/ability?limit=267`);
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string; }) => axios.get(res.url))
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err)
+  }
+};
 
 // Fetch all types
 export function useTypes() {
@@ -107,6 +163,20 @@ export function useTypes() {
   );
 }
 
+export const getTypes = async () => {
+  try {
+    const res = await axios.get(`https://pokeapi.co/api/v2/type?limit=18`);
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string; }) => axios.get(res.url))
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err)
+  }
+};
+
 // Fetch all machines
 export function useMachines() {
   return useQuery<Machines.Machines[], Error>([`machines`], () =>
@@ -125,6 +195,20 @@ export function useMachines() {
       }),
   );
 }
+
+export const getMachines = async () => {
+  try {
+    const res = await axios.get(`https://pokeapi.co/api/v2/machine?limit=1700`);
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string; }) => axios.get(res.url))
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err)
+  }
+};
 
 // Fetch all items
 export function useItems() {
@@ -145,6 +229,20 @@ export function useItems() {
   );
 }
 
+export const getItems = async () => {
+  try {
+    const res = await axios.get(`https://pokeapi.co/api/v2/item?limit=1608`);
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string; }) => axios.get(res.url))
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err)
+  }
+};
+
 // Fetch all locations
 export function useLocations() {
   return useQuery<Locations.Regions[], Error>([`locations`], () =>
@@ -164,6 +262,20 @@ export function useLocations() {
   );
 }
 
+export const getRegions = async () => {
+  try {
+    const res = await axios.get(`https://pokeapi.co/api/v2/region?limit=10`);
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string; }) => axios.get(res.url))
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err)
+  }
+};
+
 // Fetch single pokemon
 export function usePokemon(url: string) {
   return useQuery<Pokemon.Pokemon, Error>([`pokemon`, url], () =>
@@ -176,6 +288,16 @@ export function usePokemon(url: string) {
         return results;
       }),
   );
+}
+
+export const getPokemon = async (url: string) => {
+  try {
+    const res = await axios.get(url)
+    const results = await res.data
+    return results
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 // Fetch single move
@@ -192,6 +314,16 @@ export function useMove(url: string) {
   );
 }
 
+export const getMove = async (url: string) => {
+  try {
+    const res = await axios.get(url)
+    const results = await res.data
+    return results
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 // Fetch single ability
 export function useAbility(url: string) {
   return useQuery<Abilities.Abilities, Error>([`ability`, url], () =>
@@ -206,6 +338,16 @@ export function useAbility(url: string) {
   );
 }
 
+export const getAbility = async (url: string) => {
+  try {
+    const res = await axios.get(url)
+    const results = await res.data
+    return results
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 // Fetch single pokemon species
 export function useSpecies(url: string) {
   return useQuery<Species.Species, Error>([`species`, url], () =>
@@ -218,6 +360,16 @@ export function useSpecies(url: string) {
         return results;
       }),
   );
+}
+
+export const getSpecies = async (url: string) => {
+  try {
+    const res = await axios.get(url)
+    const results = await res.data
+    return results
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 // Fetch location for a single pokemon
@@ -236,6 +388,16 @@ export function usePokemonLocation(url: string) {
   );
 }
 
+export const getPokemonLocation = async (url: string) => {
+  try {
+    const res = await axios.get(url)
+    const results = await res.data
+    return results
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 // Fetch evolution chain of a single pokemon
 export function useEvolution(url: string) {
   return useQuery<Evolution.Evolution, Error>([`evolution`, url], () =>
@@ -248,6 +410,16 @@ export function useEvolution(url: string) {
         return results;
       }),
   );
+}
+
+export const getEvolution = async (url: string) => {
+  try {
+    const res = await axios.get(url)
+    const results = await res.data
+    return results
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 // Fetch single type
@@ -264,6 +436,16 @@ export function useType(url: string) {
   );
 }
 
+export const getType = async (url: string) => {
+  try {
+    const res = await axios.get(url)
+    const results = await res.data
+    return results
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 // Fetch single item
 export function useItem(url: string) {
   return useQuery<Items.Items, Error>([`item`, url], () =>
@@ -276,6 +458,16 @@ export function useItem(url: string) {
         return results;
       }),
   );
+}
+
+export const getItem = async (url: string) => {
+  try {
+    const res = await axios.get(url)
+    const results = await res.data
+    return results
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 // Fetch single location
@@ -292,6 +484,16 @@ export function useLocation(url: string) {
   );
 }
 
+export const getLocation = async (url: string) => {
+  try {
+    const res = await axios.get(url)
+    const results = await res.data
+    return results
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 // Fetch single area
 export function useArea(url: string) {
   return useQuery<Locations.Area, Error>([`area`, url], () =>
@@ -306,6 +508,16 @@ export function useArea(url: string) {
   );
 }
 
+export const getArea = async (url: string) => {
+  try {
+    const res = await axios.get(url)
+    const results = await res.data
+    return results
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 //Fetch format
 export function useFormat(url: string) {
   return useQuery([`format`, url], () =>
@@ -314,4 +526,14 @@ export function useFormat(url: string) {
       return results.data;
     }),
   );
+}
+
+export const getFormat = async (url: string) => {
+  try {
+    const res = await axios.get(url)
+    const results = await res.data
+    return results
+  } catch (err) {
+    console.error(err)
+  }
 }
