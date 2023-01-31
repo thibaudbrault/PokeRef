@@ -21,5 +21,5 @@ export const useFilterAbilities = () => {
     filterAbilities?.map((a) =>
       a.flavor_text_entries.find((af) => af.language.name === `en`),
     );
-  return { setSearch, isLoading, error, filterAbilities, filterEffect };
+  return { setSearch, isLoading, error, abilities, filterAbilities, filterEffect };
 };

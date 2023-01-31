@@ -49,7 +49,7 @@ export const getPokedex = async (url: string) => {
 export function useMoves() {
   return useQuery<Moves.Moves[], Error>([`moves`], () =>
     axios
-      .get(`https://pokeapi.co/api/v2/move?limit=826`)
+      .get(`https://pokeapi.co/api/v2/move?limit=919`)
       .then((res) => {
         return res.data.results;
       })
@@ -115,7 +115,7 @@ export const getStatus = async () => {
 export function useAbilities() {
   return useQuery<Abilities.Abilities[], Error>([`abilities`], () =>
     axios
-      .get(`https://pokeapi.co/api/v2/ability?limit=267`)
+      .get(`https://pokeapi.co/api/v2/ability?limit=100`)
       .then((res) => {
         return res.data.results;
       })
@@ -214,7 +214,7 @@ export const getMachines = async () => {
 export function useItems() {
   return useQuery<Items.Items[], Error>([`items`], () =>
     axios
-      .get(`https://pokeapi.co/api/v2/item?limit=1608`)
+      .get(`https://pokeapi.co/api/v2/item?limit=2051`)
       .then((res) => {
         return res.data.results;
       })
@@ -247,7 +247,7 @@ export const getItems = async () => {
 export function useLocations() {
   return useQuery<Locations.Regions[], Error>([`locations`], () =>
     axios
-      .get(`https://pokeapi.co/api/v2/region?limit=8`)
+      .get(`https://pokeapi.co/api/v2/region?limit=10`)
       .then((res) => {
         return res.data.results;
       })

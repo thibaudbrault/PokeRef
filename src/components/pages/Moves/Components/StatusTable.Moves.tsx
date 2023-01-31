@@ -12,8 +12,7 @@ import Link from 'next/link';
 import { Moves } from '@/types/types';
 
 type Props = {
-  status: Moves.Status[];
-  toggleState: number;
+  status?: Moves.Status[];
 };
 
 function StatusTable({ status }: Props) {

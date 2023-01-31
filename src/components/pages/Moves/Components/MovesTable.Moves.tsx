@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
+import { useMemo, useState } from "react";
+import { ColumnDef } from "@tanstack/react-table";
 import { LeftTitle } from '@/components/common/styles/Headings';
 import { Input, ModifiedSearch } from '@/components/common/styles/Inputs';
 import {
   Table,
   TableContainer,
-  TEffect,
-  THead,
   TLink,
   TName,
-  TRow,
 } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import { MovesSection, TCategory, TType } from '../Styled.Moves';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Moves } from '@/types/types';
+import { useTableParams } from "@/hooks/useTableParams";
 
 type Props = {
-  moves: Moves.Moves[];
-  toggleState: number;
+  moves?: Moves.Moves[];
 };
 
 function MovesTable({ moves }: Props) {
+
   const [search, setSearch] = useState<string>(``);
 
   const filterMoves = search
@@ -38,6 +37,78 @@ function MovesTable({ moves }: Props) {
       (mf) => mf.language.name === `en` && mf.flavor_text !== `Dummy Data`,
     ),
   );
+
+  const data = useMemo(() => moves, [moves]);
+  console.log(data)
+
+  const columns = useMemo<ColumnDef<Moves.Moves>[]>(
+    () => [
+      {
+        accessorKey: "name",
+        header: "Name",
+        cell: info =>
+          <TName>
+            <TLink href={{
+              pathname: `/move/[name]`,
+              query: { name: info.getValue<string>() },
+            }}
+            >
+              {info.getValue<string>().replace(/-/g, ` `)}
+            </TLink>
+          </TName>
+      },
+      {
+        accessorKey: "damage_class.name",
+        header: "Category",
+        cell: info =>
+          <TCategory id={info.getValue<string>()}>
+            <div>
+              <Image
+                alt={info.getValue<string>()}
+                width={20}
+                height={20}
+                src={``}
+              />
+              <span>{info.getValue<string>()}</span>
+            </div>
+          </TCategory>
+      },
+      {
+        header: "Type",
+        accessorKey: "type.name",
+        cell: info =>
+          <TType>
+            <Type id={info.getValue<string>()}>
+              <Link
+                href={{
+                  pathname: `/type/[name]`,
+                  query: { name: info.getValue<string>() },
+                }}
+              >
+                <Image
+                  alt={info.getValue<string>()}
+                  width={15}
+                  height={15}
+                  src={``}
+                />
+                <span>{info.getValue<string>()}</span>
+              </Link>
+            </Type>
+          </TType>
+      },
+      // {
+      //   header: "Effect",
+      //   accessorKey: "filterEffect?.flavor_text",
+      //   cell: info =>
+      //     <TEffect>
+      //       <span>{info.getValue<span>()}</span>
+      //     </TEffect>
+      // }
+    ],
+    []
+  );
+
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(data, columns)
 
   return (
     <MovesSection>
@@ -56,67 +127,10 @@ function MovesTable({ moves }: Props) {
           />
         </Input>
       </ModifiedSearch>
-      <TableContainer>
+      <TableContainer ref={tableContainerRef}>
         <Table>
-          <THead>
-            <tr>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Type</th>
-              <th>Effect</th>
-            </tr>
-          </THead>
-          <tbody data-testid="movesBody">
-            {filterMoves
-              .sort((a, b) => a.name.localeCompare(b.name))
-              ?.map((m: Moves.Moves, i) => (
-                <TRow key={m.id}>
-                  <TName>
-                    <TLink
-                      href={{
-                        pathname: `/move/[name]`,
-                        query: { name: m.name },
-                      }}
-                      key={m.name}
-                    >
-                      {m.name.replace(/-/g, ` `)}
-                    </TLink>
-                  </TName>
-                  <TCategory>
-                    <div>
-                      <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/seals/home/move-${m.damage_class.name}.png`}
-                        alt={m.damage_class.name}
-                        width={20}
-                        height={20}
-                      />
-                      <span>{m.damage_class.name}</span>
-                    </div>
-                  </TCategory>
-                  <TType>
-                    <Type id={m.type.name}>
-                      <Link
-                        href={{
-                          pathname: `/type/[name]`,
-                          query: { name: m.type.name },
-                        }}
-                      >
-                        <Image
-                          alt={m.type.name}
-                          width={15}
-                          height={15}
-                          src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${m.type.name}.png`}
-                        />
-                        <span>{m.type.name}</span>
-                      </Link>
-                    </Type>
-                  </TType>
-                  <TEffect>
-                    <span>{filterEffect?.[i]?.flavor_text}</span>
-                  </TEffect>
-                </TRow>
-              ))}
-          </tbody>
+          {tableHeader()}
+          {tableBody()}
         </Table>
       </TableContainer>
     </MovesSection>

@@ -38,6 +38,15 @@ export const Table = styled.table`
     border: 1px solid rgba(130, 130, 130, 0.2);
     border-collapse: collapse;
     vertical-align: middle;
+    cursor: pointer;
+    
+    & .cursor-pointer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
   }
 
   & td {
