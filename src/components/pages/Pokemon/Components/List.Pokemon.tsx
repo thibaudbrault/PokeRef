@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
 import { PokedexElement, PokedexTypes } from '../Styled.Pokemon';
 import { Pokemon } from '@/types/types';
@@ -15,9 +15,11 @@ const TypesPokemon = dynamic(
 
 type Props = {
   filteredPokedex: Pokemon.Pokemon[];
+  showPlaceholder: boolean;
+  setShowPlaceholder: Dispatch<SetStateAction<boolean>>;
 };
 
-function ListPokemon({ filteredPokedex }: Props) {
+function ListPokemon({ filteredPokedex, showPlaceholder, setShowPlaceholder }: Props) {
   return (
     <AnimatePresence>
       <motion.ul
@@ -32,7 +34,11 @@ function ListPokemon({ filteredPokedex }: Props) {
             animate="show"
             variants={fadeInUpVariant}
           >
-            <Sprites p={p} />
+            <Sprites
+              p={p}
+              showPlaceholder={showPlaceholder}
+              setShowPlaceholder={setShowPlaceholder}
+            />
             {p.id < 1008 && <p>#{p.id.toString().padStart(3, `0`)}</p>}
             <h2 data-testid="pokemonName">
               <Link
@@ -54,7 +60,6 @@ function ListPokemon({ filteredPokedex }: Props) {
             </PokedexTypes>
           </PokedexElement>
         ))}
-        ;
       </motion.ul>
     </AnimatePresence>
   );

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMachines, useMove, usePokedex } from '@/hooks/DataFetch';
+import { useMachines, useMove, usePokedex } from '@/utils/DataFetch';
 
 export const useFetchMove = (name: string | string[] | undefined) => {
   const {

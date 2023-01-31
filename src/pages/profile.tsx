@@ -7,7 +7,7 @@ import Loader from '@/components/common/ui/Loader/Loader';
 import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';
 import { formatOptions, Options } from '@/utils/DataArrays';
 import { Dropdown } from '@/components/common/styles/Inputs';
-import { useFormat } from '@/hooks/DataFetch';
+import { useFormat } from '@/utils/DataFetch';
 import {
   ProfileInputs,
   ProfileList,

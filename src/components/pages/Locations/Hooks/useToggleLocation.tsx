@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocations } from '@/hooks/DataFetch';
+import { useLocations } from '@/utils/DataFetch';
 import { regions } from '@/utils/DataArrays';
 
 export const useToggleLocation = () => {

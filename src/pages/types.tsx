@@ -1,7 +1,7 @@
 import React from 'react';
 import { MainSmall } from '@/components/common/styles/Sizing';
 import { TypesList } from '@/components/pages/Types/Styled.Types';
-import { useTypes } from '@/hooks/DataFetch';
+import { useTypes } from '@/utils/DataFetch';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingTypes from '@/components/pages/Types/Heading';
 import dynamic from 'next/dynamic';

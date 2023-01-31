@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useArea } from '@/hooks/DataFetch';
+import { useLocation, useArea } from '@/utils/DataFetch';
 
 export const useSwitchGame = (name: string | string[] | undefined) => {
   const [game, setGame] = useState(`red`);

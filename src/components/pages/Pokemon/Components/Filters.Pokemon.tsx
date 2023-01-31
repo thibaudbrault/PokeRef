@@ -23,6 +23,7 @@ type Props = {
   setGeneration: Dispatch<SetStateAction<OptionsOffsetLimit | null>>;
   type: Options[] | null;
   setType: Dispatch<SetStateAction<Options[]>>;
+  setShowPlaceholder: Dispatch<SetStateAction<boolean>>;
 };
 
 function Filters({
@@ -36,6 +37,7 @@ function Filters({
   setForm,
   generation,
   setGeneration,
+  setShowPlaceholder
 }: Props) {
   const getFilterPokemon = () => {
     if (pokedex) {
@@ -77,17 +79,20 @@ function Filters({
     setForm(option);
     setGeneration(null);
     setType([]);
+    setShowPlaceholder(false)
   };
 
   const handleGenSelect = (option: SingleValue<OptionsOffsetLimit>) => {
     setGeneration(option);
     setForm(null);
     setType([]);
+    setShowPlaceholder(false)
   };
 
   const handleTypeSelect = (option: MultiValue<Options>) => {
     if (option) {
       setType(option);
+      setShowPlaceholder(false)
     }
   };
 

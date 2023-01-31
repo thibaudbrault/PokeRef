@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMoves, useStatus } from '@/hooks/DataFetch';
+import { useMoves, useStatus } from '@/utils/DataFetch';
 import dynamic from 'next/dynamic';
 
 const MovesTable = dynamic(

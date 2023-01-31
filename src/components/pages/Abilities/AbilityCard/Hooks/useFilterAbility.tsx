@@ -1,4 +1,4 @@
-import { useAbility, usePokedex } from '@/hooks/DataFetch';
+import { useAbility, usePokedex } from '@/utils/DataFetch';
 
 export const useFilterAbility = (name: string | string[] | undefined) => {
   const {

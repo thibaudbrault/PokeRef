@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
-import { usePokedex } from '@/hooks/DataFetch';
+import { getPokedex, usePokedex } from '@/utils/DataFetch';
 import {
   AutocompleteContainer,
   AutocompleteId,
   AutocompleteInput,
   AutocompleteLink,
 } from './Styled.Autocomplete';
-import Image from 'next/image';
 import { Pokemon } from '@/types/types';
 import ImageWithFallback from '@/utils/ImageWithFallback';
+import { useQuery } from 'react-query';
 
 function Autocomplete() {
-  const { data: pokedex } = usePokedex(
-    `https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`,
-  );
+  const {
+    data: pokedex,
+  } = useQuery({
+    queryKey: ['pokedex'],
+    queryFn: () => getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`),
+  });
 
   const [pokedexMatch, setPokedexMatch] = useState<
     Pokemon.Pokemon[] | undefined

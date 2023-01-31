@@ -1,4 +1,4 @@
-import { useMachines } from '@/hooks/DataFetch';
+import { useMachines } from '@/utils/DataFetch';
 import { Machines } from '@/types/types';
 import { useState } from 'react';
 
@@ -11,13 +11,13 @@ export const useFilterMachines = () => {
   // Filter the moves returned when the user type the name in the search bar
   const filterMachines: Machines.Machines[] = search
     ? machines
-        ?.filter((machines: Machines.Machines) =>
-          machines.move.name
-            .replace(/-/g, ` `)
-            .toLowerCase()
-            .includes(search.toLowerCase()),
-        )
-        .find((ma) => ma.version_group.name === version)
+      ?.filter((machines: Machines.Machines) =>
+        machines.move.name
+          .replace(/-/g, ` `)
+          .toLowerCase()
+          .includes(search.toLowerCase()),
+      )
+      .find((ma) => ma.version_group.name === version)
     : machines;
 
   return {

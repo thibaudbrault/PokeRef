@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Pokemon } from '@/types/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LoadingImage, PokedexImage, SpriteNormal, SpriteShiny } from '../Styled.Pokemon';
@@ -6,12 +6,11 @@ import { fadeInUpVariant, placeholderVariant } from '@/components/common/styles/
 
 type Props = {
   p: Pokemon.Pokemon;
+  showPlaceholder: boolean;
+  setShowPlaceholder: Dispatch<SetStateAction<boolean>>;
 };
 
-function Sprites({ p }: Props) {
-
-  const [showPlaceholder, setShowPlaceholder] = useState(true)
-
+function Sprites({ p, showPlaceholder, setShowPlaceholder }: Props) {
   return (
     <PokedexImage>
       <AnimatePresence>

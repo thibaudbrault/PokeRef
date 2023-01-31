@@ -1,4 +1,4 @@
-import { useItems } from '@/hooks/DataFetch';
+import { useItems } from '@/utils/DataFetch';
 import { useState } from 'react';
 
 export const useFilterItems = () => {
@@ -9,11 +9,11 @@ export const useFilterItems = () => {
   // Filter the items returned when the user type the name in the search bar
   const filterItems = search
     ? items?.filter((items) =>
-        items.name
-          .replace(/-/g, ` `)
-          .toLowerCase()
-          .includes(search.toLowerCase()),
-      )
+      items.name
+        .replace(/-/g, ` `)
+        .toLowerCase()
+        .includes(search.toLowerCase()),
+    )
     : items?.sort((a, b) => a.name.localeCompare(b.name));
 
   return { setSearch, isLoading, error, filterItems };
