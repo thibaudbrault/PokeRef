@@ -2,9 +2,10 @@ import React from 'react';
 import { H3 } from '@/components/common/styles/Headings';
 import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
 import { Evolution, Pokemon, Species } from '@/types/types';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
+  pokemon: IPokemon;
   species: Species.Species;
   evolution: Evolution.Evolution;
 };
@@ -42,8 +43,8 @@ function Breeding({ pokemon, species, evolution }: Props) {
             <td>
               {pokemon.id < 10000
                 ? species?.egg_groups?.map((seg) => (
-                    <p key={seg.name}>{seg.name}</p>
-                  ))
+                  <p key={seg.name}>{seg.name}</p>
+                ))
                 : `⠀`}
             </td>
           </tr>

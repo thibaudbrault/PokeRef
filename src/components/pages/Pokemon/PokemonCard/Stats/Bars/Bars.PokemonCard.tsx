@@ -6,9 +6,10 @@ import {
   PokemonStatsText,
   PokemonStatsTotal,
 } from '../Styled.Stats.PokemonCard';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
+  pokemon: IPokemon;
 };
 
 function Bars({ pokemon }: Props) {
@@ -61,7 +62,7 @@ function Bars({ pokemon }: Props) {
                 (((2 * pokemon?.stats?.[1]?.base_stat + 0 + 0 / 4) * 100) /
                   100 +
                   5) *
-                  0.9,
+                0.9,
               ).toFixed(0)}
             </PokemonStatsText>
             <PokemonStatsText>
@@ -91,7 +92,7 @@ function Bars({ pokemon }: Props) {
                 (((2 * pokemon?.stats?.[2]?.base_stat + 0 + 0 / 4) * 100) /
                   100 +
                   5) *
-                  0.9,
+                0.9,
               ).toFixed(0)}
             </PokemonStatsText>
             <PokemonStatsText>
@@ -121,7 +122,7 @@ function Bars({ pokemon }: Props) {
                 (((2 * pokemon?.stats?.[3]?.base_stat + 0 + 0 / 4) * 100) /
                   100 +
                   5) *
-                  0.9,
+                0.9,
               ).toFixed(0)}
             </PokemonStatsText>
             <PokemonStatsText>
@@ -153,7 +154,7 @@ function Bars({ pokemon }: Props) {
                 (((2 * pokemon?.stats?.[4]?.base_stat + 0 + 0 / 4) * 100) /
                   100 +
                   5) *
-                  0.9,
+                0.9,
               ).toFixed(0)}
             </PokemonStatsText>
             <PokemonStatsText>
@@ -183,7 +184,7 @@ function Bars({ pokemon }: Props) {
                 (((2 * pokemon?.stats?.[5]?.base_stat + 0 + 0 / 4) * 100) /
                   100 +
                   5) *
-                  0.9,
+                0.9,
               ).toFixed(0)}
             </PokemonStatsText>
             <PokemonStatsText>

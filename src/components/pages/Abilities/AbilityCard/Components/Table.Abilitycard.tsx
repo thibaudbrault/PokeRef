@@ -5,8 +5,9 @@ import {
   THead,
 } from '@/components/common/styles/Table';
 import { Sup } from '../Styled.AbilityCard';
-import { Abilities, Pokemon } from '@/types/types';
+import { Abilities } from '@/types/types';
 import dynamic from 'next/dynamic';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 const ListAbilityCard = dynamic(
   () =>
@@ -17,7 +18,7 @@ const ListAbilityCard = dynamic(
 
 type Props = {
   ability?: Abilities.Abilities;
-  pokedex?: Pokemon.Pokemon[];
+  pokedex?: IPokemon[];
 };
 
 function TableAbilitycard({ ability, pokedex }: Props) {

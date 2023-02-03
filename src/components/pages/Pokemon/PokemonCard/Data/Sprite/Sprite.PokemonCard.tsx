@@ -1,13 +1,14 @@
 import React from 'react';
-import { Pokemon, Species } from '@/types/types';
+import { Species } from '@/types/types';
 import {
   PokemonDataImg,
   PokemonDataLeg,
   PokemonDataMyt,
 } from '../Styled.Data.PokemonCard';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
+  pokemon: IPokemon;
   species: Species.Species;
 };
 

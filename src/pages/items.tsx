@@ -1,24 +1,68 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { MainBig } from '@/components/common/styles/Sizing';
 import { LeftTitle } from '@/components/common/styles/Headings';
-import { Table } from '@/components/common/styles/Table';
+import { Table, TLink, TName } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
-import { useFilterItems } from '@/components/pages/Items/Hooks/useFilterItems';
 import HeadingItems from '@/components/pages/Items/Heading';
-import dynamic from 'next/dynamic';
-import TableHead from '@/components/common/ui/TableHead';
+import { getItems } from '@/utils/DataFetch';
+import { useQuery } from 'react-query';
+import { useTableParams } from '@/hooks/useTableParams';
+import { TCategoryItems, TNameItems } from '@/components/pages/Items/Styled.Items';
+import Image from 'next/image';
 
-const ModifiedSearchUi = dynamic(
-  () => import(`@/components/common/ui/ModifiedSearch.ui`),
-);
-const ListItems = dynamic(
-  () => import(`@/components/pages/Items/Components/List.Items`),
-);
+function ItemsPage({ initialItems }) {
 
-function ItemsPage() {
-  const { setSearch, isLoading, error, filterItems } = useFilterItems();
+  const { isLoading, error, data: items } = useQuery({
+    queryKey: ['items'],
+    queryFn: getItems,
+    // initialData: initialItems
+  });
 
-  const tableHead: string[] = [`Name`, `Category`, `Effect`];
+  const data = useMemo(() => items, [items])
+
+  const columns = useMemo(
+    () => [
+      {
+        accessorKey: "sprites.default",
+        header: "Sprites",
+        cell: info =>
+          <td>
+            <Image
+              src={info.getValue<string>() || ''}
+              alt="-"
+              width={30}
+              height={30}
+            />
+          </td>
+      },
+      {
+        accessorKey: "name",
+        header: "Name",
+        cell: info =>
+          <TName>
+            <TLink
+              href={{
+                pathname: `/item/[name]`,
+                query: { name: info.getValue<string>() },
+              }}
+            >
+              {info.getValue<string>().replace(/-/g, ` `)}
+            </TLink>
+          </TName>
+      },
+      {
+        accessorKey: "category.name",
+        header: "Category",
+        cell: info =>
+          <TCategoryItems>
+            {info.getValue<string>().replace(/-/g, ` `)}
+          </TCategoryItems>
+      },
+    ],
+    []
+  )
+
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(data, columns)
 
   if (error instanceof Error) {
     return { error };
@@ -33,10 +77,9 @@ function ItemsPage() {
       <HeadingItems />
       <MainBig>
         <LeftTitle>Items</LeftTitle>
-        <ModifiedSearchUi placeholder="Item Name" setSearch={setSearch} />
-        <Table>
-          <TableHead array={tableHead} />
-          <ListItems filterItems={filterItems} />
+        <Table ref={tableContainerRef}>
+          {tableHeader()}
+          {tableBody()}
         </Table>
       </MainBig>
     </>
@@ -44,3 +87,12 @@ function ItemsPage() {
 }
 
 export default ItemsPage;
+
+// export async function getServerSideProps() {
+//   const initialItems = await getItems()
+//   return {
+//     props: {
+//       initialItems
+//     }
+//   }
+// }

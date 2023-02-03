@@ -13,24 +13,6 @@ import {
 } from '@/types/types';
 
 // Fetch all pokemon
-export function usePokedex(url: string) {
-  return useQuery<Pokemon.Pokemon[], Error>([`pokedex`, url], () =>
-    axios
-      .get(url)
-      .then((res) => {
-        return res.data.results;
-      })
-      .then((results) => {
-        return Promise.all(
-          results?.map((res: { url: string }) => axios.get(res.url)),
-        );
-      })
-      .then((results) => {
-        return results?.map((res) => res.data);
-      }),
-  );
-}
-
 export const getPokedex = async (url: string) => {
   try {
     const res = await axios.get(url);
@@ -66,7 +48,7 @@ export function useMoves() {
 
 export const getMoves = async () => {
   try {
-    const res = await axios.get(`https://pokeapi.co/api/v2/move?limit=826`);
+    const res = await axios.get(`https://pokeapi.co/api/v2/move?limit=919`);
     const results = await res.data.results;
     const promiseRes = await Promise.all(
       results.map((res: { url: string; }) => axios.get(res.url))
@@ -112,27 +94,9 @@ export const getStatus = async () => {
 };
 
 // Fetch all abilities
-export function useAbilities() {
-  return useQuery<Abilities.Abilities[], Error>([`abilities`], () =>
-    axios
-      .get(`https://pokeapi.co/api/v2/ability?limit=100`)
-      .then((res) => {
-        return res.data.results;
-      })
-      .then((results) => {
-        return Promise.all(
-          results?.map((res: { url: string }) => axios.get(res.url)),
-        );
-      })
-      .then((results) => {
-        return results?.map((res) => res.data);
-      }),
-  );
-}
-
 export const getAbilities = async () => {
   try {
-    const res = await axios.get(`https://pokeapi.co/api/v2/ability?limit=267`);
+    const res = await axios.get(`https://pokeapi.co/api/v2/ability?limit=359`);
     const results = await res.data.results;
     const promiseRes = await Promise.all(
       results.map((res: { url: string; }) => axios.get(res.url))
@@ -145,24 +109,6 @@ export const getAbilities = async () => {
 };
 
 // Fetch all types
-export function useTypes() {
-  return useQuery<Types.Types[], Error>([`types`], () =>
-    axios
-      .get(`https://pokeapi.co/api/v2/type?limit=18`)
-      .then((res) => {
-        return res.data.results;
-      })
-      .then((results) => {
-        return Promise.all(
-          results?.map((res: { url: string }) => axios.get(res.url)),
-        );
-      })
-      .then((results) => {
-        return results?.map((res) => res.data);
-      }),
-  );
-}
-
 export const getTypes = async () => {
   try {
     const res = await axios.get(`https://pokeapi.co/api/v2/type?limit=18`);
@@ -231,7 +177,7 @@ export function useItems() {
 
 export const getItems = async () => {
   try {
-    const res = await axios.get(`https://pokeapi.co/api/v2/item?limit=1608`);
+    const res = await axios.get(`https://pokeapi.co/api/v2/item?limit=2051`);
     const results = await res.data.results;
     const promiseRes = await Promise.all(
       results.map((res: { url: string; }) => axios.get(res.url))

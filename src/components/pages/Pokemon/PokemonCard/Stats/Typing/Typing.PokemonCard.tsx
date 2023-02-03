@@ -6,7 +6,7 @@ import { PokemonTypesContainer } from '../Styled.Stats.PokemonCard';
 import Table from './Table.Typing.PokemonCard';
 
 // type Props = {
-//   pokemon: Pokemon.Pokemon;
+//   pokemon: IPokemon;
 //   types: Pokemon.Types;
 //   toggleType: number;
 //   toggleTypeTable: (arg0: number) => void;

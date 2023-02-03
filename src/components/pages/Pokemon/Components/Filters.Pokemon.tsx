@@ -11,10 +11,11 @@ import {
   formOptions,
 } from '@/utils/DataArrays';
 import { Dropdown } from '@/components/common/styles/Inputs';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
-  pokedex?: Pokemon.Pokemon[];
-  setFilteredPokedex: Dispatch<SetStateAction<Pokemon.Pokemon[]>>;
+  pokedex?: IPokemon[];
+  setFilteredPokedex: Dispatch<SetStateAction<IPokemon[]>>;
   setOffset: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;
   form: OptionsOffsetLimit | null;

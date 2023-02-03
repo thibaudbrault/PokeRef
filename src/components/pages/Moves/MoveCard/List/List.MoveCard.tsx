@@ -1,5 +1,5 @@
-import { Pokemon } from '@/types/types';
 import React from 'react';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 import Content from './Content/Content.MoveCard';
 import {
   BreedingMoveText,
@@ -10,7 +10,7 @@ import {
 } from './Text/Text.MoveCard';
 
 type Props = {
-  pokedex?: Pokemon.Pokemon[];
+  pokedex?: IPokemon[];
   moveName: string;
   version: string;
   toggle: number;

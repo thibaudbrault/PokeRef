@@ -1,13 +1,13 @@
 import React from 'react';
-import Image from 'next/image';
-import { TRow, TName, TLink } from '@/components/common/styles/Table';
-import { Abilities, Pokemon } from '@/types/types';
+import { TRow, TLink } from '@/components/common/styles/Table';
+import { Abilities } from '@/types/types';
 import DataAbilityCard from './Data.AbilityCard';
 import ImageWithFallback from '@/utils/ImageWithFallback';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
   ability?: Abilities.Abilities;
-  pokedex?: Pokemon.Pokemon[];
+  pokedex?: IPokemon[];
 };
 
 function ListAbilityCard({ ability, pokedex }: Props) {

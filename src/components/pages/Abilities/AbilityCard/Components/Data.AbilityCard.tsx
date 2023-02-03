@@ -1,9 +1,10 @@
 import React from 'react';
 import { TLink } from '@/components/common/styles/Table';
 import { Abilities, Pokemon } from '@/types/types';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
-  p: Pokemon.Pokemon;
+  p: IPokemon;
   ability: Abilities.Abilities;
 };
 

@@ -9,23 +9,26 @@ import {
 } from '@/components/common/styles/Table';
 import { ModifiedMainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
-import ModifiedSearchUi from '@/components/common/ui/ModifiedSearch.ui';
-import { useFilterAbilities } from '@/components/pages/Abilities/Hooks/useFilterAbilities';
 import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
 import { Abilities } from '@/types/types';
 import { useTableParams } from '@/hooks/useTableParams';
-import { useAbilities } from '@/hooks/DataFetch';
+import { getAbilities } from '@/utils/DataFetch';
+import { useQuery } from 'react-query';
 
 const HeadingAbilities = dynamic(
   () => import(`@/components/pages/Abilities/Heading`),
 );
 
-function AbilitiesPage() {
+function AbilitiesPage({ initialAbilities }) {
   // const { setSearch, isLoading, error, abilities } =
   //   useFilterAbilities();
-  const { isLoading, error, data: abilities } = useAbilities();
+  const { isLoading, error, data: abilities } = useQuery({
+    queryKey: ['abilities'],
+    queryFn: getAbilities,
+    initialData: initialAbilities
+  });
 
   const data = useMemo(() => abilities, [abilities])
 
@@ -54,22 +57,6 @@ function AbilitiesPage() {
             <span>{info.getValue<string>()}</span>
           </TEffect>
       },
-      {
-        accessorKey: "id",
-        header: "Effect",
-        cell: info =>
-          <TEffect>
-            <span>{info.getValue<string>()}</span>
-          </TEffect>
-      },
-      {
-        accessorKey: "id",
-        header: "Effect",
-        cell: info =>
-          <TEffect>
-            <span>{info.getValue<string>()}</span>
-          </TEffect>
-      }
     ],
     []
   )
@@ -89,7 +76,6 @@ function AbilitiesPage() {
       <HeadingAbilities />
       <ModifiedMainBig>
         <LeftTitle>Abilities</LeftTitle>
-        <ModifiedSearchUi placeholder="Ability Name" setSearch={setSearch} />
         <TableContainer ref={tableContainerRef}>
           <ModifiedTable>
             {tableHeader()}
@@ -102,3 +88,12 @@ function AbilitiesPage() {
 }
 
 export default AbilitiesPage;
+
+export async function getServerSideProps() {
+  const initialAbilities = await getAbilities()
+  return {
+    props: {
+      initialAbilities
+    }
+  }
+}

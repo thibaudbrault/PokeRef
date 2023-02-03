@@ -17,9 +17,10 @@ import { LearnMethod } from '@/utils/ObjectsMap';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Machines, Moves, Pokemon } from '@/types/types';
+import { IPokemon, IPokemonMoveVersion } from '@/types/Pokemon/Pokemon';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
+  pokemon: IPokemon;
   moves: Moves.Moves[];
   machines: Machines.Machines[];
   version: string;
@@ -30,7 +31,7 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
   const [learn, setLearn] = useState<string>(`level-up`);
   const [toggle, setToggle] = useState<number>(0);
 
-  const isLearnedMoveForVersion = (version: string) => (pmv) =>
+  const isLearnedMoveForVersion = (version: string) => (pmv: IPokemonMoveVersion) =>
     pmv.version_group.name === version && pmv.move_learn_method.name === learn;
 
   const isLearnedMove = isLearnedMoveForVersion(version);

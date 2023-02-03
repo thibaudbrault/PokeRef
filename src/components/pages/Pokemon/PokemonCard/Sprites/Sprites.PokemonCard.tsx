@@ -6,10 +6,10 @@ import {
   PokemonAnimatedSpritesDiv,
   PokemonSpritesDiv,
 } from './Styled.Sprites.PokemonCard';
-import { Pokemon } from '@/types/types';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
+  pokemon: IPokemon;
 };
 
 function Sprites({ pokemon }: Props) {

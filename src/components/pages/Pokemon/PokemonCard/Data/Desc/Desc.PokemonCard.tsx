@@ -4,10 +4,11 @@ import Link from 'next/link';
 import { Span } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
 import { PokemonDataDesc, PokemonDataTypes } from '../Styled.Data.PokemonCard';
-import { Pokemon, Species } from '@/types/types';
+import { Species } from '@/types/types';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
+  pokemon: IPokemon;
   species: Species.Species;
   game: string;
 };

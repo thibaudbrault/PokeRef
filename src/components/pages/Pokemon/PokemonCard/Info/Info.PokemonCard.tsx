@@ -4,9 +4,10 @@ import Forms from './Forms/Forms.PokemonCard';
 import Training from './Training/Training.PokemonCard';
 import { PokemonInfoSection } from './Styled.Info.PokemonCard';
 import { Evolution, Pokemon, Species } from '@/types/types';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
+  pokemon: IPokemon;
   species: Species.Species;
   evolution: Evolution.Evolution;
 };

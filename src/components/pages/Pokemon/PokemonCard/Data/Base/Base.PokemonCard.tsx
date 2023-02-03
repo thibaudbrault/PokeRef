@@ -1,15 +1,16 @@
 import React from 'react';
-import { Pokemon, Species } from '@/types/types';
+import { Species } from '@/types/types';
 import { TLink } from '@/components/common/styles/Table';
+import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
 import {
   PokemonDataLocation,
   PokemonDataTable,
 } from '../Styled.Data.PokemonCard';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
+  pokemon: IPokemon;
   species: Species.Species;
-  location: Pokemon.PokemonLocation[];
+  location: ILocationAreaEncounter[];
   game: string;
 };
 

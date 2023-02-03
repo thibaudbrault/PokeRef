@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
 import { PokedexElement, PokedexTypes } from '../Styled.Pokemon';
-import { Pokemon } from '@/types/types';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeInUpVariant } from '@/components/common/styles/Keyframes';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 const Sprites = dynamic(
   () => import(`@/components/pages/Pokemon/Components/Sprites.Pokemon`),
@@ -14,7 +14,7 @@ const TypesPokemon = dynamic(
 );
 
 type Props = {
-  filteredPokedex: Pokemon.Pokemon[];
+  filteredPokedex: IPokemon[];
   showPlaceholder: boolean;
   setShowPlaceholder: Dispatch<SetStateAction<boolean>>;
 };
@@ -27,7 +27,7 @@ function ListPokemon({ filteredPokedex, showPlaceholder, setShowPlaceholder }: P
         animate="show"
         variants={fadeInUpVariant}
       >
-        {filteredPokedex?.map((p: Pokemon.Pokemon) => (
+        {filteredPokedex?.map((p: IPokemon) => (
           <PokedexElement
             key={p.id}
             initial="hidden"

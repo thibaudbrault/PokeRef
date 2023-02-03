@@ -4,7 +4,7 @@ import {
   PokedexVerticalText,
 } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { MainBig } from '@/components/common/styles/Sizing';
-import { getPokedex, usePokedex } from '@/utils/DataFetch';
+import { getPokedex } from '@/utils/DataFetch';
 import Loader from '@/components/common/ui/Loader/Loader';
 import dynamic from 'next/dynamic';
 import { Pokemon } from '@/types/types';
@@ -13,6 +13,7 @@ import { Options, OptionsOffsetLimit } from '@/utils/DataArrays';
 import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
 import HeadingPokemon from '@/components/pages/Pokemon/Heading';
 import { useQuery } from 'react-query';
+import { IPokemon } from '../types/Pokemon/Pokemon';
 
 const Filters = dynamic(
   () => import(`@/components/pages/Pokemon/Components/Filters.Pokemon`),
@@ -22,7 +23,7 @@ const ListPokemon = dynamic(
 );
 
 function Pokedex() {
-  const [filteredPokedex, setFilteredPokedex] = useState<Pokemon.Pokemon[]>([]);
+  const [filteredPokedex, setFilteredPokedex] = useState<IPokemon[]>([]);
   // Modify the first pokemon displayed
   const [offset, setOffset] = useState<number>(0);
   //Modify the max number of pokemon displayed
@@ -88,3 +89,13 @@ function Pokedex() {
 }
 
 export default Pokedex;
+
+// export async function getServerSideProps() {
+//   const initialPokedex = await getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`)
+//   console.log(initialPokedex)
+//   return {
+//     props: {
+//       initialPokedex
+//     }
+//   }
+// }

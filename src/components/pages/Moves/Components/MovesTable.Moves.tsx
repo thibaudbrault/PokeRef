@@ -21,25 +21,7 @@ type Props = {
 
 function MovesTable({ moves }: Props) {
 
-  const [search, setSearch] = useState<string>(``);
-
-  const filterMoves = search
-    ? moves.filter((moves: Moves.Moves) =>
-      moves.name
-        .replace(/-/g, ` `)
-        .toLowerCase()
-        .includes(search.toLowerCase()),
-    )
-    : moves;
-
-  const filterEffect = filterMoves.map((m) =>
-    m.flavor_text_entries.find(
-      (mf) => mf.language.name === `en` && mf.flavor_text !== `Dummy Data`,
-    ),
-  );
-
   const data = useMemo(() => moves, [moves]);
-  console.log(data)
 
   const columns = useMemo<ColumnDef<Moves.Moves>[]>(
     () => [
@@ -67,7 +49,7 @@ function MovesTable({ moves }: Props) {
                 alt={info.getValue<string>()}
                 width={20}
                 height={20}
-                src={``}
+                src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/seals/home/move-${info.getValue()}.png`}
               />
               <span>{info.getValue<string>()}</span>
             </div>
@@ -89,21 +71,13 @@ function MovesTable({ moves }: Props) {
                   alt={info.getValue<string>()}
                   width={15}
                   height={15}
-                  src={``}
+                  src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue()}.png`}
                 />
                 <span>{info.getValue<string>()}</span>
               </Link>
             </Type>
           </TType>
-      },
-      // {
-      //   header: "Effect",
-      //   accessorKey: "filterEffect?.flavor_text",
-      //   cell: info =>
-      //     <TEffect>
-      //       <span>{info.getValue<span>()}</span>
-      //     </TEffect>
-      // }
+      }
     ],
     []
   );
@@ -113,20 +87,6 @@ function MovesTable({ moves }: Props) {
   return (
     <MovesSection>
       <LeftTitle>Moves</LeftTitle>
-      <ModifiedSearch>
-        <Input>
-          <label htmlFor="searchBar">Search</label>
-          <input
-            type="text"
-            placeholder="Move Name"
-            name="searchBar"
-            id="searchBar"
-            onChange={(e) => {
-              setSearch(e.target.value);
-            }}
-          />
-        </Input>
-      </ModifiedSearch>
       <TableContainer ref={tableContainerRef}>
         <Table>
           {tableHeader()}

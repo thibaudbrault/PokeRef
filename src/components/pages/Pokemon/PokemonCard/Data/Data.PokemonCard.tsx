@@ -6,12 +6,13 @@ import {
   PokemonDataSection,
   PokemonDataSprite,
 } from './Styled.Data.PokemonCard';
-import { Pokemon, Species } from '@/types/types';
+import { Species } from '@/types/types';
+import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
+  pokemon: IPokemon;
   species: Species.Species;
-  location: Pokemon.PokemonLocation[];
+  location: ILocationAreaEncounter[];
   game: string;
 };
 

@@ -7,13 +7,13 @@ import HeadingMoves from '@/components/pages/Moves/Heading';
 import { useToggleTable } from '@/components/pages/Moves/Hooks/useToggleTable';
 
 function Moves() {
-  const { isLoading, error, toggle, setToggle, pageShown } = useToggleTable();
+  const { results, toggle, setToggle, pageShown } = useToggleTable();
 
-  if (error instanceof Error) {
+  if (results.error) {
     return { error };
   }
 
-  if (isLoading) {
+  if (results.isLoading) {
     return <Loader />;
   }
 
@@ -21,9 +21,8 @@ function Moves() {
     <>
       <HeadingMoves />
       <MainBig>
-        <MethodNav id="head">
+        <MethodNav>
           <button
-            id="btnMoves"
             className={toggle === 1 ? `button_active` : ``}
             onClick={() => setToggle(1)}
           >
@@ -36,7 +35,6 @@ function Moves() {
             <p>Status</p>
           </button>
         </MethodNav>
-
         {pageShown()}
       </MainBig>
     </>

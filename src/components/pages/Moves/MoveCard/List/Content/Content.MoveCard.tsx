@@ -3,22 +3,19 @@ import {
   MoveLink,
   MoveList,
   MoveListEmpty,
-  MoveTypes,
 } from '@/components/pages/Moves/MoveCard/Styled.MoveCard';
-import { Pokemon } from '@/types/types';
-import { Type } from '@/components/common/styles/Themes';
-import Image from 'next/image';
 import ImageWithFallback from '@/utils/ImageWithFallback';
+import { IPokemon, IPokemonMoveVersion } from '@/types/Pokemon/Pokemon';
 
 type Props = {
-  pokedex?: Pokemon.Pokemon[];
+  pokedex?: IPokemon[];
   moveName: string;
   version: string;
   toggle: number;
 };
 
 function Content({ pokedex, moveName, version, toggle }: Props) {
-  const conditionFilter = (pmv) => {
+  const conditionFilter = (pmv: IPokemonMoveVersion) => {
     if (toggle === 0) {
       return (
         pmv.move_learn_method.name === `level-up` && pmv.level_learned_at > 1

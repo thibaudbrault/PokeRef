@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useMoves, useStatus } from '@/utils/DataFetch';
+import { getMoves, getStatus } from '@/utils/DataFetch';
 import dynamic from 'next/dynamic';
+import { useQueries } from 'react-query';
 
 const MovesTable = dynamic(
   () => import(`@/components/pages/Moves/Components/MovesTable.Moves`),
@@ -10,17 +11,27 @@ const StatusTable = dynamic(
 );
 
 export const useToggleTable = () => {
-  const { isLoading, error, data: moves } = useMoves();
-  const { data: status } = useStatus();
+
+  const results = useQueries([
+    {
+      queryKey: ['moves', 1],
+      queryFn: getMoves,
+      useErrorBoundary: true,
+    },
+    {
+      queryKey: ['status', 2],
+      queryFn: getStatus
+    }
+  ])
 
   const [toggle, setToggle] = useState(1);
   const pageShown = () => {
     if (toggle === 1) {
-      return <MovesTable moves={moves} />;
+      return <MovesTable moves={results[0].data} />;
     } else if (toggle === 2) {
-      return <StatusTable status={status} />;
+      return <StatusTable status={results[1].data} />;
     }
   };
 
-  return { isLoading, error, toggle, setToggle, pageShown };
+  return { results, toggle, setToggle, pageShown };
 };
