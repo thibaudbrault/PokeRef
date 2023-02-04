@@ -44,7 +44,7 @@ function MoveCard() {
     return <Loader />;
   }
 
-  console.log(status)
+  console.log(status);
 
   return (
     <>
@@ -58,7 +58,11 @@ function MoveCard() {
 
           <Data move={move} machines={machines} version={version} />
 
-          <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
+          <LearnMethod
+            toggle={toggle}
+            setToggle={setToggle}
+            setLearn={setLearn}
+          />
 
           <List
             toggle={toggle}

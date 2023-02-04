@@ -38,7 +38,7 @@ function Filters({
   setForm,
   generation,
   setGeneration,
-  setShowPlaceholder
+  setShowPlaceholder,
 }: Props) {
   const getFilterPokemon = () => {
     if (pokedex) {
@@ -80,20 +80,20 @@ function Filters({
     setForm(option);
     setGeneration(null);
     setType([]);
-    setShowPlaceholder(false)
+    setShowPlaceholder(false);
   };
 
   const handleGenSelect = (option: SingleValue<OptionsOffsetLimit>) => {
     setGeneration(option);
     setForm(null);
     setType([]);
-    setShowPlaceholder(false)
+    setShowPlaceholder(false);
   };
 
   const handleTypeSelect = (option: MultiValue<Options>) => {
     if (option) {
       setType(option);
-      setShowPlaceholder(false)
+      setShowPlaceholder(false);
     }
   };
 

@@ -69,7 +69,7 @@ function Content({ pokedex, moveName, version, toggle }: Props) {
                       </MoveLink>
                       <p>Level {pmv.level_learned_at}</p>
                     </li>
-                  )
+                  ),
               ),
           ),
         )}

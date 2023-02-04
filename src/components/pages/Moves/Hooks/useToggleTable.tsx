@@ -11,18 +11,17 @@ const StatusTable = dynamic(
 );
 
 export const useToggleTable = () => {
-
   const results = useQueries([
     {
-      queryKey: ['moves', 1],
+      queryKey: [`moves`, 1],
       queryFn: getMoves,
       useErrorBoundary: true,
     },
     {
-      queryKey: ['status', 2],
-      queryFn: getStatus
-    }
-  ])
+      queryKey: [`status`, 2],
+      queryFn: getStatus,
+    },
+  ]);
 
   const [toggle, setToggle] = useState(1);
   const pageShown = () => {

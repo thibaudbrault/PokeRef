@@ -60,10 +60,6 @@ export const HeaderBtnConnect = styled.div`
       color: ${({ theme }) => theme.secondary};
     }
   }
-  
-  @media ${device.md} {
-    display: none;
-  }
 `;
 
 export const HeaderBtnConnected = styled.div`
@@ -94,14 +90,10 @@ export const HeaderBtnConnected = styled.div`
     border-color: ${({ theme }) => theme.secondary};
     color: ${({ theme }) => theme.secondary};
   }
-
-  @media ${device.md} {
-    display: none;
-  }
 `;
 
 export const BurgerOpen = styled.button`
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -114,11 +106,20 @@ export const BurgerOpen = styled.button`
   background-color: ${({ theme }) => theme.secondary};
   color: ${({ theme }) => theme.main};
   font-size: 3rem;
+
+  @media ${device.md} {
+    display: flex;
+  }
 `;
 
 export const BurgerClose = styled.button`
+  display: none;
   font-size: 3rem;
   background: transparent;
   border: none;
   color: ${({ theme }) => theme.secondary};
+
+  @media ${device.md} {
+    display: flex;
+  }
 `;

@@ -8,25 +8,23 @@ import { device } from '../../common/styles/Sizing';
 export const PokedexSearch = styled(Search)`
   align-items: stretch;
   gap: 1rem;
-  
+
   @media ${device.md} {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: 
-      "search search search"
-      "form generation type"
-    ;
+    grid-template-areas:
+      'search search search'
+      'form generation type';
     row-gap: 2rem;
     column-gap: 4rem;
   }
 
   @media ${device.xs} {
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: 
-      "search ."
-      "generation type"
-    ;
+    grid-template-areas:
+      'search .'
+      'generation type';
   }
 `;
 

@@ -33,8 +33,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
 };
 
 function MyApp({ Component, pageProps }: AppProps) {
-
-  const [navOpen, setNavOpen] = useState(false)
+  const [navOpen, setNavOpen] = useState(false);
 
   const loadTheme: () => string = () => {
     const localTheme = globalThis.window?.localStorage.getItem(`theme`);
@@ -62,7 +61,12 @@ function MyApp({ Component, pageProps }: AppProps) {
           <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
             <Toaster />
             <NextNProgress />
-            <Header navOpen={navOpen} setNavOpen={setNavOpen} themeToggler={themeToggler} theme={theme} />
+            <Header
+              navOpen={navOpen}
+              setNavOpen={setNavOpen}
+              themeToggler={themeToggler}
+              theme={theme}
+            />
             <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
             <Reset />
             <Component {...pageProps} />

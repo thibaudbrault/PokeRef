@@ -4,11 +4,12 @@ import { H3, Span } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
 import { TypeListSubtitle, TypePokemonList } from '../Styled.TypeCard';
 import Link from 'next/link';
-import { Pokemon, Types } from '@/types/types';
+import { Types } from '@/types/types';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
   type?: Types.Types;
-  pokedex?: Pokemon.Pokemon[];
+  pokedex?: IPokemon[];
 };
 
 function PokemonType({ type, pokedex }: Props) {

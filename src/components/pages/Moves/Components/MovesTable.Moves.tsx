@@ -1,10 +1,11 @@
-import { useMemo, useState } from "react";
-import { ColumnDef } from "@tanstack/react-table";
+import { useMemo, useState } from 'react';
+import { ColumnDef } from '@tanstack/react-table';
 import { LeftTitle } from '@/components/common/styles/Headings';
 import { Input, ModifiedSearch } from '@/components/common/styles/Inputs';
 import {
   Table,
   TableContainer,
+  TEffect,
   TLink,
   TName,
 } from '@/components/common/styles/Table';
@@ -13,36 +14,39 @@ import { MovesSection, TCategory, TType } from '../Styled.Moves';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Moves } from '@/types/types';
-import { useTableParams } from "@/hooks/useTableParams";
+import { useTableParams } from '@/hooks/useTableParams';
 
 type Props = {
   moves?: Moves.Moves[];
 };
 
 function MovesTable({ moves }: Props) {
-
   const data = useMemo(() => moves, [moves]);
 
   const columns = useMemo<ColumnDef<Moves.Moves>[]>(
     () => [
       {
-        accessorKey: "name",
-        header: "Name",
-        cell: info =>
+        accessorKey: `name`,
+        id: `sort`,
+        header: `Name`,
+        cell: (info) => (
           <TName>
-            <TLink href={{
-              pathname: `/move/[name]`,
-              query: { name: info.getValue<string>() },
-            }}
+            <TLink
+              href={{
+                pathname: `/move/[name]`,
+                query: { name: info.getValue<string>() },
+              }}
             >
               {info.getValue<string>().replace(/-/g, ` `)}
             </TLink>
           </TName>
+        ),
       },
       {
-        accessorKey: "damage_class.name",
-        header: "Category",
-        cell: info =>
+        accessorKey: `damage_class.name`,
+        id: `category`,
+        header: `Category`,
+        cell: (info) => (
           <TCategory id={info.getValue<string>()}>
             <div>
               <Image
@@ -54,11 +58,13 @@ function MovesTable({ moves }: Props) {
               <span>{info.getValue<string>()}</span>
             </div>
           </TCategory>
+        ),
       },
       {
-        header: "Type",
-        accessorKey: "type.name",
-        cell: info =>
+        accessorKey: `type.name`,
+        id: `type`,
+        header: `Type`,
+        cell: (info) => (
           <TType>
             <Type id={info.getValue<string>()}>
               <Link
@@ -77,12 +83,25 @@ function MovesTable({ moves }: Props) {
               </Link>
             </Type>
           </TType>
-      }
+        ),
+      },
+      {
+        accessorFn: (row) =>
+          row.flavor_text_entries.find((rf) => {
+            return rf.language.name === `en` && rf.flavor_text !== `Dummy Data`;
+          })?.flavor_text || `-`,
+        id: `effect`,
+        header: `Effect`,
+        cell: (info) => <TEffect>{info.getValue<string>()}</TEffect>,
+      },
     ],
-    []
+    [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(data, columns)
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
+    data,
+    columns,
+  );
 
   return (
     <MovesSection>

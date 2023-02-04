@@ -1,12 +1,17 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MainNav, MainNavList, ResponsiveNav, ResponsiveNavList } from './Styled.Nav';
+import {
+  MainNav,
+  MainNavList,
+  ResponsiveNav,
+  ResponsiveNavList,
+} from './Styled.Nav';
 
 type Props = {
   navOpen: boolean;
   setNavOpen: Dispatch<SetStateAction<boolean>>;
-}
+};
 
 type NavArray = {
   name: string;
@@ -30,63 +35,61 @@ function Nav({ navOpen, setNavOpen }: Props) {
       opacity: 0,
       height: 0,
       transition: {
-        ease: "easeInOut",
+        ease: `easeInOut`,
         duration: 0.3,
-        delay: 1.2
-      }
-    }
-  }
+        delay: 1.2,
+      },
+    },
+  };
 
-  return (
-    navOpen ? (
-      <AnimatePresence>
-        <ResponsiveNav
-          variants={item}
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "100vh", opacity: 1 }}
-          transition={{ duration: .5 }}
-          exit="exit"
-        >
-          <ResponsiveNavList>
-            {navArray.map((nav) => (
-              <motion.li
-                key={nav.name}
-                initial={{ y: 80, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: nav.delay }}
-                exit={{
-                  opacity: 0,
-                  y: 90,
-                  transition: {
-                    ease: "easeInOut",
-                    delay: nav.exitDelay
-                  }
-                }}
-              >
-                <Link
-                  href={nav.name === `pokémon` ? `/` : `/${nav.name}`}
-                  onClick={() => setNavOpen(false)}
-                >
-                  {nav.name}
-                </Link>
-              </motion.li>
-            ))}
-          </ResponsiveNavList>
-        </ResponsiveNav>
-      </AnimatePresence>
-    ) : (
-      <MainNav>
-        <MainNavList>
+  return navOpen ? (
+    <AnimatePresence>
+      <ResponsiveNav
+        variants={item}
+        initial={{ height: 0, opacity: 0 }}
+        animate={{ height: `100vh`, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        exit="exit"
+      >
+        <ResponsiveNavList>
           {navArray.map((nav) => (
-            <li key={nav.name}>
-              <Link href={nav.name === `pokémon` ? `/` : `/${nav.name}`}>
+            <motion.li
+              key={nav.name}
+              initial={{ y: 80, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: nav.delay }}
+              exit={{
+                opacity: 0,
+                y: 90,
+                transition: {
+                  ease: `easeInOut`,
+                  delay: nav.exitDelay,
+                },
+              }}
+            >
+              <Link
+                href={nav.name === `pokémon` ? `/` : `/${nav.name}`}
+                onClick={() => setNavOpen(false)}
+              >
                 {nav.name}
               </Link>
-            </li>
+            </motion.li>
           ))}
-        </MainNavList>
-      </MainNav>
-    )
+        </ResponsiveNavList>
+      </ResponsiveNav>
+    </AnimatePresence>
+  ) : (
+    <MainNav>
+      <MainNavList>
+        {navArray.map((nav) => (
+          <li key={nav.name}>
+            <Link href={nav.name === `pokémon` ? `/` : `/${nav.name}`}>
+              {nav.name}
+            </Link>
+          </li>
+        ))}
+      </MainNavList>
+    </MainNav>
   );
 }
 

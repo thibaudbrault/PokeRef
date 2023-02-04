@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   PokemonMovesSection,
   PokemonMovesTd,
@@ -18,10 +18,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Machines, Moves, Pokemon } from '@/types/types';
 import { IPokemon, IPokemonMoveVersion } from '@/types/Pokemon/Pokemon';
+import { ColumnDef } from '@tanstack/react-table';
+import { IMove } from '@/types/Moves/Move';
+import { useTableParams } from '@/hooks/useTableParams';
+import { IMoveAilment } from '@/types/Moves/MoveAilment';
+import axios from 'axios';
+import { useQuery } from 'react-query';
 
 type Props = {
   pokemon: IPokemon;
-  moves: Moves.Moves[];
+  moves: IMove[];
   machines: Machines.Machines[];
   version: string;
 };
@@ -30,9 +36,142 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
   // Changes according to the table selected
   const [learn, setLearn] = useState<string>(`level-up`);
   const [toggle, setToggle] = useState<number>(0);
+  const [pokemonMoves, setPokemonMoves] = useState([]);
 
-  const isLearnedMoveForVersion = (version: string) => (pmv: IPokemonMoveVersion) =>
-    pmv.version_group.name === version && pmv.move_learn_method.name === learn;
+  console.log(pokemon.moves);
+
+  async function getPokemonMoves() {
+    try {
+      const promiseRes = await Promise.all(
+        pokemon.moves.map((pm) =>
+          pm.version_group_details.map(
+            (pmv) =>
+              pmv.version_group.name === version &&
+              pmv.move_learn_method.name === learn &&
+              axios.get(pm.move.url),
+          ),
+        ),
+      );
+      const result = promiseRes.map((res) => res.data);
+      setPokemonMoves(result);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  useEffect(() => {
+    getPokemonMoves();
+  }, []);
+
+  console.log(pokemonMoves);
+
+  const data = useMemo(() => pokemonMoves, [pokemonMoves]);
+
+  const columns = useMemo<ColumnDef<IMove>[]>(
+    () => [
+      // {
+      //   accessorKey: "",
+      //   id: 'sort',
+      //   header: learn === 'level-up' ? 'Level' : learn === 'machine' ? 'Machine' : '-',
+      //   cell: info =>
+      // },
+      // {
+      //   accessorKey: "",
+      //   id: "name",
+      //   header: "Name",
+      //   cell: info =>
+      // },
+      {
+        accessorKey: `type.name`,
+        id: `type`,
+        header: `Type`,
+        cell: (info) => (
+          <PokemonMovesTd>
+            <Link
+              href={{
+                pathname: `/type/[name]`,
+                query: { name: info.getValue<string>() },
+              }}
+            >
+              <Image
+                src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue<string>()}.png`}
+                alt={info.getValue<string>()}
+                width={32}
+                height={32}
+                style={{ cursor: `pointer` }}
+              />
+            </Link>
+          </PokemonMovesTd>
+        ),
+      },
+      {
+        accessorKey: `damage_class.name`,
+        id: `category`,
+        header: `Category`,
+        cell: (info) => (
+          <PokemonMovesTd>{info.getValue<string>()}</PokemonMovesTd>
+        ),
+      },
+      {
+        accessorKey: `power`,
+        id: `power`,
+        header: `Power`,
+        cell: (info) => (
+          <PokemonMovesTd>{info.getValue<string>() || `-`}</PokemonMovesTd>
+        ),
+      },
+      {
+        accessorKey: `pp`,
+        id: `pp`,
+        header: `PP`,
+        cell: (info) => (
+          <PokemonMovesTd>{info.getValue<string>()}</PokemonMovesTd>
+        ),
+      },
+      {
+        accessorKey: `accuracy`,
+        id: `accuracy`,
+        header: `Accuracy`,
+        cell: (info) => (
+          <PokemonMovesTd>{info.getValue<string>() || `-`}</PokemonMovesTd>
+        ),
+      },
+      {
+        accessorKey: `priority`,
+        id: `priority`,
+        header: `Priority`,
+        cell: (info) => (
+          <PokemonMovesTd>{info.getValue<string>()}</PokemonMovesTd>
+        ),
+      },
+      {
+        accessorKey: `meta.ailment`,
+        id: `status`,
+        header: `Status`,
+        cell: (info) => (
+          <PokemonMovesTd>
+            {info.getValue()
+              ? info
+                  ?.getValue<IMoveAilment>()
+                  .name.replace(`none`, `-`)
+                  .replace(/-/g, ` `)
+              : `-`}
+          </PokemonMovesTd>
+        ),
+      },
+    ],
+    [],
+  );
+
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
+    data,
+    columns,
+  );
+
+  const isLearnedMoveForVersion =
+    (version: string) => (pmv: IPokemonMoveVersion) =>
+      pmv.version_group.name === version &&
+      pmv.move_learn_method.name === learn;
 
   const isLearnedMove = isLearnedMoveForVersion(version);
 
@@ -123,30 +262,10 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
     <PokemonMovesSection>
       <H3>Moves</H3>
       <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
-      <TableContainer>
+      <TableContainer ref={tableContainerRef}>
         <PokemonMovesTable>
-          <THead>
-            <tr>
-              <th>
-                {learn === `level-up`
-                  ? `Level`
-                  : learn === `machine`
-                    ? `Machine`
-                    : `-`}
-              </th>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Category</th>
-              <th>Power</th>
-              <th>PP</th>
-              <th>Accuracy</th>
-              <th>Priority</th>
-              <th>Status</th>
-            </tr>
-          </THead>
-          <tbody>
-            <>{dataMoves}</>
-          </tbody>
+          {tableHeader()}
+          {tableBody()}
           <span>There is no move learned this way</span>
         </PokemonMovesTable>
       </TableContainer>

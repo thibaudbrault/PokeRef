@@ -3,55 +3,57 @@ import React, { useMemo } from 'react';
 import {
   ModifiedTable,
   TableContainer,
-  THead,
   TName,
-  TRow,
 } from '@/components/common/styles/Table';
 import { ModifiedLeftTitle, MovesSection, StatusMoves } from '../Styled.Moves';
-import Link from 'next/link';
 import { Moves } from '@/types/types';
 import { useTableParams } from '@/hooks/useTableParams';
+import { ColumnDef } from '@tanstack/react-table';
+import { IMoveAilment } from '@/types/Moves/MoveAilment';
+import Link from 'next/link';
 
 type Props = {
-  status?: Moves.Status[];
+  status?: IMoveAilment[];
 };
 
 function StatusTable({ status }: Props) {
-
   const data = useMemo(() => status, [status]);
 
-  const columns = useMemo(
+  const columns = useMemo<ColumnDef<IMoveAilment>[]>(
     () => [
       {
-        accessorKey: "name",
-        header: "Status",
-        cell: info =>
-          <TName>
-            {info.getValue<string>().replace(/-/g, ` `)}
-          </TName>
+        accessorKey: `name`,
+        id: `sort`,
+        header: `Status`,
+        cell: (info) => (
+          <TName>{info.getValue<string>().replace(/-/g, ` `)}</TName>
+        ),
       },
-      // {
-      //   accessorKey: "damage_class.name",
-      //   header: "Moves",
-      //   cell: info =>
-      //     <StatusMoves>
-      //       {s.moves?.map((sm) => (
-      //         <Link
-      //           href={{
-      //             pathname: `/move/[name]`,
-      //             query: { name: info.getValue<string>() },
-      //           }}
-      //         >
-      //           {info.getValue<string>().replace(/-/g, ` `)}
-      //         </Link>
-      //       ))}
-      //     </StatusMoves>
-      // },
+      {
+        accessorFn: (row) =>
+          row.moves.map((m) => {
+            return m.name;
+          }),
+        header: `Moves`,
+        cell: (info) => (
+          <Link
+            href={{
+              pathname: `/move/[name]`,
+              query: { name: info.getValue<string>() },
+            }}
+          >
+            <p>{info.getValue<string>()}</p>
+          </Link>
+        ),
+      },
     ],
-    []
+    [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(data, columns)
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
+    data,
+    columns,
+  );
 
   return (
     <MovesSection>

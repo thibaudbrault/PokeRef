@@ -1,21 +1,19 @@
 import React from 'react';
-import { useToggleLocation } from '@/components/pages/Locations/Hooks/useToggleLocation';
 import { LocationList, LocationSection } from '../Styled.Locations';
 import Link from 'next/link';
+import { IRegion } from '@/types/Locations/Region';
 
 type Props = {
   location: string | null;
+  locations?: IRegion[];
 };
 
-function ListLocations({ location }: Props) {
-  const { locations } = useToggleLocation();
-
+function ListLocations({ location, locations }: Props) {
   return (
     <LocationSection>
       {locations?.map(
         (l) =>
-          l.name === location &&
-          location !== `galar` && (
+          l.name === location && (
             <LocationList key={l.name}>
               {l.locations
                 .sort((a, b) => a.name.localeCompare(b.name))

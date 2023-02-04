@@ -12,32 +12,41 @@ import Loader from '@/components/common/ui/Loader/Loader';
 import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
-import { Abilities } from '@/types/types';
 import { useTableParams } from '@/hooks/useTableParams';
 import { getAbilities } from '@/utils/DataFetch';
 import { useQuery } from 'react-query';
+import { IAbility } from '@/types/Pokemon/Ability';
 
 const HeadingAbilities = dynamic(
   () => import(`@/components/pages/Abilities/Heading`),
 );
 
-function AbilitiesPage({ initialAbilities }) {
+type Props = {
+  initialAbilities: IAbility[];
+};
+
+function AbilitiesPage({ initialAbilities }: Props) {
   // const { setSearch, isLoading, error, abilities } =
   //   useFilterAbilities();
-  const { isLoading, error, data: abilities } = useQuery({
-    queryKey: ['abilities'],
+  const {
+    isLoading,
+    error,
+    data: abilities,
+  } = useQuery({
+    queryKey: [`abilities`],
     queryFn: getAbilities,
-    initialData: initialAbilities
+    initialData: initialAbilities,
   });
 
-  const data = useMemo(() => abilities, [abilities])
+  const data = useMemo(() => abilities, [abilities]);
 
-  const columns = useMemo<ColumnDef<Abilities.Abilities>[]>(
+  const columns = useMemo<ColumnDef<IAbility>[]>(
     () => [
       {
-        accessorKey: "name",
-        header: "Name",
-        cell: info =>
+        accessorKey: `name`,
+        id: `sort`,
+        header: `Name`,
+        cell: (info) => (
           <TName>
             <TLink
               href={{
@@ -48,20 +57,26 @@ function AbilitiesPage({ initialAbilities }) {
               {info.getValue<string>().replace(/-/g, ` `)}
             </TLink>
           </TName>
+        ),
       },
       {
-        accessorKey: "id",
-        header: "Effect",
-        cell: info =>
+        accessorKey: `id`,
+        id: `effect`,
+        header: `Effect`,
+        cell: (info) => (
           <TEffect>
             <span>{info.getValue<string>()}</span>
           </TEffect>
+        ),
       },
     ],
-    []
-  )
+    [],
+  );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(data, columns)
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
+    data,
+    columns,
+  );
 
   if (error instanceof Error) {
     return { error };
@@ -90,10 +105,10 @@ function AbilitiesPage({ initialAbilities }) {
 export default AbilitiesPage;
 
 export async function getServerSideProps() {
-  const initialAbilities = await getAbilities()
+  const initialAbilities = await getAbilities();
   return {
     props: {
-      initialAbilities
-    }
-  }
+      initialAbilities,
+    },
+  };
 }

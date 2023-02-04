@@ -35,8 +35,7 @@ function Pokedex() {
   // Generation of the pokemon (changed with a dropdown)
   const [generation, setGeneration] =
     useStateWithCallback<OptionsOffsetLimit | null>(null);
-  const [showPlaceholder, setShowPlaceholder] = useState(true)
-
+  const [showPlaceholder, setShowPlaceholder] = useState(true);
 
   const { scrollBtn } = useScrollDir();
 
@@ -45,8 +44,11 @@ function Pokedex() {
     error,
     data: pokedex,
   } = useQuery({
-    queryKey: ['pokedex', limit, offset],
-    queryFn: () => getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`),
+    queryKey: [`pokedex`, limit, offset],
+    queryFn: () =>
+      getPokedex(
+        `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,
+      ),
   });
 
   if (error instanceof Error) {

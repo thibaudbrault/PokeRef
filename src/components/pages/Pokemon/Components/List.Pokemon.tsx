@@ -19,14 +19,14 @@ type Props = {
   setShowPlaceholder: Dispatch<SetStateAction<boolean>>;
 };
 
-function ListPokemon({ filteredPokedex, showPlaceholder, setShowPlaceholder }: Props) {
+function ListPokemon({
+  filteredPokedex,
+  showPlaceholder,
+  setShowPlaceholder,
+}: Props) {
   return (
     <AnimatePresence>
-      <motion.ul
-        initial="hidden"
-        animate="show"
-        variants={fadeInUpVariant}
-      >
+      <motion.ul initial="hidden" animate="show" variants={fadeInUpVariant}>
         {filteredPokedex?.map((p: IPokemon) => (
           <PokedexElement
             key={p.id}

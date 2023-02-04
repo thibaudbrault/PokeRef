@@ -12,10 +12,14 @@ const ListTypes = dynamic(
 );
 
 function TypesPage({ initialTypes }) {
-  const { isLoading, error, data: types } = useQuery({
-    queryKey: ['types'],
+  const {
+    isLoading,
+    error,
+    data: types,
+  } = useQuery({
+    queryKey: [`types`],
     queryFn: getTypes,
-    initialData: initialTypes
+    initialData: initialTypes,
   });
 
   if (error instanceof Error) {
@@ -41,10 +45,10 @@ function TypesPage({ initialTypes }) {
 export default TypesPage;
 
 export async function getServerSideProps() {
-  const initialTypes = await getTypes()
+  const initialTypes = await getTypes();
   return {
     props: {
-      initialTypes
-    }
-  }
+      initialTypes,
+    },
+  };
 }

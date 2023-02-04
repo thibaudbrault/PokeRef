@@ -12,16 +12,13 @@ import { useQuery } from 'react-query';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 function Autocomplete() {
-  const {
-    data: pokedex,
-  } = useQuery({
-    queryKey: ['pokedex'],
-    queryFn: () => getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`),
+  const { data: pokedex } = useQuery({
+    queryKey: [`pokedex`],
+    queryFn: () =>
+      getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`),
   });
 
-  const [pokedexMatch, setPokedexMatch] = useState<
-    IPokemon[] | undefined
-  >([]);
+  const [pokedexMatch, setPokedexMatch] = useState<IPokemon[] | undefined>([]);
   const [searchText, setSearchText] = useState(``);
 
   const searchPokedex = (text: string) => {

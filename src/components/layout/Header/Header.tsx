@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
-import { Spin as Hamburger } from 'hamburger-react'
+import { Spin as Hamburger } from 'hamburger-react';
 import { H1 } from '@/components/common/styles/Headings';
 import {
   BurgerClose,
@@ -73,15 +73,6 @@ function Header({ navOpen, setNavOpen, themeToggler, theme }: Props) {
             <FiMenu />
           </BurgerClose>
         )}
-        {/* <Hamburger
-          responsive={true}
-          toggled={navOpen}
-          toggle={setNavOpen}
-          rounded
-          size={30}
-          label='Show menu'
-          hideOutline={false}
-        /> */}
       </HeaderBtnContainer>
     </HeaderContainer>
   );

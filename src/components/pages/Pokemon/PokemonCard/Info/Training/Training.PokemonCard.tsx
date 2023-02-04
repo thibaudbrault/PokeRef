@@ -60,16 +60,16 @@ function Training({ pokemon, species }: Props) {
             <td>
               {pokemon?.held_items?.length > 0
                 ? pokemon?.held_items?.map((ph) => (
-                  <Link
-                    href={{
-                      pathname: `/item/[name]`,
-                      query: { name: ph.item.name },
-                    }}
-                    key={ph.item.name}
-                  >
-                    <span>{ph.item.name.replace(/-/g, ` `)}</span>
-                  </Link>
-                ))
+                    <Link
+                      href={{
+                        pathname: `/item/[name]`,
+                        query: { name: ph.item.name },
+                      }}
+                      key={ph.item.name}
+                    >
+                      <span>{ph.item.name.replace(/-/g, ` `)}</span>
+                    </Link>
+                  ))
                 : `None`}
             </td>
           </tr>

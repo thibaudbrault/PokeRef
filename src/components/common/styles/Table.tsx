@@ -39,7 +39,7 @@ export const Table = styled.table`
     border-collapse: collapse;
     vertical-align: middle;
     cursor: pointer;
-    
+
     & .cursor-pointer {
       display: flex;
       align-items: center;

@@ -5,43 +5,48 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import { MachinesTable } from '@/components/pages/Machines/Styled.Machines';
 import Loader from '@/components/common/ui/Loader/Loader';
 import dynamic from 'next/dynamic';
-import TableHead from '@/components/common/ui/TableHead';
 import { useQuery } from 'react-query';
 import { getMachines } from '@/utils/DataFetch';
 import { useTableParams } from '@/hooks/useTableParams';
-import { TName, TLink, TEffect } from '@/components/common/styles/Table';
+import { TName, TLink } from '@/components/common/styles/Table';
+import { ColumnDef } from '@tanstack/react-table';
+import { IMachine } from '@/types/Machines/Machine';
 
-const ListMachines = dynamic(
-  () => import(`@/components/pages/Machines/Components/List.Machines`),
-);
 const NavMachines = dynamic(
   () => import(`@/components/pages/Machines/Components/Nav.Machines`),
 );
 
-function MachinesPage({ initialMachines }) {
+type Props = {
+  initialMachines: IMachine[];
+};
+
+function MachinesPage({ initialMachines }: Props) {
   const [version, setVersion] = useState(`red-blue`);
-  const { isLoading, error, data: machines } = useQuery({
-    queryKey: ['machines'],
+  const {
+    isLoading,
+    error,
+    data: machines,
+  } = useQuery({
+    queryKey: [`machines`],
     queryFn: getMachines,
-    initialData: initialMachines
+    initialData: initialMachines,
   });
 
-  const data = useMemo(() => machines, [machines])
+  const data = useMemo(() => machines, [machines]);
 
-  const columns = useMemo(
+  const columns = useMemo<ColumnDef<IMachine>[]>(
     () => [
       {
-        accessorKey: "item.name",
-        header: "Name",
-        cell: info =>
-          <TName>
-            {info.getValue<string>().toUpperCase()}
-          </TName>
+        accessorKey: `item.name`,
+        id: `sort`,
+        header: `Name`,
+        cell: (info) => <TName>{info.getValue<string>().toUpperCase()}</TName>,
       },
       {
-        accessorKey: "move.name",
-        header: "Move",
-        cell: info =>
+        accessorKey: `move.name`,
+        id: `move`,
+        header: `Move`,
+        cell: (info) => (
           <td>
             <TLink
               href={{
@@ -52,12 +57,16 @@ function MachinesPage({ initialMachines }) {
               {info.getValue<string>().replace(/-/g, ` `)}
             </TLink>
           </td>
+        ),
       },
     ],
-    []
-  )
+    [],
+  );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(data, columns)
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
+    data,
+    columns,
+  );
 
   if (error instanceof Error) {
     return { error };
@@ -86,10 +95,10 @@ function MachinesPage({ initialMachines }) {
 export default MachinesPage;
 
 export async function getServerSideProps() {
-  const initialMachines = await getMachines()
+  const initialMachines = await getMachines();
   return {
     props: {
-      initialMachines
-    }
-  }
+      initialMachines,
+    },
+  };
 }
