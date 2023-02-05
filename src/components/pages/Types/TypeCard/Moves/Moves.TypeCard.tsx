@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { H3, Span } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
-import { TableContainer, THead, TRow } from '@/components/common/styles/Table';
+import { TableContainer } from '@/components/common/styles/Table';
 import {
   TypeListSubtitle,
   TypeMovesTable,
@@ -10,72 +10,108 @@ import {
   TypeMovesName,
 } from '../Styled.TypeCard';
 import Link from 'next/link';
-import { Moves, Types } from '@/types/types';
+import { ColumnDef } from '@tanstack/react-table';
+import { IType } from '@/types/Pokemon/Type';
+import { useTableParams } from '@/hooks/useTableParams';
+import { IMove } from '@/types/Moves/Move';
 
 type Props = {
-  type?: Types.Types;
-  moves?: Moves.Moves[];
+  type?: IType;
+  moves?: IMove[];
 };
 
 function MovesType({ type, moves }: Props) {
-  // Returns the number of moves from this type
-  const nbMoves = document.querySelectorAll(`.moveElement`).length;
+
+  const [filteredMoves, setFilteredMoves] = useState([])
+
+  useEffect(() => {
+    setFilteredMoves(
+      type?.moves.map(tm =>
+        moves?.filter(m =>
+          m.name === tm.name
+        )
+      )
+    );
+  }, [])
+
+  const data = useMemo(() => [].concat(...filteredMoves), [filteredMoves])
+
+  const columns = useMemo<ColumnDef<IMove>[]>(
+    () => [
+      {
+        accessorKey: "name",
+        id: "sort",
+        header: "Name",
+        cell: info => (
+          <TypeMovesName>
+            <Link
+              href={{
+                pathname: `/move/[name]`,
+                query: { name: info.getValue<string>() },
+              }}
+            >
+              {info.getValue<string>().replace(/-/g, ` `)}
+            </Link>
+          </TypeMovesName>
+        )
+      },
+      {
+        accessorKey: "damage_class.name",
+        id: "category",
+        header: "Category",
+        cell: info =>
+          <TypeMovesData>{info.getValue<string>()}</TypeMovesData>
+      },
+      {
+        accessorKey: "power",
+        id: "power",
+        header: "Power",
+        cell: info =>
+          <TypeMovesData>{info.getValue<string>() || '-'}</TypeMovesData>
+      },
+      {
+        accessorKey: "pp",
+        id: "pp",
+        header: "PP",
+        cell: info =>
+          <TypeMovesData>{info.getValue<string>()}</TypeMovesData>
+      },
+      {
+        accessorKey: "accuracy",
+        id: "accuracy",
+        header: "Accuracy",
+        cell: info =>
+          <TypeMovesData>{info.getValue<string>() || '-'}</TypeMovesData>
+      },
+      {
+        accessorKey: "meta.ailment.name",
+        id: "status",
+        header: "Status",
+        cell: info =>
+          <TypeMovesData>{info.getValue<string>() !== 'none' ? info.getValue<string>() : '-'}</TypeMovesData>
+      },
+    ],
+    []
+  )
+
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
+    data,
+    columns,
+  );
 
   return (
     <Section>
       <H3>Moves</H3>
       <TypeListSubtitle>
-        {nbMoves} moves are <Span>{type?.name}</Span> type
+        {filteredMoves.length} moves are <Span>{type?.name}</Span> type
       </TypeListSubtitle>
-      <TableContainer>
-        <TypeMovesTable>
-          <THead>
-            <tr>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Power</th>
-              <th>PP</th>
-              <th>Accuracy</th>
-              <th>Status</th>
-            </tr>
-          </THead>
-          <tbody className="type_container_table_body">
-            {type?.moves
-              ?.sort((a, b) => a.name.localeCompare(b.name))
-              ?.map((tm) =>
-                moves?.map(
-                  (m) =>
-                    m.name === tm.name && (
-                      <TRow key={tm.name} className="moveElement">
-                        <TypeMovesName>
-                          <Link
-                            href={{
-                              pathname: `/move/[name]`,
-                              query: { name: m.name },
-                            }}
-                          >
-                            {tm.name.replace(/-/g, ` `)}
-                          </Link>
-                        </TypeMovesName>
-                        <TypeMovesData>{m?.damage_class?.name}</TypeMovesData>
-                        <TypeMovesData>
-                          {m?.power !== null ? m?.power : `-`}
-                        </TypeMovesData>
-                        <TypeMovesData>{m?.pp}</TypeMovesData>
-                        <TypeMovesData>
-                          {m?.accuracy !== null ? m?.accuracy : `-`}
-                        </TypeMovesData>
-                        <TypeMovesData>
-                          {m?.meta?.ailment?.name !== `none`
-                            ? m?.meta?.ailment?.name
-                            : `-`}
-                        </TypeMovesData>
-                      </TRow>
-                    ),
-                ),
-              )}
-          </tbody>
-        </TypeMovesTable>
+      <TableContainer ref={tableContainerRef}>
+        {filteredMoves.length > 0 &&
+          <TypeMovesTable>
+            {tableHeader()}
+            {tableBody()}
+          </TypeMovesTable>
+        }
       </TableContainer>
       {type?.name !== `fairy` && (
         <TypeMovesComment>

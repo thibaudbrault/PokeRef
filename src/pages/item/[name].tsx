@@ -14,6 +14,7 @@ import HeadingItem from '@/components/pages/Items/ItemCard/Heading';
 import { useFilterItem } from '@/components/pages/Items/ItemCard/Hooks/useFilterItem';
 import dynamic from 'next/dynamic';
 import { useRouterIsReady } from '@/hooks/useRouterIsReady';
+import { GetServerSidePropsContext } from 'next';
 
 const DescItemcard = dynamic(
   () => import(`@/components/pages/Items/ItemCard/Components/Desc.Itemcard`),
@@ -28,8 +29,11 @@ const CostItemCard = dynamic(
   () => import(`@/components/pages/Items/ItemCard/Components/Cost.ItemCard`),
 );
 
-function ItemCard() {
-  const { name } = useRouterIsReady();
+type Props = {
+  name: string;
+}
+
+function ItemCard({ name }: Props) {
 
   const { isLoading, error, item, filterEffect } = useFilterItem(name);
 
@@ -80,3 +84,12 @@ function ItemCard() {
 }
 
 export default ItemCard;
+
+export function getServerSideProps(context: GetServerSidePropsContext) {
+  const { name } = context.query
+  return {
+    props: {
+      name
+    }
+  }
+}

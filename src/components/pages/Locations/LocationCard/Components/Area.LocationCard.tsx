@@ -1,9 +1,9 @@
-import { Locations } from '@/types/types';
+import { ILocation } from '@/types/Locations/Location';
 import React from 'react';
 import { LocationNav, LocationNavContainer } from '../../Styled.Locations';
 
 type Props = {
-  location?: Locations.Locations;
+  location: ILocation | null;
   toggleState: number;
   toggleTable: (index: number) => void;
 };

@@ -19,9 +19,11 @@ function PokemonType({ type, pokedex }: Props) {
   return (
     <Section>
       <H3>Pokémon</H3>
-      <TypeListSubtitle>
-        {nbPokemon} Pokémon are <Span>{type?.name}</Span> type
-      </TypeListSubtitle>
+      {nbPokemon &&
+        <TypeListSubtitle>
+          {nbPokemon} Pokémon are <Span>{type?.name}</Span> type
+        </TypeListSubtitle>
+      }
       <TypePokemonList>
         {type?.pokemon?.map((tp) =>
           pokedex?.map(

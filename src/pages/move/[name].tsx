@@ -5,10 +5,10 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import BackBtn from '@/components/common/ui/BackBtn';
 import List from '@/components/pages/Moves/MoveCard/List/List.MoveCard';
-import { useRouterIsReady } from '@/hooks/useRouterIsReady';
 import HeadingMove from '@/components/pages/Moves/MoveCard/Heading';
 import { useFetchMove } from '@/components/pages/Moves/MoveCard/Hooks/useFetchMove';
 import { MoveMainBig } from '@/components/pages/Moves/MoveCard/Styled.MoveCard';
+import { GetServerSidePropsContext } from 'next';
 
 const Nav = dynamic(
   () => import(`@/components/pages/Moves/MoveCard/Nav/Nav.MoveCard`),
@@ -20,8 +20,11 @@ const LearnMethod = dynamic(() =>
   import(`@/utils/ObjectsMap`).then((res) => res.LearnMethod),
 );
 
-function MoveCard() {
-  const { name } = useRouterIsReady();
+type Props = {
+  name: string;
+}
+
+function MoveCard({ name }: Props) {
   const [learn, setLearn] = useState<string>(`level-up`);
 
   const {
@@ -43,8 +46,6 @@ function MoveCard() {
   if (isLoading) {
     return <Loader />;
   }
-
-  console.log(status);
 
   return (
     <>
@@ -81,3 +82,12 @@ function MoveCard() {
 }
 
 export default MoveCard;
+
+export function getServerSideProps(context: GetServerSidePropsContext) {
+  const { name } = context.query
+  return {
+    props: {
+      name
+    }
+  }
+}

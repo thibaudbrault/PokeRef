@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,

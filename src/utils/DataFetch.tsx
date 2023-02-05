@@ -244,9 +244,9 @@ export function useMove(url: string) {
   );
 }
 
-export const getMove = async (url: string) => {
+export const getMove = async (name: string) => {
   try {
-    const res = await axios.get(url);
+    const res = await axios.get(`https://pokeapi.co/api/v2/move/${name}`);
     const results = await res.data;
     return results;
   } catch (err) {
@@ -268,9 +268,9 @@ export function useAbility(url: string) {
   );
 }
 
-export const getAbility = async (url: string) => {
+export const getAbility = async (name: string) => {
   try {
-    const res = await axios.get(url);
+    const res = await axios.get(`https://pokeapi.co/api/v2/ability/${name}`);
     const results = await res.data;
     return results;
   } catch (err) {
@@ -390,9 +390,9 @@ export function useItem(url: string) {
   );
 }
 
-export const getItem = async (url: string) => {
+export const getItem = async (name: string) => {
   try {
-    const res = await axios.get(url);
+    const res = await axios.get(`https://pokeapi.co/api/v2/item/${name}`);
     const results = await res.data;
     return results;
   } catch (err) {
@@ -414,9 +414,9 @@ export function useLocation(url: string) {
   );
 }
 
-export const getLocation = async (url: string) => {
+export const getLocation = async (name: string) => {
   try {
-    const res = await axios.get(url);
+    const res = await axios.get(`https://pokeapi.co/api/v2/location/${name}`);
     const results = await res.data;
     return results;
   } catch (err) {

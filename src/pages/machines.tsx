@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { GenNav } from '@/components/common/styles/Navbars';
 import { LeftTitle } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic';
 import { useQuery } from 'react-query';
 import { getMachines } from '@/utils/DataFetch';
 import { useTableParams } from '@/hooks/useTableParams';
-import { TName, TLink } from '@/components/common/styles/Table';
+import { TName, TLink, TableContainer, ModifiedTable } from '@/components/common/styles/Table';
 import { ColumnDef } from '@tanstack/react-table';
 import { IMachine } from '@/types/Machines/Machine';
 
@@ -21,7 +21,8 @@ type Props = {
 };
 
 function MachinesPage({ initialMachines }: Props) {
-  const [version, setVersion] = useState(`red-blue`);
+  const [version, setVersion] = useState<string>(`red-blue`);
+  const [test, setTest] = useState([])
   const {
     isLoading,
     error,
@@ -29,10 +30,22 @@ function MachinesPage({ initialMachines }: Props) {
   } = useQuery({
     queryKey: [`machines`],
     queryFn: getMachines,
-    initialData: initialMachines,
+    // initialData: initialMachines,
   });
 
-  const data = useMemo(() => machines, [machines]);
+  useEffect(() => {
+    setTest(
+      machines?.find((ma: IMachine) => {
+        return ma.version_group.name === version
+      })
+    )
+  }, [])
+
+  console.log(test)
+
+  const data = useMemo(() => {
+    test
+  }, [test]);
 
   const columns = useMemo<ColumnDef<IMachine>[]>(
     () => [
@@ -83,10 +96,12 @@ function MachinesPage({ initialMachines }: Props) {
         <GenNav>
           <NavMachines setVersion={setVersion} />
         </GenNav>
-        <MachinesTable ref={tableContainerRef}>
-          {tableHeader()}
-          {tableBody()}
-        </MachinesTable>
+        <TableContainer ref={tableContainerRef}>
+          <ModifiedTable>
+            {tableHeader()}
+            {tableBody()}
+          </ModifiedTable>
+        </TableContainer>
       </MainBig>
     </>
   );
@@ -94,11 +109,11 @@ function MachinesPage({ initialMachines }: Props) {
 
 export default MachinesPage;
 
-export async function getServerSideProps() {
-  const initialMachines = await getMachines();
-  return {
-    props: {
-      initialMachines,
-    },
-  };
-}
+// export async function getServerSideProps() {
+//   const initialMachines = await getMachines();
+//   return {
+//     props: {
+//       initialMachines,
+//     },
+//   };
+// }

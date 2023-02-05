@@ -14,7 +14,7 @@ export interface IType {
   move_damage_class: INamedApiResource<IMoveDamageClass>;
   names: IName[];
   pokemon: ITypePokemon[];
-  moves: INamedApiResource<IMove>;
+  moves: INamedApiResource<IMove>[];
 }
 
 export interface ITypePokemon {

@@ -60,7 +60,10 @@ function AbilitiesPage({ initialAbilities }: Props) {
         ),
       },
       {
-        accessorKey: `id`,
+        accessorFn: row =>
+          row.flavor_text_entries.find(rf => {
+            return rf.language.name === "en"
+          })?.flavor_text || '-',
         id: `effect`,
         header: `Effect`,
         cell: (info) => (

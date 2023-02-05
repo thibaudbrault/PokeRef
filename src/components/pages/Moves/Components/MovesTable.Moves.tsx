@@ -3,6 +3,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { LeftTitle } from '@/components/common/styles/Headings';
 import { Input, ModifiedSearch } from '@/components/common/styles/Inputs';
 import {
+  ModifiedTable,
   Table,
   TableContainer,
   TEffect,
@@ -86,8 +87,8 @@ function MovesTable({ moves }: Props) {
         ),
       },
       {
-        accessorFn: (row) =>
-          row.flavor_text_entries.find((rf) => {
+        accessorFn: row =>
+          row.flavor_text_entries.find(rf => {
             return rf.language.name === `en` && rf.flavor_text !== `Dummy Data`;
           })?.flavor_text || `-`,
         id: `effect`,
@@ -107,10 +108,10 @@ function MovesTable({ moves }: Props) {
     <MovesSection>
       <LeftTitle>Moves</LeftTitle>
       <TableContainer ref={tableContainerRef}>
-        <Table>
+        <ModifiedTable>
           {tableHeader()}
           {tableBody()}
-        </Table>
+        </ModifiedTable>
       </TableContainer>
     </MovesSection>
   );

@@ -18,7 +18,7 @@ import { useFilterAbility } from '@/components/pages/Abilities/AbilityCard/Hooks
 import HeadingAbility from '@/components/pages/Abilities/AbilityCard/Heading';
 import dynamic from 'next/dynamic';
 import TableAbilitycard from '@/components/pages/Abilities/AbilityCard/Components/Table.Abilitycard';
-import { useRouterIsReady } from '@/hooks/useRouterIsReady';
+import { GetServerSidePropsContext } from 'next';
 
 const DescAbilityCard = dynamic(
   () =>
@@ -27,8 +27,11 @@ const DescAbilityCard = dynamic(
     ),
 );
 
-function AbilityCard() {
-  const { name } = useRouterIsReady();
+type Props = {
+  name: string;
+}
+
+function AbilityCard({ name }: Props) {
 
   const {
     isLoading,
@@ -89,3 +92,12 @@ function AbilityCard() {
 }
 
 export default AbilityCard;
+
+export function getServerSideProps(context: GetServerSidePropsContext) {
+  const { name } = context.query
+  return {
+    props: {
+      name
+    }
+  }
+}

@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { MainBig } from '@/components/common/styles/Sizing';
 import { LeftTitle } from '@/components/common/styles/Headings';
 import {
-  Table,
+  ModifiedTable,
   TableContainer,
   TLink,
   TName,
@@ -32,7 +32,7 @@ function ItemsPage({ initialItems }: Props) {
   } = useQuery({
     queryKey: [`items`],
     queryFn: getItems,
-    // initialData: initialItems
+    initialData: initialItems
   });
 
   const data = useMemo(() => items, [items]);
@@ -42,7 +42,7 @@ function ItemsPage({ initialItems }: Props) {
       {
         accessorKey: `sprites.default`,
         id: `sprites`,
-        header: `Sprites`,
+        header: `Sprite`,
         cell: (info) => (
           <td>
             <Image
@@ -82,7 +82,10 @@ function ItemsPage({ initialItems }: Props) {
         ),
       },
       {
-        accessorKey: `effect_entries[0].short_effect`,
+        accessorFn: row =>
+          row.effect_entries.find(re => {
+            return re
+          })?.short_effect,
         id: `effect`,
         header: `Effect`,
         cell: (info) => (
@@ -114,10 +117,10 @@ function ItemsPage({ initialItems }: Props) {
       <MainBig>
         <LeftTitle>Items</LeftTitle>
         <TableContainer ref={tableContainerRef}>
-          <Table>
+          <ModifiedTable>
             {tableHeader()}
             {tableBody()}
-          </Table>
+          </ModifiedTable>
         </TableContainer>
       </MainBig>
     </>

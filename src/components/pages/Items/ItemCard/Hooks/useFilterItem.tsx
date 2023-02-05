@@ -1,11 +1,15 @@
-import { useItem } from '@/utils/DataFetch';
+import { getItem } from '@/utils/DataFetch';
+import { useQuery } from 'react-query';
 
-export const useFilterItem = (name: string | string[] | undefined) => {
+export const useFilterItem = (name: string) => {
   const {
     isLoading,
     error,
     data: item,
-  } = useItem(`https://pokeapi.co/api/v2/item/${name}`);
+  } = useQuery({
+    queryKey: ['item'],
+    queryFn: () => getItem(name)
+  });
 
   const filterEffect =
     item && item?.effect_entries?.find((ie) => ie.language.name === `en`);

@@ -7,6 +7,7 @@ import HeadingLocations from '@/components/pages/Locations/Heading';
 import { regions } from '@/utils/DataArrays';
 import { useQuery } from 'react-query';
 import { getRegions } from '@/utils/DataFetch';
+import { IRegion } from '@/types/Locations/Region';
 
 const ListLocations = dynamic(
   () => import(`@/components/pages/Locations/Components/List.Locations`),
@@ -15,7 +16,11 @@ const RegionsMethod = dynamic(() =>
   import(`@/utils/ObjectsMap`).then((res) => res.RegionsMethod),
 );
 
-function LocationsPage() {
+type Props = {
+  initialRegions: IRegion[];
+}
+
+function LocationsPage({ initialRegions }: Props) {
   const [location, setLocation] = useState<string | null>(null);
   const [toggle, setToggle] = useState<number>(0);
   const {
@@ -25,6 +30,7 @@ function LocationsPage() {
   } = useQuery({
     queryKey: [`regions`],
     queryFn: getRegions,
+    initialData: initialRegions
   });
 
   useEffect(() => {
@@ -58,3 +64,12 @@ function LocationsPage() {
 }
 
 export default LocationsPage;
+
+export async function getServerSideProps() {
+  const initialRegions = await getRegions();
+  return {
+    props: {
+      initialRegions,
+    },
+  };
+}

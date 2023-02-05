@@ -1,22 +1,29 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useArea } from '@/utils/DataFetch';
+import { getLocation, getArea } from '@/utils/DataFetch';
+import { useQuery } from 'react-query';
+import { ILocationArea } from '@/types/Locations/LocationArea';
+import { ILocation } from '@/types/Locations/Location';
 
-export const useSwitchGame = (name: string | string[] | undefined) => {
-  const [game, setGame] = useState(`red`);
-  const [toggleState, setToggleState] = useState(0);
-  const {
-    isLoading,
-    error,
-    data: location,
-  } = useLocation(`https://pokeapi.co/api/v2/location/${name}`);
+export const useSwitchGame = (name: string) => {
+  const [game, setGame] = useState<string>(`red`);
+  const [toggleState, setToggleState] = useState<number>(0);
 
   const toggleTable = (index: number) => {
     setToggleState(index);
   };
 
+  const { data: location } = useQuery<ILocation>({
+    queryKey: ['location'],
+    queryFn: () => getLocation(name),
+  })
+
   const areaUrl = location?.areas[toggleState]?.url;
 
-  const { data: area } = useArea(areaUrl);
+  const { isLoading, error, data: area } = useQuery<ILocationArea>({
+    queryKey: ['area'],
+    queryFn: () => getArea(areaUrl),
+    enabled: !!areaUrl
+  })
 
   const gameUsed = () => {
     switch (location?.region.name) {

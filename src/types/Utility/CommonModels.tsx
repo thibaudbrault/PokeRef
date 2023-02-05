@@ -19,7 +19,7 @@ export interface IDescription {
 }
 
 export interface IEffect {
-  effet: string;
+  effect: string;
   language: INamedApiResource<ILanguage>;
 }
 
@@ -43,7 +43,7 @@ export interface IGenerationGameIndex {
 }
 
 export interface IMachineVersionDetail {
-  machine: IApiResource<IMachine>;
+  machine: IApiResource;
   version_group: INamedApiResource<IVersionGroup>;
 }
 
