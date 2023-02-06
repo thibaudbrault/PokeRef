@@ -33,12 +33,9 @@ const TableLocationCard = dynamic(
 
 type Props = {
   name: string;
-}
+};
 
 function LocationCard({ name }: Props) {
-
-  const [filteredArea, setFilteredArea] = useState([])
-
   const {
     game,
     setGame,
@@ -50,66 +47,59 @@ function LocationCard({ name }: Props) {
     area,
   } = useSwitchGame(name);
 
-  useEffect(() => {
-    setFilteredArea(
-      area?.pokemon_encounters.map(a =>
-        a.version_details.filter(av =>
-          av.version.name === game
-        )
-      )
-    )
-  }, [])
+  const data = useMemo(
+    () =>
+      area?.pokemon_encounters
+        .map((a) => a.version_details.filter((av) => av.version.name === game))
+        .flat(),
+    [area],
+  );
 
-  console.log(filteredArea)
+  console.log(data);
 
-  // const data = useMemo(() => [].concat(...filteredArea), [filteredArea])
+  const columns = useMemo<ColumnDef<ILocationArea>[]>(
+    () => [
+      // {
+      //   accessorKey: 'pokemon.name',
+      //   id: 'name',
+      //   header: 'Pokemon',
+      //   cell: info =>
+      //     <TName>{info.getValue<string>().replace(/-/g, ` `)}</TName>
+      // },
+      {
+        accessorFn: (row) => console.log(row),
+        // accessorKey: 'method.name',
+        id: `method`,
+        header: `Location`,
+        cell: (info) => <td>{info.getValue<string>()}</td>,
+      },
+      {
+        accessorKey: `chance`,
+        id: `chance`,
+        header: `Probability`,
+        cell: (info) => <td>{info.getValue<string>()} %</td>,
+      },
+      {
+        accessorKey: `max_level`,
+        id: `level`,
+        header: `Level`,
+        cell: (info) => <td>{info.getValue<string>()}</td>,
+      },
+      // {
+      //   accessorKey: 'pokemon.name',
+      //   id: 'name',
+      //   header: 'Pokemon',
+      //   cell: info =>
+      //     <TName>{info.getValue<string>()}</TName>
+      // },
+    ],
+    [],
+  );
 
-  // const columns = useMemo<ColumnDef<ILocationArea>[]>(
-  //   () => [
-  //     // {
-  //     //   accessorKey: 'pokemon.name',
-  //     //   id: 'name',
-  //     //   header: 'Pokemon',
-  //     //   cell: info =>
-  //     //     <TName>{info.getValue<string>().replace(/-/g, ` `)}</TName>
-  //     // },
-  //     {
-  //       accessorFn: row => console.log(row),
-  //       // accessorKey: 'method.name',
-  //       id: 'method',
-  //       header: 'Location',
-  //       cell: info =>
-  //         <td>{info.getValue<string>()}</td>
-  //     },
-  //     {
-  //       accessorKey: 'chance',
-  //       id: 'chance',
-  //       header: 'Probability',
-  //       cell: info =>
-  //         <td>{info.getValue<string>()} %</td>
-  //     },
-  //     {
-  //       accessorKey: 'max_level',
-  //       id: 'level',
-  //       header: 'Level',
-  //       cell: info =>
-  //         <td>{info.getValue<string>()}</td>
-  //     },
-  //     // {
-  //     //   accessorKey: 'pokemon.name',
-  //     //   id: 'name',
-  //     //   header: 'Pokemon',
-  //     //   cell: info =>
-  //     //     <TName>{info.getValue<string>()}</TName>
-  //     // },
-  //   ],
-  //   []
-  // )
-
-  // const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-  //   data,
-  //   columns,
-  // );
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
+    data,
+    columns,
+  );
 
   if (error instanceof Error) {
     return { error };
@@ -138,13 +128,13 @@ function LocationCard({ name }: Props) {
         />
         <Nav setGame={setGame} />
         <Section>
-          {/* <TableContainer ref={tableContainerRef}>
+          <TableContainer ref={tableContainerRef}>
             <LocationTable>
               {tableHeader()}
               {tableBody()}
               <span>This area is not present in this game</span>
             </LocationTable>
-          </TableContainer> */}
+          </TableContainer>
         </Section>
         <Link href="/locations" passHref>
           <BackBtn name="Locations" />
@@ -157,10 +147,10 @@ function LocationCard({ name }: Props) {
 export default LocationCard;
 
 export function getServerSideProps(context: GetServerSidePropsContext) {
-  const { name } = context.query
+  const { name } = context.query;
   return {
     props: {
-      name
-    }
-  }
+      name,
+    },
+  };
 }

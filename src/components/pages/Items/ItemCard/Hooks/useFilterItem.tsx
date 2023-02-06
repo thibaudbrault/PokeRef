@@ -7,8 +7,8 @@ export const useFilterItem = (name: string) => {
     error,
     data: item,
   } = useQuery({
-    queryKey: ['item'],
-    queryFn: () => getItem(name)
+    queryKey: [`item`],
+    queryFn: () => getItem(name),
   });
 
   const filterEffect =

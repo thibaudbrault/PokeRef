@@ -13,17 +13,21 @@ export const useSwitchGame = (name: string) => {
   };
 
   const { data: location } = useQuery<ILocation>({
-    queryKey: ['location'],
+    queryKey: [`location`],
     queryFn: () => getLocation(name),
-  })
+  });
 
   const areaUrl = location?.areas[toggleState]?.url;
 
-  const { isLoading, error, data: area } = useQuery<ILocationArea>({
-    queryKey: ['area'],
+  const {
+    isLoading,
+    error,
+    data: area,
+  } = useQuery<ILocationArea>({
+    queryKey: [`area`],
     queryFn: () => getArea(areaUrl),
-    enabled: !!areaUrl
-  })
+    enabled: !!areaUrl,
+  });
 
   const gameUsed = () => {
     switch (location?.region.name) {

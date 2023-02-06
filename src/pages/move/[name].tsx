@@ -22,7 +22,7 @@ const LearnMethod = dynamic(() =>
 
 type Props = {
   name: string;
-}
+};
 
 function MoveCard({ name }: Props) {
   const [learn, setLearn] = useState<string>(`level-up`);
@@ -84,10 +84,10 @@ function MoveCard({ name }: Props) {
 export default MoveCard;
 
 export function getServerSideProps(context: GetServerSidePropsContext) {
-  const { name } = context.query
+  const { name } = context.query;
   return {
     props: {
-      name
-    }
-  }
+      name,
+    },
+  };
 }

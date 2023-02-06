@@ -29,10 +29,9 @@ const DescAbilityCard = dynamic(
 
 type Props = {
   name: string;
-}
+};
 
 function AbilityCard({ name }: Props) {
-
   const {
     isLoading,
     error,
@@ -94,10 +93,10 @@ function AbilityCard({ name }: Props) {
 export default AbilityCard;
 
 export function getServerSideProps(context: GetServerSidePropsContext) {
-  const { name } = context.query
+  const { name } = context.query;
   return {
     props: {
-      name
-    }
-  }
+      name,
+    },
+  };
 }

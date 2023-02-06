@@ -32,7 +32,7 @@ function ItemsPage({ initialItems }: Props) {
   } = useQuery({
     queryKey: [`items`],
     queryFn: getItems,
-    initialData: initialItems
+    initialData: initialItems,
   });
 
   const data = useMemo(() => items, [items]);
@@ -82,9 +82,9 @@ function ItemsPage({ initialItems }: Props) {
         ),
       },
       {
-        accessorFn: row =>
-          row.effect_entries.find(re => {
-            return re
+        accessorFn: (row) =>
+          row.effect_entries.find((re) => {
+            return re;
           })?.short_effect,
         id: `effect`,
         header: `Effect`,

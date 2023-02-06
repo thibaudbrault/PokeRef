@@ -1,4 +1,3 @@
-
 export interface IApiResource {
   url: string;
   endpoint?: string;

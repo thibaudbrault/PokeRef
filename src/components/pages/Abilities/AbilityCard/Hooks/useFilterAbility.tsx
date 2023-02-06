@@ -1,6 +1,14 @@
-import { IAbilityEffectChange, IAbilityFlavorText } from '@/types/Pokemon/Ability';
+import {
+  IAbilityEffectChange,
+  IAbilityFlavorText,
+} from '@/types/Pokemon/Ability';
 import { IEffect } from '@/types/Utility/CommonModels';
-import { getAbility, getPokedex, useAbility, usePokedex } from '@/utils/DataFetch';
+import {
+  getAbility,
+  getPokedex,
+  useAbility,
+  usePokedex,
+} from '@/utils/DataFetch';
 import { useQuery } from 'react-query';
 
 export const useFilterAbility = (name: string) => {
@@ -9,13 +17,13 @@ export const useFilterAbility = (name: string) => {
     error,
     data: ability,
   } = useQuery({
-    queryKey: ['ability'],
-    queryFn: () => getAbility(name)
+    queryKey: [`ability`],
+    queryFn: () => getAbility(name),
   });
 
   const { data: pokedex } = useQuery({
-    queryKey: ['pokedex'],
-    queryFn: () => getPokedex(`https://pokeapi.co/api/v2/pokemon?limit=1400`)
+    queryKey: [`pokedex`],
+    queryFn: () => getPokedex(`https://pokeapi.co/api/v2/pokemon?limit=1400`),
   });
 
   const filterEffect = ability?.effect_entries?.find(
@@ -23,7 +31,8 @@ export const useFilterAbility = (name: string) => {
   );
 
   const filterOverworld = ability?.effect_entries?.find(
-    (ae: IEffect) => ae.language.name === `en` && ae.effect.includes(`\n\nOverworld:`),
+    (ae: IEffect) =>
+      ae.language.name === `en` && ae.effect.includes(`\n\nOverworld:`),
   );
 
   const filterDesc = ability?.flavor_text_entries?.filter(

@@ -14,6 +14,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { IType } from '@/types/Pokemon/Type';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IMove } from '@/types/Moves/Move';
+import Loader from '@/components/common/ui/Loader/Loader';
 
 type Props = {
   type?: IType;
@@ -22,27 +23,28 @@ type Props = {
 
 function MovesType({ type, moves }: Props) {
 
-  const [filteredMoves, setFilteredMoves] = useState([])
+  if (!type || !moves?.length) {
+    return <Loader />;
+  }
 
-  useEffect(() => {
-    setFilteredMoves(
-      type?.moves.map(tm =>
-        moves?.filter(m =>
-          m.name === tm.name
-        )
-      )
-    );
-  }, [])
-
-  const data = useMemo(() => [].concat(...filteredMoves), [filteredMoves])
+  const data = useMemo(
+    () => [
+      ...new Set(
+        type?.moves
+          .map((tm) => moves?.filter((m) => m.name === tm.name))
+          .flat(),
+      ),
+    ],
+    [moves],
+  );
 
   const columns = useMemo<ColumnDef<IMove>[]>(
     () => [
       {
-        accessorKey: "name",
-        id: "sort",
-        header: "Name",
-        cell: info => (
+        accessorKey: `name`,
+        id: `sort`,
+        header: `Name`,
+        cell: (info) => (
           <TypeMovesName>
             <Link
               href={{
@@ -53,46 +55,55 @@ function MovesType({ type, moves }: Props) {
               {info.getValue<string>().replace(/-/g, ` `)}
             </Link>
           </TypeMovesName>
-        )
+        ),
       },
       {
-        accessorKey: "damage_class.name",
-        id: "category",
-        header: "Category",
-        cell: info =>
+        accessorKey: `damage_class.name`,
+        id: `category`,
+        header: `Category`,
+        cell: (info) => (
           <TypeMovesData>{info.getValue<string>()}</TypeMovesData>
+        ),
       },
       {
-        accessorKey: "power",
-        id: "power",
-        header: "Power",
-        cell: info =>
-          <TypeMovesData>{info.getValue<string>() || '-'}</TypeMovesData>
+        accessorKey: `power`,
+        id: `power`,
+        header: `Power`,
+        cell: (info) => (
+          <TypeMovesData>{info.getValue<string>() || `-`}</TypeMovesData>
+        ),
       },
       {
-        accessorKey: "pp",
-        id: "pp",
-        header: "PP",
-        cell: info =>
+        accessorKey: `pp`,
+        id: `pp`,
+        header: `PP`,
+        cell: (info) => (
           <TypeMovesData>{info.getValue<string>()}</TypeMovesData>
+        ),
       },
       {
-        accessorKey: "accuracy",
-        id: "accuracy",
-        header: "Accuracy",
-        cell: info =>
-          <TypeMovesData>{info.getValue<string>() || '-'}</TypeMovesData>
+        accessorKey: `accuracy`,
+        id: `accuracy`,
+        header: `Accuracy`,
+        cell: (info) => (
+          <TypeMovesData>{info.getValue<string>() || `-`}</TypeMovesData>
+        ),
       },
       {
-        accessorKey: "meta.ailment.name",
-        id: "status",
-        header: "Status",
-        cell: info =>
-          <TypeMovesData>{info.getValue<string>() !== 'none' ? info.getValue<string>() : '-'}</TypeMovesData>
+        accessorKey: `meta.ailment.name`,
+        id: `status`,
+        header: `Status`,
+        cell: (info) => (
+          <TypeMovesData>
+            {info.getValue<string>() !== `none` || !info.getValue<string>()
+              ? info.getValue<string>()
+              : `-`}
+          </TypeMovesData>
+        ),
       },
     ],
-    []
-  )
+    [],
+  );
 
   const { tableContainerRef, tableHeader, tableBody } = useTableParams(
     data,
@@ -103,15 +114,15 @@ function MovesType({ type, moves }: Props) {
     <Section>
       <H3>Moves</H3>
       <TypeListSubtitle>
-        {filteredMoves.length} moves are <Span>{type?.name}</Span> type
+        {data.length} moves are <Span>{type?.name}</Span> type
       </TypeListSubtitle>
       <TableContainer ref={tableContainerRef}>
-        {filteredMoves.length > 0 &&
+        {data.length > 0 && (
           <TypeMovesTable>
             {tableHeader()}
             {tableBody()}
           </TypeMovesTable>
-        }
+        )}
       </TableContainer>
       {type?.name !== `fairy` && (
         <TypeMovesComment>

@@ -18,7 +18,7 @@ const RegionsMethod = dynamic(() =>
 
 type Props = {
   initialRegions: IRegion[];
-}
+};
 
 function LocationsPage({ initialRegions }: Props) {
   const [location, setLocation] = useState<string | null>(null);
@@ -30,7 +30,7 @@ function LocationsPage({ initialRegions }: Props) {
   } = useQuery({
     queryKey: [`regions`],
     queryFn: getRegions,
-    initialData: initialRegions
+    initialData: initialRegions,
   });
 
   useEffect(() => {

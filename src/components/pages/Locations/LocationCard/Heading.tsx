@@ -9,7 +9,9 @@ function HeadingLocation({ name }: Props) {
   return (
     <Head>
       <title>
-        {`${name?.charAt(0).toUpperCase() + name?.slice(1)}  | Location | PokéRef`}
+        {`${
+          name?.charAt(0).toUpperCase() + name?.slice(1)
+        }  | Location | PokéRef`}
       </title>
       <meta name="description" content={`Find every details about ${name}`} />
       <meta property="og:title" content={`${name} | Location | PokéRef`} />

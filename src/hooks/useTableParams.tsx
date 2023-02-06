@@ -14,7 +14,7 @@ export function useTableParams(data, columns) {
   const [sorting, setSorting] = useState<SortingState>([]);
 
   const table = useReactTable({
-    data: data ? data : [],
+    data: data ?? [],
     columns,
     state: {
       sorting,

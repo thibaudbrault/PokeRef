@@ -1,21 +1,26 @@
 import { useState } from 'react';
-import { getMove, getPokedex, useMachines, useMove, usePokedex } from '@/utils/DataFetch';
+import {
+  getMove,
+  getPokedex,
+  useMachines,
+  useMove,
+  usePokedex,
+} from '@/utils/DataFetch';
 import { useQuery } from 'react-query';
 
 export const useFetchMove = (name: string) => {
-
   const {
     isLoading,
     error,
     data: move,
   } = useQuery({
-    queryKey: ['move'],
-    queryFn: () => getMove(name)
+    queryKey: [`move`],
+    queryFn: () => getMove(name),
   });
 
   const { data: pokedex } = useQuery({
-    queryKey: ['pokedex'],
-    queryFn: () => getPokedex(`https://pokeapi.co/api/v2/pokemon?limit=905`)
+    queryKey: [`pokedex`],
+    queryFn: () => getPokedex(`https://pokeapi.co/api/v2/pokemon?limit=905`),
   });
 
   const { data: machines } = useMachines();

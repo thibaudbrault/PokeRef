@@ -31,10 +31,9 @@ const CostItemCard = dynamic(
 
 type Props = {
   name: string;
-}
+};
 
 function ItemCard({ name }: Props) {
-
   const { isLoading, error, item, filterEffect } = useFilterItem(name);
 
   if (error instanceof Error) {
@@ -86,10 +85,10 @@ function ItemCard({ name }: Props) {
 export default ItemCard;
 
 export function getServerSideProps(context: GetServerSidePropsContext) {
-  const { name } = context.query
+  const { name } = context.query;
   return {
     props: {
-      name
-    }
-  }
+      name,
+    },
+  };
 }

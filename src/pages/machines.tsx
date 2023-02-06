@@ -8,7 +8,12 @@ import dynamic from 'next/dynamic';
 import { useQuery } from 'react-query';
 import { getMachines } from '@/utils/DataFetch';
 import { useTableParams } from '@/hooks/useTableParams';
-import { TName, TLink, TableContainer, ModifiedTable } from '@/components/common/styles/Table';
+import {
+  TName,
+  TLink,
+  TableContainer,
+  ModifiedTable,
+} from '@/components/common/styles/Table';
 import { ColumnDef } from '@tanstack/react-table';
 import { IMachine } from '@/types/Machines/Machine';
 
@@ -22,7 +27,7 @@ type Props = {
 
 function MachinesPage({ initialMachines }: Props) {
   const [version, setVersion] = useState<string>(`red-blue`);
-  const [test, setTest] = useState([])
+  const [test, setTest] = useState([]);
   const {
     isLoading,
     error,
@@ -36,15 +41,15 @@ function MachinesPage({ initialMachines }: Props) {
   useEffect(() => {
     setTest(
       machines?.find((ma: IMachine) => {
-        return ma.version_group.name === version
-      })
-    )
-  }, [])
+        return ma.version_group.name === version;
+      }),
+    );
+  }, []);
 
-  console.log(test)
+  console.log(test);
 
   const data = useMemo(() => {
-    test
+    test;
   }, [test]);
 
   const columns = useMemo<ColumnDef<IMachine>[]>(

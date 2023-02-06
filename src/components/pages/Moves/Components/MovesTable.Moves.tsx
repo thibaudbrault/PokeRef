@@ -87,8 +87,8 @@ function MovesTable({ moves }: Props) {
         ),
       },
       {
-        accessorFn: row =>
-          row.flavor_text_entries.find(rf => {
+        accessorFn: (row) =>
+          row.flavor_text_entries.find((rf) => {
             return rf.language.name === `en` && rf.flavor_text !== `Dummy Data`;
           })?.flavor_text || `-`,
         id: `effect`,
