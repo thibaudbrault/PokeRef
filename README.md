@@ -41,7 +41,7 @@
 <h4>Past, present and future</h4>
 
 ✅A page for every pokémon / move / ability / type / item  
-✅Filter pokémon by name / form / generation / type (possibility to filter by one or two types) 
+✅Filter pokémon by name / form / generation / type (possibility to filter by one or two types)  
 ✅Filter moves / abilities / machines by name  
 ✅Change certain data according to the game selected  
 ✅Dark mode  
@@ -49,10 +49,10 @@
 ✅Autocomplete search  
 ✅Responsive
 
-🛠Profile page with possibility to save a team  
+🛠Use Tanstack-table for my tables (allow for virtualization, sorting and filtering)  
 🛠Implementing Typescript
 
-🔜Using React-Table for my tables  
+🔜Profile page with possibility to save teams  
 🔜Types relations for each pokémon  
 🔜Animation on scroll
 
@@ -62,7 +62,8 @@
 ✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important.  
 ✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded.
 
-🛠Refactoring the code.
+🛠Refactoring the code.  
+🛠️Use SSR to fetch data (with React-Query initialData params) and create dynamic routing  
 
 🔜Implement a Service Worker.
 
@@ -118,7 +119,7 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 
 <h4>Data</h4>
 
-<a href="https://pokeapi.co/docs/v2" target="_blank">PokéAPi</a>
+<a href="https://pokeapi.co/docs/v2" target="_blank">PokéAPi</a>  
 <a href="https://github.com/pkmn/smogon" target="_blank">Smogon</a>
 
 <h4>Dependencies</h4>
