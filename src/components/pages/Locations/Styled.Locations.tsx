@@ -91,7 +91,7 @@ export const LocationTable = styled(ModifiedTable)`
     text-align: center;
   }
 
-  & tbody:empty + span {
+  & tbody:empty + tfoot {
     display: block;
   }
 `;

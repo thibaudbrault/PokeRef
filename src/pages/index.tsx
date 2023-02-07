@@ -7,7 +7,6 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import { getPokedex } from '@/utils/DataFetch';
 import Loader from '@/components/common/ui/Loader/Loader';
 import dynamic from 'next/dynamic';
-import { Pokemon } from '@/types/types';
 import { useStateWithCallback } from '@/hooks/useStateWithCallback';
 import { Options, OptionsOffsetLimit } from '@/utils/DataArrays';
 import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';

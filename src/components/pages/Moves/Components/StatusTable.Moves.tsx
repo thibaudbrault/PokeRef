@@ -36,14 +36,16 @@ function StatusTable({ status }: Props) {
           }),
         header: `Moves`,
         cell: (info) => (
-          <Link
-            href={{
-              pathname: `/move/[name]`,
-              query: { name: info.getValue<string>() },
-            }}
-          >
-            <p>{info.getValue<string>()}</p>
-          </Link>
+          <StatusMoves>
+            <Link
+              href={{
+                pathname: `/move/[name]`,
+                query: { name: info.getValue<string>() },
+              }}
+            >
+              <p>{info.getValue<string>()}</p>
+            </Link>
+          </StatusMoves>
         ),
       },
     ],

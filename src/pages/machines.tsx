@@ -27,7 +27,6 @@ type Props = {
 
 function MachinesPage({ initialMachines }: Props) {
   const [version, setVersion] = useState<string>(`red-blue`);
-  const [test, setTest] = useState([]);
   const {
     isLoading,
     error,
@@ -38,19 +37,12 @@ function MachinesPage({ initialMachines }: Props) {
     // initialData: initialMachines,
   });
 
-  useEffect(() => {
-    setTest(
-      machines?.find((ma: IMachine) => {
-        return ma.version_group.name === version;
-      }),
-    );
-  }, []);
-
-  console.log(test);
-
-  const data = useMemo(() => {
-    test;
-  }, [test]);
+  const data = useMemo(
+    () =>
+      machines?.filter(m =>
+        m.version_group.name === version
+      )
+    , [version])
 
   const columns = useMemo<ColumnDef<IMachine>[]>(
     () => [

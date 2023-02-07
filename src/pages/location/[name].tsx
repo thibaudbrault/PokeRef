@@ -13,8 +13,8 @@ import { GetServerSidePropsContext } from 'next';
 import { ColumnDef } from '@tanstack/react-table';
 import { ILocationArea } from '@/types/Locations/LocationArea';
 import { useTableParams } from '@/hooks/useTableParams';
+import { IEncounter } from '@/types/Utility/CommonModels';
 
-const TableHead = dynamic(() => import(`@/components/common/ui/TableHead`));
 const HeadingLocation = dynamic(
   () => import(`@/components/pages/Locations/LocationCard/Heading`),
 );
@@ -22,12 +22,6 @@ const AreaLocationCard = dynamic(
   () =>
     import(
       `@/components/pages/Locations/LocationCard/Components/Area.LocationCard`
-    ),
-);
-const TableLocationCard = dynamic(
-  () =>
-    import(
-      `@/components/pages/Locations/LocationCard/Components/Table.LocationCard`
     ),
 );
 
@@ -51,31 +45,30 @@ function LocationCard({ name }: Props) {
     () =>
       area?.pokemon_encounters
         .map((a) => a.version_details.filter((av) => av.version.name === game))
+        .flat()
+        .map(ave => ave.encounter_details)
         .flat(),
     [area],
   );
 
-  console.log(data);
-
   const columns = useMemo<ColumnDef<ILocationArea>[]>(
     () => [
       // {
-      //   accessorKey: 'pokemon.name',
+      //   accessorFn: (row) => console.log(row),
       //   id: 'name',
       //   header: 'Pokemon',
       //   cell: info =>
-      //     <TName>{info.getValue<string>().replace(/-/g, ` `)}</TName>
+      //     <TName>hello</TName>
       // },
       {
-        accessorFn: (row) => console.log(row),
-        // accessorKey: 'method.name',
+        accessorKey: 'method.name',
         id: `method`,
-        header: `Location`,
+        header: `Method`,
         cell: (info) => <td>{info.getValue<string>()}</td>,
       },
       {
         accessorKey: `chance`,
-        id: `chance`,
+        id: `sort`,
         header: `Probability`,
         cell: (info) => <td>{info.getValue<string>()} %</td>,
       },
@@ -85,13 +78,17 @@ function LocationCard({ name }: Props) {
         header: `Level`,
         cell: (info) => <td>{info.getValue<string>()}</td>,
       },
-      // {
-      //   accessorKey: 'pokemon.name',
-      //   id: 'name',
-      //   header: 'Pokemon',
-      //   cell: info =>
-      //     <TName>{info.getValue<string>()}</TName>
-      // },
+      {
+        accessorFn: (row: IEncounter) => row.condition_values.length > 0 && (
+          row.condition_values.map(rcv => {
+            return rcv.name
+          })
+        ),
+        id: 'condition',
+        header: 'Condition',
+        cell: info =>
+          <td>{info?.getValue<string>()}</td>
+      },
     ],
     [],
   );
@@ -132,7 +129,11 @@ function LocationCard({ name }: Props) {
             <LocationTable>
               {tableHeader()}
               {tableBody()}
-              <span>This area is not present in this game</span>
+              <tfoot>
+                <tr>
+                  <td>This area is not present in this game</td>
+                </tr>
+              </tfoot>
             </LocationTable>
           </TableContainer>
         </Section>
