@@ -1,8 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Types } from '@/types/types';
 import { ModifiedType } from '@/components/pages/Types/Styled.Types';
+import { Types } from '@/types/types';
+import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {
   types?: Types.Types[];

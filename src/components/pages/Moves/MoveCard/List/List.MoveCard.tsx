@@ -1,4 +1,3 @@
-import React from 'react';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import Content from './Content/Content.MoveCard';
 import {

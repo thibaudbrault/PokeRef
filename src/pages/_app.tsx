@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
+import { darkTheme, lightTheme } from '@/components/common/styles/Themes';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useState } from 'react';
+import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ThemeProvider } from 'styled-components';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { darkTheme, lightTheme } from '@/components/common/styles/Themes';
+import { ThemeProvider } from 'styled-components';
 
+import { Reset } from '@/components/common/styles/Reset';
+import Footer from '@/components/layout/Footer/Footer';
 import Header from '@/components/layout/Header/Header';
 import Nav from '@/components/layout/Nav/Nav';
-import Footer from '@/components/layout/Footer/Footer';
-import { Reset } from '@/components/common/styles/Reset';
-import { Toaster } from 'react-hot-toast';
 import NextNProgress from 'nextjs-progressbar';
+import { Toaster } from 'react-hot-toast';
 
 const queryClient = new QueryClient({
   defaultOptions: {

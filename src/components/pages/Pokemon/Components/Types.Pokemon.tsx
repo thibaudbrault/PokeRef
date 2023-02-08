@@ -1,8 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { Type } from '@/components/common/styles/Themes';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
+import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {
   p: IPokemon;

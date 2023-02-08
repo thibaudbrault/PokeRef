@@ -1,21 +1,20 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { GenNav } from '@/components/common/styles/Navbars';
 import { LeftTitle } from '@/components/common/styles/Headings';
+import { GenNav } from '@/components/common/styles/Navbars';
 import { MainBig } from '@/components/common/styles/Sizing';
-import { MachinesTable } from '@/components/pages/Machines/Styled.Machines';
-import Loader from '@/components/common/ui/Loader/Loader';
-import dynamic from 'next/dynamic';
-import { useQuery } from 'react-query';
-import { getMachines } from '@/utils/DataFetch';
-import { useTableParams } from '@/hooks/useTableParams';
 import {
-  TName,
-  TLink,
-  TableContainer,
   ModifiedTable,
+  TableContainer,
+  TLink,
+  TName,
 } from '@/components/common/styles/Table';
-import { ColumnDef } from '@tanstack/react-table';
+import Loader from '@/components/common/ui/Loader/Loader';
+import { useTableParams } from '@/hooks/useTableParams';
 import { IMachine } from '@/types/Machines/Machine';
+import { getMachines } from '@/utils/DataFetch';
+import { ColumnDef } from '@tanstack/react-table';
+import dynamic from 'next/dynamic';
+import { useMemo, useState } from 'react';
+import { useQuery } from 'react-query';
 
 const NavMachines = dynamic(
   () => import(`@/components/pages/Machines/Components/Nav.Machines`),
@@ -38,11 +37,9 @@ function MachinesPage({ initialMachines }: Props) {
   });
 
   const data = useMemo(
-    () =>
-      machines?.filter(m =>
-        m.version_group.name === version
-      )
-    , [version])
+    () => machines?.filter((m) => m.version_group.name === version),
+    [version],
+  );
 
   const columns = useMemo<ColumnDef<IMachine>[]>(
     () => [

@@ -1,10 +1,9 @@
-import React from 'react';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { Evolution, Species } from '@/types/types';
 import Breeding from './Breeding/Breeding.PokemonCard';
 import Forms from './Forms/Forms.PokemonCard';
-import Training from './Training/Training.PokemonCard';
 import { PokemonInfoSection } from './Styled.Info.PokemonCard';
-import { Evolution, Pokemon, Species } from '@/types/types';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
+import Training from './Training/Training.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;

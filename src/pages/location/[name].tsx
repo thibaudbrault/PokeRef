@@ -1,19 +1,19 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { MainBig, Section } from '@/components/common/styles/Sizing';
-import Loader from '@/components/common/ui/Loader/Loader';
 import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
-import { LocationTable } from '@/components/pages/Locations/Styled.Locations';
-import Nav from '@/components/pages/Locations/LocationCard/Components/Nav.LocationCard';
-import { TableContainer, TName } from '@/components/common/styles/Table';
-import Link from 'next/link';
+import { MainBig, Section } from '@/components/common/styles/Sizing';
+import { TableContainer } from '@/components/common/styles/Table';
 import BackBtn from '@/components/common/ui/BackBtn';
+import Loader from '@/components/common/ui/Loader/Loader';
+import Nav from '@/components/pages/Locations/LocationCard/Components/Nav.LocationCard';
 import { useSwitchGame } from '@/components/pages/Locations/LocationCard/Hooks/useSwitchGame';
-import dynamic from 'next/dynamic';
-import { GetServerSidePropsContext } from 'next';
-import { ColumnDef } from '@tanstack/react-table';
-import { ILocationArea } from '@/types/Locations/LocationArea';
+import { LocationTable } from '@/components/pages/Locations/Styled.Locations';
 import { useTableParams } from '@/hooks/useTableParams';
+import { ILocationArea } from '@/types/Locations/LocationArea';
 import { IEncounter } from '@/types/Utility/CommonModels';
+import { ColumnDef } from '@tanstack/react-table';
+import { GetServerSidePropsContext } from 'next';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { useMemo } from 'react';
 
 const HeadingLocation = dynamic(
   () => import(`@/components/pages/Locations/LocationCard/Heading`),
@@ -46,25 +46,25 @@ function LocationCard({ name }: Props) {
       area?.pokemon_encounters
         .map((a) => a.version_details.filter((av) => av.version.name === game))
         .flat()
-        .map(ave => ave.encounter_details)
+        .map((ave) => ave.encounter_details)
         .flat(),
-    [area],
+    [area, game],
   );
 
   const columns = useMemo<ColumnDef<ILocationArea>[]>(
     () => [
-      // {
-      //   accessorFn: (row) => console.log(row),
-      //   id: 'name',
-      //   header: 'Pokemon',
-      //   cell: info =>
-      //     <TName>hello</TName>
-      // },
       {
-        accessorKey: 'method.name',
+        accessorFn: (row) => console.log(row),
+        id: `name`,
+        header: `Pokemon`,
+        // cell: info =>
+        //   <TName>hello</TName>
+      },
+      {
+        accessorKey: `method.name`,
         id: `method`,
         header: `Method`,
-        cell: (info) => <td>{info.getValue<string>()}</td>,
+        cell: (info) => <td>{info.getValue<string>().replace(/-/g, ` `)}</td>,
       },
       {
         accessorKey: `chance`,
@@ -79,15 +79,19 @@ function LocationCard({ name }: Props) {
         cell: (info) => <td>{info.getValue<string>()}</td>,
       },
       {
-        accessorFn: (row: IEncounter) => row.condition_values.length > 0 && (
-          row.condition_values.map(rcv => {
-            return rcv.name
-          })
-        ),
-        id: 'condition',
-        header: 'Condition',
-        cell: info =>
-          <td>{info?.getValue<string>()}</td>
+        accessorFn: (row: IEncounter) =>
+          row.condition_values.length > 0 &&
+          row.condition_values.map((rcv) => {
+            return rcv.name;
+          }),
+        id: `condition`,
+        header: `Condition`,
+        cell: (info) =>
+          info.getValue() ? (
+            <td>{info.getValue<boolean>().toString().replace(/-/g, ` `)}</td>
+          ) : (
+            <td>-</td>
+          ),
       },
     ],
     [],
@@ -131,7 +135,7 @@ function LocationCard({ name }: Props) {
               {tableBody()}
               <tfoot>
                 <tr>
-                  <td>This area is not present in this game</td>
+                  <td colSpan={5}>This area is not present in this game</td>
                 </tr>
               </tfoot>
             </LocationTable>

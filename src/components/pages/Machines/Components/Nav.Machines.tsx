@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction } from 'react';
 import { genNav } from '@/utils/DataArrays';
+import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
   setVersion: Dispatch<SetStateAction<string>>;

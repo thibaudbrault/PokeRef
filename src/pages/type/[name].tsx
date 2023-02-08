@@ -1,13 +1,12 @@
-import React from 'react';
-import { MainBig } from '@/components/common/styles/Sizing';
 import { CardTitle } from '@/components/common/styles/Headings';
-import { useMoves, usePokedex, useType } from '@/utils/DataFetch';
-import Loader from '@/components/common/ui/Loader/Loader';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
+import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
+import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingType from '@/components/pages/Types/TypeCard/Heading';
 import { useRouterIsReady } from '@/hooks/useRouterIsReady';
+import { useMoves, usePokedex, useType } from '@/utils/DataFetch';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
 
 const DamageType = dynamic(
   () => import(`../../components/pages/Types/TypeCard/Damage/Damage.TypeCard`),

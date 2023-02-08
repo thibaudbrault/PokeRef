@@ -1,17 +1,17 @@
-import React, { useMemo } from 'react';
 import {
-  TableContainer,
   ModifiedTable,
+  TableContainer,
   TLink,
   TName,
 } from '@/components/common/styles/Table';
-import { Sup } from '../Styled.AbilityCard';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
+import Loader from '@/components/common/ui/Loader/Loader';
+import { useTableParams } from '@/hooks/useTableParams';
 import { IAbility } from '@/types/Pokemon/Ability';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 import ImageWithFallback from '@/utils/ImageWithFallback';
 import { ColumnDef } from '@tanstack/react-table';
-import { useTableParams } from '@/hooks/useTableParams';
-import Loader from '@/components/common/ui/Loader/Loader';
+import { useMemo } from 'react';
+import { Sup } from '../Styled.AbilityCard';
 
 type Props = {
   ability?: IAbility;
@@ -19,7 +19,6 @@ type Props = {
 };
 
 function TableAbilitycard({ ability, pokedex }: Props) {
-
   if (!ability || !pokedex?.length) {
     return <Loader />;
   }

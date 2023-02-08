@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import Select from 'react-select';
+import styled from 'styled-components';
 import { device } from './Sizing';
 
 export const Search = styled.section`

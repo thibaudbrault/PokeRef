@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { getMoves, getStatus } from '@/utils/DataFetch';
 import dynamic from 'next/dynamic';
+import { useState } from 'react';
 import { useQueries } from 'react-query';
 
 const MovesTable = dynamic(

@@ -1,6 +1,6 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Dispatch, SetStateAction } from 'react';
 import {
   MainNav,
   MainNavList,

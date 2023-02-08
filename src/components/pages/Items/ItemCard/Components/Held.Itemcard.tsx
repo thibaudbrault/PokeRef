@@ -1,4 +1,3 @@
-import React from 'react';
 import { Items } from '@/types/types';
 import Link from 'next/link';
 import { ItemCardDataHeld } from '../Styled.ItemCard';

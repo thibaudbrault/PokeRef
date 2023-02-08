@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
-import { Moves } from '@/types/types';
 import { H3, H4, Span } from '@/components/common/styles/Headings';
+import { Moves } from '@/types/types';
 import {
   MoveCardDataList,
   MoveCardDataMeta,

@@ -1,20 +1,20 @@
-import React, { useEffect, useMemo, useState } from 'react';
 import { H3, Span } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
 import { TableContainer } from '@/components/common/styles/Table';
+import Loader from '@/components/common/ui/Loader/Loader';
+import { useTableParams } from '@/hooks/useTableParams';
+import { IMove } from '@/types/Moves/Move';
+import { IType } from '@/types/Pokemon/Type';
+import { ColumnDef } from '@tanstack/react-table';
+import Link from 'next/link';
+import { useMemo } from 'react';
 import {
   TypeListSubtitle,
-  TypeMovesTable,
   TypeMovesComment,
   TypeMovesData,
   TypeMovesName,
+  TypeMovesTable,
 } from '../Styled.TypeCard';
-import Link from 'next/link';
-import { ColumnDef } from '@tanstack/react-table';
-import { IType } from '@/types/Pokemon/Type';
-import { useTableParams } from '@/hooks/useTableParams';
-import { IMove } from '@/types/Moves/Move';
-import Loader from '@/components/common/ui/Loader/Loader';
 
 type Props = {
   type?: IType;
@@ -22,7 +22,6 @@ type Props = {
 };
 
 function MovesType({ type, moves }: Props) {
-
   if (!type || !moves?.length) {
     return <Loader />;
   }

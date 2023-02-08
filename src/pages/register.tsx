@@ -1,13 +1,14 @@
-import React from 'react';
-import Link from 'next/link';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/router';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '@/firebase-config';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore/lite';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
+import { H2 } from '@/components/common/styles/Headings';
+import { MainBig } from '@/components/common/styles/Sizing';
 import {
   AuthBtn,
   AuthContainer,
@@ -17,8 +18,6 @@ import {
   AuthSwitch,
   AuthTitle,
 } from '@/components/pages/Auth/Styled.Auth';
-import { H2 } from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
 import { toast } from 'react-hot-toast';
 
 type FormInput = {

@@ -1,8 +1,7 @@
-import React from 'react';
 import { H3 } from '@/components/common/styles/Headings';
-import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
-import { Evolution, Pokemon, Species } from '@/types/types';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { Evolution, Species } from '@/types/types';
+import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;

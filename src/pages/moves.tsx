@@ -1,7 +1,5 @@
-import React from 'react';
-
-import { MainBig } from '@/components/common/styles/Sizing';
 import { MethodNav } from '@/components/common/styles/Navbars';
+import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingMoves from '@/components/pages/Moves/Heading';
 import { useToggleTable } from '@/components/pages/Moves/Hooks/useToggleTable';

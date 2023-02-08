@@ -1,4 +1,3 @@
-import React from 'react';
 import { Machines, Moves } from '@/types/types';
 import Desc from './Desc/Desc.MoveCard';
 import Effect from './Effect/Effect.MoveCard';

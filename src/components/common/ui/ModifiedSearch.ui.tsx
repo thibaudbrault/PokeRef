@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { ModifiedSearch, Input } from '../styles/Inputs';
+import { Dispatch, SetStateAction } from 'react';
+import { Input, ModifiedSearch } from '../styles/Inputs';
 
 type Props = {
   placeholder: string;

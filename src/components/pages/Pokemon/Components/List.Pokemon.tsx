@@ -1,10 +1,10 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import Link from 'next/link';
-import { PokedexElement, PokedexTypes } from '../Styled.Pokemon';
-import dynamic from 'next/dynamic';
-import { motion, AnimatePresence } from 'framer-motion';
 import { fadeInUpVariant } from '@/components/common/styles/Keyframes';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { AnimatePresence, motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { Dispatch, SetStateAction } from 'react';
+import { PokedexElement, PokedexTypes } from '../Styled.Pokemon';
 
 const Sprites = dynamic(
   () => import(`@/components/pages/Pokemon/Components/Sprites.Pokemon`),

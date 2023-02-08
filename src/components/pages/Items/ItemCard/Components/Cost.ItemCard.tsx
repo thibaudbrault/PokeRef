@@ -1,4 +1,3 @@
-import React from 'react';
 import { Items } from '@/types/types';
 import { ItemCardDataCost } from '../Styled.ItemCard';
 

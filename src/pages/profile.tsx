@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
 import { H2 } from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
-import { auth, db } from '@/firebase-config';
-import { useRouter } from 'next/router';
-import Loader from '@/components/common/ui/Loader/Loader';
-import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';
-import { formatOptions, Options } from '@/utils/DataArrays';
 import { Dropdown } from '@/components/common/styles/Inputs';
-import { useFormat } from '@/utils/DataFetch';
+import { MainBig } from '@/components/common/styles/Sizing';
+import Loader from '@/components/common/ui/Loader/Loader';
 import {
   ProfileInputs,
   ProfileList,
 } from '@/components/pages/Profile/Styled.Profile';
-import { SingleValue } from 'react-select';
+import { auth, db } from '@/firebase-config';
+import { formatOptions, Options } from '@/utils/DataArrays';
+import { useFormat } from '@/utils/DataFetch';
+import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 function Profile() {
   const router = useRouter();

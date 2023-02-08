@@ -1,4 +1,3 @@
-import React from 'react';
 import { PokemonInfoTable } from '../../Info/Styled.Info.PokemonCard';
 
 type Props = {

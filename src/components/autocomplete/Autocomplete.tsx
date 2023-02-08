@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { getPokedex, usePokedex } from '@/utils/DataFetch';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { getPokedex } from '@/utils/DataFetch';
+import ImageWithFallback from '@/utils/ImageWithFallback';
+import { useState } from 'react';
+import { useQuery } from 'react-query';
 import {
   AutocompleteContainer,
   AutocompleteId,
   AutocompleteInput,
   AutocompleteLink,
 } from './Styled.Autocomplete';
-import { Pokemon } from '@/types/types';
-import ImageWithFallback from '@/utils/ImageWithFallback';
-import { useQuery } from 'react-query';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 function Autocomplete() {
   const { data: pokedex } = useQuery({

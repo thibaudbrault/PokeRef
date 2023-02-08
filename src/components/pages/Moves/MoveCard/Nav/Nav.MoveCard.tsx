@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { Dispatch, SetStateAction } from 'react';
 import { GenNav } from '@/components/common/styles/Navbars';
 import { Moves } from '@/types/types';
+import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
   move: Moves.Moves;

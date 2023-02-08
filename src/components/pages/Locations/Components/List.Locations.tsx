@@ -1,7 +1,6 @@
-import React from 'react';
-import { LocationList, LocationSection } from '../Styled.Locations';
-import Link from 'next/link';
 import { IRegion } from '@/types/Locations/Region';
+import Link from 'next/link';
+import { LocationList, LocationSection } from '../Styled.Locations';
 
 type Props = {
   location: string | null;

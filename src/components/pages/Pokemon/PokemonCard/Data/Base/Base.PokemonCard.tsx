@@ -1,7 +1,6 @@
-import React from 'react';
-import { Species } from '@/types/types';
 import { TLink } from '@/components/common/styles/Table';
 import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import {
   PokemonDataLocation,
   PokemonDataTable,
@@ -9,7 +8,7 @@ import {
 
 type Props = {
   pokemon: IPokemon;
-  species: Species.Species;
+  species: IPokemonSpecies;
   location: ILocationAreaEncounter[];
   game: string;
 };
@@ -82,7 +81,7 @@ function Base({ pokemon, species, game, location }: Props) {
         <tr>
           <th>Category</th>
           <td>
-            <p>{filterGenera.genus}</p>
+            <p>{filterGenera?.genus}</p>
           </td>
         </tr>
         <tr>

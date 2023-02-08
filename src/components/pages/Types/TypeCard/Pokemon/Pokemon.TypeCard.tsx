@@ -1,11 +1,10 @@
-import React from 'react';
-import Image from 'next/image';
 import { H3, Span } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
-import { TypeListSubtitle, TypePokemonList } from '../Styled.TypeCard';
-import Link from 'next/link';
-import { Types } from '@/types/types';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { Types } from '@/types/types';
+import Image from 'next/image';
+import Link from 'next/link';
+import { TypeListSubtitle, TypePokemonList } from '../Styled.TypeCard';
 
 type Props = {
   type?: Types.Types;

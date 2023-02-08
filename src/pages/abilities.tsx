@@ -1,5 +1,5 @@
-import React from 'react';
 import { LeftTitle } from '@/components/common/styles/Headings';
+import { ModifiedMainBig } from '@/components/common/styles/Sizing';
 import {
   ModifiedTable,
   TableContainer,
@@ -7,15 +7,14 @@ import {
   TLink,
   TName,
 } from '@/components/common/styles/Table';
-import { ModifiedMainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
+import { useTableParams } from '@/hooks/useTableParams';
+import { IAbility } from '@/types/Pokemon/Ability';
+import { getAbilities } from '@/utils/DataFetch';
+import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
-import { ColumnDef } from '@tanstack/react-table';
-import { useTableParams } from '@/hooks/useTableParams';
-import { getAbilities } from '@/utils/DataFetch';
 import { useQuery } from 'react-query';
-import { IAbility } from '@/types/Pokemon/Ability';
 
 const HeadingAbilities = dynamic(
   () => import(`@/components/pages/Abilities/Heading`),
@@ -26,8 +25,6 @@ type Props = {
 };
 
 function AbilitiesPage({ initialAbilities }: Props) {
-  // const { setSearch, isLoading, error, abilities } =
-  //   useFilterAbilities();
   const {
     isLoading,
     error,

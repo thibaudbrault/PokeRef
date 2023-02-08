@@ -1,20 +1,18 @@
-import React from 'react';
-import { MainBig } from '@/components/common/styles/Sizing';
 import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
+import { MainBig } from '@/components/common/styles/Sizing';
+import BackBtn from '@/components/common/ui/BackBtn';
+import Loader from '@/components/common/ui/Loader/Loader';
+import HeadingItem from '@/components/pages/Items/ItemCard/Heading';
+import { useFilterItem } from '@/components/pages/Items/ItemCard/Hooks/useFilterItem';
 import {
   ItemCardDataEffect,
   ItemCardDataImage,
   ItemCardDataSection,
 } from '@/components/pages/Items/ItemCard/Styled.ItemCard';
-import Loader from '@/components/common/ui/Loader/Loader';
-import Link from 'next/link';
-import Image from 'next/image';
-import BackBtn from '@/components/common/ui/BackBtn';
-import HeadingItem from '@/components/pages/Items/ItemCard/Heading';
-import { useFilterItem } from '@/components/pages/Items/ItemCard/Hooks/useFilterItem';
-import dynamic from 'next/dynamic';
-import { useRouterIsReady } from '@/hooks/useRouterIsReady';
 import { GetServerSidePropsContext } from 'next';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const DescItemcard = dynamic(
   () => import(`@/components/pages/Items/ItemCard/Components/Desc.Itemcard`),

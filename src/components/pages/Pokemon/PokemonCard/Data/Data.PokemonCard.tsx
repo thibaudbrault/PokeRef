@@ -1,13 +1,12 @@
-import React from 'react';
+import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
+import { Species } from '@/types/types';
+import Base from './Base/Base.PokemonCard';
 import Desc from './Desc/Desc.PokemonCard';
 import Sprite from './Sprite/Sprite.PokemonCard';
-import Base from './Base/Base.PokemonCard';
 import {
   PokemonDataSection,
   PokemonDataSprite,
 } from './Styled.Data.PokemonCard';
-import { Species } from '@/types/types';
-import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
   pokemon: IPokemon;

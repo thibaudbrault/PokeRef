@@ -1,11 +1,10 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { Span } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
-import { PokemonDataDesc, PokemonDataTypes } from '../Styled.Data.PokemonCard';
-import { Species } from '@/types/types';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { Species } from '@/types/types';
+import Image from 'next/image';
+import Link from 'next/link';
+import { PokemonDataDesc, PokemonDataTypes } from '../Styled.Data.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;

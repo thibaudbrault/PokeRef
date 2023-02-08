@@ -1,23 +1,26 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 import {
   ModifiedTable,
   TableContainer,
   TName,
 } from '@/components/common/styles/Table';
-import { ModifiedLeftTitle, MovesSection, StatusMoves } from '../Styled.Moves';
-import { Moves } from '@/types/types';
 import { useTableParams } from '@/hooks/useTableParams';
-import { ColumnDef } from '@tanstack/react-table';
+import { IMove } from '@/types/Moves/Move';
 import { IMoveAilment } from '@/types/Moves/MoveAilment';
+import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
+import { ModifiedLeftTitle, MovesSection, StatusMoves } from '../Styled.Moves';
 
 type Props = {
   status?: IMoveAilment[];
 };
 
 function StatusTable({ status }: Props) {
-  const data = useMemo(() => status, [status]);
+  const data = useMemo(
+    () => status?.filter((s) => s.name !== `none`),
+    [status],
+  );
 
   const columns = useMemo<ColumnDef<IMoveAilment>[]>(
     () => [
@@ -30,21 +33,20 @@ function StatusTable({ status }: Props) {
         ),
       },
       {
-        accessorFn: (row) =>
-          row.moves.map((m) => {
-            return m.name;
-          }),
+        accessorFn: (row) => row.moves,
         header: `Moves`,
         cell: (info) => (
           <StatusMoves>
-            <Link
-              href={{
-                pathname: `/move/[name]`,
-                query: { name: info.getValue<string>() },
-              }}
-            >
-              <p>{info.getValue<string>()}</p>
-            </Link>
+            {info.getValue<IMove[]>().map((i) => (
+              <Link
+                href={{
+                  pathname: `/move/[name]`,
+                  query: { name: i.name },
+                }}
+              >
+                <p>{i.name.replace(/-/g, ` `)}</p>
+              </Link>
+            ))}
           </StatusMoves>
         ),
       },

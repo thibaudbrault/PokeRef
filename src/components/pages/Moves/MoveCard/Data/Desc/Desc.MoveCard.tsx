@@ -1,4 +1,3 @@
-import React from 'react';
 import { Machines, Moves } from '@/types/types';
 import Image from 'next/image';
 import Link from 'next/link';

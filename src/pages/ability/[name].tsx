@@ -1,9 +1,3 @@
-import React from 'react';
-import { MainBig } from '@/components/common/styles/Sizing';
-import {
-  AbilityCardEffect,
-  AbilityCardSection,
-} from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import {
   CardTitle,
   H3,
@@ -11,14 +5,19 @@ import {
   Span,
   Subtitle,
 } from '@/components/common/styles/Headings';
-import Loader from '@/components/common/ui/Loader/Loader';
-import Link from 'next/link';
+import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
-import { useFilterAbility } from '@/components/pages/Abilities/AbilityCard/Hooks/useFilterAbility';
-import HeadingAbility from '@/components/pages/Abilities/AbilityCard/Heading';
-import dynamic from 'next/dynamic';
+import Loader from '@/components/common/ui/Loader/Loader';
 import TableAbilitycard from '@/components/pages/Abilities/AbilityCard/Components/Table.Abilitycard';
+import HeadingAbility from '@/components/pages/Abilities/AbilityCard/Heading';
+import { useFilterAbility } from '@/components/pages/Abilities/AbilityCard/Hooks/useFilterAbility';
+import {
+  AbilityCardEffect,
+  AbilityCardSection,
+} from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import { GetServerSidePropsContext } from 'next';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
 
 const DescAbilityCard = dynamic(
   () =>

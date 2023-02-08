@@ -1,9 +1,8 @@
-import React from 'react';
 import { MainSmall } from '@/components/common/styles/Sizing';
-import { TypesList } from '@/components/pages/Types/Styled.Types';
-import { getTypes, useTypes } from '@/utils/DataFetch';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingTypes from '@/components/pages/Types/Heading';
+import { TypesList } from '@/components/pages/Types/Styled.Types';
+import { getTypes } from '@/utils/DataFetch';
 import dynamic from 'next/dynamic';
 import { useQuery } from 'react-query';
 

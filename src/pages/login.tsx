@@ -1,8 +1,5 @@
-import React from 'react';
-import Link from 'next/link';
-import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { H2 } from '@/components/common/styles/Headings';
+import { MainBig } from '@/components/common/styles/Sizing';
 import {
   AuthBtn,
   AuthButtons,
@@ -15,14 +12,15 @@ import {
   AuthSwitch,
   AuthTitle,
 } from '@/components/pages/Auth/Styled.Auth';
-import { H2 } from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
-import { GrGoogle } from '@meronex/icons/gr';
-import { GrGithub } from '@meronex/icons/gr';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { GrGithub, GrGoogle } from '@meronex/icons/gr';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import * as yup from 'yup';
 
 type FormInput = {
   email: string;

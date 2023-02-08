@@ -1,6 +1,5 @@
-import React from 'react';
-import { Abilities } from '@/types/types';
 import { H3 } from '@/components/common/styles/Headings';
+import { Abilities } from '@/types/types';
 import { AbilityCardSection, AbilityCardTable } from '../Styled.AbilityCard';
 
 type Props = {

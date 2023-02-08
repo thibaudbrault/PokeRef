@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../../../../common/styles/Sizing';
+import { device } from '@/components/common/styles/Sizing';
 
 export const PokemonSpritesDiv = styled.div`
   display: grid;

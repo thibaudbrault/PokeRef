@@ -1,12 +1,10 @@
-import { Pokemon } from '@/types/types';
-import React from 'react';
 import { H3 } from '@/components/common/styles/Headings';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 import {
   PokemonStatsBars,
   PokemonStatsText,
   PokemonStatsTotal,
 } from '../Styled.Stats.PokemonCard';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
   pokemon: IPokemon;

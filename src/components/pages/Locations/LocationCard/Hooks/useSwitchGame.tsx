@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { getLocation, getArea } from '@/utils/DataFetch';
-import { useQuery } from 'react-query';
-import { ILocationArea } from '@/types/Locations/LocationArea';
 import { ILocation } from '@/types/Locations/Location';
+import { ILocationArea } from '@/types/Locations/LocationArea';
+import { getArea, getLocation } from '@/utils/DataFetch';
+import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
 export const useSwitchGame = (name: string) => {
   const [game, setGame] = useState<string>(`red`);

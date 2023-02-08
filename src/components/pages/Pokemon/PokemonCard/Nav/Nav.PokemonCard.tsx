@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { Dispatch, SetStateAction } from 'react';
 import { GenNav } from '@/components/common/styles/Navbars';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
   pokemon: IPokemon;

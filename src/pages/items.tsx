@@ -1,6 +1,5 @@
-import React, { useMemo } from 'react';
-import { MainBig } from '@/components/common/styles/Sizing';
 import { LeftTitle } from '@/components/common/styles/Headings';
+import { MainBig } from '@/components/common/styles/Sizing';
 import {
   ModifiedTable,
   TableContainer,
@@ -9,16 +8,17 @@ import {
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingItems from '@/components/pages/Items/Heading';
-import { getItems } from '@/utils/DataFetch';
-import { useQuery } from 'react-query';
-import { useTableParams } from '@/hooks/useTableParams';
 import {
   TCategoryItems,
   TEffectItems,
 } from '@/components/pages/Items/Styled.Items';
-import Image from 'next/image';
-import { ColumnDef } from '@tanstack/react-table';
+import { useTableParams } from '@/hooks/useTableParams';
 import { IItem } from '@/types/Items/Item';
+import { getItems } from '@/utils/DataFetch';
+import { ColumnDef } from '@tanstack/react-table';
+import Image from 'next/image';
+import { useMemo } from 'react';
+import { useQuery } from 'react-query';
 
 type Props = {
   initialItems: IItem[];

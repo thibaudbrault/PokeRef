@@ -1,5 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { Subtitle, Title } from '../../components/common/styles/Headings';
 import { MainBig } from '../../components/common/styles/Sizing';
+import Loader from '../../components/common/ui/Loader/Loader';
 import {
   useEvolution,
   useMachines,
@@ -9,11 +14,6 @@ import {
   useSpecies,
   useTypes,
 } from '../../utils/DataFetch';
-import Loader from '../../components/common/ui/Loader/Loader';
-import { Subtitle, Title } from '../../components/common/styles/Headings';
-import Head from 'next/head';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
 // import { speciesFilters } from '@/utils/DataArrays';
 // import { Species } from '@/types/types';
 import BackBtn from '@/components/common/ui/BackBtn';

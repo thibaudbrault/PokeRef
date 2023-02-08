@@ -1,11 +1,5 @@
+import { getMove, getPokedex, useMachines } from '@/utils/DataFetch';
 import { useState } from 'react';
-import {
-  getMove,
-  getPokedex,
-  useMachines,
-  useMove,
-  usePokedex,
-} from '@/utils/DataFetch';
 import { useQuery } from 'react-query';
 
 export const useFetchMove = (name: string) => {

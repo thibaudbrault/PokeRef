@@ -1,6 +1,5 @@
-import React from 'react';
-import { Items } from '@/types/types';
 import { Span } from '@/components/common/styles/Headings';
+import { Items } from '@/types/types';
 import { ItemCardDataFling } from '../Styled.ItemCard';
 
 type Props = {

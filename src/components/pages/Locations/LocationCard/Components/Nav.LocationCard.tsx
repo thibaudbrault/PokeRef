@@ -1,6 +1,6 @@
-import React, { Dispatch, SetStateAction } from 'react';
 import { GenNav } from '@/components/common/styles/Navbars';
 import { genNav } from '@/utils/DataArrays';
+import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
   setGame: Dispatch<SetStateAction<string>>;

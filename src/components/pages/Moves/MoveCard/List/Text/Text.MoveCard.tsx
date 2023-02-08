@@ -1,6 +1,5 @@
 import { H3 } from '@/components/common/styles/Headings';
 import { MoveText } from '@/components/pages/Moves/MoveCard/Styled.MoveCard';
-import * as React from 'react';
 
 const version = `ultra-sun-ultra-moon`;
 

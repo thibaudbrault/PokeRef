@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import { MainBig } from '@/components/common/styles/Sizing';
+import Loader from '@/components/common/ui/Loader/Loader';
+import HeadingPokemon from '@/components/pages/Pokemon/Heading';
+import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
 import {
   PokedexList,
   PokedexVerticalText,
 } from '@/components/pages/Pokemon/Styled.Pokemon';
-import { MainBig } from '@/components/common/styles/Sizing';
-import { getPokedex } from '@/utils/DataFetch';
-import Loader from '@/components/common/ui/Loader/Loader';
-import dynamic from 'next/dynamic';
 import { useStateWithCallback } from '@/hooks/useStateWithCallback';
 import { Options, OptionsOffsetLimit } from '@/utils/DataArrays';
-import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
-import HeadingPokemon from '@/components/pages/Pokemon/Heading';
+import { getPokedex } from '@/utils/DataFetch';
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { IPokemon } from '../types/Pokemon/Pokemon';
 

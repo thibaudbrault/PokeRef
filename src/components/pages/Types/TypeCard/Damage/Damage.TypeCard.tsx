@@ -1,9 +1,8 @@
-import React from 'react';
 import { Subtitle } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
-import { TypeDamageSection, TypeDamageTable } from '../Styled.TypeCard';
-import Image from 'next/image';
 import { Types } from '@/types/types';
+import Image from 'next/image';
+import { TypeDamageSection, TypeDamageTable } from '../Styled.TypeCard';
 
 type Props = {
   type?: Types.Types;

@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { FaAngleDown, FaAngleUp } from '@meronex/icons/fa';
 import { ToBottom } from '@/components/pages/Pokemon/Styled.Pokemon';
+import { FaAngleDown, FaAngleUp } from '@meronex/icons/fa';
+import { useEffect, useState } from 'react';
 
 export const useScrollDir = () => {
   const [scrollDir, setScrollDir] = useState(`down`);

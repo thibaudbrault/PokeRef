@@ -1,14 +1,6 @@
-import {
-  IAbilityEffectChange,
-  IAbilityFlavorText,
-} from '@/types/Pokemon/Ability';
+import { IAbilityFlavorText } from '@/types/Pokemon/Ability';
 import { IEffect } from '@/types/Utility/CommonModels';
-import {
-  getAbility,
-  getPokedex,
-  useAbility,
-  usePokedex,
-} from '@/utils/DataFetch';
+import { getAbility, getPokedex } from '@/utils/DataFetch';
 import { useQuery } from 'react-query';
 
 export const useFilterAbility = (name: string) => {

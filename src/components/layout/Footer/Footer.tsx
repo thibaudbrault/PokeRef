@@ -1,12 +1,11 @@
-import React from 'react';
+import { FaGithub } from '@meronex/icons/fa';
 import {
+  CenterFooter,
   FooterContainer,
   FooterInner,
   LeftFooter,
-  CenterFooter,
   RightFooter,
 } from './Styled.Footer';
-import { FaGithub } from '@meronex/icons/fa';
 
 function Footer() {
   return (

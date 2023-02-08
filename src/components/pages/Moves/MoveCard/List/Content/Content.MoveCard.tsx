@@ -1,11 +1,10 @@
-import React from 'react';
 import {
   MoveLink,
   MoveList,
   MoveListEmpty,
 } from '@/components/pages/Moves/MoveCard/Styled.MoveCard';
-import ImageWithFallback from '@/utils/ImageWithFallback';
 import { IPokemon, IPokemonMoveVersion } from '@/types/Pokemon/Pokemon';
+import ImageWithFallback from '@/utils/ImageWithFallback';
 
 type Props = {
   pokedex?: IPokemon[];

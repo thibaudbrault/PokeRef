@@ -1,9 +1,8 @@
-import React from 'react';
 import { Items } from '@/types/types';
 import {
   ItemCardDescSection,
-  ItemCardDescTitle,
   ItemCardDescTable,
+  ItemCardDescTitle,
 } from '../Styled.ItemCard';
 
 type Props = {

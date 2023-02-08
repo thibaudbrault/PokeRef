@@ -1,5 +1,10 @@
-import React from 'react';
 import { H3 } from '@/components/common/styles/Headings';
+import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
+import { Evolution } from '@/types/types';
+import { usePokedex } from '@/utils/DataFetch';
+import { FaChevronRight } from '@meronex/icons/fa';
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   PokemonEvolution,
   PokemonEvolutionBase,
@@ -10,12 +15,6 @@ import {
   PokemonEvolutionStages,
   PokemonEvolutionText,
 } from './Styled.Evolution.PokemonCard';
-import { FaChevronRight } from '@meronex/icons/fa';
-import { usePokedex } from '@/utils/DataFetch';
-import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Evolution } from '@/types/types';
 
 type Props = {
   evolution: Evolution.Evolution;

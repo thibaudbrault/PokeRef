@@ -1,16 +1,16 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import {
+  fadeInUpVariant,
+  placeholderVariant,
+} from '@/components/common/styles/Keyframes';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Dispatch, SetStateAction } from 'react';
 import {
   LoadingImage,
   PokedexImage,
   SpriteNormal,
   SpriteShiny,
 } from '../Styled.Pokemon';
-import {
-  fadeInUpVariant,
-  placeholderVariant,
-} from '@/components/common/styles/Keyframes';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 type Props = {
   p: IPokemon;

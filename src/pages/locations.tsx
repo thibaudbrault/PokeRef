@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
 import { MainBig } from '@/components/common/styles/Sizing';
-import { LocationSection } from '@/components/pages/Locations/Styled.Locations';
 import Loader from '@/components/common/ui/Loader/Loader';
-import dynamic from 'next/dynamic';
 import HeadingLocations from '@/components/pages/Locations/Heading';
-import { regions } from '@/utils/DataArrays';
-import { useQuery } from 'react-query';
-import { getRegions } from '@/utils/DataFetch';
+import { LocationSection } from '@/components/pages/Locations/Styled.Locations';
 import { IRegion } from '@/types/Locations/Region';
+import { regions } from '@/utils/DataArrays';
+import { getRegions } from '@/utils/DataFetch';
+import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
 const ListLocations = dynamic(
   () => import(`@/components/pages/Locations/Components/List.Locations`),

@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
 import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
-import Loader from '@/components/common/ui/Loader/Loader';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import BackBtn from '@/components/common/ui/BackBtn';
-import List from '@/components/pages/Moves/MoveCard/List/List.MoveCard';
+import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingMove from '@/components/pages/Moves/MoveCard/Heading';
 import { useFetchMove } from '@/components/pages/Moves/MoveCard/Hooks/useFetchMove';
+import List from '@/components/pages/Moves/MoveCard/List/List.MoveCard';
 import { MoveMainBig } from '@/components/pages/Moves/MoveCard/Styled.MoveCard';
 import { GetServerSidePropsContext } from 'next';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { useState } from 'react';
 
 const Nav = dynamic(
   () => import(`@/components/pages/Moves/MoveCard/Nav/Nav.MoveCard`),

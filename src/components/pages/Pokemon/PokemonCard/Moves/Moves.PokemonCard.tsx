@@ -1,29 +1,23 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import {
-  PokemonMovesSection,
-  PokemonMovesTd,
-  PokemonMovesMachine,
-  PokemonMovesTable,
-} from './Styled.Moves.PokemonCard';
-import {
-  THead,
-  TRow,
-  TLink,
-  TableContainer,
-} from '@/components/common/styles/Table';
 import { H3, Span } from '@/components/common/styles/Headings';
+import { TableContainer, TLink, TRow } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
-import { LearnMethod } from '@/utils/ObjectsMap';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Machines, Moves, Pokemon } from '@/types/types';
-import { IPokemon, IPokemonMoveVersion } from '@/types/Pokemon/Pokemon';
-import { ColumnDef } from '@tanstack/react-table';
-import { IMove } from '@/types/Moves/Move';
 import { useTableParams } from '@/hooks/useTableParams';
+import { IMove } from '@/types/Moves/Move';
 import { IMoveAilment } from '@/types/Moves/MoveAilment';
+import { IPokemon, IPokemonMoveVersion } from '@/types/Pokemon/Pokemon';
+import { Machines, Pokemon } from '@/types/types';
+import { LearnMethod } from '@/utils/ObjectsMap';
+import { ColumnDef } from '@tanstack/react-table';
 import axios from 'axios';
-import { useQuery } from 'react-query';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  PokemonMovesMachine,
+  PokemonMovesSection,
+  PokemonMovesTable,
+  PokemonMovesTd,
+} from './Styled.Moves.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
