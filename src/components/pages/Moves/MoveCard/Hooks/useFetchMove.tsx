@@ -20,7 +20,7 @@ export const useFetchMove = (name: string) => {
   const { data: machines } = useMachines();
 
   // Version of the returned data is from the latest available from PokéAPI
-  const [version, setVersion] = useState(`ultra-sun-ultra-moon`);
+  const [version, setVersion] = useState(`sword-shield`);
 
   // Switch between the different tables for the method to learn the move
   const [toggle, setToggle] = useState(0);

@@ -43,7 +43,7 @@ function LocationCard({ name }: Props) {
 
   const data = useMemo(
     () =>
-      area?.pokemon_encounters
+      game && area?.pokemon_encounters
         .map((a) => a.version_details.filter((av) => av.version.name === game))
         .flat()
         .map((ave) => ave.encounter_details)
@@ -53,13 +53,13 @@ function LocationCard({ name }: Props) {
 
   const columns = useMemo<ColumnDef<ILocationArea>[]>(
     () => [
-      {
-        accessorFn: (row) => console.log(row),
-        id: `name`,
-        header: `Pokemon`,
-        // cell: info =>
-        //   <TName>hello</TName>
-      },
+      // {
+      //   accessorFn: (row) => console.log(row),
+      //   id: `name`,
+      //   header: `Pokemon`,
+      //   // cell: info =>
+      //   //   <TName>hello</TName>
+      // },
       {
         accessorKey: `method.name`,
         id: `method`,
@@ -120,7 +120,7 @@ function LocationCard({ name }: Props) {
             .replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/, ``)}
         </CardTitle>
         <Subtitle>
-          {location?.region.name} - {game.replace(/-/g, ` `)}
+          {location?.region.name} - {game?.replace(/-/g, ` `)}
         </Subtitle>
         <AreaLocationCard
           location={location}

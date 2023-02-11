@@ -98,7 +98,6 @@ export const MoveCardDataList = styled.ul`
 
 export const MoveCardDataText = styled.p`
   font-size: 1.7rem;
-  text-transform: lowercase;
 `;
 
 export const MoveCardDataMeta = styled.ul`

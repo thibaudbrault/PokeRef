@@ -18,7 +18,7 @@ type Props = {
 function List({ pokedex, moveName, version, toggle }: Props) {
   const textShown = () => {
     if (toggle === 0) {
-      return <LevelMoveText />;
+      return <LevelMoveText version={version} />;
     } else if (toggle === 1) {
       return <MachinesMoveText />;
     } else if (toggle === 2) {

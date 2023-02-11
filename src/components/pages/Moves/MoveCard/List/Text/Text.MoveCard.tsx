@@ -1,9 +1,11 @@
 import { H3 } from '@/components/common/styles/Headings';
 import { MoveText } from '@/components/pages/Moves/MoveCard/Styled.MoveCard';
 
-const version = `ultra-sun-ultra-moon`;
+type Props = {
+  version: string;
+}
 
-export const LevelMoveText = () => {
+export const LevelMoveText = ({ version }: Props) => {
   return (
     <>
       <H3>Learned by leveling up</H3>

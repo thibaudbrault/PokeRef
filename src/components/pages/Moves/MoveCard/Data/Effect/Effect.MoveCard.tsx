@@ -25,23 +25,19 @@ function Effect({ move, version }: Props) {
             <i>{move?.name?.replace(/-/g, ` `)}</i>
             {` `}
           </Span>
-          {move.effect_entries?.map(
-            (me) =>
-              me.language.name === `en` && (
-                <>
-                  {me.effect
-                    .replace(/\$effect_chance/g, `${move.meta.ailment_chance}`)
-                    .replace(`(100 - accuracy)`, 100 - `${move.accuracy}`)}
-                </>
-              ),
-          )}
-          {` `}
+          {move.effect_entries?.find(me =>
+            me.language.name === `en`
+          )?.effect
+            .replace(/\$effect_chance/g, `${move.meta.ailment_chance}`)
+            .replace(`(100 - accuracy)`, 100 - `${move.accuracy}`)
+            .toLowerCase()
+          }
           <br />
-          {move.flavor_text_entries?.map(
+          {move.flavor_text_entries?.find(
             (mf) =>
               mf.language.name === `en` &&
-              mf.version_group.name === version && <>{mf.flavor_text}</>,
-          )}
+              mf.version_group.name === version
+          )?.flavor_text.replace(/(?<=(?:^|[.?!])\W*)[a-z]/g, i => i.toUpperCase())}
         </MoveCardDataText>
 
         <MoveCardDataMeta>

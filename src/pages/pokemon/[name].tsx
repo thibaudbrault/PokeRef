@@ -156,7 +156,7 @@ function PokemonCard() {
       <Head>
         <title>
           {typeof name === `string` &&
-            name.charAt(0).toUpperCase() + name.slice(1)}
+            name.replace(/-/g, ` `).replace(/(^\w|\s\w)/g, m => m.toUpperCase())}
           {` `}| Pokémon | PokéRef
         </title>
         <meta name="description" content={`Find every details about ${name}`} />

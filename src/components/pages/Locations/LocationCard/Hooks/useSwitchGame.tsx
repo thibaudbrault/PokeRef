@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
 export const useSwitchGame = (name: string) => {
-  const [game, setGame] = useState<string>(`red`);
+  const [game, setGame] = useState<string | null>(null);
   const [toggleState, setToggleState] = useState<number>(0);
 
   const toggleTable = (index: number) => {
