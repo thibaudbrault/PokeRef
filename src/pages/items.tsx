@@ -1,113 +1,19 @@
-import { LeftTitle } from '@/components/common/styles/Headings';
+import { MethodNav } from '@/components/common/styles/Navbars';
 import { MainBig } from '@/components/common/styles/Sizing';
-import {
-  ModifiedTable,
-  TableContainer,
-  TLink,
-  TName,
-} from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingItems from '@/components/pages/Items/Heading';
-import {
-  TCategoryItems,
-  TEffectItems,
-} from '@/components/pages/Items/Styled.Items';
-import { useTableParams } from '@/hooks/useTableParams';
-import { IItem } from '@/types/Items/Item';
-import { getItems } from '@/utils/DataFetch';
-import { ColumnDef } from '@tanstack/react-table';
-import Image from 'next/image';
-import { useMemo } from 'react';
-import { useQuery } from 'react-query';
+import { useToggleTable } from '@/components/pages/Items/Hooks/useToggleTable';
 
-type Props = {
-  initialItems: IItem[];
-};
 
-function ItemsPage({ initialItems }: Props) {
-  const {
-    isLoading,
-    error,
-    data: items,
-  } = useQuery({
-    queryKey: [`items`],
-    queryFn: getItems,
-    initialData: initialItems,
-  });
+function ItemsPage() {
 
-  const data = useMemo(() => items, [items]);
+  const { results, toggle, setToggle, pageShown } = useToggleTable();
 
-  const columns = useMemo<ColumnDef<IItem>[]>(
-    () => [
-      {
-        accessorKey: `sprites.default`,
-        id: `sprites`,
-        header: `Sprite`,
-        cell: (info) => (
-          <td>
-            <Image
-              src={info.getValue<string>() || ``}
-              alt="-"
-              width={30}
-              height={30}
-            />
-          </td>
-        ),
-      },
-      {
-        accessorKey: `name`,
-        id: `sort`,
-        header: `Name`,
-        cell: (info) => (
-          <TName>
-            <TLink
-              href={{
-                pathname: `/item/[name]`,
-                query: { name: info.getValue<string>() },
-              }}
-            >
-              {info.getValue<string>().replace(/-/g, ` `)}
-            </TLink>
-          </TName>
-        ),
-      },
-      {
-        accessorKey: `category.name`,
-        id: `category`,
-        header: `Category`,
-        cell: (info) => (
-          <TCategoryItems>
-            {info.getValue<string>().replace(/-/g, ` `)}
-          </TCategoryItems>
-        ),
-      },
-      {
-        accessorFn: (row) =>
-          row.effect_entries.find((re) => {
-            return re;
-          })?.short_effect,
-        id: `effect`,
-        header: `Effect`,
-        cell: (info) => (
-          <TEffectItems>
-            <span>{info.getValue<string>()}</span>
-          </TEffectItems>
-        ),
-      },
-    ],
-    [],
-  );
-
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
-
-  if (error instanceof Error) {
+  if (results[0].status === 'error' || results[1].status === 'error') {
     return { error };
   }
 
-  if (isLoading) {
+  if (results[0].status === 'loading' || results[1].status === 'loading') {
     return <Loader />;
   }
 
@@ -115,25 +21,24 @@ function ItemsPage({ initialItems }: Props) {
     <>
       <HeadingItems />
       <MainBig>
-        <LeftTitle>Items</LeftTitle>
-        <TableContainer ref={tableContainerRef}>
-          <ModifiedTable>
-            {tableHeader()}
-            {tableBody()}
-          </ModifiedTable>
-        </TableContainer>
+        <MethodNav>
+          <button
+            className={toggle === 1 ? `button_active` : ``}
+            onClick={() => setToggle(1)}
+          >
+            <p>Items</p>
+          </button>
+          <button
+            className={toggle === 2 ? `button_active` : ``}
+            onClick={() => setToggle(2)}
+          >
+            <p>Berries</p>
+          </button>
+        </MethodNav>
+        {pageShown()}
       </MainBig>
     </>
   );
 }
 
 export default ItemsPage;
-
-// export async function getServerSideProps() {
-//   const initialItems = await getItems()
-//   return {
-//     props: {
-//       initialItems
-//     }
-//   }
-// }

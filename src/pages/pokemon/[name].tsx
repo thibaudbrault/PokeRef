@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Subtitle, Title } from '../../components/common/styles/Headings';
 import { MainBig } from '../../components/common/styles/Sizing';
 import Loader from '../../components/common/ui/Loader/Loader';
@@ -18,6 +18,8 @@ import {
 // import { Species } from '@/types/types';
 import BackBtn from '@/components/common/ui/BackBtn';
 import { useRouterIsReady } from '@/hooks/useRouterIsReady';
+import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
+import { GiSpeaker } from '@meronex/icons/gi';
 
 const Data = dynamic(
   () =>
@@ -58,7 +60,6 @@ const Nav = dynamic(
 
 function PokemonCard() {
   const { name } = useRouterIsReady();
-
   // Import data fetch
   const {
     isLoading,
@@ -87,6 +88,7 @@ function PokemonCard() {
   // Modify game and version according to the id of the pokemon
   const [game, setGame] = useState(``);
   const [version, setVersion] = useState(``);
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
   // const speciesFiltersFn = (species: Species.Species) => {
   //   speciesFilters.forEach((s) => {
@@ -131,6 +133,16 @@ function PokemonCard() {
     setToggleType(index);
   };
 
+  const audioRef = useRef();
+
+  const play = () => {
+    if (audioRef.current) {
+      audioRef.current.play()
+    } else {
+      console.error("Error playing audio")
+    }
+  }
+
   if (error instanceof Error) {
     return { error };
   }
@@ -160,13 +172,23 @@ function PokemonCard() {
         <meta property="og:type" content="website" />
       </Head>
       <MainBig>
-        {pokemon?.name?.includes(`mega`) ? (
-          <Title>
-            {pokemon?.name?.replace(/-/g, ` `).split(` `).reverse().join(` `)}
-          </Title>
-        ) : (
-          <Title>{pokemon?.name?.replace(/-/g, ` `)}</Title>
-        )}
+        <PokemonTitle>
+          {pokemon?.name?.includes(`mega`) ? (
+            <Title>
+              {pokemon?.name?.replace(/-/g, ` `).split(` `).reverse().join(` `)}
+            </Title>
+          ) : (
+            <Title>{pokemon?.name?.replace(/-/g, ` `)}</Title>
+          )}
+          {pokemon?.id < 722 &&
+            <div>
+              <button onClick={play}>
+                <GiSpeaker />
+              </button>
+              <audio ref={audioRef} src={`https://raw.githubusercontent.com/thibaudbrault/pokeref_medias/main/cries/${pokemon?.id}.ogg`} />
+            </div>
+          }
+        </PokemonTitle>
         <Subtitle>{species?.generation?.name.replace(/-/g, ` `)}</Subtitle>
 
         <Nav pokemon={pokemon} setGame={setGame} setVersion={setVersion} />
@@ -178,7 +200,7 @@ function PokemonCard() {
           game={game}
         />
 
-        <EvolutionPokemon evolution={evolution} />
+        {/* <EvolutionPokemon evolution={evolution} />
 
         <Info pokemon={pokemon} species={species} evolution={evolution} />
 
@@ -197,7 +219,7 @@ function PokemonCard() {
           game={game}
         />
 
-        <Sprites pokemon={pokemon} />
+        <Sprites pokemon={pokemon} /> */}
 
         <Link href="/" passHref>
           <BackBtn name="Pokedex" />

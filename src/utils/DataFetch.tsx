@@ -191,6 +191,20 @@ export const getItems = async () => {
   }
 };
 
+export const getBerries = async () => {
+  try {
+    const res = await axios.get(`https://pokeapi.co/api/v2/berry?limit=66`);
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string }) => axios.get(res.url)),
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 // Fetch all locations
 export const getRegions = async () => {
   try {

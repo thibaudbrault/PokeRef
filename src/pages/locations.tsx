@@ -12,6 +12,7 @@ import { useQuery } from 'react-query';
 const ListLocations = dynamic(
   () => import(`@/components/pages/Locations/Components/List.Locations`),
 );
+
 const RegionsMethod = dynamic(() =>
   import(`@/utils/ObjectsMap`).then((res) => res.RegionsMethod),
 );

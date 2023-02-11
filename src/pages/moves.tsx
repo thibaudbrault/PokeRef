@@ -7,11 +7,11 @@ import { useToggleTable } from '@/components/pages/Moves/Hooks/useToggleTable';
 function Moves() {
   const { results, toggle, setToggle, pageShown } = useToggleTable();
 
-  if (results.error) {
+  if (results[0].status === 'error' || results[1].status === 'error') {
     return { error };
   }
 
-  if (results.isLoading) {
+  if (results[0].status === 'loading' || results[1].status === 'loading') {
     return <Loader />;
   }
 

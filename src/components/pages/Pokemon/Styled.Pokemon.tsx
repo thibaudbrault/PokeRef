@@ -231,3 +231,22 @@ export const ToBottom = styled.a`
     font-size: 3rem;
   }
 `;
+
+export const PokemonTitle = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  & button {
+    background: none;
+    border: none;
+
+    & svg {
+      font-size: 4rem;
+      & path {
+        fill: ${({ theme }) => theme.secondary};
+      }
+    }
+  }
+`;
