@@ -1,16 +1,18 @@
 import { useMemo } from 'react';
 
+import { LeftTitle } from '@/components/common/styles/Headings';
 import {
-  ModifiedTable,
+  FullWidthTable,
   TableContainer,
-  TName,
+  TBold,
 } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IMove } from '@/types/Moves/Move';
 import { IMoveAilment } from '@/types/Moves/MoveAilment';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
-import { ModifiedLeftTitle, MovesSection, StatusMoves } from '../Styled.Moves';
+import { StatusMoves } from '../Styled.Moves';
+import { removeDash } from '@/utils/Typography';
 
 type Props = {
   status?: IMoveAilment[];
@@ -28,9 +30,7 @@ function StatusTable({ status }: Props) {
         accessorKey: `name`,
         id: `sort`,
         header: `Status`,
-        cell: (info) => (
-          <TName>{info.getValue<string>().replace(/-/g, ` `)}</TName>
-        ),
+        cell: (info) => <TBold>{removeDash(info.getValue<string>())}</TBold>,
       },
       {
         accessorFn: (row) => row.moves,
@@ -44,7 +44,7 @@ function StatusTable({ status }: Props) {
                   query: { name: i.name },
                 }}
               >
-                <p>{i.name.replace(/-/g, ` `)}</p>
+                <p>{removeDash(i.name)}</p>
               </Link>
             ))}
           </StatusMoves>
@@ -60,15 +60,15 @@ function StatusTable({ status }: Props) {
   );
 
   return (
-    <MovesSection>
-      <ModifiedLeftTitle>Status</ModifiedLeftTitle>
+    <>
+      <LeftTitle>Status</LeftTitle>
       <TableContainer ref={tableContainerRef}>
-        <ModifiedTable>
+        <FullWidthTable>
           {tableHeader()}
           {tableBody()}
-        </ModifiedTable>
+        </FullWidthTable>
       </TableContainer>
-    </MovesSection>
+    </>
   );
 }
 

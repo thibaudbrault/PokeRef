@@ -49,6 +49,10 @@ export const MoveList = styled.ul`
 export const MoveText = styled.p`
   margin: 0 0 3rem;
   font-size: 1.5rem;
+
+  & span {
+    text-transform: capitalize;
+  }
 `;
 
 export const MoveLink = styled(Link)`
@@ -56,6 +60,7 @@ export const MoveLink = styled(Link)`
   font-family: 'Press Start 2P';
   text-transform: capitalize;
   transition: 0.3s ease-in-out;
+  cursor: pointer;
 
   &:hover {
     color: ${({ theme }) => theme.red};

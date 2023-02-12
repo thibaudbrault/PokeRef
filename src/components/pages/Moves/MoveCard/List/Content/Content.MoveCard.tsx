@@ -5,6 +5,7 @@ import {
 } from '@/components/pages/Moves/MoveCard/Styled.MoveCard';
 import { IPokemon, IPokemonMoveVersion } from '@/types/Pokemon/Pokemon';
 import ImageWithFallback from '@/utils/ImageWithFallback';
+import { removeDash } from '@/utils/Typography';
 
 type Props = {
   pokedex?: IPokemon[];
@@ -64,7 +65,7 @@ function Content({ pokedex, moveName, version, toggle }: Props) {
                         }}
                         key={p.name}
                       >
-                        {p.name.replace(/-/g, ` `)}
+                        {removeDash(p.name)}
                       </MoveLink>
                       <p>Level {pmv.level_learned_at}</p>
                     </li>

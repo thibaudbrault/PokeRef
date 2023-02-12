@@ -1,20 +1,21 @@
 import { LeftTitle } from '@/components/common/styles/Headings';
-import { ModifiedMainBig } from '@/components/common/styles/Sizing';
+import { MainBig } from '@/components/common/styles/Sizing';
 import {
-  ModifiedTable,
+  FullWidthTable,
   TableContainer,
   TEffect,
   TLink,
-  TName,
+  TBold,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IAbility } from '@/types/Pokemon/Ability';
 import { getAbilities } from '@/utils/DataFetch';
+import { removeDash } from '@/utils/Typography';
+import { useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
-import { useQuery } from '@tanstack/react-query';
 
 const HeadingAbilities = dynamic(
   () => import(`@/components/pages/Abilities/Heading`),
@@ -44,16 +45,16 @@ function AbilitiesPage({ initialAbilities }: Props) {
         id: `sort`,
         header: `Name`,
         cell: (info) => (
-          <TName>
+          <TBold>
             <TLink
               href={{
                 pathname: `/ability/[name]`,
                 query: { name: info.getValue<string>() },
               }}
             >
-              {info.getValue<string>().replace(/-/g, ` `)}
+              {removeDash(info.getValue<string>())}
             </TLink>
-          </TName>
+          </TBold>
         ),
       },
       {
@@ -89,15 +90,15 @@ function AbilitiesPage({ initialAbilities }: Props) {
   return (
     <>
       <HeadingAbilities />
-      <ModifiedMainBig>
+      <MainBig>
         <LeftTitle>Abilities</LeftTitle>
         <TableContainer ref={tableContainerRef}>
-          <ModifiedTable>
+          <FullWidthTable>
             {tableHeader()}
             {tableBody()}
-          </ModifiedTable>
+          </FullWidthTable>
         </TableContainer>
-      </ModifiedMainBig>
+      </MainBig>
     </>
   );
 }

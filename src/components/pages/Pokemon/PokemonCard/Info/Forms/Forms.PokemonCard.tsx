@@ -1,6 +1,7 @@
 import { H3 } from '@/components/common/styles/Headings';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { Species } from '@/types/types';
+import { removeDash } from '@/utils/Typography';
 import Link from 'next/link';
 import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
 
@@ -37,7 +38,7 @@ function Forms({ pokemon, species }: Props) {
                       }}
                       key={sv.pokemon.name}
                     >
-                      <span>{sv.pokemon.name.replace(/-/g, ` `)}</span>
+                      <span>{removeDash(sv.pokemon.name)}</span>
                     </Link>
                   ))
                 : `⠀`}

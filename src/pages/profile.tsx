@@ -28,8 +28,11 @@ function Profile() {
     error,
     data: format,
   } = useQuery({
-    queryKey: ['format', formatQuery],
-    queryFn: () => getFormat(`https://raw.githubusercontent.com/pkmn/smogon/main/data/stats/${formatQuery}.json`)
+    queryKey: [`format`, formatQuery],
+    queryFn: () =>
+      getFormat(
+        `https://raw.githubusercontent.com/pkmn/smogon/main/data/stats/${formatQuery}.json`,
+      ),
   });
 
   const getUserDoc = async () => {

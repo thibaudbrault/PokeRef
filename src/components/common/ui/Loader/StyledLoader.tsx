@@ -1,4 +1,4 @@
-import { Wiggle } from '@/components/common/styles/Keyframes';
+import { Wiggle } from '@/components/common/styles/Animations';
 import styled from 'styled-components';
 
 export const LoadingImg = styled.div`

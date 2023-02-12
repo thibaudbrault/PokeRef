@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
-import { H3, H4, Span } from '@/components/common/styles/Headings';
+import { H3, H4, Capitalize, Bold } from '@/components/common/styles/Headings';
 import { Moves } from '@/types/types';
+import { removeDash } from '@/utils/Typography';
 import {
   MoveCardDataList,
   MoveCardDataMeta,
@@ -21,29 +22,31 @@ function Effect({ move, version }: Props) {
         <H3>Effects</H3>
 
         <MoveCardDataText>
-          <Span>
-            <i>{move?.name?.replace(/-/g, ` `)}</i>
+          <Capitalize>
+            <i>{removeDash(move?.name)}</i>
             {` `}
-          </Span>
-          {move.effect_entries?.find(me =>
-            me.language.name === `en`
-          )?.effect
-            .replace(/\$effect_chance/g, `${move.meta.ailment_chance}`)
+          </Capitalize>
+          {move.effect_entries
+            ?.find((me) => me.language.name === `en`)
+            ?.effect.replace(/\$effect_chance/g, `${move.meta.ailment_chance}`)
             .replace(`(100 - accuracy)`, 100 - `${move.accuracy}`)
-            .toLowerCase()
-          }
+            .toLowerCase()}
           <br />
-          {move.flavor_text_entries?.find(
-            (mf) =>
-              mf.language.name === `en` &&
-              mf.version_group.name === version
-          )?.flavor_text.replace(/(?<=(?:^|[.?!])\W*)[a-z]/g, i => i.toUpperCase())}
+          {move.flavor_text_entries
+            ?.find(
+              (mf) =>
+                mf.language.name === `en` && mf.version_group.name === version,
+            )
+            ?.flavor_text.replace(/(?<=(?:^|[.?!])\W*)[a-z]/g, (i) =>
+              i.toUpperCase(),
+            )}
         </MoveCardDataText>
 
         <MoveCardDataMeta>
           {move?.meta.ailment?.name !== `none` && (
             <li>
-              Status : <Span>{move.meta.ailment.name}</Span>
+              <Bold>Status</Bold> :{` `}
+              <Capitalize>{move.meta.ailment.name}</Capitalize>
             </li>
           )}
           {move?.meta?.ailment_chance !== 0 && (
@@ -102,12 +105,13 @@ function Effect({ move, version }: Props) {
                 ms.change < 0 ? (
                   <li key={ms.stat.name}>
                     This move lower the target's{` `}
-                    <Span>{ms.stat.name.replace(/-/g, ` `)}</Span> by{` `}
+                    <Capitalize>{removeDash(ms.stat.name)}</Capitalize> by{` `}
                     {ms.change} stage
                   </li>
                 ) : (
                   <li key={ms.stat.name}>
-                    This move raises the target's <Span>{ms.stat.name}</Span>
+                    This move raises the target's{` `}
+                    <Capitalize>{ms.stat.name}</Capitalize>
                     {` `}
                     by {ms.change} stage
                   </li>
@@ -128,11 +132,13 @@ function Effect({ move, version }: Props) {
                   {mp.power !== null && (
                     <li>
                       Before{` `}
-                      <Span>{mp.version_group.name.replace(/-/g, ` `)}</Span>
+                      <Capitalize>
+                        {removeDash(mp.version_group.name)}
+                      </Capitalize>
                       {` `}:{` `}
-                      <Span>
-                        <i>{move.name.replace(/-/g, ` `)}</i>
-                      </Span>
+                      <Capitalize>
+                        <i>{removeDash(move.name)}</i>
+                      </Capitalize>
                       {` `}
                       had {mp.power} base power
                     </li>
@@ -140,11 +146,13 @@ function Effect({ move, version }: Props) {
                   {mp.accuracy !== null && (
                     <li>
                       Before{` `}
-                      <Span>{mp.version_group.name.replace(/-/g, ` `)}</Span>
+                      <Capitalize>
+                        {removeDash(mp.version_group.name)}
+                      </Capitalize>
                       {` `}:{` `}
-                      <Span>
-                        <i>{move.name.replace(/-/g, ` `)}</i>
-                      </Span>
+                      <Capitalize>
+                        <i>{removeDash(move.name)}</i>
+                      </Capitalize>
                       {` `}
                       had {mp.accuracy} accuracy
                     </li>
@@ -152,11 +160,13 @@ function Effect({ move, version }: Props) {
                   {mp.pp !== null && (
                     <li>
                       Before{` `}
-                      <Span>{mp.version_group.name.replace(/-/g, ` `)}</Span>
+                      <Capitalize>
+                        {removeDash(mp.version_group.name)}
+                      </Capitalize>
                       {` `}:{` `}
-                      <Span>
-                        <i>{move.name.replace(/-/g, ` `)}</i>
-                      </Span>
+                      <Capitalize>
+                        <i>{removeDash(move.name)}</i>
+                      </Capitalize>
                       {` `}
                       had {mp.pp} PP
                     </li>
@@ -164,11 +174,13 @@ function Effect({ move, version }: Props) {
                   {mp.type !== null && (
                     <li>
                       Before{` `}
-                      <Span>{mp.version_group.name.replace(/-/g, ` `)}</Span>
+                      <Capitalize>
+                        {removeDash(mp.version_group.name)}
+                      </Capitalize>
                       {` `}:{` `}
-                      <Span>
-                        <i>{move.name.replace(/-/g, ` `)}</i>
-                      </Span>
+                      <Capitalize>
+                        <i>{removeDash(move.name)}</i>
+                      </Capitalize>
                       {` `}
                       was {mp.type} type
                     </li>
@@ -182,9 +194,7 @@ function Effect({ move, version }: Props) {
 
       <li>
         <H4>Target</H4>
-        <MoveCardDataTarget>
-          {move.target.name.replace(/-/g, ` `)}
-        </MoveCardDataTarget>
+        <MoveCardDataTarget>{removeDash(move.target.name)}</MoveCardDataTarget>
       </li>
     </MoveCardDataList>
   );

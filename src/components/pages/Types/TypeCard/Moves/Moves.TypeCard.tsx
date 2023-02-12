@@ -1,10 +1,11 @@
-import { H3, Span } from '@/components/common/styles/Headings';
+import { H3, Capitalize } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
 import { TableContainer } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IMove } from '@/types/Moves/Move';
 import { IType } from '@/types/Pokemon/Type';
+import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 import { useMemo } from 'react';
@@ -51,7 +52,7 @@ function MovesType({ type, moves }: Props) {
                 query: { name: info.getValue<string>() },
               }}
             >
-              {info.getValue<string>().replace(/-/g, ` `)}
+              {removeDash(info.getValue<string>())}
             </Link>
           </TypeMovesName>
         ),
@@ -113,7 +114,7 @@ function MovesType({ type, moves }: Props) {
     <Section>
       <H3>Moves</H3>
       <TypeListSubtitle>
-        {data.length} moves are <Span>{type?.name}</Span> type
+        {data.length} moves are <Capitalize>{type?.name}</Capitalize> type
       </TypeListSubtitle>
       <TableContainer ref={tableContainerRef}>
         {data.length > 0 && (
@@ -125,8 +126,8 @@ function MovesType({ type, moves }: Props) {
       </TableContainer>
       {type?.name !== `fairy` && (
         <TypeMovesComment>
-          <Span>{type?.name}</Span> attacks were{` `}
-          <Span>{type?.move_damage_class?.name}</Span> before Gen IV
+          <Capitalize>{type?.name}</Capitalize> attacks were{` `}
+          <Capitalize>{type?.move_damage_class?.name}</Capitalize> before Gen IV
         </TypeMovesComment>
       )}
     </Section>

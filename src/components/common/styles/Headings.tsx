@@ -1,23 +1,6 @@
 import styled from 'styled-components';
 import { device } from './Sizing';
 
-export const LazyLoad = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  color: ${({ theme }) => theme.secondary};
-  background-color: ${({ theme }) => theme.main};
-
-  & p {
-    font-size: 4rem;
-    font-weight: 700;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-`;
-
 export const H1 = styled.h1`
   padding: 0 1rem;
   font-family: 'Press Start 2P';
@@ -68,6 +51,20 @@ export const CardTitle = styled(Title)`
   margin-bottom: 0.5rem;
 `;
 
+export const CardTitleWithImage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  & img {
+    @media ${device.sm} {
+      width: 48px;
+      height: 48px;
+    }
+  }
+`;
+
 export const Subtitle = styled.p`
   font-size: 1.5rem;
   text-transform: uppercase;
@@ -97,6 +94,10 @@ export const H4 = styled.h4`
   text-transform: capitalize;
 `;
 
-export const Span = styled.span`
+export const Capitalize = styled.span`
   text-transform: capitalize;
+`;
+
+export const Bold = styled.span`
+  font-weight: 700;
 `;

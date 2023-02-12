@@ -1,10 +1,12 @@
 import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
+import { Divider } from '@/components/common/styles/Misc';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingMove from '@/components/pages/Moves/MoveCard/Heading';
 import { useFetchMove } from '@/components/pages/Moves/MoveCard/Hooks/useFetchMove';
 import List from '@/components/pages/Moves/MoveCard/List/List.MoveCard';
 import { MoveMainBig } from '@/components/pages/Moves/MoveCard/Styled.MoveCard';
+import { removeDash } from '@/utils/Typography';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -27,33 +29,34 @@ type Props = {
 function MoveCard({ name }: Props) {
   const [learn, setLearn] = useState<string>(`level-up`);
 
-  const {
-    results,
-    version,
-    setVersion,
-    toggle,
-    setToggle,
-  } = useFetchMove(name);
+  const { results, version, setVersion, toggle, setToggle } =
+    useFetchMove(name);
 
-  if (results[0].status === 'error') {
+  if (results[0].status === `error`) {
     return { error };
   }
 
-  if (results[0].status === 'loading') {
+  if (results[0].status === `loading`) {
     return <Loader />;
   }
 
   return (
     <>
       <HeadingMove name={name} />
-      {results[0].status === 'success' && (
+      {results[0].status === `success` && (
         <MoveMainBig>
-          <CardTitle>{results[0].data?.name?.replace(/-/g, ` `)}</CardTitle>
-          <Subtitle>{results[0].data?.generation?.name?.replace(/-/g, ` `)}</Subtitle>
+          <CardTitle>{removeDash(results[0].data?.name)}</CardTitle>
+          <Subtitle>{removeDash(results[0].data?.generation?.name)}</Subtitle>
 
           <Nav move={results[0].data} setVersion={setVersion} />
 
-          <Data move={results[0].data} machines={results[2].data} version={version} />
+          <Data
+            move={results[0].data}
+            machines={results[2].data}
+            version={version}
+          />
+
+          <Divider />
 
           <LearnMethod
             toggle={toggle}

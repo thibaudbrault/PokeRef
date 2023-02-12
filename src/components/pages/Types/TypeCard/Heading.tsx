@@ -10,7 +10,9 @@ function HeadingType({ name }: Props) {
     <Head>
       <title>
         {typeof name === `string` &&
-          name?.replace(/-/g, ` `).replace(/(^\w|\s\w)/g, m => m.toUpperCase())}
+          name
+            ?.replace(/-/g, ` `)
+            .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}
         {` `}| Type | PokéRef
       </title>
       <meta

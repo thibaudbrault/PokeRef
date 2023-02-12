@@ -3,7 +3,7 @@ import { genNav } from '@/utils/DataArrays';
 import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
-  setGame: Dispatch<SetStateAction<string>>;
+  setGame: Dispatch<SetStateAction<string | null>>;
 };
 
 function Nav({ setGame }: Props) {

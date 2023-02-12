@@ -1,19 +1,21 @@
 import { LeftTitle } from '@/components/common/styles/Headings';
 import {
-  ModifiedTable,
+  FullWidthTable,
   TableContainer,
+  TBold,
+  TCategory,
   TEffect,
   TLink,
-  TName,
+  TType,
 } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import { useTableParams } from '@/hooks/useTableParams';
 import { Moves } from '@/types/types';
+import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import { MovesSection, TCategory, TType } from '../Styled.Moves';
 
 type Props = {
   moves?: Moves.Moves[];
@@ -29,16 +31,16 @@ function MovesTable({ moves }: Props) {
         id: `sort`,
         header: `Name`,
         cell: (info) => (
-          <TName>
+          <TBold>
             <TLink
               href={{
                 pathname: `/move/[name]`,
                 query: { name: info.getValue<string>() },
               }}
             >
-              {info.getValue<string>().replace(/-/g, ` `)}
+              {removeDash(info.getValue<string>())}
             </TLink>
-          </TName>
+          </TBold>
         ),
       },
       {
@@ -103,15 +105,15 @@ function MovesTable({ moves }: Props) {
   );
 
   return (
-    <MovesSection>
+    <section>
       <LeftTitle>Moves</LeftTitle>
       <TableContainer ref={tableContainerRef}>
-        <ModifiedTable>
+        <FullWidthTable>
           {tableHeader()}
           {tableBody()}
-        </ModifiedTable>
+        </FullWidthTable>
       </TableContainer>
-    </MovesSection>
+    </section>
   );
 }
 

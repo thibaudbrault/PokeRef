@@ -1,6 +1,7 @@
 import { H3 } from '@/components/common/styles/Headings';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { Evolution, Species } from '@/types/types';
+import { removeDash } from '@/utils/Typography';
 import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
 
 type Props = {
@@ -57,7 +58,7 @@ function Breeding({ pokemon, species, evolution }: Props) {
             <th>Baby trigger item</th>
             <td>
               {pokemon.id < 10000 && evolution?.baby_trigger_item !== null ? (
-                <p>{evolution?.baby_trigger_item?.name.replace(/-/g, ` `)}</p>
+                <p>{removeDash(evolution?.baby_trigger_item?.name)}</p>
               ) : (
                 `None`
               )}

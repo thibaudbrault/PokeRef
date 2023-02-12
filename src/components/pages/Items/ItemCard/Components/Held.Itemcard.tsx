@@ -1,4 +1,5 @@
 import { Items } from '@/types/types';
+import { removeDash } from '@/utils/Typography';
 import Link from 'next/link';
 import { ItemCardDataHeld } from '../Styled.ItemCard';
 
@@ -20,7 +21,7 @@ function HeldItemcard({ item }: Props) {
               }}
               key={ih.pokemon.name}
             >
-              {ih.pokemon.name.replace(/-/g, ` `)}
+              {removeDash(ih.pokemon.name)}
             </Link>
           ))}
         </ItemCardDataHeld>

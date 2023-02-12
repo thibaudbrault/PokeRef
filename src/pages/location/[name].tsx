@@ -9,6 +9,7 @@ import { LocationTable } from '@/components/pages/Locations/Styled.Locations';
 import { useTableParams } from '@/hooks/useTableParams';
 import { ILocationArea } from '@/types/Locations/LocationArea';
 import { IEncounter } from '@/types/Utility/CommonModels';
+import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
@@ -43,7 +44,8 @@ function LocationCard({ name }: Props) {
 
   const data = useMemo(
     () =>
-      game && area?.pokemon_encounters
+      game &&
+      area?.pokemon_encounters
         .map((a) => a.version_details.filter((av) => av.version.name === game))
         .flat()
         .map((ave) => ave.encounter_details)
@@ -58,13 +60,13 @@ function LocationCard({ name }: Props) {
       //   id: `name`,
       //   header: `Pokemon`,
       //   // cell: info =>
-      //   //   <TName>hello</TName>
+      //   //   <TBold>hello</TBold>
       // },
       {
         accessorKey: `method.name`,
         id: `method`,
         header: `Method`,
-        cell: (info) => <td>{info.getValue<string>().replace(/-/g, ` `)}</td>,
+        cell: (info) => <td>{removeDash(info.getValue<string>())}</td>,
       },
       {
         accessorKey: `chance`,
@@ -88,7 +90,7 @@ function LocationCard({ name }: Props) {
         header: `Condition`,
         cell: (info) =>
           info.getValue() ? (
-            <td>{info.getValue<boolean>().toString().replace(/-/g, ` `)}</td>
+            <td>{removeDash(info.getValue<boolean>().toString())}</td>
           ) : (
             <td>-</td>
           ),
@@ -115,12 +117,13 @@ function LocationCard({ name }: Props) {
       <HeadingLocation name={name} />
       <MainBig>
         <CardTitle>
-          {location?.name
-            .replace(/-/g, ` `)
-            .replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/, ``)}
+          {removeDash(location?.name).replace(
+            /kanto|johto|hoenn|sinnoh|unova|kalos|alola/,
+            ``,
+          )}
         </CardTitle>
         <Subtitle>
-          {location?.region.name} - {game?.replace(/-/g, ` `)}
+          {game && `${location?.region.name} - ${removeDash(game)}`}
         </Subtitle>
         <AreaLocationCard
           location={location}

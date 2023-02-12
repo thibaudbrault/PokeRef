@@ -4,35 +4,35 @@ import { useState } from 'react';
 import { useQueries } from '@tanstack/react-query';
 
 const ItemsTable = dynamic(
-    () => import(`@/components/pages/Items/Components/ItemsTable.Items`),
+  () => import(`@/components/pages/Items/Components/ItemsTable.Items`),
 );
 const BerriesTable = dynamic(
-    () => import(`@/components/pages/Items/Components/BerriesTable.Items`),
+  () => import(`@/components/pages/Items/Components/BerriesTable.Items`),
 );
 
 export const useToggleTable = () => {
-    const results = useQueries({
-        queries: [
-            {
-                queryKey: [`items`, 1],
-                queryFn: getItems,
-                useErrorBoundary: true,
-            },
-            {
-                queryKey: [`berries`, 2],
-                queryFn: getBerries,
-            },
-        ]
-    });
+  const results = useQueries({
+    queries: [
+      {
+        queryKey: [`items`, 1],
+        queryFn: getItems,
+        useErrorBoundary: true,
+      },
+      {
+        queryKey: [`berries`, 2],
+        queryFn: getBerries,
+      },
+    ],
+  });
 
-    const [toggle, setToggle] = useState(1);
-    const pageShown = () => {
-        if (toggle === 1) {
-            return <ItemsTable items={results[0].data} />;
-        } else if (toggle === 2) {
-            return <BerriesTable berries={results[1].data} />;
-        }
-    };
+  const [toggle, setToggle] = useState(1);
+  const pageShown = () => {
+    if (toggle === 1) {
+      return <ItemsTable items={results[0].data} />;
+    } else if (toggle === 2) {
+      return <BerriesTable berries={results[1].data} />;
+    }
+  };
 
-    return { results, toggle, setToggle, pageShown };
+  return { results, toggle, setToggle, pageShown };
 };

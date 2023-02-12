@@ -2,16 +2,13 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingPokemon from '@/components/pages/Pokemon/Heading';
 import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
-import {
-  PokedexList,
-  PokedexVerticalText,
-} from '@/components/pages/Pokemon/Styled.Pokemon';
+import { PokedexVerticalText } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { useStateWithCallback } from '@/hooks/useStateWithCallback';
 import { Options, OptionsOffsetLimit } from '@/utils/DataArrays';
 import { getPokedex } from '@/utils/DataFetch';
+import { useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { IPokemon } from '../types/Pokemon/Pokemon';
 
 const Filters = dynamic(
@@ -76,13 +73,11 @@ function Pokedex() {
           setShowPlaceholder={setShowPlaceholder}
         />
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
-        <PokedexList>
-          <ListPokemon
-            filteredPokedex={filteredPokedex}
-            showPlaceholder={showPlaceholder}
-            setShowPlaceholder={setShowPlaceholder}
-          />
-        </PokedexList>
+        <ListPokemon
+          filteredPokedex={filteredPokedex}
+          showPlaceholder={showPlaceholder}
+          setShowPlaceholder={setShowPlaceholder}
+        />
         {scrollBtn()}
       </MainBig>
     </>

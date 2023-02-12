@@ -12,7 +12,7 @@ import {
   getPokemon,
   getPokemonLocation,
   getSpecies,
-  getTypes
+  getTypes,
 } from '@/utils/DataFetch';
 // import { speciesFilters } from '@/utils/DataArrays';
 // import { Species } from '@/types/types';
@@ -22,6 +22,7 @@ import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { GiSpeaker } from '@meronex/icons/gi';
 import { GetServerSidePropsContext } from 'next';
 import { useQueries, useQuery } from '@tanstack/react-query';
+import { removeDash } from '@/utils/Typography';
 
 const Data = dynamic(
   () =>
@@ -65,43 +66,46 @@ type Props = {
 };
 
 function PokemonCard({ name }: Props) {
-
   const [pokemon, species, moves, types, machines, location] = useQueries({
     queries: [
       {
-        queryKey: ['pokemon'],
-        queryFn: () => getPokemon(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        queryKey: [`pokemon`],
+        queryFn: () => getPokemon(`https://pokeapi.co/api/v2/pokemon/${name}`),
       },
       {
-        queryKey: ['species'],
-        queryFn: () => getSpecies(`https://pokeapi.co/api/v2/pokemon-species/${name}`)
+        queryKey: [`species`],
+        queryFn: () =>
+          getSpecies(`https://pokeapi.co/api/v2/pokemon-species/${name}`),
       },
       {
-        queryKey: ['moves'],
-        queryFn: getMoves
+        queryKey: [`moves`],
+        queryFn: getMoves,
       },
       {
-        queryKey: ['types'],
-        queryFn: getTypes
+        queryKey: [`types`],
+        queryFn: getTypes,
       },
       {
-        queryKey: ['machines'],
-        queryFn: getMachines
+        queryKey: [`machines`],
+        queryFn: getMachines,
       },
       {
-        queryKey: ['location'],
-        queryFn: () => getPokemonLocation(`https://pokeapi.co/api/v2/pokemon/${name}/encounters`)
+        queryKey: [`location`],
+        queryFn: () =>
+          getPokemonLocation(
+            `https://pokeapi.co/api/v2/pokemon/${name}/encounters`,
+          ),
       },
-    ]
-  })
+    ],
+  });
 
   const evolutionChainUrl = species.data?.evolution_chain?.url;
 
   const evolution = useQuery({
-    queryKey: ['evolution'],
+    queryKey: [`evolution`],
     queryFn: () => getEvolution(evolutionChainUrl),
-    enabled: !!evolutionChainUrl
-  })
+    enabled: !!evolutionChainUrl,
+  });
 
   // Modify game and version according to the id of the pokemon
   const [game, setGame] = useState(``);
@@ -154,17 +158,17 @@ function PokemonCard({ name }: Props) {
 
   const play = () => {
     if (audioRef.current) {
-      audioRef.current.play()
+      audioRef.current.play();
     } else {
-      console.error("Error playing audio")
+      console.error(`Error playing audio`);
     }
-  }
+  };
 
-  if (pokemon.status === 'error') {
+  if (pokemon.status === `error`) {
     return { error };
   }
 
-  if (pokemon.status === 'loading') {
+  if (pokemon.status === `loading`) {
     return <Loader />;
   }
 
@@ -173,7 +177,9 @@ function PokemonCard({ name }: Props) {
       <Head>
         <title>
           {typeof name === `string` &&
-            name.replace(/-/g, ` `).replace(/(^\w|\s\w)/g, m => m.toUpperCase())}
+            name
+              .replace(/-/g, ` `)
+              .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}
           {` `}| Pokémon | PokéRef
         </title>
         <meta name="description" content={`Find every details about ${name}`} />
@@ -192,21 +198,24 @@ function PokemonCard({ name }: Props) {
         <PokemonTitle>
           {pokemon.data?.name?.includes(`mega`) ? (
             <Title>
-              {pokemon.data?.name?.replace(/-/g, ` `).split(` `).reverse().join(` `)}
+              {removeDash(pokemon.data?.name).split(` `).reverse().join(` `)}
             </Title>
           ) : (
-            <Title>{pokemon.data?.name?.replace(/-/g, ` `)}</Title>
+            <Title>{removeDash(pokemon.data?.name)}</Title>
           )}
-          {pokemon.data?.id < 722 &&
+          {pokemon.data?.id < 722 && (
             <div>
               <button onClick={play}>
                 <GiSpeaker />
               </button>
-              <audio ref={audioRef} src={`https://raw.githubusercontent.com/thibaudbrault/pokeref_medias/main/cries/${pokemon?.id}.ogg`} />
+              <audio
+                ref={audioRef}
+                src={`https://raw.githubusercontent.com/thibaudbrault/pokeref_medias/main/cries/${pokemon?.id}.ogg`}
+              />
             </div>
-          }
+          )}
         </PokemonTitle>
-        <Subtitle>{species.data?.generation?.name.replace(/-/g, ` `)}</Subtitle>
+        <Subtitle>{removeDash(species.data?.generation?.name)}</Subtitle>
 
         <Nav pokemon={pokemon.data} setGame={setGame} setVersion={setVersion} />
 

@@ -1,5 +1,6 @@
 import { H3 } from '@/components/common/styles/Headings';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { removeDash } from '@/utils/Typography';
 import {
   PokemonStatsBars,
   PokemonStatsText,
@@ -101,7 +102,7 @@ function Bars({ pokemon }: Props) {
           </tr>
           <tr>
             <PokemonStatsText>
-              {pokemon?.stats?.[3]?.stat?.name.replace(/-/g, ` `)}
+              {removeDash(pokemon?.stats?.[3]?.stat?.name)}
             </PokemonStatsText>
             <PokemonStatsText>
               {pokemon?.stats?.[3]?.base_stat}
@@ -131,9 +132,10 @@ function Bars({ pokemon }: Props) {
           </tr>
           <tr>
             <PokemonStatsText>
-              {pokemon?.stats?.[4]?.stat?.name
-                .replace(/-/g, ` `)
-                .replace(`special`, `sp.`)}
+              {removeDash(pokemon?.stats?.[4]?.stat?.name).replace(
+                `special`,
+                `sp.`,
+              )}
             </PokemonStatsText>
             <PokemonStatsText>
               {pokemon?.stats?.[4]?.base_stat}

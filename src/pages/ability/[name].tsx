@@ -2,7 +2,7 @@ import {
   CardTitle,
   H3,
   H4,
-  Span,
+  Capitalize,
   Subtitle,
 } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
@@ -15,6 +15,7 @@ import {
   AbilityCardEffect,
   AbilityCardSection,
 } from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
+import { removeDash } from '@/utils/Typography';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -41,6 +42,8 @@ function AbilityCard({ name }: Props) {
     filterDesc,
   } = useFilterAbility(name);
 
+  console.log(ability);
+
   if (error instanceof Error) {
     return { error };
   }
@@ -55,8 +58,8 @@ function AbilityCard({ name }: Props) {
     <>
       <HeadingAbility name={name} />
       <MainBig>
-        <CardTitle>{ability?.name?.replace(/-/g, ` `)}</CardTitle>
-        <Subtitle>{ability?.generation?.name?.replace(/-/g, ` `)}</Subtitle>
+        <CardTitle>{removeDash(ability?.name)}</CardTitle>
+        <Subtitle>{removeDash(ability?.generation?.name)}</Subtitle>
 
         <AbilityCardSection>
           <AbilityCardEffect>
@@ -77,7 +80,7 @@ function AbilityCard({ name }: Props) {
         <DescAbilityCard filterDesc={filterDesc} />
         <AbilityCardSection>
           <H3>
-            Pokemon with <Span>{ability?.name?.replace(/-/g, ` `)}</Span>
+            Pokemon with <Capitalize>{removeDash(ability?.name)}</Capitalize>
           </H3>
           <TableAbilitycard ability={ability} pokedex={pokedex} />
         </AbilityCardSection>

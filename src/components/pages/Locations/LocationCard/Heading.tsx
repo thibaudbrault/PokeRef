@@ -8,8 +8,11 @@ function HeadingLocation({ name }: Props) {
   return (
     <Head>
       <title>
-        {`${name?.replace(/-/g, ` `).replace(/(^\w|\s\w)/g, m => m.toUpperCase())
-          }  | Location | PokéRef`}
+        {`${name
+          ?.replace(/-/g, ` `)
+          .replace(/(^\w|\s\w)/g, (m) =>
+            m.toUpperCase(),
+          )}  | Location | PokéRef`}
       </title>
       <meta name="description" content={`Find every details about ${name}`} />
       <meta property="og:title" content={`${name} | Location | PokéRef`} />

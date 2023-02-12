@@ -9,6 +9,7 @@ import {
   ItemCardDataImage,
   ItemCardDataSection,
 } from '@/components/pages/Items/ItemCard/Styled.ItemCard';
+import { removeDash } from '@/utils/Typography';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -46,8 +47,8 @@ function ItemCard({ name }: Props) {
     <>
       <HeadingItem name={name} />
       <MainBig>
-        <CardTitle>{item?.name.replace(/-/g, ` `)}</CardTitle>
-        <Subtitle>{item?.category.name.replace(/-/g, ` `)}</Subtitle>
+        <CardTitle>{removeDash(item?.name)}</CardTitle>
+        <Subtitle>{removeDash(item?.category.name)}</Subtitle>
         <ItemCardDataSection>
           <div>
             <ItemCardDataEffect>

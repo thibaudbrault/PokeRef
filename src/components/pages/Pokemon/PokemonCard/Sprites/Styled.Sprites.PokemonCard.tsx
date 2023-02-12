@@ -14,11 +14,6 @@ export const PokemonSpritesDiv = styled.div`
     justify-content: center;
     flex-direction: column;
 
-    & img {
-      width: 96px;
-      height: 96px;
-    }
-
     & p {
       margin-top: 1rem;
       font-size: 1.5rem;

@@ -1,7 +1,7 @@
 import {
   fadeInUpVariant,
   placeholderVariant,
-} from '@/components/common/styles/Keyframes';
+} from '@/components/common/styles/Animations';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Dispatch, SetStateAction } from 'react';

@@ -1,14 +1,15 @@
 import {
-  ModifiedTable,
+  FullWidthTable,
   TableContainer,
   TLink,
-  TName,
+  TBold,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IAbility } from '@/types/Pokemon/Ability';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import ImageWithFallback from '@/utils/ImageWithFallback';
+import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import { Sup } from '../Styled.AbilityCard';
@@ -55,16 +56,16 @@ function TableAbilitycard({ ability, pokedex }: Props) {
         id: `sort`,
         header: `Name`,
         cell: (info) => (
-          <TName>
+          <TBold>
             <TLink
               href={{
                 pathname: `/pokemon/[name]`,
                 query: { name: info.getValue<string>() },
               }}
             >
-              {info.getValue<string>().replace(/-/g, ` `)}
+              {removeDash(info.getValue<string>())}
             </TLink>
-          </TName>
+          </TBold>
         ),
       },
       {
@@ -86,7 +87,7 @@ function TableAbilitycard({ ability, pokedex }: Props) {
                 info.getValue<string>() === ability?.name ? `bold` : ``
               }
             >
-              {info.getValue<string>().replace(/-/g, ` `)}
+              {removeDash(info.getValue<string>())}
             </TLink>
           </td>
         ),
@@ -111,7 +112,7 @@ function TableAbilitycard({ ability, pokedex }: Props) {
                 info.getValue<string>() === ability?.name ? `bold` : ``
               }
             >
-              {info.getValue<string>().replace(/-/g, ` `)}
+              {removeDash(info.getValue<string>())}
             </TLink>
           </td>
         ),
@@ -136,7 +137,7 @@ function TableAbilitycard({ ability, pokedex }: Props) {
                 info.getValue<string>() === ability?.name ? `bold` : ``
               }
             >
-              {info.getValue<string>().replace(/-/g, ` `)}
+              {removeDash(info.getValue<string>())}
             </TLink>
           </td>
         ),
@@ -152,10 +153,10 @@ function TableAbilitycard({ ability, pokedex }: Props) {
 
   return (
     <TableContainer ref={tableContainerRef}>
-      <ModifiedTable>
+      <FullWidthTable>
         {tableHeader()}
         {tableBody()}
-      </ModifiedTable>
+      </FullWidthTable>
     </TableContainer>
   );
 }

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const TableContainer = styled.div`
   width: 100%;
   overflow-x: auto;
+
   &::-webkit-scrollbar {
     height: 1rem;
   }
@@ -20,6 +21,10 @@ export const TableContainer = styled.div`
 
   &::-webkit-scrollbar-thumb:hover {
     background: rgba(130, 130, 130, 0.2);
+  }
+
+  & td {
+    min-width: 200px;
   }
 `;
 
@@ -38,7 +43,6 @@ export const Table = styled.table`
     border: 1px solid rgba(130, 130, 130, 0.2);
     border-collapse: collapse;
     vertical-align: middle;
-    cursor: pointer;
 
     & .cursor-pointer {
       display: flex;
@@ -60,16 +64,18 @@ export const Table = styled.table`
   }
 `;
 
-export const ModifiedTable = styled(Table)`
+export const FullWidthTable = styled(Table)`
   width: 100%;
 `;
 
 export const THead = styled.thead`
-  color: #c4c4c4;
-  background: #161616;
-  font-size: 1.7rem;
-  font-weight: 700;
-  text-transform: capitalize;
+  & th {
+    color: ${({ theme }) => theme.secondary};
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    background: rgba(130, 130, 130, 0.2);
+  }
 `;
 
 export const TRow = styled.tr`
@@ -78,7 +84,11 @@ export const TRow = styled.tr`
   }
 `;
 
-export const TName = styled.td`
+export const TCapitalize = styled.td`
+  text-transform: capitalize;
+`;
+
+export const TBold = styled.td`
   text-transform: capitalize;
   font-size: 1.7rem;
   font-weight: 700;
@@ -96,6 +106,47 @@ export const TLink = styled(Link)`
 
   &.bold {
     font-weight: 700;
+  }
+`;
+
+export const TCategory = styled.td`
+  & div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & span {
+      text-transform: capitalize;
+      padding-left: 0.5rem;
+    }
+  }
+`;
+
+export const TType = styled.td`
+  & div {
+    display: inline;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    color: #c4c4c4;
+
+    & a {
+      cursor: pointer;
+      & img {
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+      }
+      & span {
+        font-family: 'Press start 2P';
+        font-size: 1rem;
+        padding-left: 0.5rem;
+        vertical-align: middle;
+        cursor: pointer;
+      }
+    }
   }
 `;
 

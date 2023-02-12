@@ -2,10 +2,10 @@ import { LeftTitle } from '@/components/common/styles/Headings';
 import { GenNav } from '@/components/common/styles/Navbars';
 import { MainBig } from '@/components/common/styles/Sizing';
 import {
-  ModifiedTable,
+  FullWidthTable,
   TableContainer,
   TLink,
-  TName,
+  TBold,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
@@ -15,6 +15,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';
 import { useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { removeDash } from '@/utils/Typography';
 
 const NavMachines = dynamic(
   () => import(`@/components/pages/Machines/Components/Nav.Machines`),
@@ -38,7 +39,7 @@ function MachinesPage({ initialMachines }: Props) {
 
   const data = useMemo(
     () => machines?.filter((m) => m.version_group.name === version),
-    [version],
+    [version, machines],
   );
 
   const columns = useMemo<ColumnDef<IMachine>[]>(
@@ -47,7 +48,7 @@ function MachinesPage({ initialMachines }: Props) {
         accessorKey: `item.name`,
         id: `sort`,
         header: `Name`,
-        cell: (info) => <TName>{info.getValue<string>().toUpperCase()}</TName>,
+        cell: (info) => <TBold>{info.getValue<string>().toUpperCase()}</TBold>,
       },
       {
         accessorKey: `move.name`,
@@ -61,7 +62,7 @@ function MachinesPage({ initialMachines }: Props) {
                 query: { name: info.getValue<string>() },
               }}
             >
-              {info.getValue<string>().replace(/-/g, ` `)}
+              {removeDash(info.getValue<string>())}
             </TLink>
           </td>
         ),
@@ -91,10 +92,10 @@ function MachinesPage({ initialMachines }: Props) {
           <NavMachines setVersion={setVersion} />
         </GenNav>
         <TableContainer ref={tableContainerRef}>
-          <ModifiedTable>
+          <FullWidthTable>
             {tableHeader()}
             {tableBody()}
-          </ModifiedTable>
+          </FullWidthTable>
         </TableContainer>
       </MainBig>
     </>

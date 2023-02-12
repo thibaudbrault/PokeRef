@@ -20,13 +20,13 @@ function List({ pokedex, moveName, version, toggle }: Props) {
     if (toggle === 0) {
       return <LevelMoveText version={version} />;
     } else if (toggle === 1) {
-      return <MachinesMoveText />;
+      return <MachinesMoveText version={version} />;
     } else if (toggle === 2) {
-      return <BreedingMoveText />;
+      return <BreedingMoveText version={version} />;
     } else if (toggle === 3) {
-      return <TutorMoveText />;
+      return <TutorMoveText version={version} />;
     } else if (toggle === 4) {
-      return <EvolvingMoveText />;
+      return <EvolvingMoveText version={version} />;
     }
   };
 

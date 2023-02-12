@@ -150,7 +150,7 @@ export const getBerries = async () => {
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 // Fetch all locations
 export const getRegions = async () => {

@@ -1,7 +1,8 @@
-import { Span } from '@/components/common/styles/Headings';
+import { Capitalize } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { Species } from '@/types/types';
+import { removeDash } from '@/utils/Typography';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PokemonDataDesc, PokemonDataTypes } from '../Styled.Data.PokemonCard';
@@ -29,9 +30,9 @@ function Desc({ pokemon, species, game }: Props) {
             </span>
             <p>
               Pokémon{` `}
-              <Span>
-                <i>{game.replace(/-/g, ` `)}</i>
-              </Span>
+              <Capitalize>
+                <i>{removeDash(game)}</i>
+              </Capitalize>
             </p>
           </PokemonDataDesc>
         )}

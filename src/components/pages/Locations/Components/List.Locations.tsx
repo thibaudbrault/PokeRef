@@ -1,4 +1,5 @@
 import { IRegion } from '@/types/Locations/Region';
+import { removeDash } from '@/utils/Typography';
 import Link from 'next/link';
 import { LocationList, LocationSection } from '../Styled.Locations';
 
@@ -25,12 +26,10 @@ function ListLocations({ location, locations }: Props) {
                       }}
                       key={ll.name}
                     >
-                      {ll.name
-                        .replace(/-/g, ` `)
-                        .replace(
-                          /kanto|johto|hoenn|sinnoh|unova|kalos|alola/g,
-                          ``,
-                        )}
+                      {removeDash(ll.name).replace(
+                        /kanto|johto|hoenn|sinnoh|unova|kalos|alola/g,
+                        ``,
+                      )}
                     </Link>
                   </li>
                 ))}

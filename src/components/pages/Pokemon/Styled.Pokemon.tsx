@@ -59,16 +59,13 @@ export const PokedexVerticalText = styled.p`
   }
 `;
 
-export const PokedexList = styled.div`
+export const PokedexList = styled(motion.ul)`
   max-width: 1300px;
   margin: 0 auto;
-
-  & ul {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 export const PokedexElement = styled(motion.li)`
@@ -133,8 +130,8 @@ export const PokedexElement = styled(motion.li)`
   }
 
   @media ${device.sm} {
-    width: 18rem;
-    height: 27rem;
+    width: 20rem;
+    height: 29rem;
     margin: 2rem;
     padding: 1.5rem 2.5rem;
   }
@@ -162,6 +159,13 @@ export const PokedexImage = styled.div`
   &:hover ${SpriteShiny} {
     opacity: 1;
     z-index: 99;
+  }
+
+  & img {
+    @media ${device.sm} {
+      width: 72px;
+      height: 72px;
+    }
   }
 `;
 
@@ -192,14 +196,20 @@ export const PokedexTypes = styled.div`
     border: 1px solid rgba(22, 22, 22, 0.2);
     cursor: pointer;
 
-    & img {
-      cursor: pointer;
-    }
+    & a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
 
-    & span {
-      padding-left: 0.5rem;
-      font-family: 'Press Start 2P';
-      cursor: pointer;
+      & img {
+        cursor: pointer;
+      }
+
+      & span {
+        font-family: 'Press Start 2P';
+        cursor: pointer;
+      }
     }
   }
 

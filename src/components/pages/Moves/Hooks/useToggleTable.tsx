@@ -22,7 +22,7 @@ export const useToggleTable = () => {
         queryKey: [`status`, 2],
         queryFn: getStatus,
       },
-    ]
+    ],
   });
 
   const [toggle, setToggle] = useState(1);

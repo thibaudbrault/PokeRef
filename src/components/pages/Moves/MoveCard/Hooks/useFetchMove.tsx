@@ -3,7 +3,6 @@ import { useQueries } from '@tanstack/react-query';
 import { useState } from 'react';
 
 export const useFetchMove = (name: string) => {
-
   const results = useQueries({
     queries: [
       {
@@ -12,14 +11,15 @@ export const useFetchMove = (name: string) => {
       },
       {
         queryKey: [`pokedex`],
-        queryFn: () => getPokedex(`https://pokeapi.co/api/v2/pokemon?limit=1008`),
+        queryFn: () =>
+          getPokedex(`https://pokeapi.co/api/v2/pokemon?limit=1008`),
       },
       {
-        queryKey: ['machines'],
-        queryFn: getMachines
-      }
-    ]
-  })
+        queryKey: [`machines`],
+        queryFn: getMachines,
+      },
+    ],
+  });
 
   // Version of the returned data is from the latest available from PokéAPI
   const [version, setVersion] = useState(`sword-shield`);

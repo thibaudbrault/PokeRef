@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { learnMethod, regions } from './DataArrays';
 import { MethodNav } from '@/components/common/styles/Navbars';
 import { LocationNav } from '@/components/pages/Locations/Styled.Locations';
+import { removeDash } from './Typography';
 
 type Props = {
   toggle: number;
@@ -21,7 +22,7 @@ export const LearnMethod = ({ toggle, setToggle, setLearn }: Props) => {
           }}
           key={learnMethod[l]}
         >
-          <p>{learnMethod[l].replace(/-/g, ` `)}</p>
+          <p>{removeDash(learnMethod[l])}</p>
         </button>
       ))}
     </MethodNav>

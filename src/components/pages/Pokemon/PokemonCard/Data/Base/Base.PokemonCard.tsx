@@ -1,6 +1,7 @@
 import { TLink } from '@/components/common/styles/Table';
 import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
 import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
+import { removeDash } from '@/utils/Typography';
 import {
   PokemonDataLocation,
   PokemonDataTable,
@@ -43,7 +44,7 @@ function Base({ pokemon, species, game, location }: Props) {
                   (lv) =>
                     lv.version.name === game && (
                       <p key={l.location_area.name}>
-                        {l.location_area.name.replace(/-/g, ` `)}
+                        {removeDash(l.location_area.name)}
                       </p>
                     ),
                 ),
@@ -63,7 +64,7 @@ function Base({ pokemon, species, game, location }: Props) {
                   }}
                   key={pa.ability.name}
                 >
-                  {pa.ability.name.replace(/-/g, ` `)}
+                  {removeDash(pa.ability.name)}
                 </TLink>
                 {pa.is_hidden && <>‌‌ (hidden ability)</>}
               </p>
