@@ -52,9 +52,9 @@
 🛠Use React-Table for my tables (allow for virtualization, sorting and filtering)  
 🛠Implementing Typescript
 
+🔜Stat list with moves that increase or decrease this stat
 🔜Profile page with possibility to save teams  
 🔜Types relations for each pokémon  
-🔜Berry list
 🔜Contest section in a move's page
 
 <h4>Performance improvements</h4>
@@ -63,7 +63,8 @@
 ✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important.  
 ✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded.
 
-🛠Refactoring the code.  
+🛠Refactoring the code  
+🛠️Clean and unify the CSS  
 🛠️Use SSR to fetch data (with React-Query initialData params) and create dynamic routing  
 
 🔜Implement a Service Worker.
