@@ -52,7 +52,7 @@
 🛠Use React-Table for my tables (allow for virtualization, sorting and filtering)  
 🛠Implementing Typescript
 
-🔜Stat list with moves that increase or decrease this stat
+🔜Stat list with moves that increase or decrease this stat  
 🔜Profile page with possibility to save teams  
 🔜Types relations for each pokémon  
 🔜Contest section in a move's page
@@ -64,8 +64,7 @@
 ✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded.
 
 🛠Refactoring the code  
-🛠️Clean and unify the CSS  
-🛠️Use SSR to fetch data (with React-Query initialData params) and create dynamic routing  
+🛠️Use SSG to fetch data (with React-Query initialData params) and create dynamic routing  
 
 🔜Implement a Service Worker.
 
