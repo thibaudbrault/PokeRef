@@ -1,9 +1,10 @@
 ### Todos
 
 - [ ] Replace tables with react-table
-- [x] Add a list of berries table
-- [ ] Replace custom hooks for queries with useQuery and useQueries
+- [x] Berries table
+- [ ] Stats table
+- [x] Replace custom hooks for queries with useQuery and useQueries
 - [ ] Use useInfiniteQuery for list of pokemon
-- [ ] Use SSR for dynamic routes
-- [ ] Creates types relations for pokemon
+- [ ] Use SSG
+- [ ] Types relations for pokemon
 - [ ] Turn it into a PWA
