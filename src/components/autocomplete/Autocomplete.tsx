@@ -2,7 +2,7 @@ import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { getPokedex } from '@/utils/DataFetch';
 import ImageWithFallback from '@/utils/ImageWithFallback';
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import {
   AutocompleteContainer,
   AutocompleteId,

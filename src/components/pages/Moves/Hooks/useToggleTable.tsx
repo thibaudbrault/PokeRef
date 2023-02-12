@@ -1,7 +1,7 @@
 import { getMoves, getStatus } from '@/utils/DataFetch';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import { useQueries } from 'react-query';
+import { useQueries } from '@tanstack/react-query';
 
 const MovesTable = dynamic(
   () => import(`@/components/pages/Moves/Components/MovesTable.Moves`),
@@ -11,17 +11,19 @@ const StatusTable = dynamic(
 );
 
 export const useToggleTable = () => {
-  const results = useQueries([
-    {
-      queryKey: [`moves`, 1],
-      queryFn: getMoves,
-      useErrorBoundary: true,
-    },
-    {
-      queryKey: [`status`, 2],
-      queryFn: getStatus,
-    },
-  ]);
+  const results = useQueries({
+    queries: [
+      {
+        queryKey: [`moves`, 1],
+        queryFn: getMoves,
+        useErrorBoundary: true,
+      },
+      {
+        queryKey: [`status`, 2],
+        queryFn: getStatus,
+      },
+    ]
+  });
 
   const [toggle, setToggle] = useState(1);
   const pageShown = () => {

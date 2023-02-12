@@ -3,8 +3,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useState } from 'react';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'styled-components';
 
 import { Reset } from '@/components/common/styles/Reset';
@@ -71,7 +70,6 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Reset />
             <Component {...pageProps} />
             <Footer />
-            <ReactQueryDevtools />
           </ThemeProvider>
         </QueryClientProvider>
       </ErrorBoundary>

@@ -1,7 +1,7 @@
 import { getBerries, getItems } from '@/utils/DataFetch';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import { useQueries } from 'react-query';
+import { useQueries } from '@tanstack/react-query';
 
 const ItemsTable = dynamic(
     () => import(`@/components/pages/Items/Components/ItemsTable.Items`),
@@ -11,17 +11,19 @@ const BerriesTable = dynamic(
 );
 
 export const useToggleTable = () => {
-    const results = useQueries([
-        {
-            queryKey: [`items`, 1],
-            queryFn: getItems,
-            useErrorBoundary: true,
-        },
-        {
-            queryKey: [`berries`, 2],
-            queryFn: getBerries,
-        },
-    ]);
+    const results = useQueries({
+        queries: [
+            {
+                queryKey: [`items`, 1],
+                queryFn: getItems,
+                useErrorBoundary: true,
+            },
+            {
+                queryKey: [`berries`, 2],
+                queryFn: getBerries,
+            },
+        ]
+    });
 
     const [toggle, setToggle] = useState(1);
     const pageShown = () => {

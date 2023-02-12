@@ -11,7 +11,7 @@ import { Options, OptionsOffsetLimit } from '@/utils/DataArrays';
 import { getPokedex } from '@/utils/DataFetch';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { IPokemon } from '../types/Pokemon/Pokemon';
 
 const Filters = dynamic(

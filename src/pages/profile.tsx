@@ -8,7 +8,8 @@ import {
 } from '@/components/pages/Profile/Styled.Profile';
 import { auth, db } from '@/firebase-config';
 import { formatOptions, Options } from '@/utils/DataArrays';
-import { useFormat } from '@/utils/DataFetch';
+import { getFormat, useFormat } from '@/utils/DataFetch';
+import { useQuery } from '@tanstack/react-query';
 import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -26,9 +27,10 @@ function Profile() {
     isLoading,
     error,
     data: format,
-  } = useFormat(
-    `https://raw.githubusercontent.com/pkmn/smogon/main/data/stats/${formatQuery}.json`,
-  );
+  } = useQuery({
+    queryKey: ['format', formatQuery],
+    queryFn: () => getFormat(`https://raw.githubusercontent.com/pkmn/smogon/main/data/stats/${formatQuery}.json`)
+  });
 
   const getUserDoc = async () => {
     const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);

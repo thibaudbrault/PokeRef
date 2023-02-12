@@ -28,36 +28,32 @@ function MoveCard({ name }: Props) {
   const [learn, setLearn] = useState<string>(`level-up`);
 
   const {
-    isLoading,
-    error,
-    move,
-    pokedex,
-    machines,
+    results,
     version,
     setVersion,
     toggle,
     setToggle,
   } = useFetchMove(name);
 
-  if (error instanceof Error) {
+  if (results[0].status === 'error') {
     return { error };
   }
 
-  if (isLoading) {
+  if (results[0].status === 'loading') {
     return <Loader />;
   }
 
   return (
     <>
       <HeadingMove name={name} />
-      {move && (
+      {results[0].status === 'success' && (
         <MoveMainBig>
-          <CardTitle>{move?.name?.replace(/-/g, ` `)}</CardTitle>
-          <Subtitle>{move?.generation?.name?.replace(/-/g, ` `)}</Subtitle>
+          <CardTitle>{results[0].data?.name?.replace(/-/g, ` `)}</CardTitle>
+          <Subtitle>{results[0].data?.generation?.name?.replace(/-/g, ` `)}</Subtitle>
 
-          <Nav move={move} setVersion={setVersion} />
+          <Nav move={results[0].data} setVersion={setVersion} />
 
-          <Data move={move} machines={machines} version={version} />
+          <Data move={results[0].data} machines={results[2].data} version={version} />
 
           <LearnMethod
             toggle={toggle}
@@ -67,8 +63,8 @@ function MoveCard({ name }: Props) {
 
           <List
             toggle={toggle}
-            pokedex={pokedex}
-            moveName={move?.name}
+            pokedex={results[1].data}
+            moveName={results[0].data?.name}
             version={version}
           />
 

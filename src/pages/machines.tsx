@@ -14,7 +14,7 @@ import { getMachines } from '@/utils/DataFetch';
 import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';
 import { useMemo, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 const NavMachines = dynamic(
   () => import(`@/components/pages/Machines/Components/Nav.Machines`),

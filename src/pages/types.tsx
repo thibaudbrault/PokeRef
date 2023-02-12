@@ -4,7 +4,7 @@ import HeadingTypes from '@/components/pages/Types/Heading';
 import { TypesList } from '@/components/pages/Types/Styled.Types';
 import { getTypes } from '@/utils/DataFetch';
 import dynamic from 'next/dynamic';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 const ListTypes = dynamic(
   () => import(`@/components/pages/Types/Components/List.Types`),

@@ -1,8 +1,9 @@
 import { H3 } from '@/components/common/styles/Headings';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { Evolution } from '@/types/types';
-import { usePokedex } from '@/utils/DataFetch';
+import { getPokedex } from '@/utils/DataFetch';
 import { FaChevronRight } from '@meronex/icons/fa';
+import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -13,7 +14,7 @@ import {
   PokemonEvolutionFinal,
   PokemonEvolutionSection,
   PokemonEvolutionStages,
-  PokemonEvolutionText,
+  PokemonEvolutionText
 } from './Styled.Evolution.PokemonCard';
 
 type Props = {
@@ -25,7 +26,10 @@ function EvolutionPokemon({ evolution }: Props) {
     isLoading,
     error,
     data: pokedex,
-  } = usePokedex(`https://pokeapi.co/api/v2/pokemon?limit=898`);
+  } = useQuery({
+    queryKey: ['pokedex'],
+    queryFn: () => getPokedex(`https://pokeapi.co/api/v2/pokemon?limit=1008`)
+  });
 
   if (error instanceof Error) {
     return { error };
@@ -218,8 +222,8 @@ function EvolutionPokemon({ evolution }: Props) {
                               {eed.relative_physical_stats === 1
                                 ? ` Attack > Defense`
                                 : eed.relative_physical_stats === 0
-                                ? ` Attack = Defense`
-                                : ` Defense > Attack`}
+                                  ? ` Attack = Defense`
+                                  : ` Defense > Attack`}
                             </span>
                           </PokemonEvolutionText>
                         )}
@@ -468,8 +472,8 @@ function EvolutionPokemon({ evolution }: Props) {
                                       {eeed.relative_physical_stats === 1
                                         ? ` Attack > Defense`
                                         : eeed.relative_physical_stats === 0
-                                        ? ` Attack = Defense`
-                                        : ` Defense > Attack`}
+                                          ? ` Attack = Defense`
+                                          : ` Defense > Attack`}
                                     </span>
                                   </PokemonEvolutionText>
                                 )}

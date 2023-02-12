@@ -2,7 +2,7 @@ import { ILocation } from '@/types/Locations/Location';
 import { ILocationArea } from '@/types/Locations/LocationArea';
 import { getArea, getLocation } from '@/utils/DataFetch';
 import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 export const useSwitchGame = (name: string) => {
   const [game, setGame] = useState<string | null>(null);

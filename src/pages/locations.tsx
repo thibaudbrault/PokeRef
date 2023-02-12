@@ -7,7 +7,7 @@ import { regions } from '@/utils/DataArrays';
 import { getRegions } from '@/utils/DataFetch';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 const ListLocations = dynamic(
   () => import(`@/components/pages/Locations/Components/List.Locations`),
