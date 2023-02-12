@@ -38,12 +38,13 @@
 
 <h2 id="roadmap">Roadmap</h2>
 
-<h4>Past, present and future</h4>
+<h4>Features</h4>
 
 ✅A page for every pokémon / move / ability / type / item  
 ✅Filter pokémon by name / form / generation / type (possibility to filter by one or two types)  
 ✅Filter moves / abilities / machines by name  
 ✅Change certain data according to the game selected  
+✅Pokémon cries
 ✅Dark mode  
 ✅404 page  
 ✅Autocomplete search  
