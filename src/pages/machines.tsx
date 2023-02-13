@@ -4,37 +4,39 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import {
   FullWidthTable,
   TableContainer,
-  TLink,
   TBold,
+  TLink,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IMachine } from '@/types/Machines/Machine';
 import { getMachines } from '@/utils/DataFetch';
+import { removeDash } from '@/utils/Typography';
+import {
+  dehydrate,
+  QueryClient,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';
 import { useMemo, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { removeDash } from '@/utils/Typography';
+import toast from 'react-hot-toast';
 
 const NavMachines = dynamic(
   () => import(`@/components/pages/Machines/Components/Nav.Machines`),
 );
 
-type Props = {
-  initialMachines: IMachine[];
-};
-
-function MachinesPage({ initialMachines }: Props) {
+function MachinesPage() {
   const [version, setVersion] = useState<string>(`red-blue`);
   const {
     isLoading,
+    isError,
     error,
     data: machines,
-  } = useQuery({
+  }: UseQueryResult<IMachine[], Error> = useQuery({
     queryKey: [`machines`],
     queryFn: getMachines,
-    // initialData: initialMachines,
   });
 
   const data = useMemo(
@@ -76,8 +78,8 @@ function MachinesPage({ initialMachines }: Props) {
     columns,
   );
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {
@@ -104,11 +106,15 @@ function MachinesPage({ initialMachines }: Props) {
 
 export default MachinesPage;
 
-// export async function getServerSideProps() {
-//   const initialMachines = await getMachines();
-//   return {
-//     props: {
-//       initialMachines,
-//     },
-//   };
-// }
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  queryClient.prefetchQuery({
+    queryKey: [`machines`],
+    queryFn: getMachines,
+  });
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}

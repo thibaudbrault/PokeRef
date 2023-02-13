@@ -16,7 +16,7 @@
 </div>
 
 <h3 align="center">PokéRef is a pokémon encyclopedia built with Next JS, Typescript and Styled-Components and uses data from PokéAPI and Smogon</h3>  
-<p align="center">You'll find a ton of information on every pokémon, moves, abilities, items and much more</p>  
+<p align="center">You'll find a ton of information on every pokémon, moves, abilities, items and a lot more</p>  
 <div align="center">
   <a href="https://pokeref.app/">Live version</a>  
 </div>  
@@ -53,7 +53,6 @@
 🛠Use React-Table for my tables (allow for virtualization, sorting and filtering)  
 🛠Implementing Typescript
 
-🔜Stat list with moves that increase or decrease this stat  
 🔜Profile page with possibility to save teams  
 🔜Types relations for each pokémon  
 🔜Contest section in a move's page
@@ -62,12 +61,13 @@
 
 ✅Use of React-Query to fetch data only once by using `cacheTime: Infinity` and `staleTime: Infinity`. The data will very rarely change so there is no use in re-fetching it every x minutes / hours.  
 ✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important.  
-✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded.
+✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded.  
+✅Turned into a PWA with the next-pwa package.
 
 🛠Refactoring the code  
-🛠️Use SSG to fetch data (with React-Query initialData params) and create dynamic routing  
+🛠Use SSG to fetch data (with React-Query `prefetchQuery`) and create dynamic routing with `getStaticPaths` and `getStaticProps`  
 
-🔜Implement a Service Worker.
+🔜Implement PokeAPI Service Worker.
 
 <h2 id="description">Description</h2>
 
@@ -105,6 +105,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - Items : effect, flinch power, ...
 - Machines : list of TM and HM for every game
 - Locations : every place and the pokémon that can be encountered
+- And much more
 
 <h2 id="technologies">Technologies</h2>
 
@@ -127,13 +128,14 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 
 <h4>Dependencies</h4>
 
-<a href="https://www.npmjs.com/package/react-query" target="_blank">React-Query</a>  
-<a href="https://www.npmjs.com/package/@tanstack/react-table" target="_blank">React-Table</a>  
+<a href="https://www.npmjs.com/package/@tanstack/react-query" target="_blank">Tanstack React-Query</a>  
+<a href="https://www.npmjs.com/package/@tanstack/react-table" target="_blank">Tanstack React-Table</a>  
 <a href="https://www.npmjs.com/package/react-hook-form" target="_blank">React Hook Form</a>  
 <a href="https://www.npmjs.com/package/react-select" target="_blank">React Select</a>  
 <a href="https://www.npmjs.com/package/yup" target="_blank">Yup</a>  
 <a href="https://www.npmjs.com/package/eslint" target="_blank">ESLint</a>  
 <a href="https://www.npmjs.com/package/prettier" target="_blank">Prettier</a>
+<a href="https://www.npmjs.com/package/next-pwa" target="_blank">Next PWA</a>
 
 <h2 id="other">Other</h2>
 

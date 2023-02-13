@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import { GenNav } from '@/components/common/styles/Navbars';
-import { Moves } from '@/types/types';
+import { IMove } from '@/types/Moves/Move';
 import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
-  move: Moves.Moves;
+  move: IMove;
   setVersion: Dispatch<SetStateAction<string>>;
 };
 

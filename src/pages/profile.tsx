@@ -8,11 +8,12 @@ import {
 } from '@/components/pages/Profile/Styled.Profile';
 import { auth, db } from '@/firebase-config';
 import { formatOptions, Options } from '@/utils/DataArrays';
-import { getFormat, useFormat } from '@/utils/DataFetch';
-import { useQuery } from '@tanstack/react-query';
+import { getFormat } from '@/utils/DataFetch';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 function Profile() {
   const router = useRouter();
@@ -25,9 +26,10 @@ function Profile() {
 
   const {
     isLoading,
+    isError,
     error,
     data: format,
-  } = useQuery({
+  }: UseQueryResult<IFormat[], Error> = useQuery({
     queryKey: [`format`, formatQuery],
     queryFn: () =>
       getFormat(
@@ -55,8 +57,8 @@ function Profile() {
     }
   }, [formatValue]);
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {

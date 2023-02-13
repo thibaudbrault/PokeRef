@@ -1,13 +1,14 @@
 import { H3 } from '@/components/common/styles/Headings';
+import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { Evolution, Species } from '@/types/types';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import { removeDash } from '@/utils/Typography';
 import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
-  species: Species.Species;
-  evolution: Evolution.Evolution;
+  species: IPokemonSpecies;
+  evolution: IEvolutionChain;
 };
 
 function Breeding({ pokemon, species, evolution }: Props) {

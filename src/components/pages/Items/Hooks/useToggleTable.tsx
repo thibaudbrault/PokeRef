@@ -14,12 +14,12 @@ export const useToggleTable = () => {
   const results = useQueries({
     queries: [
       {
-        queryKey: [`items`, 1],
+        queryKey: [`items`],
         queryFn: getItems,
         useErrorBoundary: true,
       },
       {
-        queryKey: [`berries`, 2],
+        queryKey: [`berries`],
         queryFn: getBerries,
       },
     ],

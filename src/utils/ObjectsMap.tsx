@@ -4,13 +4,16 @@ import { MethodNav } from '@/components/common/styles/Navbars';
 import { LocationNav } from '@/components/pages/Locations/Styled.Locations';
 import { removeDash } from './Typography';
 
-type Props = {
+interface IProps {
   toggle: number;
   setToggle: Dispatch<SetStateAction<number>>;
-  setLearn: Dispatch<SetStateAction<any>>;
-};
+}
 
-export const LearnMethod = ({ toggle, setToggle, setLearn }: Props) => {
+interface ILearnProps extends IProps {
+  setLearn: Dispatch<SetStateAction<any>>;
+}
+
+export const LearnMethod = ({ toggle, setToggle, setLearn }: ILearnProps) => {
   return (
     <MethodNav>
       {Object.keys(learnMethod)?.map((l, i) => (
@@ -29,7 +32,7 @@ export const LearnMethod = ({ toggle, setToggle, setLearn }: Props) => {
   );
 };
 
-export const RegionsMethod = ({ toggle, setToggle }: Props) => {
+export const RegionsMethod = ({ toggle, setToggle }: IProps) => {
   return (
     <LocationNav>
       {Object.keys(regions)?.map((r, i) => (

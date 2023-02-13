@@ -1,10 +1,6 @@
-import { IMove } from '../Moves/Move';
-import { IMoveDamageClass } from '../Moves/MoveDamageClass';
 import { IApiResource } from '../Utility/ApiResourceList';
 import { IName } from '../Utility/CommonModels';
 import { INamedApiResource } from '../Utility/NamedApiResourceList';
-import { ICharacteristic } from './Characteristic';
-import { INature } from './Nature';
 
 export interface IStat {
   id: number;
@@ -13,8 +9,8 @@ export interface IStat {
   is_battle_only: boolean;
   affecting_moves: IMoveStatAffectSets;
   affecting_natures: INatureStatAffectSets;
-  characteristics: IApiResource<ICharacteristic>;
-  move_damage_class: INamedApiResource<IMoveDamageClass>;
+  characteristics: IApiResource;
+  move_damage_class: INamedApiResource;
   names: IName[];
 }
 
@@ -25,10 +21,10 @@ export interface IMoveStatAffectSets {
 
 export interface IMoveStatAffect {
   change: number;
-  move: INamedApiResource<IMove>;
+  move: INamedApiResource;
 }
 
 export interface INatureStatAffectSets {
-  increase: Array<INamedApiResource<INature>>;
-  decrease: Array<INamedApiResource<INature>>;
+  increase: Array<INamedApiResource>;
+  decrease: Array<INamedApiResource>;
 }

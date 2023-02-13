@@ -1,4 +1,3 @@
-import { IPokemonSpecies } from '../Pokemon/PokemonSpecies';
 import { IName } from '../Utility/CommonModels';
 import { INamedApiResource } from '../Utility/NamedApiResourceList';
 
@@ -12,5 +11,5 @@ export interface IPalParkArea {
 export interface IPalParkEncounterSpecies {
   base_socre: number;
   rate: number;
-  pokemon_species: INamedApiResource<IPokemonSpecies>;
+  pokemon_species: INamedApiResource;
 }

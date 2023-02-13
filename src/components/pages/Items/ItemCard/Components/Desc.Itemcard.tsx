@@ -1,4 +1,4 @@
-import { Items } from '@/types/types';
+import { IItem } from '@/types/Items/Item';
 import { removeDash } from '@/utils/Typography';
 import {
   ItemCardDescSection,
@@ -7,7 +7,7 @@ import {
 } from '../Styled.ItemCard';
 
 type Props = {
-  item?: Items.Items;
+  item?: IItem;
 };
 
 function DescItemcard({ item }: Props) {

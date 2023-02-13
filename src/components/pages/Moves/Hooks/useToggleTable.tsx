@@ -1,7 +1,8 @@
-import { getMoves, getStatus } from '@/utils/DataFetch';
+import { getMoves, getStats, getStatus } from '@/utils/DataFetch';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { useQueries } from '@tanstack/react-query';
+import StatsTable from '../Components/StatsTable.Moves';
 
 const MovesTable = dynamic(
   () => import(`@/components/pages/Moves/Components/MovesTable.Moves`),
@@ -22,6 +23,10 @@ export const useToggleTable = () => {
         queryKey: [`status`, 2],
         queryFn: getStatus,
       },
+      {
+        queryKey: ['stats', 3],
+        queryFn: getStats,
+      },
     ],
   });
 
@@ -31,6 +36,8 @@ export const useToggleTable = () => {
       return <MovesTable moves={results[0].data} />;
     } else if (toggle === 2) {
       return <StatusTable status={results[1].data} />;
+    } else if (toggle === 3) {
+      return <StatsTable stats={results[2].data} />;
     }
   };
 

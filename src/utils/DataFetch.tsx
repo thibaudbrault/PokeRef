@@ -1,36 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import {
-  Abilities,
-  Evolution,
-  Items,
-  Locations,
-  Machines,
-  Moves,
-  Pokemon,
-  Species,
-  Types,
-} from '@/types/types';
 
 // Fetch all pokemon
-export function usePokedex(url: string) {
-  return useQuery<Pokemon.Pokemon[], Error>([`pokedex`, url], () =>
-    axios
-      .get(url)
-      .then((res) => {
-        return res.data.results;
-      })
-      .then((results) => {
-        return Promise.all(
-          results?.map((res: { url: string }) => axios.get(res.url)),
-        );
-      })
-      .then((results) => {
-        return results?.map((res) => res.data);
-      }),
-  );
-}
-
 export const getPokedex = async (url: string) => {
   try {
     const res = await axios.get(url);
@@ -66,6 +36,21 @@ export const getStatus = async () => {
     const res = await axios.get(
       `https://pokeapi.co/api/v2/move-ailment?limit=22`,
     );
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string }) => axios.get(res.url)),
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Fetch all stats
+export const getStats = async () => {
+  try {
+    const res = await axios.get(`https://pokeapi.co/api/v2/stat`);
     const results = await res.data.results;
     const promiseRes = await Promise.all(
       results.map((res: { url: string }) => axios.get(res.url)),

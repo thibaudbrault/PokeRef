@@ -1,13 +1,13 @@
 import { H3 } from '@/components/common/styles/Headings';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { Species } from '@/types/types';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import { removeDash } from '@/utils/Typography';
 import Link from 'next/link';
 import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
-  species: Species.Species;
+  species: IPokemonSpecies;
 };
 
 function Forms({ pokemon, species }: Props) {

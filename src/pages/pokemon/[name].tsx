@@ -15,7 +15,6 @@ import {
   getTypes,
 } from '@/utils/DataFetch';
 // import { speciesFilters } from '@/utils/DataArrays';
-// import { Species } from '@/types/types';
 import BackBtn from '@/components/common/ui/BackBtn';
 import { useRouterIsReady } from '@/hooks/useRouterIsReady';
 import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
@@ -111,7 +110,7 @@ function PokemonCard({ name }: Props) {
   const [game, setGame] = useState(``);
   const [version, setVersion] = useState(``);
 
-  // const speciesFiltersFn = (species: Species.Species) => {
+  // const speciesFiltersFn = (species: IPokemonSpecies) => {
   //   speciesFilters.forEach((s) => {
   //     species.id > s.min &&
   //       species.id < s.max &&

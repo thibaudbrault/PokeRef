@@ -3,10 +3,11 @@ import { MethodNav } from '@/components/common/styles/Navbars';
 import { useState } from 'react';
 import { PokemonTypesContainer } from '../Styled.Stats.PokemonCard';
 import Table from './Table.Typing.PokemonCard';
+import { IPokemonMove } from '@/types/Pokemon/Pokemon';
 
 // type Props = {
 //   pokemon: IPokemon;
-//   types: Pokemon.Types;
+//   types: IPokemonMove;
 //   toggleType: number;
 //   toggleTypeTable: (arg0: number) => void;
 // };

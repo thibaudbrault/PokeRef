@@ -1,10 +1,10 @@
 import { Capitalize } from '@/components/common/styles/Headings';
-import { Items } from '@/types/types';
+import { IItem } from '@/types/Items/Item';
 import { removeDash } from '@/utils/Typography';
 import { ItemCardDataFling } from '../Styled.ItemCard';
 
 type Props = {
-  item?: Items.Items;
+  item?: IItem;
 };
 
 function FlingItemCard({ item }: Props) {

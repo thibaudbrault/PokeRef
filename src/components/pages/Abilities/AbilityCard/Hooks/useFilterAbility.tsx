@@ -1,14 +1,15 @@
-import { IAbilityFlavorText } from '@/types/Pokemon/Ability';
+import { IAbility, IAbilityFlavorText } from '@/types/Pokemon/Ability';
 import { IEffect } from '@/types/Utility/CommonModels';
 import { getAbility, getPokedex } from '@/utils/DataFetch';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 export const useFilterAbility = (name: string) => {
   const {
     isLoading,
+    isError,
     error,
     data: ability,
-  } = useQuery({
+  }: UseQueryResult<IAbility, Error> = useQuery({
     queryKey: [`ability`],
     queryFn: () => getAbility(name),
   });
@@ -33,6 +34,7 @@ export const useFilterAbility = (name: string) => {
 
   return {
     isLoading,
+    isError,
     error,
     ability,
     pokedex,

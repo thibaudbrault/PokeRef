@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
-import { H3, H4, Capitalize, Bold } from '@/components/common/styles/Headings';
-import { Moves } from '@/types/types';
+import { Bold, Capitalize, H3, H4 } from '@/components/common/styles/Headings';
+import { IMove } from '@/types/Moves/Move';
 import { removeDash } from '@/utils/Typography';
 import {
   MoveCardDataList,
@@ -11,7 +11,7 @@ import {
 } from '../Styled.Data.MoveCard';
 
 type Props = {
-  move: Moves.Moves;
+  move: IMove;
   version: string;
 };
 

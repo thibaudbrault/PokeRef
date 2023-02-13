@@ -141,7 +141,3 @@ export const Dropdown = styled(Select)`
     width: 100%;
   }
 `;
-
-export const ModifiedSearch = styled(Search)`
-  justify-content: flex-start;
-`;

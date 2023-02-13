@@ -10,7 +10,7 @@ import {
 } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import { useTableParams } from '@/hooks/useTableParams';
-import { Moves } from '@/types/types';
+import { IMove } from '@/types/Moves/Move';
 import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
@@ -18,13 +18,13 @@ import Link from 'next/link';
 import { useMemo } from 'react';
 
 type Props = {
-  moves?: Moves.Moves[];
+  moves?: IMove[];
 };
 
 function MovesTable({ moves }: Props) {
   const data = useMemo(() => moves, [moves]);
 
-  const columns = useMemo<ColumnDef<Moves.Moves>[]>(
+  const columns = useMemo<ColumnDef<IMove>[]>(
     () => [
       {
         accessorKey: `name`,

@@ -1,6 +1,5 @@
 import { IName } from '../Utility/CommonModels';
 import { INamedApiResource } from '../Utility/NamedApiResourceList';
-import { INature } from './Nature';
 
 export interface IPokeathlonStat {
   id: number;
@@ -16,5 +15,5 @@ export interface INaturePokeathlonStatAffectSets {
 
 export interface INaturePokeathlonStatAffect {
   max_change: number;
-  nature: INamedApiResource<INature>;
+  nature: INamedApiResource;
 }

@@ -26,8 +26,6 @@ type Props = {
 function TypeCard({ name }: Props) {
   const { results, toggle, setToggle, pageShown } = useToggleTable(name);
 
-  console.log(results[0].data);
-
   if (results[0].status === `error`) {
     return { error };
   }

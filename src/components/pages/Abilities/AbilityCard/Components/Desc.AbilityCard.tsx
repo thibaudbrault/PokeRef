@@ -1,10 +1,10 @@
 import { H3 } from '@/components/common/styles/Headings';
-import { Abilities } from '@/types/types';
+import { IAbilityFlavorText } from '@/types/Pokemon/Ability';
 import { removeDash } from '@/utils/Typography';
 import { AbilityCardSection, AbilityCardTable } from '../Styled.AbilityCard';
 
 type Props = {
-  filterDesc?: Abilities.FlavorText[];
+  filterDesc?: IAbilityFlavorText[];
 };
 
 function DescAbilityCard({ filterDesc }: Props) {

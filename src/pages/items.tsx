@@ -3,6 +3,9 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingItems from '@/components/pages/Items/Heading';
 import { useToggleTable } from '@/components/pages/Items/Hooks/useToggleTable';
+import { getItems, getBerries } from '@/utils/DataFetch';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
+import error from 'next/error';
 
 function ItemsPage() {
   const { results, toggle, setToggle, pageShown } = useToggleTable();
@@ -40,3 +43,23 @@ function ItemsPage() {
 }
 
 export default ItemsPage;
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: [`items`],
+      queryFn: getItems,
+    }),
+    queryClient.prefetchQuery({
+      queryKey: [`berries`],
+      queryFn: getBerries,
+    }),
+  ]);
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}

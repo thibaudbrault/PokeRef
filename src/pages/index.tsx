@@ -6,9 +6,15 @@ import { PokedexVerticalText } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { useStateWithCallback } from '@/hooks/useStateWithCallback';
 import { Options, OptionsOffsetLimit } from '@/utils/DataArrays';
 import { getPokedex } from '@/utils/DataFetch';
-import { useQuery } from '@tanstack/react-query';
+import {
+  dehydrate,
+  QueryClient,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { IPokemon } from '../types/Pokemon/Pokemon';
 
 const Filters = dynamic(
@@ -37,9 +43,10 @@ function Pokedex() {
 
   const {
     isLoading,
+    isError,
     error,
     data: pokedex,
-  } = useQuery({
+  }: UseQueryResult<IPokemon[], Error> = useQuery({
     queryKey: [`pokedex`, limit, offset],
     queryFn: () =>
       getPokedex(
@@ -47,8 +54,8 @@ function Pokedex() {
       ),
   });
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {
@@ -86,12 +93,16 @@ function Pokedex() {
 
 export default Pokedex;
 
-// export async function getServerSideProps() {
-//   const initialPokedex = await getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`)
-//   console.log(initialPokedex)
-//   return {
-//     props: {
-//       initialPokedex
-//     }
-//   }
-// }
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  queryClient.prefetchQuery({
+    queryKey: [`pokedex`],
+    queryFn: () =>
+      getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`),
+  });
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}

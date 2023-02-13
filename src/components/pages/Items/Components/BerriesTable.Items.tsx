@@ -16,8 +16,6 @@ type Props = {
 };
 
 function BerriesTable({ berries }: Props) {
-  console.log(berries);
-
   const data = useMemo(() => berries, [berries]);
 
   const columns = useMemo<ColumnDef<IBerry>[]>(

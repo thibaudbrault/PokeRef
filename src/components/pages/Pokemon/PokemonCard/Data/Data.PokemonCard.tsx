@@ -1,5 +1,5 @@
 import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
-import { Species } from '@/types/types';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import Base from './Base/Base.PokemonCard';
 import Desc from './Desc/Desc.PokemonCard';
 import Sprite from './Sprite/Sprite.PokemonCard';
@@ -10,7 +10,7 @@ import {
 
 type Props = {
   pokemon: IPokemon;
-  species: Species.Species;
+  species: IPokemonSpecies;
   location: ILocationAreaEncounter[];
   game: string;
 };

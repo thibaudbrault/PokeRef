@@ -1,5 +1,6 @@
+import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { Evolution, Species } from '@/types/types';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import Breeding from './Breeding/Breeding.PokemonCard';
 import Forms from './Forms/Forms.PokemonCard';
 import { PokemonInfoSection } from './Styled.Info.PokemonCard';
@@ -7,8 +8,8 @@ import Training from './Training/Training.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
-  species: Species.Species;
-  evolution: Evolution.Evolution;
+  species: IPokemonSpecies;
+  evolution: IEvolutionChain;
 };
 
 function Info({ pokemon, species, evolution }: Props) {

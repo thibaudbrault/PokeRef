@@ -3,15 +3,25 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingMoves from '@/components/pages/Moves/Heading';
 import { useToggleTable } from '@/components/pages/Moves/Hooks/useToggleTable';
+import { getMoves, getStats, getStatus } from '@/utils/DataFetch';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 
 function Moves() {
   const { results, toggle, setToggle, pageShown } = useToggleTable();
 
-  if (results[0].status === `error` || results[1].status === `error`) {
+  if (
+    results[0].status === `error` ||
+    results[1].status === `error` ||
+    results[2].status === `error`
+  ) {
     return { error };
   }
 
-  if (results[0].status === `loading` || results[1].status === `loading`) {
+  if (
+    results[0].status === `loading` ||
+    results[1].status === `loading` ||
+    results[2].status === `loading`
+  ) {
     return <Loader />;
   }
 
@@ -32,6 +42,12 @@ function Moves() {
           >
             <p>Status</p>
           </button>
+          <button
+            className={toggle === 3 ? `button_active` : ``}
+            onClick={() => setToggle(3)}
+          >
+            <p>Stats</p>
+          </button>
         </MethodNav>
         {pageShown()}
       </MainBig>
@@ -40,3 +56,27 @@ function Moves() {
 }
 
 export default Moves;
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: ['moves'],
+      queryFn: getMoves,
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ['status'],
+      queryFn: getStatus,
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ['stats'],
+      queryFn: getStats,
+    }),
+  ]);
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}

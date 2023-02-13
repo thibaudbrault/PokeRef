@@ -5,9 +5,15 @@ import { LocationSection } from '@/components/pages/Locations/Styled.Locations';
 import { IRegion } from '@/types/Locations/Region';
 import { regions } from '@/utils/DataArrays';
 import { getRegions } from '@/utils/DataFetch';
+import {
+  dehydrate,
+  QueryClient,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 const ListLocations = dynamic(
   () => import(`@/components/pages/Locations/Components/List.Locations`),
@@ -17,29 +23,25 @@ const RegionsMethod = dynamic(() =>
   import(`@/utils/ObjectsMap`).then((res) => res.RegionsMethod),
 );
 
-type Props = {
-  initialRegions: IRegion[];
-};
-
-function LocationsPage({ initialRegions }: Props) {
+function LocationsPage() {
   const [location, setLocation] = useState<string | null>(null);
   const [toggle, setToggle] = useState<number>(0);
   const {
     isLoading,
+    isError,
     error,
     data: locations,
-  } = useQuery({
+  }: UseQueryResult<IRegion[], Error> = useQuery({
     queryKey: [`regions`],
     queryFn: getRegions,
-    initialData: initialRegions,
   });
 
   useEffect(() => {
     setLocation(regions[toggle + 1]);
   }, [toggle]);
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {
@@ -66,11 +68,15 @@ function LocationsPage({ initialRegions }: Props) {
 
 export default LocationsPage;
 
-export async function getServerSideProps() {
-  const initialRegions = await getRegions();
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  queryClient.prefetchQuery({
+    queryKey: [`regions`],
+    queryFn: getRegions,
+  });
   return {
     props: {
-      initialRegions,
+      dehydratedState: dehydrate(queryClient),
     },
   };
 }

@@ -1,11 +1,15 @@
-import { H3, Capitalize } from '@/components/common/styles/Headings';
+import { Capitalize, H3 } from '@/components/common/styles/Headings';
 import { TableContainer, TLink, TRow } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import { useTableParams } from '@/hooks/useTableParams';
+import { IMachine } from '@/types/Machines/Machine';
 import { IMove } from '@/types/Moves/Move';
 import { IMoveAilment } from '@/types/Moves/MoveAilment';
-import { IPokemon, IPokemonMoveVersion } from '@/types/Pokemon/Pokemon';
-import { Machines, Pokemon } from '@/types/types';
+import {
+  IPokemon,
+  IPokemonMove,
+  IPokemonMoveVersion,
+} from '@/types/Pokemon/Pokemon';
 import { LearnMethod } from '@/utils/ObjectsMap';
 import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
@@ -23,7 +27,7 @@ import {
 type Props = {
   pokemon: IPokemon;
   moves: IMove[];
-  machines: Machines.Machines[];
+  machines: IMachine[];
   version: string;
 };
 
@@ -170,7 +174,7 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
 
   const isLearnedMove = isLearnedMoveForVersion(version);
 
-  const moveInfoTable = (pm: Pokemon.Moves) =>
+  const moveInfoTable = (pm: IPokemonMove) =>
     moves?.map(
       (m) =>
         m.name === pm.move.name && (
@@ -209,7 +213,7 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
         ),
     );
 
-  const dataMoves = pokemon.moves?.map((pm: Pokemon.Moves) =>
+  const dataMoves = pokemon.moves?.map((pm: IPokemonMove) =>
     pm.version_group_details?.map(
       (pmv) =>
         isLearnedMove(pmv) && (
@@ -227,7 +231,7 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
             })()}
             {learn === `machine` &&
               machines?.map(
-                (ma: Machines.Machines) =>
+                (ma: IMachine) =>
                   ma.move.name === pm.move.name &&
                   ma.version_group.name === version && (
                     <PokemonMovesMachine key={ma.item.name}>

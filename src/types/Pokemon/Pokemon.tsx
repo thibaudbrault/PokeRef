@@ -1,19 +1,8 @@
-import { IVersion } from '../Games/Version';
-import { IVersionGroup } from '../Games/VersionGroup';
-import { IItem } from '../Items/Item';
-import { ILocation } from '../Locations/Location';
-import { IMove } from '../Moves/Move';
-import { IMoveLearnMethod } from '../Moves/MoveLearnMethod';
 import {
   IVersionEncounterDetail,
   IVersionGameIndex,
 } from '../Utility/CommonModels';
 import { INamedApiResource } from '../Utility/NamedApiResourceList';
-import { IAbility } from './Ability';
-import { IPokemonForm } from './PokemonForm';
-import { IPokemonSpecies } from './PokemonSpecies';
-import { IStat } from './Stat';
-import { IType } from './Type';
 
 export interface IPokemon {
   id: number;
@@ -24,13 +13,13 @@ export interface IPokemon {
   order: number;
   weight: number;
   abilities: IPokemonAbility[];
-  forms: Array<INamedApiResource<IPokemonForm>>;
+  forms: Array<INamedApiResource>;
   game_indices: IVersionGameIndex[];
   held_items: IPokemonHeldItem[];
   location_area_encounters: string;
   moves: IPokemonMove[];
   sprites: IPokemonSprites;
-  species: INamedApiResource<IPokemonSpecies>;
+  species: INamedApiResource;
   stats: IPokemonStat[];
   types: IPokemonType[];
 }
@@ -38,37 +27,37 @@ export interface IPokemon {
 export interface IPokemonAbility {
   is_hidden: true;
   slot: number;
-  ability: INamedApiResource<IAbility>;
+  ability: INamedApiResource;
 }
 
 export interface IPokemonType {
   slot: number;
-  type: INamedApiResource<IType>;
+  type: INamedApiResource;
 }
 
 export interface IPokemonHeldItem {
-  item: INamedApiResource<IItem>;
+  item: INamedApiResource;
   version_details: IPokemonHeldItemVersion[];
 }
 
 export interface IPokemonHeldItemVersion {
-  version: INamedApiResource<IVersion>;
+  version: INamedApiResource;
   rarity: number;
 }
 
 export interface IPokemonMove {
-  move: INamedApiResource<IMove>;
+  move: INamedApiResource;
   version_group_details: IPokemonMoveVersion[];
 }
 
 export interface IPokemonMoveVersion {
-  move_learn_method: INamedApiResource<IMoveLearnMethod>;
-  version_group: INamedApiResource<IVersionGroup>;
+  move_learn_method: INamedApiResource;
+  version_group: INamedApiResource;
   level_learned_at: number;
 }
 
 export interface IPokemonStat {
-  stat: INamedApiResource<IStat>;
+  stat: INamedApiResource;
   effort: number;
   base_stat: number;
 }
@@ -231,6 +220,6 @@ interface IPokemonSpriteVersion {
 }
 
 export interface ILocationAreaEncounter {
-  location_area: INamedApiResource<ILocation>;
+  location_area: INamedApiResource;
   version_details: IVersionEncounterDetail[];
 }

@@ -14,6 +14,7 @@ import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 
 const DescItemcard = dynamic(
   () => import(`@/components/pages/Items/ItemCard/Components/Desc.Itemcard`),
@@ -33,10 +34,10 @@ type Props = {
 };
 
 function ItemCard({ name }: Props) {
-  const { isLoading, error, item, filterEffect } = useFilterItem(name);
+  const { isLoading, isError, error, item, filterEffect } = useFilterItem(name);
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {

@@ -2,7 +2,7 @@ import { ILocation } from '@/types/Locations/Location';
 import { ILocationArea } from '@/types/Locations/LocationArea';
 import { getArea, getLocation } from '@/utils/DataFetch';
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 export const useSwitchGame = (name: string) => {
   const [game, setGame] = useState<string | null>(null);
@@ -21,9 +21,10 @@ export const useSwitchGame = (name: string) => {
 
   const {
     isLoading,
+    isError,
     error,
     data: area,
-  } = useQuery<ILocationArea>({
+  }: UseQueryResult<ILocationArea, Error> = useQuery({
     queryKey: [`area`],
     queryFn: () => getArea(areaUrl),
     enabled: !!areaUrl,
@@ -63,6 +64,7 @@ export const useSwitchGame = (name: string) => {
     game,
     setGame,
     isLoading,
+    isError,
     error,
     toggleState,
     toggleTable,

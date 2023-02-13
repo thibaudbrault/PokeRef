@@ -1,5 +1,5 @@
 import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { Species } from '@/types/types';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import {
   PokemonDataImg,
   PokemonDataLeg,
@@ -8,7 +8,7 @@ import {
 
 type Props = {
   pokemon: IPokemon;
-  species: Species.Species;
+  species: IPokemonSpecies;
 };
 
 function Sprite({ pokemon, species }: Props) {

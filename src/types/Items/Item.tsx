@@ -1,5 +1,3 @@
-import { IEvolutionChain } from '../Evolution/EvolutionChain';
-import { IVersion } from '../Games/Version';
 import { IApiResource } from '../Utility/ApiResourceList';
 import {
   IGenerationGameIndex,
@@ -9,17 +7,15 @@ import {
   IVersionGroupFlavorText,
 } from '../Utility/CommonModels';
 import { INamedApiResource } from '../Utility/NamedApiResourceList';
-import { IItemAttribute } from './ItemAttribute';
 import { IItemCategory } from './ItemCategory';
-import { IItemFlingEffect } from './ItemFlingEffect';
 
 export interface IItem {
   id: number;
   name: string;
   cost: number;
   fling_power: number;
-  fling_effect: INamedApiResource<IItemFlingEffect>;
-  attributes: Array<INamedApiResource<IItemAttribute>>;
+  fling_effect: INamedApiResource;
+  attributes: Array<INamedApiResource>;
   category: IItemCategory;
   effect_entries: IVerboseEffect[];
   flavor_text_entries: IVersionGroupFlavorText[];
@@ -27,7 +23,7 @@ export interface IItem {
   names: IName[];
   sprites: IItemSprites;
   held_by_pokemon: IItemHolderPokemon[];
-  baby_trigger_for: IApiResource<IEvolutionChain>;
+  baby_trigger_for: IApiResource;
   machines: IMachineVersionDetail[];
 }
 
@@ -36,11 +32,11 @@ export interface IItemSprites {
 }
 
 export interface IItemHolderPokemon {
-  pokemon: string;
+  pokemon: INamedApiResource;
   version_details: IItemHolderPokemonVersionDetail[];
 }
 
 export interface IItemHolderPokemonVersionDetail {
   rarity: string;
-  version: INamedApiResource<IVersion>;
+  version: INamedApiResource;
 }

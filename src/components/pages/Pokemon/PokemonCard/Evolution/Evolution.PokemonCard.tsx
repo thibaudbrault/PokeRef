@@ -1,12 +1,14 @@
 import { H3 } from '@/components/common/styles/Headings';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
-import { Evolution } from '@/types/types';
+import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { getPokedex } from '@/utils/DataFetch';
 import { removeDash } from '@/utils/Typography';
 import { FaChevronRight } from '@meronex/icons/fa';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 import {
   PokemonEvolution,
   PokemonEvolutionBase,
@@ -19,21 +21,22 @@ import {
 } from './Styled.Evolution.PokemonCard';
 
 type Props = {
-  evolution: Evolution.Evolution;
+  evolution: IEvolutionChain;
 };
 
 function EvolutionPokemon({ evolution }: Props) {
   const {
     isLoading,
+    isError,
     error,
     data: pokedex,
-  } = useQuery({
+  }: UseQueryResult<IPokemon[], Error> = useQuery({
     queryKey: [`pokedex`],
     queryFn: () => getPokedex(`https://pokeapi.co/api/v2/pokemon?limit=1008`),
   });
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {

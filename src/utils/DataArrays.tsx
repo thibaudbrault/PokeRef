@@ -16,6 +16,7 @@ export const regions: Record<string, string> = {
   7: `alola`,
   8: `galar`,
   9: `hisui`,
+  10: `paldea`,
 };
 
 type Generations = {

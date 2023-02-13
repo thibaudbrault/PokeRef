@@ -15,6 +15,7 @@ import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useMemo } from 'react';
+import toast from 'react-hot-toast';
 
 const HeadingLocation = dynamic(
   () => import(`@/components/pages/Locations/LocationCard/Heading`),
@@ -37,6 +38,7 @@ function LocationCard({ name }: Props) {
     toggleState,
     toggleTable,
     isLoading,
+    isError,
     error,
     location,
     area,
@@ -104,8 +106,8 @@ function LocationCard({ name }: Props) {
     columns,
   );
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {

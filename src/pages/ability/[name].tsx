@@ -19,6 +19,7 @@ import { removeDash } from '@/utils/Typography';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 
 const DescAbilityCard = dynamic(
   () =>
@@ -34,6 +35,7 @@ type Props = {
 function AbilityCard({ name }: Props) {
   const {
     isLoading,
+    isError,
     error,
     ability,
     pokedex,
@@ -42,10 +44,8 @@ function AbilityCard({ name }: Props) {
     filterDesc,
   } = useFilterAbility(name);
 
-  console.log(ability);
-
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {

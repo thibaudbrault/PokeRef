@@ -27,7 +27,7 @@ function ListLocations({ location, locations }: Props) {
                       key={ll.name}
                     >
                       {removeDash(ll.name).replace(
-                        /kanto|johto|hoenn|sinnoh|unova|kalos|alola/g,
+                        /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea/g,
                         ``,
                       )}
                     </Link>

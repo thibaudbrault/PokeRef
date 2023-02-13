@@ -1,9 +1,13 @@
 import { darkTheme, lightTheme } from '@/components/common/styles/Themes';
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useState } from 'react';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'styled-components';
 
 import { Reset } from '@/components/common/styles/Reset';
@@ -12,16 +16,6 @@ import Header from '@/components/layout/Header/Header';
 import Nav from '@/components/layout/Nav/Nav';
 import NextNProgress from 'nextjs-progressbar';
 import { Toaster } from 'react-hot-toast';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      cacheTime: Infinity,
-      staleTime: Infinity,
-      retry: false,
-    },
-  },
-});
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   <div role="alert">
@@ -32,6 +26,19 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
 };
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            cacheTime: Infinity,
+            staleTime: Infinity,
+            retry: false,
+          },
+        },
+      }),
+  );
+
   const [navOpen, setNavOpen] = useState(false);
 
   const loadTheme: () => string = () => {
@@ -57,20 +64,22 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <QueryClientProvider client={queryClient}>
-          <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
-            <Toaster />
-            <NextNProgress />
-            <Header
-              navOpen={navOpen}
-              setNavOpen={setNavOpen}
-              themeToggler={themeToggler}
-              theme={theme}
-            />
-            <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
-            <Reset />
-            <Component {...pageProps} />
-            <Footer />
-          </ThemeProvider>
+          <Hydrate state={pageProps.dehydratedState}>
+            <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
+              <Toaster />
+              <NextNProgress />
+              <Header
+                navOpen={navOpen}
+                setNavOpen={setNavOpen}
+                themeToggler={themeToggler}
+                theme={theme}
+              />
+              <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
+              <Reset />
+              <Component {...pageProps} />
+              <Footer />
+            </ThemeProvider>
+          </Hydrate>
         </QueryClientProvider>
       </ErrorBoundary>
     </>

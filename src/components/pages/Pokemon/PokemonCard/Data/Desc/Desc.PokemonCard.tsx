@@ -1,7 +1,7 @@
 import { Capitalize } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { Species } from '@/types/types';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import { removeDash } from '@/utils/Typography';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import { PokemonDataDesc, PokemonDataTypes } from '../Styled.Data.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
-  species: Species.Species;
+  species: IPokemonSpecies;
   game: string;
 };
 

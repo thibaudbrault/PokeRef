@@ -3,37 +3,39 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import {
   FullWidthTable,
   TableContainer,
+  TBold,
   TEffect,
   TLink,
-  TBold,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IAbility } from '@/types/Pokemon/Ability';
 import { getAbilities } from '@/utils/DataFetch';
 import { removeDash } from '@/utils/Typography';
-import { useQuery } from '@tanstack/react-query';
+import {
+  dehydrate,
+  QueryClient,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
+import toast from 'react-hot-toast';
 
 const HeadingAbilities = dynamic(
   () => import(`@/components/pages/Abilities/Heading`),
 );
 
-type Props = {
-  initialAbilities: IAbility[];
-};
-
-function AbilitiesPage({ initialAbilities }: Props) {
+function AbilitiesPage() {
   const {
     isLoading,
+    isError,
     error,
     data: abilities,
-  } = useQuery({
+  }: UseQueryResult<IAbility[], Error> = useQuery({
     queryKey: [`abilities`],
     queryFn: getAbilities,
-    initialData: initialAbilities,
   });
 
   const data = useMemo(() => abilities, [abilities]);
@@ -79,8 +81,8 @@ function AbilitiesPage({ initialAbilities }: Props) {
     columns,
   );
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {
@@ -105,11 +107,15 @@ function AbilitiesPage({ initialAbilities }: Props) {
 
 export default AbilitiesPage;
 
-export async function getServerSideProps() {
-  const initialAbilities = await getAbilities();
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  queryClient.prefetchQuery({
+    queryKey: [`abilities`],
+    queryFn: getAbilities,
+  });
   return {
     props: {
-      initialAbilities,
+      dehydratedState: dehydrate(queryClient),
     },
   };
 }
