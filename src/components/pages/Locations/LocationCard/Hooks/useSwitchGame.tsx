@@ -1,22 +1,34 @@
-import { useState, useEffect } from 'react';
-import { useLocation, useArea } from '@/hooks/DataFetch';
+import { ILocation } from '@/types/Locations/Location';
+import { ILocationArea } from '@/types/Locations/LocationArea';
+import { getArea, getLocation } from '@/utils/DataFetch';
+import { useEffect, useState } from 'react';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
-export const useSwitchGame = (name: string | string[] | undefined) => {
-  const [game, setGame] = useState(`red`);
-  const [toggleState, setToggleState] = useState(0);
-  const {
-    isLoading,
-    error,
-    data: location,
-  } = useLocation(`https://pokeapi.co/api/v2/location/${name}`);
+export const useSwitchGame = (name: string) => {
+  const [game, setGame] = useState<string | null>(null);
+  const [toggleState, setToggleState] = useState<number>(0);
 
   const toggleTable = (index: number) => {
     setToggleState(index);
   };
 
+  const { data: location } = useQuery<ILocation>({
+    queryKey: [`location`],
+    queryFn: () => getLocation(name),
+  });
+
   const areaUrl = location?.areas[toggleState]?.url;
 
-  const { data: area } = useArea(areaUrl);
+  const {
+    isLoading,
+    isError,
+    error,
+    data: area,
+  }: UseQueryResult<ILocationArea, Error> = useQuery({
+    queryKey: [`area`],
+    queryFn: () => getArea(areaUrl),
+    enabled: !!areaUrl,
+  });
 
   const gameUsed = () => {
     switch (location?.region.name) {
@@ -52,6 +64,7 @@ export const useSwitchGame = (name: string | string[] | undefined) => {
     game,
     setGame,
     isLoading,
+    isError,
     error,
     toggleState,
     toggleTable,

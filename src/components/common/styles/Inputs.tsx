@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import Select from 'react-select';
+import styled from 'styled-components';
 import { device } from './Sizing';
 
 export const Search = styled.section`
@@ -140,8 +140,4 @@ export const Dropdown = styled(Select)`
   @media ${device.md} {
     width: 100%;
   }
-`;
-
-export const ModifiedSearch = styled(Search)`
-  justify-content: flex-start;
 `;

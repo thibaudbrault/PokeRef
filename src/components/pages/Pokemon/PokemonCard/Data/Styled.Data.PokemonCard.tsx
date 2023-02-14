@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Pulse } from '../../../../common/styles/Keyframes';
+import { Pulse } from '../../../../common/styles/Animations';
 import { device, Section } from '../../../../common/styles/Sizing';
 import { Table } from '../../../../common/styles/Table';
 

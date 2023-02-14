@@ -1,15 +1,16 @@
-import React from 'react';
-import { Pokemon, Species } from '@/types/types';
 import { TLink } from '@/components/common/styles/Table';
+import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
+import { removeDash } from '@/utils/Typography';
 import {
   PokemonDataLocation,
   PokemonDataTable,
 } from '../Styled.Data.PokemonCard';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
-  species: Species.Species;
-  location: Pokemon.PokemonLocation[];
+  pokemon: IPokemon;
+  species: IPokemonSpecies;
+  location: ILocationAreaEncounter[];
   game: string;
 };
 
@@ -43,7 +44,7 @@ function Base({ pokemon, species, game, location }: Props) {
                   (lv) =>
                     lv.version.name === game && (
                       <p key={l.location_area.name}>
-                        {l.location_area.name.replace(/-/g, ` `)}
+                        {removeDash(l.location_area.name)}
                       </p>
                     ),
                 ),
@@ -63,7 +64,7 @@ function Base({ pokemon, species, game, location }: Props) {
                   }}
                   key={pa.ability.name}
                 >
-                  {pa.ability.name.replace(/-/g, ` `)}
+                  {removeDash(pa.ability.name)}
                 </TLink>
                 {pa.is_hidden && <>‌‌ (hidden ability)</>}
               </p>
@@ -81,7 +82,7 @@ function Base({ pokemon, species, game, location }: Props) {
         <tr>
           <th>Category</th>
           <td>
-            <p>{filterGenera.genus}</p>
+            <p>{filterGenera?.genus}</p>
           </td>
         </tr>
         <tr>

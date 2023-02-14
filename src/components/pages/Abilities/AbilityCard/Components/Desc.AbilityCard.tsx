@@ -1,10 +1,10 @@
-import React from 'react';
-import { Abilities } from '@/types/types';
 import { H3 } from '@/components/common/styles/Headings';
+import { IAbilityFlavorText } from '@/types/Pokemon/Ability';
+import { removeDash } from '@/utils/Typography';
 import { AbilityCardSection, AbilityCardTable } from '../Styled.AbilityCard';
 
 type Props = {
-  filterDesc?: Abilities.FlavorText[];
+  filterDesc?: IAbilityFlavorText[];
 };
 
 function DescAbilityCard({ filterDesc }: Props) {
@@ -15,7 +15,7 @@ function DescAbilityCard({ filterDesc }: Props) {
         <tbody>
           {filterDesc?.map((fd) => (
             <tr key={fd.flavor_text}>
-              <th>{fd?.version_group.name.replace(/-/g, ` `)}</th>
+              <th>{removeDash(fd?.version_group.name)}</th>
               <td>{fd?.flavor_text}</td>
             </tr>
           ))}

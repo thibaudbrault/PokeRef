@@ -1,13 +1,20 @@
 import styled from 'styled-components';
 import { Subtitle } from '../../../common/styles/Headings';
 import { device } from '../../../common/styles/Sizing';
-import { Table, TName } from '../../../common/styles/Table';
+import { Table, TBold } from '../../../common/styles/Table';
 
 export const TypeDamageSection = styled.section`
   margin: 5rem 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 3rem;
+  align-items: start;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+
+  & table {
+    & tr {
+      height: 100px;
+    }
+  }
 
   @media ${device.sm} {
     display: flex;
@@ -120,7 +127,7 @@ export const TypeMovesTable = styled(Table)`
   }
 `;
 
-export const TypeMovesName = styled(TName)`
+export const TypeMovesName = styled(TBold)`
   & a {
     border-bottom: 1px solid transparent;
     cursor: pointer;

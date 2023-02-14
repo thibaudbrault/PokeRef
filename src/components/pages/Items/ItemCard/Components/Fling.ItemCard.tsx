@@ -1,10 +1,10 @@
-import React from 'react';
-import { Items } from '@/types/types';
-import { Span } from '@/components/common/styles/Headings';
+import { Capitalize } from '@/components/common/styles/Headings';
+import { IItem } from '@/types/Items/Item';
+import { removeDash } from '@/utils/Typography';
 import { ItemCardDataFling } from '../Styled.ItemCard';
 
 type Props = {
-  item?: Items.Items;
+  item?: IItem;
 };
 
 function FlingItemCard({ item }: Props) {
@@ -13,7 +13,7 @@ function FlingItemCard({ item }: Props) {
       {item?.fling_effect && (
         <ItemCardDataFling>
           When the pokémon holds{` `}
-          <Span>{item?.name.replace(/-/g, ` `)}</Span> the move{` `}
+          <Capitalize>{removeDash(item?.name)}</Capitalize> the move{` `}
           <i>Fling</i> has {item?.fling_power} power.
           {item?.fling_effect.name &&
             item?.fling_effect.name !== `berry-effect` &&

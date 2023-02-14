@@ -1,20 +1,35 @@
-import React from 'react';
 import { MainSmall } from '@/components/common/styles/Sizing';
-import { TypesList } from '@/components/pages/Types/Styled.Types';
-import { useTypes } from '@/hooks/DataFetch';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingTypes from '@/components/pages/Types/Heading';
+import { TypesList } from '@/components/pages/Types/Styled.Types';
+import { IType } from '@/types/Pokemon/Type';
+import { getTypes } from '@/utils/DataFetch';
+import {
+  dehydrate,
+  QueryClient,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
+import toast from 'react-hot-toast';
 
 const ListTypes = dynamic(
   () => import(`@/components/pages/Types/Components/List.Types`),
 );
 
 function TypesPage() {
-  const { isLoading, error, data: types } = useTypes();
+  const {
+    isLoading,
+    isError,
+    error,
+    data: types,
+  }: UseQueryResult<IType[], Error> = useQuery({
+    queryKey: [`types`],
+    queryFn: getTypes,
+  });
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {
@@ -34,3 +49,16 @@ function TypesPage() {
 }
 
 export default TypesPage;
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  queryClient.prefetchQuery({
+    queryKey: [`types`],
+    queryFn: getTypes,
+  });
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}

@@ -1,14 +1,20 @@
-import { useItem } from '@/hooks/DataFetch';
+import { IItem } from '@/types/Items/Item';
+import { getItem } from '@/utils/DataFetch';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
-export const useFilterItem = (name: string | string[] | undefined) => {
+export const useFilterItem = (name: string) => {
   const {
     isLoading,
+    isError,
     error,
     data: item,
-  } = useItem(`https://pokeapi.co/api/v2/item/${name}`);
+  }: UseQueryResult<IItem, Error> = useQuery({
+    queryKey: [`item`],
+    queryFn: () => getItem(name),
+  });
 
   const filterEffect =
     item && item?.effect_entries?.find((ie) => ie.language.name === `en`);
 
-  return { isLoading, error, item, filterEffect };
+  return { isLoading, isError, error, item, filterEffect };
 };

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import { Input } from '@/components/common/styles/Inputs';
 import { TLink } from '@/components/common/styles/Table';
+import styled from 'styled-components';
 
 export const AutocompleteInput = styled(Input)`
   min-width: 25rem;

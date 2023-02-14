@@ -1,5 +1,4 @@
-import { Pokemon } from '@/types/types';
-import React from 'react';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 import Content from './Content/Content.MoveCard';
 import {
   BreedingMoveText,
@@ -10,7 +9,7 @@ import {
 } from './Text/Text.MoveCard';
 
 type Props = {
-  pokedex?: Pokemon.Pokemon[];
+  pokedex?: IPokemon[];
   moveName: string;
   version: string;
   toggle: number;
@@ -19,15 +18,15 @@ type Props = {
 function List({ pokedex, moveName, version, toggle }: Props) {
   const textShown = () => {
     if (toggle === 0) {
-      return <LevelMoveText />;
+      return <LevelMoveText version={version} />;
     } else if (toggle === 1) {
-      return <MachinesMoveText />;
+      return <MachinesMoveText version={version} />;
     } else if (toggle === 2) {
-      return <BreedingMoveText />;
+      return <BreedingMoveText version={version} />;
     } else if (toggle === 3) {
-      return <TutorMoveText />;
+      return <TutorMoveText version={version} />;
     } else if (toggle === 4) {
-      return <EvolvingMoveText />;
+      return <EvolvingMoveText version={version} />;
     }
   };
 

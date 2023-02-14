@@ -1,12 +1,13 @@
-import React from 'react';
 import { H3 } from '@/components/common/styles/Headings';
-import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
+import { removeDash } from '@/utils/Typography';
 import Link from 'next/link';
-import { Pokemon, Species } from '@/types/types';
+import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
-  species: Species.Species;
+  pokemon: IPokemon;
+  species: IPokemonSpecies;
 };
 
 function Forms({ pokemon, species }: Props) {
@@ -37,7 +38,7 @@ function Forms({ pokemon, species }: Props) {
                       }}
                       key={sv.pokemon.name}
                     >
-                      <span>{sv.pokemon.name.replace(/-/g, ` `)}</span>
+                      <span>{removeDash(sv.pokemon.name)}</span>
                     </Link>
                   ))
                 : `⠀`}

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../../../../common/styles/Sizing';
+import { device } from '@/components/common/styles/Sizing';
 
 export const PokemonSpritesDiv = styled.div`
   display: grid;
@@ -13,11 +13,6 @@ export const PokemonSpritesDiv = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
-    & img {
-      width: 96px;
-      height: 96px;
-    }
 
     & p {
       margin-top: 1rem;

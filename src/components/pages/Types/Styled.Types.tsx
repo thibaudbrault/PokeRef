@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Type } from '../../common/styles/Themes';
 import { device } from '../../common/styles/Sizing';
+import { Type } from '../../common/styles/Themes';
 
 export const TypesList = styled.ul`
   display: flex;

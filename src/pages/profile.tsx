@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
 import { H2 } from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
-import { auth, db } from '@/firebase-config';
-import { useRouter } from 'next/router';
-import Loader from '@/components/common/ui/Loader/Loader';
-import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';
-import { formatOptions, Options } from '@/utils/DataArrays';
 import { Dropdown } from '@/components/common/styles/Inputs';
-import { useFormat } from '@/hooks/DataFetch';
+import { MainBig } from '@/components/common/styles/Sizing';
+import Loader from '@/components/common/ui/Loader/Loader';
 import {
   ProfileInputs,
   ProfileList,
 } from '@/components/pages/Profile/Styled.Profile';
-import { SingleValue } from 'react-select';
+import { auth, db } from '@/firebase-config';
+import { formatOptions, Options } from '@/utils/DataArrays';
+import { getFormat } from '@/utils/DataFetch';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 function Profile() {
   const router = useRouter();
@@ -25,11 +26,16 @@ function Profile() {
 
   const {
     isLoading,
+    isError,
     error,
     data: format,
-  } = useFormat(
-    `https://raw.githubusercontent.com/pkmn/smogon/main/data/stats/${formatQuery}.json`,
-  );
+  }: UseQueryResult<IFormat[], Error> = useQuery({
+    queryKey: [`format`, formatQuery],
+    queryFn: () =>
+      getFormat(
+        `https://raw.githubusercontent.com/pkmn/smogon/main/data/stats/${formatQuery}.json`,
+      ),
+  });
 
   const getUserDoc = async () => {
     const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
@@ -51,8 +57,8 @@ function Profile() {
     }
   }, [formatValue]);
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {

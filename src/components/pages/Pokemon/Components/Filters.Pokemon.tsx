@@ -1,20 +1,20 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
-import { MultiValue, SingleValue } from 'react-select';
-import { Pokemon } from '@/types/types';
 import Autocomplete from '@/components/autocomplete/Autocomplete';
-import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
-import {
-  Options,
-  generationsOptions,
-  typeOptions,
-  OptionsOffsetLimit,
-  formOptions,
-} from '@/utils/DataArrays';
 import { Dropdown } from '@/components/common/styles/Inputs';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import {
+  formOptions,
+  generationsOptions,
+  Options,
+  OptionsOffsetLimit,
+  typeOptions,
+} from '@/utils/DataArrays';
+import { Dispatch, SetStateAction, useEffect } from 'react';
+import { MultiValue, SingleValue } from 'react-select';
+import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
 
 type Props = {
-  pokedex?: Pokemon.Pokemon[];
-  setFilteredPokedex: Dispatch<SetStateAction<Pokemon.Pokemon[]>>;
+  pokedex?: IPokemon[];
+  setFilteredPokedex: Dispatch<SetStateAction<IPokemon[]>>;
   setOffset: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;
   form: OptionsOffsetLimit | null;
@@ -23,6 +23,7 @@ type Props = {
   setGeneration: Dispatch<SetStateAction<OptionsOffsetLimit | null>>;
   type: Options[] | null;
   setType: Dispatch<SetStateAction<Options[]>>;
+  setShowPlaceholder: Dispatch<SetStateAction<boolean>>;
 };
 
 function Filters({
@@ -36,6 +37,7 @@ function Filters({
   setForm,
   generation,
   setGeneration,
+  setShowPlaceholder,
 }: Props) {
   const getFilterPokemon = () => {
     if (pokedex) {
@@ -77,17 +79,20 @@ function Filters({
     setForm(option);
     setGeneration(null);
     setType([]);
+    setShowPlaceholder(false);
   };
 
   const handleGenSelect = (option: SingleValue<OptionsOffsetLimit>) => {
     setGeneration(option);
     setForm(null);
     setType([]);
+    setShowPlaceholder(false);
   };
 
   const handleTypeSelect = (option: MultiValue<Options>) => {
     if (option) {
       setType(option);
+      setShowPlaceholder(false);
     }
   };
 

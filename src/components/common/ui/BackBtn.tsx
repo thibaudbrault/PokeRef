@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaChevronLeft } from '@meronex/icons/fa';
 import styled from 'styled-components';
 

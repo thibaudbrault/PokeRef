@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
 import { H3 } from '@/components/common/styles/Headings';
 import { MethodNav } from '@/components/common/styles/Navbars';
+import { useState } from 'react';
 import { PokemonTypesContainer } from '../Styled.Stats.PokemonCard';
-// import { Pokemon } from '@/types/types';
 import Table from './Table.Typing.PokemonCard';
+import { IPokemonMove } from '@/types/Pokemon/Pokemon';
 
 // type Props = {
-//   pokemon: Pokemon.Pokemon;
-//   types: Pokemon.Types;
+//   pokemon: IPokemon;
+//   types: IPokemonMove;
 //   toggleType: number;
 //   toggleTypeTable: (arg0: number) => void;
 // };

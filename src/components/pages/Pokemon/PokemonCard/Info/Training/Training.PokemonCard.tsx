@@ -1,12 +1,13 @@
-import React from 'react';
 import { H3 } from '@/components/common/styles/Headings';
-import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
+import { removeDash } from '@/utils/Typography';
 import Link from 'next/link';
-import { Pokemon, Species } from '@/types/types';
+import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
-  species: Species.Species;
+  pokemon: IPokemon;
+  species: IPokemonSpecies;
 };
 
 function Training({ pokemon, species }: Props) {
@@ -24,7 +25,7 @@ function Training({ pokemon, species }: Props) {
               <p>
                 {filterEffort?.effort}
                 {` `}
-                {filterEffort?.stat.name.replace(/-/g, ` `)}
+                {removeDash(filterEffort?.stat.name)}
               </p>
             </td>
           </tr>
@@ -48,7 +49,7 @@ function Training({ pokemon, species }: Props) {
             <th>Growth rate</th>
             <td>
               {pokemon.id < 10000 ? (
-                <p>{species.growth_rate.name.replace(/-/g, ` `)}</p>
+                <p>{removeDash(species.growth_rate.name)}</p>
               ) : (
                 `⠀`
               )}
@@ -66,7 +67,7 @@ function Training({ pokemon, species }: Props) {
                       }}
                       key={ph.item.name}
                     >
-                      <span>{ph.item.name.replace(/-/g, ` `)}</span>
+                      <span>{removeDash(ph.item.name)}</span>
                     </Link>
                   ))
                 : `None`}

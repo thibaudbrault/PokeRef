@@ -1,19 +1,20 @@
-import React from 'react';
-import { MainBig } from '@/components/common/styles/Sizing';
 import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
+import { MainBig } from '@/components/common/styles/Sizing';
+import BackBtn from '@/components/common/ui/BackBtn';
+import Loader from '@/components/common/ui/Loader/Loader';
+import HeadingItem from '@/components/pages/Items/ItemCard/Heading';
+import { useFilterItem } from '@/components/pages/Items/ItemCard/Hooks/useFilterItem';
 import {
   ItemCardDataEffect,
   ItemCardDataImage,
   ItemCardDataSection,
 } from '@/components/pages/Items/ItemCard/Styled.ItemCard';
-import Loader from '@/components/common/ui/Loader/Loader';
-import Link from 'next/link';
-import Image from 'next/image';
-import BackBtn from '@/components/common/ui/BackBtn';
-import HeadingItem from '@/components/pages/Items/ItemCard/Heading';
-import { useFilterItem } from '@/components/pages/Items/ItemCard/Hooks/useFilterItem';
+import { removeDash } from '@/utils/Typography';
+import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
-import { useRouterIsReady } from '@/hooks/useRouterIsReady';
+import Image from 'next/image';
+import Link from 'next/link';
+import toast from 'react-hot-toast';
 
 const DescItemcard = dynamic(
   () => import(`@/components/pages/Items/ItemCard/Components/Desc.Itemcard`),
@@ -28,13 +29,15 @@ const CostItemCard = dynamic(
   () => import(`@/components/pages/Items/ItemCard/Components/Cost.ItemCard`),
 );
 
-function ItemCard() {
-  const { name } = useRouterIsReady();
+type Props = {
+  name: string;
+};
 
-  const { isLoading, error, item, filterEffect } = useFilterItem(name);
+function ItemCard({ name }: Props) {
+  const { isLoading, isError, error, item, filterEffect } = useFilterItem(name);
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {
@@ -45,8 +48,8 @@ function ItemCard() {
     <>
       <HeadingItem name={name} />
       <MainBig>
-        <CardTitle>{item?.name.replace(/-/g, ` `)}</CardTitle>
-        <Subtitle>{item?.category.name.replace(/-/g, ` `)}</Subtitle>
+        <CardTitle>{removeDash(item?.name)}</CardTitle>
+        <Subtitle>{removeDash(item?.category.name)}</Subtitle>
         <ItemCardDataSection>
           <div>
             <ItemCardDataEffect>
@@ -80,3 +83,12 @@ function ItemCard() {
 }
 
 export default ItemCard;
+
+export function getServerSideProps(context: GetServerSidePropsContext) {
+  const { name } = context.query;
+  return {
+    props: {
+      name,
+    },
+  };
+}

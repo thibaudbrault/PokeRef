@@ -1,14 +1,15 @@
-import React from 'react';
+import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import Breeding from './Breeding/Breeding.PokemonCard';
 import Forms from './Forms/Forms.PokemonCard';
-import Training from './Training/Training.PokemonCard';
 import { PokemonInfoSection } from './Styled.Info.PokemonCard';
-import { Evolution, Pokemon, Species } from '@/types/types';
+import Training from './Training/Training.PokemonCard';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
-  species: Species.Species;
-  evolution: Evolution.Evolution;
+  pokemon: IPokemon;
+  species: IPokemonSpecies;
+  evolution: IEvolutionChain;
 };
 
 function Info({ pokemon, species, evolution }: Props) {

@@ -1,21 +1,19 @@
-import React from 'react';
-import { useToggleLocation } from '@/components/pages/Locations/Hooks/useToggleLocation';
-import { LocationList, LocationSection } from '../Styled.Locations';
+import { IRegion } from '@/types/Locations/Region';
+import { removeDash } from '@/utils/Typography';
 import Link from 'next/link';
+import { LocationList, LocationSection } from '../Styled.Locations';
 
 type Props = {
   location: string | null;
+  locations?: IRegion[];
 };
 
-function ListLocations({ location }: Props) {
-  const { locations } = useToggleLocation();
-
+function ListLocations({ location, locations }: Props) {
   return (
     <LocationSection>
       {locations?.map(
         (l) =>
-          l.name === location &&
-          location !== `galar` && (
+          l.name === location && (
             <LocationList key={l.name}>
               {l.locations
                 .sort((a, b) => a.name.localeCompare(b.name))
@@ -28,12 +26,10 @@ function ListLocations({ location }: Props) {
                       }}
                       key={ll.name}
                     >
-                      {ll.name
-                        .replace(/-/g, ` `)
-                        .replace(
-                          /kanto|johto|hoenn|sinnoh|unova|kalos|alola/g,
-                          ``,
-                        )}
+                      {removeDash(ll.name).replace(
+                        /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea/g,
+                        ``,
+                      )}
                     </Link>
                   </li>
                 ))}

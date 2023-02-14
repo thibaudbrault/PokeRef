@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { device, Section } from '../../../../common/styles/Sizing';
-import { Table } from '../../../../common/styles/Table';
+import { device, Section } from '@/components/common/styles/Sizing';
+import { Table } from '@/components/common/styles/Table';
 
 export const PokemonMovesSection = styled(Section)`
   overflow-x: hidden;

@@ -1,17 +1,17 @@
-import React from 'react';
+import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
+import Base from './Base/Base.PokemonCard';
 import Desc from './Desc/Desc.PokemonCard';
 import Sprite from './Sprite/Sprite.PokemonCard';
-import Base from './Base/Base.PokemonCard';
 import {
   PokemonDataSection,
   PokemonDataSprite,
 } from './Styled.Data.PokemonCard';
-import { Pokemon, Species } from '@/types/types';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
-  species: Species.Species;
-  location: Pokemon.PokemonLocation[];
+  pokemon: IPokemon;
+  species: IPokemonSpecies;
+  location: ILocationAreaEncounter[];
   game: string;
 };
 

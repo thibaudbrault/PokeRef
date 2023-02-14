@@ -1,7 +1,6 @@
-import React from 'react';
 import {
-  NotFoundMain,
   NotFoundImg,
+  NotFoundMain,
   NotFoundText,
 } from '@/components/pages/404/Styled.NotFound';
 

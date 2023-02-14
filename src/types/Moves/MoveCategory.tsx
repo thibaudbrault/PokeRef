@@ -1,10 +1,9 @@
-import { IDescription } from "../Utility/CommonModels";
-import { INamedApiResource } from "../Utility/NamedApiResourceList";
-import { IMove } from "./Move";
+import { IDescription } from '../Utility/CommonModels';
+import { INamedApiResource } from '../Utility/NamedApiResourceList';
 
 export interface IMoveCategory {
-    id: number;
-    name: string;
-    moves: Array<INamedApiResource<IMove>>;
-    descriptions: IDescription[];
+  id: number;
+  name: string;
+  moves: Array<INamedApiResource>;
+  descriptions: IDescription[];
 }

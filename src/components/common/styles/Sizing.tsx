@@ -46,10 +46,6 @@ export const MainDashboard = styled(MainBig)`
   border-radius: 5px;
 `;
 
-export const ModifiedMainBig = styled(MainBig)`
-  margin-bottom: 5rem;
-`;
-
 export const Section = styled.section`
   margin-bottom: 5rem;
 `;

@@ -1,20 +1,21 @@
-import React from 'react';
+import { Capitalize } from '@/components/common/styles/Headings';
+import { Type } from '@/components/common/styles/Themes';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
+import { removeDash } from '@/utils/Typography';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Span } from '@/components/common/styles/Headings';
-import { Type } from '@/components/common/styles/Themes';
 import { PokemonDataDesc, PokemonDataTypes } from '../Styled.Data.PokemonCard';
-import { Pokemon, Species } from '@/types/types';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
-  species: Species.Species;
+  pokemon: IPokemon;
+  species: IPokemonSpecies;
   game: string;
 };
 
 function Desc({ pokemon, species, game }: Props) {
   const filterDesc =
-    species.flavor_text_entries &&
+    species?.flavor_text_entries &&
     species?.flavor_text_entries.find(
       (sf) => sf.language.name === `en` && sf.version.name === game,
     );
@@ -29,9 +30,9 @@ function Desc({ pokemon, species, game }: Props) {
             </span>
             <p>
               Pokémon{` `}
-              <Span>
-                <i>{game.replace(/-/g, ` `)}</i>
-              </Span>
+              <Capitalize>
+                <i>{removeDash(game)}</i>
+              </Capitalize>
             </p>
           </PokemonDataDesc>
         )}

@@ -1,28 +1,21 @@
-import React, { useState } from 'react';
-import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
+import { darkTheme, lightTheme } from '@/components/common/styles/Themes';
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { useState } from 'react';
+import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import { ThemeProvider } from 'styled-components';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import { darkTheme, lightTheme } from '@/components/common/styles/Themes';
 
+import { Reset } from '@/components/common/styles/Reset';
+import Footer from '@/components/layout/Footer/Footer';
 import Header from '@/components/layout/Header/Header';
 import Nav from '@/components/layout/Nav/Nav';
-import Footer from '@/components/layout/Footer/Footer';
-import { Reset } from '@/components/common/styles/Reset';
-import { Toaster } from 'react-hot-toast';
 import NextNProgress from 'nextjs-progressbar';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      cacheTime: Infinity,
-      staleTime: Infinity,
-      retry: false,
-    },
-  },
-});
+import { Toaster } from 'react-hot-toast';
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   <div role="alert">
@@ -33,8 +26,20 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
 };
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            cacheTime: Infinity,
+            staleTime: Infinity,
+            retry: false,
+          },
+        },
+      }),
+  );
 
-  const [navOpen, setNavOpen] = useState(false)
+  const [navOpen, setNavOpen] = useState(false);
 
   const loadTheme: () => string = () => {
     const localTheme = globalThis.window?.localStorage.getItem(`theme`);
@@ -59,16 +64,22 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <QueryClientProvider client={queryClient}>
-          <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
-            <Toaster />
-            <NextNProgress />
-            <Header navOpen={navOpen} setNavOpen={setNavOpen} themeToggler={themeToggler} theme={theme} />
-            <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
-            <Reset />
-            <Component {...pageProps} />
-            <Footer />
-            <ReactQueryDevtools />
-          </ThemeProvider>
+          <Hydrate state={pageProps.dehydratedState}>
+            <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
+              <Toaster />
+              <NextNProgress />
+              <Header
+                navOpen={navOpen}
+                setNavOpen={setNavOpen}
+                themeToggler={themeToggler}
+                theme={theme}
+              />
+              <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
+              <Reset />
+              <Component {...pageProps} />
+              <Footer />
+            </ThemeProvider>
+          </Hydrate>
         </QueryClientProvider>
       </ErrorBoundary>
     </>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { MethodNav } from '../../common/styles/Navbars';
 import { device } from '../../common/styles/Sizing';
-import { ModifiedTable } from '../../common/styles/Table';
+import { FullWidthTable } from '../../common/styles/Table';
 
 export const LocationSection = styled.section`
   & p {
@@ -52,7 +52,7 @@ export const LocationNav = styled(MethodNav)`
 export const LocationList = styled.ol`
   display: grid;
   justify-items: center;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   text-align: center;
 
@@ -72,26 +72,23 @@ export const LocationList = styled.ol`
   }
 
   @media ${device.sm} {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
-export const LocationTable = styled(ModifiedTable)`
+export const LocationTable = styled(FullWidthTable)`
   & td {
     text-transform: capitalize;
   }
 
-  & span {
-    position: absolute;
-    width: 100%;
-    margin-top: 2rem;
+  & tfoot {
     display: none;
     font-size: 2rem;
     font-weight: 700;
     text-align: center;
   }
 
-  & tbody:empty + span {
-    display: block;
+  & tbody:empty + tfoot {
+    display: table-footer-group;
   }
 `;

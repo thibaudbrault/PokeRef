@@ -1,15 +1,14 @@
-import React from 'react';
-import Image from 'next/image';
 import { H3 } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import Image from 'next/image';
 import {
   PokemonAnimatedSpritesDiv,
   PokemonSpritesDiv,
 } from './Styled.Sprites.PokemonCard';
-import { Pokemon } from '@/types/types';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
+  pokemon: IPokemon;
 };
 
 function Sprites({ pokemon }: Props) {

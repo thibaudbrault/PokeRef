@@ -1,27 +1,33 @@
-import React, { useState } from 'react';
-import {
-  PokemonMovesSection,
-  PokemonMovesTd,
-  PokemonMovesMachine,
-  PokemonMovesTable,
-} from './Styled.Moves.PokemonCard';
-import {
-  THead,
-  TRow,
-  TLink,
-  TableContainer,
-} from '@/components/common/styles/Table';
-import { H3, Span } from '@/components/common/styles/Headings';
+import { Capitalize, H3 } from '@/components/common/styles/Headings';
+import { TableContainer, TLink, TRow } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
+import { useTableParams } from '@/hooks/useTableParams';
+import { IMachine } from '@/types/Machines/Machine';
+import { IMove } from '@/types/Moves/Move';
+import { IMoveAilment } from '@/types/Moves/MoveAilment';
+import {
+  IPokemon,
+  IPokemonMove,
+  IPokemonMoveVersion,
+} from '@/types/Pokemon/Pokemon';
 import { LearnMethod } from '@/utils/ObjectsMap';
-import Link from 'next/link';
+import { removeDash } from '@/utils/Typography';
+import { ColumnDef } from '@tanstack/react-table';
+import axios from 'axios';
 import Image from 'next/image';
-import { Machines, Moves, Pokemon } from '@/types/types';
+import Link from 'next/link';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  PokemonMovesMachine,
+  PokemonMovesSection,
+  PokemonMovesTable,
+  PokemonMovesTd,
+} from './Styled.Moves.PokemonCard';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
-  moves: Moves.Moves[];
-  machines: Machines.Machines[];
+  pokemon: IPokemon;
+  moves: IMove[];
+  machines: IMachine[];
   version: string;
 };
 
@@ -29,13 +35,146 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
   // Changes according to the table selected
   const [learn, setLearn] = useState<string>(`level-up`);
   const [toggle, setToggle] = useState<number>(0);
+  const [pokemonMoves, setPokemonMoves] = useState([]);
 
-  const isLearnedMoveForVersion = (version: string) => (pmv) =>
-    pmv.version_group.name === version && pmv.move_learn_method.name === learn;
+  console.log(pokemon.moves);
+
+  async function getPokemonMoves() {
+    try {
+      const promiseRes = await Promise.all(
+        pokemon.moves.map((pm) =>
+          pm.version_group_details.map(
+            (pmv) =>
+              pmv.version_group.name === version &&
+              pmv.move_learn_method.name === learn &&
+              axios.get(pm.move.url),
+          ),
+        ),
+      );
+      const result = promiseRes.map((res) => res.data);
+      setPokemonMoves(result);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  useEffect(() => {
+    getPokemonMoves();
+  }, []);
+
+  console.log(pokemonMoves);
+
+  const data = useMemo(() => pokemonMoves, [pokemonMoves]);
+
+  const columns = useMemo<ColumnDef<IMove>[]>(
+    () => [
+      // {
+      //   accessorKey: "",
+      //   id: 'sort',
+      //   header: learn === 'level-up' ? 'Level' : learn === 'machine' ? 'Machine' : '-',
+      //   cell: info =>
+      // },
+      // {
+      //   accessorKey: "",
+      //   id: "name",
+      //   header: "Name",
+      //   cell: info =>
+      // },
+      {
+        accessorKey: `type.name`,
+        id: `type`,
+        header: `Type`,
+        cell: (info) => (
+          <PokemonMovesTd>
+            <Link
+              href={{
+                pathname: `/type/[name]`,
+                query: { name: info.getValue<string>() },
+              }}
+            >
+              <Image
+                src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue<string>()}.png`}
+                alt={info.getValue<string>()}
+                width={32}
+                height={32}
+                style={{ cursor: `pointer` }}
+              />
+            </Link>
+          </PokemonMovesTd>
+        ),
+      },
+      {
+        accessorKey: `damage_class.name`,
+        id: `category`,
+        header: `Category`,
+        cell: (info) => (
+          <PokemonMovesTd>{info.getValue<string>()}</PokemonMovesTd>
+        ),
+      },
+      {
+        accessorKey: `power`,
+        id: `power`,
+        header: `Power`,
+        cell: (info) => (
+          <PokemonMovesTd>{info.getValue<string>() || `-`}</PokemonMovesTd>
+        ),
+      },
+      {
+        accessorKey: `pp`,
+        id: `pp`,
+        header: `PP`,
+        cell: (info) => (
+          <PokemonMovesTd>{info.getValue<string>()}</PokemonMovesTd>
+        ),
+      },
+      {
+        accessorKey: `accuracy`,
+        id: `accuracy`,
+        header: `Accuracy`,
+        cell: (info) => (
+          <PokemonMovesTd>{info.getValue<string>() || `-`}</PokemonMovesTd>
+        ),
+      },
+      {
+        accessorKey: `priority`,
+        id: `priority`,
+        header: `Priority`,
+        cell: (info) => (
+          <PokemonMovesTd>{info.getValue<string>()}</PokemonMovesTd>
+        ),
+      },
+      {
+        accessorKey: `meta.ailment`,
+        id: `status`,
+        header: `Status`,
+        cell: (info) => (
+          <PokemonMovesTd>
+            {info.getValue()
+              ? removeDash(info?.getValue<IMoveAilment>().name).replace(
+                  `none`,
+                  `-`,
+                )
+              : `-`}
+          </PokemonMovesTd>
+        ),
+      },
+    ],
+    [],
+  );
+
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
+    data,
+    columns,
+  );
+
+  const isLearnedMoveForVersion =
+    (version: string) => (pmv: IPokemonMoveVersion) =>
+      pmv.version_group.name === version &&
+      pmv.move_learn_method.name === learn;
 
   const isLearnedMove = isLearnedMoveForVersion(version);
 
-  const moveInfoTable = (pm: Pokemon.Moves) =>
+  const moveInfoTable = (pm: IPokemonMove) =>
     moves?.map(
       (m) =>
         m.name === pm.move.name && (
@@ -67,14 +206,14 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
             <PokemonMovesTd>{m.priority}</PokemonMovesTd>
             <PokemonMovesTd>
               {m.meta.ailment !== null
-                ? m.meta.ailment.name.replace(`none`, `-`).replace(/-/g, ` `)
+                ? removeDash(m.meta.ailment.name).replace(`none`, `-`)
                 : `-`}
             </PokemonMovesTd>
           </>
         ),
     );
 
-  const dataMoves = pokemon.moves?.map((pm: Pokemon.Moves) =>
+  const dataMoves = pokemon.moves?.map((pm: IPokemonMove) =>
     pm.version_group_details?.map(
       (pmv) =>
         isLearnedMove(pmv) && (
@@ -83,7 +222,7 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
               if (learn === `level-up` && pmv.level_learned_at === 0) {
                 return (
                   <PokemonMovesTd>
-                    <Span>evolution</Span>
+                    <Capitalize>evolution</Capitalize>
                   </PokemonMovesTd>
                 );
               } else if (learn === `level-up` && pmv.level_learned_at !== 0) {
@@ -92,7 +231,7 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
             })()}
             {learn === `machine` &&
               machines?.map(
-                (ma: Machines.Machines) =>
+                (ma: IMachine) =>
                   ma.move.name === pm.move.name &&
                   ma.version_group.name === version && (
                     <PokemonMovesMachine key={ma.item.name}>
@@ -109,7 +248,7 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
                   query: { name: pm.move.name },
                 }}
               >
-                {pm.move.name.replace(/-/g, ` `)}
+                {removeDash(pm.move.name)}
               </TLink>
             </td>
             {moveInfoTable(pm)}
@@ -122,30 +261,10 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
     <PokemonMovesSection>
       <H3>Moves</H3>
       <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
-      <TableContainer>
+      <TableContainer ref={tableContainerRef}>
         <PokemonMovesTable>
-          <THead>
-            <tr>
-              <th>
-                {learn === `level-up`
-                  ? `Level`
-                  : learn === `machine`
-                    ? `Machine`
-                    : `-`}
-              </th>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Category</th>
-              <th>Power</th>
-              <th>PP</th>
-              <th>Accuracy</th>
-              <th>Priority</th>
-              <th>Status</th>
-            </tr>
-          </THead>
-          <tbody>
-            <>{dataMoves}</>
-          </tbody>
+          {tableHeader()}
+          {tableBody()}
           <span>There is no move learned this way</span>
         </PokemonMovesTable>
       </TableContainer>

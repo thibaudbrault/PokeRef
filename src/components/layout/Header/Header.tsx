@@ -1,6 +1,3 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
-import Link from 'next/link';
-import { Spin as Hamburger } from 'hamburger-react'
 import { H1 } from '@/components/common/styles/Headings';
 import {
   BurgerClose,
@@ -11,11 +8,12 @@ import {
   HeaderBtnTheme,
   HeaderContainer,
 } from '@/components/layout/Header/Styled.Header';
-import { RiMoonClearLine } from '@meronex/icons/ri';
-import { RiSunLine } from '@meronex/icons/ri';
-import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { auth } from '@/firebase-config';
 import { FiMenu, FiX } from '@meronex/icons/fi';
+import { RiMoonClearLine, RiSunLine } from '@meronex/icons/ri';
+import { onAuthStateChanged, signOut, User } from 'firebase/auth';
+import Link from 'next/link';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 type Props = {
   navOpen: boolean;
@@ -73,15 +71,6 @@ function Header({ navOpen, setNavOpen, themeToggler, theme }: Props) {
             <FiMenu />
           </BurgerClose>
         )}
-        {/* <Hamburger
-          responsive={true}
-          toggled={navOpen}
-          toggle={setNavOpen}
-          rounded
-          size={30}
-          label='Show menu'
-          hideOutline={false}
-        /> */}
       </HeaderBtnContainer>
     </HeaderContainer>
   );

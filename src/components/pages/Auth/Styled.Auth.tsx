@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { device } from '@/components/common/styles/Sizing';
+import styled from 'styled-components';
 
 export const AuthContainer = styled.div`
   display: grid;

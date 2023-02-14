@@ -1,5 +1,14 @@
-import React from 'react';
 import { H3 } from '@/components/common/styles/Headings';
+import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
+import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { getPokedex } from '@/utils/DataFetch';
+import { removeDash } from '@/utils/Typography';
+import { FaChevronRight } from '@meronex/icons/fa';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import Image from 'next/image';
+import Link from 'next/link';
+import toast from 'react-hot-toast';
 import {
   PokemonEvolution,
   PokemonEvolutionBase,
@@ -10,26 +19,24 @@ import {
   PokemonEvolutionStages,
   PokemonEvolutionText,
 } from './Styled.Evolution.PokemonCard';
-import { FaChevronRight } from '@meronex/icons/fa';
-import { usePokedex } from '@/hooks/DataFetch';
-import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Evolution } from '@/types/types';
 
 type Props = {
-  evolution: Evolution.Evolution;
+  evolution: IEvolutionChain;
 };
 
 function EvolutionPokemon({ evolution }: Props) {
   const {
     isLoading,
+    isError,
     error,
     data: pokedex,
-  } = usePokedex(`https://pokeapi.co/api/v2/pokemon?limit=898`);
+  }: UseQueryResult<IPokemon[], Error> = useQuery({
+    queryKey: [`pokedex`],
+    queryFn: () => getPokedex(`https://pokeapi.co/api/v2/pokemon?limit=1008`),
+  });
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {
@@ -87,7 +94,7 @@ function EvolutionPokemon({ evolution }: Props) {
                             Trade holding
                             <span>
                               {` `}
-                              {eed.held_item.name.replace(/-/g, ` `)}
+                              {removeDash(eed.held_item.name)}
                             </span>
                           </PokemonEvolutionText>
                         )}
@@ -96,7 +103,7 @@ function EvolutionPokemon({ evolution }: Props) {
                             Level up holding{` `}
                             <span>
                               {` `}
-                              {eed.held_item.name.replace(/-/g, ` `)}
+                              {removeDash(eed.held_item.name)}
                             </span>
                             {` `}
                             during the <span> {eed.time_of_day}</span>
@@ -105,7 +112,7 @@ function EvolutionPokemon({ evolution }: Props) {
                         {eed.item && (
                           <PokemonEvolutionText>
                             Use{` `}
-                            <span> {eed.item.name.replace(/-/g, ` `)}</span>
+                            <span> {removeDash(eed.item.name)}</span>
                           </PokemonEvolutionText>
                         )}
                         {eed.known_move && (
@@ -113,7 +120,7 @@ function EvolutionPokemon({ evolution }: Props) {
                             Learn{` `}
                             <span>
                               {` `}
-                              {eed.known_move.name.replace(/-/g, ` `)}
+                              {removeDash(eed.known_move.name)}
                             </span>
                           </PokemonEvolutionText>
                         )}
@@ -125,7 +132,7 @@ function EvolutionPokemon({ evolution }: Props) {
                             while knowing a{` `}
                             <span>
                               {` `}
-                              {eed.known_move_type.name.replace(/-/g, ` `)}
+                              {removeDash(eed.known_move_type.name)}
                             </span>
                             {` `}
                             type move
@@ -139,7 +146,7 @@ function EvolutionPokemon({ evolution }: Props) {
                             while knowing a{` `}
                             <span>
                               {` `}
-                              {eed.known_move_type.name.replace(/-/g, ` `)}
+                              {removeDash(eed.known_move_type.name)}
                             </span>
                             {` `}
                             type move
@@ -150,7 +157,7 @@ function EvolutionPokemon({ evolution }: Props) {
                             Level up at{` `}
                             <span>
                               {` `}
-                              {eed.location.name.replace(/-/g, ` `)}
+                              {removeDash(eed.location.name)}
                             </span>
                           </PokemonEvolutionText>
                         )}
@@ -199,7 +206,7 @@ function EvolutionPokemon({ evolution }: Props) {
                             Level up with a{` `}
                             <span>
                               {` `}
-                              {eed.party_species.name.replace(/-/g, ` `)}
+                              {removeDash(eed.party_species.name)}
                             </span>
                             {` `}
                             in the party
@@ -275,7 +282,7 @@ function EvolutionPokemon({ evolution }: Props) {
                         query: { name: ee.species.name },
                       }}
                     >
-                      {ee.species.name.replace(/-/g, ` `)}
+                      {removeDash(ee.species.name)}
                     </Link>
                   </div>
                 </PokemonEvolutionElement>
@@ -307,7 +314,7 @@ function EvolutionPokemon({ evolution }: Props) {
                                       Trade holding
                                       <span>
                                         {` `}
-                                        {eeed.held_item.name.replace(/-/g, ` `)}
+                                        {removeDash(eeed.held_item.name)}
                                       </span>
                                     </PokemonEvolutionText>
                                   )}
@@ -317,7 +324,7 @@ function EvolutionPokemon({ evolution }: Props) {
                                       Level up holding{` `}
                                       <span>
                                         {` `}
-                                        {eeed.held_item.name.replace(/-/g, ` `)}
+                                        {removeDash(eeed.held_item.name)}
                                       </span>
                                       {` `}
                                       during the{` `}
@@ -329,7 +336,7 @@ function EvolutionPokemon({ evolution }: Props) {
                                     Use{` `}
                                     <span>
                                       {` `}
-                                      {eeed.item.name.replace(/-/g, ` `)}
+                                      {removeDash(eeed.item.name)}
                                     </span>
                                   </PokemonEvolutionText>
                                 )}
@@ -338,7 +345,7 @@ function EvolutionPokemon({ evolution }: Props) {
                                     Learn{` `}
                                     <span>
                                       {` `}
-                                      {eeed.known_move.name.replace(/-/g, ` `)}
+                                      {removeDash(eeed.known_move.name)}
                                     </span>
                                   </PokemonEvolutionText>
                                 )}
@@ -387,7 +394,7 @@ function EvolutionPokemon({ evolution }: Props) {
                                     Level up at{` `}
                                     <span>
                                       {` `}
-                                      {eeed.location.name.replace(/-/g, ` `)}
+                                      {removeDash(eeed.location.name)}
                                     </span>
                                   </PokemonEvolutionText>
                                 )}
@@ -530,7 +537,7 @@ function EvolutionPokemon({ evolution }: Props) {
                                 query: { name: eee.species.name },
                               }}
                             >
-                              {eee.species.name.replace(/-/g, ` `)}
+                              {removeDash(eee.species.name)}
                             </Link>
                           </div>
                         </PokemonEvolutionElement>

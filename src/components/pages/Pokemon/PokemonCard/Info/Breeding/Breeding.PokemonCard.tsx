@@ -1,12 +1,14 @@
-import React from 'react';
 import { H3 } from '@/components/common/styles/Headings';
+import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
+import { removeDash } from '@/utils/Typography';
 import { PokemonInfoTable } from '../Styled.Info.PokemonCard';
-import { Evolution, Pokemon, Species } from '@/types/types';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
-  species: Species.Species;
-  evolution: Evolution.Evolution;
+  pokemon: IPokemon;
+  species: IPokemonSpecies;
+  evolution: IEvolutionChain;
 };
 
 function Breeding({ pokemon, species, evolution }: Props) {
@@ -57,7 +59,7 @@ function Breeding({ pokemon, species, evolution }: Props) {
             <th>Baby trigger item</th>
             <td>
               {pokemon.id < 10000 && evolution?.baby_trigger_item !== null ? (
-                <p>{evolution?.baby_trigger_item?.name.replace(/-/g, ` `)}</p>
+                <p>{removeDash(evolution?.baby_trigger_item?.name)}</p>
               ) : (
                 `None`
               )}

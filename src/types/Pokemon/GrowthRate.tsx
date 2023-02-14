@@ -1,17 +1,16 @@
-import { IDescription} from "../Utility/CommonModels";
-import { INamedApiResource } from "../Utility/NamedApiResourceList";
-import { IPokemonSpecies } from "./PokemonSpecies";
+import { IDescription } from '../Utility/CommonModels';
+import { INamedApiResource } from '../Utility/NamedApiResourceList';
 
 export interface IGrowthRate {
-    id: number;
-    name: string;
-    formula: string;
-    descriptions: IDescription[];
-    levels: IGrowthRateExperienceLevel[];
-    pokemon_species: Array<INamedApiResource<IPokemonSpecies>>;
+  id: number;
+  name: string;
+  formula: string;
+  descriptions: IDescription[];
+  levels: IGrowthRateExperienceLevel[];
+  pokemon_species: Array<INamedApiResource>;
 }
 
 export interface IGrowthRateExperienceLevel {
-    level: number;
-    experience: number;
+  level: number;
+  experience: number;
 }

@@ -1,59 +1,74 @@
-import React from 'react';
+import { useMemo } from 'react';
 
+import { LeftTitle } from '@/components/common/styles/Headings';
 import {
-  ModifiedTable,
+  FullWidthTable,
   TableContainer,
-  THead,
-  TName,
-  TRow,
+  TBold,
 } from '@/components/common/styles/Table';
-import { ModifiedLeftTitle, MovesSection, StatusMoves } from '../Styled.Moves';
+import { useTableParams } from '@/hooks/useTableParams';
+import { IMove } from '@/types/Moves/Move';
+import { IMoveAilment } from '@/types/Moves/MoveAilment';
+import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
-import { Moves } from '@/types/types';
+import { StatusMoves } from '../Styled.Moves';
+import { removeDash } from '@/utils/Typography';
 
 type Props = {
-  status: Moves.Status[];
-  toggleState: number;
+  status?: IMoveAilment[];
 };
 
 function StatusTable({ status }: Props) {
+  const data = useMemo(
+    () => status?.filter((s) => s.name !== `none`),
+    [status],
+  );
+
+  const columns = useMemo<ColumnDef<IMoveAilment>[]>(
+    () => [
+      {
+        accessorKey: `name`,
+        id: `sort`,
+        header: `Status`,
+        cell: (info) => <TBold>{removeDash(info.getValue<string>())}</TBold>,
+      },
+      {
+        accessorFn: (row) => row.moves,
+        header: `Moves`,
+        cell: (info) => (
+          <StatusMoves>
+            {info.getValue<IMove[]>().map((i) => (
+              <Link
+                href={{
+                  pathname: `/move/[name]`,
+                  query: { name: i.name },
+                }}
+              >
+                <p>{removeDash(i.name)}</p>
+              </Link>
+            ))}
+          </StatusMoves>
+        ),
+      },
+    ],
+    [],
+  );
+
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
+    data,
+    columns,
+  );
+
   return (
-    <MovesSection>
-      <ModifiedLeftTitle>Status</ModifiedLeftTitle>
-      <TableContainer>
-        <ModifiedTable>
-          <THead>
-            <tr>
-              <th>Status</th>
-              <th>Moves</th>
-            </tr>
-          </THead>
-          <tbody>
-            {status
-              ?.filter((s) => s.name !== `none`)
-              ?.sort((a, b) => a.name.localeCompare(b.name))
-              ?.map((s: Moves.Status) => (
-                <TRow key={s.id}>
-                  <TName>{s.name.replace(/-/g, ` `)}</TName>
-                  <StatusMoves>
-                    {s.moves?.map((sm) => (
-                      <Link
-                        href={{
-                          pathname: `/move/[name]`,
-                          query: { name: sm.name },
-                        }}
-                        key={sm.name}
-                      >
-                        {sm.name.replace(/-/g, ` `)}
-                      </Link>
-                    ))}
-                  </StatusMoves>
-                </TRow>
-              ))}
-          </tbody>
-        </ModifiedTable>
+    <>
+      <LeftTitle>Status</LeftTitle>
+      <TableContainer ref={tableContainerRef}>
+        <FullWidthTable>
+          {tableHeader()}
+          {tableBody()}
+        </FullWidthTable>
       </TableContainer>
-    </MovesSection>
+    </>
   );
 }
 

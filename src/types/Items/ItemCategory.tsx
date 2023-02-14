@@ -1,12 +1,10 @@
-import { IName } from "../Utility/CommonModels";
-import { INamedApiResource } from "../Utility/NamedApiResourceList";
-import { IItem } from "./Item";
-import { IItemPocket } from "./ItemPocket";
+import { IName } from '../Utility/CommonModels';
+import { INamedApiResource } from '../Utility/NamedApiResourceList';
 
 export interface IItemCategory {
-    id: number;
-    name: string;
-    items: Array<INamedApiResource<IItem>>;
-    names: IName[];
-    pocket: INamedApiResource<IItemPocket>;
+  id: number;
+  name: string;
+  items: Array<INamedApiResource>;
+  names: IName[];
+  pocket: INamedApiResource;
 }

@@ -1,32 +1,32 @@
-import React, { useState } from 'react';
-import { usePokedex } from '@/hooks/DataFetch';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { getPokedex } from '@/utils/DataFetch';
+import ImageWithFallback from '@/utils/ImageWithFallback';
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import {
   AutocompleteContainer,
   AutocompleteId,
   AutocompleteInput,
   AutocompleteLink,
 } from './Styled.Autocomplete';
-import Image from 'next/image';
-import { Pokemon } from '@/types/types';
-import ImageWithFallback from '@/utils/ImageWithFallback';
 
 function Autocomplete() {
-  const { data: pokedex } = usePokedex(
-    `https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`,
-  );
+  const { data: pokedex } = useQuery({
+    queryKey: [`pokedex`],
+    queryFn: () =>
+      getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`),
+  });
 
-  const [pokedexMatch, setPokedexMatch] = useState<
-    Pokemon.Pokemon[] | undefined
-  >([]);
+  const [pokedexMatch, setPokedexMatch] = useState<IPokemon[] | undefined>([]);
   const [searchText, setSearchText] = useState(``);
 
   const searchPokedex = (text: string) => {
-    let matches: Pokemon.Pokemon[] | undefined = [];
+    let matches: IPokemon[] | undefined = [];
     setSearchText(text);
     if (text.length > 0) {
       matches =
         pokedexMatch &&
-        pokedex?.filter((pokedex: Pokemon.Pokemon) => {
+        pokedex?.filter((pokedex: IPokemon) => {
           const regex = new RegExp(`${text}`, `gi`);
           return pokedex.name.match(regex);
         });

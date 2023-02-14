@@ -1,5 +1,5 @@
-import React from 'react';
-import { Machines, Moves } from '@/types/types';
+import { IMachine } from '@/types/Machines/Machine';
+import { IMove } from '@/types/Moves/Move';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -9,9 +9,9 @@ import {
 } from '../Styled.Data.MoveCard';
 
 type Props = {
-  move: Moves.Moves;
+  move: IMove;
   version: string;
-  machines?: Machines.Machines[];
+  machines?: IMachine[];
 };
 
 function Desc({ move, version, machines }: Props) {

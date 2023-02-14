@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
-import {
-  PokedexList,
-  PokedexVerticalText,
-} from '@/components/pages/Pokemon/Styled.Pokemon';
 import { MainBig } from '@/components/common/styles/Sizing';
-import { usePokedex } from '@/hooks/DataFetch';
 import Loader from '@/components/common/ui/Loader/Loader';
-import dynamic from 'next/dynamic';
-import { Pokemon } from '@/types/types';
+import HeadingPokemon from '@/components/pages/Pokemon/Heading';
+import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
+import { PokedexVerticalText } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { useStateWithCallback } from '@/hooks/useStateWithCallback';
 import { Options, OptionsOffsetLimit } from '@/utils/DataArrays';
-import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
-import HeadingPokemon from '@/components/pages/Pokemon/Heading';
+import { getPokedex } from '@/utils/DataFetch';
+import {
+  dehydrate,
+  QueryClient,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { IPokemon } from '../types/Pokemon/Pokemon';
 
 const Filters = dynamic(
   () => import(`@/components/pages/Pokemon/Components/Filters.Pokemon`),
@@ -21,7 +25,7 @@ const ListPokemon = dynamic(
 );
 
 function Pokedex() {
-  const [filteredPokedex, setFilteredPokedex] = useState<Pokemon.Pokemon[]>([]);
+  const [filteredPokedex, setFilteredPokedex] = useState<IPokemon[]>([]);
   // Modify the first pokemon displayed
   const [offset, setOffset] = useState<number>(0);
   //Modify the max number of pokemon displayed
@@ -33,19 +37,25 @@ function Pokedex() {
   // Generation of the pokemon (changed with a dropdown)
   const [generation, setGeneration] =
     useStateWithCallback<OptionsOffsetLimit | null>(null);
+  const [showPlaceholder, setShowPlaceholder] = useState(true);
 
   const { scrollBtn } = useScrollDir();
 
   const {
     isLoading,
+    isError,
     error,
     data: pokedex,
-  } = usePokedex(
-    `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,
-  );
+  }: UseQueryResult<IPokemon[], Error> = useQuery({
+    queryKey: [`pokedex`, limit, offset],
+    queryFn: () =>
+      getPokedex(
+        `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,
+      ),
+  });
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {
@@ -67,13 +77,14 @@ function Pokedex() {
           setType={setType}
           generation={generation}
           setGeneration={setGeneration}
+          setShowPlaceholder={setShowPlaceholder}
         />
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
-        <PokedexList>
-          <ListPokemon
-            filteredPokedex={filteredPokedex}
-          />
-        </PokedexList>
+        <ListPokemon
+          filteredPokedex={filteredPokedex}
+          showPlaceholder={showPlaceholder}
+          setShowPlaceholder={setShowPlaceholder}
+        />
         {scrollBtn()}
       </MainBig>
     </>
@@ -81,3 +92,17 @@ function Pokedex() {
 }
 
 export default Pokedex;
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  queryClient.prefetchQuery({
+    queryKey: [`pokedex`],
+    queryFn: () =>
+      getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`),
+  });
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}

@@ -1,24 +1,25 @@
-import React from 'react';
-import { MainBig } from '@/components/common/styles/Sizing';
-import {
-  AbilityCardEffect,
-  AbilityCardSection,
-} from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import {
   CardTitle,
   H3,
   H4,
-  Span,
+  Capitalize,
   Subtitle,
 } from '@/components/common/styles/Headings';
-import Loader from '@/components/common/ui/Loader/Loader';
-import Link from 'next/link';
+import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
-import { useFilterAbility } from '@/components/pages/Abilities/AbilityCard/Hooks/useFilterAbility';
-import HeadingAbility from '@/components/pages/Abilities/AbilityCard/Heading';
-import dynamic from 'next/dynamic';
+import Loader from '@/components/common/ui/Loader/Loader';
 import TableAbilitycard from '@/components/pages/Abilities/AbilityCard/Components/Table.Abilitycard';
-import { useRouterIsReady } from '@/hooks/useRouterIsReady';
+import HeadingAbility from '@/components/pages/Abilities/AbilityCard/Heading';
+import { useFilterAbility } from '@/components/pages/Abilities/AbilityCard/Hooks/useFilterAbility';
+import {
+  AbilityCardEffect,
+  AbilityCardSection,
+} from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
+import { removeDash } from '@/utils/Typography';
+import { GetServerSidePropsContext } from 'next';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import toast from 'react-hot-toast';
 
 const DescAbilityCard = dynamic(
   () =>
@@ -27,11 +28,14 @@ const DescAbilityCard = dynamic(
     ),
 );
 
-function AbilityCard() {
-  const { name } = useRouterIsReady();
+type Props = {
+  name: string;
+};
 
+function AbilityCard({ name }: Props) {
   const {
     isLoading,
+    isError,
     error,
     ability,
     pokedex,
@@ -40,8 +44,8 @@ function AbilityCard() {
     filterDesc,
   } = useFilterAbility(name);
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {
@@ -54,8 +58,8 @@ function AbilityCard() {
     <>
       <HeadingAbility name={name} />
       <MainBig>
-        <CardTitle>{ability?.name?.replace(/-/g, ` `)}</CardTitle>
-        <Subtitle>{ability?.generation?.name?.replace(/-/g, ` `)}</Subtitle>
+        <CardTitle>{removeDash(ability?.name)}</CardTitle>
+        <Subtitle>{removeDash(ability?.generation?.name)}</Subtitle>
 
         <AbilityCardSection>
           <AbilityCardEffect>
@@ -76,7 +80,7 @@ function AbilityCard() {
         <DescAbilityCard filterDesc={filterDesc} />
         <AbilityCardSection>
           <H3>
-            Pokemon with <Span>{ability?.name?.replace(/-/g, ` `)}</Span>
+            Pokemon with <Capitalize>{removeDash(ability?.name)}</Capitalize>
           </H3>
           <TableAbilitycard ability={ability} pokedex={pokedex} />
         </AbilityCardSection>
@@ -89,3 +93,12 @@ function AbilityCard() {
 }
 
 export default AbilityCard;
+
+export function getServerSideProps(context: GetServerSidePropsContext) {
+  const { name } = context.query;
+  return {
+    props: {
+      name,
+    },
+  };
+}

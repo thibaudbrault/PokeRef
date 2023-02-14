@@ -1,12 +1,12 @@
-import React from 'react';
-import { Machines, Moves } from '@/types/types';
+import { IMachine } from '@/types/Machines/Machine';
+import { IMove } from '@/types/Moves/Move';
 import Desc from './Desc/Desc.MoveCard';
 import Effect from './Effect/Effect.MoveCard';
 import { MoveCardDataSection } from './Styled.Data.MoveCard';
 
 type Props = {
-  move: Moves.Moves;
-  machines?: Machines.Machines[];
+  move: IMove;
+  machines?: IMachine[];
   version: string;
 };
 

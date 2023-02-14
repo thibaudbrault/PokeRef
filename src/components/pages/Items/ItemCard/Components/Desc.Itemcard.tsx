@@ -1,13 +1,13 @@
-import React from 'react';
-import { Items } from '@/types/types';
+import { IItem } from '@/types/Items/Item';
+import { removeDash } from '@/utils/Typography';
 import {
   ItemCardDescSection,
-  ItemCardDescTitle,
   ItemCardDescTable,
+  ItemCardDescTitle,
 } from '../Styled.ItemCard';
 
 type Props = {
-  item?: Items.Items;
+  item?: IItem;
 };
 
 function DescItemcard({ item }: Props) {
@@ -19,7 +19,7 @@ function DescItemcard({ item }: Props) {
           {item?.flavor_text_entries?.map((ift) =>
             ift.language.name === `en` ? (
               <tr key={ift.text}>
-                <th>{ift.version_group.name.replace(/-/g, ` `)}</th>
+                <th>{removeDash(ift.version_group.name)}</th>
                 <td>{ift.text}</td>
               </tr>
             ) : (

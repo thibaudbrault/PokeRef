@@ -1,5 +1,5 @@
-import React from 'react';
-import { Pokemon, Species } from '@/types/types';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import {
   PokemonDataImg,
   PokemonDataLeg,
@@ -7,8 +7,8 @@ import {
 } from '../Styled.Data.PokemonCard';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
-  species: Species.Species;
+  pokemon: IPokemon;
+  species: IPokemonSpecies;
 };
 
 function Sprite({ pokemon, species }: Props) {
@@ -20,7 +20,6 @@ function Sprite({ pokemon, species }: Props) {
         loading="lazy"
         width="75%"
         height="75%"
-        layout="responsive"
       />
       <>
         {species?.is_legendary === true && (

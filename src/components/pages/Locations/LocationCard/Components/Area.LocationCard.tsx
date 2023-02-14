@@ -1,9 +1,9 @@
-import { Locations } from '@/types/types';
-import React from 'react';
+import { ILocation } from '@/types/Locations/Location';
+import { removeDash } from '@/utils/Typography';
 import { LocationNav, LocationNavContainer } from '../../Styled.Locations';
 
 type Props = {
-  location?: Locations.Locations;
+  location?: ILocation;
   toggleState: number;
   toggleTable: (index: number) => void;
 };
@@ -19,8 +19,7 @@ function AreaLocationCard({ location, toggleState, toggleTable }: Props) {
             onClick={() => toggleTable(i)}
           >
             <p>
-              {la.name
-                .replace(/-/g, ` `)
+              {removeDash(la.name)
                 .replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/, ``)
                 .replace(/area/, ``)}
             </p>

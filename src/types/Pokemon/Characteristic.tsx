@@ -1,5 +1,5 @@
 export interface ICharacteristic {
-    id: number;
-    gene_modulo: number;
-    possible_values: number[];
+  id: number;
+  gene_modulo: number;
+  possible_values: number[];
 }

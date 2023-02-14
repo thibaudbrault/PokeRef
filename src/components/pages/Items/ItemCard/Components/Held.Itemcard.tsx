@@ -1,10 +1,10 @@
-import React from 'react';
-import { Items } from '@/types/types';
+import { IItem, IItemHolderPokemon } from '@/types/Items/Item';
+import { removeDash } from '@/utils/Typography';
 import Link from 'next/link';
 import { ItemCardDataHeld } from '../Styled.ItemCard';
 
 type Props = {
-  item?: Items.Items;
+  item?: IItem;
 };
 
 function HeldItemcard({ item }: Props) {
@@ -13,7 +13,7 @@ function HeldItemcard({ item }: Props) {
       {item?.held_by_pokemon.length !== 0 && (
         <ItemCardDataHeld>
           <span>Held by :</span>
-          {item?.held_by_pokemon?.map((ih: Items.Held) => (
+          {item?.held_by_pokemon?.map((ih: IItemHolderPokemon) => (
             <Link
               href={{
                 pathname: `/pokemon/[name]`,
@@ -21,7 +21,7 @@ function HeldItemcard({ item }: Props) {
               }}
               key={ih.pokemon.name}
             >
-              {ih.pokemon.name.replace(/-/g, ` `)}
+              {removeDash(ih.pokemon.name)}
             </Link>
           ))}
         </ItemCardDataHeld>

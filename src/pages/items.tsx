@@ -1,30 +1,20 @@
-import React from 'react';
+import { MethodNav } from '@/components/common/styles/Navbars';
 import { MainBig } from '@/components/common/styles/Sizing';
-import { LeftTitle } from '@/components/common/styles/Headings';
-import { Table } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
-import { useFilterItems } from '@/components/pages/Items/Hooks/useFilterItems';
 import HeadingItems from '@/components/pages/Items/Heading';
-import dynamic from 'next/dynamic';
-import TableHead from '@/components/common/ui/TableHead';
-
-const ModifiedSearchUi = dynamic(
-  () => import(`@/components/common/ui/ModifiedSearch.ui`),
-);
-const ListItems = dynamic(
-  () => import(`@/components/pages/Items/Components/List.Items`),
-);
+import { useToggleTable } from '@/components/pages/Items/Hooks/useToggleTable';
+import { getItems, getBerries } from '@/utils/DataFetch';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
+import error from 'next/error';
 
 function ItemsPage() {
-  const { setSearch, isLoading, error, filterItems } = useFilterItems();
+  const { results, toggle, setToggle, pageShown } = useToggleTable();
 
-  const tableHead: string[] = [`Name`, `Category`, `Effect`];
-
-  if (error instanceof Error) {
+  if (results[0].status === `error` || results[1].status === `error`) {
     return { error };
   }
 
-  if (isLoading) {
+  if (results[0].status === `loading` || results[1].status === `loading`) {
     return <Loader />;
   }
 
@@ -32,15 +22,44 @@ function ItemsPage() {
     <>
       <HeadingItems />
       <MainBig>
-        <LeftTitle>Items</LeftTitle>
-        <ModifiedSearchUi placeholder="Item Name" setSearch={setSearch} />
-        <Table>
-          <TableHead array={tableHead} />
-          <ListItems filterItems={filterItems} />
-        </Table>
+        <MethodNav>
+          <button
+            className={toggle === 1 ? `button_active` : ``}
+            onClick={() => setToggle(1)}
+          >
+            <p>Items</p>
+          </button>
+          <button
+            className={toggle === 2 ? `button_active` : ``}
+            onClick={() => setToggle(2)}
+          >
+            <p>Berries</p>
+          </button>
+        </MethodNav>
+        {pageShown()}
       </MainBig>
     </>
   );
 }
 
 export default ItemsPage;
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: [`items`],
+      queryFn: getItems,
+    }),
+    queryClient.prefetchQuery({
+      queryKey: [`berries`],
+      queryFn: getBerries,
+    }),
+  ]);
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}

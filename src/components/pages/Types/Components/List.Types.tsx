@@ -1,17 +1,16 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Types } from '@/types/types';
 import { ModifiedType } from '@/components/pages/Types/Styled.Types';
+import { IType } from '@/types/Pokemon/Type';
+import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {
-  types?: Types.Types[];
+  types?: IType[];
 };
 
 function ListTypes({ types }: Props) {
   return (
     <>
-      {types?.map((t: Types.Types) => (
+      {types?.map((t: IType) => (
         <li key={t.name}>
           <ModifiedType id={t.name}>
             <Link

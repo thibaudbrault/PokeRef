@@ -2,11 +2,11 @@ import React from 'react';
 import Bars from './Bars/Bars.PokemonCard';
 import Typing from './Typing/Typing.PokemonCard';
 import { PokemonStatsSection } from './Styled.Stats.PokemonCard';
-import { Pokemon } from '@/types/types';
+import { IPokemon, IPokemonType } from '@/types/Pokemon/Pokemon';
 
 type Props = {
-  pokemon: Pokemon.Pokemon;
-  types: Pokemon.Types;
+  pokemon: IPokemon;
+  types: IPokemonType;
   toggleType: number;
   toggleTypeTable: (arg0: number) => void;
 };

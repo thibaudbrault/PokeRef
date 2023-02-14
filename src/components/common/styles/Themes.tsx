@@ -6,7 +6,7 @@ export type Theme = {
   red: string;
   purple: string;
   background: string;
-}
+};
 
 export const darkTheme: Theme = {
   main: `#161616`,

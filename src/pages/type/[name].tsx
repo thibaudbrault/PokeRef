@@ -1,45 +1,36 @@
-import React from 'react';
+import {
+  CardTitle,
+  CardTitleWithImage,
+} from '@/components/common/styles/Headings';
+import { Divider } from '@/components/common/styles/Misc';
+import { MethodNav } from '@/components/common/styles/Navbars';
 import { MainBig } from '@/components/common/styles/Sizing';
-import { CardTitle } from '@/components/common/styles/Headings';
-import { useMoves, usePokedex, useType } from '@/hooks/DataFetch';
-import Loader from '@/components/common/ui/Loader/Loader';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import BackBtn from '@/components/common/ui/BackBtn';
+import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingType from '@/components/pages/Types/TypeCard/Heading';
-import { useRouterIsReady } from '@/hooks/useRouterIsReady';
+import { useToggleTable } from '@/components/pages/Types/TypeCard/Hooks/useToggleTable';
+import { GetServerSidePropsContext } from 'next';
+import dynamic from 'next/dynamic';
+import error from 'next/error';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const DamageType = dynamic(
   () => import(`../../components/pages/Types/TypeCard/Damage/Damage.TypeCard`),
 );
-const MovesType = dynamic(
-  () => import(`../../components/pages/Types/TypeCard/Moves/Moves.TypeCard`),
-);
-const PokemonType = dynamic(
-  () =>
-    import(`../../components/pages/Types/TypeCard/Pokemon/Pokemon.TypeCard`),
-);
 
-function TypeCard() {
-  const { name } = useRouterIsReady();
+type Props = {
+  name: string;
+};
 
-  const {
-    isLoading,
-    error,
-    data: type,
-  } = useType(`https://pokeapi.co/api/v2/type/${name}`);
+function TypeCard({ name }: Props) {
+  const { results, toggle, setToggle, pageShown } = useToggleTable(name);
 
-  const { data: pokedex } = usePokedex(
-    `https://pokeapi.co/api/v2/pokemon?limit=905`,
-  );
-
-  const { data: moves } = useMoves();
-
-  if (error instanceof Error) {
+  if (results[0].status === `error`) {
     return { error };
   }
 
-  if (isLoading) {
+  if (results[0].status === `loading`) {
     return <Loader />;
   }
 
@@ -47,14 +38,32 @@ function TypeCard() {
     <>
       <HeadingType name={name} />
       <MainBig>
-        <CardTitle>{type?.name}</CardTitle>
-
-        <DamageType type={type} />
-
-        <PokemonType type={type} pokedex={pokedex} />
-
-        <MovesType type={type} moves={moves} />
-
+        <CardTitleWithImage>
+          <Image
+            src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${name}.png`}
+            alt=""
+            width={96}
+            height={96}
+          />
+          <CardTitle>{results[0].data.name}</CardTitle>
+        </CardTitleWithImage>
+        <DamageType type={results[0].data} />
+        <Divider />
+        <MethodNav>
+          <button
+            className={toggle === 1 ? `button_active` : ``}
+            onClick={() => setToggle(1)}
+          >
+            <p>Pokémon</p>
+          </button>
+          <button
+            className={toggle === 2 ? `button_active` : ``}
+            onClick={() => setToggle(2)}
+          >
+            <p>Moves</p>
+          </button>
+        </MethodNav>
+        {pageShown()}
         <Link href="/types" passHref>
           <BackBtn name="Types" />
         </Link>
@@ -64,3 +73,12 @@ function TypeCard() {
 }
 
 export default TypeCard;
+
+export function getServerSideProps(context: GetServerSidePropsContext) {
+  const { name } = context.query;
+  return {
+    props: {
+      name,
+    },
+  };
+}
