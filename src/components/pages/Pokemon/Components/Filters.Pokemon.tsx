@@ -1,5 +1,6 @@
 import Autocomplete from '@/components/autocomplete/Autocomplete';
 import { Dropdown } from '@/components/common/styles/Inputs';
+import { Divider } from '@/components/common/styles/Misc';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import {
   formOptions,
@@ -106,7 +107,7 @@ function Filters({
   return (
     <>
       <PokedexSearch>
-        <Autocomplete />
+        <Autocomplete pokedex={pokedex} />
         <PokedexDropdown>
           <label htmlFor="form">Form</label>
           <Dropdown
@@ -158,7 +159,7 @@ function Filters({
           />
         </PokedexDropdown>
       </PokedexSearch>
-      <hr />
+      <Divider />
     </>
   );
 }

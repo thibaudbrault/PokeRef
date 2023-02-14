@@ -10,12 +10,17 @@ import {
   AutocompleteLink,
 } from './Styled.Autocomplete';
 
-function Autocomplete() {
-  const { data: pokedex } = useQuery({
-    queryKey: [`pokedex`],
-    queryFn: () =>
-      getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`),
-  });
+type Props = {
+  pokedex?: IPokemon[];
+}
+
+function Autocomplete({ pokedex }: Props) {
+
+  // const { data: pokedex } = useQuery({
+  //   queryKey: [`pokedex`],
+  //   queryFn: () =>
+  //     getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`),
+  // });
 
   const [pokedexMatch, setPokedexMatch] = useState<IPokemon[] | undefined>([]);
   const [searchText, setSearchText] = useState(``);

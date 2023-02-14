@@ -3,7 +3,6 @@ import { MainBig, Section } from '@/components/common/styles/Sizing';
 import { TableContainer } from '@/components/common/styles/Table';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
-import Nav from '@/components/pages/Locations/LocationCard/Components/Nav.LocationCard';
 import { useSwitchGame } from '@/components/pages/Locations/LocationCard/Hooks/useSwitchGame';
 import { LocationTable } from '@/components/pages/Locations/Styled.Locations';
 import { useTableParams } from '@/hooks/useTableParams';
@@ -20,6 +19,9 @@ import toast from 'react-hot-toast';
 const HeadingLocation = dynamic(
   () => import(`@/components/pages/Locations/LocationCard/Heading`),
 );
+const Nav = dynamic(
+  () => import(`@/components/common/ui/GenNav`),
+);
 const AreaLocationCard = dynamic(
   () =>
     import(
@@ -35,6 +37,8 @@ function LocationCard({ name }: Props) {
   const {
     game,
     setGame,
+    version,
+    setVersion,
     toggleState,
     toggleTable,
     isLoading,
@@ -132,7 +136,7 @@ function LocationCard({ name }: Props) {
           toggleState={toggleState}
           toggleTable={toggleTable}
         />
-        <Nav setGame={setGame} />
+        <Nav setGame={setGame} setVersion={setVersion} />
         <Section>
           <TableContainer ref={tableContainerRef}>
             <LocationTable>

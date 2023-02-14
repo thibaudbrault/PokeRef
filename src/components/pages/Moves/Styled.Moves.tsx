@@ -12,6 +12,7 @@ export const StatusMoves = styled.td`
     text-transform: capitalize;
     border-bottom: 1px solid transparent;
     transition: 0.3s ease-in-out;
+    cursor: pointer;
 
     &:hover {
       border-bottom: 1px solid ${({ theme }) => theme.secondary};

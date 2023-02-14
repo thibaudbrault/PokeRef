@@ -6,6 +6,7 @@ import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 export const useSwitchGame = (name: string) => {
   const [game, setGame] = useState<string | null>(null);
+  const [version, setVersion] = useState<string | null>(null);
   const [toggleState, setToggleState] = useState<number>(0);
 
   const toggleTable = (index: number) => {
@@ -63,6 +64,8 @@ export const useSwitchGame = (name: string) => {
   return {
     game,
     setGame,
+    version,
+    setVersion,
     isLoading,
     isError,
     error,

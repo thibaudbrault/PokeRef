@@ -247,6 +247,11 @@ export const PokemonTitle = styled.section`
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  margin-bottom: 1.5rem;
+
+  & h2 {
+    margin-bottom: 0;
+  }
 
   & button {
     background: none;

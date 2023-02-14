@@ -44,7 +44,7 @@
 ✅Filter pokémon by name / form / generation / type (possibility to filter by one or two types)  
 ✅Filter moves / abilities / machines by name  
 ✅Change certain data according to the game selected  
-✅Pokémon cries
+✅Pokémon cries  
 ✅Dark mode  
 ✅404 page  
 ✅Autocomplete search  

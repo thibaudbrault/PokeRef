@@ -15,16 +15,16 @@ export const useToggleTable = () => {
   const results = useQueries({
     queries: [
       {
-        queryKey: [`moves`, 1],
+        queryKey: [`moves`],
         queryFn: getMoves,
         useErrorBoundary: true,
       },
       {
-        queryKey: [`status`, 2],
+        queryKey: [`status`],
         queryFn: getStatus,
       },
       {
-        queryKey: ['stats', 3],
+        queryKey: ['stats'],
         queryFn: getStats,
       },
     ],

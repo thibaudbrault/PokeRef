@@ -340,8 +340,33 @@ export const genNav: GenNav = [
         game: `shield`,
         version: `sword-shield`,
       },
+      {
+        game: 'brilliant-diamond',
+        version: 'brilliant-diamond-and-shining-pearl'
+      },
+      {
+        game: 'shining-pearl',
+        version: 'brilliant-diamond-and-shining-pearl'
+      },
+      {
+        game: 'legends-arceus',
+        version: 'legends-arceus'
+      }
     ],
   },
+  {
+    gen: 'Gen IX',
+    details: [
+      {
+        game: 'scarlet',
+        version: 'scarlet-violet'
+      },
+      {
+        game: 'violet',
+        version: 'scarlet-violet'
+      }
+    ]
+  }
 ];
 
 export const formatOptions = [

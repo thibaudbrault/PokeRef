@@ -1,4 +1,4 @@
-import { Capitalize } from '@/components/common/styles/Headings';
+import { Bold, Capitalize } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
@@ -26,7 +26,11 @@ function Desc({ pokemon, species, game }: Props) {
         {pokemon.id < 10000 && (
           <PokemonDataDesc>
             <span>
-              {filterDesc?.flavor_text.replace(`\u000c`, ` `).replace(`é`, `É`)}
+              {filterDesc?.flavor_text ? (
+                filterDesc?.flavor_text.replace(`\u000c`, ` `).replace(`é`, `É`)
+              ) : (
+                <Bold>There is no description for this Pokémon</Bold>
+              )}
             </span>
             <p>
               Pokémon{` `}

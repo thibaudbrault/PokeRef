@@ -44,7 +44,7 @@ function StatusTable({ status }: Props) {
                   query: { name: i.name },
                 }}
               >
-                <p>{removeDash(i.name)}</p>
+                {removeDash(i.name)}
               </Link>
             ))}
           </StatusMoves>

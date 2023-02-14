@@ -38,6 +38,9 @@ export const HeaderBtnConnect = styled.div`
   justify-content: center;
   gap: 1rem;
   & a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0.7rem 1.5rem;
     background: ${({ theme }) => theme.secondary};
     border: 1px solid transparent;
@@ -68,6 +71,9 @@ export const HeaderBtnConnected = styled.div`
   gap: 1rem;
   & a,
   button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0.7rem 1.5rem;
     background: ${({ theme }) => theme.secondary};
     border: 1px solid transparent;

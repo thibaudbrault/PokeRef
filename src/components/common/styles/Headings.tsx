@@ -72,6 +72,10 @@ export const Subtitle = styled.p`
   text-align: center;
 `;
 
+export const LeftSubtitle = styled(Subtitle)`
+  text-align: left;
+`;
+
 export const H2 = styled.h2`
   margin: 0 0 1rem;
   font-size: 4.5rem;

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
-export const TableContainer = styled.div`
+export const TableContainer = styled.section`
   width: 100%;
   overflow-x: auto;
 
@@ -61,6 +61,17 @@ export const Table = styled.table`
     border-left: none;
     border-right: none;
     vertical-align: middle;
+  }
+
+  & tfoot {
+    display: none;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  & tbody:empty + tfoot {
+    display: table-footer-group;
   }
 `;
 
