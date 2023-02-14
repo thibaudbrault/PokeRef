@@ -1,23 +1,19 @@
-import React from 'react';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IType } from '@/types/Pokemon/Type';
 import Bars from './Bars/Bars.PokemonCard';
-import Typing from './Typing/Typing.PokemonCard';
 import { PokemonStatsSection } from './Styled.Stats.PokemonCard';
-import { IPokemon, IPokemonType } from '@/types/Pokemon/Pokemon';
+import Typing from './Typing/Typing.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
-  types: IPokemonType;
-  toggleType: number;
-  toggleTypeTable: (arg0: number) => void;
+  types: IType[];
 };
 
-function Stats({ pokemon, types, toggleType, toggleTypeTable }: Props) {
+function Stats({ pokemon, types }: Props) {
   return (
     <PokemonStatsSection>
       <Bars pokemon={pokemon} />
       <Typing
-        toggleType={toggleType}
-        toggleTypeTable={toggleTypeTable}
         pokemon={pokemon}
         types={types}
       />

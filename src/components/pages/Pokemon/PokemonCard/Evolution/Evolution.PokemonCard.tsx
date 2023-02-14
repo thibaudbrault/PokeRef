@@ -24,7 +24,7 @@ type Props = {
   evolution: IEvolutionChain;
 };
 
-function EvolutionPokemon({ evolution }: Props) {
+function Evolution({ evolution }: Props) {
   const {
     isLoading,
     isError,
@@ -226,8 +226,8 @@ function EvolutionPokemon({ evolution }: Props) {
                               {eed.relative_physical_stats === 1
                                 ? ` Attack > Defense`
                                 : eed.relative_physical_stats === 0
-                                ? ` Attack = Defense`
-                                : ` Defense > Attack`}
+                                  ? ` Attack = Defense`
+                                  : ` Defense > Attack`}
                             </span>
                           </PokemonEvolutionText>
                         )}
@@ -476,8 +476,8 @@ function EvolutionPokemon({ evolution }: Props) {
                                       {eeed.relative_physical_stats === 1
                                         ? ` Attack > Defense`
                                         : eeed.relative_physical_stats === 0
-                                        ? ` Attack = Defense`
-                                        : ` Defense > Attack`}
+                                          ? ` Attack = Defense`
+                                          : ` Defense > Attack`}
                                     </span>
                                   </PokemonEvolutionText>
                                 )}
@@ -553,4 +553,4 @@ function EvolutionPokemon({ evolution }: Props) {
   );
 }
 
-export default EvolutionPokemon;
+export default Evolution;

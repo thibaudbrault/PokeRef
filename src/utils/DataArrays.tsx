@@ -105,14 +105,14 @@ export const typeOptions: Options[] = [
   { value: `water`, label: `Water` },
 ];
 
-type SpeciesFilters = {
+type PokemonFilters = {
   game: string;
   version: string;
   min: number;
   max: number;
 }[];
 
-export const speciesFilters: SpeciesFilters = [
+export const pokemonFilters: PokemonFilters = [
   {
     game: `yellow`,
     version: `yellow`,

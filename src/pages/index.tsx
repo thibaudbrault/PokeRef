@@ -1,6 +1,6 @@
 import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingPokemon from '@/components/pages/Pokemon/Heading';
+import HeadingPokedex from '@/components/pages/Pokemon/Heading';
 import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
 import { PokedexVerticalText } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { useStateWithCallback } from '@/hooks/useStateWithCallback';
@@ -10,7 +10,7 @@ import {
   dehydrate,
   QueryClient,
   useQuery,
-  UseQueryResult,
+  UseQueryResult
 } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
@@ -64,7 +64,7 @@ function Pokedex() {
 
   return (
     <>
-      <HeadingPokemon />
+      <HeadingPokedex />
       <MainBig>
         <Filters
           pokedex={pokedex}

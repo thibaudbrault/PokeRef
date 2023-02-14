@@ -1,18 +1,18 @@
 import { H3 } from '@/components/common/styles/Headings';
 import { MethodNav } from '@/components/common/styles/Navbars';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IType } from '@/types/Pokemon/Type';
 import { useState } from 'react';
 import { PokemonTypesContainer } from '../Styled.Stats.PokemonCard';
 import Table from './Table.Typing.PokemonCard';
-import { IPokemonMove } from '@/types/Pokemon/Pokemon';
 
-// type Props = {
-//   pokemon: IPokemon;
-//   types: IPokemonMove;
-//   toggleType: number;
-//   toggleTypeTable: (arg0: number) => void;
-// };
+type Props = {
+  pokemon: IPokemon;
+  types: IType[];
+};
 
-function Typing() {
+
+function Typing({ pokemon, types }: Props) {
   const [toggle, setToggle] = useState(1);
   const pageShown = () => {
     if (toggle === 1) {
