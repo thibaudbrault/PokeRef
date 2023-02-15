@@ -2,6 +2,7 @@ import { Subtitle, Title } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
+import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
 import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
@@ -137,7 +138,7 @@ function PokemonCard({ name }: Props) {
 
   useEffect(() => {
     pokemonFiltersFn()
-  }, []);
+  }, [pokemonId]);
 
   if (pokemon.status === `error`) {
     return { error };
@@ -174,16 +175,14 @@ function PokemonCard({ name }: Props) {
         <Subtitle>{removeDash(species.data?.generation?.name)}</Subtitle>
 
         <Nav setGame={setGame} setVersion={setVersion} />
-        {game ? (
+        {game &&
           <Data
             pokemon={pokemon.data}
             species={species.data}
             location={location.data}
             game={game}
           />
-        ) : (
-          <p>Loading ...</p>
-        )}
+        }
 
         <Evolution evolution={evolution.data} />
 
@@ -193,16 +192,19 @@ function PokemonCard({ name }: Props) {
           pokemon={pokemon.data}
           types={types.data}
         />
+        {game && version ? (
+          <MovesPokemon
+            pokemon={pokemon.data}
+            moves={moves.data}
+            machines={machines.data}
+            version={version}
+            game={game}
+          />
+        ) : (
+          <SmallLoader />
+        )}
 
-        {/* <MovesPokemon
-          pokemon={pokemon}
-          moves={moves}
-          machines={machines}
-          version={version}
-          game={game}
-        />
-
-        <Sprites pokemon={pokemon} /> */}
+        <Sprites pokemon={pokemon.data} />
 
         <Link href="/" passHref>
           <BackBtn name="Pokedex" />

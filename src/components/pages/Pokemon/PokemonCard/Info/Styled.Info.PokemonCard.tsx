@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { device, Section } from '../../../../common/styles/Sizing';
-import { Table } from '../../../../common/styles/Table';
+import { device, Section } from '@/components/common/styles/Sizing';
+import { Table } from '@/components/common/styles/Table';
 
 export const PokemonInfoSection = styled(Section)`
   display: grid;
@@ -44,14 +44,11 @@ export const PokemonInfoTable = styled(Table)`
     & a {
       width: fit-content;
       display: block;
+      cursor: pointer;
       transition: 0.3s ease-in-out;
 
       &:hover {
         text-decoration: underline;
-      }
-
-      & span {
-        cursor: pointer;
       }
     }
   }

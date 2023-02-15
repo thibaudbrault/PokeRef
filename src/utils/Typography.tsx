@@ -1,1 +1,1 @@
-export const removeDash = (str: string) => str.replace(/-/g, ` `);
+export const removeDash = (str: string) => str?.replace(/-/g, ` `);

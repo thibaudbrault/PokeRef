@@ -29,40 +29,63 @@ type Props = {
   moves: IMove[];
   machines: IMachine[];
   version: string;
+  game: string;
 };
 
 function MovesPokemon({ pokemon, moves, machines, version }: Props) {
   // Changes according to the table selected
   const [learn, setLearn] = useState<string>(`level-up`);
   const [toggle, setToggle] = useState<number>(0);
-  const [pokemonMoves, setPokemonMoves] = useState([]);
+  const [pokemonMoves, setPokemonMoves] = useState<IMove[]>([]);
 
-  console.log(pokemon.moves);
+  // const filterArr = () => {
+  //   return pokemon.moves.filter((pm) =>
+  //     pm.version_group_details.map(
+  //       (pmv) =>
+  //         pmv.version_group.name === version &&
+  //         pmv.move_learn_method.name === learn
+  //     )
+  //   )
+  // }
 
   async function getPokemonMoves() {
     try {
+      const res = pokemon.moves.map(pm => pm.move.url)
       const promiseRes = await Promise.all(
-        pokemon.moves.map((pm) =>
-          pm.version_group_details.map(
-            (pmv) =>
-              pmv.version_group.name === version &&
-              pmv.move_learn_method.name === learn &&
-              axios.get(pm.move.url),
-          ),
-        ),
-      );
-      const result = promiseRes.map((res) => res.data);
-      setPokemonMoves(result);
+        res.map(res => axios.get(res))
+      )
+      setPokemonMoves(promiseRes.map(res => res.data))
     } catch (err) {
       console.error(err);
     }
   }
 
+  // console.log(pokemonMoves)
+
+  // console.log(pokemon.moves.map(pm => pm))
+
+  // async function getPokemonMoves() {
+  //   try {
+  //     const promiseRes = await Promise.all(
+  //       pokemon.moves.map((pm) =>
+  //         pm.version_group_details.filter(
+  //           (pmv) =>
+  //             pmv.version_group.name === version &&
+  //             pmv.move_learn_method.name === learn
+  //         ),
+  //       ),
+  //     );
+  //     console.log(promiseRes)
+  //     const result = promiseRes.filter(p => p.length > 0).map((res) => res).flat();
+  //     setPokemonMoves(result);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
+
   useEffect(() => {
     getPokemonMoves();
   }, []);
-
-  console.log(pokemonMoves);
 
   const data = useMemo(() => pokemonMoves, [pokemonMoves]);
 
@@ -151,9 +174,9 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
           <PokemonMovesTd>
             {info.getValue()
               ? removeDash(info?.getValue<IMoveAilment>().name).replace(
-                  `none`,
-                  `-`,
-                )
+                `none`,
+                `-`,
+              )
               : `-`}
           </PokemonMovesTd>
         ),
@@ -261,13 +284,13 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
     <PokemonMovesSection>
       <H3>Moves</H3>
       <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
-      <TableContainer ref={tableContainerRef}>
+      {/* <TableContainer ref={tableContainerRef}>
         <PokemonMovesTable>
           {tableHeader()}
           {tableBody()}
           <span>There is no move learned this way</span>
         </PokemonMovesTable>
-      </TableContainer>
+      </TableContainer> */}
     </PokemonMovesSection>
   );
 }
