@@ -91,6 +91,11 @@ export const PokemonDataTable = styled(Table)`
     &:empty {
       display: none;
     }
+
+    & p {
+      display: list-item;
+      list-style-type: decimal;
+    }
   }
 `;
 
