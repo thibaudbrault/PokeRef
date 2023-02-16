@@ -51,7 +51,7 @@
 ✅Responsive
 
 🛠Use React-Table for my tables (allow for virtualization, sorting and filtering)  
-🛠Implementing Typescript
+🛠Use Framer Motion to add animations
 
 🔜Profile page with possibility to save teams  
 🔜Types relations for each pokémon  
