@@ -6,6 +6,7 @@ export const H1 = styled.h1`
   font-family: 'Press Start 2P';
   font-size: 6rem;
   letter-spacing: 3px;
+  cursor: pointer;
   color: ${({ theme }) => theme.main};
   text-shadow: ${({ theme }) => theme.secondary} -2px -2px 0px,
     ${({ theme }) => theme.secondary} 2px -2px 0px,

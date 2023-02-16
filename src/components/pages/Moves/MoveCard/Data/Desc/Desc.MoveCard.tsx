@@ -76,7 +76,7 @@ function Desc({ move, version, machines }: Props) {
         <tr>
           <th>PP</th>
           <td>
-            {move.pp} (max. {maxPp})
+            {move.pp} <small>(max. {maxPp})</small>
           </td>
         </tr>
         <tr>

@@ -1,38 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../common/styles/Sizing';
 
-export const HeaderContainer = styled.header`
-  width: 80%;
-  height: 10vh;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  @media ${device.md} {
-    width: 90%;
-  }
-
-  @media ${device.sm} {
-    width: 95%;
-  }
-`;
-
-export const HeaderBtnContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`;
-
-export const HeaderBtnTheme = styled.button`
-  width: 3rem;
-  height: 3rem;
-  background: none;
-  border: none;
-  color: ${({ theme }) => theme.secondary};
-  font-size: 3rem;
-`;
-
 export const HeaderBtnConnect = styled.div`
   display: flex;
   justify-content: center;
@@ -89,6 +57,10 @@ export const HeaderBtnConnected = styled.div`
       border-color: ${({ theme }) => theme.secondary};
       color: ${({ theme }) => theme.secondary};
     }
+
+    @media ${device.md} {
+      font-size: 3rem;
+    }
   }
 
   & :first-child {
@@ -96,6 +68,49 @@ export const HeaderBtnConnected = styled.div`
     border-color: ${({ theme }) => theme.secondary};
     color: ${({ theme }) => theme.secondary};
   }
+
+  @media ${device.md} {
+    width: 100%;
+    justify-content: space-evenly;
+  }
+`;
+
+export const HeaderContainer = styled.header`
+  width: 80%;
+  height: 10vh;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media ${device.md} {
+    width: 90%;
+  }
+
+  @media ${device.sm} {
+    width: 95%;
+  }
+  
+  & ${HeaderBtnConnect}, ${HeaderBtnConnected} {
+    @media ${device.md} {
+      display: none;
+    }
+  }
+`;
+
+export const HeaderBtnContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const HeaderBtnTheme = styled.button`
+  width: 3rem;
+  height: 3rem;
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.secondary};
+  font-size: 3rem;
 `;
 
 export const BurgerOpen = styled.button`

@@ -1,3 +1,4 @@
+import { Wiggle } from '@/components/common/styles/Animations';
 import ImageWithFallback from '@/utils/ImageWithFallback';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -64,14 +65,14 @@ export const PokedexList = styled(motion.ul)`
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
+  gap: 2rem;
 `;
 
 export const PokedexElement = styled(motion.li)`
   width: 21rem;
   height: 32rem;
-  margin: 3rem;
   padding: 2rem 3rem;
   display: flex;
   align-items: center;
@@ -105,10 +106,6 @@ export const PokedexElement = styled(motion.li)`
     font-size: 1.3rem;
   }
 
-  &:hover {
-    transform: scale(1.05);
-  }
-
   &:nth-child(even) {
     &:hover {
       border-radius: 10px 50px;
@@ -132,7 +129,6 @@ export const PokedexElement = styled(motion.li)`
   @media ${device.sm} {
     width: 20rem;
     height: 29rem;
-    margin: 2rem;
     padding: 1.5rem 2.5rem;
   }
 `;

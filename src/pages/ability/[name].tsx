@@ -44,6 +44,8 @@ function AbilityCard({ name }: Props) {
     filterDesc,
   } = useFilterAbility(name);
 
+  console.log(ability)
+
   if (isError) {
     return toast.error(`Something went wrong: ${error.message}`);
   }

@@ -16,7 +16,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const DamageType = dynamic(
-  () => import(`../../components/pages/Types/TypeCard/Damage/Damage.TypeCard`),
+  () => import(`@/components/pages/Types/TypeCard/Damage/Damage.TypeCard`),
 );
 
 type Props = {

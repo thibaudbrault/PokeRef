@@ -1,11 +1,15 @@
+import { Divider } from '@/components/common/styles/Misc';
+import { auth } from '@/firebase-config';
+import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { HeaderBtnConnect, HeaderBtnConnected } from '../Header/Styled.Header';
 import {
   MainNav,
   MainNavList,
   ResponsiveNav,
-  ResponsiveNavList,
+  ResponsiveNavList
 } from './Styled.Nav';
 
 type Props = {
@@ -20,6 +24,19 @@ type NavArray = {
 }[];
 
 function Nav({ navOpen, setNavOpen }: Props) {
+  const [user, setUser] = useState<User | null>();
+  // const usersCollectionRef = collection(db, `users`);
+
+  const logout = async () => {
+    await signOut(auth);
+  };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      return setUser(currentUser);
+    });
+  }, []);
+
   const navArray: NavArray = [
     { name: `pokémon`, delay: 0.9, exitDelay: 1 },
     { name: `moves`, delay: 0.8, exitDelay: 0.85 },
@@ -75,6 +92,18 @@ function Nav({ navOpen, setNavOpen }: Props) {
               </Link>
             </motion.li>
           ))}
+          <Divider />
+          {user ? (
+            <HeaderBtnConnected>
+              <button onClick={logout}>Sign Out</button>
+              <Link href="/profile">Profile</Link>
+            </HeaderBtnConnected>
+          ) : (
+            <HeaderBtnConnect>
+              <Link href="/login">Login</Link>
+              <Link href="/register">Register</Link>
+            </HeaderBtnConnect>
+          )}
         </ResponsiveNavList>
       </ResponsiveNav>
     </AnimatePresence>

@@ -1,6 +1,6 @@
 import { TLink } from '@/components/common/styles/Table';
 import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
-import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
+import { IGenus, IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import { removeDash } from '@/utils/Typography';
 import { PokemonDataTable } from '../Styled.Data.PokemonCard';
 
@@ -16,10 +16,9 @@ function Base({ pokemon, species, game, location }: Props) {
   const height = (pokemon.height * 0.1).toFixed(2);
   const weight = (pokemon.weight * 0.1).toFixed(2);
 
-  const filterGenera =
-    pokemon.id < 10000
-      ? species.genera.find((sg) => sg.language.name === `en`)
-      : ``;
+  const filterGenera: IGenus | undefined = species.genera.find((sg) => sg.language.name === `en`)!
+
+  console.log(location)
 
   return (
     <PokemonDataTable>
@@ -35,39 +34,42 @@ function Base({ pokemon, species, game, location }: Props) {
         <tr>
           <th>locations</th>
           <td>
-            {location?.length !== 0 ? (
-              location?.map((l) =>
-                l.version_details?.map(
-                  (lv) =>
-                    lv.version.name === game && (
-                      <p key={l.location_area.name}>
-                        {removeDash(l.location_area.name)}
-                      </p>
-                    ),
-                ),
-              )
-            ) : (
-             'Not found in the wild'
-           )}
+            <ol>
+              {location?.length !== 0 && (
+                location?.map((l) =>
+                  l.version_details?.map(
+                    (lv) =>
+                      lv.version.name === game && (
+                        <li key={l.location_area.name}>
+                          {removeDash(l.location_area.name)}
+                        </li>
+                      ),
+                  ),
+                )
+              )}
+            </ol>
+            <p>Not found in the wild</p>
           </td>
         </tr>
         <tr>
           <th>abilities</th>
           <td>
-            {pokemon.abilities?.map((pa) => (
-              <p key={pa.ability.name}>
-                <TLink
-                  href={{
-                    pathname: `/ability/[name]`,
-                    query: { name: pa.ability.name },
-                  }}
-                  key={pa.ability.name}
-                >
-                  {removeDash(pa.ability.name)}
-                </TLink>
-                {pa.is_hidden && <>‌‌ (hidden ability)</>}
-              </p>
-            ))}
+            <ol>
+              {pokemon.abilities?.map((pa) => (
+                <li key={pa.ability.name}>
+                  <TLink
+                    href={{
+                      pathname: `/ability/[name]`,
+                      query: { name: pa.ability.name },
+                    }}
+                    key={pa.ability.name}
+                  >
+                    {removeDash(pa.ability.name)}
+                  </TLink>
+                  {pa.is_hidden && <small> (hidden ability)</small>}
+                </li>
+              ))}
+            </ol>
           </td>
         </tr>
         <tr>
@@ -78,21 +80,25 @@ function Base({ pokemon, species, game, location }: Props) {
           <th>weight</th>
           <td>{weight.toString()} kg</td>
         </tr>
-        <tr>
-          <th>category</th>
-          <td>
-            <p>{filterGenera?.genus}</p>
-          </td>
-        </tr>
         {pokemon.id < 10000 && (
-        <tr>
-          <th>shape</th>
-          <td>{species?.shape.name}</td>
-        </tr>
-        <tr>
-          <th>color</th>
-          <td>{species?.color.name}</td>
-        </tr>
+          <>
+            <tr>
+              <th>category</th>
+              <td>
+                {filterGenera &&
+                  filterGenera?.genus
+                }
+              </td>
+            </tr>
+            <tr>
+              <th>shape</th>
+              <td>{species?.shape.name}</td>
+            </tr>
+            <tr>
+              <th>color</th>
+              <td>{species?.color.name}</td>
+            </tr>
+          </>
         )}
       </tbody>
     </PokemonDataTable>

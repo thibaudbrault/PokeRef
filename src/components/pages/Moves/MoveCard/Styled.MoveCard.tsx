@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { device, MainBig } from '../../../common/styles/Sizing';
 
 export const MoveList = styled.ul`
+  min-height: 25vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,7 +70,7 @@ export const MoveLink = styled(Link)`
 
 export const MoveListEmpty = styled.span`
   width: 100%;
-  margin-bottom: 5rem;
+  min-height: 25vh;
   display: none;
   font-size: 2rem;
   font-weight: 700;

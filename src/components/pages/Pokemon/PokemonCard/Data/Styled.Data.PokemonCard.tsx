@@ -85,16 +85,21 @@ export const PokemonDataTable = styled(Table)`
   & td {
     font-size: 1.7rem;
     font-weight: 700;
-    text-align: center;
+    text-align: left;
     text-transform: capitalize;
 
-    &:empty {
-      display: none;
-    }
+    & ol {
+        margin-left: 2rem;
+      & li {
+        list-style-type: decimal;
+        text-align: left;
 
-    & p {
-      display: list-item;
-      list-style-type: decimal;
+        & small {
+          font-weight: 400;
+          font-size: 1.5rem;
+          text-transform: lowercase;
+        }
+      }
     }
   }
 `;
