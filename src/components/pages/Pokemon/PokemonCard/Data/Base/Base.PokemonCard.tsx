@@ -2,10 +2,7 @@ import { TLink } from '@/components/common/styles/Table';
 import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
 import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import { removeDash } from '@/utils/Typography';
-import {
-  PokemonDataLocation,
-  PokemonDataTable,
-} from '../Styled.Data.PokemonCard';
+import { PokemonDataTable } from '../Styled.Data.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
@@ -28,17 +25,17 @@ function Base({ pokemon, species, game, location }: Props) {
     <PokemonDataTable>
       <tbody>
         <tr>
-          <th>Pokédex number</th>
+          <th>pokédex number</th>
           <td>
             {pokemon?.id > 10000
               ? ``
               : `# ${pokemon?.id?.toString()?.padStart(3, `0`)}`}
           </td>
         </tr>
-        <PokemonDataLocation>
-          <th>Locations</th>
+        <tr>
+          <th>locations</th>
           <td>
-            {location?.length !== 0 &&
+            {location?.length !== 0 ? (
               location?.map((l) =>
                 l.version_details?.map(
                   (lv) =>
@@ -48,12 +45,14 @@ function Base({ pokemon, species, game, location }: Props) {
                       </p>
                     ),
                 ),
-              )}
+              )
+            ) : (
+             'Not found in the wild'
+           )}
           </td>
-          <td>Not found in the wild</td>
-        </PokemonDataLocation>
+        </tr>
         <tr>
-          <th>Abilities</th>
+          <th>abilities</th>
           <td>
             {pokemon.abilities?.map((pa) => (
               <p key={pa.ability.name}>
@@ -72,27 +71,29 @@ function Base({ pokemon, species, game, location }: Props) {
           </td>
         </tr>
         <tr>
-          <th>Height</th>
+          <th>height</th>
           <td>{height.toString()} m</td>
         </tr>
         <tr>
-          <th>Weight</th>
+          <th>weight</th>
           <td>{weight.toString()} kg</td>
         </tr>
         <tr>
-          <th>Category</th>
+          <th>category</th>
           <td>
             <p>{filterGenera?.genus}</p>
           </td>
         </tr>
+        {pokemon.id < 10000 && (
         <tr>
-          <th>Shape</th>
-          <td>{pokemon.id < 10000 ? <p>{species?.shape.name}</p> : `⠀`}</td>
+          <th>shape</th>
+          <td>{species?.shape.name}</td>
         </tr>
         <tr>
-          <th>Color</th>
-          <td>{pokemon.id < 10000 ? <p>{species?.color.name}</p> : `⠀`}</td>
+          <th>color</th>
+          <td>{species?.color.name}</td>
         </tr>
+        )}
       </tbody>
     </PokemonDataTable>
   );
