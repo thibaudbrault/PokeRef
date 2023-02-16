@@ -79,6 +79,7 @@ export const PokemonDataTable = styled(Table)`
 
   & th {
     background: rgba(130, 130, 130, 0.2);
+    text-transform: capitalize;
   }
 
   & td {
