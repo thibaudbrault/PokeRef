@@ -28,7 +28,7 @@ function Base({ pokemon, species, game, location }: Props) {
     <PokemonDataTable>
       <tbody>
         <tr>
-          <th>National number</th>
+          <th>Pokédex number</th>
           <td>
             {pokemon?.id > 10000
               ? ``
