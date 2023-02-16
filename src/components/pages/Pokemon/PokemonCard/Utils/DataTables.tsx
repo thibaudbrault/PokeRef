@@ -59,7 +59,7 @@ export const InfoTable = [
             value: ({ pokemon, species }: PokemonSpecies) => {
                 return (
                     pokemon.id < 10000 ?
-                        `${species.hatch_counter} cycles`
+                        `${species.hatch_counter} cycles (${species.hatch_counter} * 256 steps)`
                         : `⠀`
                 )
             }
@@ -125,7 +125,7 @@ export const InfoTable = [
             }
         },
         desc_4: {
-            title: "base experience",
+            title: "base XP",
             value: ({ pokemon }: Pokemon) => {
                 return (
                     pokemon.base_experience
@@ -145,7 +145,7 @@ export const InfoTable = [
             }
         },
         desc_6: {
-            title: "base experience",
+            title: "held items",
             value: ({ pokemon }: Pokemon) => {
                 return (
                     pokemon?.held_items?.length > 0
