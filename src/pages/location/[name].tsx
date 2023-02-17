@@ -124,7 +124,7 @@ function LocationCard({ name }: Props) {
       <MainBig>
         <CardTitle>
           {removeDash(location?.name).replace(
-            /kanto|johto|hoenn|sinnoh|unova|kalos|alola/,
+            /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea/g,
             ``,
           )}
         </CardTitle>

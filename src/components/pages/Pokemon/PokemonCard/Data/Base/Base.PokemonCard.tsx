@@ -2,7 +2,7 @@ import { TLink } from '@/components/common/styles/Table';
 import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
 import { IGenus, IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import { removeDash } from '@/utils/Typography';
-import { PokemonDataTable } from '../Styled.Data.PokemonCard';
+import { PokemonDataTable, PokemonDataLocation } from '../Styled.Data.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
@@ -18,8 +18,6 @@ function Base({ pokemon, species, game, location }: Props) {
 
   const filterGenera: IGenus | undefined = species.genera.find((sg) => sg.language.name === `en`)!
 
-  console.log(location)
-
   return (
     <PokemonDataTable>
       <tbody>
@@ -31,7 +29,7 @@ function Base({ pokemon, species, game, location }: Props) {
               : `# ${pokemon?.id?.toString()?.padStart(3, `0`)}`}
           </td>
         </tr>
-        <tr>
+        <PokemonDataLocation>
           <th>locations</th>
           <td>
             <ol>
@@ -41,16 +39,20 @@ function Base({ pokemon, species, game, location }: Props) {
                     (lv) =>
                       lv.version.name === game && (
                         <li key={l.location_area.name}>
-                          {removeDash(l.location_area.name)}
+                          {removeDash(l.location_area.name)
+                            .replace(
+                              /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea|area|sea/g,
+                              ``,
+                            )}
                         </li>
                       ),
                   ),
                 )
               )}
             </ol>
-            <p>Not found in the wild</p>
           </td>
-        </tr>
+          <td>Not found in the wild</td>
+        </PokemonDataLocation>
         <tr>
           <th>abilities</th>
           <td>

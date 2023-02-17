@@ -110,7 +110,7 @@ export const PokemonDataLocation = styled.tr`
       display: none;
     }
 
-    &:empty {
+    &:has(ol:empty) {
       display: none;
 
       + td {

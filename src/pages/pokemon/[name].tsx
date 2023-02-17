@@ -67,36 +67,38 @@ type Props = {
 
 function PokemonCard({ name }: Props) {
 
+  console.log(name)
+
   const [pokemonId, setPokemonId] = useState<number | null>(null)
 
   const [pokemon, species, moves, types, machines, location] = useQueries({
     queries: [
       {
-        queryKey: [`pokemon`],
+        queryKey: [`pokemon`, name],
         queryFn: () => getPokemon(`https://pokeapi.co/api/v2/pokemon/${name}`),
         onSuccess: (data: IPokemon) => {
           setPokemonId(data.id)
         },
       },
       {
-        queryKey: [`species`],
+        queryKey: [`species`, name],
         queryFn: () =>
           getSpecies(`https://pokeapi.co/api/v2/pokemon-species/${name}`),
       },
       {
-        queryKey: [`moves`],
+        queryKey: [`moves`, name],
         queryFn: getMoves,
       },
       {
-        queryKey: [`types`],
+        queryKey: [`types`, name],
         queryFn: getTypes,
       },
       {
-        queryKey: [`machines`],
+        queryKey: [`machines`, name],
         queryFn: getMachines,
       },
       {
-        queryKey: [`encounter`],
+        queryKey: [`encounter`, name],
         queryFn: () =>
           getPokemonLocation(
             `https://pokeapi.co/api/v2/pokemon/${name}/encounters`,

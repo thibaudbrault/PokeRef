@@ -21,6 +21,10 @@ interface PokemonGender extends PokemonSpecies {
     female: number;
 }
 
+const stepsFn = (species: IPokemonSpecies) => {
+    return species.hatch_counter * 256
+}
+
 export const InfoTable = [
     {
         category: 'breeding',
@@ -50,7 +54,7 @@ export const InfoTable = [
                         ? species?.egg_groups?.map((seg) => (
                             <p key={seg.name}>{seg.name}</p>
                         ))
-                        : `⠀`
+                        : `No eggs`
                 )
             }
         },
@@ -59,8 +63,11 @@ export const InfoTable = [
             value: ({ pokemon, species }: PokemonSpecies) => {
                 return (
                     pokemon.id < 10000 ?
-                        `${species.hatch_counter} cycles (${species.hatch_counter} * 256 steps)`
-                        : `⠀`
+                        <>
+                            <p>{species.hatch_counter} cycles</p>
+                            <p>{stepsFn(species)} steps</p>
+                        </>
+                        : `No eggs`
                 )
             }
         },
@@ -87,7 +94,7 @@ export const InfoTable = [
                             `Undiscovered`
                         )
                     ) : (
-                        `⠀`
+                        `Not found in the wild`
                     )
                 )
             }
