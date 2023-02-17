@@ -1,3 +1,4 @@
+import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import axios from 'axios';
 
 // Fetch all pokemon
@@ -217,6 +218,28 @@ export const getEvolution = async (url: string) => {
     console.error(err);
   }
 };
+
+// Fetch all stages of a pokemon evolution chain
+export const getAllEvo = async (evolution: IEvolutionChain) => {
+  try {
+    const baseRes = evolution.chain.species.url
+    const basePromiseRes = await axios.get(baseRes)
+    const middleRes = evolution.chain.evolves_to.map(ee => ee.species.url)
+    const middlePromiseRes = await Promise.all(
+      middleRes.map(res => axios.get(res))
+    )
+    const finalRes = evolution.chain.evolves_to.map(ee =>
+      ee.evolves_to.map(eee => eee.species.url)
+    )
+    const finalPromiseRes = await Promise.all(
+      finalRes.map(res => axios.get(res))
+    )
+    const results = [basePromiseRes.data, middlePromiseRes.map(res => res.data), finalPromiseRes.map(res => res.data)].flat()
+    return results
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 // Fetch single type
 export const getType = async (url: string) => {

@@ -67,8 +67,6 @@ type Props = {
 
 function PokemonCard({ name }: Props) {
 
-  console.log(name)
-
   const [pokemonId, setPokemonId] = useState<number | null>(null)
 
   const [pokemon, species, moves, types, machines, location] = useQueries({
@@ -110,7 +108,7 @@ function PokemonCard({ name }: Props) {
   const evolutionChainUrl = species.data?.evolution_chain?.url;
 
   const evolution = useQuery({
-    queryKey: [`evolution`],
+    queryKey: [`evolution`, name],
     queryFn: () => getEvolution(evolutionChainUrl),
     enabled: !!evolutionChainUrl,
   });
@@ -186,7 +184,7 @@ function PokemonCard({ name }: Props) {
           />
         }
 
-        <Evolution evolution={evolution.data} />
+        <Evolution evolution={evolution.data} name={name} />
 
         <Info pokemon={pokemon.data} species={species.data} evolution={evolution.data} />
 
