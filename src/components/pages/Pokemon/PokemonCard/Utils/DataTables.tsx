@@ -179,7 +179,7 @@ export const InfoTable = [
             value: ({ pokemon, species }: PokemonSpecies) => {
                 return (
                     pokemon.id < 10000
-                        ? species.forms_switchable === true
+                        ? species.forms_switchable
                             ? `Yes`
                             : `No`
                         : `⠀`
@@ -190,7 +190,7 @@ export const InfoTable = [
             title: "varieties",
             value: ({ pokemon, species }: PokemonSpecies) => {
                 return (
-                    pokemon.id < 10000
+                    pokemon.id < 10000 && species.forms_switchable
                         ? species.varieties?.map((sv) => (
                             <Link
                                 href={{
