@@ -1,4 +1,5 @@
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
+import { IMove } from '@/types/Moves/Move';
 import axios from 'axios';
 
 // Fetch all pokemon
@@ -174,6 +175,20 @@ export const getMove = async (name: string) => {
     console.error(err);
   }
 };
+
+// Fetch move's machines array
+export const getMoveMachines = async (move: IMove) => {
+  try {
+    const res = move.machines.map(m => m.machine.url)
+    const promiseRes = await Promise.all(
+      res.map(res => axios.get(res))
+    )
+    const results = promiseRes.map(res => res.data)
+    return results
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 // Fetch single ability
 export const getAbility = async (name: string) => {

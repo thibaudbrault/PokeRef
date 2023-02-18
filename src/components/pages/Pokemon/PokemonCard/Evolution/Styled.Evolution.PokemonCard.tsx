@@ -122,5 +122,6 @@ export const PokemonEvolutionText = styled.p`
 
   & span {
     font-weight: 700;
+    text-transform: capitalize;
   }
 `;

@@ -11,10 +11,10 @@ import {
 type Props = {
   move: IMove;
   version: string;
-  machines?: IMachine[];
+  machine?: IMachine[];
 };
 
-function Desc({ move, version, machines }: Props) {
+function Desc({ move, version, machine }: Props) {
   // Calculate the max number of pp for a move
   const maxPp = move.pp * 1.6;
 
@@ -57,10 +57,9 @@ function Desc({ move, version, machines }: Props) {
             </div>
           </MoveCardDataCategory>
         </tr>
-        {machines?.map(
+        {machine?.map(
           (ma) =>
-            ma.version_group.name === version &&
-            ma.move.name === move.name && (
+            ma.version_group.name === version && (
               <tr key={ma.move.name}>
                 <th>Machine / Record</th>
                 <td>
