@@ -1,5 +1,10 @@
 import { Capitalize, H3 } from '@/components/common/styles/Headings';
-import { TableContainer, TBold, TLink, TRow } from '@/components/common/styles/Table';
+import {
+  TableContainer,
+  TBold,
+  TLink,
+  TRow,
+} from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IMachine } from '@/types/Machines/Machine';
@@ -81,13 +86,17 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
   //   }
   // }
 
-  const data = useMemo(() =>
-    pokemon.moves.map(pm =>
-      pm.version_group_details.filter(pmv =>
-        pmv.version_group.name === version &&
-        pmv.move_learn_method.name === learn
-      ))
-    , [pokemon]);
+  const data = useMemo(
+    () =>
+      pokemon.moves.map((pm) =>
+        pm.version_group_details.filter(
+          (pmv) =>
+            pmv.version_group.name === version &&
+            pmv.move_learn_method.name === learn,
+        ),
+      ),
+    [pokemon],
+  );
 
   const columns = useMemo<ColumnDef<IPokemonMoveVersion>[]>(
     () => [
@@ -110,14 +119,10 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
       //   )
       // },
       {
-        accessorKey: "move.name",
-        id: "name",
-        header: "Name",
-        cell: info => (
-          <TBold>
-            {removeDash(info.getValue<string>())}
-          </TBold>
-        )
+        accessorKey: 'move.name',
+        id: 'name',
+        header: 'Name',
+        cell: (info) => <TBold>{removeDash(info.getValue<string>())}</TBold>,
       },
       // {
       //   accessorKey: `type.name`,

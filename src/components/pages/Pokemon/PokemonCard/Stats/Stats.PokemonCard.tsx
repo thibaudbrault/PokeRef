@@ -13,10 +13,7 @@ function Stats({ pokemon, types }: Props) {
   return (
     <PokemonStatsSection>
       <Bars pokemon={pokemon} />
-      <Typing
-        pokemon={pokemon}
-        types={types}
-      />
+      <Typing pokemon={pokemon} types={types} />
     </PokemonStatsSection>
   );
 }

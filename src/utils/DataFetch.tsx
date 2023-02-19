@@ -1,5 +1,7 @@
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IMove } from '@/types/Moves/Move';
+import { IAbility } from '@/types/Pokemon/Ability';
+import { IType } from '@/types/Pokemon/Type';
 import axios from 'axios';
 
 // Fetch all pokemon
@@ -179,22 +181,32 @@ export const getMove = async (name: string) => {
 // Fetch move's machines array
 export const getMoveMachines = async (move: IMove) => {
   try {
-    const res = move.machines.map(m => m.machine.url)
-    const promiseRes = await Promise.all(
-      res.map(res => axios.get(res))
-    )
-    const results = promiseRes.map(res => res.data)
-    return results
+    const res = move.machines.map((m) => m.machine.url);
+    const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
+    const results = promiseRes.map((res) => res.data);
+    return results;
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 // Fetch single ability
 export const getAbility = async (name: string) => {
   try {
     const res = await axios.get(`https://pokeapi.co/api/v2/ability/${name}`);
     const results = await res.data;
+    return results;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Fetch ability's pokemon
+export const getAbilityPokemon = async (ability: IAbility) => {
+  try {
+    const res = ability?.pokemon.map((a) => a.pokemon.url);
+    const promiseRes = await Promise.all(res?.map((res) => axios.get(res)));
+    const results = promiseRes.map((res) => res.data);
     return results;
   } catch (err) {
     console.error(err);
@@ -237,30 +249,58 @@ export const getEvolution = async (url: string) => {
 // Fetch all stages of a pokemon evolution chain
 export const getAllEvo = async (evolution: IEvolutionChain) => {
   try {
-    const baseRes = evolution.chain.species.url
-    const basePromiseRes = await axios.get(baseRes)
-    const middleRes = evolution.chain.evolves_to.map(ee => ee.species.url)
+    const baseRes = evolution.chain.species.url;
+    const basePromiseRes = await axios.get(baseRes);
+    const middleRes = evolution.chain.evolves_to.map((ee) => ee.species.url);
     const middlePromiseRes = await Promise.all(
-      middleRes.map(res => axios.get(res))
-    )
-    const finalRes = evolution.chain.evolves_to.map(ee =>
-      ee.evolves_to.map(eee => eee.species.url)
-    )
+      middleRes.map((res) => axios.get(res)),
+    );
+    const finalRes = evolution.chain.evolves_to.map((ee) =>
+      ee.evolves_to.map((eee) => eee.species.url),
+    );
     const finalPromiseRes = await Promise.all(
-      finalRes.map(res => axios.get(res))
-    )
-    const results = [basePromiseRes.data, middlePromiseRes.map(res => res.data), finalPromiseRes.map(res => res.data)].flat()
-    return results
+      finalRes.map((res) => axios.get(res)),
+    );
+    const results = [
+      basePromiseRes.data,
+      middlePromiseRes.map((res) => res.data),
+      finalPromiseRes.map((res) => res.data),
+    ].flat();
+    return results;
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 // Fetch single type
 export const getType = async (url: string) => {
   try {
     const res = await axios.get(url);
     const results = await res.data;
+    return results;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Fetch type's pokemon
+export const getTypePokemon = async (type: IType) => {
+  try {
+    const res = type.pokemon.map((t) => t.pokemon.url);
+    const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
+    const results = promiseRes.map((res) => res.data);
+    return results;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Fetch type's moves
+export const getTypeMoves = async (type: IType) => {
+  try {
+    const res = type.moves.map((t) => t.url);
+    const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
+    const results = promiseRes.map((res) => res.data);
     return results;
   } catch (err) {
     console.error(err);

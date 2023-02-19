@@ -19,9 +19,7 @@ import toast from 'react-hot-toast';
 const HeadingLocation = dynamic(
   () => import(`@/components/pages/Locations/LocationCard/Heading`),
 );
-const Nav = dynamic(
-  () => import(`@/components/common/ui/GenNav`),
-);
+const Nav = dynamic(() => import(`@/components/common/ui/GenNav`));
 const AreaLocationCard = dynamic(
   () =>
     import(

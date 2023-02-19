@@ -35,6 +35,7 @@ export const generations: Generations = {
   6: { name: `generation VI`, value: `gen6` },
   7: { name: `generation VII`, value: `gen7` },
   8: { name: `generation VIII`, value: `gen8` },
+  9: { name: `generation IX`, value: `gen9` },
 };
 
 type ObjectFilters = {
@@ -150,7 +151,7 @@ export const pokemonFilters: PokemonFilters = [
     max: 722,
   },
   {
-    game: `ultra-sword`,
+    game: `ultra-sun`,
     version: `ultra-sun-ultra-moon`,
     min: 721,
     max: 810,
@@ -342,16 +343,16 @@ export const genNav: GenNav = [
       },
       {
         game: 'brilliant-diamond',
-        version: 'brilliant-diamond-and-shining-pearl'
+        version: 'brilliant-diamond-and-shining-pearl',
       },
       {
         game: 'shining-pearl',
-        version: 'brilliant-diamond-and-shining-pearl'
+        version: 'brilliant-diamond-and-shining-pearl',
       },
       {
         game: 'legends-arceus',
-        version: 'legends-arceus'
-      }
+        version: 'legends-arceus',
+      },
     ],
   },
   {
@@ -359,14 +360,14 @@ export const genNav: GenNav = [
     details: [
       {
         game: 'scarlet',
-        version: 'scarlet-violet'
+        version: 'scarlet-violet',
       },
       {
         game: 'violet',
-        version: 'scarlet-violet'
-      }
-    ]
-  }
+        version: 'scarlet-violet',
+      },
+    ],
+  },
 ];
 
 export const formatOptions = [

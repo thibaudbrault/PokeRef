@@ -52,4 +52,8 @@ export const PokemonInfoTable = styled(Table)`
       }
     }
   }
+
+  & tr:has(td:empty) {
+    display: none;
+  }
 `;

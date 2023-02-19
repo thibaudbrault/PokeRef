@@ -67,9 +67,9 @@ function Content({ pokedex, moveName, version, toggle }: Props) {
                       >
                         {removeDash(p.name)}
                       </MoveLink>
-                      {pmv.level_learned_at > 0 &&
+                      {pmv.level_learned_at > 0 && (
                         <p>Level {pmv.level_learned_at}</p>
-                      }
+                      )}
                     </li>
                   ),
               ),

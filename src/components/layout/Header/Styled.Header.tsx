@@ -90,7 +90,7 @@ export const HeaderContainer = styled.header`
   @media ${device.sm} {
     width: 95%;
   }
-  
+
   & ${HeaderBtnConnect}, ${HeaderBtnConnected} {
     @media ${device.md} {
       display: none;

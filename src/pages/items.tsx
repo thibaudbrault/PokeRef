@@ -8,13 +8,13 @@ import { QueryClient, dehydrate } from '@tanstack/react-query';
 import error from 'next/error';
 
 function ItemsPage() {
-  const { results, toggle, setToggle, pageShown } = useToggleTable();
+  const { items, berries, toggle, setToggle, pageShown } = useToggleTable();
 
-  if (results[0].status === `error` || results[1].status === `error`) {
+  if (items.status === `error` || berries.status === `error`) {
     return { error };
   }
 
-  if (results[0].status === `loading` || results[1].status === `loading`) {
+  if (items.status === `loading` || berries.status === `loading`) {
     return <Loader />;
   }
 

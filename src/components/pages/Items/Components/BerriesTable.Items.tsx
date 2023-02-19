@@ -12,7 +12,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
 
 type Props = {
-  berries: IBerry[];
+  berries?: IBerry[];
 };
 
 function BerriesTable({ berries }: Props) {

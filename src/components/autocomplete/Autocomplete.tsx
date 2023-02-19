@@ -12,10 +12,9 @@ import {
 
 type Props = {
   pokedex?: IPokemon[];
-}
+};
 
 function Autocomplete({ pokedex }: Props) {
-
   // const { data: pokedex } = useQuery({
   //   queryKey: [`pokedex`],
   //   queryFn: () =>

@@ -38,9 +38,7 @@ function Header({ navOpen, setNavOpen, themeToggler, theme }: Props) {
 
   return (
     <HeaderContainer id="header">
-      <Link
-        href={"/"}
-      >
+      <Link href={'/'}>
         <H1>PokéRef</H1>
       </Link>
       <HeaderBtnContainer>

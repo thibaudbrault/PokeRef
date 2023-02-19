@@ -12,6 +12,14 @@ type Props = {
 };
 
 function Bars({ pokemon }: Props) {
+  const statsTotal =
+    pokemon?.stats?.[0]?.base_stat +
+    pokemon?.stats?.[1]?.base_stat +
+    pokemon?.stats?.[2]?.base_stat +
+    pokemon?.stats?.[3]?.base_stat +
+    pokemon?.stats?.[4]?.base_stat +
+    pokemon?.stats?.[5]?.base_stat;
+
   return (
     <div>
       <H3>Base stats</H3>
@@ -195,19 +203,12 @@ function Bars({ pokemon }: Props) {
           </tr>
           <tr>
             <PokemonStatsTotal>Total</PokemonStatsTotal>
-            <PokemonStatsTotal>
-              {pokemon?.stats?.[0]?.base_stat +
-                pokemon?.stats?.[1]?.base_stat +
-                pokemon?.stats?.[2]?.base_stat +
-                pokemon?.stats?.[3]?.base_stat +
-                pokemon?.stats?.[4]?.base_stat +
-                pokemon?.stats?.[5]?.base_stat}
-            </PokemonStatsTotal>
+            <PokemonStatsTotal>{statsTotal}</PokemonStatsTotal>
             <PokemonStatsBars>
               <div>
                 <span
                   style={{
-                    width: `calc(${pokemon?.stats?.[5]?.base_stat} / 180 * 100%)`,
+                    width: `calc(${statsTotal} / 720 * 100%)`,
                   }}
                 ></span>
               </div>

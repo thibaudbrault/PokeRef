@@ -37,6 +37,7 @@ export const TypeDamageTable = styled(Table)`
     & th {
       background: rgba(130, 130, 130, 0.2);
       font-size: 1.5rem;
+      text-transform: capitalize;
     }
 
     & td {
@@ -53,6 +54,10 @@ export const TypeDamageTable = styled(Table)`
           cursor: pointer;
         }
       }
+    }
+
+    &:nth-of-type(3) {
+      border-bottom: 5px solid rgba(130, 130, 130, 0.2);
     }
   }
 

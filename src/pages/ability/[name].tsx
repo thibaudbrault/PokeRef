@@ -16,6 +16,8 @@ import {
   AbilityCardSection,
 } from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import { removeDash } from '@/utils/Typography';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -33,18 +35,18 @@ type Props = {
 };
 
 function AbilityCard({ name }: Props) {
+  const overworld = `Overworld`;
+
   const {
     isLoading,
     isError,
     error,
     ability,
-    pokedex,
+    pokemon,
     filterEffect,
     filterOverworld,
     filterDesc,
   } = useFilterAbility(name);
-
-  console.log(ability)
 
   if (isError) {
     return toast.error(`Something went wrong: ${error.message}`);
@@ -53,8 +55,6 @@ function AbilityCard({ name }: Props) {
   if (isLoading) {
     return <Loader />;
   }
-
-  const overworld = `Overworld`;
 
   return (
     <>
@@ -84,7 +84,7 @@ function AbilityCard({ name }: Props) {
           <H3>
             Pokemon with <Capitalize>{removeDash(ability?.name)}</Capitalize>
           </H3>
-          <TableAbilitycard ability={ability} pokedex={pokedex} />
+          <TableAbilitycard ability={ability} pokemon={pokemon} />
         </AbilityCardSection>
         <Link href="/abilities" passHref>
           <BackBtn name="Abilities" />

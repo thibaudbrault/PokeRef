@@ -9,7 +9,7 @@ import {
   MainNav,
   MainNavList,
   ResponsiveNav,
-  ResponsiveNavList
+  ResponsiveNavList,
 } from './Styled.Nav';
 
 type Props = {

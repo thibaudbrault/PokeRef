@@ -11,9 +11,7 @@ function HeadingType({ name }: Props) {
       <title>
         {`${name
           ?.replace(/-/g, ` `)
-          .replace(/(^\w|\s\w)/g, (m) =>
-            m.toUpperCase(),
-          )}  | Type | PokéRef`}
+          .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}  | Type | PokéRef`}
       </title>
       <meta
         name="description"

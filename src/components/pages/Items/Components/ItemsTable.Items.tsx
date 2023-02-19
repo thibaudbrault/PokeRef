@@ -14,7 +14,7 @@ import Image from 'next/image';
 import { useMemo } from 'react';
 
 type Props = {
-  items: IItem[];
+  items?: IItem[];
 };
 
 function ItemsTable({ items }: Props) {

@@ -1,6 +1,6 @@
 import { IAbility, IAbilityFlavorText } from '@/types/Pokemon/Ability';
 import { IEffect } from '@/types/Utility/CommonModels';
-import { getAbility, getPokedex } from '@/utils/DataFetch';
+import { getAbility, getAbilityPokemon } from '@/utils/DataFetch';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 export const useFilterAbility = (name: string) => {
@@ -10,13 +10,14 @@ export const useFilterAbility = (name: string) => {
     error,
     data: ability,
   }: UseQueryResult<IAbility, Error> = useQuery({
-    queryKey: [`ability`],
+    queryKey: [`ability`, name],
     queryFn: () => getAbility(name),
   });
 
-  const { data: pokedex } = useQuery({
-    queryKey: [`pokedex`],
-    queryFn: () => getPokedex(`https://pokeapi.co/api/v2/pokemon?limit=1400`),
+  const { data: pokemon } = useQuery({
+    queryKey: ['abilityPokemon'],
+    queryFn: () => ability && getAbilityPokemon(ability),
+    enabled: !!ability,
   });
 
   const filterEffect = ability?.effect_entries?.find(
@@ -37,7 +38,7 @@ export const useFilterAbility = (name: string) => {
     isError,
     error,
     ability,
-    pokedex,
+    pokemon,
     filterEffect,
     filterOverworld,
     filterDesc,

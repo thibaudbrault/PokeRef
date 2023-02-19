@@ -24,15 +24,14 @@ const scrollVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
   slideStart: { clipPath: 'inset(100% 0 0 0 round 8px)' },
-  slideEnd: { clipPath: 'inset(0% 0 0 0 round 8px)' }
-}
+  slideEnd: { clipPath: 'inset(0% 0 0 0 round 8px)' },
+};
 
 function ListPokemon({
   filteredPokedex,
   showPlaceholder,
   setShowPlaceholder,
 }: Props) {
-
   return (
     <AnimatePresence>
       <PokedexList
@@ -76,7 +75,7 @@ function ListPokemon({
           </PokedexElement>
         ))}
       </PokedexList>
-    </AnimatePresence >
+    </AnimatePresence>
   );
 }
 

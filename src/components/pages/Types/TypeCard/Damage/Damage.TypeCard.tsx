@@ -1,5 +1,4 @@
-import { Capitalize } from '@/components/common/styles/Headings';
-import { Type } from '@/components/common/styles/Themes';
+import { Capitalize, H3 } from '@/components/common/styles/Headings';
 import { MoveCardDataTable } from '@/components/pages/Moves/MoveCard/Data/Styled.Data.MoveCard';
 import { IType } from '@/types/Pokemon/Type';
 import { removeDash } from '@/utils/Typography';
@@ -29,12 +28,15 @@ function DamageType({ type }: Props) {
         </MoveCardDataTable>
         <TypeDamageTable>
           <tr>
-            <th>No damage to</th>
+            <th>Deals 0x damage to</th>
             <td>
               <div>
                 {type?.damage_relations?.no_damage_to?.map((ndt) => (
                   <Link
-                    href={{ pathname: `/type/[name]`, query: { name: ndt?.name } }}
+                    href={{
+                      pathname: `/type/[name]`,
+                      query: { name: ndt?.name },
+                    }}
                   >
                     <Image
                       src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${ndt.name}.png`}
@@ -49,12 +51,15 @@ function DamageType({ type }: Props) {
             </td>
           </tr>
           <tr>
-            <th>Half damage to</th>
+            <th>Deals 1/2x damage to</th>
             <td>
               <div>
                 {type?.damage_relations?.half_damage_to?.map((hdt) => (
                   <Link
-                    href={{ pathname: `/type/[name]`, query: { name: hdt?.name } }}
+                    href={{
+                      pathname: `/type/[name]`,
+                      query: { name: hdt?.name },
+                    }}
                   >
                     <Image
                       src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${hdt.name}.png`}
@@ -69,12 +74,15 @@ function DamageType({ type }: Props) {
             </td>
           </tr>
           <tr>
-            <th>Double damage to</th>
+            <th>Deals 2x damage to</th>
             <td>
               <div>
                 {type?.damage_relations?.double_damage_to?.map((ddt) => (
                   <Link
-                    href={{ pathname: `/type/[name]`, query: { name: ddt?.name } }}
+                    href={{
+                      pathname: `/type/[name]`,
+                      query: { name: ddt?.name },
+                    }}
                   >
                     <Image
                       src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${ddt.name}.png`}
@@ -89,12 +97,15 @@ function DamageType({ type }: Props) {
             </td>
           </tr>
           <tr>
-            <th>No damage from</th>
+            <th>Takes 0x damage from</th>
             <td>
               <div>
                 {type?.damage_relations?.no_damage_from?.map((ndf) => (
                   <Link
-                    href={{ pathname: `/type/[name]`, query: { name: ndf?.name } }}
+                    href={{
+                      pathname: `/type/[name]`,
+                      query: { name: ndf?.name },
+                    }}
                   >
                     <Image
                       src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${ndf.name}.png`}
@@ -109,12 +120,15 @@ function DamageType({ type }: Props) {
             </td>
           </tr>
           <tr>
-            <th>Half damage from</th>
+            <th>Takes 1/2x damage from</th>
             <td>
               <div>
                 {type?.damage_relations?.half_damage_from?.map((hdf) => (
                   <Link
-                    href={{ pathname: `/type/[name]`, query: { name: hdf?.name } }}
+                    href={{
+                      pathname: `/type/[name]`,
+                      query: { name: hdf?.name },
+                    }}
                   >
                     <Image
                       src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${hdf.name}.png`}
@@ -129,12 +143,15 @@ function DamageType({ type }: Props) {
             </td>
           </tr>
           <tr>
-            <th>Double damage from</th>
+            <th>Takes 2x damage from</th>
             <td>
               <div>
                 {type?.damage_relations?.double_damage_from?.map((ddf) => (
                   <Link
-                    href={{ pathname: `/type/[name]`, query: { name: ddf?.name } }}
+                    href={{
+                      pathname: `/type/[name]`,
+                      query: { name: ddf?.name },
+                    }}
                   >
                     <Image
                       src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${ddf.name}.png`}

@@ -14,7 +14,7 @@ import { MultiValue, SingleValue } from 'react-select';
 import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
 
 type Props = {
-  pokedex?: IPokemon[];
+  pokedex: IPokemon[];
   setFilteredPokedex: Dispatch<SetStateAction<IPokemon[]>>;
   setOffset: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;

@@ -8,7 +8,7 @@ export const PokemonDataSection = styled(Section)`
   display: grid;
   align-items: center;
   grid-template-columns: 55% 35%;
-  column-gap: 10%;
+  gap: 3rem;
 
   @media ${device.sm} {
     display: flex;
@@ -89,7 +89,7 @@ export const PokemonDataTable = styled(Table)`
     text-transform: capitalize;
 
     & ol {
-        margin-left: 2rem;
+      margin-left: 2rem;
       & li {
         list-style-type: decimal;
         text-align: left;
@@ -128,25 +128,10 @@ const PokemonDataPill = styled.span`
   transition: 0.3s ease-in-out;
 `;
 
-export const PokemonDataLeg = styled(PokemonDataPill)`
+export const PokemonDataSpecial = styled(PokemonDataPill)`
   border: 1px solid ${({ theme }) => theme.purple};
   background: ${({ theme }) => theme.purple};
   color: #c4c4c4;
-
-  &:hover {
-    background: none;
-  }
-`;
-
-export const PokemonDataMyt = styled(PokemonDataPill)`
-  border: 1px solid ${({ theme }) => theme.purple};
-  background: transparent;
-  color: #161616;
-
-  &:hover {
-    background: ${({ theme }) => theme.purple};
-    color: #c4c4c4;
-  }
 `;
 
 export const PokemonDataImg = styled.img`

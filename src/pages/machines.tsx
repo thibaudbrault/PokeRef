@@ -4,7 +4,7 @@ import {
   FullWidthTable,
   TableContainer,
   TBold,
-  TLink
+  TLink,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
@@ -15,16 +15,14 @@ import {
   dehydrate,
   QueryClient,
   useQuery,
-  UseQueryResult
+  UseQueryResult,
 } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';
 import { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 
-const Nav = dynamic(
-  () => import(`@/components/common/ui/GenNav`),
-);
+const Nav = dynamic(() => import(`@/components/common/ui/GenNav`));
 
 function MachinesPage() {
   const [version, setVersion] = useState<string | null>(`red-blue`);

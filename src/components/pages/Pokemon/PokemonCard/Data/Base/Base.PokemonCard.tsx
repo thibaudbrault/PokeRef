@@ -2,7 +2,10 @@ import { TLink } from '@/components/common/styles/Table';
 import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
 import { IGenus, IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import { removeDash } from '@/utils/Typography';
-import { PokemonDataTable, PokemonDataLocation } from '../Styled.Data.PokemonCard';
+import {
+  PokemonDataTable,
+  PokemonDataLocation,
+} from '../Styled.Data.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
@@ -16,7 +19,8 @@ function Base({ pokemon, species, game, location }: Props) {
   const height = (pokemon.height * 0.1).toFixed(2);
   const weight = (pokemon.weight * 0.1).toFixed(2);
 
-  const filterGenera: IGenus | undefined = species.genera.find((sg) => sg.language.name === `en`)!
+  const filterGenera: IGenus =
+    species && species.genera.find((sg) => sg.language.name === `en`);
 
   return (
     <PokemonDataTable>
@@ -33,22 +37,21 @@ function Base({ pokemon, species, game, location }: Props) {
           <th>locations</th>
           <td>
             <ol>
-              {location?.length !== 0 && (
+              {location?.length &&
+                game &&
                 location?.map((l) =>
                   l.version_details?.map(
                     (lv) =>
                       lv.version.name === game && (
                         <li key={l.location_area.name}>
-                          {removeDash(l.location_area.name)
-                            .replace(
-                              /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea|area|sea/g,
-                              ``,
-                            )}
+                          {removeDash(l.location_area.name).replace(
+                            /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea|area|sea/g,
+                            ``,
+                          )}
                         </li>
                       ),
                   ),
-                )
-              )}
+                )}
             </ol>
           </td>
           <td>Not found in the wild</td>
@@ -86,11 +89,7 @@ function Base({ pokemon, species, game, location }: Props) {
           <>
             <tr>
               <th>category</th>
-              <td>
-                {filterGenera &&
-                  filterGenera?.genus
-                }
-              </td>
+              <td>{filterGenera && filterGenera?.genus}</td>
             </tr>
             <tr>
               <th>shape</th>

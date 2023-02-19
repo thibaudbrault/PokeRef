@@ -16,21 +16,15 @@ import { Sup } from '../Styled.AbilityCard';
 
 type Props = {
   ability?: IAbility;
-  pokedex?: IPokemon[];
+  pokemon?: IPokemon[];
 };
 
-function TableAbilitycard({ ability, pokedex }: Props) {
-  if (!ability || !pokedex?.length) {
+function TableAbilitycard({ ability, pokemon }: Props) {
+  if (!ability || !pokemon?.length) {
     return <Loader />;
   }
 
-  const data = useMemo(
-    () =>
-      ability?.pokemon
-        .map((ap) => pokedex?.filter((p) => p.name === ap.pokemon.name))
-        .flat(),
-    [pokedex],
-  );
+  const data = useMemo(() => pokemon, [pokemon]);
 
   const columns = useMemo<ColumnDef<IPokemon>[]>(
     () => [
@@ -121,11 +115,7 @@ function TableAbilitycard({ ability, pokedex }: Props) {
         accessorFn: (row) =>
           row.abilities.length > 2 ? row?.abilities?.[2].ability.name : `-`,
         id: `thirdAbility`,
-        header: () => (
-          <span>
-            2<Sup>nd</Sup> ability
-          </span>
-        ),
+        header: () => <span>hidden ability</span>,
         cell: (info) => (
           <td>
             <TLink

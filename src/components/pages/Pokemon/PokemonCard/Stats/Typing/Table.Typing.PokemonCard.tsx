@@ -1,12 +1,12 @@
-import { PokemonInfoTable } from '../../Info/Styled.Info.PokemonCard';
+import { PokemonTypesTable } from '../Styled.Stats.PokemonCard';
 
 type Props = {
   target: string;
 };
 
-function Table({ target }: Props) {
+function TableTyping({ target }: Props) {
   return (
-    <PokemonInfoTable>
+    <PokemonTypesTable>
       <tbody>
         <tr>
           <th>0x damage {target}</th>
@@ -33,8 +33,8 @@ function Table({ target }: Props) {
           <td></td>
         </tr>
       </tbody>
-    </PokemonInfoTable>
+    </PokemonTypesTable>
   );
 }
 
-export default Table;
+export default TableTyping;

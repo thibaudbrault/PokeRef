@@ -40,7 +40,7 @@ function MoveCard({ name }: Props) {
     return <Loader />;
   }
 
-  console.log(move.data)
+  console.log(move.data);
 
   return (
     <>
@@ -52,11 +52,7 @@ function MoveCard({ name }: Props) {
 
           <Nav move={move.data} setVersion={setVersion} />
 
-          <Data
-            move={move.data}
-            machine={machine}
-            version={version}
-          />
+          <Data move={move.data} machine={machine} version={version} />
 
           <Divider />
 
@@ -69,6 +65,7 @@ function MoveCard({ name }: Props) {
           <List
             toggle={toggle}
             pokedex={pokedex.data}
+            status={pokedex.status}
             moveName={move.data?.name}
             version={version}
           />

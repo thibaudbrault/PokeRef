@@ -17,7 +17,6 @@ export const useToggleTable = () => {
       {
         queryKey: [`moves`],
         queryFn: getMoves,
-        useErrorBoundary: true,
       },
       {
         queryKey: [`status`],

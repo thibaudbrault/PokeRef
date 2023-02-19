@@ -11,9 +11,7 @@ function HeadingMove({ name }: Props) {
       <title>
         {`${name
           ?.replace(/-/g, ` `)
-          .replace(/(^\w|\s\w)/g, (m) =>
-            m.toUpperCase(),
-          )}  | Move | PokéRef`}
+          .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}  | Move | PokéRef`}
       </title>
       <meta name="description" content={`Find every details about ${name}`} />
       <meta property="og:title" content={`${name} | Moves | PokéRef`} />

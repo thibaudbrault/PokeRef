@@ -2,15 +2,12 @@ import { H3 } from '@/components/common/styles/Headings';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
-import { getAllEvo, getPokedex } from '@/utils/DataFetch';
+import { getAllEvo } from '@/utils/DataFetch';
 import { removeDash } from '@/utils/Typography';
 import { FaChevronRight } from '@meronex/icons/fa';
-import { isError, useQuery, UseQueryResult } from '@tanstack/react-query';
-import axios from 'axios';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import {
   PokemonEvolution,
@@ -29,11 +26,16 @@ type Props = {
 };
 
 function Evolution({ evolution, name }: Props) {
-
-  const { isLoading, isError, error, data: evo } = useQuery({
+  const {
+    isLoading,
+    isError,
+    error,
+    data: evo,
+  } = useQuery({
     queryKey: ['evos', name],
-    queryFn: () => getAllEvo(evolution)
-  })
+    queryFn: () => getAllEvo(evolution),
+    enabled: !!evolution,
+  });
 
   if (isError) {
     return toast.error(`Something went wrong: ${error.message}`);
@@ -51,7 +53,7 @@ function Evolution({ evolution, name }: Props) {
           <div>
             <>
               {evo?.map(
-                (e) =>
+                (e: IPokemon) =>
                   e?.name === evolution?.chain?.species?.name && (
                     <Image
                       key={e.name}
@@ -91,6 +93,9 @@ function Evolution({ evolution, name }: Props) {
                               <span> Male</span>
                             </PokemonEvolutionText>
                           ))}
+                        {eed.trigger.name === `trade` && !eed.held_item && (
+                          <PokemonEvolutionText>Trade</PokemonEvolutionText>
+                        )}
                         {eed.held_item && eed.trigger.name === `trade` && (
                           <PokemonEvolutionText>
                             Trade holding
@@ -228,8 +233,8 @@ function Evolution({ evolution, name }: Props) {
                               {eed.relative_physical_stats === 1
                                 ? ` Attack > Defense`
                                 : eed.relative_physical_stats === 0
-                                  ? ` Attack = Defense`
-                                  : ` Defense > Attack`}
+                                ? ` Attack = Defense`
+                                : ` Defense > Attack`}
                             </span>
                           </PokemonEvolutionText>
                         )}
@@ -267,7 +272,7 @@ function Evolution({ evolution, name }: Props) {
                   </div>
                   <div>
                     {evo?.map(
-                      (e) =>
+                      (e: IPokemon) =>
                         e.name === ee.species.name && (
                           <Image
                             key={e.name}
@@ -310,6 +315,12 @@ function Evolution({ evolution, name }: Props) {
                                       <span> Male</span>
                                     </PokemonEvolutionText>
                                   ))}
+                                {eeed.trigger.name === `trade` &&
+                                  !eeed.held_item && (
+                                    <PokemonEvolutionText>
+                                      Trade
+                                    </PokemonEvolutionText>
+                                  )}
                                 {eeed.held_item &&
                                   eeed.trigger.name === `trade` && (
                                     <PokemonEvolutionText>
@@ -478,8 +489,8 @@ function Evolution({ evolution, name }: Props) {
                                       {eeed.relative_physical_stats === 1
                                         ? ` Attack > Defense`
                                         : eeed.relative_physical_stats === 0
-                                          ? ` Attack = Defense`
-                                          : ` Defense > Attack`}
+                                        ? ` Attack = Defense`
+                                        : ` Defense > Attack`}
                                     </span>
                                   </PokemonEvolutionText>
                                 )}
@@ -522,7 +533,7 @@ function Evolution({ evolution, name }: Props) {
                           </div>
                           <div>
                             {evo?.map(
-                              (e) =>
+                              (e: IPokemon) =>
                                 e.name === eee.species.name && (
                                   <Image
                                     key={e.name}

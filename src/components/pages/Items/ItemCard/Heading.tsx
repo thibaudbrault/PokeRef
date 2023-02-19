@@ -11,9 +11,7 @@ function HeadingItem({ name }: Props) {
       <title>
         {`${name
           ?.replace(/-/g, ` `)
-          .replace(/(^\w|\s\w)/g, (m) =>
-            m.toUpperCase(),
-          )}  | Item | PokéRef`}
+          .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}  | Item | PokéRef`}
       </title>
       <meta name="description" content={`Find every details about ${name}`} />
       <meta property="og:title" content={`${name} | Items | PokéRef`} />

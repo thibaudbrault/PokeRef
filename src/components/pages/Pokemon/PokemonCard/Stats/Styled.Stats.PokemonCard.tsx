@@ -1,5 +1,7 @@
+import { Table } from '@/components/common/styles/Table';
 import styled from 'styled-components';
-import { device } from '../../../../common/styles/Sizing';
+import { device } from '@/components/common/styles/Sizing';
+import { TypeDamageTable } from '@/components/pages/Types/TypeCard/Styled.TypeCard';
 
 export const PokemonStatsSection = styled.section`
   margin-bottom: 5rem;
@@ -62,5 +64,13 @@ export const PokemonTypesContainer = styled.div`
   @media ${device.sm} {
     width: 100%;
     margin-top: 1rem;
+  }
+`;
+
+export const PokemonTypesTable = styled(TypeDamageTable)`
+  & tr {
+    &:nth-of-type(3) {
+      border-bottom: 1px solid rgba(130, 130, 130, 0.2);
+    }
   }
 `;

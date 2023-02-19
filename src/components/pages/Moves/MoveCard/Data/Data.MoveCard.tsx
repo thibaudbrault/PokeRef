@@ -13,11 +13,7 @@ type Props = {
 function Data({ move, machine, version }: Props) {
   return (
     <MoveCardDataSection>
-      <Desc
-        move={move}
-        machine={machine}
-        version={version}
-      />
+      <Desc move={move} machine={machine} version={version} />
       <Effect move={move} version={version} />
     </MoveCardDataSection>
   );

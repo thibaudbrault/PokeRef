@@ -16,6 +16,7 @@ type Props = {
 function Desc({ pokemon, species, game }: Props) {
   const filterDesc =
     species?.flavor_text_entries &&
+    game &&
     species?.flavor_text_entries.find(
       (sf) => sf.language.name === `en` && sf.version.name === game,
     );

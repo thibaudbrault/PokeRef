@@ -10,7 +10,7 @@ import {
   dehydrate,
   QueryClient,
   useQuery,
-  UseQueryResult
+  UseQueryResult,
 } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
@@ -31,12 +31,11 @@ function Pokedex() {
   //Modify the max number of pokemon displayed
   const [limit, setLimit] = useState<number>(1008);
   // Form of the pokemon (changed with a dropdown)
-  const [form, setForm] = useStateWithCallback<OptionsOffsetLimit | null>(null);
+  const [form, setForm] = useState<OptionsOffsetLimit | null>(null);
   // Type of the pokemon (changed with a dropdown)
-  const [type, setType] = useStateWithCallback<Options[]>([]);
+  const [type, setType] = useState<Options[]>([]);
   // Generation of the pokemon (changed with a dropdown)
-  const [generation, setGeneration] =
-    useStateWithCallback<OptionsOffsetLimit | null>(null);
+  const [generation, setGeneration] = useState<OptionsOffsetLimit | null>(null);
   const [showPlaceholder, setShowPlaceholder] = useState(true);
 
   const { scrollBtn } = useScrollDir();

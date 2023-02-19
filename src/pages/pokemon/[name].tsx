@@ -4,29 +4,19 @@ import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
+import { useFetchPokemon } from '@/components/pages/Pokemon/PokemonCard/Hooks/useFetchPokemon';
 import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { pokemonFilters } from '@/utils/DataArrays';
-import {
-  getEvolution,
-  getMachines,
-  getMoves,
-  getPokemon,
-  getPokemonLocation,
-  getSpecies,
-  getTypes
-} from '@/utils/DataFetch';
 import { removeDash } from '@/utils/Typography';
 import { GiSpeaker } from '@meronex/icons/gi';
-import { useQueries, useQuery } from '@tanstack/react-query';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Data = dynamic(
-  () =>
-    import(`@/components/pages/Pokemon/PokemonCard/Data/Data.PokemonCard`),
+  () => import(`@/components/pages/Pokemon/PokemonCard/Data/Data.PokemonCard`),
 );
 const Evolution = dynamic(
   () =>
@@ -35,20 +25,15 @@ const Evolution = dynamic(
     ),
 );
 const Info = dynamic(
-  () =>
-    import(`@/components/pages/Pokemon/PokemonCard/Info/Info.PokemonCard`),
+  () => import(`@/components/pages/Pokemon/PokemonCard/Info/Info.PokemonCard`),
 );
 const Stats = dynamic(
   () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Stats/Stats.PokemonCard`
-    ),
+    import(`@/components/pages/Pokemon/PokemonCard/Stats/Stats.PokemonCard`),
 );
 const MovesPokemon = dynamic(
   () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Moves/Moves.PokemonCard`
-    ),
+    import(`@/components/pages/Pokemon/PokemonCard/Moves/Moves.PokemonCard`),
 );
 const Sprites = dynamic(
   () =>
@@ -56,74 +41,36 @@ const Sprites = dynamic(
       `@/components/pages/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard`
     ),
 );
-const Nav = dynamic(
-  () =>
-    import(`@/components/common/ui/GenNav`),
-);
+const Nav = dynamic(() => import(`@/components/common/ui/GenNav`));
 
 type Props = {
   name: string;
 };
 
 function PokemonCard({ name }: Props) {
-
-  const [pokemonId, setPokemonId] = useState<number | null>(null)
-
-  const [pokemon, species, moves, types, machines, location] = useQueries({
-    queries: [
-      {
-        queryKey: [`pokemon`, name],
-        queryFn: () => getPokemon(`https://pokeapi.co/api/v2/pokemon/${name}`),
-        onSuccess: (data: IPokemon) => {
-          setPokemonId(data.id)
-        },
-      },
-      {
-        queryKey: [`species`, name],
-        queryFn: () =>
-          getSpecies(`https://pokeapi.co/api/v2/pokemon-species/${name}`),
-      },
-      {
-        queryKey: [`moves`, name],
-        queryFn: getMoves,
-      },
-      {
-        queryKey: [`types`, name],
-        queryFn: getTypes,
-      },
-      {
-        queryKey: [`machines`, name],
-        queryFn: getMachines,
-      },
-      {
-        queryKey: [`encounter`, name],
-        queryFn: () =>
-          getPokemonLocation(
-            `https://pokeapi.co/api/v2/pokemon/${name}/encounters`,
-          ),
-      },
-    ],
-  });
-
-  const evolutionChainUrl = species.data?.evolution_chain?.url;
-
-  const evolution = useQuery({
-    queryKey: [`evolution`, name],
-    queryFn: () => getEvolution(evolutionChainUrl),
-    enabled: !!evolutionChainUrl,
-  });
-
-  const [game, setGame] = useState<string | null>(null);
-  const [version, setVersion] = useState<string | null>(null);
+  const {
+    pokemonId,
+    game,
+    setGame,
+    version,
+    setVersion,
+    pokemon,
+    species,
+    moves,
+    types,
+    machines,
+    location,
+    evolution,
+  } = useFetchPokemon(name);
 
   // Modify game and version according to the id of the pokemon
   const pokemonFiltersFn = () => {
-    pokemonId && pokemonFilters.filter((p) => {
-      pokemonId > p.min && pokemonId < p.max && (
-        setGame(p.game),
-        setVersion(p.version)
-      )
-    });
+    pokemonId &&
+      pokemonFilters.filter((p) => {
+        pokemonId > p.min &&
+          pokemonId < p.max &&
+          (setGame(p.game), setVersion(p.version));
+      });
   };
 
   const audioRef = useRef();
@@ -137,14 +84,24 @@ function PokemonCard({ name }: Props) {
   };
 
   useEffect(() => {
-    pokemonFiltersFn()
+    pokemonFiltersFn();
   }, [pokemonId]);
 
-  if (pokemon.status === `error`) {
-    return { error };
+  if (
+    pokemon.status === `error` ||
+    types.status === 'error' ||
+    machines.status === 'error' ||
+    location.status === 'error'
+  ) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
-  if (pokemon.status === `loading` || species.status === 'loading' || moves.status === 'loading' || types.status === 'loading' || machines.status === 'loading' || location.status === 'loading' || evolution.status === 'loading') {
+  if (
+    pokemon.status === `loading` ||
+    types.status === 'loading' ||
+    machines.status === 'loading' ||
+    location.status === 'loading'
+  ) {
     return <Loader />;
   }
 
@@ -172,27 +129,31 @@ function PokemonCard({ name }: Props) {
             </div>
           )}
         </PokemonTitle>
-        <Subtitle>{removeDash(species.data?.generation?.name)}</Subtitle>
+        {species.data && (
+          <Subtitle>{removeDash(species.data?.generation?.name)}</Subtitle>
+        )}
 
         <Nav setGame={setGame} setVersion={setVersion} />
-        {game &&
-          <Data
+
+        <Data
+          pokemon={pokemon.data}
+          species={species.data}
+          location={location.data}
+          game={game}
+        />
+        {evolution.data && <Evolution evolution={evolution.data} name={name} />}
+
+        {pokemonId && pokemonId < 10000 && (
+          <Info
             pokemon={pokemon.data}
             species={species.data}
-            location={location.data}
-            game={game}
+            evolution={evolution.data}
           />
-        }
+        )}
 
-        <Evolution evolution={evolution.data} name={name} />
+        <Stats pokemon={pokemon.data} types={types.data} />
 
-        <Info pokemon={pokemon.data} species={species.data} evolution={evolution.data} />
-
-        <Stats
-          pokemon={pokemon.data}
-          types={types.data}
-        />
-        {game && version ? (
+        {game && version && (
           <MovesPokemon
             pokemon={pokemon.data}
             moves={moves.data}
@@ -200,8 +161,6 @@ function PokemonCard({ name }: Props) {
             version={version}
             game={game}
           />
-        ) : (
-          <SmallLoader />
         )}
 
         <Sprites pokemon={pokemon.data} />
