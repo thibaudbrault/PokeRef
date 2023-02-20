@@ -2,7 +2,6 @@ import { Subtitle, Title } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
-import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
 import { useFetchPokemon } from '@/components/pages/Pokemon/PokemonCard/Hooks/useFetchPokemon';
 import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
@@ -12,7 +11,7 @@ import { GiSpeaker } from '@meronex/icons/gi';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
 
 const Data = dynamic(
@@ -34,6 +33,10 @@ const Stats = dynamic(
 const MovesPokemon = dynamic(
   () =>
     import(`@/components/pages/Pokemon/PokemonCard/Moves/Moves.PokemonCard`),
+);
+const Forms = dynamic(
+  () =>
+    import(`@/components/pages/Pokemon/PokemonCard/Forms/Forms.PokemonCard`),
 );
 const Sprites = dynamic(
   () =>
@@ -162,6 +165,8 @@ function PokemonCard({ name }: Props) {
             game={game}
           />
         )}
+
+        {pokemon.data.forms.length > 1 && <Forms pokemon={pokemon.data} />}
 
         <Sprites pokemon={pokemon.data} />
 

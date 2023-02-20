@@ -125,16 +125,16 @@ export const InfoTable = [
       value: ({ pokemon }: Pokemon) => {
         return pokemon?.held_items?.length > 0
           ? pokemon?.held_items?.map((ph) => (
-            <Link
-              href={{
-                pathname: `/item/[name]`,
-                query: { name: ph.item.name },
-              }}
-              key={ph.item.name}
-            >
-              {removeDash(ph.item.name)}
-            </Link>
-          ))
+              <Link
+                href={{
+                  pathname: `/item/[name]`,
+                  query: { name: ph.item.name },
+                }}
+                key={ph.item.name}
+              >
+                {removeDash(ph.item.name)}
+              </Link>
+            ))
           : `None`;
       },
     },
@@ -152,19 +152,19 @@ export const InfoTable = [
       value: ({ species }: Species) => {
         return species.varieties.length > 1
           ? species.varieties?.map(
-            (sv) =>
-              sv.is_default === false && (
-                <Link
-                  href={{
-                    pathname: `/pokemon/[name]`,
-                    query: { name: sv.pokemon.name },
-                  }}
-                  key={sv.pokemon.name}
-                >
-                  {removeDash(sv.pokemon.name)}
-                </Link>
-              ),
-          )
+              (sv) =>
+                sv.is_default === false && (
+                  <Link
+                    href={{
+                      pathname: `/pokemon/[name]`,
+                      query: { name: sv.pokemon.name },
+                    }}
+                    key={sv.pokemon.name}
+                  >
+                    {removeDash(sv.pokemon.name)}
+                  </Link>
+                ),
+            )
           : 'No other forms';
       },
     },
@@ -173,7 +173,7 @@ export const InfoTable = [
       value: ({ species }: Species) => {
         return species.form_descriptions.length
           ? species.form_descriptions.find((sf) => sf.language.name === 'en')
-            ?.description
+              ?.description
           : 'No description';
       },
     },

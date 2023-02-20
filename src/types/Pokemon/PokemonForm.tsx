@@ -1,5 +1,6 @@
 import { IName } from '../Utility/CommonModels';
 import { INamedApiResource } from '../Utility/NamedApiResourceList';
+import { IPokemonType } from './Pokemon';
 
 export interface IPokemonForm {
   id: number;
@@ -15,6 +16,7 @@ export interface IPokemonForm {
   version_group: INamedApiResource;
   names: IName[];
   form_names: IName[];
+  types: IPokemonType[];
 }
 
 export interface IPokemonFormSprites {

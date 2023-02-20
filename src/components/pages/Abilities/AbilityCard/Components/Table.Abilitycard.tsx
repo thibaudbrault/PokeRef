@@ -31,15 +31,14 @@ function TableAbilitycard({ ability, pokemon }: Props) {
       {
         accessorKey: `sprites.front_default`,
         id: `sprite`,
-        header: `Sprite`,
+        header: `Sprites`,
         cell: (info) => (
           <td>
             <ImageWithFallback
               src={info.getValue<string>() || ``}
               alt="-"
-              loading="lazy"
-              width={64}
-              height={64}
+              width={96}
+              height={96}
               fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
             />
           </td>

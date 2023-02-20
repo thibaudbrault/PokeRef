@@ -3,6 +3,7 @@ import { IMove } from '@/types/Moves/Move';
 import { IAbility } from '@/types/Pokemon/Ability';
 import { IType } from '@/types/Pokemon/Type';
 import axios from 'axios';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 // Fetch all pokemon
 export const getPokedex = async (url: string) => {
@@ -161,6 +162,18 @@ export const getPokemon = async (url: string) => {
   try {
     const res = await axios.get(url);
     const results = await res.data;
+    return results;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Fetch pokemon's forms
+export const getPokemonForms = async (pokemon: IPokemon) => {
+  try {
+    const res = pokemon.forms.map((p) => p.url);
+    const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
+    const results = promiseRes.map((res) => res.data);
     return results;
   } catch (err) {
     console.error(err);

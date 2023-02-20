@@ -7,7 +7,7 @@ export const PokemonDataSection = styled(Section)`
   position: relative;
   display: grid;
   align-items: center;
-  grid-template-columns: 55% 35%;
+  grid-template-columns: 55% 45%;
   gap: 3rem;
 
   @media ${device.sm} {
