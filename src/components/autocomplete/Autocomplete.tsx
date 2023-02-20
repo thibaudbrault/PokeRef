@@ -9,18 +9,13 @@ import {
   AutocompleteInput,
   AutocompleteLink,
 } from './Styled.Autocomplete';
+import { removeDash } from '@/utils/Typography';
 
 type Props = {
   pokedex?: IPokemon[];
 };
 
 function Autocomplete({ pokedex }: Props) {
-  // const { data: pokedex } = useQuery({
-  //   queryKey: [`pokedex`],
-  //   queryFn: () =>
-  //     getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`),
-  // });
-
   const [pokedexMatch, setPokedexMatch] = useState<IPokemon[] | undefined>([]);
   const [searchText, setSearchText] = useState(``);
 
@@ -66,7 +61,7 @@ function Autocomplete({ pokedex }: Props) {
                     }}
                     className="bold"
                   >
-                    {pm.name}
+                    {removeDash(pm.name)}
                   </AutocompleteLink>
                   <AutocompleteId>
                     #{pm.id.toString().padStart(3, `0`)}

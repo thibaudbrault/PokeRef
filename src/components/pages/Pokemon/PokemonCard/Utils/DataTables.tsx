@@ -70,7 +70,7 @@ export const InfoTable = [
       value: ({ evolution }: Evolution) => {
         return evolution?.baby_trigger_item
           ? removeDash(evolution?.baby_trigger_item?.name)
-          : 'No baby form';
+          : 'None';
       },
     },
     desc_5: {

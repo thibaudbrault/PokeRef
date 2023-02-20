@@ -38,7 +38,7 @@ export const useFetchPokemon = (name: string) => {
         queryFn: getMachines,
       },
       {
-        queryKey: [`encounter`, name],
+        queryKey: [`encounter`],
         queryFn: () =>
           getPokemonLocation(
             `https://pokeapi.co/api/v2/pokemon/${name}/encounters`,
@@ -50,7 +50,9 @@ export const useFetchPokemon = (name: string) => {
   const species = useQuery({
     queryKey: [`species`, name],
     queryFn: () =>
-      getSpecies(`https://pokeapi.co/api/v2/pokemon-species/${name}`),
+      getSpecies(
+        `https://pokeapi.co/api/v2/pokemon-species/${pokemon.data.id}`,
+      ),
     enabled: !!pokemon.data && pokemon.data.id < 10000,
   });
 

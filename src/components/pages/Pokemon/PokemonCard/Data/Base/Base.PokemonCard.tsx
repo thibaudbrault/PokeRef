@@ -1,25 +1,20 @@
 import { TLink } from '@/components/common/styles/Table';
-import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IGenus, IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import { removeDash } from '@/utils/Typography';
-import {
-  PokemonDataTable,
-  PokemonDataLocation,
-} from '../Styled.Data.PokemonCard';
+import { PokemonDataTable } from '../Styled.Data.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
   species: IPokemonSpecies;
-  location: ILocationAreaEncounter[];
-  game: string;
 };
 
-function Base({ pokemon, species, game, location }: Props) {
+function Base({ pokemon, species }: Props) {
   // Convert height and weight to meters and kilograms and round the number
   const height = (pokemon.height * 0.1).toFixed(2);
   const weight = (pokemon.weight * 0.1).toFixed(2);
 
-  const filterGenera: IGenus =
+  const filterGenera: IGenus | undefined =
     species && species.genera.find((sg) => sg.language.name === `en`);
 
   return (
@@ -28,34 +23,11 @@ function Base({ pokemon, species, game, location }: Props) {
         <tr>
           <th>pokédex number</th>
           <td>
-            {pokemon?.id > 10000
-              ? ``
-              : `# ${pokemon?.id?.toString()?.padStart(3, `0`)}`}
+            {pokemon?.id < 10000
+              ? `# ${pokemon?.id?.toString()?.padStart(3, `0`)}`
+              : `# ${pokemon.species.url.match(/\d/g)?.slice(1).join('')}`}
           </td>
         </tr>
-        <PokemonDataLocation>
-          <th>locations</th>
-          <td>
-            <ol>
-              {location?.length &&
-                game &&
-                location?.map((l) =>
-                  l.version_details?.map(
-                    (lv) =>
-                      lv.version.name === game && (
-                        <li key={l.location_area.name}>
-                          {removeDash(l.location_area.name).replace(
-                            /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea|area|sea/g,
-                            ``,
-                          )}
-                        </li>
-                      ),
-                  ),
-                )}
-            </ol>
-          </td>
-          <td>Not found in the wild</td>
-        </PokemonDataLocation>
         <tr>
           <th>abilities</th>
           <td>

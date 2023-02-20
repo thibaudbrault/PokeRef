@@ -10,7 +10,7 @@ import { PokemonDataDesc, PokemonDataTypes } from '../Styled.Data.PokemonCard';
 type Props = {
   pokemon: IPokemon;
   species: IPokemonSpecies;
-  game: string;
+  game: string | null;
 };
 
 function Desc({ pokemon, species, game }: Props) {
@@ -27,7 +27,7 @@ function Desc({ pokemon, species, game }: Props) {
         {pokemon.id < 10000 && (
           <PokemonDataDesc>
             <span>
-              {filterDesc?.flavor_text ? (
+              {filterDesc && filterDesc?.flavor_text ? (
                 filterDesc?.flavor_text.replace(`\u000c`, ` `).replace(`é`, `É`)
               ) : (
                 <Bold>There is no description for this Pokémon</Bold>
@@ -36,7 +36,7 @@ function Desc({ pokemon, species, game }: Props) {
             <p>
               Pokémon{` `}
               <Capitalize>
-                <i>{removeDash(game)}</i>
+                <i>{game && removeDash(game)}</i>
               </Capitalize>
             </p>
           </PokemonDataDesc>

@@ -30,9 +30,15 @@ const Stats = dynamic(
   () =>
     import(`@/components/pages/Pokemon/PokemonCard/Stats/Stats.PokemonCard`),
 );
-const MovesPokemon = dynamic(
+const Moves = dynamic(
   () =>
     import(`@/components/pages/Pokemon/PokemonCard/Moves/Moves.PokemonCard`),
+);
+const Locations = dynamic(
+  () =>
+    import(
+      `@/components/pages/Pokemon/PokemonCard/Locations/Locations.PokemonCard`
+    ),
 );
 const Forms = dynamic(
   () =>
@@ -103,7 +109,9 @@ function PokemonCard({ name }: Props) {
     pokemon.status === `loading` ||
     types.status === 'loading' ||
     machines.status === 'loading' ||
-    location.status === 'loading'
+    location.status === 'loading' ||
+    (species.status === 'loading' && species.isInitialLoading) ||
+    (evolution.status === 'loading' && evolution.isInitialLoading)
   ) {
     return <Loader />;
   }
@@ -138,12 +146,7 @@ function PokemonCard({ name }: Props) {
 
         <Nav setGame={setGame} setVersion={setVersion} />
 
-        <Data
-          pokemon={pokemon.data}
-          species={species.data}
-          location={location.data}
-          game={game}
-        />
+        <Data pokemon={pokemon.data} species={species.data} game={game} />
         {evolution.data && <Evolution evolution={evolution.data} name={name} />}
 
         {pokemonId && pokemonId < 10000 && (
@@ -157,7 +160,7 @@ function PokemonCard({ name }: Props) {
         <Stats pokemon={pokemon.data} types={types.data} />
 
         {game && version && (
-          <MovesPokemon
+          <Moves
             pokemon={pokemon.data}
             moves={moves.data}
             machines={machines.data}
@@ -165,6 +168,8 @@ function PokemonCard({ name }: Props) {
             game={game}
           />
         )}
+
+        {game && <Locations location={location.data} game={game} />}
 
         {pokemon.data.forms.length > 1 && <Forms pokemon={pokemon.data} />}
 

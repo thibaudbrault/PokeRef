@@ -42,8 +42,6 @@ export const PokemonDataTypes = styled.li`
   justify-content: flex-start;
 
   & div {
-    display: flex;
-    align-items: center;
     margin: 2rem;
     padding: 0.5rem;
     border-radius: 5px;
@@ -55,6 +53,8 @@ export const PokemonDataTypes = styled.li`
     cursor: pointer;
 
     & a {
+      display: flex;
+      align-items: center;
       font-family: 'Press Start 2P';
       font-size: 1.7rem;
 
@@ -99,22 +99,6 @@ export const PokemonDataTable = styled(Table)`
           font-size: 1.5rem;
           text-transform: lowercase;
         }
-      }
-    }
-  }
-`;
-
-export const PokemonDataLocation = styled.tr`
-  & td:first-of-type {
-    + td {
-      display: none;
-    }
-
-    &:has(ol:empty) {
-      display: none;
-
-      + td {
-        display: table-cell;
       }
     }
   }
