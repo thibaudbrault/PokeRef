@@ -1,18 +1,13 @@
 import { H3 } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
-import {
-  FullWidthTable,
-  TableContainer,
-  TBold,
-} from '@/components/common/styles/Table';
+import { TableContainer, TBold } from '@/components/common/styles/Table';
 import { LocationTable } from '@/components/pages/Locations/Styled.Locations';
 import { useTableParams } from '@/hooks/useTableParams';
 import { ILocationAreaEncounter } from '@/types/Pokemon/Pokemon';
+import { IEncounter } from '@/types/Utility/CommonModels';
+import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
-import { removeDash } from '@/utils/Typography';
-import { IEncounter } from '@/types/Utility/CommonModels';
-import { PokemonLocationsTable } from './Styled.Locations.PokemonCard';
 
 type Props = {
   location: ILocationAreaEncounter[];
@@ -80,7 +75,7 @@ function Locations({ location, game }: Props) {
         cell: (info) => (
           <td>
             {info.getValue<IEncounter[]>().map((i) => (
-              <p>{i.method.name}</p>
+              <p>{removeDash(i.method.name)}</p>
             ))}
           </td>
         ),
@@ -116,7 +111,7 @@ function Locations({ location, game }: Props) {
     <Section>
       <H3>Locations</H3>
       <TableContainer ref={tableContainerRef}>
-        <PokemonLocationsTable>
+        <LocationTable>
           {tableHeader()}
           {tableBody()}
           <tfoot>
@@ -124,7 +119,7 @@ function Locations({ location, game }: Props) {
               <td colSpan={5}>This pokémon is not present in this game</td>
             </tr>
           </tfoot>
-        </PokemonLocationsTable>
+        </LocationTable>
       </TableContainer>
     </Section>
   );
