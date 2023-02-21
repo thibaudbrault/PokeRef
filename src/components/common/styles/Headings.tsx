@@ -66,7 +66,7 @@ export const CardTitleWithImage = styled.div`
   }
 `;
 
-export const Subtitle = styled.p`
+export const Subtitle = styled.h4`
   font-size: 1.5rem;
   text-transform: uppercase;
   letter-spacing: 0.1rem;

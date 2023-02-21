@@ -9,14 +9,20 @@ import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingType from '@/components/pages/Types/TypeCard/Heading';
 import { useToggleTable } from '@/components/pages/Types/TypeCard/Hooks/useToggleTable';
+import { IType } from '@/types/Pokemon/Type';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 
-const DamageType = dynamic(
-  () => import(`@/components/pages/Types/TypeCard/Damage/Damage.TypeCard`),
+interface IDamageTypeProps {
+  type?: IType;
+}
+
+const DamageType = dynamic<IDamageTypeProps>(
+  () =>
+    import(`@/components/pages/Types/TypeCard/Damage/Damage.TypeCard`) as any,
 );
 
 type Props = {
@@ -28,7 +34,7 @@ function TypeCard({ name }: Props) {
     useToggleTable(name);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`);
+    return toast.error(`Something went wrong: ${error?.message}`);
   }
 
   if (isLoading) {

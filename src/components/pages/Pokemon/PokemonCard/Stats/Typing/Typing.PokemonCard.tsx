@@ -8,7 +8,7 @@ import TableTyping from './Table.Typing.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
-  types: IType[];
+  types?: IType[];
 };
 
 function Typing({ pokemon, types }: Props) {

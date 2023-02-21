@@ -11,6 +11,7 @@ import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Nav = dynamic(
   () => import(`@/components/pages/Moves/MoveCard/Nav/Nav.MoveCard`),
@@ -33,7 +34,7 @@ function MoveCard({ name }: Props) {
     useFetchMove(name);
 
   if (move.status === `error`) {
-    return { error };
+    return toast.error(`Something went wrong`);
   }
 
   if (move.status === `loading`) {

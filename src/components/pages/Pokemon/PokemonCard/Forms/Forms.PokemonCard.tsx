@@ -14,7 +14,7 @@ import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IPokemonForm } from '@/types/Pokemon/PokemonForm';
 import { getPokemonForms } from '@/utils/DataFetch';
 import { removeDash } from '@/utils/Typography';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -31,7 +31,7 @@ function Forms({ pokemon }: Props) {
     isError,
     error,
     data: forms,
-  } = useQuery({
+  }: UseQueryResult<IPokemonForm[], Error> = useQuery({
     queryKey: ['forms'],
     queryFn: () => getPokemonForms(pokemon),
   });

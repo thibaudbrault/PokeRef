@@ -5,6 +5,7 @@ import HeadingMoves from '@/components/pages/Moves/Heading';
 import { useToggleTable } from '@/components/pages/Moves/Hooks/useToggleTable';
 import { getMoves, getStats, getStatus } from '@/utils/DataFetch';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 function Moves() {
   const { results, toggle, setToggle, pageShown } = useToggleTable();
@@ -14,7 +15,7 @@ function Moves() {
     results[1].status === `error` ||
     results[2].status === `error`
   ) {
-    return { error };
+    return toast.error(`Something went wrong`);
   }
 
   if (

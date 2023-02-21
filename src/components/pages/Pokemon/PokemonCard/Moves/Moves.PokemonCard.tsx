@@ -31,8 +31,8 @@ import {
 
 type Props = {
   pokemon: IPokemon;
-  moves: IMove[];
-  machines: IMachine[];
+  moves?: IMove[];
+  machines?: IMachine[];
   version: string;
   game: string;
 };

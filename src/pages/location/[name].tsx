@@ -35,7 +35,6 @@ function LocationCard({ name }: Props) {
   const {
     game,
     setGame,
-    version,
     setVersion,
     toggleState,
     toggleTable,
@@ -67,10 +66,10 @@ function LocationCard({ name }: Props) {
       //   //   <TBold>hello</TBold>
       // },
       {
-        accessorKey: `method.name`,
-        id: `method`,
-        header: `Method`,
-        cell: (info) => <td>{removeDash(info.getValue<string>())}</td>,
+        accessorKey: `max_level`,
+        id: `level`,
+        header: `Level`,
+        cell: (info) => <td>{info.getValue<string>()}</td>,
       },
       {
         accessorKey: `chance`,
@@ -79,10 +78,10 @@ function LocationCard({ name }: Props) {
         cell: (info) => <td>{info.getValue<string>()} %</td>,
       },
       {
-        accessorKey: `max_level`,
-        id: `level`,
-        header: `Level`,
-        cell: (info) => <td>{info.getValue<string>()}</td>,
+        accessorKey: `method.name`,
+        id: `method`,
+        header: `Method`,
+        cell: (info) => <td>{removeDash(info.getValue<string>())}</td>,
       },
       {
         accessorFn: (row: IEncounter) =>
@@ -109,7 +108,7 @@ function LocationCard({ name }: Props) {
   );
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`);
+    return toast.error(`Something went wrong: ${error?.message}`);
   }
 
   if (isLoading) {
@@ -121,10 +120,11 @@ function LocationCard({ name }: Props) {
       <HeadingLocation name={name} />
       <MainBig>
         <CardTitle>
-          {removeDash(location?.name).replace(
-            /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea/g,
-            ``,
-          )}
+          {location &&
+            removeDash(location?.name).replace(
+              /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea/g,
+              ``,
+            )}
         </CardTitle>
         <Subtitle>
           {game && `${location?.region.name} - ${removeDash(game)}`}

@@ -6,7 +6,7 @@ import Typing from './Typing/Typing.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
-  types: IType[];
+  types?: IType[];
 };
 
 function Stats({ pokemon, types }: Props) {

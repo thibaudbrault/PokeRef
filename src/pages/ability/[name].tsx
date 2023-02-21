@@ -1,8 +1,8 @@
 import {
+  Capitalize,
   CardTitle,
   H3,
   H4,
-  Capitalize,
   Subtitle,
 } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
@@ -16,8 +16,6 @@ import {
   AbilityCardSection,
 } from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import { removeDash } from '@/utils/Typography';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -49,7 +47,7 @@ function AbilityCard({ name }: Props) {
   } = useFilterAbility(name);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`);
+    return toast.error(`Something went wrong: ${error?.message}`);
   }
 
   if (isLoading) {
@@ -60,8 +58,8 @@ function AbilityCard({ name }: Props) {
     <>
       <HeadingAbility name={name} />
       <MainBig>
-        <CardTitle>{removeDash(ability?.name)}</CardTitle>
-        <Subtitle>{removeDash(ability?.generation?.name)}</Subtitle>
+        <CardTitle>{ability && removeDash(ability?.name)}</CardTitle>
+        <Subtitle>{ability && removeDash(ability?.generation?.name)}</Subtitle>
 
         <AbilityCardSection>
           <AbilityCardEffect>
@@ -82,7 +80,8 @@ function AbilityCard({ name }: Props) {
         <DescAbilityCard filterDesc={filterDesc} />
         <AbilityCardSection>
           <H3>
-            Pokemon with <Capitalize>{removeDash(ability?.name)}</Capitalize>
+            Pokemon with{' '}
+            <Capitalize>{ability && removeDash(ability?.name)}</Capitalize>
           </H3>
           <TableAbilitycard ability={ability} pokemon={pokemon} />
         </AbilityCardSection>

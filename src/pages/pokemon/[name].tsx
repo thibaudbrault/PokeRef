@@ -5,6 +5,8 @@ import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
 import { useFetchPokemon } from '@/components/pages/Pokemon/PokemonCard/Hooks/useFetchPokemon';
 import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
+import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { pokemonFilters } from '@/utils/DataArrays';
 import { removeDash } from '@/utils/Typography';
 import { GiSpeaker } from '@meronex/icons/gi';
@@ -14,14 +16,23 @@ import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
 
+interface IEvolutionProps {
+  evolution: IEvolutionChain;
+  name: string;
+}
+
+interface IFormsProps {
+  pokemon: IPokemon;
+}
+
 const Data = dynamic(
   () => import(`@/components/pages/Pokemon/PokemonCard/Data/Data.PokemonCard`),
 );
-const Evolution = dynamic(
+const Evolution = dynamic<IEvolutionProps>(
   () =>
     import(
       `@/components/pages/Pokemon/PokemonCard/Evolution/Evolution.PokemonCard`
-    ),
+    ) as any,
 );
 const Info = dynamic(
   () => import(`@/components/pages/Pokemon/PokemonCard/Info/Info.PokemonCard`),
@@ -40,9 +51,11 @@ const Locations = dynamic(
       `@/components/pages/Pokemon/PokemonCard/Locations/Locations.PokemonCard`
     ),
 );
-const Forms = dynamic(
+const Forms = dynamic<IFormsProps>(
   () =>
-    import(`@/components/pages/Pokemon/PokemonCard/Forms/Forms.PokemonCard`),
+    import(
+      `@/components/pages/Pokemon/PokemonCard/Forms/Forms.PokemonCard`
+    ) as any,
 );
 const Sprites = dynamic(
   () =>
@@ -82,7 +95,7 @@ function PokemonCard({ name }: Props) {
       });
   };
 
-  const audioRef = useRef();
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const play = () => {
     if (audioRef.current) {
@@ -102,7 +115,7 @@ function PokemonCard({ name }: Props) {
     machines.status === 'error' ||
     location.status === 'error'
   ) {
-    return toast.error(`Something went wrong: ${error.message}`);
+    return toast.error(`Something went wrong`);
   }
 
   if (

@@ -38,7 +38,7 @@ export const useFetchPokemon = (name: string) => {
         queryFn: getMachines,
       },
       {
-        queryKey: [`encounter`],
+        queryKey: [`encounter`, name],
         queryFn: () =>
           getPokemonLocation(
             `https://pokeapi.co/api/v2/pokemon/${name}/encounters`,

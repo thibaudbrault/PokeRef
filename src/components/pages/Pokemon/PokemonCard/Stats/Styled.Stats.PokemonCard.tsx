@@ -1,19 +1,19 @@
-import { Table } from '@/components/common/styles/Table';
-import styled from 'styled-components';
 import { device } from '@/components/common/styles/Sizing';
 import { TypeDamageTable } from '@/components/pages/Types/TypeCard/Styled.TypeCard';
+import styled from 'styled-components';
 
 export const PokemonStatsSection = styled.section`
   margin-bottom: 5rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 2rem;
+  gap: 3rem;
 
   @media ${device.lg} {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 5rem;
 
     & div {
       width: 100%;

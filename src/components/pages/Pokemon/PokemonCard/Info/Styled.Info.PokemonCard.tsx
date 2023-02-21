@@ -5,13 +5,14 @@ import { Table } from '@/components/common/styles/Table';
 export const PokemonInfoSection = styled(Section)`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 4rem;
+  gap: 3rem;
 
   @media ${device.lg} {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 5rem;
 
     & div {
       margin: 1rem 0;

@@ -15,7 +15,7 @@ export const useToggleTable = (name: string) => {
     isError,
     error,
     data: type,
-  }: UseQueryResult<IType> = useQuery({
+  }: UseQueryResult<IType, Error> = useQuery({
     queryKey: [`type`, name],
     queryFn: () => getType(`https://pokeapi.co/api/v2/type/${name}`),
   });
