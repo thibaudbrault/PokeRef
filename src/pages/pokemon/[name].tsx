@@ -6,10 +6,11 @@ import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
 import { useFetchPokemon } from '@/components/pages/Pokemon/PokemonCard/Hooks/useFetchPokemon';
 import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
+import { IMachine } from '@/types/Machines/Machine';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { pokemonFilters } from '@/utils/DataArrays';
 import { removeDash } from '@/utils/Typography';
-import { GiSpeaker } from '@meronex/icons/gi';
+import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -19,6 +20,13 @@ import toast from 'react-hot-toast';
 interface IEvolutionProps {
   evolution: IEvolutionChain;
   name: string;
+}
+
+interface IMovesProps {
+  pokemon: IPokemon;
+  machines?: IMachine[];
+  version: string;
+  game: string;
 }
 
 interface IFormsProps {
@@ -41,9 +49,11 @@ const Stats = dynamic(
   () =>
     import(`@/components/pages/Pokemon/PokemonCard/Stats/Stats.PokemonCard`),
 );
-const Moves = dynamic(
+const Moves = dynamic<IMovesProps>(
   () =>
-    import(`@/components/pages/Pokemon/PokemonCard/Moves/Moves.PokemonCard`),
+    import(
+      `@/components/pages/Pokemon/PokemonCard/Moves/Moves.PokemonCard`
+    ) as any,
 );
 const Locations = dynamic(
   () =>
@@ -144,7 +154,7 @@ function PokemonCard({ name }: Props) {
           {pokemon.data?.id < 722 && (
             <div>
               <button onClick={play}>
-                <GiSpeaker />
+                <HiOutlineSpeakerphone />
               </button>
               <audio
                 ref={audioRef}
@@ -175,7 +185,6 @@ function PokemonCard({ name }: Props) {
         {game && version && (
           <Moves
             pokemon={pokemon.data}
-            moves={moves.data}
             machines={machines.data}
             version={version}
             game={game}

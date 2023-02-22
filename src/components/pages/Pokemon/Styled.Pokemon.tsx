@@ -256,7 +256,9 @@ export const PokemonTitle = styled.section`
     & svg {
       font-size: 4rem;
       & path {
-        fill: ${({ theme }) => theme.secondary};
+        fill: ${({ theme }) => theme.main};
+        stroke: ${({ theme }) => theme.secondary};
+        stroke-width: 1;
       }
     }
   }

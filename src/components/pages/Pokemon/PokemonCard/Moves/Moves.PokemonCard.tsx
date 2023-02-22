@@ -1,14 +1,24 @@
 import { H3 } from '@/components/common/styles/Headings';
-import { TableContainer, TBold } from '@/components/common/styles/Table';
+import {
+  TableContainer,
+  TBold,
+  TCapitalize,
+} from '@/components/common/styles/Table';
+import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IMachine } from '@/types/Machines/Machine';
 import { IMove } from '@/types/Moves/Move';
+import { IMoveAilment } from '@/types/Moves/MoveAilment';
 import { IPokemon, IPokemonMove } from '@/types/Pokemon/Pokemon';
 import { LearnMethod } from '@/utils/ObjectsMap';
 import { removeDash } from '@/utils/Typography';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import axios from 'axios';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import toast from 'react-hot-toast';
 import {
   PokemonMovesSection,
   PokemonMovesTable,
@@ -16,13 +26,16 @@ import {
 
 type Props = {
   pokemon: IPokemon;
-  moves?: IMove[];
   machines?: IMachine[];
   version: string;
   game: string;
 };
 
-function MovesPokemon({ pokemon, moves, machines, version }: Props) {
+interface IMoveWithDetails extends IPokemonMove {
+  details: IMove;
+}
+
+function MovesPokemon({ pokemon, machines, version }: Props) {
   // Changes according to the table selected
   const [learn, setLearn] = useState<string>(`level-up`);
   const [toggle, setToggle] = useState<number>(0);
@@ -50,14 +63,37 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
     })
     .filter((m) => m.version_group_details.length);
 
-  const data = useMemo(() => filteredMoves, [pokemon, version, learn]);
+  const filteredMovesWithDetails = async () => {
+    const res = filteredMoves.map(async (m) => {
+      const moveUrl = m.move.url;
+      const details = await axios.get(moveUrl).then((res) => res.data);
+      return {
+        ...m,
+        details,
+      };
+    });
+    const results = await Promise.all(res);
+    return results;
+  };
 
-  const columns = useMemo<ColumnDef<IPokemonMove>[]>(
+  const {
+    isLoading,
+    isError,
+    error,
+    data: pokemonMoves,
+  }: UseQueryResult<IMoveWithDetails, Error> = useQuery({
+    queryKey: ['pokemonMoves', version, learn],
+    queryFn: filteredMovesWithDetails,
+  });
+
+  const data = pokemonMoves;
+
+  const columns = useMemo<ColumnDef<IMoveWithDetails>[]>(
     () => [
       {
         accessorFn: (row) => row.version_group_details[0].level_learned_at,
         id: 'sort',
-        header: `${learnHeader()}`,
+        header: 'Level',
         cell: (info) => <td>{info.getValue<number>()}</td>,
       },
       {
@@ -66,84 +102,78 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
         header: 'Name',
         cell: (info) => <TBold>{removeDash(info.getValue<string>())}</TBold>,
       },
-      // {
-      //   accessorKey: `type.name`,
-      //   id: `type`,
-      //   header: `Type`,
-      //   cell: (info) => (
-      //     <PokemonMovesTd>
-      //       <Link
-      //         href={{
-      //           pathname: `/type/[name]`,
-      //           query: { name: info.getValue<string>() },
-      //         }}
-      //       >
-      //         <Image
-      //           src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue<string>()}.png`}
-      //           alt={info.getValue<string>()}
-      //           width={32}
-      //           height={32}
-      //           style={{ cursor: `pointer` }}
-      //         />
-      //       </Link>
-      //     </PokemonMovesTd>
-      //   ),
-      // },
-      // {
-      //   accessorKey: `damage_class.name`,
-      //   id: `category`,
-      //   header: `Category`,
-      //   cell: (info) => (
-      //     <PokemonMovesTd>{info.getValue<string>()}</PokemonMovesTd>
-      //   ),
-      // },
-      // {
-      //   accessorKey: `power`,
-      //   id: `power`,
-      //   header: `Power`,
-      //   cell: (info) => (
-      //     <PokemonMovesTd>{info.getValue<string>() || `-`}</PokemonMovesTd>
-      //   ),
-      // },
-      // {
-      //   accessorKey: `pp`,
-      //   id: `pp`,
-      //   header: `PP`,
-      //   cell: (info) => (
-      //     <PokemonMovesTd>{info.getValue<string>()}</PokemonMovesTd>
-      //   ),
-      // },
-      // {
-      //   accessorKey: `accuracy`,
-      //   id: `accuracy`,
-      //   header: `Accuracy`,
-      //   cell: (info) => (
-      //     <PokemonMovesTd>{info.getValue<string>() || `-`}</PokemonMovesTd>
-      //   ),
-      // },
-      // {
-      //   accessorKey: `priority`,
-      //   id: `priority`,
-      //   header: `Priority`,
-      //   cell: (info) => (
-      //     <PokemonMovesTd>{info.getValue<string>()}</PokemonMovesTd>
-      //   ),
-      // },
-      // {
-      //   accessorKey: `meta.ailment`,
-      //   id: `status`,
-      //   header: `Status`,
-      //   cell: (info) => (
-      //     <PokemonMovesTd>
-      //       {info.getValue()
-      //         ? removeDash(info?.getValue<IMoveAilment>().name).replace(
-      //           `none`,
-      //           `-`,
-      //         )
-      //         : `-`}
-      //     </PokemonMovesTd>
-      //   ),
-      // },
+      {
+        accessorKey: `details.type.name`,
+        id: `type`,
+        header: `Type`,
+        cell: (info) => (
+          <td>
+            <Link
+              href={{
+                pathname: `/type/[name]`,
+                query: { name: info.getValue<string>() },
+              }}
+            >
+              <Image
+                src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue<string>()}.png`}
+                alt={info.getValue<string>()}
+                width={32}
+                height={32}
+                style={{ cursor: `pointer` }}
+              />
+            </Link>
+          </td>
+        ),
+      },
+      {
+        accessorKey: `details.damage_class.name`,
+        id: `category`,
+        header: `Category`,
+        cell: (info) => <TCapitalize>{info.getValue<string>()}</TCapitalize>,
+      },
+      {
+        accessorKey: `details.power`,
+        id: `power`,
+        header: `Power`,
+        cell: (info) => (
+          <TCapitalize>{info.getValue<string>() || `-`}</TCapitalize>
+        ),
+      },
+      {
+        accessorKey: `details.pp`,
+        id: `pp`,
+        header: `PP`,
+        cell: (info) => <TCapitalize>{info.getValue<string>()}</TCapitalize>,
+      },
+      {
+        accessorKey: `details.accuracy`,
+        id: `accuracy`,
+        header: `Accuracy`,
+        cell: (info) => (
+          <TCapitalize>{info.getValue<string>() || `-`}</TCapitalize>
+        ),
+      },
+      {
+        accessorKey: `details.priority`,
+        id: `priority`,
+        header: `Priority`,
+        cell: (info) => <TCapitalize>{info.getValue<string>()}</TCapitalize>,
+      },
+      {
+        accessorKey: `details.meta.ailment`,
+        id: `status`,
+        header: `Status`,
+        cell: (info) => (
+          <TCapitalize>
+            {info.getValue()
+              ? removeDash(info?.getValue<IMoveAilment>().name).replace(
+                  `none`,
+                  `-`,
+                )
+              : `-`}
+          </TCapitalize>
+        ),
+      },
     ],
     [],
   );
@@ -152,6 +182,14 @@ function MovesPokemon({ pokemon, moves, machines, version }: Props) {
     data,
     columns,
   );
+
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
+  }
+
+  if (isLoading || !pokemonMoves) {
+    return <SmallLoader />;
+  }
 
   return (
     <PokemonMovesSection>

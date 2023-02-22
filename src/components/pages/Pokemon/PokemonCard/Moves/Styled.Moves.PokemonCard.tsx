@@ -1,14 +1,12 @@
-import styled from 'styled-components';
 import { device, Section } from '@/components/common/styles/Sizing';
-import { Table } from '@/components/common/styles/Table';
+import { FullWidthTable } from '@/components/common/styles/Table';
+import styled from 'styled-components';
 
 export const PokemonMovesSection = styled(Section)`
   overflow-x: hidden;
 `;
 
-export const PokemonMovesTable = styled(Table)`
-  width: 100%;
-
+export const PokemonMovesTable = styled(FullWidthTable)`
   & td {
     @media ${device.sm} {
       font-size: 2rem;
