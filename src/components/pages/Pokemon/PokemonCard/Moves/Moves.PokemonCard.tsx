@@ -1,5 +1,6 @@
 import { H3 } from '@/components/common/styles/Headings';
 import {
+  FullWidthTable,
   TableContainer,
   TBold,
   TCapitalize,
@@ -17,12 +18,9 @@ import { ColumnDef } from '@tanstack/react-table';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
-import {
-  PokemonMovesSection,
-  PokemonMovesTable,
-} from './Styled.Moves.PokemonCard';
+import { PokemonMovesSection } from './Styled.Moves.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
@@ -36,7 +34,6 @@ interface IMoveWithDetails extends IPokemonMove {
 }
 
 function MovesPokemon({ pokemon, machines, version }: Props) {
-  // Changes according to the table selected
   const [learn, setLearn] = useState<string>(`level-up`);
   const [toggle, setToggle] = useState<number>(0);
 
@@ -81,12 +78,24 @@ function MovesPokemon({ pokemon, machines, version }: Props) {
     isError,
     error,
     data: pokemonMoves,
-  }: UseQueryResult<IMoveWithDetails, Error> = useQuery({
+  }: UseQueryResult<IMoveWithDetails[], Error> = useQuery({
     queryKey: ['pokemonMoves', version, learn],
     queryFn: filteredMovesWithDetails,
   });
 
-  const data = pokemonMoves;
+  const [data, setData] = useState<IMoveWithDetails[]>([]);
+
+  useEffect(() => {
+    if (pokemonMoves) {
+      setData(pokemonMoves);
+    }
+  }, [pokemonMoves]);
+
+  if (data) {
+    console.log('Data');
+  } else if (!data) {
+    console.log('No data');
+  }
 
   const columns = useMemo<ColumnDef<IMoveWithDetails>[]>(
     () => [
@@ -187,7 +196,7 @@ function MovesPokemon({ pokemon, machines, version }: Props) {
     return toast.error(`Something went wrong: ${error.message}`);
   }
 
-  if (isLoading || !pokemonMoves) {
+  if (isLoading) {
     return <SmallLoader />;
   }
 
@@ -196,10 +205,15 @@ function MovesPokemon({ pokemon, machines, version }: Props) {
       <H3>Moves</H3>
       <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
       <TableContainer ref={tableContainerRef}>
-        <PokemonMovesTable>
+        <FullWidthTable>
           {tableHeader()}
           {tableBody()}
-        </PokemonMovesTable>
+          <tfoot>
+            <tr>
+              <td colSpan={9}>There is no move learned this way</td>
+            </tr>
+          </tfoot>
+        </FullWidthTable>
       </TableContainer>
     </PokemonMovesSection>
   );

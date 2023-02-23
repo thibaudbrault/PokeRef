@@ -1,4 +1,3 @@
-import { Wiggle } from '@/components/common/styles/Animations';
 import ImageWithFallback from '@/utils/ImageWithFallback';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
