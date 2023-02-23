@@ -10,8 +10,6 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/thibaudbrault/pokeref)
 ![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
-![GitHub last commit](https://img.shields.io/github/last-commit/thibaudbrault/pokeref)
-![Lines of code](https://img.shields.io/tokei/lines/github/thibaudbrault/pokeref)
 
 </div>
 
@@ -59,13 +57,13 @@
 
 <h4>Performance improvements</h4>
 
+✅Use of Next SSG for static pages and SSR for dynamic pages.  
 ✅Use of React-Query to fetch data only once by using `cacheTime: Infinity` and `staleTime: Infinity`. The data will very rarely change so there is no use in re-fetching it every x minutes / hours.  
 ✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important.  
 ✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded.  
 ✅Turned into a PWA with the next-pwa package.
 
 🛠Refactoring the code  
-🛠Use SSG to fetch data (with React-Query `prefetchQuery`) and create dynamic routing with `getStaticPaths` and `getStaticProps`  
 
 🔜Implement PokeAPI Service Worker.
 
@@ -134,7 +132,7 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 <a href="https://www.npmjs.com/package/react-select" target="_blank">React Select</a>  
 <a href="https://www.npmjs.com/package/yup" target="_blank">Yup</a>  
 <a href="https://www.npmjs.com/package/eslint" target="_blank">ESLint</a>  
-<a href="https://www.npmjs.com/package/prettier" target="_blank">Prettier</a>
+<a href="https://www.npmjs.com/package/prettier" target="_blank">Prettier</a>  
 <a href="https://www.npmjs.com/package/next-pwa" target="_blank">Next PWA</a>
 
 <h2 id="other">Other</h2>
