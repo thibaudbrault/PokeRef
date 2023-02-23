@@ -27,10 +27,11 @@
   <summary>Table of contents</summary>
 
 1.  [Roadmap](#roadmap)
-2.  [Description](#description)
-3.  [Technologies](#technologies)
-4.  [Acknowledgements](#acknowledgements)
-5.  [Other](#other)
+2.  [Setup](#setup)
+3.  [Description](#description)
+4.  [Technologies](#technologies)
+5.  [Acknowledgements](#acknowledgements)
+6.  [Other](#other)
 
 </details>
 
@@ -66,6 +67,28 @@
 🛠Refactoring the code  
 
 🔜Implement PokeAPI Service Worker.
+
+<h2 id="setup">Setup</h2>
+
+<h4>Clone the repo</h4>  
+
+```bash
+git clone https://github.com/thibaudbrault/PokeRef.git
+```
+
+<h4>Install the dependencies</h4>
+
+```bash
+npm install
+```
+
+<h4>Start the server</h4>
+
+```bash
+npm run dev
+```
+
+<h4>Enjoy :)</h4>
 
 <h2 id="description">Description</h2>
 
