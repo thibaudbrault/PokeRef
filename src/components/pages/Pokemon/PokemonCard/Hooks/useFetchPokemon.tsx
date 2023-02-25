@@ -1,8 +1,6 @@
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import {
   getEvolution,
-  getMachines,
-  getMoves,
   getPokemon,
   getPokemonLocation,
   getSpecies,
@@ -16,7 +14,7 @@ export const useFetchPokemon = (name: string) => {
   const [game, setGame] = useState<string | null>(null);
   const [version, setVersion] = useState<string | null>(null);
 
-  const [pokemon, moves, types, machines, location] = useQueries({
+  const [pokemon, types, location] = useQueries({
     queries: [
       {
         queryKey: [`pokemon`, name],
@@ -26,16 +24,8 @@ export const useFetchPokemon = (name: string) => {
         },
       },
       {
-        queryKey: [`moves`, name],
-        queryFn: getMoves,
-      },
-      {
         queryKey: [`types`, name],
         queryFn: getTypes,
-      },
-      {
-        queryKey: [`machines`, name],
-        queryFn: getMachines,
       },
       {
         queryKey: [`encounter`, name],
@@ -72,9 +62,7 @@ export const useFetchPokemon = (name: string) => {
     setVersion,
     pokemon,
     species,
-    moves,
     types,
-    machines,
     location,
     evolution,
   };

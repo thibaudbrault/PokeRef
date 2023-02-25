@@ -32,21 +32,21 @@ function Forms({ pokemon }: Props) {
     error,
     data: forms,
   }: UseQueryResult<IPokemonForm[], Error> = useQuery({
-    queryKey: ['forms'],
+    queryKey: [`forms`],
     queryFn: () => getPokemonForms(pokemon),
   });
 
   const data = useMemo(
-    () => forms?.filter((f: IPokemonForm) => f.form_name !== 'unknown'),
+    () => forms?.filter((f: IPokemonForm) => f.form_name !== `unknown`),
     [forms],
   );
 
   const columns = useMemo<ColumnDef<IPokemonForm>[]>(
     () => [
       {
-        accessorKey: 'sprites.front_default',
-        id: 'sprite',
-        header: 'Sprite',
+        accessorKey: `sprites.front_default`,
+        id: `sprite`,
+        header: `Sprite`,
         cell: (info) => (
           <td>
             <Image
@@ -60,14 +60,14 @@ function Forms({ pokemon }: Props) {
       },
       {
         accessorFn: (row) => row.form_name,
-        id: 'sort',
-        header: 'Name',
+        id: `sort`,
+        header: `Name`,
         cell: (info) => <TBold>{removeDash(info.getValue<string>())}</TBold>,
       },
       {
-        accessorKey: 'is_battle_only',
-        id: 'battle',
-        header: 'Only in battle',
+        accessorKey: `is_battle_only`,
+        id: `battle`,
+        header: `Only in battle`,
         cell: (info) => {
           if (info.getValue<boolean>()) {
             return <td>Yes</td>;
@@ -76,9 +76,9 @@ function Forms({ pokemon }: Props) {
         },
       },
       {
-        accessorKey: 'is_mega',
-        id: 'mega',
-        header: 'Mega',
+        accessorKey: `is_mega`,
+        id: `mega`,
+        header: `Mega`,
         cell: (info) => {
           if (info.getValue<boolean>()) {
             return <td>Yes</td>;
@@ -88,7 +88,7 @@ function Forms({ pokemon }: Props) {
       },
       {
         accessorFn: (row) => row.types[0].type.name,
-        id: 'type1',
+        id: `type1`,
         header: () => (
           <span>
             1<Sup>st</Sup> type
@@ -106,9 +106,9 @@ function Forms({ pokemon }: Props) {
                 <Image
                   src={
                     `https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue()}.png` ||
-                    ''
+                    ``
                   }
-                  alt={'-'}
+                  alt={`-`}
                   width={15}
                   height={15}
                 />
@@ -120,7 +120,7 @@ function Forms({ pokemon }: Props) {
       },
       {
         accessorFn: (row) => row.types.length > 1 && row.types?.[1].type.name,
-        id: 'type2',
+        id: `type2`,
         header: () => (
           <span>
             2<Sup>nd</Sup> type
@@ -138,9 +138,9 @@ function Forms({ pokemon }: Props) {
                 <Image
                   src={
                     `https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue()}.png` ||
-                    ''
+                    ``
                   }
-                  alt={'-'}
+                  alt={`-`}
                   width={15}
                   height={15}
                 />

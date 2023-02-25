@@ -80,7 +80,7 @@ function AbilityCard({ name }: Props) {
         <DescAbilityCard filterDesc={filterDesc} />
         <AbilityCardSection>
           <H3>
-            Pokemon with{' '}
+            Pokemon with{` `}
             <Capitalize>{ability && removeDash(ability?.name)}</Capitalize>
           </H3>
           <TableAbilitycard ability={ability} pokemon={pokemon} />

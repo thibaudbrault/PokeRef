@@ -1,5 +1,4 @@
-import { device, Section } from '@/components/common/styles/Sizing';
-import { FullWidthTable } from '@/components/common/styles/Table';
+import { Section } from '@/components/common/styles/Sizing';
 import styled from 'styled-components';
 
 export const PokemonMovesSection = styled(Section)`

@@ -62,60 +62,62 @@ function LocationCard({ name }: Props) {
   const columns = useMemo<ColumnDef<IPokemonEncounter>[]>(
     () => [
       {
-        accessorKey: 'pokemon.name',
+        accessorKey: `pokemon.name`,
         id: `name`,
         header: `Pokemon`,
         cell: (info) => <TBold>{info.getValue<string>()}</TBold>,
       },
       {
         accessorFn: (row) => row.version_details[0].encounter_details,
-        id: 'level',
-        header: 'Level',
+        id: `level`,
+        header: `Level`,
         cell: (info) => (
           <td>
             {info.getValue<IEncounter[]>().map((i) => (
-              <p>{i.max_level}</p>
+              <p key={i.max_level}>{i.max_level}</p>
             ))}
           </td>
         ),
       },
       {
         accessorFn: (row) => row.version_details[0].encounter_details,
-        id: 'chance',
-        header: 'Probability',
+        id: `chance`,
+        header: `Probability`,
         cell: (info) => (
           <td>
             {info.getValue<IEncounter[]>().map((i) => (
-              <p>{i.chance} %</p>
+              <p key={i.chance}>{i.chance} %</p>
             ))}
           </td>
         ),
       },
       {
         accessorFn: (row) => row.version_details[0].encounter_details,
-        id: 'method',
-        header: 'Method',
+        id: `method`,
+        header: `Method`,
         cell: (info) => (
           <td>
             {info.getValue<IEncounter[]>().map((i) => (
-              <p>{removeDash(i.method.name)}</p>
+              <p key={i.method.name}>{removeDash(i.method.name)}</p>
             ))}
           </td>
         ),
       },
       {
         accessorFn: (row) => row.version_details[0].encounter_details,
-        id: 'condition',
-        header: 'Condition',
+        id: `condition`,
+        header: `Condition`,
         cell: (info) => (
           <td>
             {info
               .getValue<IEncounter[]>()
               .map((i) =>
                 i.condition_values.length > 0 ? (
-                  i.condition_values.map((icv) => <p>{removeDash(icv.name)}</p>)
+                  i.condition_values.map((icv) => (
+                    <p key={icv.name}>{removeDash(icv.name)}</p>
+                  ))
                 ) : (
-                  <p>-</p>
+                  <p key={i.min_level + i.max_level}>-</p>
                 ),
               )}
           </td>

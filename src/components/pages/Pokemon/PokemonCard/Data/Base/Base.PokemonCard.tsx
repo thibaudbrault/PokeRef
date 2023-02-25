@@ -25,7 +25,7 @@ function Base({ pokemon, species }: Props) {
           <td>
             {pokemon?.id < 10000
               ? `# ${pokemon?.id?.toString()?.padStart(3, `0`)}`
-              : `# ${pokemon.species.url.match(/\d/g)?.slice(1).join('')}`}
+              : `# ${pokemon.species.url.match(/\d/g)?.slice(1).join(``)}`}
           </td>
         </tr>
         <tr>

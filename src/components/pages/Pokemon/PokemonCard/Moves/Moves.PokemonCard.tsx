@@ -4,84 +4,56 @@ import {
   TableContainer,
   TBold,
   TCapitalize,
+  TLink,
 } from '@/components/common/styles/Table';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { useTableParams } from '@/hooks/useTableParams';
-import { IMachine } from '@/types/Machines/Machine';
-import { IMove } from '@/types/Moves/Move';
 import { IMoveAilment } from '@/types/Moves/MoveAilment';
-import { IPokemon, IPokemonMove } from '@/types/Pokemon/Pokemon';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { LearnMethod } from '@/utils/ObjectsMap';
 import { removeDash } from '@/utils/Typography';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
-import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useFetchMachines } from '../Hooks/useFetchMachines';
+import { IMoveWithDetails, useFetchMoves } from '../Hooks/useFetchMoves';
 import { PokemonMovesSection } from './Styled.Moves.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
-  machines?: IMachine[];
   version: string;
-  game: string;
+  name: string;
 };
 
-interface IMoveWithDetails extends IPokemonMove {
-  details: IMove;
-}
-
-function MovesPokemon({ pokemon, machines, version }: Props) {
+function MovesPokemon({ pokemon, version, name }: Props) {
   const [learn, setLearn] = useState<string>(`level-up`);
   const [toggle, setToggle] = useState<number>(0);
 
   const learnHeader = () => {
-    if (learn === 'level-up') {
-      return 'Level';
-    } else if (learn === 'machine') {
-      return 'Machine';
+    if (learn === `level-up`) {
+      return `Level`;
+    } else if (learn === `machine`) {
+      return `Machine`;
     }
-    return '-';
+    return `-`;
   };
 
-  const filteredMoves = pokemon.moves
-    .map((m) => {
-      const version_group_details = m.version_group_details.filter(
-        (mv) =>
-          mv.version_group.name === version &&
-          mv.move_learn_method.name === learn,
-      );
-      return {
-        ...m,
-        version_group_details,
-      };
-    })
-    .filter((m) => m.version_group_details.length);
+  const { isLoading, isError, error, pokemonMoves } = useFetchMoves(
+    pokemon,
+    version,
+    learn,
+    name,
+  );
 
-  const filteredMovesWithDetails = async () => {
-    const res = filteredMoves.map(async (m) => {
-      const moveUrl = m.move.url;
-      const details = await axios.get(moveUrl).then((res) => res.data);
-      return {
-        ...m,
-        details,
-      };
-    });
-    const results = await Promise.all(res);
-    return results;
-  };
+  const { machines } = useFetchMachines(pokemon, version, name);
 
-  const {
-    isLoading,
-    isError,
-    error,
-    data: pokemonMoves,
-  }: UseQueryResult<IMoveWithDetails[], Error> = useQuery({
-    queryKey: ['pokemonMoves', version, learn],
-    queryFn: filteredMovesWithDetails,
-  });
+  // if (!machines) {
+  //   console.log('No data')
+  // } else if (machines) {
+  //   console.log('Data')
+  // }
 
   const [data, setData] = useState<IMoveWithDetails[]>([]);
 
@@ -91,25 +63,50 @@ function MovesPokemon({ pokemon, machines, version }: Props) {
     }
   }, [pokemonMoves]);
 
-  if (data) {
-    console.log('Data');
-  } else if (!data) {
-    console.log('No data');
-  }
-
   const columns = useMemo<ColumnDef<IMoveWithDetails>[]>(
     () => [
       {
         accessorFn: (row) => row.version_group_details[0].level_learned_at,
-        id: 'sort',
-        header: 'Level',
-        cell: (info) => <td>{info.getValue<number>()}</td>,
+        id: `sort`,
+        header: `Level`,
+        cell: (info) => {
+          if (learn === `level-up` && info.getValue<number>() !== 0) {
+            // console.log('first')
+            return <td>{info.getValue<number>()}</td>;
+          } else if (learn === `level-up` && info.getValue<number>() === 0) {
+            // console.log('second')
+            return <td>Evolution</td>;
+          } else {
+            // console.log('third')
+            return <td>-</td>;
+          }
+          // return learn !== 'machine' && info.getValue<number>() > 0 ? (
+          //   <td>
+          //     {info.getValue<number>()}
+          //   </td>
+          // ) : learn === 'level-up' && info.getValue<number>() === 0 ? (
+          //   <td>Evolution</td>
+          // ) : (
+          //   <td>-</td>
+          // )
+        },
       },
       {
-        accessorKey: 'move.name',
-        id: 'name',
-        header: 'Name',
-        cell: (info) => <TBold>{removeDash(info.getValue<string>())}</TBold>,
+        accessorKey: `move.name`,
+        id: `name`,
+        header: `Name`,
+        cell: (info) => (
+          <TBold>
+            <TLink
+              href={{
+                pathname: `/move/[name]`,
+                query: { name: info.getValue<string>() },
+              }}
+            >
+              {removeDash(info.getValue<string>())}
+            </TLink>
+          </TBold>
+        ),
       },
       {
         accessorKey: `details.type.name`,
@@ -193,10 +190,10 @@ function MovesPokemon({ pokemon, machines, version }: Props) {
   );
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`);
+    return toast.error(`Something went wrong: ${error?.message}`);
   }
 
-  if (isLoading) {
+  if (isLoading || !machines?.length) {
     return <SmallLoader />;
   }
 

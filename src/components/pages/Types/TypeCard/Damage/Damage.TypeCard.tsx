@@ -1,4 +1,4 @@
-import { Capitalize, H3 } from '@/components/common/styles/Headings';
+import { Capitalize } from '@/components/common/styles/Headings';
 import { MoveCardDataTable } from '@/components/pages/Moves/MoveCard/Data/Styled.Data.MoveCard';
 import { IType } from '@/types/Pokemon/Type';
 import { removeDash } from '@/utils/Typography';
@@ -33,6 +33,7 @@ function DamageType({ type }: Props) {
               <div>
                 {type?.damage_relations?.no_damage_to?.map((ndt) => (
                   <Link
+                    key={ndt.name}
                     href={{
                       pathname: `/type/[name]`,
                       query: { name: ndt?.name },
@@ -56,6 +57,7 @@ function DamageType({ type }: Props) {
               <div>
                 {type?.damage_relations?.half_damage_to?.map((hdt) => (
                   <Link
+                    key={hdt.name}
                     href={{
                       pathname: `/type/[name]`,
                       query: { name: hdt?.name },
@@ -79,6 +81,7 @@ function DamageType({ type }: Props) {
               <div>
                 {type?.damage_relations?.double_damage_to?.map((ddt) => (
                   <Link
+                    key={ddt.name}
                     href={{
                       pathname: `/type/[name]`,
                       query: { name: ddt?.name },
@@ -102,6 +105,7 @@ function DamageType({ type }: Props) {
               <div>
                 {type?.damage_relations?.no_damage_from?.map((ndf) => (
                   <Link
+                    key={ndf.name}
                     href={{
                       pathname: `/type/[name]`,
                       query: { name: ndf?.name },
@@ -125,6 +129,7 @@ function DamageType({ type }: Props) {
               <div>
                 {type?.damage_relations?.half_damage_from?.map((hdf) => (
                   <Link
+                    key={hdf.name}
                     href={{
                       pathname: `/type/[name]`,
                       query: { name: hdf?.name },
@@ -148,6 +153,7 @@ function DamageType({ type }: Props) {
               <div>
                 {type?.damage_relations?.double_damage_from?.map((ddf) => (
                   <Link
+                    key={ddf.name}
                     href={{
                       pathname: `/type/[name]`,
                       query: { name: ddf?.name },

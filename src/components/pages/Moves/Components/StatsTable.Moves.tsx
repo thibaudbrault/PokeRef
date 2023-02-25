@@ -19,7 +19,7 @@ type Props = {
 };
 
 function StatsTable({ stats }: Props) {
-  const data = useMemo(() => stats?.filter((s) => s.name !== 'hp'), [stats]);
+  const data = useMemo(() => stats?.filter((s) => s.name !== `hp`), [stats]);
 
   const columns = useMemo<ColumnDef<IStat>[]>(
     () => [
@@ -27,8 +27,8 @@ function StatsTable({ stats }: Props) {
         header: `Stats`,
         columns: [
           {
-            accessorKey: 'name',
-            id: 'sort',
+            accessorKey: `name`,
+            id: `sort`,
             cell: (info) => (
               <TBold>{removeDash(info.getValue<string>())}</TBold>
             ),
@@ -36,15 +36,16 @@ function StatsTable({ stats }: Props) {
         ],
       },
       {
-        header: 'Moves',
+        header: `Moves`,
         columns: [
           {
-            accessorKey: 'affecting_moves.increase',
-            header: 'Increase',
+            accessorKey: `affecting_moves.increase`,
+            header: `Increase`,
             cell: (info) => (
               <StatsMoves>
                 {info.getValue<IMoveStatAffect[]>().map((i) => (
                   <Link
+                    key={i.move.name}
                     href={{
                       pathname: `/move/[name]`,
                       query: { name: i.move.name },
@@ -59,12 +60,13 @@ function StatsTable({ stats }: Props) {
             ),
           },
           {
-            accessorKey: 'affecting_moves.decrease',
-            header: 'Decrease',
+            accessorKey: `affecting_moves.decrease`,
+            header: `Decrease`,
             cell: (info) => (
               <StatsMoves>
                 {info.getValue<IMoveStatAffect[]>().map((i) => (
                   <Link
+                    key={i.move.name}
                     href={{
                       pathname: `/move/[name]`,
                       query: { name: i.move.name },
@@ -81,26 +83,26 @@ function StatsTable({ stats }: Props) {
         ],
       },
       {
-        header: 'Natures',
+        header: `Natures`,
         columns: [
           {
-            accessorKey: 'affecting_natures.increase',
-            header: 'Increase',
+            accessorKey: `affecting_natures.increase`,
+            header: `Increase`,
             cell: (info) => (
               <TCapitalize>
                 {info.getValue<INature[]>().map((i) => (
-                  <p>{i.name}</p>
+                  <p key={i.name}>{i.name}</p>
                 ))}
               </TCapitalize>
             ),
           },
           {
-            accessorKey: 'affecting_natures.decrease',
-            header: 'Decrease',
+            accessorKey: `affecting_natures.decrease`,
+            header: `Decrease`,
             cell: (info) => (
               <TCapitalize>
                 {info.getValue<INature[]>().map((i) => (
-                  <p>{i.name}</p>
+                  <p key={i.name}>{i.name}</p>
                 ))}
               </TCapitalize>
             ),

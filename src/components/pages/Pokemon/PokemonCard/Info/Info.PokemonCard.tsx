@@ -21,17 +21,17 @@ function Info({ pokemon, species, evolution }: Props) {
   return (
     <PokemonInfoSection>
       {InfoTable.map((data) => (
-        <div>
+        <div key={data.category}>
           <H3>{data.category}</H3>
           <PokemonInfoTable>
             <tbody>
               {Array(Object.keys(data).length - 1)
                 .fill(true)
                 .map((_, i) => (
-                  <tr>
-                    <th>{data['desc_' + (i + 1)]?.title}</th>
+                  <tr key={i}>
+                    <th>{data[`desc_` + (i + 1)]?.title}</th>
                     <td>
-                      {data['desc_' + (i + 1)]?.value({
+                      {data[`desc_` + (i + 1)]?.value({
                         pokemon: pokemon,
                         species: species,
                         evolution: evolution,

@@ -68,9 +68,18 @@ export const PokemonTypesContainer = styled.div`
 `;
 
 export const PokemonTypesTable = styled(TypeDamageTable)`
+  height: auto;
   & tr {
+    & td {
+      height: auto;
+    }
+
     &:nth-of-type(3) {
       border-bottom: 1px solid rgba(130, 130, 130, 0.2);
     }
+  }
+
+  &:first-of-type {
+    margin-bottom: 0;
   }
 `;

@@ -32,7 +32,7 @@ function List({ pokedex, status, moveName, version, toggle }: Props) {
     }
   };
 
-  if (status === 'loading') {
+  if (status === `loading`) {
     return <SmallLoader />;
   }
 

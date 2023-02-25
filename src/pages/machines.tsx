@@ -26,7 +26,7 @@ const Nav = dynamic(() => import(`@/components/common/ui/GenNav`));
 
 function MachinesPage() {
   const [version, setVersion] = useState<string | null>(`red-blue`);
-  const [game, setGame] = useState<string | null>('red');
+  const [game, setGame] = useState<string | null>(`red`);
   const {
     isLoading,
     isError,

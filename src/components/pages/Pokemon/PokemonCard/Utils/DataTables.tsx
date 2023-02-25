@@ -28,9 +28,9 @@ const stepsFn = (species: IPokemonSpecies) => {
 
 export const InfoTable = [
   {
-    category: 'breeding',
+    category: `breeding`,
     desc_1: {
-      title: 'gender',
+      title: `gender`,
       value: ({ pokemon, species, male, female }: PokemonGender) => {
         return (
           pokemon.id < 10000 &&
@@ -41,13 +41,13 @@ export const InfoTable = [
               {female}% female
             </p>
           ) : (
-            'genderless'
+            `genderless`
           ))
         );
       },
     },
     desc_2: {
-      title: 'egg groups',
+      title: `egg groups`,
       value: ({ species }: Species) => {
         return species?.egg_groups?.map((seg) => (
           <p key={seg.name}>{removeDash(seg.name)}</p>
@@ -55,7 +55,7 @@ export const InfoTable = [
       },
     },
     desc_3: {
-      title: 'egg cycles',
+      title: `egg cycles`,
       value: ({ species }: Species) => {
         return (
           <>
@@ -66,29 +66,29 @@ export const InfoTable = [
       },
     },
     desc_4: {
-      title: 'baby trigger item',
+      title: `baby trigger item`,
       value: ({ evolution }: Evolution) => {
         return evolution?.baby_trigger_item
           ? removeDash(evolution?.baby_trigger_item?.name)
-          : 'None';
+          : `None`;
       },
     },
     desc_5: {
-      title: 'habitat',
+      title: `habitat`,
       value: ({ species }: Species) => {
         return species?.habitat ? species.habitat.name : `Undiscovered`;
       },
     },
   },
   {
-    category: 'training',
+    category: `training`,
     desc_1: {
-      title: 'EV yield',
+      title: `EV yield`,
       value: ({ pokemon }: Pokemon) => {
         return pokemon.stats
           .filter((ps: IPokemonStat) => ps.effort !== 0)
           .map((ps) => (
-            <span>
+            <span key={ps.stat.name}>
               {ps?.effort}
               {` `}
               {removeDash(ps?.stat.name)}
@@ -97,31 +97,31 @@ export const InfoTable = [
       },
     },
     desc_2: {
-      title: 'catch rate',
+      title: `catch rate`,
       value: ({ species }: Species) => {
         return species.capture_rate;
       },
     },
     desc_3: {
-      title: 'base happiness',
+      title: `base happiness`,
       value: ({ species }: Species) => {
         return species.base_happiness;
       },
     },
     desc_4: {
-      title: 'base XP',
+      title: `base XP`,
       value: ({ pokemon }: Pokemon) => {
         return pokemon.base_experience;
       },
     },
     desc_5: {
-      title: 'growth rate',
+      title: `growth rate`,
       value: ({ species }: Species) => {
         return removeDash(species.growth_rate.name);
       },
     },
     desc_6: {
-      title: 'held items',
+      title: `held items`,
       value: ({ pokemon }: Pokemon) => {
         return pokemon?.held_items?.length > 0
           ? pokemon?.held_items?.map((ph) => (
@@ -140,15 +140,15 @@ export const InfoTable = [
     },
   },
   {
-    category: 'forms',
+    category: `forms`,
     desc_1: {
-      title: 'alternative forms',
+      title: `alternative forms`,
       value: ({ species }: Species) => {
         return species.forms_switchable ? `Yes` : `No`;
       },
     },
     desc_2: {
-      title: 'varieties',
+      title: `varieties`,
       value: ({ species }: Species) => {
         return species.varieties.length > 1
           ? species.varieties?.map(
@@ -165,20 +165,20 @@ export const InfoTable = [
                   </Link>
                 ),
             )
-          : 'No other forms';
+          : `No other forms`;
       },
     },
     desc_3: {
-      title: 'form description',
+      title: `form description`,
       value: ({ species }: Species) => {
         return species.form_descriptions.length
-          ? species.form_descriptions.find((sf) => sf.language.name === 'en')
+          ? species.form_descriptions.find((sf) => sf.language.name === `en`)
               ?.description
-          : 'No description';
+          : `No other form`;
       },
     },
     desc_4: {
-      title: 'gender differences',
+      title: `gender differences`,
       value: ({ species }: Species) => {
         return species.has_gender_differences ? `Yes` : `No`;
       },

@@ -23,7 +23,7 @@ export const useToggleTable = () => {
         queryFn: getStatus,
       },
       {
-        queryKey: ['stats'],
+        queryKey: [`stats`],
         queryFn: getStats,
       },
     ],

@@ -63,15 +63,15 @@ export async function getStaticProps() {
 
   await Promise.all([
     queryClient.prefetchQuery({
-      queryKey: ['moves'],
+      queryKey: [`moves`],
       queryFn: getMoves,
     }),
     queryClient.prefetchQuery({
-      queryKey: ['status'],
+      queryKey: [`status`],
       queryFn: getStatus,
     }),
     queryClient.prefetchQuery({
-      queryKey: ['stats'],
+      queryKey: [`stats`],
       queryFn: getStats,
     }),
   ]);

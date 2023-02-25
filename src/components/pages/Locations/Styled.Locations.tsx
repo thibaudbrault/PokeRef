@@ -91,19 +91,8 @@ export const LocationTable = styled(FullWidthTable)`
   }
 
   & tfoot {
-    display: none;
-    text-align: center;
-
-    & tr {
-      & td {
-        padding: 1.5rem;
-        font-size: 2rem;
-        font-weight: 700;
-      }
+    & td {
+      padding: 1.5rem;
     }
-  }
-
-  & tbody:empty + tfoot {
-    display: table-footer-group;
   }
 `;

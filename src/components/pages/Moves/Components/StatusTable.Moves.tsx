@@ -39,6 +39,7 @@ function StatusTable({ status }: Props) {
           <StatusMoves>
             {info.getValue<IMove[]>().map((i) => (
               <Link
+                key={i.id}
                 href={{
                   pathname: `/move/[name]`,
                   query: { name: i.name },

@@ -11,7 +11,7 @@ function Sprite({ pokemon, species }: Props) {
   return (
     <>
       <PokemonDataImg
-        src={pokemon.sprites.other['official-artwork'].front_default}
+        src={pokemon.sprites.other[`official-artwork`].front_default}
         alt={pokemon.name}
         loading="lazy"
         width="75%"

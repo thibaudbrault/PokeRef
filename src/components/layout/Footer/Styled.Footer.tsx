@@ -33,20 +33,20 @@ export const FooterInner = styled.div`
 
 export const LeftFooter = styled.div`
   justify-self: left;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 
 export const CenterFooter = styled.div`
   justify-self: center;
-  font-size: 2rem;
+  font-size: 3rem;
   font-family: 'Press Start 2P';
   text-align: center;
 `;
 
 export const RightFooter = styled.div`
   justify-self: right;
-  height: 3vh;
-  width: 3vh;
+  height: 4rem;
+  width: 4rem;
 
   & a {
     display: block;

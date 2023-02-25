@@ -1,15 +1,13 @@
 import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { getPokedex } from '@/utils/DataFetch';
 import ImageWithFallback from '@/utils/ImageWithFallback';
+import { removeDash } from '@/utils/Typography';
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import {
   AutocompleteContainer,
   AutocompleteId,
   AutocompleteInput,
   AutocompleteLink,
 } from './Styled.Autocomplete';
-import { removeDash } from '@/utils/Typography';
 
 type Props = {
   pokedex?: IPokemon[];

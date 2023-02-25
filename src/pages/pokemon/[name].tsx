@@ -6,7 +6,6 @@ import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
 import { useFetchPokemon } from '@/components/pages/Pokemon/PokemonCard/Hooks/useFetchPokemon';
 import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
-import { IMachine } from '@/types/Machines/Machine';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { pokemonFilters } from '@/utils/DataArrays';
 import { removeDash } from '@/utils/Typography';
@@ -24,9 +23,8 @@ interface IEvolutionProps {
 
 interface IMovesProps {
   pokemon: IPokemon;
-  machines?: IMachine[];
   version: string;
-  game: string;
+  name: string;
 }
 
 interface IFormsProps {
@@ -88,9 +86,7 @@ function PokemonCard({ name }: Props) {
     setVersion,
     pokemon,
     species,
-    moves,
     types,
-    machines,
     location,
     evolution,
   } = useFetchPokemon(name);
@@ -121,20 +117,18 @@ function PokemonCard({ name }: Props) {
 
   if (
     pokemon.status === `error` ||
-    types.status === 'error' ||
-    machines.status === 'error' ||
-    location.status === 'error'
+    types.status === `error` ||
+    location.status === `error`
   ) {
     return toast.error(`Something went wrong`);
   }
 
   if (
     pokemon.status === `loading` ||
-    types.status === 'loading' ||
-    machines.status === 'loading' ||
-    location.status === 'loading' ||
-    (species.status === 'loading' && species.isInitialLoading) ||
-    (evolution.status === 'loading' && evolution.isInitialLoading)
+    types.status === `loading` ||
+    location.status === `loading` ||
+    (species.status === `loading` && species.isInitialLoading) ||
+    (evolution.status === `loading` && evolution.isInitialLoading)
   ) {
     return <Loader />;
   }
@@ -182,13 +176,8 @@ function PokemonCard({ name }: Props) {
 
         <Stats pokemon={pokemon.data} types={types.data} />
 
-        {game && version && (
-          <Moves
-            pokemon={pokemon.data}
-            machines={machines.data}
-            version={version}
-            game={game}
-          />
+        {version && (
+          <Moves pokemon={pokemon.data} version={version} name={name} />
         )}
 
         {game && <Locations location={location.data} game={game} />}

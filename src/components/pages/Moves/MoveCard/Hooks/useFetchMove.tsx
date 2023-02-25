@@ -19,7 +19,7 @@ export const useFetchMove = (name: string) => {
   });
 
   const { data: machine }: UseQueryResult<IMachine[]> = useQuery({
-    queryKey: ['machine'],
+    queryKey: [`machine`],
     queryFn: () => getMoveMachines(move.data),
     enabled: !!move.data,
   });

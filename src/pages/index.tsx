@@ -3,7 +3,6 @@ import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingPokedex from '@/components/pages/Pokemon/Heading';
 import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
 import { PokedexVerticalText } from '@/components/pages/Pokemon/Styled.Pokemon';
-import { useStateWithCallback } from '@/hooks/useStateWithCallback';
 import { Options, OptionsOffsetLimit } from '@/utils/DataArrays';
 import { getPokedex } from '@/utils/DataFetch';
 import {

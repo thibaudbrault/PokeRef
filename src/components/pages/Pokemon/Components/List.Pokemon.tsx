@@ -1,4 +1,3 @@
-import { fadeInUpVariant } from '@/components/common/styles/Animations';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { removeDash } from '@/utils/Typography';
 import { AnimatePresence, Variants } from 'framer-motion';
@@ -23,8 +22,8 @@ type Props = {
 const scrollVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
-  slideStart: { clipPath: 'inset(100% 0 0 0 round 8px)' },
-  slideEnd: { clipPath: 'inset(0% 0 0 0 round 8px)' },
+  slideStart: { clipPath: `inset(100% 0 0 0 round 8px)` },
+  slideEnd: { clipPath: `inset(0% 0 0 0 round 8px)` },
 };
 
 function ListPokemon({
@@ -43,10 +42,10 @@ function ListPokemon({
           <PokedexElement
             key={p.id}
             variants={scrollVariants}
-            initial={['hidden', 'slideStart']}
+            initial={[`hidden`, `slideStart`]}
             whileHover={{ scale: 1.02 }}
-            whileInView={['visible', 'slideEnd']}
-            exit={['hidden', 'slideStart']}
+            whileInView={[`visible`, `slideEnd`]}
+            exit={[`hidden`, `slideStart`]}
             viewport={{ amount: 0.4 }}
           >
             <Sprites

@@ -1,8 +1,8 @@
 import {
   FullWidthTable,
   TableContainer,
-  TLink,
   TBold,
+  TLink,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';

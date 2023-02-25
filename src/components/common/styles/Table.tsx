@@ -65,9 +65,14 @@ export const Table = styled.table`
 
   & tfoot {
     display: none;
-    font-size: 2rem;
-    font-weight: 700;
     text-align: center;
+
+    & tr {
+      & td {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+    }
   }
 
   & tbody:empty + tfoot {
