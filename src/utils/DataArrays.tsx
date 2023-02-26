@@ -52,17 +52,17 @@ export const formFilters: ObjectFilters = {
   gmax: { offset: 1099, limit: 40 },
 };
 
-export interface Options {
+export interface IOptions {
   value: string;
   label: string;
 }
 
-export interface OptionsOffsetLimit extends Options {
+export interface IOptionsOffsetLimit extends IOptions {
   offset: number;
   limit: number;
 }
 
-export const formOptions: OptionsOffsetLimit[] = [
+export const formOptions: IOptionsOffsetLimit[] = [
   { label: `Default`, value: ``, offset: 0, limit: 1008 },
   { label: `Alola`, value: `alola`, offset: 1097, limit: 30 },
   { label: `Galar`, value: `galar`, offset: 1167, limit: 25 },
@@ -71,7 +71,7 @@ export const formOptions: OptionsOffsetLimit[] = [
   { label: `Gmax`, value: `gmax`, offset: 1201, limit: 40 },
 ];
 
-export const generationsOptions: OptionsOffsetLimit[] = [
+export const generationsOptions: IOptionsOffsetLimit[] = [
   { label: `All`, value: ``, offset: 0, limit: 1008 },
   { label: `Generation I`, value: `gen1`, offset: 0, limit: 151 },
   { label: `Generation II`, value: `gen2`, offset: 151, limit: 100 },
@@ -84,7 +84,7 @@ export const generationsOptions: OptionsOffsetLimit[] = [
   { label: `Generation IX`, value: `gen9`, offset: 905, limit: 103 },
 ];
 
-export const typeOptions: Options[] = [
+export const typeOptions: IOptions[] = [
   { value: `bug`, label: `Bug` },
   { value: `dark`, label: `Dark` },
   { value: `dragon`, label: `Dragon` },
@@ -160,6 +160,18 @@ export const pokemonFilters: PokemonFilters = [
     version: `sword-shield`,
     min: 809,
     max: 898,
+  },
+  {
+    game: `legends-arceus`,
+    version: `legends-arceus`,
+    min: 897,
+    max: 905,
+  },
+  {
+    game: `scarlet`,
+    version: `scarlet-violet`,
+    min: 904,
+    max: 1008,
   },
 ];
 

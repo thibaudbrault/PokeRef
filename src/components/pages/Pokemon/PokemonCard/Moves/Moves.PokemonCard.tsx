@@ -12,7 +12,7 @@ import { IMoveAilment } from '@/types/Moves/MoveAilment';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { LearnMethod } from '@/utils/ObjectsMap';
 import { removeDash } from '@/utils/Typography';
-import { ColumnDef } from '@tanstack/react-table';
+import { CellContext, ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
@@ -49,11 +49,20 @@ function MovesPokemon({ pokemon, version, name }: Props) {
 
   const { machines } = useFetchMachines(pokemon, version, name);
 
-  // if (!machines) {
-  //   console.log('No data')
-  // } else if (machines) {
-  //   console.log('Data')
-  // }
+  const getFirstCellValue = (info: CellContext<IMoveWithDetails, unknown>) => {
+    if (learn === 'level-up') {
+      console.log('first');
+      if (info.getValue<number>() > 0) {
+        return info.getValue<number>();
+      } else if (info.getValue<number>() > 0) {
+        return 'Evolution';
+      }
+    }
+    if (learn === 'machine') {
+      console.log('second');
+      return 'Machine';
+    }
+  };
 
   const [data, setData] = useState<IMoveWithDetails[]>([]);
 
@@ -69,27 +78,7 @@ function MovesPokemon({ pokemon, version, name }: Props) {
         accessorFn: (row) => row.version_group_details[0].level_learned_at,
         id: `sort`,
         header: `Level`,
-        cell: (info) => {
-          if (learn === `level-up` && info.getValue<number>() !== 0) {
-            // console.log('first')
-            return <td>{info.getValue<number>()}</td>;
-          } else if (learn === `level-up` && info.getValue<number>() === 0) {
-            // console.log('second')
-            return <td>Evolution</td>;
-          } else {
-            // console.log('third')
-            return <td>-</td>;
-          }
-          // return learn !== 'machine' && info.getValue<number>() > 0 ? (
-          //   <td>
-          //     {info.getValue<number>()}
-          //   </td>
-          // ) : learn === 'level-up' && info.getValue<number>() === 0 ? (
-          //   <td>Evolution</td>
-          // ) : (
-          //   <td>-</td>
-          // )
-        },
+        cell: (info) => <td>{getFirstCellValue(info)}</td>,
       },
       {
         accessorKey: `move.name`,
@@ -193,7 +182,7 @@ function MovesPokemon({ pokemon, version, name }: Props) {
     return toast.error(`Something went wrong: ${error?.message}`);
   }
 
-  if (isLoading || !machines?.length) {
+  if (isLoading) {
     return <SmallLoader />;
   }
 

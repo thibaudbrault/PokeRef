@@ -65,11 +65,11 @@ function Base({ pokemon, species }: Props) {
             </tr>
             <tr>
               <th>shape</th>
-              <td>{species?.shape.name}</td>
+              <td>{species?.shape?.name}</td>
             </tr>
             <tr>
               <th>color</th>
-              <td>{species?.color.name}</td>
+              <td>{species?.color?.name}</td>
             </tr>
           </>
         )}

@@ -43,7 +43,8 @@ export const useFetchMachines = (
 
   // New filter on the temporary details to get the url of the machine for the version selected
   const machinesByVersion = tmpMachines
-    ?.map((m) =>
+    ?.filter((m) => m.machines.length)
+    .map((m) =>
       m.machines
         .filter((ma) => ma.version_group.name === version)
         .map((ma) => ma.machine.url),
@@ -65,7 +66,7 @@ export const useFetchMachines = (
   const { data: machines } = useQuery({
     queryKey: [`pokemonMachines`, version, name],
     queryFn: getMachinesDetails,
-    enabled: !!machinesByVersion,
+    enabled: !!machinesByVersion && !!machinesByVersion.length,
   });
 
   return { machines };

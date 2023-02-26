@@ -107,6 +107,7 @@ function MovesTable({ moves }: Props) {
   return (
     <section>
       <LeftTitle>Moves</LeftTitle>
+      <input type="text" />
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>
           {tableHeader()}

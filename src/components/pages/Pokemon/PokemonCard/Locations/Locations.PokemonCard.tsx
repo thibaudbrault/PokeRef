@@ -27,7 +27,7 @@ function Locations({ location, game }: Props) {
     })
     .filter((l) => l.version_details.length);
 
-  const data = useMemo(() => filteredLocation, [filteredLocation, game]);
+  const data = useMemo(() => filteredLocation, [location, game]);
 
   const columns = useMemo<ColumnDef<ILocationAreaEncounter>[]>(
     () => [

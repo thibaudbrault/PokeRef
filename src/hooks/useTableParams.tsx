@@ -1,26 +1,31 @@
-import { useEffect, useRef, useState } from 'react';
+import { THead, TRow } from '@/components/common/styles/Table';
+import { BisChevronDown, BisChevronUp } from '@meronex/icons/bi';
 import {
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getSortedRowModel,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table';
-import { BisChevronUp, BisChevronDown } from '@meronex/icons/bi';
+import { useEffect, useRef, useState } from 'react';
 import { useVirtual } from 'react-virtual';
-import { THead, TRow } from '@/components/common/styles/Table';
 
+// @ts-ignore
 export function useTableParams(data, columns) {
   const [sorting, setSorting] = useState<SortingState>([]);
 
   const table = useReactTable({
     data: data ?? [],
     columns,
+    enableColumnFilters: true,
+    enableFilters: true,
     state: {
       sorting,
     },
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     debugTable: true,
   });

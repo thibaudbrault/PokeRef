@@ -7,20 +7,22 @@ import {
   ProfileList,
 } from '@/components/pages/Profile/Styled.Profile';
 import { auth, db } from '@/firebase-config';
-import { formatOptions, Options } from '@/utils/DataArrays';
+import { IFormat } from '@/types/Profile/Format';
+import { formatOptions, IOptions } from '@/utils/DataArrays';
 import { getFormat } from '@/utils/DataFetch';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { SingleValue } from 'react-select';
 
 function Profile() {
   const router = useRouter();
   const [user, setUser] = useState<DocumentData | undefined>();
-  const [formatValue, setFormatValue] = useState<Options>();
+  const [formatValue, setFormatValue] = useState<IOptions | null>(null);
   const [formatQuery, setFormatQuery] = useState<string>(`gen9vgc2023`);
-  const [pokemon, setPokemon] = useState<Options | null>();
+  const [pokemon, setPokemon] = useState<IOptions | null>(null);
 
   const team = [];
 
@@ -29,7 +31,7 @@ function Profile() {
     isError,
     error,
     data: format,
-  }: UseQueryResult<IFormat[], Error> = useQuery({
+  }: UseQueryResult<IFormat, Error> = useQuery({
     queryKey: [`format`, formatQuery],
     queryFn: () =>
       getFormat(
@@ -43,10 +45,12 @@ function Profile() {
     setUser(docSnap.data());
   };
 
-  const setFormat = (option: Options) => {
-    setFormatValue(option);
-    setFormatQuery(option.value);
-    setPokemon(null);
+  const setFormat = (option: SingleValue<IOptions>) => {
+    if (option) {
+      setFormatValue(option);
+      setFormatQuery(option.value);
+      setPokemon(null);
+    }
   };
 
   useEffect(() => {
@@ -79,7 +83,7 @@ function Profile() {
             options={formatOptions}
             placeholder="Format"
             onChange={(option) => {
-              setFormat(option);
+              setFormat(option as IOptions);
             }}
           />
           <Dropdown
@@ -94,7 +98,7 @@ function Profile() {
             }))}
             placeholder="Pokemon"
             onChange={(option) => {
-              setPokemon(option);
+              setPokemon(option as IOptions);
             }}
           />
         </ProfileInputs>

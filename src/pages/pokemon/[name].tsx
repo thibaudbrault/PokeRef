@@ -91,6 +91,9 @@ function PokemonCard({ name }: Props) {
     evolution,
   } = useFetchPokemon(name);
 
+  // console.log(game)
+  // console.log(version)
+
   // Modify game and version according to the id of the pokemon
   const pokemonFiltersFn = () => {
     pokemonId &&

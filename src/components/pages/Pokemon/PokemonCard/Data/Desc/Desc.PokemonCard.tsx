@@ -28,7 +28,7 @@ function Desc({ pokemon, species, game }: Props) {
           <PokemonDataDesc>
             <span>
               {filterDesc && filterDesc?.flavor_text ? (
-                filterDesc?.flavor_text.replace(`\u000c`, ` `).replace(`é`, `É`)
+                filterDesc?.flavor_text.replace(`\u000c`, ` `).replace(`É`, `é`)
               ) : (
                 <Bold>There is no description for this Pokémon</Bold>
               )}

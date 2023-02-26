@@ -6,11 +6,15 @@ import Link from 'next/link';
 import { Dispatch, SetStateAction } from 'react';
 import { PokedexElement, PokedexList, PokedexTypes } from '../Styled.Pokemon';
 
+interface ITypesProps {
+  p: IPokemon;
+}
+
 const Sprites = dynamic(
   () => import(`@/components/pages/Pokemon/Components/Sprites.Pokemon`),
 );
-const TypesPokemon = dynamic(
-  () => import(`@/components/pages/Pokemon/Components/Types.Pokemon`),
+const TypesPokemon = dynamic<ITypesProps>(
+  () => import(`@/components/pages/Pokemon/Components/Types.Pokemon`) as any,
 );
 
 type Props = {

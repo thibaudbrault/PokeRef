@@ -19,11 +19,13 @@ import NextNProgress from 'nextjs-progressbar';
 import { Toaster } from 'react-hot-toast';
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
-  <div role="alert">
-    <p>Something went wrong:</p>
-    <pre>{error.message}</pre>
-    <button onClick={resetErrorBoundary}>Try again</button>
-  </div>;
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+      <button onClick={resetErrorBoundary}>Try again</button>
+    </div>
+  );
 };
 
 function MyApp({ Component, pageProps }: AppProps) {

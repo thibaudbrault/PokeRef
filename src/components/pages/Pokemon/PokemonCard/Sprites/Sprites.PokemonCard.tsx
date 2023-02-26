@@ -26,7 +26,7 @@ function Sprites({ pokemon }: Props) {
             />
             <p>Front Default</p>
           </div>
-          {pokemon.sprites.back_default && (
+          {pokemon?.sprites?.back_default && (
             <div>
               <Image
                 src={pokemon?.sprites?.back_default}
@@ -59,15 +59,17 @@ function Sprites({ pokemon }: Props) {
               <p>Back Female</p>
             </div>
           )}
-          <div>
-            <Image
-              src={pokemon?.sprites?.front_shiny}
-              alt={pokemon.name}
-              width={96}
-              height={96}
-            />
-            <p>Front Shiny</p>
-          </div>
+          {pokemon?.sprites?.front_shiny && (
+            <div>
+              <Image
+                src={pokemon?.sprites?.front_shiny}
+                alt={pokemon.name}
+                width={96}
+                height={96}
+              />
+              <p>Front Shiny</p>
+            </div>
+          )}
           {pokemon.sprites.back_shiny && (
             <div>
               <Image
