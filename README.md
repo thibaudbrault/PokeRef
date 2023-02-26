@@ -21,6 +21,14 @@
   
 <p align="center">Leave a 🌟 if you like my project 👍</p>
 
+<div align="center">
+
+![](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/643.gif)
+![](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/644.gif)
+![](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/646.gif)
+
+</div>
+
 ---
 
 <details open="open">  
@@ -31,7 +39,7 @@
 3.  [Description](#description)
 4.  [Technologies](#technologies)
 5.  [Acknowledgements](#acknowledgements)
-6.  [Other](#other)
+6.  [License](#license)
 
 </details>
 
@@ -163,7 +171,6 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 
 <a href="https://github.com/monbrey/pokeapi-typescript" target="_blank">Pokeapi-Typescript</a>
 
-<h2 id="other">Other</h2>
+<h2 id="license">License</h2>
 
-![Dependabot](https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot&logoColor=white)
-![GitHub](https://img.shields.io/github/license/thibaudbrault/pokeref)
+MIT
