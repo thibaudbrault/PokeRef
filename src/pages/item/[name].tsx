@@ -37,49 +37,49 @@ function ItemCard({ name }: Props) {
   const { isLoading, isError, error, item, filterEffect } = useFilterItem(name);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`);
+    return toast.error(`Something went wrong: ${error?.message}`);
   }
 
   if (isLoading) {
     return <Loader />;
   }
 
-  return (
-    <>
-      <HeadingItem name={name} />
-      <MainBig>
-        <CardTitle>{removeDash(item?.name)}</CardTitle>
-        <Subtitle>{removeDash(item?.category.name)}</Subtitle>
-        <ItemCardDataSection>
-          <div>
-            <ItemCardDataEffect>
-              <h3>Effect</h3>
-              <p key={filterEffect?.short_effect}>
-                {filterEffect?.short_effect}
-              </p>
-            </ItemCardDataEffect>
-            <CostItemCard item={item} />
-            <HeldItemcard item={item} />
-            <FlingItemCard item={item} />
-          </div>
-          <ItemCardDataImage>
-            {item && (
-              <Image
-                src={item?.sprites?.default}
-                alt={item?.name}
-                width={96}
-                height={96}
-              />
-            )}
-          </ItemCardDataImage>
-        </ItemCardDataSection>
-        <DescItemcard item={item} />
-        <Link href="/items" passHref>
-          <BackBtn name="Items" />
-        </Link>
-      </MainBig>
-    </>
-  );
+  if (item) {
+    return (
+      <>
+        <HeadingItem name={name} />
+        <MainBig>
+          <CardTitle>{removeDash(item?.name)}</CardTitle>
+          <Subtitle>{removeDash(item?.category.name)}</Subtitle>
+          <ItemCardDataSection>
+            <div>
+              <ItemCardDataEffect>
+                <h3>Effect</h3>
+                <p>{filterEffect?.effect}</p>
+              </ItemCardDataEffect>
+              <CostItemCard item={item} />
+              <HeldItemcard item={item} />
+              <FlingItemCard item={item} />
+            </div>
+            <ItemCardDataImage>
+              {item && (
+                <Image
+                  src={item?.sprites?.default}
+                  alt={item?.name}
+                  width={96}
+                  height={96}
+                />
+              )}
+            </ItemCardDataImage>
+          </ItemCardDataSection>
+          <DescItemcard item={item} />
+          <Link href="/items" passHref>
+            <BackBtn name="Items" />
+          </Link>
+        </MainBig>
+      </>
+    );
+  }
 }
 
 export default ItemCard;

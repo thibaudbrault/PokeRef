@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
-export const TableContainer = styled.div`
+export const TableContainer = styled.section`
   width: 100%;
   overflow-x: auto;
 
@@ -56,11 +56,27 @@ export const Table = styled.table`
   & td {
     padding: 1.5rem;
     font-size: 1.5rem;
-    border: 1px solid rgba(130, 130, 130, 0.2);
-    border-collapse: collapse;
+    border-top: 1px solid rgba(130, 130, 130, 0.2);
+    border-bottom: 1px solid rgba(130, 130, 130, 0.2);
     border-left: none;
     border-right: none;
     vertical-align: middle;
+  }
+
+  & tfoot {
+    display: none;
+    text-align: center;
+
+    & tr {
+      & td {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+    }
+  }
+
+  & tbody:empty + tfoot {
+    display: table-footer-group;
   }
 `;
 

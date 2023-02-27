@@ -1,5 +1,4 @@
-import { LeftTitle } from '@/components/common/styles/Headings';
-import { GenNav } from '@/components/common/styles/Navbars';
+import { LeftSubtitle, LeftTitle } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import {
   FullWidthTable,
@@ -23,12 +22,11 @@ import dynamic from 'next/dynamic';
 import { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 
-const NavMachines = dynamic(
-  () => import(`@/components/pages/Machines/Components/Nav.Machines`),
-);
+const Nav = dynamic(() => import(`@/components/common/ui/GenNav`));
 
 function MachinesPage() {
-  const [version, setVersion] = useState<string>(`red-blue`);
+  const [version, setVersion] = useState<string | null>(`red-blue`);
+  const [game, setGame] = useState<string | null>(`red`);
   const {
     isLoading,
     isError,
@@ -90,13 +88,17 @@ function MachinesPage() {
     <>
       <MainBig>
         <LeftTitle>Machines</LeftTitle>
-        <GenNav>
-          <NavMachines setVersion={setVersion} />
-        </GenNav>
+        <LeftSubtitle>{game}</LeftSubtitle>
+        <Nav setGame={setGame} setVersion={setVersion} />
         <TableContainer ref={tableContainerRef}>
           <FullWidthTable>
             {tableHeader()}
             {tableBody()}
+            <tfoot>
+              <tr>
+                <td colSpan={2}>There is no data for this game</td>
+              </tr>
+            </tfoot>
           </FullWidthTable>
         </TableContainer>
       </MainBig>

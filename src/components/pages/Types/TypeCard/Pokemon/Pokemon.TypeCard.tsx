@@ -1,4 +1,4 @@
-import { H3, Capitalize } from '@/components/common/styles/Headings';
+import { Capitalize, H3 } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
 import {
   TableContainer,
@@ -11,7 +11,6 @@ import Loader from '@/components/common/ui/Loader/Loader';
 import { Sup } from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { IType } from '@/types/Pokemon/Type';
 import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
@@ -20,22 +19,16 @@ import { useMemo } from 'react';
 import { TypeListSubtitle, TypeMovesTable } from '../Styled.TypeCard';
 
 type Props = {
-  type?: IType;
-  pokedex?: IPokemon[];
+  typeName?: string;
+  pokemon?: IPokemon[];
 };
 
-function PokemonType({ type, pokedex }: Props) {
-  if (!type || !pokedex?.length) {
+function PokemonType({ typeName, pokemon }: Props) {
+  if (!typeName || !pokemon?.length) {
     return <Loader />;
   }
 
-  const data = useMemo(
-    () =>
-      type?.pokemon
-        ?.map((tp) => pokedex?.filter((p) => p.name === tp.pokemon.name))
-        .flat(1),
-    [pokedex],
-  );
+  const data = useMemo(() => pokemon.filter((p) => p.id < 10000), [pokemon]);
 
   const columns = useMemo<ColumnDef<IPokemon>[]>(
     () => [
@@ -145,7 +138,7 @@ function PokemonType({ type, pokedex }: Props) {
     <Section>
       <H3>Pokémon</H3>
       <TypeListSubtitle>
-        {data.length} Pokémon are <Capitalize>{type?.name}</Capitalize> type
+        {data.length} Pokémon are <Capitalize>{typeName}</Capitalize> type
       </TypeListSubtitle>
       <TableContainer ref={tableContainerRef}>
         {data.length > 0 && (
@@ -155,34 +148,6 @@ function PokemonType({ type, pokedex }: Props) {
           </TypeMovesTable>
         )}
       </TableContainer>
-      {/* <TypePokemonList>
-        {type?.pokemon?.map((tp) =>
-          pokedex?.map(
-            (p) =>
-              p.name === tp.pokemon.name &&
-              p.id < 1008 && (
-                <li key={p.name} className="pokemonElement">
-                  <Image
-                    src={p.sprites.front_default}
-                    alt={p.name}
-                    width={96}
-                    height={96}
-                    loading="lazy"
-                  />
-                  <p>#{p?.id}</p>
-                  <Link
-                    href={{
-                      pathname: `/pokemon/[name]`,
-                      query: { name: p.name },
-                    }}
-                  >
-                    {removeDash(tp?.pokemon?.name)}
-                  </Link>
-                </li>
-              ),
-          ),
-        )}
-      </TypePokemonList> */}
     </Section>
   );
 }

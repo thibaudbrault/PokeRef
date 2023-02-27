@@ -3,7 +3,7 @@ export interface IApiResource {
   endpoint?: string;
 }
 
-export interface IApiResourceList<T> {
+export interface IApiResourceList {
   count: number;
   next: string;
   previous: string;

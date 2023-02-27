@@ -50,17 +50,19 @@ function Register() {
   const submitForm = async (data: FormInput) => {
     try {
       await createUserWithEmailAndPassword(auth, data.email, data.password);
-      const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
-      await setDoc(usersCollectionRef, {
-        name: data.username,
-        email: data.email,
-      });
-      toast.success(`Congrats 🎉! Your account is now created`, {
-        style: {
-          fontSize: `1.7rem`,
-        },
-      });
-      router.push(`/`);
+      if (auth.currentUser) {
+        const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+        await setDoc(usersCollectionRef, {
+          name: data.username,
+          email: data.email,
+        });
+        toast.success(`Congrats 🎉! Your account is now created`, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        });
+        router.push(`/`);
+      }
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message, {

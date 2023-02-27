@@ -1,4 +1,4 @@
-import { Capitalize } from '@/components/common/styles/Headings';
+import { Bold, Capitalize } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
@@ -10,12 +10,13 @@ import { PokemonDataDesc, PokemonDataTypes } from '../Styled.Data.PokemonCard';
 type Props = {
   pokemon: IPokemon;
   species: IPokemonSpecies;
-  game: string;
+  game: string | null;
 };
 
 function Desc({ pokemon, species, game }: Props) {
   const filterDesc =
     species?.flavor_text_entries &&
+    game &&
     species?.flavor_text_entries.find(
       (sf) => sf.language.name === `en` && sf.version.name === game,
     );
@@ -26,12 +27,16 @@ function Desc({ pokemon, species, game }: Props) {
         {pokemon.id < 10000 && (
           <PokemonDataDesc>
             <span>
-              {filterDesc?.flavor_text.replace(`\u000c`, ` `).replace(`é`, `É`)}
+              {filterDesc && filterDesc?.flavor_text ? (
+                filterDesc?.flavor_text.replace(`\u000c`, ` `).replace(`É`, `é`)
+              ) : (
+                <Bold>There is no description for this Pokémon</Bold>
+              )}
             </span>
             <p>
               Pokémon{` `}
               <Capitalize>
-                <i>{removeDash(game)}</i>
+                <i>{game && removeDash(game)}</i>
               </Capitalize>
             </p>
           </PokemonDataDesc>

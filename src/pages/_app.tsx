@@ -4,6 +4,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useState } from 'react';
@@ -18,11 +19,13 @@ import NextNProgress from 'nextjs-progressbar';
 import { Toaster } from 'react-hot-toast';
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
-  <div role="alert">
-    <p>Something went wrong:</p>
-    <pre>{error.message}</pre>
-    <button onClick={resetErrorBoundary}>Try again</button>
-  </div>;
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+      <button onClick={resetErrorBoundary}>Try again</button>
+    </div>
+  );
 };
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -78,6 +81,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               <Reset />
               <Component {...pageProps} />
               <Footer />
+              <ReactQueryDevtools />
             </ThemeProvider>
           </Hydrate>
         </QueryClientProvider>

@@ -1,17 +1,18 @@
 import styled from 'styled-components';
-import { device, Section } from '../../../../common/styles/Sizing';
-import { Table } from '../../../../common/styles/Table';
+import { device, Section } from '@/components/common/styles/Sizing';
+import { Table } from '@/components/common/styles/Table';
 
 export const PokemonInfoSection = styled(Section)`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 4rem;
+  gap: 3rem;
 
   @media ${device.lg} {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 5rem;
 
     & div {
       margin: 1rem 0;
@@ -44,15 +45,16 @@ export const PokemonInfoTable = styled(Table)`
     & a {
       width: fit-content;
       display: block;
+      cursor: pointer;
       transition: 0.3s ease-in-out;
 
       &:hover {
         text-decoration: underline;
       }
-
-      & span {
-        cursor: pointer;
-      }
     }
+  }
+
+  & tr:has(td:empty) {
+    display: none;
   }
 `;

@@ -1,13 +1,12 @@
 import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
 import { MainBig, Section } from '@/components/common/styles/Sizing';
-import { TableContainer } from '@/components/common/styles/Table';
+import { TableContainer, TBold } from '@/components/common/styles/Table';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
-import Nav from '@/components/pages/Locations/LocationCard/Components/Nav.LocationCard';
 import { useSwitchGame } from '@/components/pages/Locations/LocationCard/Hooks/useSwitchGame';
 import { LocationTable } from '@/components/pages/Locations/Styled.Locations';
 import { useTableParams } from '@/hooks/useTableParams';
-import { ILocationArea } from '@/types/Locations/LocationArea';
+import { IPokemonEncounter } from '@/types/Locations/LocationArea';
 import { IEncounter } from '@/types/Utility/CommonModels';
 import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
@@ -20,6 +19,7 @@ import toast from 'react-hot-toast';
 const HeadingLocation = dynamic(
   () => import(`@/components/pages/Locations/LocationCard/Heading`),
 );
+const Nav = dynamic(() => import(`@/components/common/ui/GenNav`));
 const AreaLocationCard = dynamic(
   () =>
     import(
@@ -35,6 +35,7 @@ function LocationCard({ name }: Props) {
   const {
     game,
     setGame,
+    setVersion,
     toggleState,
     toggleTable,
     isLoading,
@@ -44,58 +45,83 @@ function LocationCard({ name }: Props) {
     area,
   } = useSwitchGame(name);
 
-  const data = useMemo(
-    () =>
-      game &&
-      area?.pokemon_encounters
-        .map((a) => a.version_details.filter((av) => av.version.name === game))
-        .flat()
-        .map((ave) => ave.encounter_details)
-        .flat(),
-    [area, game],
-  );
+  const filteredArea = area?.pokemon_encounters
+    .map((a) => {
+      const version_details = a.version_details.filter(
+        (av) => av.version.name === game,
+      );
+      return {
+        ...a,
+        version_details,
+      };
+    })
+    .filter((a) => a.version_details.length);
 
-  const columns = useMemo<ColumnDef<ILocationArea>[]>(
+  const data = useMemo(() => game && filteredArea, [area, game]);
+
+  const columns = useMemo<ColumnDef<IPokemonEncounter>[]>(
     () => [
-      // {
-      //   accessorFn: (row) => console.log(row),
-      //   id: `name`,
-      //   header: `Pokemon`,
-      //   // cell: info =>
-      //   //   <TBold>hello</TBold>
-      // },
       {
-        accessorKey: `method.name`,
-        id: `method`,
-        header: `Method`,
-        cell: (info) => <td>{removeDash(info.getValue<string>())}</td>,
+        accessorKey: `pokemon.name`,
+        id: `name`,
+        header: `Pokemon`,
+        cell: (info) => <TBold>{info.getValue<string>()}</TBold>,
       },
       {
-        accessorKey: `chance`,
-        id: `sort`,
-        header: `Probability`,
-        cell: (info) => <td>{info.getValue<string>()} %</td>,
-      },
-      {
-        accessorKey: `max_level`,
+        accessorFn: (row) => row.version_details[0].encounter_details,
         id: `level`,
         header: `Level`,
-        cell: (info) => <td>{info.getValue<string>()}</td>,
+        cell: (info) => (
+          <td>
+            {info.getValue<IEncounter[]>().map((i) => (
+              <p key={i.max_level}>{i.max_level}</p>
+            ))}
+          </td>
+        ),
       },
       {
-        accessorFn: (row: IEncounter) =>
-          row.condition_values.length > 0 &&
-          row.condition_values.map((rcv) => {
-            return rcv.name;
-          }),
+        accessorFn: (row) => row.version_details[0].encounter_details,
+        id: `chance`,
+        header: `Probability`,
+        cell: (info) => (
+          <td>
+            {info.getValue<IEncounter[]>().map((i) => (
+              <p key={i.chance}>{i.chance} %</p>
+            ))}
+          </td>
+        ),
+      },
+      {
+        accessorFn: (row) => row.version_details[0].encounter_details,
+        id: `method`,
+        header: `Method`,
+        cell: (info) => (
+          <td>
+            {info.getValue<IEncounter[]>().map((i) => (
+              <p key={i.method.name}>{removeDash(i.method.name)}</p>
+            ))}
+          </td>
+        ),
+      },
+      {
+        accessorFn: (row) => row.version_details[0].encounter_details,
         id: `condition`,
         header: `Condition`,
-        cell: (info) =>
-          info.getValue() ? (
-            <td>{removeDash(info.getValue<boolean>().toString())}</td>
-          ) : (
-            <td>-</td>
-          ),
+        cell: (info) => (
+          <td>
+            {info
+              .getValue<IEncounter[]>()
+              .map((i) =>
+                i.condition_values.length > 0 ? (
+                  i.condition_values.map((icv) => (
+                    <p key={icv.name}>{removeDash(icv.name)}</p>
+                  ))
+                ) : (
+                  <p key={i.min_level + i.max_level}>-</p>
+                ),
+              )}
+          </td>
+        ),
       },
     ],
     [],
@@ -107,7 +133,7 @@ function LocationCard({ name }: Props) {
   );
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`);
+    return toast.error(`Something went wrong: ${error?.message}`);
   }
 
   if (isLoading) {
@@ -119,10 +145,11 @@ function LocationCard({ name }: Props) {
       <HeadingLocation name={name} />
       <MainBig>
         <CardTitle>
-          {removeDash(location?.name).replace(
-            /kanto|johto|hoenn|sinnoh|unova|kalos|alola/,
-            ``,
-          )}
+          {location &&
+            removeDash(location?.name).replace(
+              /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea/g,
+              ``,
+            )}
         </CardTitle>
         <Subtitle>
           {game && `${location?.region.name} - ${removeDash(game)}`}
@@ -132,7 +159,7 @@ function LocationCard({ name }: Props) {
           toggleState={toggleState}
           toggleTable={toggleTable}
         />
-        <Nav setGame={setGame} />
+        <Nav setGame={setGame} setVersion={setVersion} />
         <Section>
           <TableContainer ref={tableContainerRef}>
             <LocationTable>

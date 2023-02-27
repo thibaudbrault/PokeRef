@@ -2,7 +2,7 @@ import { H3 } from '@/components/common/styles/Headings';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { getPokedex } from '@/utils/DataFetch';
+import { getAllEvo } from '@/utils/DataFetch';
 import { removeDash } from '@/utils/Typography';
 import { FaChevronRight } from '@meronex/icons/fa';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
@@ -22,17 +22,19 @@ import {
 
 type Props = {
   evolution: IEvolutionChain;
+  name: string;
 };
 
-function EvolutionPokemon({ evolution }: Props) {
+function Evolution({ evolution, name }: Props) {
   const {
     isLoading,
     isError,
     error,
-    data: pokedex,
+    data: evo,
   }: UseQueryResult<IPokemon[], Error> = useQuery({
-    queryKey: [`pokedex`],
-    queryFn: () => getPokedex(`https://pokeapi.co/api/v2/pokemon?limit=1008`),
+    queryKey: [`evos`, name],
+    queryFn: () => getAllEvo(evolution),
+    enabled: !!evolution,
   });
 
   if (isError) {
@@ -49,26 +51,28 @@ function EvolutionPokemon({ evolution }: Props) {
       <PokemonEvolutionContainer>
         <PokemonEvolutionBase>
           <div>
-            {pokedex?.map(
-              (p) =>
-                p?.name === evolution?.chain?.species?.name && (
-                  <Image
-                    key={p.name}
-                    src={p.sprites.front_default}
-                    alt=""
-                    width={96}
-                    height={96}
-                  />
-                ),
-            )}
-            <Link
-              href={{
-                pathname: `/pokemon/[name]`,
-                query: { name: evolution?.chain?.species?.name },
-              }}
-            >
-              {evolution?.chain?.species?.name}
-            </Link>
+            <>
+              {evo?.map(
+                (e: IPokemon) =>
+                  e?.name === evolution?.chain?.species?.name && (
+                    <Image
+                      key={e.name}
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${e.id}.png`}
+                      alt=""
+                      width={96}
+                      height={96}
+                    />
+                  ),
+              )}
+              <Link
+                href={{
+                  pathname: `/pokemon/[name]`,
+                  query: { name: evolution?.chain?.species?.name },
+                }}
+              >
+                {evolution?.chain?.species?.name}
+              </Link>
+            </>
           </div>
         </PokemonEvolutionBase>
         {evolution?.chain?.evolves_to?.length !== 0 && (
@@ -89,6 +93,9 @@ function EvolutionPokemon({ evolution }: Props) {
                               <span> Male</span>
                             </PokemonEvolutionText>
                           ))}
+                        {eed.trigger.name === `trade` && !eed.held_item && (
+                          <PokemonEvolutionText>Trade</PokemonEvolutionText>
+                        )}
                         {eed.held_item && eed.trigger.name === `trade` && (
                           <PokemonEvolutionText>
                             Trade holding
@@ -264,12 +271,12 @@ function EvolutionPokemon({ evolution }: Props) {
                     <FaChevronRight />
                   </div>
                   <div>
-                    {pokedex?.map(
-                      (p) =>
-                        p.name === ee.species.name && (
+                    {evo?.map(
+                      (e: IPokemon) =>
+                        e.name === ee.species.name && (
                           <Image
-                            key={p.name}
-                            src={p.sprites.front_default}
+                            key={e.name}
+                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${e.id}.png`}
                             alt=""
                             width={96}
                             height={96}
@@ -308,6 +315,12 @@ function EvolutionPokemon({ evolution }: Props) {
                                       <span> Male</span>
                                     </PokemonEvolutionText>
                                   ))}
+                                {eeed.trigger.name === `trade` &&
+                                  !eeed.held_item && (
+                                    <PokemonEvolutionText>
+                                      Trade
+                                    </PokemonEvolutionText>
+                                  )}
                                 {eeed.held_item &&
                                   eeed.trigger.name === `trade` && (
                                     <PokemonEvolutionText>
@@ -519,12 +532,12 @@ function EvolutionPokemon({ evolution }: Props) {
                             <FaChevronRight />
                           </div>
                           <div>
-                            {pokedex?.map(
-                              (p) =>
-                                p.name === eee.species.name && (
+                            {evo?.map(
+                              (e: IPokemon) =>
+                                e.name === eee.species.name && (
                                   <Image
-                                    key={p.name}
-                                    src={p.sprites.front_default}
+                                    key={e.name}
+                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${e.id}.png`}
                                     alt=""
                                     width={96}
                                     height={96}
@@ -553,4 +566,4 @@ function EvolutionPokemon({ evolution }: Props) {
   );
 }
 
-export default EvolutionPokemon;
+export default Evolution;

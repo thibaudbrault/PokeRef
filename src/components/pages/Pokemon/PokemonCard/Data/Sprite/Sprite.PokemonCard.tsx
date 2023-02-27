@@ -1,10 +1,6 @@
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
-import {
-  PokemonDataImg,
-  PokemonDataLeg,
-  PokemonDataMyt,
-} from '../Styled.Data.PokemonCard';
+import { PokemonDataImg, PokemonDataSpecial } from '../Styled.Data.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
@@ -15,20 +11,22 @@ function Sprite({ pokemon, species }: Props) {
   return (
     <>
       <PokemonDataImg
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+        src={pokemon.sprites.other[`official-artwork`].front_default}
         alt={pokemon.name}
         loading="lazy"
         width="75%"
         height="75%"
       />
-      <>
-        {species?.is_legendary === true && (
-          <PokemonDataLeg>Legendary</PokemonDataLeg>
-        )}
-        {species?.is_mythical === true && (
-          <PokemonDataMyt>Mythical</PokemonDataMyt>
-        )}
-      </>
+      {pokemon.id < 10000 && (
+        <>
+          {species?.is_legendary && (
+            <PokemonDataSpecial>Legendary</PokemonDataSpecial>
+          )}
+          {species?.is_mythical && (
+            <PokemonDataSpecial>Mythical</PokemonDataSpecial>
+          )}
+        </>
+      )}
     </>
   );
 }

@@ -7,8 +7,8 @@ export const PokemonDataSection = styled(Section)`
   position: relative;
   display: grid;
   align-items: center;
-  grid-template-columns: 55% 35%;
-  column-gap: 10%;
+  grid-template-columns: 55% 45%;
+  gap: 3rem;
 
   @media ${device.sm} {
     display: flex;
@@ -42,8 +42,6 @@ export const PokemonDataTypes = styled.li`
   justify-content: flex-start;
 
   & div {
-    display: flex;
-    align-items: center;
     margin: 2rem;
     padding: 0.5rem;
     border-radius: 5px;
@@ -55,6 +53,8 @@ export const PokemonDataTypes = styled.li`
     cursor: pointer;
 
     & a {
+      display: flex;
+      align-items: center;
       font-family: 'Press Start 2P';
       font-size: 1.7rem;
 
@@ -79,31 +79,26 @@ export const PokemonDataTable = styled(Table)`
 
   & th {
     background: rgba(130, 130, 130, 0.2);
+    text-transform: capitalize;
   }
 
   & td {
     font-size: 1.7rem;
     font-weight: 700;
-    text-align: center;
+    text-align: left;
     text-transform: capitalize;
 
-    &:empty {
-      display: none;
-    }
-  }
-`;
+    & ol {
+      margin-left: 2rem;
+      & li {
+        list-style-type: decimal;
+        text-align: left;
 
-export const PokemonDataLocation = styled.tr`
-  & td:first-of-type {
-    + td {
-      display: none;
-    }
-
-    &:empty {
-      display: none;
-
-      + td {
-        display: table-cell;
+        & small {
+          font-weight: 400;
+          font-size: 1.5rem;
+          text-transform: lowercase;
+        }
       }
     }
   }
@@ -117,25 +112,10 @@ const PokemonDataPill = styled.span`
   transition: 0.3s ease-in-out;
 `;
 
-export const PokemonDataLeg = styled(PokemonDataPill)`
+export const PokemonDataSpecial = styled(PokemonDataPill)`
   border: 1px solid ${({ theme }) => theme.purple};
   background: ${({ theme }) => theme.purple};
   color: #c4c4c4;
-
-  &:hover {
-    background: none;
-  }
-`;
-
-export const PokemonDataMyt = styled(PokemonDataPill)`
-  border: 1px solid ${({ theme }) => theme.purple};
-  background: transparent;
-  color: #161616;
-
-  &:hover {
-    background: ${({ theme }) => theme.purple};
-    color: #c4c4c4;
-  }
 `;
 
 export const PokemonDataImg = styled.img`

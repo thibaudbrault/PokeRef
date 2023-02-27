@@ -3,18 +3,18 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingItems from '@/components/pages/Items/Heading';
 import { useToggleTable } from '@/components/pages/Items/Hooks/useToggleTable';
-import { getItems, getBerries } from '@/utils/DataFetch';
-import { QueryClient, dehydrate } from '@tanstack/react-query';
-import error from 'next/error';
+import { getBerries, getItems } from '@/utils/DataFetch';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 function ItemsPage() {
-  const { results, toggle, setToggle, pageShown } = useToggleTable();
+  const { items, berries, toggle, setToggle, pageShown } = useToggleTable();
 
-  if (results[0].status === `error` || results[1].status === `error`) {
-    return { error };
+  if (items.status === `error` || berries.status === `error`) {
+    return toast.error(`Something went wrong`);
   }
 
-  if (results[0].status === `loading` || results[1].status === `loading`) {
+  if (items.status === `loading` || berries.status === `loading`) {
     return <Loader />;
   }
 

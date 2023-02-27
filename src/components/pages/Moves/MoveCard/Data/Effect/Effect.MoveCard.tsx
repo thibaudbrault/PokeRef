@@ -29,7 +29,7 @@ function Effect({ move, version }: Props) {
           {move.effect_entries
             ?.find((me) => me.language.name === `en`)
             ?.effect.replace(/\$effect_chance/g, `${move.meta.ailment_chance}`)
-            .replace(`(100 - accuracy)`, 100 - `${move.accuracy}`)
+            .replace(`(100 - accuracy)`, (100 - move.accuracy).toString())
             .toLowerCase()}
           <br />
           {move.flavor_text_entries
@@ -171,7 +171,7 @@ function Effect({ move, version }: Props) {
                       had {mp.pp} PP
                     </li>
                   )}
-                  {mp.type !== null && (
+                  {mp.type.name !== null && (
                     <li>
                       Before{` `}
                       <Capitalize>
@@ -182,7 +182,7 @@ function Effect({ move, version }: Props) {
                         <i>{removeDash(move.name)}</i>
                       </Capitalize>
                       {` `}
-                      was {mp.type} type
+                      was {mp.type.name} type
                     </li>
                   )}
                 </>

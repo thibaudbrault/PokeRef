@@ -23,7 +23,7 @@ export const AbilityCardTable = styled(Table)`
   }
 
   & td {
-    text-align: center;
+    text-align: left;
   }
 `;
 

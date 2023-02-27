@@ -11,6 +11,7 @@ import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Nav = dynamic(
   () => import(`@/components/pages/Moves/MoveCard/Nav/Nav.MoveCard`),
@@ -29,32 +30,28 @@ type Props = {
 function MoveCard({ name }: Props) {
   const [learn, setLearn] = useState<string>(`level-up`);
 
-  const { results, version, setVersion, toggle, setToggle } =
+  const { move, pokedex, machine, version, setVersion, toggle, setToggle } =
     useFetchMove(name);
 
-  if (results[0].status === `error`) {
-    return { error };
+  if (move.status === `error`) {
+    return toast.error(`Something went wrong`);
   }
 
-  if (results[0].status === `loading`) {
+  if (move.status === `loading`) {
     return <Loader />;
   }
 
   return (
     <>
       <HeadingMove name={name} />
-      {results[0].status === `success` && (
+      {move.status === `success` && (
         <MoveMainBig>
-          <CardTitle>{removeDash(results[0].data?.name)}</CardTitle>
-          <Subtitle>{removeDash(results[0].data?.generation?.name)}</Subtitle>
+          <CardTitle>{removeDash(move.data?.name)}</CardTitle>
+          <Subtitle>{removeDash(move.data?.generation?.name)}</Subtitle>
 
-          <Nav move={results[0].data} setVersion={setVersion} />
+          <Nav move={move.data} setVersion={setVersion} />
 
-          <Data
-            move={results[0].data}
-            machines={results[2].data}
-            version={version}
-          />
+          <Data move={move.data} machine={machine} version={version} />
 
           <Divider />
 
@@ -66,8 +63,9 @@ function MoveCard({ name }: Props) {
 
           <List
             toggle={toggle}
-            pokedex={results[1].data}
-            moveName={results[0].data?.name}
+            pokedex={pokedex.data}
+            status={pokedex.status}
+            moveName={move.data?.name}
             version={version}
           />
 

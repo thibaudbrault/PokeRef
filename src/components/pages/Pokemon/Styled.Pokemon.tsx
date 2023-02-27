@@ -22,9 +22,14 @@ export const PokedexSearch = styled(Search)`
 
   @media ${device.xs} {
     grid-template-columns: 1fr 1fr;
+
     grid-template-areas:
-      'search .'
+      'search form'
       'generation type';
+
+    /* & div {
+      height: 100%;
+    } */
   }
 `;
 
@@ -64,14 +69,14 @@ export const PokedexList = styled(motion.ul)`
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
+  gap: 2rem;
 `;
 
 export const PokedexElement = styled(motion.li)`
   width: 21rem;
   height: 32rem;
-  margin: 3rem;
   padding: 2rem 3rem;
   display: flex;
   align-items: center;
@@ -105,10 +110,6 @@ export const PokedexElement = styled(motion.li)`
     font-size: 1.3rem;
   }
 
-  &:hover {
-    transform: scale(1.05);
-  }
-
   &:nth-child(even) {
     &:hover {
       border-radius: 10px 50px;
@@ -132,7 +133,6 @@ export const PokedexElement = styled(motion.li)`
   @media ${device.sm} {
     width: 20rem;
     height: 29rem;
-    margin: 2rem;
     padding: 1.5rem 2.5rem;
   }
 `;
@@ -247,6 +247,11 @@ export const PokemonTitle = styled.section`
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  margin-bottom: 1.5rem;
+
+  & h2 {
+    margin-bottom: 0;
+  }
 
   & button {
     background: none;
@@ -255,7 +260,9 @@ export const PokemonTitle = styled.section`
     & svg {
       font-size: 4rem;
       & path {
-        fill: ${({ theme }) => theme.secondary};
+        fill: ${({ theme }) => theme.main};
+        stroke: ${({ theme }) => theme.secondary};
+        stroke-width: 1;
       }
     }
   }

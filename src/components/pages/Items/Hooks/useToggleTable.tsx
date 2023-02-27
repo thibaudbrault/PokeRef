@@ -11,12 +11,11 @@ const BerriesTable = dynamic(
 );
 
 export const useToggleTable = () => {
-  const results = useQueries({
+  const [items, berries] = useQueries({
     queries: [
       {
         queryKey: [`items`],
         queryFn: getItems,
-        useErrorBoundary: true,
       },
       {
         queryKey: [`berries`],
@@ -28,11 +27,11 @@ export const useToggleTable = () => {
   const [toggle, setToggle] = useState(1);
   const pageShown = () => {
     if (toggle === 1) {
-      return <ItemsTable items={results[0].data} />;
+      return <ItemsTable items={items.data} />;
     } else if (toggle === 2) {
-      return <BerriesTable berries={results[1].data} />;
+      return <BerriesTable berries={berries.data} />;
     }
   };
 
-  return { results, toggle, setToggle, pageShown };
+  return { items, berries, toggle, setToggle, pageShown };
 };

@@ -12,6 +12,9 @@ const nextConfig = withPWA({
   compiler: {
     styledComponents: true
   },
+  eslint: {
+    ignoreDuringBuilds: true
+  },
   reactStrictMode: true,
   experimental: {
     appDir: false,

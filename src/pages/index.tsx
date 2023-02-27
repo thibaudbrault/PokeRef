@@ -1,10 +1,9 @@
 import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingPokemon from '@/components/pages/Pokemon/Heading';
+import HeadingPokedex from '@/components/pages/Pokemon/Heading';
 import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
 import { PokedexVerticalText } from '@/components/pages/Pokemon/Styled.Pokemon';
-import { useStateWithCallback } from '@/hooks/useStateWithCallback';
-import { Options, OptionsOffsetLimit } from '@/utils/DataArrays';
+import { IOptions, IOptionsOffsetLimit } from '@/utils/DataArrays';
 import { getPokedex } from '@/utils/DataFetch';
 import {
   dehydrate,
@@ -31,12 +30,13 @@ function Pokedex() {
   //Modify the max number of pokemon displayed
   const [limit, setLimit] = useState<number>(1008);
   // Form of the pokemon (changed with a dropdown)
-  const [form, setForm] = useStateWithCallback<OptionsOffsetLimit | null>(null);
+  const [form, setForm] = useState<IOptionsOffsetLimit | null>(null);
   // Type of the pokemon (changed with a dropdown)
-  const [type, setType] = useStateWithCallback<Options[]>([]);
+  const [type, setType] = useState<IOptions[]>([]);
   // Generation of the pokemon (changed with a dropdown)
-  const [generation, setGeneration] =
-    useStateWithCallback<OptionsOffsetLimit | null>(null);
+  const [generation, setGeneration] = useState<IOptionsOffsetLimit | null>(
+    null,
+  );
   const [showPlaceholder, setShowPlaceholder] = useState(true);
 
   const { scrollBtn } = useScrollDir();
@@ -64,7 +64,7 @@ function Pokedex() {
 
   return (
     <>
-      <HeadingPokemon />
+      <HeadingPokedex />
       <MainBig>
         <Filters
           pokedex={pokedex}

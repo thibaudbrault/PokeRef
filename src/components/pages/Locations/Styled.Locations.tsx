@@ -78,17 +78,21 @@ export const LocationList = styled.ol`
 
 export const LocationTable = styled(FullWidthTable)`
   & td {
+    padding: 0;
     text-transform: capitalize;
+    & p {
+      padding: 1.5rem;
+      border-top: 1px solid rgba(130, 130, 130, 0.2);
+
+      &:first-of-type {
+        border-top: none;
+      }
+    }
   }
 
   & tfoot {
-    display: none;
-    font-size: 2rem;
-    font-weight: 700;
-    text-align: center;
-  }
-
-  & tbody:empty + tfoot {
-    display: table-footer-group;
+    & td {
+      padding: 1.5rem;
+    }
   }
 `;

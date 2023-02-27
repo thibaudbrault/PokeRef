@@ -1,8 +1,8 @@
 import {
   FullWidthTable,
   TableContainer,
-  TLink,
   TBold,
+  TLink,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
@@ -16,36 +16,29 @@ import { Sup } from '../Styled.AbilityCard';
 
 type Props = {
   ability?: IAbility;
-  pokedex?: IPokemon[];
+  pokemon?: IPokemon[];
 };
 
-function TableAbilitycard({ ability, pokedex }: Props) {
-  if (!ability || !pokedex?.length) {
+function TableAbilitycard({ ability, pokemon }: Props) {
+  if (!ability || !pokemon?.length) {
     return <Loader />;
   }
 
-  const data = useMemo(
-    () =>
-      ability?.pokemon
-        .map((ap) => pokedex?.filter((p) => p.name === ap.pokemon.name))
-        .flat(),
-    [pokedex],
-  );
+  const data = useMemo(() => pokemon, [pokemon]);
 
   const columns = useMemo<ColumnDef<IPokemon>[]>(
     () => [
       {
         accessorKey: `sprites.front_default`,
         id: `sprite`,
-        header: `Sprite`,
+        header: `Sprites`,
         cell: (info) => (
           <td>
             <ImageWithFallback
               src={info.getValue<string>() || ``}
               alt="-"
-              loading="lazy"
-              width={64}
-              height={64}
+              width={96}
+              height={96}
               fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
             />
           </td>
@@ -121,11 +114,7 @@ function TableAbilitycard({ ability, pokedex }: Props) {
         accessorFn: (row) =>
           row.abilities.length > 2 ? row?.abilities?.[2].ability.name : `-`,
         id: `thirdAbility`,
-        header: () => (
-          <span>
-            2<Sup>nd</Sup> ability
-          </span>
-        ),
+        header: () => <span>hidden ability</span>,
         cell: (info) => (
           <td>
             <TLink

@@ -24,8 +24,14 @@ export const MoveCardDataTable = styled(Table)`
   & td {
     font-size: 1.7rem;
     font-weight: 700;
-    text-align: center;
+    text-align: left;
     text-transform: capitalize;
+
+    & small {
+      font-size: 1.5rem;
+      font-weight: 400;
+      text-transform: lowercase;
+    }
   }
 
   @media ${device.sm} {
@@ -63,8 +69,7 @@ export const MoveCardDataCategory = styled.td`
   & div {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1.5rem;
+    justify-content: flex-start;
 
     & img {
       vertical-align: middle;

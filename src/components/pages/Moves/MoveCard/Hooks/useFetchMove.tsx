@@ -1,12 +1,13 @@
-import { getMachines, getMove, getPokedex } from '@/utils/DataFetch';
-import { useQueries } from '@tanstack/react-query';
+import { IMachine } from '@/types/Machines/Machine';
+import { getMove, getMoveMachines, getPokedex } from '@/utils/DataFetch';
+import { useQueries, useQuery, UseQueryResult } from '@tanstack/react-query';
 import { useState } from 'react';
 
 export const useFetchMove = (name: string) => {
-  const results = useQueries({
+  const [move, pokedex] = useQueries({
     queries: [
       {
-        queryKey: [`move`],
+        queryKey: [`move`, name],
         queryFn: () => getMove(name),
       },
       {
@@ -14,11 +15,13 @@ export const useFetchMove = (name: string) => {
         queryFn: () =>
           getPokedex(`https://pokeapi.co/api/v2/pokemon?limit=1008`),
       },
-      {
-        queryKey: [`machines`],
-        queryFn: getMachines,
-      },
     ],
+  });
+
+  const { data: machine }: UseQueryResult<IMachine[]> = useQuery({
+    queryKey: [`machine`],
+    queryFn: () => getMoveMachines(move.data),
+    enabled: !!move.data,
   });
 
   // Version of the returned data is from the latest available from PokéAPI
@@ -28,7 +31,9 @@ export const useFetchMove = (name: string) => {
   const [toggle, setToggle] = useState(0);
 
   return {
-    results,
+    move,
+    pokedex,
+    machine,
     version,
     setVersion,
     toggle,

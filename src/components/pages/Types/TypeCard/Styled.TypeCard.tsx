@@ -5,22 +5,22 @@ import { Table, TBold } from '../../../common/styles/Table';
 
 export const TypeDamageSection = styled.section`
   margin: 5rem 0;
-  display: grid;
-  align-items: start;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
+  flex-direction: column;
   gap: 3rem;
 
   & table {
     & tr {
       height: 100px;
-    }
-  }
 
-  @media ${device.sm} {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+      & th {
+        width: 33%;
+      }
+
+      & td {
+        text-align: left;
+      }
+    }
   }
 `;
 
@@ -35,26 +35,29 @@ export const TypeDamageTable = styled(Table)`
     border-right: none;
 
     & th {
-      width: 25%;
       background: rgba(130, 130, 130, 0.2);
       font-size: 1.5rem;
+      text-transform: capitalize;
     }
 
     & td {
-      text-align: center;
-      border: none;
+      height: 100px;
 
       & div {
-        background: none !important;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 1.5rem;
 
-        & img {
-          display: inline-block;
-          transition: 0.3s ease-in-out;
-          &:hover {
-            transform: scale(1.05);
-          }
+        & a {
+          cursor: pointer;
         }
       }
+    }
+
+    &:nth-of-type(3) {
+      border-bottom: 5px solid rgba(130, 130, 130, 0.2);
     }
   }
 

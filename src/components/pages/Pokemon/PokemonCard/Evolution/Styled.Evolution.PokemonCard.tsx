@@ -10,7 +10,7 @@ export const PokemonEvolutionSection = styled(Section)`
 export const PokemonEvolutionContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 
   & div:only-child {
@@ -27,15 +27,17 @@ export const PokemonEvolutionContainer = styled.div`
 
 export const PokemonEvolutionBase = styled.div`
   text-align: center;
-  width: 33%;
+  width: 20%;
 
   & div {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     & a {
-      font-size: 2.7rem;
+      font-size: 3rem;
+      font-weight: 500;
       text-transform: capitalize;
       cursor: pointer;
       transition: 0.3s ease-in-out;
@@ -48,8 +50,9 @@ export const PokemonEvolutionBase = styled.div`
 `;
 
 export const PokemonEvolution = styled.div`
-  width: 66%;
+  width: 80%;
   display: flex;
+  justify-content: space-between;
 
   @media ${device.sm} {
     justify-content: space-around;
@@ -80,9 +83,11 @@ export const PokemonEvolutionElement = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
 
     & a {
-      font-size: 2.7rem;
+      font-size: 3rem;
+      font-weight: 500;
       text-align: center;
       text-transform: capitalize;
       cursor: pointer;
@@ -94,7 +99,7 @@ export const PokemonEvolutionElement = styled.div`
     }
 
     & svg {
-      font-size: 2.5rem;
+      font-size: 2.7rem;
 
       @media ${device.sm} {
         transform: rotate(90deg);
@@ -112,10 +117,11 @@ export const PokemonEvolutionElement = styled.div`
 `;
 
 export const PokemonEvolutionText = styled.p`
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-align: center;
 
   & span {
     font-weight: 700;
+    text-transform: capitalize;
   }
 `;

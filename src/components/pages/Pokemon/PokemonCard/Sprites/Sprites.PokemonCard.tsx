@@ -26,16 +26,18 @@ function Sprites({ pokemon }: Props) {
             />
             <p>Front Default</p>
           </div>
-          <div>
-            <Image
-              src={pokemon?.sprites?.back_default}
-              alt={pokemon.name}
-              width={96}
-              height={96}
-            />
-            <p>Back Default</p>
-          </div>
-          {pokemon?.sprites?.front_female !== null && (
+          {pokemon?.sprites?.back_default && (
+            <div>
+              <Image
+                src={pokemon?.sprites?.back_default}
+                alt={pokemon.name}
+                width={96}
+                height={96}
+              />
+              <p>Back Default</p>
+            </div>
+          )}
+          {pokemon?.sprites?.front_female && (
             <div>
               <Image
                 src={pokemon?.sprites?.front_female}
@@ -46,7 +48,7 @@ function Sprites({ pokemon }: Props) {
               <p>Front Female</p>
             </div>
           )}
-          {pokemon?.sprites?.back_female !== null && (
+          {pokemon?.sprites?.back_female && (
             <div>
               <Image
                 src={pokemon?.sprites?.back_female}
@@ -57,25 +59,29 @@ function Sprites({ pokemon }: Props) {
               <p>Back Female</p>
             </div>
           )}
-          <div>
-            <Image
-              src={pokemon?.sprites?.front_shiny}
-              alt={pokemon.name}
-              width={96}
-              height={96}
-            />
-            <p>Front Shiny</p>
-          </div>
-          <div>
-            <Image
-              src={pokemon?.sprites?.back_shiny}
-              alt={pokemon.name}
-              width={96}
-              height={96}
-            />
-            <p>Back Shiny</p>
-          </div>
-          {pokemon?.sprites?.front_shiny_female !== null && (
+          {pokemon?.sprites?.front_shiny && (
+            <div>
+              <Image
+                src={pokemon?.sprites?.front_shiny}
+                alt={pokemon.name}
+                width={96}
+                height={96}
+              />
+              <p>Front Shiny</p>
+            </div>
+          )}
+          {pokemon.sprites.back_shiny && (
+            <div>
+              <Image
+                src={pokemon?.sprites?.back_shiny}
+                alt={pokemon.name}
+                width={96}
+                height={96}
+              />
+              <p>Back Shiny</p>
+            </div>
+          )}
+          {pokemon?.sprites?.front_shiny_female && (
             <div>
               <Image
                 src={pokemon?.sprites?.front_shiny_female}
@@ -86,7 +92,7 @@ function Sprites({ pokemon }: Props) {
               <p>Front Shiny Female</p>
             </div>
           )}
-          {pokemon?.sprites?.back_shiny_female !== null && (
+          {pokemon?.sprites?.back_shiny_female && (
             <div>
               <Image
                 src={pokemon?.sprites?.back_shiny_female}
@@ -122,7 +128,7 @@ function Sprites({ pokemon }: Props) {
               />
               <p>Back Default</p>
             </div>
-            {pokemon.sprites.front_female !== null && (
+            {pokemon.sprites.front_female && (
               <div>
                 <Image
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/female/${pokemon.id}.gif`}
@@ -133,7 +139,7 @@ function Sprites({ pokemon }: Props) {
                 <p>Front Female</p>
               </div>
             )}
-            {pokemon.sprites.back_female !== null && (
+            {pokemon.sprites.back_female && (
               <div>
                 <Image
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/female/${pokemon.id}.gif`}
@@ -162,7 +168,7 @@ function Sprites({ pokemon }: Props) {
               />
               <p>Back Shiny</p>
             </div>
-            {pokemon.sprites.front_shiny_female !== null && (
+            {pokemon.sprites.front_shiny_female && (
               <div>
                 <Image
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/female/${pokemon.id}.gif`}
@@ -173,7 +179,7 @@ function Sprites({ pokemon }: Props) {
                 <p>Front Shiny Female</p>
               </div>
             )}
-            {pokemon.sprites.back_shiny_female !== null && (
+            {pokemon.sprites.back_shiny_female && (
               <div>
                 <Image
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/female/${pokemon.id}.gif`}

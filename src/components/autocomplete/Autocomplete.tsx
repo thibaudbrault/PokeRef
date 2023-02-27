@@ -1,8 +1,7 @@
 import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { getPokedex } from '@/utils/DataFetch';
 import ImageWithFallback from '@/utils/ImageWithFallback';
+import { removeDash } from '@/utils/Typography';
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import {
   AutocompleteContainer,
   AutocompleteId,
@@ -10,13 +9,11 @@ import {
   AutocompleteLink,
 } from './Styled.Autocomplete';
 
-function Autocomplete() {
-  const { data: pokedex } = useQuery({
-    queryKey: [`pokedex`],
-    queryFn: () =>
-      getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`),
-  });
+type Props = {
+  pokedex?: IPokemon[];
+};
 
+function Autocomplete({ pokedex }: Props) {
   const [pokedexMatch, setPokedexMatch] = useState<IPokemon[] | undefined>([]);
   const [searchText, setSearchText] = useState(``);
 
@@ -62,7 +59,7 @@ function Autocomplete() {
                     }}
                     className="bold"
                   >
-                    {pm.name}
+                    {removeDash(pm.name)}
                   </AutocompleteLink>
                   <AutocompleteId>
                     #{pm.id.toString().padStart(3, `0`)}

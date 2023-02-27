@@ -1,28 +1,29 @@
 import Autocomplete from '@/components/autocomplete/Autocomplete';
 import { Dropdown } from '@/components/common/styles/Inputs';
+import { Divider } from '@/components/common/styles/Misc';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import {
   formOptions,
   generationsOptions,
-  Options,
-  OptionsOffsetLimit,
+  IOptions,
+  IOptionsOffsetLimit,
   typeOptions,
 } from '@/utils/DataArrays';
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import { MultiValue, SingleValue } from 'react-select';
+import { SingleValue } from 'react-select';
 import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
 
 type Props = {
-  pokedex?: IPokemon[];
+  pokedex: IPokemon[];
   setFilteredPokedex: Dispatch<SetStateAction<IPokemon[]>>;
   setOffset: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;
-  form: OptionsOffsetLimit | null;
-  setForm: Dispatch<SetStateAction<OptionsOffsetLimit | null>>;
-  generation: OptionsOffsetLimit | null;
-  setGeneration: Dispatch<SetStateAction<OptionsOffsetLimit | null>>;
-  type: Options[] | null;
-  setType: Dispatch<SetStateAction<Options[]>>;
+  form: IOptionsOffsetLimit | null;
+  setForm: Dispatch<SetStateAction<IOptionsOffsetLimit | null>>;
+  generation: IOptionsOffsetLimit | null;
+  setGeneration: Dispatch<SetStateAction<IOptionsOffsetLimit | null>>;
+  type: IOptions[] | null;
+  setType: Dispatch<SetStateAction<IOptions[]>>;
   setShowPlaceholder: Dispatch<SetStateAction<boolean>>;
 };
 
@@ -75,21 +76,21 @@ function Filters({
     }
   };
 
-  const handleFormSelect = (option: SingleValue<OptionsOffsetLimit>) => {
+  const handleFormSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
     setForm(option);
     setGeneration(null);
     setType([]);
     setShowPlaceholder(false);
   };
 
-  const handleGenSelect = (option: SingleValue<OptionsOffsetLimit>) => {
+  const handleGenSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
     setGeneration(option);
     setForm(null);
     setType([]);
     setShowPlaceholder(false);
   };
 
-  const handleTypeSelect = (option: MultiValue<Options>) => {
+  const handleTypeSelect = (option: IOptions[]) => {
     if (option) {
       setType(option);
       setShowPlaceholder(false);
@@ -106,7 +107,7 @@ function Filters({
   return (
     <>
       <PokedexSearch>
-        <Autocomplete />
+        <Autocomplete pokedex={pokedex} />
         <PokedexDropdown>
           <label htmlFor="form">Form</label>
           <Dropdown
@@ -118,7 +119,7 @@ function Filters({
             options={formOptions}
             placeholder="Select"
             onChange={(option) => {
-              handleFormSelect(option);
+              handleFormSelect(option as IOptionsOffsetLimit);
             }}
           />
         </PokedexDropdown>
@@ -134,7 +135,7 @@ function Filters({
             options={generationsOptions}
             placeholder="Select"
             onChange={(option) => {
-              handleGenSelect(option);
+              handleGenSelect(option as IOptionsOffsetLimit);
             }}
           />
         </PokedexDropdown>
@@ -151,14 +152,23 @@ function Filters({
             classNamePrefix="select"
             options={typeOptions}
             placeholder="Select"
-            isOptionDisabled={() => type?.length >= 2}
+            // @ts-ignore
+            components={
+              type &&
+              type?.length >= 2 && {
+                Menu: () => null,
+                MenuList: () => null,
+                DropdownIndicator: () => null,
+                IndicatorSeparator: () => null,
+              }
+            }
             onChange={(option) => {
-              handleTypeSelect(option);
+              handleTypeSelect(option as IOptions[]);
             }}
           />
         </PokedexDropdown>
       </PokedexSearch>
-      <hr />
+      <Divider />
     </>
   );
 }

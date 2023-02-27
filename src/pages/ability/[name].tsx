@@ -1,8 +1,8 @@
 import {
+  Capitalize,
   CardTitle,
   H3,
   H4,
-  Capitalize,
   Subtitle,
 } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
@@ -33,33 +33,33 @@ type Props = {
 };
 
 function AbilityCard({ name }: Props) {
+  const overworld = `Overworld`;
+
   const {
     isLoading,
     isError,
     error,
     ability,
-    pokedex,
+    pokemon,
     filterEffect,
     filterOverworld,
     filterDesc,
   } = useFilterAbility(name);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`);
+    return toast.error(`Something went wrong: ${error?.message}`);
   }
 
   if (isLoading) {
     return <Loader />;
   }
 
-  const overworld = `Overworld`;
-
   return (
     <>
       <HeadingAbility name={name} />
       <MainBig>
-        <CardTitle>{removeDash(ability?.name)}</CardTitle>
-        <Subtitle>{removeDash(ability?.generation?.name)}</Subtitle>
+        <CardTitle>{ability && removeDash(ability?.name)}</CardTitle>
+        <Subtitle>{ability && removeDash(ability?.generation?.name)}</Subtitle>
 
         <AbilityCardSection>
           <AbilityCardEffect>
@@ -80,9 +80,10 @@ function AbilityCard({ name }: Props) {
         <DescAbilityCard filterDesc={filterDesc} />
         <AbilityCardSection>
           <H3>
-            Pokemon with <Capitalize>{removeDash(ability?.name)}</Capitalize>
+            Pokemon with{` `}
+            <Capitalize>{ability && removeDash(ability?.name)}</Capitalize>
           </H3>
-          <TableAbilitycard ability={ability} pokedex={pokedex} />
+          <TableAbilitycard ability={ability} pokemon={pokemon} />
         </AbilityCardSection>
         <Link href="/abilities" passHref>
           <BackBtn name="Abilities" />

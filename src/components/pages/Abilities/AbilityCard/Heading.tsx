@@ -2,18 +2,18 @@ import Head from 'next/head';
 import React from 'react';
 
 type Props = {
-  name: string | string[] | undefined;
+  name: string;
 };
 
 function HeadingAbility({ name }: Props) {
   return (
     <Head>
       <title>
-        {typeof name === `string` &&
-          name
-            ?.replace(/-/g, ` `)
-            .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}
-        {` `}| Ability | PokéRef
+        {`${name
+          ?.replace(/-/g, ` `)
+          .replace(/(^\w|\s\w)/g, (m) =>
+            m.toUpperCase(),
+          )}  | Ability | PokéRef`}
       </title>
       <meta name="description" content={`Find every details about ${name}`} />
       <meta property="og:title" content={`${name} | Ability | PokéRef`} />

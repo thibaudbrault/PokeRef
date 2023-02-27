@@ -1,3 +1,4 @@
+import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import Content from './Content/Content.MoveCard';
 import {
@@ -10,12 +11,13 @@ import {
 
 type Props = {
   pokedex?: IPokemon[];
+  status: string;
   moveName: string;
   version: string;
   toggle: number;
 };
 
-function List({ pokedex, moveName, version, toggle }: Props) {
+function List({ pokedex, status, moveName, version, toggle }: Props) {
   const textShown = () => {
     if (toggle === 0) {
       return <LevelMoveText version={version} />;
@@ -29,6 +31,10 @@ function List({ pokedex, moveName, version, toggle }: Props) {
       return <EvolvingMoveText version={version} />;
     }
   };
+
+  if (status === `loading`) {
+    return <SmallLoader />;
+  }
 
   return (
     <>

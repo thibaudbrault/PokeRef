@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 
-function HeadingPokemon() {
+function HeadingPokedex() {
   return (
     <Head>
       <meta
@@ -20,4 +20,4 @@ function HeadingPokemon() {
   );
 }
 
-export default HeadingPokemon;
+export default HeadingPokedex;

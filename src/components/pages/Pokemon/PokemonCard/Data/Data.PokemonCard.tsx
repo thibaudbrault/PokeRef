@@ -1,4 +1,4 @@
-import { ILocationAreaEncounter, IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import Base from './Base/Base.PokemonCard';
 import Desc from './Desc/Desc.PokemonCard';
@@ -11,21 +11,15 @@ import {
 type Props = {
   pokemon: IPokemon;
   species: IPokemonSpecies;
-  location: ILocationAreaEncounter[];
-  game: string;
+  game: string | null;
 };
 
-function Data({ pokemon, species, location, game }: Props) {
+function Data({ pokemon, species, game }: Props) {
   return (
     <PokemonDataSection>
       <div>
         <Desc species={species} pokemon={pokemon} game={game} />
-        <Base
-          species={species}
-          pokemon={pokemon}
-          location={location}
-          game={game}
-        />
+        <Base species={species} pokemon={pokemon} />
       </div>
       <PokemonDataSprite>
         <Sprite species={species} pokemon={pokemon} />
