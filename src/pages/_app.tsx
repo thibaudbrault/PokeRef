@@ -1,38 +1,49 @@
-import React, { useState } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+import { darkTheme, lightTheme } from '@/components/common/styles/Themes';
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { useState } from 'react';
+import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import { ThemeProvider } from 'styled-components';
-// import { SessionProvider } from 'next-auth/react';
 
-import { darkTheme, lightTheme } from '../components/Common/Themes';
+import { Reset } from '@/components/common/styles/Reset';
+import Footer from '@/components/layout/Footer/Footer';
+import Header from '@/components/layout/Header/Header';
+import Nav from '@/components/layout/Nav/Nav';
+import NextNProgress from 'nextjs-progressbar';
+import { Toaster } from 'react-hot-toast';
 
-import Header from '../components/Layout/Header/Header';
-import Nav from '../components/Layout/Nav/Nav';
-import Footer from '../components/Layout/Footer/Footer';
-import { Reset } from '../components/Common/Reset';
-import { SessionProvider } from 'next-auth/react';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      cacheTime: Infinity,
-      staleTime: Infinity,
-      retry: false,
-    },
-  },
-});
-
-const ErrorFallback = ({ error, resetErrorBoundary }) => {
-  <div role="alert">
-    <p>Something went wrong:</p>
-    <pre>{error.message}</pre>
-    <button onClick={resetErrorBoundary}>Try again</button>
-  </div>;
+const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+      <button onClick={resetErrorBoundary}>Try again</button>
+    </div>
+  );
 };
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            cacheTime: Infinity,
+            staleTime: Infinity,
+            retry: false,
+          },
+        },
+      }),
+  );
+
+  const [navOpen, setNavOpen] = useState(false);
+
   const loadTheme: () => string = () => {
     const localTheme = globalThis.window?.localStorage.getItem(`theme`);
     return localTheme ?? `dark`;
@@ -48,23 +59,32 @@ function MyApp({ Component, pageProps }: AppProps) {
   const themeToggler = () => {
     theme === `dark` ? setMode(`light`) : setMode(`dark`);
   };
+
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
       </Head>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <SessionProvider>
-          <QueryClientProvider client={queryClient}>
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
             <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
-              <Header themeToggler={themeToggler} theme={theme} />
-              <Nav />
+              <Toaster />
+              <NextNProgress />
+              <Header
+                navOpen={navOpen}
+                setNavOpen={setNavOpen}
+                themeToggler={themeToggler}
+                theme={theme}
+              />
+              <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
               <Reset />
               <Component {...pageProps} />
               <Footer />
+              <ReactQueryDevtools />
             </ThemeProvider>
-          </QueryClientProvider>
-        </SessionProvider>
+          </Hydrate>
+        </QueryClientProvider>
       </ErrorBoundary>
     </>
   );

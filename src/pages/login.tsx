@@ -1,9 +1,5 @@
-import React from 'react';
-import Link from 'next/link';
-import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { signIn } from 'next-auth/react';
+import { H2 } from '@/components/common/styles/Headings';
+import { MainBig } from '@/components/common/styles/Sizing';
 import {
   AuthBtn,
   AuthButtons,
@@ -15,11 +11,16 @@ import {
   AuthSecBtn,
   AuthSwitch,
   AuthTitle,
-} from '../components/Auth/StyledAuth';
-import { H2 } from '../components/Common/Headings';
-import { MainAuth } from '../components/Common/Sizing';
-import GrGoogle from '@meronex/icons/gr/GrGoogle';
-import GrGithub from '@meronex/icons/gr/GrGithub';
+} from '@/components/pages/Auth/Styled.Auth';
+import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { GrGithub, GrGoogle } from '@meronex/icons/gr';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import * as yup from 'yup';
 
 type FormInput = {
   email: string;
@@ -34,6 +35,8 @@ const schema = yup
   .required();
 
 function Login() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -42,20 +45,34 @@ function Login() {
     resolver: yupResolver<yup.AnyObjectSchema>(schema),
   });
 
-  const submitForm = (data: FormInput) => {
-    console.log(data);
+  const submitForm = async (data: FormInput) => {
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      toast.success(`Welcome back`, {
+        style: {
+          fontSize: `1.7rem`,
+        },
+      });
+      router.push(`/`);
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    }
   };
 
-  async function handleGoogleSignIn() {
-    await signIn(`google`, { callbackUrl: `http://localhost:3000` });
-  }
+  const googleConnect = () => {
+    signInWithGoogle();
+    router.push(`/`);
+  };
 
-  async function handleGithubSignIn() {
-    await signIn(`github`, { callbackUrl: `http://localhost:3000` });
-  }
+  const githubConnect = () => {
+    signInWithGithub();
+    router.push(`/`);
+  };
 
   return (
-    <MainAuth>
+    <MainBig>
       <AuthContainer>
         <AuthImage></AuthImage>
         <AuthForm onSubmit={handleSubmit(submitForm)}>
@@ -93,13 +110,13 @@ function Login() {
           <AuthChoice>OR</AuthChoice>
           <AuthInput>
             <AuthButtons>
-              <AuthSecBtn type="button" onClick={handleGoogleSignIn}>
+              <AuthSecBtn type="button" onClick={googleConnect}>
                 Sign In with Google
                 <span>
                   <GrGoogle />
                 </span>
               </AuthSecBtn>
-              <AuthSecBtn type="button" onClick={handleGithubSignIn}>
+              <AuthSecBtn type="button" onClick={githubConnect}>
                 Sign In with Github
                 <span>
                   <GrGithub />
@@ -113,7 +130,7 @@ function Login() {
           </AuthInput>
         </AuthForm>
       </AuthContainer>
-    </MainAuth>
+    </MainBig>
   );
 }
 

@@ -1,43 +1,40 @@
-import React from 'react';
-import { BackButton } from '../../components/Common/Inputs';
-import { MainBig } from '../../components/Common/Sizing';
-import { CardTitle } from '../../components/Common/Headings';
-import { useMoves, usePokedex, useType } from '../../hooks/DataFetch';
-import Loader from '../../components/Loader/Loader';
-import FaChevronLeft from '@meronex/icons/fa/FaChevronLeft';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import {
+  CardTitle,
+  CardTitleWithImage,
+} from '@/components/common/styles/Headings';
+import { Divider } from '@/components/common/styles/Misc';
+import { MethodNav } from '@/components/common/styles/Navbars';
+import { MainBig } from '@/components/common/styles/Sizing';
+import BackBtn from '@/components/common/ui/BackBtn';
+import Loader from '@/components/common/ui/Loader/Loader';
+import HeadingType from '@/components/pages/Types/TypeCard/Heading';
+import { useToggleTable } from '@/components/pages/Types/TypeCard/Hooks/useToggleTable';
+import { IType } from '@/types/Pokemon/Type';
+import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import Link from 'next/link';
+import toast from 'react-hot-toast';
 
-const Damage = dynamic(
-  () => import(`../../components/Types/TypeCard/Damage/Damage.TypeCard`),
+interface IDamageTypeProps {
+  type?: IType;
+}
+
+const DamageType = dynamic<IDamageTypeProps>(
+  () =>
+    import(`@/components/pages/Types/TypeCard/Damage/Damage.TypeCard`) as any,
 );
-const Moves = dynamic(
-  () => import(`../../components/Types/TypeCard/Moves/Moves.TypeCard`),
-);
-const Pokemon = dynamic(
-  () => import(`../../components/Types/TypeCard/Pokemon/Pokemon.TypeCard`),
-);
 
-function TypeCard() {
-  const router = useRouter();
-  const { name } = router.query;
+type Props = {
+  name: string;
+};
 
-  const {
-    isLoading,
-    error,
-    data: type,
-  } = useType(`https://pokeapi.co/api/v2/type/${name}`);
+function TypeCard({ name }: Props) {
+  const { type, isLoading, isError, error, toggle, setToggle, pageShown } =
+    useToggleTable(name);
 
-  const { data: pokedex } = usePokedex(
-    `https://pokeapi.co/api/v2/pokemon?limit=905`,
-  );
-
-  const { data: moves } = useMoves();
-
-  if (error) {
-    return <p>{error}</p>;
+  if (isError) {
+    return toast.error(`Something went wrong: ${error?.message}`);
   }
 
   if (isLoading) {
@@ -46,35 +43,36 @@ function TypeCard() {
 
   return (
     <>
-      <Head>
-        <title>
-          {name.charAt(0).toUpperCase() + name.slice(1)} | Type | PokéRef
-        </title>
-        <meta
-          name="description"
-          content={`Find every details about the ${name} type`}
-        />
-        <meta property="og:title" content={`${name} | Type | PokéRef`} />
-        <meta
-          property="og:description"
-          content={`Find every details about the ${name} type`}
-        />
-        <meta property="og:url" content={`https://pokeref.app/type/${name}`} />
-        <meta property="og:type" content="website" />
-      </Head>
+      <HeadingType name={name} />
       <MainBig>
-        <CardTitle>{type?.name}</CardTitle>
-
-        <Damage type={type} />
-
-        <Pokemon type={type} pokedex={pokedex} />
-
-        <Moves type={type} moves={moves} />
-
+        <CardTitleWithImage>
+          <Image
+            src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${name}.png`}
+            alt=""
+            width={96}
+            height={96}
+          />
+          <CardTitle>{type?.name}</CardTitle>
+        </CardTitleWithImage>
+        <DamageType type={type} />
+        <Divider />
+        <MethodNav>
+          <button
+            className={toggle === 1 ? `button_active` : ``}
+            onClick={() => setToggle(1)}
+          >
+            <p>Pokémon</p>
+          </button>
+          <button
+            className={toggle === 2 ? `button_active` : ``}
+            onClick={() => setToggle(2)}
+          >
+            <p>Moves</p>
+          </button>
+        </MethodNav>
+        {pageShown()}
         <Link href="/types" passHref>
-          <BackButton>
-            <FaChevronLeft /> Back to Types
-          </BackButton>
+          <BackBtn name="Types" />
         </Link>
       </MainBig>
     </>
@@ -82,3 +80,12 @@ function TypeCard() {
 }
 
 export default TypeCard;
+
+export function getServerSideProps(context: GetServerSidePropsContext) {
+  const { name } = context.query;
+  return {
+    props: {
+      name,
+    },
+  };
+}

@@ -1,9 +1,8 @@
-import React from 'react';
 import {
-  NotFoundMain,
   NotFoundImg,
+  NotFoundMain,
   NotFoundText,
-} from '../components/404/StyledNotFound';
+} from '@/components/pages/404/Styled.NotFound';
 
 function NotFound() {
   return (

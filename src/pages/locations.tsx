@@ -1,37 +1,47 @@
-import React, { useState, useEffect } from 'react';
-
-import { MainBig } from '../components/Common/Sizing';
+import { MainBig } from '@/components/common/styles/Sizing';
+import Loader from '@/components/common/ui/Loader/Loader';
+import HeadingLocations from '@/components/pages/Locations/Heading';
+import { LocationSection } from '@/components/pages/Locations/Styled.Locations';
+import { IRegion } from '@/types/Locations/Region';
+import { regions } from '@/utils/DataArrays';
+import { getRegions } from '@/utils/DataFetch';
 import {
-  LocationList,
-  LocationSection,
-} from '../components/Locations/StyledLocations';
-import Loader from '../components/Loader/Loader';
-import { useLocations } from '../../src/hooks/DataFetch';
-import { regions } from '../../src/utils/DataMap';
-import Link from 'next/link';
+  dehydrate,
+  QueryClient,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
-import { Locations, Sort } from '@/types/types';
-import Head from 'next/head';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
-const RegionsMethod = dynamic(
-  () => import(`../../src/utils/RegionsMethod.jsx`),
+const ListLocations = dynamic(
+  () => import(`@/components/pages/Locations/Components/List.Locations`),
 );
 
-function Locations() {
-  const [location, setLocation] = useState<string | null>(null);
-  const [toggleState, setToggleState] = useState<number>(0);
-  const { isLoading, error, data: locations } = useLocations();
+const RegionsMethod = dynamic(() =>
+  import(`@/utils/ObjectsMap`).then((res) => res.RegionsMethod),
+);
 
-  const toggleTable = (index: number) => {
-    setToggleState(index);
-  };
+function LocationsPage() {
+  const [location, setLocation] = useState<string | null>(null);
+  const [toggle, setToggle] = useState<number>(0);
+  const {
+    isLoading,
+    isError,
+    error,
+    data: locations,
+  }: UseQueryResult<IRegion[], Error> = useQuery({
+    queryKey: [`regions`],
+    queryFn: getRegions,
+  });
 
   useEffect(() => {
-    setLocation(regions[toggleState + 1]);
-  }, [toggleState]);
+    setLocation(regions[toggle + 1]);
+  }, [toggle]);
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {
@@ -40,56 +50,15 @@ function Locations() {
 
   return (
     <>
-      <Head>
-        <title>Locations | Pokeref</title>
-        <meta
-          name="description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:title" content="Locations | Pokeref" />
-        <meta
-          property="og:description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:url" content="https://pokeref.app/locations" />
-        <meta property="og:type" content="website" />
-      </Head>
+      <HeadingLocations />
       <MainBig>
-        <RegionsMethod toggleState={toggleState} toggleTable={toggleTable} />
-        <LocationSection>
-          {locations?.map(
-            (l: Locations) =>
-              l?.name === location &&
-              location !== `galar` && (
-                <LocationList key={l.name}>
-                  {l?.locations
-                    ?.sort(({ a, b }: Sort) => a.name.localeCompare(b.name))
-                    ?.map((ll) => (
-                      <li key={ll.name}>
-                        <Link
-                          href={{
-                            pathname: `/location/[name]`,
-                            query: { name: ll.name },
-                          }}
-                          key={ll.name}
-                        >
-                          {ll?.name
-                            ?.replace(/-/g, ` `)
-                            ?.replace(
-                              /kanto|johto|hoenn|sinnoh|unova|kalos|alola/g,
-                              ``,
-                            )}
-                        </Link>
-                      </li>
-                    ))}
-                </LocationList>
-              ),
-          )}
-        </LocationSection>
-
-        {location === `galar` ? (
+        <RegionsMethod toggle={toggle} setToggle={setToggle} />
+        <ListLocations location={location} locations={locations} />
+        {location === `galar` || location === `hisui` ? (
           <LocationSection>
-            <p>No data for Galar</p>
+            <p>
+              No data for {location.charAt(0).toUpperCase() + location.slice(1)}
+            </p>
           </LocationSection>
         ) : null}
       </MainBig>
@@ -97,4 +66,17 @@ function Locations() {
   );
 }
 
-export default Locations;
+export default LocationsPage;
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  queryClient.prefetchQuery({
+    queryKey: [`regions`],
+    queryFn: getRegions,
+  });
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}

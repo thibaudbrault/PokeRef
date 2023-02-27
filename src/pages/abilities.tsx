@@ -1,47 +1,88 @@
-import React, { useState, useEffect } from 'react';
-
-import { LeftTitle } from '../components/Common/Headings';
-import { Input, ModifiedSearch } from '../components/Common/Inputs';
+import { LeftTitle } from '@/components/common/styles/Headings';
+import { MainBig } from '@/components/common/styles/Sizing';
 import {
-  THead,
-  TName,
-  TRow,
+  FullWidthTable,
+  TableContainer,
+  TBold,
   TEffect,
   TLink,
-  TableContainer,
-  ModifiedTable,
-} from '../components/Common/Table';
-import { ModifiedMainBig } from '../components/Common/Sizing';
-import { useAbilities } from '../hooks/DataFetch';
-import Loader from '../components/Loader/Loader';
-import { Abilities, Sort } from '@/types/types';
-import Head from 'next/head';
+} from '@/components/common/styles/Table';
+import Loader from '@/components/common/ui/Loader/Loader';
+import { useTableParams } from '@/hooks/useTableParams';
+import { IAbility } from '@/types/Pokemon/Ability';
+import { getAbilities } from '@/utils/DataFetch';
+import { removeDash } from '@/utils/Typography';
+import {
+  dehydrate,
+  QueryClient,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import { ColumnDef } from '@tanstack/react-table';
+import dynamic from 'next/dynamic';
+import { useMemo } from 'react';
+import toast from 'react-hot-toast';
 
-function Abilities() {
-  const [search, setSearch] = useState<string | null>(null);
-  const [filteredAbilities, setFilteredAbilities] = useState<any>([]);
-  const { isLoading, error, data: abilities } = useAbilities();
+const HeadingAbilities = dynamic(
+  () => import(`@/components/pages/Abilities/Heading`),
+);
 
-  // Filter the abilities returned when the user type the name in the search bar
-  const filterAbilities = search
-    ? abilities?.filter((abilities) =>
-        abilities.name
-          .replace(/-/g, ` `)
-          .toLowerCase()
-          .includes(search?.toLowerCase()),
-      )
-    : abilities;
+function AbilitiesPage() {
+  const {
+    isLoading,
+    isError,
+    error,
+    data: abilities,
+  }: UseQueryResult<IAbility[], Error> = useQuery({
+    queryKey: [`abilities`],
+    queryFn: getAbilities,
+  });
 
-  // New request when the user types a letter
-  useEffect(
-    () => setFilteredAbilities(filterAbilities),
-    [search, filterAbilities],
+  const data = useMemo(() => abilities, [abilities]);
+
+  const columns = useMemo<ColumnDef<IAbility>[]>(
+    () => [
+      {
+        accessorKey: `name`,
+        id: `sort`,
+        header: `Name`,
+        cell: (info) => (
+          <TBold>
+            <TLink
+              href={{
+                pathname: `/ability/[name]`,
+                query: { name: info.getValue<string>() },
+              }}
+            >
+              {removeDash(info.getValue<string>())}
+            </TLink>
+          </TBold>
+        ),
+      },
+      {
+        accessorFn: (row) =>
+          row.flavor_text_entries.find((rf) => {
+            return rf.language.name === `en`;
+          })?.flavor_text || `-`,
+        id: `effect`,
+        header: `Effect`,
+        cell: (info) => (
+          <TEffect>
+            <span>{info.getValue<string>()}</span>
+          </TEffect>
+        ),
+      },
+    ],
+    [],
   );
 
-  console.log(filteredAbilities);
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
+    data,
+    columns,
+  );
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {
@@ -50,75 +91,31 @@ function Abilities() {
 
   return (
     <>
-      <Head>
-        <title>Abilities | Pokeref</title>
-        <meta
-          name="description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:title" content="Abilities | Pokeref" />
-        <meta
-          property="og:description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:url" content="https://pokeref.app/abilities" />
-        <meta property="og:type" content="website" />
-      </Head>
-      <ModifiedMainBig>
+      <HeadingAbilities />
+      <MainBig>
         <LeftTitle>Abilities</LeftTitle>
-        <ModifiedSearch>
-          <Input>
-            <label htmlFor="searchBar">Search</label>
-            <input
-              type="text"
-              placeholder="Ability Name"
-              name="searchBar"
-              id="searchBar"
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
-            />
-          </Input>
-        </ModifiedSearch>
-        <TableContainer>
-          <ModifiedTable>
-            <THead>
-              <tr className="abilities_table_head_row">
-                <th className="abilities_table_head_row_element">Name</th>
-                <th className="abilities_table_head_row_element">Effect</th>
-              </tr>
-            </THead>
-            <tbody>
-              {filteredAbilities
-                ?.sort(({ a, b }: Sort) => a.name.localeCompare(b.name))
-                .map((a: Abilities) => (
-                  <TRow key={a.name}>
-                    <TName>
-                      <TLink
-                        href={{
-                          pathname: `/ability/[name]`,
-                          query: { name: a.name },
-                        }}
-                      >
-                        {a.name.replace(/-/g, ` `)}
-                      </TLink>
-                    </TName>
-                    <TEffect>
-                      {a.flavor_text_entries.map(
-                        (af) =>
-                          af.language.name === `en` && (
-                            <span key={af.flavor_text}>{af.flavor_text}</span>
-                          ),
-                      )}
-                    </TEffect>
-                  </TRow>
-                ))}
-            </tbody>
-          </ModifiedTable>
+        <TableContainer ref={tableContainerRef}>
+          <FullWidthTable>
+            {tableHeader()}
+            {tableBody()}
+          </FullWidthTable>
         </TableContainer>
-      </ModifiedMainBig>
+      </MainBig>
     </>
   );
 }
 
-export default Abilities;
+export default AbilitiesPage;
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  queryClient.prefetchQuery({
+    queryKey: [`abilities`],
+    queryFn: getAbilities,
+  });
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}

@@ -1,77 +1,84 @@
-import React, { useState } from 'react';
-
-import { MainBig } from '../components/Common/Sizing';
-import { MethodNav } from '../components/Common/Navbars';
-import { useMoves, useStatus } from '../../src/hooks/DataFetch';
-import Loader from '../components/Loader/Loader';
-import dynamic from 'next/dynamic';
-import Head from 'next/head';
-
-const MovesTable = dynamic(
-  () => import(`../components/Moves/Components/MovesTable.Moves`),
-);
-const StatusTable = dynamic(
-  () => import(`../components/Moves/Components/StatusTable.Moves`),
-);
+import { MethodNav } from '@/components/common/styles/Navbars';
+import { MainBig } from '@/components/common/styles/Sizing';
+import Loader from '@/components/common/ui/Loader/Loader';
+import HeadingMoves from '@/components/pages/Moves/Heading';
+import { useToggleTable } from '@/components/pages/Moves/Hooks/useToggleTable';
+import { getMoves, getStats, getStatus } from '@/utils/DataFetch';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 function Moves() {
-  const { isLoading, error, data: moves } = useMoves();
-  const { data: status } = useStatus();
+  const { moves, status, stats, toggle, setToggle, pageShown } =
+    useToggleTable();
 
-  // Switch between the 'moves' table and the 'status' table
-  // Default is the 'moves' table (1)
-  const [toggleState, setToggleState] = useState<number>(1);
-  const toggleTable = (index: number) => {
-    setToggleState(index);
-  };
-
-  if (error instanceof Error) {
-    return { error };
+  if (
+    moves.status === `error` ||
+    status.status === `error` ||
+    stats.status === `error`
+  ) {
+    return toast.error(`Something went wrong`);
   }
 
-  if (isLoading) {
+  if (
+    moves.status === `loading` ||
+    status.status === `loading` ||
+    stats.status === `loading`
+  ) {
     return <Loader />;
   }
 
   return (
     <>
-      <Head>
-        <title>Moves | Pokeref</title>
-        <meta
-          name="description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:title" content="Moves | Pokeref" />
-        <meta
-          property="og:description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:url" content="https://pokeref.app/moves" />
-        <meta property="og:type" content="website" />
-      </Head>
+      <HeadingMoves />
       <MainBig>
-        <MethodNav id="head">
+        <MethodNav>
           <button
-            id="btnMoves"
-            className={toggleState === 1 ? `button_active` : ``}
-            onClick={() => toggleTable(1)}
+            className={toggle === 1 ? `button_active` : ``}
+            onClick={() => setToggle(1)}
           >
             <p>Moves</p>
           </button>
           <button
-            className={toggleState === 2 ? `button_active` : ``}
-            onClick={() => toggleTable(2)}
+            className={toggle === 2 ? `button_active` : ``}
+            onClick={() => setToggle(2)}
           >
             <p>Status</p>
           </button>
+          <button
+            className={toggle === 3 ? `button_active` : ``}
+            onClick={() => setToggle(3)}
+          >
+            <p>Stats</p>
+          </button>
         </MethodNav>
-
-        <MovesTable moves={moves} toggleState={toggleState} />
-
-        <StatusTable status={status} toggleState={toggleState} />
+        {pageShown()}
       </MainBig>
     </>
   );
 }
 
 export default Moves;
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: [`moves`],
+      queryFn: getMoves,
+    }),
+    queryClient.prefetchQuery({
+      queryKey: [`status`],
+      queryFn: getStatus,
+    }),
+    queryClient.prefetchQuery({
+      queryKey: [`stats`],
+      queryFn: getStats,
+    }),
+  ]);
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}

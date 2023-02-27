@@ -1,19 +1,35 @@
-import React from 'react';
+import { MainSmall } from '@/components/common/styles/Sizing';
+import Loader from '@/components/common/ui/Loader/Loader';
+import HeadingTypes from '@/components/pages/Types/Heading';
+import { TypesList } from '@/components/pages/Types/Styled.Types';
+import { IType } from '@/types/Pokemon/Type';
+import { getTypes } from '@/utils/DataFetch';
+import {
+  dehydrate,
+  QueryClient,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import dynamic from 'next/dynamic';
+import toast from 'react-hot-toast';
 
-import { MainSmall } from '../components/Common/Sizing';
-import { ModifiedType, TypesList } from '../components/Types/StyledTypes';
-import { useTypes } from '../../src/hooks/DataFetch';
-import Loader from '../components/Loader/Loader';
-import Link from 'next/link';
-import Image from 'next/image';
-import Head from 'next/head';
-import { Types } from '@/types/types';
+const ListTypes = dynamic(
+  () => import(`@/components/pages/Types/Components/List.Types`),
+);
 
-function Types() {
-  const { isLoading, error, data: types } = useTypes();
+function TypesPage() {
+  const {
+    isLoading,
+    isError,
+    error,
+    data: types,
+  }: UseQueryResult<IType[], Error> = useQuery({
+    queryKey: [`types`],
+    queryFn: getTypes,
+  });
 
-  if (error instanceof Error) {
-    return { error };
+  if (isError) {
+    return toast.error(`Something went wrong: ${error.message}`);
   }
 
   if (isLoading) {
@@ -22,39 +38,27 @@ function Types() {
 
   return (
     <>
-      <Head>
-        <title>Types | Pokeref</title>
-        <meta
-          name="description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:title" content="Types | Pokeref" />
-        <meta
-          property="og:description"
-          content="Pokeref is a pokemon encyclopedia where you will find a ton of information for every pokemon game"
-        />
-        <meta property="og:url" content="https://pokeref.app/types" />
-        <meta property="og:type" content="website" />
-      </Head>
+      <HeadingTypes />
       <MainSmall>
         <TypesList>
-          {types?.map((t: Types) => (
-            <li key={t.name}>
-              <ModifiedType id={t.name}>
-                <Link
-                  href={{ pathname: `/type/[name]`, query: { name: t.name } }}
-                  key={t.name}
-                >
-                  <Image alt={t.name} />
-                  <h2>{t.name}</h2>
-                </Link>
-              </ModifiedType>
-            </li>
-          ))}
+          <ListTypes types={types} />
         </TypesList>
       </MainSmall>
     </>
   );
 }
 
-export default Types;
+export default TypesPage;
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  queryClient.prefetchQuery({
+    queryKey: [`types`],
+    queryFn: getTypes,
+  });
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}
