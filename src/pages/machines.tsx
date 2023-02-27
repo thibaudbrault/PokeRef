@@ -10,7 +10,7 @@ import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IMachine } from '@/types/Machines/Machine';
 import { getMachines } from '@/utils/DataFetch';
-import { removeDash } from '@/utils/Typography';
+import { removeDash, uppercase } from '@/utils/Typography';
 import {
   dehydrate,
   QueryClient,
@@ -48,7 +48,7 @@ function MachinesPage() {
         accessorKey: `item.name`,
         id: `sort`,
         header: `Name`,
-        cell: (info) => <TBold>{info.getValue<string>().toUpperCase()}</TBold>,
+        cell: (info) => <TBold>{uppercase(info.getValue<string>())}</TBold>,
       },
       {
         accessorKey: `move.name`,

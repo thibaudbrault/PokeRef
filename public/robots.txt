@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://pokeref.app
+
+# Sitemaps
+Sitemap: https://pokeref.app/sitemap.xml

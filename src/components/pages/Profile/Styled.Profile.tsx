@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const ProfileInputs = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-`;
-
 export const ProfileList = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, 1fr);

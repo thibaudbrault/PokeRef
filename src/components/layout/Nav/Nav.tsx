@@ -29,6 +29,7 @@ function Nav({ navOpen, setNavOpen }: Props) {
 
   const logout = async () => {
     await signOut(auth);
+    setNavOpen(false)
   };
 
   useEffect(() => {
@@ -96,12 +97,27 @@ function Nav({ navOpen, setNavOpen }: Props) {
           {user ? (
             <HeaderBtnConnected>
               <button onClick={logout}>Sign Out</button>
-              <Link href="/profile">Profile</Link>
+              <Link
+                href="/profile"
+                onClick={() => setNavOpen(false)}
+              >
+                Profile
+              </Link>
             </HeaderBtnConnected>
           ) : (
             <HeaderBtnConnect>
-              <Link href="/login">Login</Link>
-              <Link href="/register">Register</Link>
+              <Link
+                href="/login"
+                onClick={() => setNavOpen(false)}
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                onClick={() => setNavOpen(false)}
+              >
+                Register
+              </Link>
             </HeaderBtnConnect>
           )}
         </ResponsiveNavList>
