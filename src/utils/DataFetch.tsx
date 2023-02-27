@@ -272,7 +272,8 @@ export const getAllEvo = async (evolution: IEvolutionChain) => {
       ee.evolves_to.map((eee) => eee.species.url),
     );
     const finalPromiseRes = await Promise.all(
-      finalRes.map((res, i) => axios.get(res[i])),
+      // @ts-ignore
+      finalRes.map((res) => axios.get(res)),
     );
     const results = [
       basePromiseRes.data,

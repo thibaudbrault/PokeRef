@@ -1,4 +1,4 @@
-export interface IFormat {
+export interface IFormatStats {
   battles: number;
   metagame: IMetagame;
   pokemon: IPokemonFormat;
