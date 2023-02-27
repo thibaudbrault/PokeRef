@@ -1,6 +1,7 @@
 import { Input } from '@/components/common/styles/Inputs';
 import { TLink } from '@/components/common/styles/Table';
 import styled from 'styled-components';
+import { device } from '@/components/common/styles/Sizing';
 
 export const AutocompleteInput = styled(Input)`
   min-width: 25rem;
@@ -10,6 +11,10 @@ export const AutocompleteInput = styled(Input)`
     width: 100%;
     height: 100%;
     padding: 0 1rem;
+  }
+
+  @media ${device.xs} {
+    min-width: 0;
   }
 `;
 

@@ -11,7 +11,7 @@ import { useTableParams } from '@/hooks/useTableParams';
 import { IMoveAilment } from '@/types/Moves/MoveAilment';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { LearnMethod } from '@/utils/ObjectsMap';
-import { removeDash } from '@/utils/Typography';
+import { removeDash, uppercase } from '@/utils/Typography';
 import { CellContext, ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -50,17 +50,21 @@ function MovesPokemon({ pokemon, version, name }: Props) {
   const { machines } = useFetchMachines(pokemon, version, name);
 
   const getFirstCellValue = (info: CellContext<IMoveWithDetails, unknown>) => {
-    if (learn === 'level-up') {
-      console.log('first');
+    if (learn === `level-up`) {
       if (info.getValue<number>() > 0) {
         return info.getValue<number>();
       } else if (info.getValue<number>() > 0) {
-        return 'Evolution';
+        return `Evolution`;
       }
     }
-    if (learn === 'machine') {
-      console.log('second');
-      return 'Machine';
+    if (learn === `machine`) {
+      if (machines && machines?.length) {
+        return uppercase(machines[info.row.index].item.name);
+      } else if (!machines?.length) {
+        return `Machine`;
+      }
+    } else {
+      return `-`;
     }
   };
 
@@ -75,9 +79,13 @@ function MovesPokemon({ pokemon, version, name }: Props) {
   const columns = useMemo<ColumnDef<IMoveWithDetails>[]>(
     () => [
       {
-        accessorFn: (row) => row.version_group_details[0].level_learned_at,
-        id: `sort`,
-        header: `Level`,
+        accessorFn: (row) => {
+          if (learn === `level-up`) {
+            return row.version_group_details[0].level_learned_at;
+          }
+        },
+        id: learn === `level-up` || learn === `machine` ? `sort` : `level`,
+        header: learnHeader(),
         cell: (info) => <td>{getFirstCellValue(info)}</td>,
       },
       {
@@ -170,7 +178,7 @@ function MovesPokemon({ pokemon, version, name }: Props) {
         ),
       },
     ],
-    [],
+    [learn, version],
   );
 
   const { tableContainerRef, tableHeader, tableBody } = useTableParams(

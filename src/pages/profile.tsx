@@ -40,9 +40,11 @@ function Profile() {
   });
 
   const getUserDoc = async () => {
-    const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
-    const docSnap = await getDoc(usersCollectionRef);
-    setUser(docSnap.data());
+    if (auth.currentUser) {
+      const usersCollectionRef = doc(db, `users`, auth.currentUser.uid);
+      const docSnap = await getDoc(usersCollectionRef);
+      setUser(docSnap.data());
+    }
   };
 
   const setFormat = (option: SingleValue<IOptions>) => {

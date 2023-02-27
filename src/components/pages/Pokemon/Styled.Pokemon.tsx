@@ -22,9 +22,14 @@ export const PokedexSearch = styled(Search)`
 
   @media ${device.xs} {
     grid-template-columns: 1fr 1fr;
+
     grid-template-areas:
-      'search .'
+      'search form'
       'generation type';
+
+    /* & div {
+      height: 100%;
+    } */
   }
 `;
 

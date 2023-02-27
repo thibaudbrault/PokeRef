@@ -152,7 +152,16 @@ function Filters({
             classNamePrefix="select"
             options={typeOptions}
             placeholder="Select"
-            isOptionDisabled={() => type?.length >= 2}
+            // @ts-ignore
+            components={
+              type &&
+              type?.length >= 2 && {
+                Menu: () => null,
+                MenuList: () => null,
+                DropdownIndicator: () => null,
+                IndicatorSeparator: () => null,
+              }
+            }
             onChange={(option) => {
               handleTypeSelect(option as IOptions[]);
             }}

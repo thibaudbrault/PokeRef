@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { H3 } from '@/components/common/styles/Headings';
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IPokemon } from '@/types/Pokemon/Pokemon';

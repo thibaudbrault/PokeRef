@@ -9,7 +9,7 @@ const MovesTable = dynamic(
 const StatusTable = dynamic(
   () => import(`@/components/pages/Moves/Components/StatusTable.Moves`),
 );
-const StatsTable = dynamic(() => import('../Components/StatsTable.Moves'));
+const StatsTable = dynamic(() => import(`../Components/StatsTable.Moves`));
 
 export const useToggleTable = () => {
   const [moves, status, stats] = useQueries({
