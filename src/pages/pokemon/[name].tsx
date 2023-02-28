@@ -71,7 +71,9 @@ const Sprites = dynamic(
       `@/components/pages/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard`
     ),
 );
-const Nav = dynamic(() => import(`@/components/common/ui/GenNav`));
+const Nav = dynamic(
+  () => import(`@/components/pages/Pokemon/PokemonCard/Nav/Nav.PokemonCard`),
+);
 
 type Props = {
   name: string;
@@ -161,7 +163,11 @@ function PokemonCard({ name }: Props) {
           <Subtitle>{removeDash(species.data?.generation?.name)}</Subtitle>
         )}
 
-        <Nav setGame={setGame} setVersion={setVersion} />
+        <Nav
+          pokemonId={pokemon.data?.id}
+          setGame={setGame}
+          setVersion={setVersion}
+        />
 
         <Data pokemon={pokemon.data} species={species.data} game={game} />
         {evolution.data && <Evolution evolution={evolution.data} name={name} />}

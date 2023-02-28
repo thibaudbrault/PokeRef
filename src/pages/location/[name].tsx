@@ -13,7 +13,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const HeadingLocation = dynamic(
@@ -57,7 +57,13 @@ function LocationCard({ name }: Props) {
     })
     .filter((a) => a.version_details.length);
 
-  const data = useMemo(() => game && filteredArea, [area, game]);
+  const [data, setData] = useState<IPokemonEncounter[]>([]);
+
+  useEffect(() => {
+    if (filteredArea) {
+      setData(filteredArea);
+    }
+  }, [toggleState]);
 
   const columns = useMemo<ColumnDef<IPokemonEncounter>[]>(
     () => [
