@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { device } from '../../common/styles/Sizing';
 
@@ -94,7 +93,7 @@ export const MainNavList = styled.ul`
   }
 `;
 
-export const ResponsiveNav = styled(motion.nav)`
+export const ResponsiveNav = styled.nav`
   height: 100vh;
   width: 100%;
   position: fixed;

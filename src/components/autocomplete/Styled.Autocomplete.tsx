@@ -11,6 +11,10 @@ export const AutocompleteInput = styled(Input)`
     width: 100%;
     height: 100%;
     padding: 0 1rem;
+
+    &::placeholder {
+      font-size: 1.3rem;
+    }
   }
 
   @media ${device.xs} {

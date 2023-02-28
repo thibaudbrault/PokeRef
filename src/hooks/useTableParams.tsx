@@ -18,14 +18,11 @@ export function useTableParams(data, columns) {
   const table = useReactTable({
     data: data ?? [],
     columns,
-    enableColumnFilters: true,
-    enableFilters: true,
     state: {
       sorting,
     },
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     debugTable: true,
   });
@@ -107,5 +104,5 @@ export function useTableParams(data, columns) {
     );
   };
 
-  return { tableContainerRef, tableHeader, tableBody };
+  return { sorting, tableContainerRef, tableHeader, tableBody };
 }

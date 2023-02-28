@@ -101,29 +101,32 @@ function PokemonType({ typeName, pokemon }: Props) {
             2<Sup>nd</Sup> type
           </span>
         ),
-        cell: (info) => (
-          <TType>
-            <Type id={info.getValue<string>()}>
-              <Link
-                href={{
-                  pathname: `/type/[name]`,
-                  query: { name: info.getValue<string>() },
-                }}
-              >
-                <Image
-                  src={
-                    `https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue()}.png` ||
-                    ``
-                  }
-                  alt={`-`}
-                  width={15}
-                  height={15}
-                />
-                <span>{info.getValue<string>()}</span>
-              </Link>
-            </Type>
-          </TType>
-        ),
+        cell: (info) =>
+          info.getValue() ? (
+            <TType>
+              <Type id={info.getValue<string>()}>
+                <Link
+                  href={{
+                    pathname: `/type/[name]`,
+                    query: { name: info.getValue<string>() },
+                  }}
+                >
+                  <Image
+                    src={
+                      `https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue()}.png` ||
+                      ``
+                    }
+                    alt={`-`}
+                    width={15}
+                    height={15}
+                  />
+                  <span>{info.getValue<string>()}</span>
+                </Link>
+              </Type>
+            </TType>
+          ) : (
+            <td>-</td>
+          ),
       },
     ],
     [],

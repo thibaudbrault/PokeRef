@@ -23,7 +23,7 @@ import { SingleValue } from 'react-select';
 type objType = {
   key: string;
   value: IPokemonFormat;
-}
+};
 
 function Profile() {
   const router = useRouter();
@@ -49,11 +49,18 @@ function Profile() {
           getFormat(
             `https://raw.githubusercontent.com/pkmn/smogon/main/data/analyses/${formatQuery}.json`,
           ),
-      }
-    ]
-  })
+      },
+    ],
+  });
 
-  const data = useMemo(() => stats.data && Object.entries(stats.data.pokemon).map(([name, value]) => Object.assign({ name }, value)), [stats.data])
+  const data = useMemo(
+    () =>
+      stats.data &&
+      Object.entries(stats.data.pokemon).map(([name, value]) =>
+        Object.assign({ name }, value),
+      ),
+    [stats.data],
+  );
 
   const columns = useMemo<ColumnDef<IPokemonFormat>[]>(
     () => [
@@ -67,20 +74,27 @@ function Profile() {
         accessorKey: `usage.weighted`,
         id: `sortInv`,
         header: `Usage`,
-        cell: (info) => <td>{((info.getValue<number>()) * 100).toFixed(2)}%</td>,
+        cell: (info) => <td>{(info.getValue<number>() * 100).toFixed(2)}%</td>,
       },
       {
         accessorFn: (row) => Object.entries(row.abilities).flat(),
         id: `abilities`,
         header: `Abilities`,
         enableSorting: false,
-        cell: (info) =>
+        cell: (info) => (
           <td>
-            <p>{info.getValue<(string | number)[]>()[0]} - {(info.getValue<number[]>()[1] * 100).toFixed(2)}%</p>
-            {info.getValue<(string | number)[]>().length > 2 &&
-              <p>{info.getValue<(string | number)[]>()[2]} - {(info.getValue<number[]>()[3] * 100).toFixed(2)}%</p>
-            }
+            <p>
+              {info.getValue<(string | number)[]>()[0]} -{' '}
+              {(info.getValue<number[]>()[1] * 100).toFixed(2)}%
+            </p>
+            {info.getValue<(string | number)[]>().length > 2 && (
+              <p>
+                {info.getValue<(string | number)[]>()[2]} -{' '}
+                {(info.getValue<number[]>()[3] * 100).toFixed(2)}%
+              </p>
+            )}
           </td>
+        ),
       },
     ],
     [],
@@ -163,7 +177,7 @@ function Profile() {
       <section>
         <H2>{user?.name}'s teams</H2>
       </section>
-    </MainBig >
+    </MainBig>
   );
 }
 

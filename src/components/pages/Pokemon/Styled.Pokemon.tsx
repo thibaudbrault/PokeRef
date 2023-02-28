@@ -1,5 +1,4 @@
 import ImageWithFallback from '@/utils/ImageWithFallback';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Search } from '../../common/styles/Inputs';
@@ -64,7 +63,7 @@ export const PokedexVerticalText = styled.p`
   }
 `;
 
-export const PokedexList = styled(motion.ul)`
+export const PokedexList = styled.ul`
   max-width: 1300px;
   margin: 0 auto;
   display: flex;
@@ -74,7 +73,7 @@ export const PokedexList = styled(motion.ul)`
   gap: 2rem;
 `;
 
-export const PokedexElement = styled(motion.li)`
+export const PokedexElement = styled.li`
   width: 21rem;
   height: 32rem;
   padding: 2rem 3rem;
