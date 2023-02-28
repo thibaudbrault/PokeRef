@@ -74,6 +74,7 @@ export const Dropdown = styled(Select)`
 
     & .select__placeholder {
       color: ${({ theme }) => theme.secondary};
+      font-size: 1.3rem;
     }
 
     & .select__indicator-separator {

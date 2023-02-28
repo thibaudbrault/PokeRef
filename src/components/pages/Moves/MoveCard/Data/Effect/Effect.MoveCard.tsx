@@ -171,7 +171,7 @@ function Effect({ move, version }: Props) {
                       had {mp.pp} PP
                     </li>
                   )}
-                  {mp.type.name !== null && (
+                  {mp.type?.name !== null && (
                     <li>
                       Before{` `}
                       <Capitalize>
@@ -182,7 +182,7 @@ function Effect({ move, version }: Props) {
                         <i>{removeDash(move.name)}</i>
                       </Capitalize>
                       {` `}
-                      was {mp.type.name} type
+                      was {mp.type?.name} type
                     </li>
                   )}
                 </>

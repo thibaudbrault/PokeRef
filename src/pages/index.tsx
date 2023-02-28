@@ -37,7 +37,6 @@ function Pokedex() {
   const [generation, setGeneration] = useState<IOptionsOffsetLimit | null>(
     null,
   );
-  const [showPlaceholder, setShowPlaceholder] = useState(true);
 
   const { scrollBtn } = useScrollDir();
 
@@ -77,14 +76,9 @@ function Pokedex() {
           setType={setType}
           generation={generation}
           setGeneration={setGeneration}
-          setShowPlaceholder={setShowPlaceholder}
         />
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
-        <ListPokemon
-          filteredPokedex={filteredPokedex}
-          showPlaceholder={showPlaceholder}
-          setShowPlaceholder={setShowPlaceholder}
-        />
+        <ListPokemon filteredPokedex={filteredPokedex} />
         {scrollBtn()}
       </MainBig>
     </>

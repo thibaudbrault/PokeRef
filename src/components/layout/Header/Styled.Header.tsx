@@ -19,6 +19,10 @@ export const HeaderBtnConnect = styled.div`
     cursor: pointer;
     transition: 0.3s ease-in-out;
 
+    @media ${device.md} {
+      font-size: 3rem;
+    }
+
     &:first-of-type {
       background: transparent;
       border-color: ${({ theme }) => theme.secondary};
