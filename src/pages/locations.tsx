@@ -5,6 +5,7 @@ import { LocationSection } from '@/components/pages/Locations/Styled.Locations';
 import { IRegion } from '@/types/Locations/Region';
 import { regions } from '@/utils/DataArrays';
 import { getRegions } from '@/utils/DataFetch';
+import { capitalize } from '@/utils/Typography';
 import {
   dehydrate,
   QueryClient,
@@ -56,9 +57,7 @@ function LocationsPage() {
         <ListLocations location={location} locations={locations} />
         {location === `galar` || location === `hisui` ? (
           <LocationSection>
-            <p>
-              No data for {location.charAt(0).toUpperCase() + location.slice(1)}
-            </p>
+            <p>No data for {capitalize(location)}</p>
           </LocationSection>
         ) : null}
       </MainBig>

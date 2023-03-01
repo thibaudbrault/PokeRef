@@ -108,6 +108,7 @@ export const typeOptions: IOptions[] = [
 type PokemonFilters = {
   game: string;
   version: string;
+  format: string;
   min: number;
   max: number;
 }[];
@@ -116,60 +117,70 @@ export const pokemonFilters: PokemonFilters = [
   {
     game: `yellow`,
     version: `yellow`,
+    format: 'gen1',
     min: 0,
     max: 152,
   },
   {
     game: `crystal`,
     version: `crystal`,
+    format: 'gen2',
     min: 151,
     max: 252,
   },
   {
     game: `emerald`,
     version: `emerald`,
+    format: 'gen3',
     min: 251,
     max: 387,
   },
   {
     game: `platinum`,
     version: `platinum`,
+    format: 'gen4',
     min: 386,
     max: 494,
   },
   {
     game: `black-2`,
     version: `black-2-white-2`,
+    format: 'gen5',
     min: 493,
     max: 650,
   },
   {
     game: `x`,
     version: `x-y`,
+    format: 'gen6',
     min: 649,
     max: 722,
   },
   {
     game: `ultra-sun`,
     version: `ultra-sun-ultra-moon`,
+    format: 'gen7',
     min: 721,
     max: 810,
   },
   {
     game: `sword`,
     version: `sword-shield`,
+    format: 'gen8',
     min: 809,
     max: 898,
   },
   {
     game: `legends-arceus`,
     version: `legends-arceus`,
+    format: 'gen8',
     min: 897,
     max: 905,
   },
   {
     game: `scarlet`,
     version: `scarlet-violet`,
+    format: 'gen9',
     min: 904,
     max: 1008,
   },
@@ -388,22 +399,5 @@ export const formatOptions = [
   { value: `gen9monotype`, label: `Gen 9 - Monotype` },
   { value: `gen9ubers`, label: `Gen 9 - Ubers` },
   { value: `gen9lc`, label: `Gen 9 - Little cup` },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
   // { value: '', label: '' },
 ];

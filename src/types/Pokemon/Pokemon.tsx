@@ -18,6 +18,7 @@ export interface IPokemon {
   held_items: IPokemonHeldItem[];
   location_area_encounters: string;
   moves: IPokemonMove[];
+  past_types: IPastTypes[];
   sprites: IPokemonSprites;
   species: INamedApiResource;
   stats: IPokemonStat[];
@@ -60,6 +61,11 @@ export interface IPokemonStat {
   stat: INamedApiResource;
   effort: number;
   base_stat: number;
+}
+
+export interface IPastTypes {
+  generation: INamedApiResource;
+  types: IPokemonType[];
 }
 
 export interface IPokemonSprites {

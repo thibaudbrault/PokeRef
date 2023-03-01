@@ -1,12 +1,12 @@
 import ImageWithFallback from '@/utils/ImageWithFallback';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { Search } from '../../common/styles/Inputs';
 import { device } from '../../common/styles/Sizing';
 
-export const PokedexSearch = styled(Search)`
-  align-items: stretch;
-  gap: 1rem;
+export const PokedexSearch = styled.section`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
 
   @media ${device.md} {
     display: grid;
@@ -21,21 +21,17 @@ export const PokedexSearch = styled(Search)`
 
   @media ${device.xs} {
     grid-template-columns: 1fr 1fr;
-
     grid-template-areas:
       'search form'
       'generation type';
-
-    /* & div {
-      height: 100%;
-    } */
   }
 `;
 
 export const PokedexDropdown = styled.div`
+  width: 100%;
   display: flex;
   align-items: start;
-  justify-content: center;
+  justify-content: stretch;
   flex-direction: column;
 
   & label {

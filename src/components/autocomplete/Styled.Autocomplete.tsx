@@ -5,7 +5,6 @@ import { device } from '@/components/common/styles/Sizing';
 
 export const AutocompleteInput = styled(Input)`
   min-width: 25rem;
-  grid-area: search;
 
   & input {
     width: 100%;
@@ -14,7 +13,12 @@ export const AutocompleteInput = styled(Input)`
 
     &::placeholder {
       font-size: 1.3rem;
+      color: ${({ theme }) => theme.secondary};
     }
+  }
+
+  @media ${device.md} {
+    grid-area: search;
   }
 
   @media ${device.xs} {

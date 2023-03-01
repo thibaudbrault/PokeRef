@@ -4,6 +4,7 @@ import Base from './Base/Base.PokemonCard';
 import Desc from './Desc/Desc.PokemonCard';
 import Sprite from './Sprite/Sprite.PokemonCard';
 import {
+  PokemonDataContainer,
   PokemonDataSection,
   PokemonDataSprite,
 } from './Styled.Data.PokemonCard';
@@ -17,10 +18,10 @@ type Props = {
 function Data({ pokemon, species, game }: Props) {
   return (
     <PokemonDataSection>
-      <div>
+      <PokemonDataContainer>
         <Desc species={species} pokemon={pokemon} game={game} />
         <Base species={species} pokemon={pokemon} />
-      </div>
+      </PokemonDataContainer>
       <PokemonDataSprite>
         <Sprite species={species} pokemon={pokemon} />
       </PokemonDataSprite>
