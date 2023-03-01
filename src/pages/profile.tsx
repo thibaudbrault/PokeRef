@@ -8,22 +8,15 @@ import Loader from '@/components/common/ui/Loader/Loader';
 import { LocationTable } from '@/components/pages/Locations/Styled.Locations';
 import { ProfileList } from '@/components/pages/Profile/Styled.Profile';
 import { auth, db } from '@/firebase-config';
-import { useTableParams } from '@/hooks/useTableParams';
 import { IPokemonFormat } from '@/types/Profile/Stats';
 import { formatOptions, IOptions } from '@/utils/DataArrays';
 import { getFormat } from '@/utils/DataFetch';
 import { useQueries } from '@tanstack/react-query';
-import { ColumnDef } from '@tanstack/react-table';
 import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { SingleValue } from 'react-select';
-
-type objType = {
-  key: string;
-  value: IPokemonFormat;
-};
 
 function Profile() {
   const router = useRouter();
@@ -52,58 +45,6 @@ function Profile() {
       },
     ],
   });
-
-  const data = useMemo(
-    () =>
-      stats.data &&
-      Object.entries(stats.data.pokemon).map(([name, value]) =>
-        Object.assign({ name }, value),
-      ),
-    [stats.data],
-  );
-
-  const columns = useMemo<ColumnDef<IPokemonFormat>[]>(
-    () => [
-      {
-        accessorKey: `name`,
-        id: `name`,
-        header: `Name`,
-        cell: (info) => <TBold>{info.getValue<string>()}</TBold>,
-      },
-      {
-        accessorKey: `usage.weighted`,
-        id: `sortInv`,
-        header: `Usage`,
-        cell: (info) => <td>{(info.getValue<number>() * 100).toFixed(2)}%</td>,
-      },
-      {
-        accessorFn: (row) => Object.entries(row.abilities).flat(),
-        id: `abilities`,
-        header: `Abilities`,
-        enableSorting: false,
-        cell: (info) => (
-          <td>
-            <p>
-              {info.getValue<(string | number)[]>()[0]} -{' '}
-              {(info.getValue<number[]>()[1] * 100).toFixed(2)}%
-            </p>
-            {info.getValue<(string | number)[]>().length > 2 && (
-              <p>
-                {info.getValue<(string | number)[]>()[2]} -{' '}
-                {(info.getValue<number[]>()[3] * 100).toFixed(2)}%
-              </p>
-            )}
-          </td>
-        ),
-      },
-    ],
-    [],
-  );
-
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
 
   const getUserDoc = async () => {
     if (auth.currentUser) {
@@ -165,14 +106,6 @@ function Profile() {
                 </li>
               ))}
         </ProfileList>
-      </Section>
-      <Section>
-        <TableContainer ref={tableContainerRef}>
-          <LocationTable>
-            {tableHeader()}
-            {tableBody()}
-          </LocationTable>
-        </TableContainer>
       </Section>
       <section>
         <H2>{user?.name}'s teams</H2>
