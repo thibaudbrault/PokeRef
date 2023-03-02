@@ -8,6 +8,8 @@ export interface IFormatAnalysesSetsObject {
 
 export interface IFormatAnalysesSets {
   sets: IFormatsAnalysesSetName[];
+  comments?: string;
+  overview?: string;
 }
 
 export interface IFormatsAnalysesSetName {

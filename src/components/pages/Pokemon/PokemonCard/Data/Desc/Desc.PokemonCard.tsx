@@ -25,8 +25,6 @@ function Desc({ pokemon, species, game }: Props) {
       (sf) => sf.language.name === `en` && sf.version.name === game,
     );
 
-  console.log(pokemon);
-
   return (
     <>
       <ul>
