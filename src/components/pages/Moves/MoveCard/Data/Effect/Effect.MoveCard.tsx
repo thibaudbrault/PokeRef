@@ -76,20 +76,20 @@ function Effect({ move, version }: Props) {
               Recovers {move.meta.flinch_chance}% of the user's maximum HP
             </li>
           )}
-          {move?.meta?.min_hits !== null && (
+          {move?.meta?.min_hits && (
             <li>
               This move hits between {move.meta.min_hits} and{` `}
               {move.meta.max_hits} times
             </li>
           )}
-          {move?.meta?.min_turns !== null &&
+          {move?.meta?.min_turns &&
             move.meta.min_turns !== move.meta.max_turns && (
               <li>
                 This move last between {move.meta.min_turns} and{` `}
                 {move.meta.max_turns} turns
               </li>
             )}
-          {move?.meta?.min_turns !== null &&
+          {move?.meta?.min_turns &&
             move.meta.min_turns === move.meta.max_turns && (
               <li>This move last {move.meta.min_turns} turns</li>
             )}
@@ -129,7 +129,7 @@ function Effect({ move, version }: Props) {
             <MoveCardDataStat>
               {move.past_values?.map((mp) => (
                 <>
-                  {mp.power !== null && (
+                  {mp.power && (
                     <li>
                       Before{` `}
                       <Capitalize>
@@ -143,7 +143,7 @@ function Effect({ move, version }: Props) {
                       had {mp.power} base power
                     </li>
                   )}
-                  {mp.accuracy !== null && (
+                  {mp.accuracy && (
                     <li>
                       Before{` `}
                       <Capitalize>
@@ -157,7 +157,7 @@ function Effect({ move, version }: Props) {
                       had {mp.accuracy} accuracy
                     </li>
                   )}
-                  {mp.pp !== null && (
+                  {mp.pp && (
                     <li>
                       Before{` `}
                       <Capitalize>
@@ -171,7 +171,7 @@ function Effect({ move, version }: Props) {
                       had {mp.pp} PP
                     </li>
                   )}
-                  {mp.type?.name !== null && (
+                  {mp.type && (
                     <li>
                       Before{` `}
                       <Capitalize>

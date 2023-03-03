@@ -1,27 +1,31 @@
 import { IMachine } from '@/types/Machines/Machine';
-import { getMove, getMoveMachines, getPokedex } from '@/utils/DataFetch';
-import { useQueries, useQuery, UseQueryResult } from '@tanstack/react-query';
+import { IMove } from '@/types/Moves/Move';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { getMove, getMoveMachines, getMovePokemon } from '@/utils/DataFetch';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { useState } from 'react';
 
 export const useFetchMove = (name: string) => {
-  const [move, pokedex] = useQueries({
-    queries: [
-      {
-        queryKey: [`move`, name],
-        queryFn: () => getMove(name),
-      },
-      {
-        queryKey: [`pokedex`],
-        queryFn: () =>
-          getPokedex(`https://pokeapi.co/api/v2/pokemon?limit=1008`),
-      },
-    ],
+  const {
+    isLoading,
+    isError,
+    error,
+    data: move,
+  }: UseQueryResult<IMove, Error> = useQuery({
+    queryKey: [`move`, name],
+    queryFn: () => getMove(name),
+  });
+
+  const { status, data: pokemon }: UseQueryResult<IPokemon[]> = useQuery({
+    queryKey: ['pokemonMove'],
+    queryFn: () => move && getMovePokemon(move),
+    enabled: !!move,
   });
 
   const { data: machine }: UseQueryResult<IMachine[]> = useQuery({
     queryKey: [`machine`],
-    queryFn: () => getMoveMachines(move.data),
-    enabled: !!move.data,
+    queryFn: () => move && getMoveMachines(move),
+    enabled: !!move,
   });
 
   // Version of the returned data is from the latest available from PokéAPI
@@ -32,7 +36,11 @@ export const useFetchMove = (name: string) => {
 
   return {
     move,
-    pokedex,
+    isLoading,
+    isError,
+    error,
+    pokemon,
+    status,
     machine,
     version,
     setVersion,

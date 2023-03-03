@@ -8,13 +8,13 @@ import ImageWithFallback from '@/utils/ImageWithFallback';
 import { removeDash } from '@/utils/Typography';
 
 type Props = {
-  pokedex?: IPokemon[];
+  pokemon?: IPokemon[];
   moveName: string;
   version: string;
   toggle: number;
 };
 
-function Content({ pokedex, moveName, version, toggle }: Props) {
+function Content({ pokemon, moveName, version, toggle }: Props) {
   const conditionFilter = (pmv: IPokemonMoveVersion) => {
     if (toggle === 0) {
       return (
@@ -42,7 +42,7 @@ function Content({ pokedex, moveName, version, toggle }: Props) {
   return (
     <>
       <MoveList>
-        {pokedex?.map((p) =>
+        {pokemon?.map((p) =>
           p.moves.map(
             (pm) =>
               pm.move.name.includes(moveName) &&

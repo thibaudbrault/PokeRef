@@ -80,6 +80,8 @@ export const LocationTable = styled(FullWidthTable)`
   & td {
     padding: 0;
     text-transform: capitalize;
+    border-top: 2px solid rgba(130, 130, 130, 0.2);
+    border-bottom: 2px solid rgba(130, 130, 130, 0.2);
     & p {
       padding: 1.5rem;
       border-top: 1px solid rgba(130, 130, 130, 0.2);

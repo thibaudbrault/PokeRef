@@ -6,8 +6,9 @@ import Loader from '@/components/common/ui/Loader/Loader';
 import { useSwitchGame } from '@/components/pages/Locations/LocationCard/Hooks/useSwitchGame';
 import { LocationTable } from '@/components/pages/Locations/Styled.Locations';
 import { useTableParams } from '@/hooks/useTableParams';
+import { IEncounterConditionValue } from '@/types/Encounters/EncounterConditionValue';
 import { IPokemonEncounter } from '@/types/Locations/LocationArea';
-import { IEncounter } from '@/types/Utility/CommonModels';
+import { IEncounter, IName } from '@/types/Utility/CommonModels';
 import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import { GetServerSidePropsContext } from 'next';
@@ -43,6 +44,7 @@ function LocationCard({ name }: Props) {
     error,
     location,
     area,
+    encounter,
   } = useSwitchGame(name);
 
   const filteredArea = area?.pokemon_encounters
@@ -57,13 +59,19 @@ function LocationCard({ name }: Props) {
     })
     .filter((a) => a.version_details.length);
 
+  const filteredEncounter = (condition: string) => {
+    return encounter.data?.find(
+      (e: IEncounterConditionValue) => e.name === condition,
+    );
+  };
+
   const [data, setData] = useState<IPokemonEncounter[]>([]);
 
   useEffect(() => {
     if (filteredArea) {
       setData(filteredArea);
     }
-  }, [toggleState]);
+  }, [area]);
 
   const columns = useMemo<ColumnDef<IPokemonEncounter>[]>(
     () => [
@@ -120,7 +128,13 @@ function LocationCard({ name }: Props) {
               .map((i) =>
                 i.condition_values.length > 0 ? (
                   i.condition_values.map((icv) => (
-                    <p key={icv.name}>{removeDash(icv.name)}</p>
+                    <p key={icv.name}>
+                      {
+                        filteredEncounter(icv.name).names.find(
+                          (en: IName) => en.language.name === 'en',
+                        ).name
+                      }
+                    </p>
                   ))
                 ) : (
                   <p key={i.min_level + i.max_level}>-</p>
@@ -130,7 +144,7 @@ function LocationCard({ name }: Props) {
         ),
       },
     ],
-    [],
+    [filteredArea],
   );
 
   const { tableContainerRef, tableHeader, tableBody } = useTableParams(
@@ -152,16 +166,16 @@ function LocationCard({ name }: Props) {
       <MainBig>
         <CardTitle>
           {location &&
-            removeDash(location?.name).replace(
+            removeDash(location.data?.name).replace(
               /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea/g,
               ``,
             )}
         </CardTitle>
         <Subtitle>
-          {game && `${location?.region.name} - ${removeDash(game)}`}
+          {game && `${location.data?.region.name} - ${removeDash(game)}`}
         </Subtitle>
         <AreaLocationCard
-          location={location}
+          location={location.data}
           toggleState={toggleState}
           toggleTable={toggleTable}
         />

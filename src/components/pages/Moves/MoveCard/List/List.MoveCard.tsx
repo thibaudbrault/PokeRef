@@ -10,14 +10,14 @@ import {
 } from './Text/Text.MoveCard';
 
 type Props = {
-  pokedex?: IPokemon[];
+  pokemon?: IPokemon[];
   status: string;
   moveName: string;
   version: string;
   toggle: number;
 };
 
-function List({ pokedex, status, moveName, version, toggle }: Props) {
+function List({ pokemon, status, moveName, version, toggle }: Props) {
   const textShown = () => {
     if (toggle === 0) {
       return <LevelMoveText version={version} />;
@@ -40,7 +40,7 @@ function List({ pokedex, status, moveName, version, toggle }: Props) {
     <>
       {textShown()}
       <Content
-        pokedex={pokedex}
+        pokemon={pokemon}
         moveName={moveName}
         version={version}
         toggle={toggle}

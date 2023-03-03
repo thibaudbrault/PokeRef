@@ -157,6 +157,23 @@ export const getRegions = async () => {
   }
 };
 
+// Fetch all encounter condition
+export const getEncounterCondition = async () => {
+  try {
+    const res = await axios.get(
+      `https://pokeapi.co/api/v2/encounter-condition-value?limit=67`,
+    );
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string }) => axios.get(res.url)),
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // Fetch single pokemon
 export const getPokemon = async (url: string) => {
   try {
@@ -185,6 +202,18 @@ export const getMove = async (name: string) => {
   try {
     const res = await axios.get(`https://pokeapi.co/api/v2/move/${name}`);
     const results = await res.data;
+    return results;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Fetch move's pokemon array
+export const getMovePokemon = async (move: IMove) => {
+  try {
+    const res = move.learned_by_pokemon.map((p) => p.url);
+    const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
+    const results = promiseRes.map((res) => res.data);
     return results;
   } catch (err) {
     console.error(err);
