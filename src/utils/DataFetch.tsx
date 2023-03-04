@@ -174,6 +174,23 @@ export const getEncounterCondition = async () => {
   }
 };
 
+// Fetch all encounter methods
+export const getEncounterMethod = async () => {
+  try {
+    const res = await axios.get(
+      `https://pokeapi.co/api/v2/encounter-method?limit=31`,
+    );
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string }) => axios.get(res.url)),
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // Fetch single pokemon
 export const getPokemon = async (url: string) => {
   try {

@@ -83,11 +83,28 @@ export const LocationTable = styled(FullWidthTable)`
     border-top: 2px solid rgba(130, 130, 130, 0.2);
     border-bottom: 2px solid rgba(130, 130, 130, 0.2);
     & p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
       padding: 1.5rem;
       border-top: 1px solid rgba(130, 130, 130, 0.2);
 
       &:first-of-type {
         border-top: none;
+      }
+    }
+
+    & span {
+      &:after {
+        margin-left: 1rem;
+        content: '&';
+      }
+
+      &:last-of-type {
+        &:after {
+          content: '';
+        }
       }
     }
   }

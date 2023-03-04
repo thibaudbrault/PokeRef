@@ -1,6 +1,11 @@
 import { ILocation } from '@/types/Locations/Location';
 import { ILocationArea } from '@/types/Locations/LocationArea';
-import { getArea, getEncounterCondition, getLocation } from '@/utils/DataFetch';
+import {
+  getArea,
+  getEncounterCondition,
+  getEncounterMethod,
+  getLocation,
+} from '@/utils/DataFetch';
 import { useQueries, useQuery, UseQueryResult } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
@@ -14,18 +19,23 @@ export const useSwitchGame = (name: string) => {
     setToggleState(index);
   };
 
-  const [location, encounter] = useQueries({
+  const [location, encounter, method] = useQueries({
     queries: [
       {
         queryKey: [`location`, toggleState, name],
         queryFn: () => getLocation(name),
         onSuccess: (data: ILocation) => {
+          console.log(data);
           setAreaUrl(data.areas[toggleState]?.url);
         },
       },
       {
         queryKey: ['encounterCondition'],
         queryFn: getEncounterCondition,
+      },
+      {
+        queryKey: ['encounterMethod'],
+        queryFn: getEncounterMethod,
       },
     ],
   });
@@ -83,5 +93,6 @@ export const useSwitchGame = (name: string) => {
     location,
     area,
     encounter,
+    method,
   };
 };
