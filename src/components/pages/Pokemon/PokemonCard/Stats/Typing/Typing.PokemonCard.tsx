@@ -12,7 +12,7 @@ type Props = {
 };
 
 function Typing({ pokemon, types }: Props) {
-  const [toggle, setToggle] = useState(1);
+  const [toggle, setToggle] = useState<number>(1);
   const pageShown = () => {
     if (toggle === 1) {
       return <TableTyping target="to" />;

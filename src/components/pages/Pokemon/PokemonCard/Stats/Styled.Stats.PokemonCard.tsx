@@ -4,14 +4,14 @@ import styled from 'styled-components';
 
 export const PokemonStatsSection = styled.section`
   margin-bottom: 5rem;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
 
   @media ${device.lg} {
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
     gap: 5rem;
 
@@ -26,6 +26,32 @@ export const PokemonStatsText = styled.td`
   font-size: 1.5rem;
   text-transform: capitalize;
   vertical-align: middle;
+`;
+
+export const PokemonStatsCircles = styled.div`
+  margin: 3rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  height: 15rem;
+
+  & .CircularProgressbar {
+    height: 100%;
+
+    &-trail {
+      stroke: ${({ theme }) => theme.secondary};
+    }
+
+    &-path {
+      stroke: ${({ theme }) => theme.red};
+    }
+
+    &-text {
+      fill: ${({ theme }) => theme.secondary};
+      font-size: 1.3rem;
+      stroke-width: 0.4;
+    }
+  }
 `;
 
 export const PokemonStatsBars = styled.td`

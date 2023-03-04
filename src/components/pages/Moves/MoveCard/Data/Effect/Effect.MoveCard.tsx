@@ -1,7 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Bold, Capitalize, H3, H4 } from '@/components/common/styles/Headings';
+import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IMove } from '@/types/Moves/Move';
+import { IMoveTarget } from '@/types/Moves/MoveTarget';
+import { IDescription } from '@/types/Utility/CommonModels';
+import { getMoveTarget } from '@/utils/DataFetch';
 import { removeDash } from '@/utils/Typography';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 import {
   MoveCardDataList,
   MoveCardDataMeta,
@@ -16,6 +22,28 @@ type Props = {
 };
 
 function Effect({ move, version }: Props) {
+  const {
+    isLoading,
+    isError,
+    error,
+    data: target,
+  }: UseQueryResult<IMoveTarget[], Error> = useQuery({
+    queryKey: ['target'],
+    queryFn: getMoveTarget,
+  });
+
+  const filteredTarget = (condition: string) => {
+    return target?.find((t: IMoveTarget) => t.name === condition);
+  };
+
+  if (isError) {
+    return toast.error(`Something went wrong: ${error?.message}`);
+  }
+
+  if (isLoading) {
+    return <SmallLoader />;
+  }
+
   return (
     <MoveCardDataList>
       <li>
@@ -28,7 +56,10 @@ function Effect({ move, version }: Props) {
           </Capitalize>
           {move.effect_entries
             ?.find((me) => me.language.name === `en`)
-            ?.effect.replace(/\$effect_chance/g, `${move.meta.ailment_chance}`)
+            ?.short_effect.replace(
+              /\$effect_chance/g,
+              `${move.meta.stat_chance || move.meta.ailment_chance}`,
+            )
             .replace(`(100 - accuracy)`, (100 - move.accuracy).toString())
             .toLowerCase()}
           <br />
@@ -45,14 +76,18 @@ function Effect({ move, version }: Props) {
         <MoveCardDataMeta>
           {move?.meta.ailment?.name !== `none` && (
             <li>
-              <Bold>Status</Bold> :{` `}
-              <Capitalize>{move.meta.ailment.name}</Capitalize>
-            </li>
-          )}
-          {move?.meta?.ailment_chance !== 0 && (
-            <li>
-              Has a {move.meta.ailment_chance}% chance to{` `}
-              {move.meta.ailment.name} the target
+              <p>
+                <Bold>Status</Bold> :{` `}
+                <Capitalize>{move.meta.ailment.name}</Capitalize>
+              </p>
+              <p>
+                {move?.meta?.ailment_chance !== 0 && (
+                  <span>
+                    Has a {move.meta.ailment_chance}% chance to{` `}
+                    {move.meta.ailment.name} the target
+                  </span>
+                )}
+              </p>
             </li>
           )}
           {move?.meta?.crit_rate !== 0 && (
@@ -104,16 +139,23 @@ function Effect({ move, version }: Props) {
               {move.stat_changes?.map((ms) =>
                 ms.change < 0 ? (
                   <li key={ms.stat.name}>
-                    This move lower the target's{` `}
+                    This move{' '}
+                    {move.meta.stat_chance !== 0 &&
+                      `has a ${move.meta.stat_chance}% chance to`}{' '}
+                    lower the target's{` `}
                     <Capitalize>{removeDash(ms.stat.name)}</Capitalize> by{` `}
-                    {ms.change} stage
+                    {Math.abs(ms.change)} stage
                   </li>
                 ) : (
                   <li key={ms.stat.name}>
-                    This move raises the target's{` `}
+                    This move{' '}
+                    {move.meta.stat_chance !== 0
+                      ? `has a ${move.meta.stat_chance}% chance to raise`
+                      : 'raises'}{' '}
+                    the target's{` `}
                     <Capitalize>{ms.stat.name}</Capitalize>
                     {` `}
-                    by {ms.change} stage
+                    by {Math.abs(ms.change)} stage
                   </li>
                 ),
               )}
@@ -194,7 +236,13 @@ function Effect({ move, version }: Props) {
 
       <li>
         <H4>Target</H4>
-        <MoveCardDataTarget>{removeDash(move.target.name)}</MoveCardDataTarget>
+        <MoveCardDataTarget>
+          {
+            filteredTarget(move.target.name)?.descriptions.find(
+              (td: IDescription) => td.language.name === 'en',
+            )?.description
+          }
+        </MoveCardDataTarget>
       </li>
     </MoveCardDataList>
   );

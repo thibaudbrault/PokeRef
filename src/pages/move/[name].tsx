@@ -54,6 +54,8 @@ function MoveCard({ name }: Props) {
     return <Loader />;
   }
 
+  console.log(move);
+
   return (
     <>
       <HeadingMove name={name} />
