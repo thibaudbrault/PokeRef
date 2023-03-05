@@ -2,9 +2,9 @@ import { Subtitle, Title } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
-import Competitive from '@/components/pages/Pokemon/PokemonCard/Competitive/Competitive.PokemonCard';
 import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
 import { useFetchPokemon } from '@/components/pages/Pokemon/PokemonCard/Hooks/useFetchPokemon';
+import Typing from '@/components/pages/Pokemon/PokemonCard/Types/Types.PokemonCard';
 import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
@@ -28,10 +28,18 @@ interface IMovesProps {
   name: string;
 }
 
+interface ICompetitiveProps {
+  format: string;
+  name: string;
+}
+
 interface IFormsProps {
   pokemon: IPokemon;
 }
 
+const Nav = dynamic(
+  () => import(`@/components/pages/Pokemon/PokemonCard/Nav/Nav.PokemonCard`),
+);
 const Data = dynamic(
   () => import(`@/components/pages/Pokemon/PokemonCard/Data/Data.PokemonCard`),
 );
@@ -60,6 +68,12 @@ const Locations = dynamic(
       `@/components/pages/Pokemon/PokemonCard/Locations/Locations.PokemonCard`
     ),
 );
+const Competitive = dynamic<ICompetitiveProps>(
+  () =>
+    import(
+      '@/components/pages/Pokemon/PokemonCard/Competitive/Competitive.PokemonCard'
+    ) as any,
+);
 const Forms = dynamic<IFormsProps>(
   () =>
     import(
@@ -71,9 +85,6 @@ const Sprites = dynamic(
     import(
       `@/components/pages/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard`
     ),
-);
-const Nav = dynamic(
-  () => import(`@/components/pages/Pokemon/PokemonCard/Nav/Nav.PokemonCard`),
 );
 
 type Props = {
@@ -176,7 +187,9 @@ function PokemonCard({ name }: Props) {
           />
         )}
 
-        <Stats pokemon={pokemon.data} types={types.data} />
+        <Stats pokemon={pokemon.data} />
+
+        <Typing pokemon={pokemon.data} types={types.data} />
 
         {version && (
           <Moves pokemon={pokemon.data} version={version} name={name} />

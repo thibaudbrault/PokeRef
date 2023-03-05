@@ -1,32 +1,5 @@
 import { device } from '@/components/common/styles/Sizing';
-import { TypeDamageTable } from '@/components/pages/Types/TypeCard/Styled.TypeCard';
 import styled from 'styled-components';
-
-export const PokemonStatsSection = styled.section`
-  margin-bottom: 5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5rem;
-
-  @media ${device.lg} {
-    display: flex;
-    flex-direction: column;
-    gap: 5rem;
-
-    & div {
-      width: 100%;
-    }
-  }
-`;
-
-export const PokemonStatsText = styled.td`
-  padding: 1rem;
-  font-size: 1.5rem;
-  text-transform: capitalize;
-  vertical-align: middle;
-`;
 
 export const PokemonStatsCircles = styled.div`
   margin: 3rem 0 0;
@@ -52,60 +25,27 @@ export const PokemonStatsCircles = styled.div`
       stroke-width: 0.4;
     }
   }
-`;
 
-export const PokemonStatsBars = styled.td`
-  width: 100%;
-  min-width: 150px;
-  vertical-align: middle;
-
-  & div {
-    position: relative;
-    width: 100%;
-    height: 12px;
-    background: ${({ theme }) => theme.main};
-    border: 1px solid ${({ theme }) => theme.secondary};
-    border-radius: 40px;
-
-    & span {
-      max-width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 10px;
-      background: ${({ theme }) => theme.secondary};
-      border-radius: 40px;
-    }
+  @media ${device.lg} {
+    height: 30rem;
+    row-gap: 3rem;
+    grid-template-columns: repeat(3, 1fr);
   }
-`;
 
-export const PokemonStatsTotal = styled.td`
-  padding: 1rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  vertical-align: middle;
-`;
-
-export const PokemonTypesContainer = styled.div`
   @media ${device.sm} {
-    width: 100%;
-    margin-top: 1rem;
+    height: 45rem;
+    row-gap: 4rem;
+    grid-template-columns: 1fr 1fr;
+
+    & .CircularProgressbar {
+      &-text {
+        font-size: 2rem;
+      }
+    }
   }
 `;
 
-export const PokemonTypesTable = styled(TypeDamageTable)`
-  height: auto;
-  & tr {
-    & td {
-      height: auto;
-    }
-
-    &:nth-of-type(3) {
-      border-bottom: 1px solid rgba(130, 130, 130, 0.2);
-    }
-  }
-
-  &:first-of-type {
-    margin-bottom: 0;
-  }
+export const PokemonStatsTotal = styled.p`
+  margin: 2rem 0;
+  font-size: 1.7rem;
 `;
