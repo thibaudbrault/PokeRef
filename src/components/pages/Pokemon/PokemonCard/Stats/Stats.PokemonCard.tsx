@@ -8,6 +8,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import CalculatorStats from './Calculator/Calculator.Stats.PokemonCard';
 import {
   PokemonStatsCircles,
+  PokemonStatsDetails,
   PokemonStatsTotal,
 } from './Styled.Stats.PokemonCard';
 
@@ -138,10 +139,10 @@ function Bars({ pokemon }: Props) {
           <Bold>Total</Bold>: {percentageTotal}
         </PokemonStatsTotal>
       )}
-      <details>
-        <summary>Stat calculator</summary>
-        <CalculatorStats />
-      </details>
+      <PokemonStatsDetails>
+        <summary>Stats calculator</summary>
+        <CalculatorStats baseStat={pokemon.stats} />
+      </PokemonStatsDetails>
     </Section>
   );
 }

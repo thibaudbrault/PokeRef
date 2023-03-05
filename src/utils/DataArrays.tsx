@@ -392,6 +392,40 @@ export const genNav: GenNav = [
   },
 ];
 
+type Natures = {
+  name: string;
+  positive: string;
+  negative: string;
+};
+
+export const pokemonNatures: Natures[] = [
+  { name: 'Lonely', positive: 'Attack', negative: 'Defense' },
+  { name: 'Adamant', positive: 'Attack', negative: 'Sp-Atk' },
+  { name: 'Naughty', positive: 'Attack', negative: 'Sp-Def' },
+  { name: 'Brave', positive: 'Attack', negative: 'Speed' },
+  { name: 'Bold', positive: 'Defense', negative: 'Attack' },
+  { name: 'Impish', positive: 'Defense', negative: 'Sp-Atk' },
+  { name: 'Lax', positive: 'Defense', negative: 'Sp-Def' },
+  { name: 'Relaxed', positive: 'Defense', negative: 'Speed' },
+  { name: 'Modest', positive: 'Sp-Atk', negative: 'Attack' },
+  { name: 'Mild', positive: 'Sp-Atk', negative: 'Defense' },
+  { name: 'Rash', positive: 'Sp-Atk', negative: 'Sp-Def' },
+  { name: 'Quiet', positive: 'Sp-Atk', negative: 'Speed' },
+  { name: 'Calm', positive: 'Sp-Def', negative: 'Attack' },
+  { name: 'Gentle', positive: 'Sp-Def', negative: 'Defense' },
+  { name: 'Careful', positive: 'Sp-Def', negative: 'Sp-Atk' },
+  { name: 'Sassy', positive: 'Sp-Def', negative: 'Speed' },
+  { name: 'Timid', positive: 'Speed', negative: 'Attack' },
+  { name: 'Hasty', positive: 'Speed', negative: 'Defense' },
+  { name: 'Jolly', positive: 'Speed', negative: 'Sp-Atk' },
+  { name: 'Naive', positive: 'Speed', negative: 'Sp-Def' },
+  { name: 'Hardy', positive: 'None', negative: 'None' },
+  { name: 'Docile', positive: 'None', negative: 'None' },
+  { name: 'Serious', positive: 'None', negative: 'None' },
+  { name: 'Bashful', positive: 'None', negative: 'None' },
+  { name: 'Quirky', positive: 'None', negative: 'none' },
+];
+
 export const formatOptions = [
   { value: `gen9vgc2023`, label: `Gen 9 - VGC 2023` },
   { value: `gen9ou`, label: `Gen 9 - OverUsed` },

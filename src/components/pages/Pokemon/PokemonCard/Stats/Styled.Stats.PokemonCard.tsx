@@ -1,4 +1,5 @@
 import { device } from '@/components/common/styles/Sizing';
+import { FullWidthTable } from '@/components/common/styles/Table';
 import styled from 'styled-components';
 
 export const PokemonStatsCircles = styled.div`
@@ -48,4 +49,61 @@ export const PokemonStatsCircles = styled.div`
 export const PokemonStatsTotal = styled.p`
   margin: 2rem 0;
   font-size: 1.7rem;
+`;
+
+export const PokemonStatsDetails = styled.details`
+  & summary {
+    width: fit-content;
+    font-size: 2.3rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    cursor: pointer;
+  }
+`;
+
+export const PokemonCalcTable = styled(FullWidthTable)`
+  border-bottom: none;
+  & th {
+    color: ${({ theme }) => theme.secondary};
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    background: rgba(130, 130, 130, 0.2);
+  }
+
+  & tr:last-of-type {
+    & td {
+      border-bottom: none;
+    }
+  }
+
+  & input {
+    width: 100%;
+    padding: 0.5rem;
+    background: transparent;
+    color: ${({ theme }) => theme.secondary};
+    border: 1px solid ${({ theme }) => theme.secondary};
+    border-radius: 5px;
+    outline: none;
+
+    &::placeholder {
+      color: ${({ theme }) => theme.secondary};
+      opacity: 1;
+    }
+
+    &:focus {
+      border: 1px solid ${({ theme }) => theme.red};
+    }
+  }
+
+  & select {
+    width: 80%;
+    margin: 0 auto;
+    padding: 0.5rem;
+    text-transform: capitalize;
+
+    & option {
+      text-transform: capitalize;
+    }
+  }
 `;
