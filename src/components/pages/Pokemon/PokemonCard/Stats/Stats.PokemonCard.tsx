@@ -75,7 +75,7 @@ function Bars({ pokemon }: Props) {
           className={toggle === 2 ? `button_active` : ``}
           onClick={() => setToggle(2)}
         >
-          <p title="0 IV, 0 EV and negative nature">Min-</p>
+          <p title="0 IV, 0 EV and negative nature">Min -</p>
         </button>
         <button
           className={toggle === 3 ? `button_active` : ``}
@@ -93,7 +93,7 @@ function Bars({ pokemon }: Props) {
           className={toggle === 5 ? `button_active` : ``}
           onClick={() => setToggle(5)}
         >
-          <p title="31 IV, 252 EV and positive nature">Max+</p>
+          <p title="31 IV, 252 EV and positive nature">Max +</p>
         </button>
       </MethodNav>
       <PokemonStatsCircles>

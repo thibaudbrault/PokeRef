@@ -40,8 +40,7 @@ function CalculatorStats({ baseStat }: Props) {
   };
 
   return (
-    <div>
-      <p>Pokemon's stats</p>
+    <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <PokemonCalcTable>
           <tr>
@@ -216,7 +215,7 @@ function CalculatorStats({ baseStat }: Props) {
               <select {...register('nature')} required>
                 {pokemonNatures.map((n) => (
                   <option value={n.name}>
-                    {n.name} / + {removeDash(n.positive)} / -{' '}
+                    {n.name} : + {removeDash(n.positive)} / -{' '}
                     {removeDash(n.negative)}
                   </option>
                 ))}
@@ -299,7 +298,7 @@ function CalculatorStats({ baseStat }: Props) {
           </p>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

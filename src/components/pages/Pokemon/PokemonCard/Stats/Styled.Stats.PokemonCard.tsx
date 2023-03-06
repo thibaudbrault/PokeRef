@@ -54,6 +54,7 @@ export const PokemonStatsTotal = styled.p`
 export const PokemonStatsDetails = styled.details`
   & summary {
     width: fit-content;
+    margin-bottom: 2rem;
     font-size: 2.3rem;
     font-weight: 500;
     text-transform: capitalize;
@@ -77,33 +78,45 @@ export const PokemonCalcTable = styled(FullWidthTable)`
     }
   }
 
-  & input {
-    width: 100%;
-    padding: 0.5rem;
-    background: transparent;
-    color: ${({ theme }) => theme.secondary};
-    border: 1px solid ${({ theme }) => theme.secondary};
-    border-radius: 5px;
-    outline: none;
-
-    &::placeholder {
+  & td {
+    & input {
+      width: 100%;
+      padding: 0.5rem;
+      background: transparent;
       color: ${({ theme }) => theme.secondary};
-      opacity: 1;
+      border: 1px solid ${({ theme }) => theme.secondary};
+      border-radius: 5px;
+      outline: none;
+
+      &::placeholder {
+        color: ${({ theme }) => theme.secondary};
+        opacity: 1;
+      }
+
+      &:focus {
+        border: 1px solid ${({ theme }) => theme.red};
+      }
     }
 
-    &:focus {
-      border: 1px solid ${({ theme }) => theme.red};
-    }
-  }
-
-  & select {
-    width: 80%;
-    margin: 0 auto;
-    padding: 0.5rem;
-    text-transform: capitalize;
-
-    & option {
+    & select {
+      width: 80%;
+      margin: 0 auto;
+      padding: 0.5rem;
       text-transform: capitalize;
+
+      & option {
+        text-transform: capitalize;
+      }
+    }
+
+    & button {
+      background: ${({ theme }) => theme.secondary};
+      color: ${({ theme }) => theme.main};
+      border: 1px solid transparent;
+      border-radius: 5px;
+      padding: 1rem 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
     }
   }
 `;
