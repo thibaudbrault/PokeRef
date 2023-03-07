@@ -79,9 +79,10 @@ export const PokemonCalcTable = styled(FullWidthTable)`
   }
 
   & td {
-    & input {
+    & input,
+    select {
       width: 100%;
-      padding: 0.5rem;
+      padding: 0.7rem;
       background: transparent;
       color: ${({ theme }) => theme.secondary};
       border: 1px solid ${({ theme }) => theme.secondary};
@@ -98,14 +99,24 @@ export const PokemonCalcTable = styled(FullWidthTable)`
       }
     }
 
+    & input[type='number'] {
+      appearance: textfield;
+      -moz-appearance: textfield;
+
+      &::-webkit-inner-spin-button,
+      ::-webkit-outer-spin-button {
+        -webkit-appearance: textfield;
+      }
+    }
+
     & select {
       width: 80%;
       margin: 0 auto;
-      padding: 0.5rem;
-      text-transform: capitalize;
 
       & option {
         text-transform: capitalize;
+        background: ${({ theme }) => theme.main};
+        color: ${({ theme }) => theme.secondary};
       }
     }
 
@@ -117,6 +128,11 @@ export const PokemonCalcTable = styled(FullWidthTable)`
       padding: 1rem 1.5rem;
       font-size: 1.5rem;
       font-weight: 700;
+      transition: 0.3s ease-in-out;
+
+      &:active {
+        transform: scale(0.98);
+      }
     }
   }
 `;

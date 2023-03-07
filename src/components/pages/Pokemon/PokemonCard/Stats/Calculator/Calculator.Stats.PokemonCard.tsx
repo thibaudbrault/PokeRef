@@ -17,11 +17,7 @@ interface IStatsForm {
 function CalculatorStats({ baseStat }: Props) {
   const [stats, setStats] = useState<IStatsForm | null>(null);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data: IStatsForm) => setStats(data);
 
   const getNatureInfluence = (stat: string) => {
@@ -54,6 +50,7 @@ function CalculatorStats({ baseStat }: Props) {
                 max={100}
                 {...register('level', { valueAsNumber: true })}
                 required
+                placeholder="LVL (max 100)"
               />
             </td>
           </tr>
@@ -68,7 +65,7 @@ function CalculatorStats({ baseStat }: Props) {
                 max={252}
                 {...register('hpEv', { valueAsNumber: true })}
                 required
-                placeholder="EV"
+                placeholder="EV (max 252)"
               />
             </td>
             <td>
@@ -78,7 +75,7 @@ function CalculatorStats({ baseStat }: Props) {
                 max={31}
                 {...register('hpIv', { valueAsNumber: true })}
                 required
-                placeholder="IV"
+                placeholder="IV (max 31)"
               />
             </td>
           </tr>
@@ -93,7 +90,7 @@ function CalculatorStats({ baseStat }: Props) {
                 max={252}
                 {...register('attackEv', { valueAsNumber: true })}
                 required
-                placeholder="EV"
+                placeholder="EV (max 252)"
               />
             </td>
             <td>
@@ -103,7 +100,7 @@ function CalculatorStats({ baseStat }: Props) {
                 max={31}
                 {...register('attackIv', { valueAsNumber: true })}
                 required
-                placeholder="IV"
+                placeholder="IV (max 31)"
               />
             </td>
           </tr>
@@ -118,7 +115,7 @@ function CalculatorStats({ baseStat }: Props) {
                 max={252}
                 {...register('defenseEv', { valueAsNumber: true })}
                 required
-                placeholder="EV"
+                placeholder="EV (max 252)"
               />
             </td>
             <td>
@@ -128,7 +125,7 @@ function CalculatorStats({ baseStat }: Props) {
                 max={31}
                 {...register('defenseIv', { valueAsNumber: true })}
                 required
-                placeholder="IV"
+                placeholder="IV (max 31)"
               />
             </td>
           </tr>
@@ -143,7 +140,7 @@ function CalculatorStats({ baseStat }: Props) {
                 max={252}
                 {...register('specialAttackEv', { valueAsNumber: true })}
                 required
-                placeholder="EV"
+                placeholder="EV (max 252)"
               />
             </td>
             <td>
@@ -153,7 +150,7 @@ function CalculatorStats({ baseStat }: Props) {
                 max={31}
                 {...register('specialAttackIv', { valueAsNumber: true })}
                 required
-                placeholder="IV"
+                placeholder="IV (max 31)"
               />
             </td>
           </tr>
@@ -168,7 +165,7 @@ function CalculatorStats({ baseStat }: Props) {
                 max={252}
                 {...register('specialDefenseEv', { valueAsNumber: true })}
                 required
-                placeholder="EV"
+                placeholder="EV (max 252)"
               />
             </td>
             <td>
@@ -178,7 +175,7 @@ function CalculatorStats({ baseStat }: Props) {
                 max={31}
                 {...register('specialDefenseIv', { valueAsNumber: true })}
                 required
-                placeholder="IV"
+                placeholder="IV (max 31)"
               />
             </td>
           </tr>
@@ -193,7 +190,7 @@ function CalculatorStats({ baseStat }: Props) {
                 max={252}
                 {...register('speedEv', { valueAsNumber: true })}
                 required
-                placeholder="EV"
+                placeholder="EV (max 252)"
               />
             </td>
             <td>
@@ -203,7 +200,7 @@ function CalculatorStats({ baseStat }: Props) {
                 max={31}
                 {...register('speedIv', { valueAsNumber: true })}
                 required
-                placeholder="IV"
+                placeholder="IV (max 31)"
               />
             </td>
           </tr>
