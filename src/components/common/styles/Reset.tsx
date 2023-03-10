@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 import { createGlobalStyle } from 'styled-components';
+import { device } from './Sizing';
 
 export const Reset = createGlobalStyle`
 
@@ -106,19 +107,19 @@ export const Reset = createGlobalStyle`
         }
     }
 
-    @media(max-width: 890px) {
+    @media ${device.md} {
         html {
             font-size: 9px;
         }
     }
 
-    @media(max-width: 650px) {
+    @media ${device.sm} {
         html {
             font-size: 8px;
         }
     }
 
-    @media(max-width: 420px) {
+    @media ${device.xs} {
         html {
             font-size: 7px;
         }

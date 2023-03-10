@@ -16,7 +16,9 @@ import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
 type Props = {
   pokedex: IPokemon[];
   setFilteredPokedex: Dispatch<SetStateAction<IPokemon[]>>;
+  offset: number;
   setOffset: Dispatch<SetStateAction<number>>;
+  limit: number;
   setLimit: Dispatch<SetStateAction<number>>;
   form: IOptionsOffsetLimit | null;
   setForm: Dispatch<SetStateAction<IOptionsOffsetLimit | null>>;
@@ -29,7 +31,9 @@ type Props = {
 function Filters({
   pokedex,
   setFilteredPokedex,
+  offset,
   setOffset,
+  limit,
   setLimit,
   type,
   setType,
@@ -57,8 +61,8 @@ function Filters({
           })
           .filter((pokedex) => {
             if (!form && !generation) {
-              setOffset(0);
-              setLimit(1008);
+              setOffset(offset);
+              setLimit(limit);
               return pokedex;
             } else if (form) {
               setOffset(form.offset);

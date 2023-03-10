@@ -2,7 +2,10 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingPokedex from '@/components/pages/Pokemon/Heading';
 import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
-import { PokedexVerticalText } from '@/components/pages/Pokemon/Styled.Pokemon';
+import {
+  PokedexPagination,
+  PokedexVerticalText,
+} from '@/components/pages/Pokemon/Styled.Pokemon';
 import { IOptions, IOptionsOffsetLimit } from '@/utils/DataArrays';
 import { getPokedex } from '@/utils/DataFetch';
 import {
@@ -14,6 +17,7 @@ import {
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import ReactPaginate from 'react-paginate';
 import { IPokemon } from '../types/Pokemon/Pokemon';
 
 const Filters = dynamic(
@@ -28,7 +32,7 @@ function Pokedex() {
   // Modify the first pokemon displayed
   const [offset, setOffset] = useState<number>(0);
   //Modify the max number of pokemon displayed
-  const [limit, setLimit] = useState<number>(1008);
+  const [limit, setLimit] = useState<number>(50);
   // Form of the pokemon (changed with a dropdown)
   const [form, setForm] = useState<IOptionsOffsetLimit | null>(null);
   // Type of the pokemon (changed with a dropdown)
@@ -53,6 +57,12 @@ function Pokedex() {
       ),
   });
 
+  const handlePageChange = (data: { selected: number }) => {
+    window.scrollTo(0, 0);
+    console.log(data);
+    setOffset(50 * data.selected);
+  };
+
   if (isError) {
     return toast.error(`Something went wrong: ${error.message}`);
   }
@@ -61,6 +71,9 @@ function Pokedex() {
     return <Loader />;
   }
 
+  console.log('offset : ', offset);
+  console.log('limit : ', limit);
+
   return (
     <>
       <HeadingPokedex />
@@ -68,7 +81,9 @@ function Pokedex() {
         <Filters
           pokedex={pokedex}
           setFilteredPokedex={setFilteredPokedex}
+          offset={offset}
           setOffset={setOffset}
+          limit={limit}
           setLimit={setLimit}
           form={form}
           setForm={setForm}
@@ -80,6 +95,15 @@ function Pokedex() {
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
         <ListPokemon filteredPokedex={filteredPokedex} />
         {scrollBtn()}
+        <PokedexPagination
+          breakLabel="..."
+          onPageChange={handlePageChange}
+          nextLabel=">"
+          pageRangeDisplayed={3}
+          pageCount={Math.ceil(1008 / limit)}
+          previousLabel="<"
+          renderOnZeroPageCount={() => null}
+        />
       </MainBig>
     </>
   );
