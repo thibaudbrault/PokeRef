@@ -13,7 +13,7 @@
 
 </div>
 
-<h3 align="center">PokéRef is a pokémon encyclopedia built with Next JS, Typescript and Styled-Components and uses data from PokéAPI and Smogon</h3>  
+<h3 align="center">PokéRef is a Pokémon encyclopedia built with Next JS, Typescript and Styled-Components and uses data from PokéAPI and Smogon</h3>  
 <p align="center">You'll find a ton of information on every pokémon, moves, abilities, items and a lot more</p>  
 <div align="center">
   <a href="https://pokeref.app/">Live version</a>  
@@ -47,20 +47,19 @@
 
 <h4>Features</h4>
 
-✅A page for every pokémon / move / ability / type / item  
+✅A page for every pokémon / move / ability / type / item and more  
 ✅Filter pokémon by name / form / generation / type (possibility to filter by one or two types)  
 ✅Filter moves / abilities / machines by name  
 ✅Change certain data according to the game selected  
-✅Pokémon cries  
-✅Dark mode  
+✅Pokémon cries (up to n° 721)  
+✅Dark and light mode  
 ✅404 page  
 ✅Autocomplete search  
 ✅Responsive
 
-🛠Use React-Table for my tables (allow for virtualization, sorting and filtering)  
-🛠Use Framer Motion to add animations
+🛠Add a Competitive section in a pokémon's details page
 
-🔜Profile page with possibility to save teams  
+🔜Profile page with possibility to view favorites  
 🔜Types relations for each pokémon  
 🔜Contest section in a move's page
 
@@ -70,12 +69,12 @@
 ✅Use of React-Query to fetch data only once by using `cacheTime: Infinity` and `staleTime: Infinity`. The data will very rarely change so there is no use in re-fetching it every x minutes / hours  
 ✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important  
 ✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded  
-✅Turned into a PWA with the next-pwa package
+✅Turned into a PWA with the next-pwa package  
+✅Paginated home page
 
 🛠Refactoring the code  
 
-🔜Implement PokeAPI Service Worker  
-🔜Move the hosting from Netlify to Vercel
+🔜Will look into what can be improved  
 
 <h2 id="setup">Setup</h2>
 
@@ -128,9 +127,9 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 
 <h4>Contents</h4>
 
-- All the 1008 pokémon + regional variants, mega and gmax
+- Pokémon : basic data, evolution line, moves that he can learn, ...
 - Moves : basic data, effect, pokémon that can learn it, ...
-- Abilities : effect, pokémon that have this ability (normal or hidden), ...
+- Abilities : effect, pokémon with this ability (normal or hidden), ...
 - Types : effectiveness against other types, pokémon with this type, ...
 - Items : effect, flinch power, ...
 - Machines : list of TM and HM for every game
@@ -143,8 +142,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
 - <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
 - <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
-- <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white" />
-- <img src="https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7" />
+- <img src="https://img.shields.io/badge/Firebase-F5830C?style=for-the-badge&logo=Firebase&logoColor=white" />
 
 <h2 id="acknowledgements">Acknowledgements</h2>
 

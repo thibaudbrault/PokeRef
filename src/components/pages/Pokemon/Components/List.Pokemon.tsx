@@ -26,7 +26,7 @@ function ListPokemon({ filteredPokedex }: Props) {
       {filteredPokedex?.map((p: IPokemon) => (
         <PokedexElement>
           <Sprites p={p} />
-          {p.id < 1008 && <p>#{p.id.toString().padStart(3, `0`)}</p>}
+          {p.id < 1011 && <p>#{p.id.toString().padStart(3, `0`)}</p>}
           <h2 data-testid="pokemonName">
             <Link
               href={{

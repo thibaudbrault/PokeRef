@@ -16,9 +16,9 @@ import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
 type Props = {
   pokedex: IPokemon[];
   setFilteredPokedex: Dispatch<SetStateAction<IPokemon[]>>;
-  offset: number;
   setOffset: Dispatch<SetStateAction<number>>;
-  limit: number;
+  page: number;
+  setPage: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;
   form: IOptionsOffsetLimit | null;
   setForm: Dispatch<SetStateAction<IOptionsOffsetLimit | null>>;
@@ -31,9 +31,9 @@ type Props = {
 function Filters({
   pokedex,
   setFilteredPokedex,
-  offset,
   setOffset,
-  limit,
+  page,
+  setPage,
   setLimit,
   type,
   setType,
@@ -61,8 +61,8 @@ function Filters({
           })
           .filter((pokedex) => {
             if (!form && !generation) {
-              setOffset(offset);
-              setLimit(limit);
+              setOffset(50 * page);
+              setLimit(50);
               return pokedex;
             } else if (form) {
               setOffset(form.offset);
@@ -80,12 +80,14 @@ function Filters({
 
   const handleFormSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
     setForm(option);
+    setPage(0);
     setGeneration(null);
     setType([]);
   };
 
   const handleGenSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
     setGeneration(option);
+    setPage(0)
     setForm(null);
     setType([]);
   };
@@ -110,15 +112,18 @@ function Filters({
         <PokedexDropdown>
           <label htmlFor="form">Form</label>
           <Dropdown
+            key={form?.value}
             name="form"
             id="form"
             value={form}
             className="selectOptions"
             classNamePrefix="select"
+            isClearable
             options={formOptions}
             placeholder="Select"
-            onChange={(option) => {
+            onChange={(option, { action }) => {
               handleFormSelect(option as IOptionsOffsetLimit);
+              action === 'clear' && setForm(null)
             }}
           />
         </PokedexDropdown>
@@ -126,15 +131,18 @@ function Filters({
         <PokedexDropdown>
           <label htmlFor="generation">Generation</label>
           <Dropdown
+            key={generation?.value}
             name="generation"
             id="generation"
             value={generation}
             className="selectOptions"
             classNamePrefix="select"
+            isClearable
             options={generationsOptions}
             placeholder="Select"
-            onChange={(option) => {
+            onChange={(option, { action }) => {
               handleGenSelect(option as IOptionsOffsetLimit);
+              action === 'clear' && setGeneration(null)
             }}
           />
         </PokedexDropdown>
