@@ -8,9 +8,9 @@ interface IEffectProps {
   version: string;
 }
 
-const Desc = dynamic(() => import('./Desc/Desc.MoveCard'));
+const Desc = dynamic(() => import(`./Desc/Desc.MoveCard`));
 const Effect = dynamic<IEffectProps>(
-  () => import('./Effect/Effect.MoveCard') as any,
+  () => import(`./Effect/Effect.MoveCard`) as any,
 );
 
 type Props = {

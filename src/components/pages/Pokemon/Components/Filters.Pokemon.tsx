@@ -5,11 +5,9 @@ import { IPokemon } from '@/types/Pokemon/Pokemon';
 import {
   formOptions,
   generationsOptions,
-  IOptions,
   IOptionsOffsetLimit,
-  typeOptions,
 } from '@/utils/DataArrays';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
 import { SingleValue } from 'react-select';
 import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
 
@@ -24,8 +22,6 @@ type Props = {
   setForm: Dispatch<SetStateAction<IOptionsOffsetLimit | null>>;
   generation: IOptionsOffsetLimit | null;
   setGeneration: Dispatch<SetStateAction<IOptionsOffsetLimit | null>>;
-  type: IOptions[] | null;
-  setType: Dispatch<SetStateAction<IOptions[]>>;
 };
 
 function Filters({
@@ -35,30 +31,17 @@ function Filters({
   page,
   setPage,
   setLimit,
-  type,
-  setType,
   form,
   setForm,
   generation,
   setGeneration,
 }: Props) {
-  const getFilterPokemon = () => {
+  const getFilterPokemon = useCallback(() => {
     if (pokedex) {
       setFilteredPokedex(
         pokedex
-          .filter((pokedex) => {
-            if (!type?.length) {
-              return pokedex;
-            } else if (type.length === 1) {
-              return pokedex.types
-                .map((pt) => pt.type.name)
-                .includes(type[0].value);
-            } else if (type.length === 2 && pokedex.types.length === 2) {
-              return pokedex.types.every((pt) =>
-                type.find((t) => t.value.includes(pt.type.name)),
-              );
-            }
-          })
+          .map((pokedex) => pokedex)
+          .flat()
           .filter((pokedex) => {
             if (!form && !generation) {
               setOffset(50 * page);
@@ -76,39 +59,28 @@ function Filters({
           }),
       );
     }
-  };
+  }, [form, generation, page, pokedex]);
 
   const handleFormSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
     setForm(option);
     setPage(0);
     setGeneration(null);
-    setType([]);
   };
 
   const handleGenSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
     setGeneration(option);
-    setPage(0)
+    setPage(0);
     setForm(null);
-    setType([]);
-  };
-
-  const handleTypeSelect = (option: IOptions[]) => {
-    if (option) {
-      setType(option);
-    }
   };
 
   useEffect(() => {
     getFilterPokemon();
-
-    //NOTE: EsLint wants to add the function above in the dependency array
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pokedex, form, generation, type]);
+  }, [getFilterPokemon]);
 
   return (
     <>
       <PokedexSearch>
-        <Autocomplete pokedex={pokedex} />
+        <Autocomplete />
         <PokedexDropdown>
           <label htmlFor="form">Form</label>
           <Dropdown
@@ -123,7 +95,7 @@ function Filters({
             placeholder="Select"
             onChange={(option, { action }) => {
               handleFormSelect(option as IOptionsOffsetLimit);
-              action === 'clear' && setForm(null)
+              action === `clear` && setForm(null);
             }}
           />
         </PokedexDropdown>
@@ -142,35 +114,7 @@ function Filters({
             placeholder="Select"
             onChange={(option, { action }) => {
               handleGenSelect(option as IOptionsOffsetLimit);
-              action === 'clear' && setGeneration(null)
-            }}
-          />
-        </PokedexDropdown>
-
-        <PokedexDropdown>
-          <label htmlFor="type">Type</label>
-          <Dropdown
-            isMulti
-            isClearable
-            isSearchable={false}
-            name="type"
-            id="type"
-            className="selectOptions"
-            classNamePrefix="select"
-            options={typeOptions}
-            placeholder="Select"
-            // @ts-ignore
-            components={
-              type &&
-              type?.length >= 2 && {
-                Menu: () => null,
-                MenuList: () => null,
-                DropdownIndicator: () => null,
-                IndicatorSeparator: () => null,
-              }
-            }
-            onChange={(option) => {
-              handleTypeSelect(option as IOptions[]);
+              action === `clear` && setGeneration(null);
             }}
           />
         </PokedexDropdown>

@@ -17,7 +17,7 @@ export const useFetchMove = (name: string) => {
   });
 
   const { status, data: pokemon }: UseQueryResult<IPokemon[]> = useQuery({
-    queryKey: ['pokemonMove'],
+    queryKey: [`pokemonMove`],
     queryFn: () => move && getMovePokemon(move),
     enabled: !!move,
   });

@@ -69,11 +69,11 @@ function Desc({ pokemon, species, game }: Props) {
         </PokemonDataTypes>
         <PokemonDataOldTypes>
           {pokemon.past_types.map((pp) => (
-            <p>
+            <p key={pp.generation.name}>
               Up to <span>{removeDash(pp.generation.name)}</span> (included) :
-              was{' '}
+              was{` `}
               {pp.types.map((ppt) => (
-                <span>{ppt.type.name}</span>
+                <span key={ppt.type.name}>{ppt.type.name}</span>
               ))}
             </p>
           ))}

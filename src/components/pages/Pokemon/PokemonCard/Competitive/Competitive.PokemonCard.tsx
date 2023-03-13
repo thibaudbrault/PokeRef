@@ -35,14 +35,14 @@ function Competitive({ format, name }: Props) {
           ),
       },
       {
-        queryKey: ['formats'],
+        queryKey: [`formats`],
         queryFn: () =>
           getFormat(
             `https://raw.githubusercontent.com/pkmn/smogon/main/data/formats/index.json`,
           ),
       },
       {
-        queryKey: ['sets', format],
+        queryKey: [`sets`, format],
         queryFn: () =>
           getFormat(
             `https://raw.githubusercontent.com/pkmn/smogon/main/data/sets/${format}.json`,
@@ -52,17 +52,17 @@ function Competitive({ format, name }: Props) {
   });
 
   if (
-    analyses.status === 'error' ||
-    formats.status === 'error' ||
-    sets.status === 'error'
+    analyses.status === `error` ||
+    formats.status === `error` ||
+    sets.status === `error`
   ) {
     return toast.error(`Something went wrong`);
   }
 
   if (
-    analyses.status === 'loading' ||
-    formats.status === 'loading' ||
-    sets.status === 'loading'
+    analyses.status === `loading` ||
+    formats.status === `loading` ||
+    sets.status === `loading`
   ) {
     return <SmallLoader />;
   }
@@ -103,7 +103,7 @@ function Competitive({ format, name }: Props) {
   ).comments;
 
   const textFormatting = (str: string) =>
-    str.replaceAll('-types', ' types').replaceAll('-type', ' type');
+    str.replaceAll(`-types`, ` types`).replaceAll(`-type`, ` type`);
 
   const test = (obj, i) => {
     return Object.entries(
@@ -113,9 +113,7 @@ function Competitive({ format, name }: Props) {
       .flat()[1].moves;
   };
 
-  console.log(
-    typeof Object.values(test(filteredSets, 0).map((m) => m))[2] === 'object',
-  );
+  console.log(filteredSets.petitcup);
 
   return (
     <Section>
@@ -123,6 +121,7 @@ function Competitive({ format, name }: Props) {
       <MethodNav>
         {Object.keys(filteredAnalyses).map((fa, i) => (
           <button
+            key={fa}
             className={toggle === i ? `button_active` : ``}
             onClick={() => setToggle(i)}
           >
@@ -139,16 +138,13 @@ function Competitive({ format, name }: Props) {
         )}
         {setsEntries(filteredAnalyses as IFormatAnalysesSets).sets.map(
           (s: IFormatsAnalysesSetName, i) => (
-            <li>
+            <li key={s.name}>
               <H4>{s.name}</H4>
               <p>{test(filteredSets, i)}</p>
               {s.description && (
                 <PokemonSetDesc
                   dangerouslySetInnerHTML={{
-                    __html: textFormatting(s.description).replaceAll(
-                      '. ',
-                      '. <br />',
-                    ),
+                    __html: textFormatting(s.description),
                   }}
                 />
               )}

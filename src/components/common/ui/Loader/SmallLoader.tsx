@@ -8,7 +8,7 @@ function SmallLoader() {
     autoplay: true,
     animationData: pokeballLoading,
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
+      preserveAspectRatio: `xMidYMid slice`,
     },
   };
 

@@ -132,7 +132,7 @@ function LocationCard({ name }: Props) {
               <p key={i.method.name}>
                 {
                   filteredMethod(i.method.name).names.find(
-                    (en: IName) => en.language.name === 'en',
+                    (en: IName) => en.language.name === `en`,
                   ).name
                 }
               </p>
@@ -148,12 +148,12 @@ function LocationCard({ name }: Props) {
           <td>
             {info.getValue<IEncounter[]>().map((i) =>
               i.condition_values.length > 1 ? (
-                <p>
+                <p key={i.chance + i.max_level}>
                   {i.condition_values.map((icv) => (
                     <span key={icv.name}>
                       {
                         filteredEncounter(icv.name).names.find(
-                          (en: IName) => en.language.name === 'en',
+                          (en: IName) => en.language.name === `en`,
                         ).name
                       }
                     </span>
@@ -163,7 +163,7 @@ function LocationCard({ name }: Props) {
                 <p>
                   {
                     filteredEncounter(i.condition_values[0].name).names.find(
-                      (en: IName) => en.language.name === 'en',
+                      (en: IName) => en.language.name === `en`,
                     ).name
                   }
                 </p>

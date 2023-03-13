@@ -48,7 +48,7 @@ function CalculatorStats({ baseStat }: Props) {
                 type="number"
                 min={1}
                 max={100}
-                {...register('level', { valueAsNumber: true })}
+                {...register(`level`, { valueAsNumber: true })}
                 required
                 placeholder="LVL (max 100)"
               />
@@ -63,7 +63,7 @@ function CalculatorStats({ baseStat }: Props) {
                 type="number"
                 min={0}
                 max={252}
-                {...register('hpEv', { valueAsNumber: true })}
+                {...register(`hpEv`, { valueAsNumber: true })}
                 required
                 placeholder="EV (max 252)"
               />
@@ -73,7 +73,7 @@ function CalculatorStats({ baseStat }: Props) {
                 type="number"
                 min={0}
                 max={31}
-                {...register('hpIv', { valueAsNumber: true })}
+                {...register(`hpIv`, { valueAsNumber: true })}
                 required
                 placeholder="IV (max 31)"
               />
@@ -88,7 +88,7 @@ function CalculatorStats({ baseStat }: Props) {
                 type="number"
                 min={0}
                 max={252}
-                {...register('attackEv', { valueAsNumber: true })}
+                {...register(`attackEv`, { valueAsNumber: true })}
                 required
                 placeholder="EV (max 252)"
               />
@@ -98,7 +98,7 @@ function CalculatorStats({ baseStat }: Props) {
                 type="number"
                 min={0}
                 max={31}
-                {...register('attackIv', { valueAsNumber: true })}
+                {...register(`attackIv`, { valueAsNumber: true })}
                 required
                 placeholder="IV (max 31)"
               />
@@ -113,7 +113,7 @@ function CalculatorStats({ baseStat }: Props) {
                 type="number"
                 min={0}
                 max={252}
-                {...register('defenseEv', { valueAsNumber: true })}
+                {...register(`defenseEv`, { valueAsNumber: true })}
                 required
                 placeholder="EV (max 252)"
               />
@@ -123,7 +123,7 @@ function CalculatorStats({ baseStat }: Props) {
                 type="number"
                 min={0}
                 max={31}
-                {...register('defenseIv', { valueAsNumber: true })}
+                {...register(`defenseIv`, { valueAsNumber: true })}
                 required
                 placeholder="IV (max 31)"
               />
@@ -138,7 +138,7 @@ function CalculatorStats({ baseStat }: Props) {
                 type="number"
                 min={0}
                 max={252}
-                {...register('specialAttackEv', { valueAsNumber: true })}
+                {...register(`specialAttackEv`, { valueAsNumber: true })}
                 required
                 placeholder="EV (max 252)"
               />
@@ -148,7 +148,7 @@ function CalculatorStats({ baseStat }: Props) {
                 type="number"
                 min={0}
                 max={31}
-                {...register('specialAttackIv', { valueAsNumber: true })}
+                {...register(`specialAttackIv`, { valueAsNumber: true })}
                 required
                 placeholder="IV (max 31)"
               />
@@ -163,7 +163,7 @@ function CalculatorStats({ baseStat }: Props) {
                 type="number"
                 min={0}
                 max={252}
-                {...register('specialDefenseEv', { valueAsNumber: true })}
+                {...register(`specialDefenseEv`, { valueAsNumber: true })}
                 required
                 placeholder="EV (max 252)"
               />
@@ -173,7 +173,7 @@ function CalculatorStats({ baseStat }: Props) {
                 type="number"
                 min={0}
                 max={31}
-                {...register('specialDefenseIv', { valueAsNumber: true })}
+                {...register(`specialDefenseIv`, { valueAsNumber: true })}
                 required
                 placeholder="IV (max 31)"
               />
@@ -188,7 +188,7 @@ function CalculatorStats({ baseStat }: Props) {
                 type="number"
                 min={0}
                 max={252}
-                {...register('speedEv', { valueAsNumber: true })}
+                {...register(`speedEv`, { valueAsNumber: true })}
                 required
                 placeholder="EV (max 252)"
               />
@@ -198,7 +198,7 @@ function CalculatorStats({ baseStat }: Props) {
                 type="number"
                 min={0}
                 max={31}
-                {...register('speedIv', { valueAsNumber: true })}
+                {...register(`speedIv`, { valueAsNumber: true })}
                 required
                 placeholder="IV (max 31)"
               />
@@ -209,10 +209,10 @@ function CalculatorStats({ baseStat }: Props) {
               <label htmlFor="nature">Nature</label>
             </th>
             <td colSpan={2}>
-              <select {...register('nature')} required>
+              <select {...register(`nature`)} required>
                 {pokemonNatures.map((n) => (
-                  <option value={n.name}>
-                    {n.name} : + {removeDash(n.positive)} / -{' '}
+                  <option key={n.name} value={n.name}>
+                    {n.name} : + {removeDash(n.positive)} / -{` `}
                     {removeDash(n.negative)}
                   </option>
                 ))}
@@ -229,7 +229,7 @@ function CalculatorStats({ baseStat }: Props) {
       {stats && (
         <div>
           <p>
-            <Bold>Hp</Bold>: {''}
+            <Bold>Hp</Bold>: {``}
             {Math.floor(
               (stats.level / 100) *
                 (baseStat[0].base_stat * 2 + stats.hpIv + stats.hpEv / 4) +
@@ -238,7 +238,7 @@ function CalculatorStats({ baseStat }: Props) {
             )}
           </p>
           <p>
-            <Bold>Attack</Bold>: {''}
+            <Bold>Attack</Bold>: {``}
             {Math.floor(
               ((stats.level / 100) *
                 (baseStat[1].base_stat * 2 +
@@ -249,7 +249,7 @@ function CalculatorStats({ baseStat }: Props) {
             )}
           </p>
           <p>
-            <Bold>Defense</Bold>: {''}
+            <Bold>Defense</Bold>: {``}
             {Math.floor(
               ((stats.level / 100) *
                 (baseStat[2].base_stat * 2 +
@@ -260,7 +260,7 @@ function CalculatorStats({ baseStat }: Props) {
             )}
           </p>
           <p>
-            <Bold>Special Attack</Bold>: {''}
+            <Bold>Special Attack</Bold>: {``}
             {Math.floor(
               ((stats.level / 100) *
                 (baseStat[3].base_stat * 2 +
@@ -271,7 +271,7 @@ function CalculatorStats({ baseStat }: Props) {
             )}
           </p>
           <p>
-            <Bold>Special Defense</Bold>: {''}
+            <Bold>Special Defense</Bold>: {``}
             {Math.floor(
               ((stats.level / 100) *
                 (baseStat[4].base_stat * 2 +
@@ -282,7 +282,7 @@ function CalculatorStats({ baseStat }: Props) {
             )}
           </p>
           <p>
-            <Bold>Speed</Bold>: {''}
+            <Bold>Speed</Bold>: {``}
             {Math.floor(
               ((stats.level / 100) *
                 (baseStat[5].base_stat * 2 + stats.speed + stats.speed / 4) +
@@ -291,7 +291,7 @@ function CalculatorStats({ baseStat }: Props) {
             )}
           </p>
           <p>
-            <Bold>Total</Bold>: {''}
+            <Bold>Total</Bold>: {``}
           </p>
         </div>
       )}

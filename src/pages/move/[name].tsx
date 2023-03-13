@@ -19,7 +19,7 @@ const Data = dynamic(
   () => import(`@/components/pages/Moves/MoveCard/Data/Data.MoveCard`),
 );
 const List = dynamic(
-  () => import('@/components/pages/Moves/MoveCard/List/List.MoveCard'),
+  () => import(`@/components/pages/Moves/MoveCard/List/List.MoveCard`),
 );
 const LearnMethod = dynamic(() =>
   import(`@/utils/ObjectsMap`).then((res) => res.LearnMethod),
@@ -53,8 +53,6 @@ function MoveCard({ name }: Props) {
   if (isLoading) {
     return <Loader />;
   }
-
-  console.log(move);
 
   return (
     <>

@@ -28,7 +28,7 @@ function Effect({ move, version }: Props) {
     error,
     data: target,
   }: UseQueryResult<IMoveTarget[], Error> = useQuery({
-    queryKey: ['target'],
+    queryKey: [`target`],
     queryFn: getMoveTarget,
   });
 
@@ -139,19 +139,21 @@ function Effect({ move, version }: Props) {
               {move.stat_changes?.map((ms) =>
                 ms.change < 0 ? (
                   <li key={ms.stat.name}>
-                    This move{' '}
+                    This move{` `}
                     {move.meta.stat_chance !== 0 &&
-                      `has a ${move.meta.stat_chance}% chance to`}{' '}
+                      `has a ${move.meta.stat_chance}% chance to`}
+                    {` `}
                     lower the target's{` `}
                     <Capitalize>{removeDash(ms.stat.name)}</Capitalize> by{` `}
                     {Math.abs(ms.change)} stage
                   </li>
                 ) : (
                   <li key={ms.stat.name}>
-                    This move{' '}
+                    This move{` `}
                     {move.meta.stat_chance !== 0
                       ? `has a ${move.meta.stat_chance}% chance to raise`
-                      : 'raises'}{' '}
+                      : `raises`}
+                    {` `}
                     the target's{` `}
                     <Capitalize>{ms.stat.name}</Capitalize>
                     {` `}
@@ -239,7 +241,7 @@ function Effect({ move, version }: Props) {
         <MoveCardDataTarget>
           {
             filteredTarget(move.target.name)?.descriptions.find(
-              (td: IDescription) => td.language.name === 'en',
+              (td: IDescription) => td.language.name === `en`,
             )?.description
           }
         </MoveCardDataTarget>

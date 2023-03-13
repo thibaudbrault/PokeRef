@@ -108,26 +108,51 @@ export interface IPokemonSpriteOther {
 interface IGeneration1Sprite {
   'red-blue': Pick<
     ISpriteVariant,
-    'back_default' | 'back_gray' | 'back_transparent' | 'front_default' | 'front_gray' | 'front_transparent'
+    | 'back_default'
+    | 'back_gray'
+    | 'back_transparent'
+    | 'front_default'
+    | 'front_gray'
+    | 'front_transparent'
   >;
   yellow: Pick<
     ISpriteVariant,
-    'back_default' | 'back_gray' | 'back_transparent' | 'front_default' | 'front_gray' | 'front_transparent'
+    | 'back_default'
+    | 'back_gray'
+    | 'back_transparent'
+    | 'front_default'
+    | 'front_gray'
+    | 'front_transparent'
   >;
 }
 
 interface IGeneration2Sprite {
   crystal: Pick<
     ISpriteVariant,
-    'back_default' | 'back_shiny' | 'back_transparent' | 'back_shiny_transparent' | 'front_default' | 'front_shiny' | 'front_transparent' | 'front_shiny_transparent'
+    | 'back_default'
+    | 'back_shiny'
+    | 'back_transparent'
+    | 'back_shiny_transparent'
+    | 'front_default'
+    | 'front_shiny'
+    | 'front_transparent'
+    | 'front_shiny_transparent'
   >;
   gold: Pick<
     ISpriteVariant,
-    'back_default' | 'back_shiny' | 'front_default' | 'front_shiny' | 'front_transparent'
+    | 'back_default'
+    | 'back_shiny'
+    | 'front_default'
+    | 'front_shiny'
+    | 'front_transparent'
   >;
   silver: Pick<
     ISpriteVariant,
-    'back_default' | 'back_shiny' | 'front_default' | 'front_shiny' | 'front_transparent'
+    | 'back_default'
+    | 'back_shiny'
+    | 'front_default'
+    | 'front_shiny'
+    | 'front_transparent'
   >;
 }
 

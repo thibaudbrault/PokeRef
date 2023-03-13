@@ -76,11 +76,11 @@ function Profile() {
     }
   }, [formatValue]);
 
-  if (stats.status === 'error' || analyses.status === 'error') {
+  if (stats.status === `error` || analyses.status === `error`) {
     return toast.error(`Something went wrong`);
   }
 
-  if (stats.status === 'loading' || analyses.status === 'loading') {
+  if (stats.status === `loading` || analyses.status === `loading`) {
     return <Loader />;
   }
 

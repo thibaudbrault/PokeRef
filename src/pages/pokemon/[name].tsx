@@ -71,7 +71,7 @@ const Locations = dynamic(
 const Competitive = dynamic<ICompetitiveProps>(
   () =>
     import(
-      '@/components/pages/Pokemon/PokemonCard/Competitive/Competitive.PokemonCard'
+      `@/components/pages/Pokemon/PokemonCard/Competitive/Competitive.PokemonCard`
     ) as any,
 );
 const Forms = dynamic<IFormsProps>(

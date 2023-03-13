@@ -1,30 +1,23 @@
 import ImageWithFallback from '@/utils/ImageWithFallback';
-import Image from 'next/image';
 import ReactPaginate from 'react-paginate';
 import styled from 'styled-components';
 import { device } from '../../common/styles/Sizing';
 
 export const PokedexSearch = styled.section`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 'search form generation';
   gap: 2rem;
 
   @media ${device.md} {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-      'search search search'
-      'form generation type';
+      'search search'
+      'form generation';
     row-gap: 2rem;
     column-gap: 4rem;
-  }
-
-  @media ${device.xs} {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      'search form'
-      'generation type';
   }
 `;
 
@@ -39,6 +32,14 @@ export const PokedexDropdown = styled.div`
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     justify-self: flex-start;
+  }
+
+  &:first-of-type {
+    grid-area: form;
+  }
+
+  &:last-of-type {
+    grid-area: generation;
   }
 `;
 

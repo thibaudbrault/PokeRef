@@ -25,16 +25,15 @@ export const useSwitchGame = (name: string) => {
         queryKey: [`location`, toggleState, name],
         queryFn: () => getLocation(name),
         onSuccess: (data: ILocation) => {
-          console.log(data);
           setAreaUrl(data.areas[toggleState]?.url);
         },
       },
       {
-        queryKey: ['encounterCondition'],
+        queryKey: [`encounterCondition`],
         queryFn: getEncounterCondition,
       },
       {
-        queryKey: ['encounterMethod'],
+        queryKey: [`encounterMethod`],
         queryFn: getEncounterMethod,
       },
     ],

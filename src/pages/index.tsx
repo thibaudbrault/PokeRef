@@ -2,12 +2,16 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingPokedex from '@/components/pages/Pokemon/Heading';
 import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
-import { PokedexPagination, PokedexVerticalText } from '@/components/pages/Pokemon/Styled.Pokemon';
-import { IOptions, IOptionsOffsetLimit } from '@/utils/DataArrays';
+import {
+  PokedexPagination,
+  PokedexVerticalText,
+} from '@/components/pages/Pokemon/Styled.Pokemon';
+import { IOptionsOffsetLimit } from '@/utils/DataArrays';
 import { getPokedex } from '@/utils/DataFetch';
 import {
   dehydrate,
   QueryClient,
+  useInfiniteQuery,
   useQuery,
   UseQueryResult,
 } from '@tanstack/react-query';
@@ -24,7 +28,6 @@ const ListPokemon = dynamic(
 );
 
 function Pokedex() {
-
   const [filteredPokedex, setFilteredPokedex] = useState<IPokemon[]>([]);
   // Modify the first pokemon displayed
   const [offset, setOffset] = useState<number>(0);
@@ -32,13 +35,11 @@ function Pokedex() {
   const [limit, setLimit] = useState<number>(50);
   // Form of the pokemon (changed with a dropdown)
   const [form, setForm] = useState<IOptionsOffsetLimit | null>(null);
-  // Type of the pokemon (changed with a dropdown)
-  const [type, setType] = useState<IOptions[]>([]);
   // Generation of the pokemon (changed with a dropdown)
   const [generation, setGeneration] = useState<IOptionsOffsetLimit | null>(
     null,
   );
-  const [page, setPage] = useState<number>(0)
+  const [page, setPage] = useState<number>(0);
 
   const { scrollBtn } = useScrollDir();
 
@@ -53,12 +54,12 @@ function Pokedex() {
       getPokedex(
         `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,
       ),
-    keepPreviousData: true
+    keepPreviousData: true,
   });
 
   const handlePageChange = (data: { selected: number }) => {
     window.scrollTo(0, 0);
-    setPage(data.selected)
+    setPage(data.selected);
     setOffset(50 * data.selected);
   };
 
@@ -69,9 +70,6 @@ function Pokedex() {
   if (isLoading) {
     return <Loader />;
   }
-
-  // console.log('offset', offset)
-  // console.log('limit', limit)
 
   return (
     <>
@@ -86,15 +84,13 @@ function Pokedex() {
           setLimit={setLimit}
           form={form}
           setForm={setForm}
-          type={type}
-          setType={setType}
           generation={generation}
           setGeneration={setGeneration}
         />
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
         <ListPokemon filteredPokedex={filteredPokedex} />
         {scrollBtn()}
-        {!form && !generation &&
+        {!form && !generation && (
           <PokedexPagination
             breakLabel="..."
             onPageChange={handlePageChange}
@@ -105,7 +101,7 @@ function Pokedex() {
             previousLabel="<"
             renderOnZeroPageCount={() => null}
           />
-        }
+        )}
       </MainBig>
     </>
   );

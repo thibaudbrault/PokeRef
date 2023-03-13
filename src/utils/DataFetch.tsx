@@ -5,6 +5,16 @@ import { IType } from '@/types/Pokemon/Type';
 import axios from 'axios';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 
+export const getPokedexResults = async () => {
+  try {
+    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1010`);
+    const results = await res.data.results;
+    return results;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // Fetch all pokemon
 export const getPokedex = async (url: string) => {
   try {
