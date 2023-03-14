@@ -2,15 +2,19 @@ import { Bold, H3 } from '@/components/common/styles/Headings';
 import { MethodNav } from '@/components/common/styles/Navbars';
 import { Section } from '@/components/common/styles/Sizing';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
+import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import CalculatorStats from './Calculator/Calculator.Stats.PokemonCard';
 import {
   PokemonStatsCircles,
   PokemonStatsDetails,
   PokemonStatsTotal,
 } from './Styled.Stats.PokemonCard';
+
+const CalculatorStats = dynamic(
+  () => import('./Calculator/Calculator.Stats.PokemonCard'),
+);
 
 type Props = {
   pokemon: IPokemon;
@@ -42,7 +46,7 @@ function Bars({ pokemon }: Props) {
       return Math.floor(value * 2 + 5);
     } else if (toggle === 4) {
       return Math.floor(value * 2 + 31 + 252 / 4 + 5);
-    } else if (toggle === 5) {
+    } else {
       return Math.floor((value * 2 + 31 + 252 / 4 + 5) * 1.1);
     }
   };
@@ -56,7 +60,7 @@ function Bars({ pokemon }: Props) {
       return Math.floor(value * 2 + 100 + 10);
     } else if (toggle === 4) {
       return Math.floor(value * 2 + 31 + 252 / 4 + 100 + 10);
-    } else if (toggle === 5) {
+    } else {
       return Math.floor(value * 2 + 31 + 252 / 4 + 100 + 10);
     }
   };

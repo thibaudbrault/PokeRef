@@ -75,6 +75,7 @@ export const PokemonCalcTable = styled(FullWidthTable)`
   & tr:last-of-type {
     & td {
       border-bottom: none;
+      padding-bottom: 0;
     }
   }
 
@@ -126,13 +127,26 @@ export const PokemonCalcTable = styled(FullWidthTable)`
       border: 1px solid transparent;
       border-radius: 5px;
       padding: 1rem 1.5rem;
-      font-size: 1.5rem;
+      font-size: 1.7rem;
       font-weight: 700;
       transition: 0.3s ease-in-out;
+
+      &:hover {
+        color: ${({ theme }) => theme.secondary};
+        background: ${({ theme }) => theme.main};
+        border: 1px solid ${({ theme }) => theme.secondary};
+      }
 
       &:active {
         transform: scale(0.98);
       }
     }
+  }
+`;
+
+export const PokemonStatsResults = styled(FullWidthTable)`
+  & td {
+    border-left: 1px solid rgba(130, 130, 130, 0.2);
+    border-right: 1px solid rgba(130, 130, 130, 0.2);
   }
 `;
