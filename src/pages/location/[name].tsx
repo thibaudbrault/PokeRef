@@ -1,13 +1,15 @@
 import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
 import { MainBig, Section } from '@/components/common/styles/Sizing';
-import { TableContainer, TBold } from '@/components/common/styles/Table';
+import { TableContainer, TBold, TLink } from '@/components/common/styles/Table';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useSwitchGame } from '@/components/pages/Locations/LocationCard/Hooks/useSwitchGame';
 import { LocationTable } from '@/components/pages/Locations/Styled.Locations';
 import { useTableParams } from '@/hooks/useTableParams';
+import { IEncounterConditionValue } from '@/types/Encounters/EncounterConditionValue';
+import { IEncounterMethod } from '@/types/Encounters/EncounterMethod';
 import { IPokemonEncounter } from '@/types/Locations/LocationArea';
-import { IEncounter } from '@/types/Utility/CommonModels';
+import { IEncounter, IName } from '@/types/Utility/CommonModels';
 import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import { GetServerSidePropsContext } from 'next';
@@ -43,6 +45,8 @@ function LocationCard({ name }: Props) {
     error,
     location,
     area,
+    encounter,
+    method,
   } = useSwitchGame(name);
 
   const filteredArea = area?.pokemon_encounters
@@ -57,13 +61,23 @@ function LocationCard({ name }: Props) {
     })
     .filter((a) => a.version_details.length);
 
+  const filteredEncounter = (condition: string) => {
+    return encounter.data?.find(
+      (e: IEncounterConditionValue) => e.name === condition,
+    );
+  };
+
+  const filteredMethod = (condition: string) => {
+    return method.data?.find((m: IEncounterMethod) => m.name === condition);
+  };
+
   const [data, setData] = useState<IPokemonEncounter[]>([]);
 
   useEffect(() => {
     if (filteredArea) {
       setData(filteredArea);
     }
-  }, [toggleState]);
+  }, [area, game]);
 
   const columns = useMemo<ColumnDef<IPokemonEncounter>[]>(
     () => [
@@ -71,7 +85,18 @@ function LocationCard({ name }: Props) {
         accessorKey: `pokemon.name`,
         id: `name`,
         header: `Pokemon`,
-        cell: (info) => <TBold>{info.getValue<string>()}</TBold>,
+        cell: (info) => (
+          <TBold>
+            <TLink
+              href={{
+                pathname: `/pokemon/[name]`,
+                query: { name: info.getValue<string>() },
+              }}
+            >
+              {removeDash(info.getValue<string>())}
+            </TLink>
+          </TBold>
+        ),
       },
       {
         accessorFn: (row) => row.version_details[0].encounter_details,
@@ -104,7 +129,13 @@ function LocationCard({ name }: Props) {
         cell: (info) => (
           <td>
             {info.getValue<IEncounter[]>().map((i) => (
-              <p key={i.method.name}>{removeDash(i.method.name)}</p>
+              <p key={i.method.name}>
+                {
+                  filteredMethod(i.method.name).names.find(
+                    (en: IName) => en.language.name === `en`,
+                  ).name
+                }
+              </p>
             ))}
           </td>
         ),
@@ -115,22 +146,36 @@ function LocationCard({ name }: Props) {
         header: `Condition`,
         cell: (info) => (
           <td>
-            {info
-              .getValue<IEncounter[]>()
-              .map((i) =>
-                i.condition_values.length > 0 ? (
-                  i.condition_values.map((icv) => (
-                    <p key={icv.name}>{removeDash(icv.name)}</p>
-                  ))
-                ) : (
-                  <p key={i.min_level + i.max_level}>-</p>
-                ),
-              )}
+            {info.getValue<IEncounter[]>().map((i) =>
+              i.condition_values.length > 1 ? (
+                <p key={i.chance + i.max_level}>
+                  {i.condition_values.map((icv) => (
+                    <span key={icv.name}>
+                      {
+                        filteredEncounter(icv.name).names.find(
+                          (en: IName) => en.language.name === `en`,
+                        ).name
+                      }
+                    </span>
+                  ))}
+                </p>
+              ) : i.condition_values.length === 1 ? (
+                <p>
+                  {
+                    filteredEncounter(i.condition_values[0].name).names.find(
+                      (en: IName) => en.language.name === `en`,
+                    ).name
+                  }
+                </p>
+              ) : (
+                <p key={i.min_level + i.max_level}>-</p>
+              ),
+            )}
           </td>
         ),
       },
     ],
-    [],
+    [filteredArea, game],
   );
 
   const { tableContainerRef, tableHeader, tableBody } = useTableParams(
@@ -152,16 +197,16 @@ function LocationCard({ name }: Props) {
       <MainBig>
         <CardTitle>
           {location &&
-            removeDash(location?.name).replace(
+            removeDash(location.data?.name).replace(
               /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea/g,
               ``,
             )}
         </CardTitle>
         <Subtitle>
-          {game && `${location?.region.name} - ${removeDash(game)}`}
+          {game && `${location.data?.region.name} - ${removeDash(game)}`}
         </Subtitle>
         <AreaLocationCard
-          location={location}
+          location={location.data}
           toggleState={toggleState}
           toggleTable={toggleTable}
         />

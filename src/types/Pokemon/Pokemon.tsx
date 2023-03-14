@@ -18,6 +18,7 @@ export interface IPokemon {
   held_items: IPokemonHeldItem[];
   location_area_encounters: string;
   moves: IPokemonMove[];
+  past_types: IPastTypes[];
   sprites: IPokemonSprites;
   species: INamedApiResource;
   stats: IPokemonStat[];
@@ -62,6 +63,11 @@ export interface IPokemonStat {
   base_stat: number;
 }
 
+export interface IPastTypes {
+  generation: INamedApiResource;
+  types: IPokemonType[];
+}
+
 export interface IPokemonSprites {
   back_default: string;
   back_female: string;
@@ -79,13 +85,17 @@ interface ISpriteVariant {
   back_default: string | null;
   back_female: string | null;
   back_gray: string | null;
+  back_transparent: string | null;
   back_shiny: string | null;
   back_shiny_female: string | null;
+  back_shiny_transparent: string | null;
   front_default: string | null;
   front_female: string | null;
   front_gray: string | null;
+  front_transparent: string | null;
   front_shiny: string | null;
   front_shiny_female: string | null;
+  front_shiny_transparent: string | null;
 }
 
 export interface IPokemonSpriteOther {
@@ -98,26 +108,51 @@ export interface IPokemonSpriteOther {
 interface IGeneration1Sprite {
   'red-blue': Pick<
     ISpriteVariant,
-    'back_default' | 'back_gray' | 'front_default' | 'front_gray'
+    | 'back_default'
+    | 'back_gray'
+    | 'back_transparent'
+    | 'front_default'
+    | 'front_gray'
+    | 'front_transparent'
   >;
   yellow: Pick<
     ISpriteVariant,
-    'back_default' | 'back_gray' | 'front_default' | 'front_gray'
+    | 'back_default'
+    | 'back_gray'
+    | 'back_transparent'
+    | 'front_default'
+    | 'front_gray'
+    | 'front_transparent'
   >;
 }
 
 interface IGeneration2Sprite {
   crystal: Pick<
     ISpriteVariant,
-    'back_default' | 'back_shiny' | 'front_default' | 'front_shiny'
+    | 'back_default'
+    | 'back_shiny'
+    | 'back_transparent'
+    | 'back_shiny_transparent'
+    | 'front_default'
+    | 'front_shiny'
+    | 'front_transparent'
+    | 'front_shiny_transparent'
   >;
   gold: Pick<
     ISpriteVariant,
-    'back_default' | 'back_shiny' | 'front_default' | 'front_shiny'
+    | 'back_default'
+    | 'back_shiny'
+    | 'front_default'
+    | 'front_shiny'
+    | 'front_transparent'
   >;
   silver: Pick<
     ISpriteVariant,
-    'back_default' | 'back_shiny' | 'front_default' | 'front_shiny'
+    | 'back_default'
+    | 'back_shiny'
+    | 'front_default'
+    | 'front_shiny'
+    | 'front_transparent'
   >;
 }
 

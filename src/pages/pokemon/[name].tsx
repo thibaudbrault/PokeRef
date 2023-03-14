@@ -4,6 +4,7 @@ import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
 import { useFetchPokemon } from '@/components/pages/Pokemon/PokemonCard/Hooks/useFetchPokemon';
+import Typing from '@/components/pages/Pokemon/PokemonCard/Types/Types.PokemonCard';
 import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
@@ -13,7 +14,7 @@ import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 
 interface IEvolutionProps {
@@ -27,10 +28,18 @@ interface IMovesProps {
   name: string;
 }
 
+interface ICompetitiveProps {
+  format: string;
+  name: string;
+}
+
 interface IFormsProps {
   pokemon: IPokemon;
 }
 
+const Nav = dynamic(
+  () => import(`@/components/pages/Pokemon/PokemonCard/Nav/Nav.PokemonCard`),
+);
 const Data = dynamic(
   () => import(`@/components/pages/Pokemon/PokemonCard/Data/Data.PokemonCard`),
 );
@@ -59,6 +68,12 @@ const Locations = dynamic(
       `@/components/pages/Pokemon/PokemonCard/Locations/Locations.PokemonCard`
     ),
 );
+const Competitive = dynamic<ICompetitiveProps>(
+  () =>
+    import(
+      `@/components/pages/Pokemon/PokemonCard/Competitive/Competitive.PokemonCard`
+    ) as any,
+);
 const Forms = dynamic<IFormsProps>(
   () =>
     import(
@@ -71,27 +86,18 @@ const Sprites = dynamic(
       `@/components/pages/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard`
     ),
 );
-const Nav = dynamic(
-  () => import(`@/components/pages/Pokemon/PokemonCard/Nav/Nav.PokemonCard`),
-);
 
 type Props = {
   name: string;
 };
 
 function PokemonCard({ name }: Props) {
-  const {
-    pokemonId,
-    game,
-    setGame,
-    version,
-    setVersion,
-    pokemon,
-    species,
-    types,
-    location,
-    evolution,
-  } = useFetchPokemon(name);
+  const [game, setGame] = useState<string | null>(null);
+  const [version, setVersion] = useState<string | null>(null);
+  const [format, setFormat] = useState<string | null>(null);
+
+  const { pokemonId, pokemon, species, types, location, evolution } =
+    useFetchPokemon(name);
 
   // Modify game and version according to the id of the pokemon
   const pokemonFiltersFn = () => {
@@ -99,7 +105,7 @@ function PokemonCard({ name }: Props) {
       pokemonFilters.filter((p) => {
         pokemonId > p.min &&
           pokemonId < p.max &&
-          (setGame(p.game), setVersion(p.version));
+          (setGame(p.game), setVersion(p.version), setFormat(p.format));
       });
   };
 
@@ -170,6 +176,7 @@ function PokemonCard({ name }: Props) {
         />
 
         <Data pokemon={pokemon.data} species={species.data} game={game} />
+
         {evolution.data && <Evolution evolution={evolution.data} name={name} />}
 
         {pokemonId && pokemonId < 10000 && (
@@ -180,7 +187,9 @@ function PokemonCard({ name }: Props) {
           />
         )}
 
-        <Stats pokemon={pokemon.data} types={types.data} />
+        <Stats pokemon={pokemon.data} />
+
+        <Typing pokemon={pokemon.data} types={types.data} />
 
         {version && (
           <Moves pokemon={pokemon.data} version={version} name={name} />
@@ -189,6 +198,8 @@ function PokemonCard({ name }: Props) {
         {game && <Locations location={location.data} game={game} />}
 
         {pokemon.data.forms.length > 1 && <Forms pokemon={pokemon.data} />}
+
+        {format && <Competitive format={format} name={name} />}
 
         <Sprites pokemon={pokemon.data} />
 

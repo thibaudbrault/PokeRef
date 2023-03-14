@@ -2,19 +2,23 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingPokedex from '@/components/pages/Pokemon/Heading';
 import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
-import { PokedexVerticalText } from '@/components/pages/Pokemon/Styled.Pokemon';
-import { IOptions, IOptionsOffsetLimit } from '@/utils/DataArrays';
+import {
+  PokedexPagination,
+  PokedexVerticalText,
+} from '@/components/pages/Pokemon/Styled.Pokemon';
+import { IOptionsOffsetLimit } from '@/utils/DataArrays';
 import { getPokedex } from '@/utils/DataFetch';
 import {
   dehydrate,
   QueryClient,
+  useInfiniteQuery,
   useQuery,
   UseQueryResult,
 } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { IPokemon } from '../types/Pokemon/Pokemon';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 const Filters = dynamic(
   () => import(`@/components/pages/Pokemon/Components/Filters.Pokemon`),
@@ -28,15 +32,14 @@ function Pokedex() {
   // Modify the first pokemon displayed
   const [offset, setOffset] = useState<number>(0);
   //Modify the max number of pokemon displayed
-  const [limit, setLimit] = useState<number>(1008);
+  const [limit, setLimit] = useState<number>(50);
   // Form of the pokemon (changed with a dropdown)
   const [form, setForm] = useState<IOptionsOffsetLimit | null>(null);
-  // Type of the pokemon (changed with a dropdown)
-  const [type, setType] = useState<IOptions[]>([]);
   // Generation of the pokemon (changed with a dropdown)
   const [generation, setGeneration] = useState<IOptionsOffsetLimit | null>(
     null,
   );
+  const [page, setPage] = useState<number>(0);
 
   const { scrollBtn } = useScrollDir();
 
@@ -51,7 +54,14 @@ function Pokedex() {
       getPokedex(
         `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,
       ),
+    keepPreviousData: true,
   });
+
+  const handlePageChange = (data: { selected: number }) => {
+    window.scrollTo(0, 0);
+    setPage(data.selected);
+    setOffset(50 * data.selected);
+  };
 
   if (isError) {
     return toast.error(`Something went wrong: ${error.message}`);
@@ -69,17 +79,29 @@ function Pokedex() {
           pokedex={pokedex}
           setFilteredPokedex={setFilteredPokedex}
           setOffset={setOffset}
+          page={page}
+          setPage={setPage}
           setLimit={setLimit}
           form={form}
           setForm={setForm}
-          type={type}
-          setType={setType}
           generation={generation}
           setGeneration={setGeneration}
         />
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
         <ListPokemon filteredPokedex={filteredPokedex} />
         {scrollBtn()}
+        {!form && !generation && (
+          <PokedexPagination
+            breakLabel="..."
+            onPageChange={handlePageChange}
+            nextLabel=">"
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={2}
+            pageCount={Math.ceil(1010 / limit)}
+            previousLabel="<"
+            renderOnZeroPageCount={() => null}
+          />
+        )}
       </MainBig>
     </>
   );
@@ -92,7 +114,7 @@ export async function getStaticProps() {
   queryClient.prefetchQuery({
     queryKey: [`pokedex`],
     queryFn: () =>
-      getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008`),
+      getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1010`),
   });
   return {
     props: {

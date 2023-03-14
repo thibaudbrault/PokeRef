@@ -4,7 +4,6 @@ import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingMove from '@/components/pages/Moves/MoveCard/Heading';
 import { useFetchMove } from '@/components/pages/Moves/MoveCard/Hooks/useFetchMove';
-import List from '@/components/pages/Moves/MoveCard/List/List.MoveCard';
 import { MoveMainBig } from '@/components/pages/Moves/MoveCard/Styled.MoveCard';
 import { removeDash } from '@/utils/Typography';
 import { GetServerSidePropsContext } from 'next';
@@ -19,6 +18,9 @@ const Nav = dynamic(
 const Data = dynamic(
   () => import(`@/components/pages/Moves/MoveCard/Data/Data.MoveCard`),
 );
+const List = dynamic(
+  () => import(`@/components/pages/Moves/MoveCard/List/List.MoveCard`),
+);
 const LearnMethod = dynamic(() =>
   import(`@/utils/ObjectsMap`).then((res) => res.LearnMethod),
 );
@@ -30,28 +32,39 @@ type Props = {
 function MoveCard({ name }: Props) {
   const [learn, setLearn] = useState<string>(`level-up`);
 
-  const { move, pokedex, machine, version, setVersion, toggle, setToggle } =
-    useFetchMove(name);
+  const {
+    move,
+    isLoading,
+    isError,
+    error,
+    pokemon,
+    status,
+    machine,
+    version,
+    setVersion,
+    toggle,
+    setToggle,
+  } = useFetchMove(name);
 
-  if (move.status === `error`) {
-    return toast.error(`Something went wrong`);
+  if (isError) {
+    toast.error(`Something went wrong: ${error?.message}`);
   }
 
-  if (move.status === `loading`) {
+  if (isLoading) {
     return <Loader />;
   }
 
   return (
     <>
       <HeadingMove name={name} />
-      {move.status === `success` && (
+      {move && (
         <MoveMainBig>
-          <CardTitle>{removeDash(move.data?.name)}</CardTitle>
-          <Subtitle>{removeDash(move.data?.generation?.name)}</Subtitle>
+          <CardTitle>{removeDash(move.name)}</CardTitle>
+          <Subtitle>{removeDash(move.generation.name)}</Subtitle>
 
-          <Nav move={move.data} setVersion={setVersion} />
+          <Nav move={move} setVersion={setVersion} />
 
-          <Data move={move.data} machine={machine} version={version} />
+          <Data move={move} machine={machine} version={version} />
 
           <Divider />
 
@@ -62,10 +75,10 @@ function MoveCard({ name }: Props) {
           />
 
           <List
+            pokemon={pokemon}
             toggle={toggle}
-            pokedex={pokedex.data}
-            status={pokedex.status}
-            moveName={move.data?.name}
+            status={status}
+            moveName={move.name}
             version={version}
           />
 

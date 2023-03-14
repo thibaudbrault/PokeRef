@@ -11,8 +11,6 @@ import { useState } from 'react';
 
 export const useFetchPokemon = (name: string) => {
   const [pokemonId, setPokemonId] = useState<number | null>(null);
-  const [game, setGame] = useState<string | null>(null);
-  const [version, setVersion] = useState<string | null>(null);
 
   const [pokemon, types, location] = useQueries({
     queries: [
@@ -56,10 +54,6 @@ export const useFetchPokemon = (name: string) => {
 
   return {
     pokemonId,
-    game,
-    setGame,
-    version,
-    setVersion,
     pokemon,
     species,
     types,

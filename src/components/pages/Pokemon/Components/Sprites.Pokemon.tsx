@@ -8,113 +8,150 @@ type Props = {
 function Sprites({ p }: Props) {
   return (
     <PokedexImage>
-      {p.id < 152 && (
-        <SpriteNormal
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${p.id}.png`}
-          alt={p.name}
-          width={96}
-          height={96}
-          fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
-        />
-      )}
-      {p.id > 151 && p.id < 252 && (
+      {p.id < 152 &&
+        p.sprites.versions[`generation-i`][`red-blue`].front_transparent && (
+          <SpriteNormal
+            src={
+              p.sprites.versions[`generation-i`][`red-blue`].front_transparent
+            }
+            key={
+              p.sprites.versions[`generation-i`][`red-blue`].front_transparent
+            }
+            alt={p.name}
+            width={96}
+            height={96}
+            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+          />
+        )}
+      {p.id > 151 &&
+        p.id < 252 &&
+        p.sprites.versions[`generation-ii`].crystal.front_transparent &&
+        p.sprites.versions[`generation-ii`].crystal.front_shiny_transparent && (
+          <>
+            <SpriteNormal
+              src={
+                p.sprites.versions[`generation-ii`].crystal.front_transparent
+              }
+              key={
+                p.sprites.versions[`generation-ii`].crystal.front_transparent
+              }
+              alt={p.name}
+              width={96}
+              height={96}
+              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+            />
+            <SpriteShiny
+              src={
+                p.sprites.versions[`generation-ii`].crystal
+                  .front_shiny_transparent
+              }
+              key={
+                p.sprites.versions[`generation-ii`].crystal
+                  .front_shiny_transparent
+              }
+              alt={p.name}
+              width={96}
+              height={96}
+              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+            />
+          </>
+        )}
+      {p.id > 251 &&
+        p.id < 387 &&
+        p.sprites.versions[`generation-iii`].emerald.front_default &&
+        p.sprites.versions[`generation-iii`].emerald.front_shiny && (
+          <>
+            <SpriteNormal
+              src={p.sprites.versions[`generation-iii`].emerald.front_default}
+              key={p.sprites.versions[`generation-iii`].emerald.front_default}
+              alt={p.name}
+              width={96}
+              height={96}
+              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+            />
+            <SpriteShiny
+              src={p.sprites.versions[`generation-iii`].emerald.front_shiny}
+              key={p.sprites.versions[`generation-iii`].emerald.front_shiny}
+              alt={p.name}
+              width={96}
+              height={96}
+              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+            />
+          </>
+        )}
+      {p.id > 386 &&
+        p.id < 494 &&
+        p.sprites.versions[`generation-iv`].platinum.front_default &&
+        p.sprites.versions[`generation-iv`].platinum.front_shiny && (
+          <>
+            <SpriteNormal
+              src={p.sprites.versions[`generation-iv`].platinum.front_default}
+              key={p.sprites.versions[`generation-iv`].platinum.front_default}
+              alt={p.name}
+              width={96}
+              height={96}
+              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+            />
+            <SpriteShiny
+              src={p.sprites.versions[`generation-iv`].platinum.front_shiny}
+              key={p.sprites.versions[`generation-iv`].platinum.front_shiny}
+              alt={p.name}
+              width={96}
+              height={96}
+              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+            />
+          </>
+        )}
+      {p.id > 493 &&
+        p.id < 650 &&
+        p.sprites.versions[`generation-v`][`black-white`].front_default &&
+        p.sprites.versions[`generation-v`][`black-white`].front_shiny && (
+          <>
+            <SpriteNormal
+              src={
+                p.sprites.versions[`generation-v`][`black-white`].front_default
+              }
+              key={
+                p.sprites.versions[`generation-v`][`black-white`].front_default
+              }
+              alt={p.name}
+              width={96}
+              height={96}
+              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+            />
+            <SpriteShiny
+              src={
+                p.sprites.versions[`generation-v`][`black-white`].front_shiny
+              }
+              key={
+                p.sprites.versions[`generation-v`][`black-white`].front_shiny
+              }
+              alt={p.name}
+              width={96}
+              height={96}
+              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+            />
+          </>
+        )}
+      {p.id > 649 && (
         <>
           <SpriteNormal
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/${p.id}.png`}
+            src={p.sprites.front_default || ``}
+            key={p.sprites.front_default || ``}
             alt={p.name}
             width={96}
             height={96}
             fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
           />
           <SpriteShiny
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/transparent/shiny/${p.id}.png`}
+            src={p.sprites.front_shiny || ``}
+            key={p.sprites.front_shiny || ``}
             alt={p.name}
             width={96}
             height={96}
             fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
           />
         </>
-      )}
-      {p.id > 251 && p.id < 387 && (
-        <>
-          <SpriteNormal
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/${p.id}.png`}
-            alt={p.name}
-            width={96}
-            height={96}
-            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
-          />
-          <SpriteShiny
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/shiny/${p.id}.png`}
-            alt={p.name}
-            width={96}
-            height={96}
-            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
-          />
-        </>
-      )}
-      {p.id > 386 && p.id < 494 && (
-        <>
-          <SpriteNormal
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/platinum/${p.id}.png`}
-            alt={p.name}
-            width={96}
-            height={96}
-            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
-          />
-          <SpriteShiny
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/platinum/shiny/${p.id}.png`}
-            alt={p.name}
-            width={96}
-            height={96}
-            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
-          />
-        </>
-      )}
-      {p.id > 493 && p.id < 650 && (
-        <>
-          <SpriteNormal
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${p.id}.png`}
-            alt={p.name}
-            width={96}
-            height={96}
-            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
-          />
-          <SpriteShiny
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/shiny/${p.id}.png`}
-            alt={p.name}
-            width={96}
-            height={96}
-            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
-          />
-        </>
-      )}
-      {p.id > 649 && p.sprites.front_shiny && (
-        <>
-          <SpriteNormal
-            src={p.sprites?.front_default || ``}
-            alt={p.name}
-            width={96}
-            height={96}
-            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
-          />
-          <SpriteShiny
-            src={p.sprites?.front_shiny || ``}
-            alt={p.name}
-            width={96}
-            height={96}
-            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
-          />
-        </>
-      )}
-      {!p.sprites.front_shiny && (
-        <SpriteNormal
-          src={p.sprites?.front_default || ``}
-          alt={p.name}
-          width={96}
-          height={96}
-          fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
-        />
       )}
     </PokedexImage>
   );

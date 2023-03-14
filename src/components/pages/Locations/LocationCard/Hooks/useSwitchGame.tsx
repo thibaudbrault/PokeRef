@@ -1,7 +1,12 @@
 import { ILocation } from '@/types/Locations/Location';
 import { ILocationArea } from '@/types/Locations/LocationArea';
-import { getArea, getLocation } from '@/utils/DataFetch';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import {
+  getArea,
+  getEncounterCondition,
+  getEncounterMethod,
+  getLocation,
+} from '@/utils/DataFetch';
+import { useQueries, useQuery, UseQueryResult } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
 export const useSwitchGame = (name: string) => {
@@ -14,27 +19,28 @@ export const useSwitchGame = (name: string) => {
     setToggleState(index);
   };
 
-  const { data: location }: UseQueryResult<ILocation> = useQuery<ILocation>({
-    queryKey: [`location`, toggleState],
-    queryFn: () => getLocation(name),
-    onSuccess: (data) => {
-      setAreaUrl(data.areas[toggleState]?.url);
-    },
-  });
-
-  const {
-    isLoading,
-    isError,
-    error,
-    data: area,
-  }: UseQueryResult<ILocationArea, Error> = useQuery({
-    queryKey: [`area`, toggleState],
-    queryFn: () => areaUrl && getArea(areaUrl),
-    enabled: !!areaUrl,
+  const [location, encounter, method] = useQueries({
+    queries: [
+      {
+        queryKey: [`location`, toggleState, name],
+        queryFn: () => getLocation(name),
+        onSuccess: (data: ILocation) => {
+          setAreaUrl(data.areas[toggleState]?.url);
+        },
+      },
+      {
+        queryKey: [`encounterCondition`],
+        queryFn: getEncounterCondition,
+      },
+      {
+        queryKey: [`encounterMethod`],
+        queryFn: getEncounterMethod,
+      },
+    ],
   });
 
   const gameUsed = () => {
-    switch (location?.region.name) {
+    switch (location.data?.region.name) {
       case `kanto`:
         setGame(`yellow`);
         break;
@@ -61,7 +67,18 @@ export const useSwitchGame = (name: string) => {
 
   useEffect(() => {
     gameUsed();
-  }, [location?.region.name]);
+  }, [location.data?.region.name]);
+
+  const {
+    isLoading,
+    isError,
+    error,
+    data: area,
+  }: UseQueryResult<ILocationArea, Error> = useQuery({
+    queryKey: [`area`, toggleState, game, name],
+    queryFn: () => areaUrl && getArea(areaUrl),
+    enabled: !!areaUrl && !!game && !!encounter.data,
+  });
 
   return {
     game,
@@ -74,5 +91,7 @@ export const useSwitchGame = (name: string) => {
     toggleTable,
     location,
     area,
+    encounter,
+    method,
   };
 };

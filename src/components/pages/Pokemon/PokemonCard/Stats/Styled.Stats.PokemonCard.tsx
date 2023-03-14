@@ -1,85 +1,138 @@
 import { device } from '@/components/common/styles/Sizing';
-import { TypeDamageTable } from '@/components/pages/Types/TypeCard/Styled.TypeCard';
+import { FullWidthTable } from '@/components/common/styles/Table';
 import styled from 'styled-components';
 
-export const PokemonStatsSection = styled.section`
-  margin-bottom: 5rem;
+export const PokemonStatsCircles = styled.div`
+  margin: 3rem 0 0;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 3rem;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  height: 15rem;
+
+  & .CircularProgressbar {
+    height: 100%;
+
+    &-trail {
+      stroke: ${({ theme }) => theme.secondary};
+    }
+
+    &-path {
+      stroke: ${({ theme }) => theme.red};
+    }
+
+    &-text {
+      fill: ${({ theme }) => theme.secondary};
+      font-size: 1.3rem;
+      stroke-width: 0.4;
+    }
+  }
 
   @media ${device.lg} {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 5rem;
-
-    & div {
-      width: 100%;
-    }
+    height: 30rem;
+    row-gap: 3rem;
+    grid-template-columns: repeat(3, 1fr);
   }
-`;
 
-export const PokemonStatsText = styled.td`
-  padding: 1rem;
-  font-size: 1.5rem;
-  text-transform: capitalize;
-  vertical-align: middle;
-`;
-
-export const PokemonStatsBars = styled.td`
-  width: 100%;
-  min-width: 150px;
-  vertical-align: middle;
-
-  & div {
-    position: relative;
-    width: 100%;
-    height: 12px;
-    background: ${({ theme }) => theme.main};
-    border: 1px solid ${({ theme }) => theme.secondary};
-    border-radius: 40px;
-
-    & span {
-      max-width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 10px;
-      background: ${({ theme }) => theme.secondary};
-      border-radius: 40px;
-    }
-  }
-`;
-
-export const PokemonStatsTotal = styled.td`
-  padding: 1rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  vertical-align: middle;
-`;
-
-export const PokemonTypesContainer = styled.div`
   @media ${device.sm} {
-    width: 100%;
-    margin-top: 1rem;
+    height: 45rem;
+    row-gap: 4rem;
+    grid-template-columns: 1fr 1fr;
+
+    & .CircularProgressbar {
+      &-text {
+        font-size: 2rem;
+      }
+    }
   }
 `;
 
-export const PokemonTypesTable = styled(TypeDamageTable)`
-  height: auto;
-  & tr {
-    & td {
-      height: auto;
-    }
+export const PokemonStatsTotal = styled.p`
+  margin: 2rem 0;
+  font-size: 1.7rem;
+`;
 
-    &:nth-of-type(3) {
-      border-bottom: 1px solid rgba(130, 130, 130, 0.2);
+export const PokemonStatsDetails = styled.details`
+  & summary {
+    width: fit-content;
+    margin-bottom: 2rem;
+    font-size: 2.3rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    cursor: pointer;
+  }
+`;
+
+export const PokemonCalcTable = styled(FullWidthTable)`
+  border-bottom: none;
+  & th {
+    color: ${({ theme }) => theme.secondary};
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    background: rgba(130, 130, 130, 0.2);
+  }
+
+  & tr:last-of-type {
+    & td {
+      border-bottom: none;
     }
   }
 
-  &:first-of-type {
-    margin-bottom: 0;
+  & td {
+    & input,
+    select {
+      width: 100%;
+      padding: 0.7rem;
+      background: transparent;
+      color: ${({ theme }) => theme.secondary};
+      border: 1px solid ${({ theme }) => theme.secondary};
+      border-radius: 5px;
+      outline: none;
+
+      &::placeholder {
+        color: ${({ theme }) => theme.secondary};
+        opacity: 1;
+      }
+
+      &:focus {
+        border: 1px solid ${({ theme }) => theme.red};
+      }
+    }
+
+    & input[type='number'] {
+      appearance: textfield;
+      -moz-appearance: textfield;
+
+      &::-webkit-inner-spin-button,
+      ::-webkit-outer-spin-button {
+        -webkit-appearance: textfield;
+      }
+    }
+
+    & select {
+      width: 80%;
+      margin: 0 auto;
+
+      & option {
+        text-transform: capitalize;
+        background: ${({ theme }) => theme.main};
+        color: ${({ theme }) => theme.secondary};
+      }
+    }
+
+    & button {
+      background: ${({ theme }) => theme.secondary};
+      color: ${({ theme }) => theme.main};
+      border: 1px solid transparent;
+      border-radius: 5px;
+      padding: 1rem 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      transition: 0.3s ease-in-out;
+
+      &:active {
+        transform: scale(0.98);
+      }
+    }
   }
 `;

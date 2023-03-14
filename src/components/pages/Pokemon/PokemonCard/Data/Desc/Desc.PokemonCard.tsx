@@ -5,7 +5,11 @@ import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
 import { removeDash } from '@/utils/Typography';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PokemonDataDesc, PokemonDataTypes } from '../Styled.Data.PokemonCard';
+import {
+  PokemonDataDesc,
+  PokemonDataOldTypes,
+  PokemonDataTypes,
+} from '../Styled.Data.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
@@ -28,7 +32,9 @@ function Desc({ pokemon, species, game }: Props) {
           <PokemonDataDesc>
             <span>
               {filterDesc && filterDesc?.flavor_text ? (
-                filterDesc?.flavor_text.replace(`\u000c`, ` `).replace(`É`, `é`)
+                filterDesc?.flavor_text
+                  .replace(`\u000c`, ` `)
+                  .replace(`POKéMON`, `Pokémon`)
               ) : (
                 <Bold>There is no description for this Pokémon</Bold>
               )}
@@ -61,6 +67,17 @@ function Desc({ pokemon, species, game }: Props) {
             </Type>
           ))}
         </PokemonDataTypes>
+        <PokemonDataOldTypes>
+          {pokemon.past_types.map((pp) => (
+            <p key={pp.generation.name}>
+              Up to <span>{removeDash(pp.generation.name)}</span> (included) :
+              was{` `}
+              {pp.types.map((ppt) => (
+                <span key={ppt.type.name}>{ppt.type.name}</span>
+              ))}
+            </p>
+          ))}
+        </PokemonDataOldTypes>
       </ul>
     </>
   );

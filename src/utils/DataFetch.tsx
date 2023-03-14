@@ -5,6 +5,16 @@ import { IType } from '@/types/Pokemon/Type';
 import axios from 'axios';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 
+export const getPokedexResults = async () => {
+  try {
+    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1010`);
+    const results = await res.data.results;
+    return results;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // Fetch all pokemon
 export const getPokedex = async (url: string) => {
   try {
@@ -157,6 +167,40 @@ export const getRegions = async () => {
   }
 };
 
+// Fetch all encounter condition
+export const getEncounterCondition = async () => {
+  try {
+    const res = await axios.get(
+      `https://pokeapi.co/api/v2/encounter-condition-value?limit=67`,
+    );
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string }) => axios.get(res.url)),
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Fetch all encounter methods
+export const getEncounterMethod = async () => {
+  try {
+    const res = await axios.get(
+      `https://pokeapi.co/api/v2/encounter-method?limit=31`,
+    );
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string }) => axios.get(res.url)),
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // Fetch single pokemon
 export const getPokemon = async (url: string) => {
   try {
@@ -191,6 +235,18 @@ export const getMove = async (name: string) => {
   }
 };
 
+// Fetch move's pokemon array
+export const getMovePokemon = async (move: IMove) => {
+  try {
+    const res = move.learned_by_pokemon.map((p) => p.url);
+    const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
+    const results = promiseRes.map((res) => res.data);
+    return results;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // Fetch move's machines array
 export const getMoveMachines = async (move: IMove) => {
   try {
@@ -198,6 +254,21 @@ export const getMoveMachines = async (move: IMove) => {
     const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
     const results = promiseRes.map((res) => res.data);
     return results;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Fetch move's target
+export const getMoveTarget = async () => {
+  try {
+    const res = await axios.get(`https://pokeapi.co/api/v2/move-target`);
+    const results = await res.data.results;
+    const promiseRes = await Promise.all(
+      results.map((res: { url: string }) => axios.get(res.url)),
+    );
+    const result = promiseRes.map((res) => res.data);
+    return result;
   } catch (err) {
     console.error(err);
   }

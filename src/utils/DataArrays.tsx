@@ -63,7 +63,6 @@ export interface IOptionsOffsetLimit extends IOptions {
 }
 
 export const formOptions: IOptionsOffsetLimit[] = [
-  { label: `Default`, value: ``, offset: 0, limit: 1008 },
   { label: `Alola`, value: `alola`, offset: 1097, limit: 30 },
   { label: `Galar`, value: `galar`, offset: 1167, limit: 25 },
   { label: `Hisui`, value: `hisui`, offset: 1235, limit: 20 },
@@ -72,7 +71,6 @@ export const formOptions: IOptionsOffsetLimit[] = [
 ];
 
 export const generationsOptions: IOptionsOffsetLimit[] = [
-  { label: `All`, value: ``, offset: 0, limit: 1008 },
   { label: `Generation I`, value: `gen1`, offset: 0, limit: 151 },
   { label: `Generation II`, value: `gen2`, offset: 151, limit: 100 },
   { label: `Generation III`, value: `gen3`, offset: 251, limit: 135 },
@@ -81,7 +79,7 @@ export const generationsOptions: IOptionsOffsetLimit[] = [
   { label: `Generation VI`, value: `gen6`, offset: 649, limit: 72 },
   { label: `Generation VII`, value: `gen7`, offset: 721, limit: 88 },
   { label: `Generation VIII`, value: `gen8`, offset: 809, limit: 96 },
-  { label: `Generation IX`, value: `gen9`, offset: 905, limit: 103 },
+  { label: `Generation IX`, value: `gen9`, offset: 905, limit: 105 },
 ];
 
 export const typeOptions: IOptions[] = [
@@ -108,6 +106,7 @@ export const typeOptions: IOptions[] = [
 type PokemonFilters = {
   game: string;
   version: string;
+  format: string;
   min: number;
   max: number;
 }[];
@@ -116,62 +115,72 @@ export const pokemonFilters: PokemonFilters = [
   {
     game: `yellow`,
     version: `yellow`,
+    format: `gen1`,
     min: 0,
     max: 152,
   },
   {
     game: `crystal`,
     version: `crystal`,
+    format: `gen2`,
     min: 151,
     max: 252,
   },
   {
     game: `emerald`,
     version: `emerald`,
+    format: `gen3`,
     min: 251,
     max: 387,
   },
   {
     game: `platinum`,
     version: `platinum`,
+    format: `gen4`,
     min: 386,
     max: 494,
   },
   {
     game: `black-2`,
     version: `black-2-white-2`,
+    format: `gen5`,
     min: 493,
     max: 650,
   },
   {
     game: `x`,
     version: `x-y`,
+    format: `gen6`,
     min: 649,
     max: 722,
   },
   {
     game: `ultra-sun`,
     version: `ultra-sun-ultra-moon`,
+    format: `gen7`,
     min: 721,
     max: 810,
   },
   {
     game: `sword`,
     version: `sword-shield`,
+    format: `gen8`,
     min: 809,
     max: 898,
   },
   {
     game: `legends-arceus`,
     version: `legends-arceus`,
+    format: `gen8`,
     min: 897,
     max: 905,
   },
   {
     game: `scarlet`,
     version: `scarlet-violet`,
+    format: `gen9`,
     min: 904,
-    max: 1008,
+    max: 1011,
   },
 ];
 
@@ -381,6 +390,40 @@ export const genNav: GenNav = [
   },
 ];
 
+type Natures = {
+  name: string;
+  positive: string;
+  negative: string;
+};
+
+export const pokemonNatures: Natures[] = [
+  { name: `Lonely`, positive: `Attack`, negative: `Defense` },
+  { name: `Adamant`, positive: `Attack`, negative: `Sp-Atk` },
+  { name: `Naughty`, positive: `Attack`, negative: `Sp-Def` },
+  { name: `Brave`, positive: `Attack`, negative: `Speed` },
+  { name: `Bold`, positive: `Defense`, negative: `Attack` },
+  { name: `Impish`, positive: `Defense`, negative: `Sp-Atk` },
+  { name: `Lax`, positive: `Defense`, negative: `Sp-Def` },
+  { name: `Relaxed`, positive: `Defense`, negative: `Speed` },
+  { name: `Modest`, positive: `Sp-Atk`, negative: `Attack` },
+  { name: `Mild`, positive: `Sp-Atk`, negative: `Defense` },
+  { name: `Rash`, positive: `Sp-Atk`, negative: `Sp-Def` },
+  { name: `Quiet`, positive: `Sp-Atk`, negative: `Speed` },
+  { name: `Calm`, positive: `Sp-Def`, negative: `Attack` },
+  { name: `Gentle`, positive: `Sp-Def`, negative: `Defense` },
+  { name: `Careful`, positive: `Sp-Def`, negative: `Sp-Atk` },
+  { name: `Sassy`, positive: `Sp-Def`, negative: `Speed` },
+  { name: `Timid`, positive: `Speed`, negative: `Attack` },
+  { name: `Hasty`, positive: `Speed`, negative: `Defense` },
+  { name: `Jolly`, positive: `Speed`, negative: `Sp-Atk` },
+  { name: `Naive`, positive: `Speed`, negative: `Sp-Def` },
+  { name: `Hardy`, positive: `None`, negative: `None` },
+  { name: `Docile`, positive: `None`, negative: `None` },
+  { name: `Serious`, positive: `None`, negative: `None` },
+  { name: `Bashful`, positive: `None`, negative: `None` },
+  { name: `Quirky`, positive: `None`, negative: `none` },
+];
+
 export const formatOptions = [
   { value: `gen9vgc2023`, label: `Gen 9 - VGC 2023` },
   { value: `gen9ou`, label: `Gen 9 - OverUsed` },
@@ -388,22 +431,5 @@ export const formatOptions = [
   { value: `gen9monotype`, label: `Gen 9 - Monotype` },
   { value: `gen9ubers`, label: `Gen 9 - Ubers` },
   { value: `gen9lc`, label: `Gen 9 - Little cup` },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
-  // { value: '', label: '' },
   // { value: '', label: '' },
 ];

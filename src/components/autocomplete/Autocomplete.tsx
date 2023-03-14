@@ -1,7 +1,10 @@
 import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { getPokedex, getPokedexResults } from '@/utils/DataFetch';
 import ImageWithFallback from '@/utils/ImageWithFallback';
 import { removeDash } from '@/utils/Typography';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { INamedApiResource } from '../../types/Utility/NamedApiResourceList';
 import {
   AutocompleteContainer,
   AutocompleteId,
@@ -9,21 +12,24 @@ import {
   AutocompleteLink,
 } from './Styled.Autocomplete';
 
-type Props = {
-  pokedex?: IPokemon[];
-};
+function Autocomplete() {
+  const { data: pokedex }: UseQueryResult<INamedApiResource[]> = useQuery({
+    queryKey: [`pokedex`],
+    queryFn: getPokedexResults,
+  });
 
-function Autocomplete({ pokedex }: Props) {
-  const [pokedexMatch, setPokedexMatch] = useState<IPokemon[] | undefined>([]);
+  const [pokedexMatch, setPokedexMatch] = useState<
+    INamedApiResource[] | undefined
+  >([]);
   const [searchText, setSearchText] = useState(``);
 
   const searchPokedex = (text: string) => {
-    let matches: IPokemon[] | undefined = [];
+    let matches: INamedApiResource[] | undefined = [];
     setSearchText(text);
     if (text.length > 0) {
       matches =
         pokedexMatch &&
-        pokedex?.filter((pokedex: IPokemon) => {
+        pokedex?.filter((pokedex: INamedApiResource) => {
           const regex = new RegExp(`${text}`, `gi`);
           return pokedex.name.match(regex);
         });
@@ -46,10 +52,14 @@ function Autocomplete({ pokedex }: Props) {
               pokedexMatch?.map((pm) => (
                 <li key={pm.name}>
                   <ImageWithFallback
-                    src={pm.sprites.front_default || ``}
+                    src={
+                      `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pm.url
+                        .replace('https://pokeapi.co/api/v2/pokemon/', '')
+                        .slice(0, -1)}.png` || ``
+                    }
                     alt=""
-                    width={39}
-                    height={39}
+                    width={48}
+                    height={48}
                     fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
                   />
                   <AutocompleteLink
@@ -62,7 +72,11 @@ function Autocomplete({ pokedex }: Props) {
                     {removeDash(pm.name)}
                   </AutocompleteLink>
                   <AutocompleteId>
-                    #{pm.id.toString().padStart(3, `0`)}
+                    #
+                    {pm.url
+                      .replace('https://pokeapi.co/api/v2/pokemon/', '')
+                      .slice(0, -1)
+                      .padStart(3, `0`)}
                   </AutocompleteId>
                 </li>
               ))}

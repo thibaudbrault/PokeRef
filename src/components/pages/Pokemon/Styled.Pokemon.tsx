@@ -1,47 +1,45 @@
 import ImageWithFallback from '@/utils/ImageWithFallback';
-import Image from 'next/image';
+import ReactPaginate from 'react-paginate';
 import styled from 'styled-components';
-import { Search } from '../../common/styles/Inputs';
 import { device } from '../../common/styles/Sizing';
 
-export const PokedexSearch = styled(Search)`
-  align-items: stretch;
-  gap: 1rem;
+export const PokedexSearch = styled.section`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 'search form generation';
+  gap: 2rem;
 
   @media ${device.md} {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-      'search search search'
-      'form generation type';
+      'search search'
+      'form generation';
     row-gap: 2rem;
     column-gap: 4rem;
-  }
-
-  @media ${device.xs} {
-    grid-template-columns: 1fr 1fr;
-
-    grid-template-areas:
-      'search form'
-      'generation type';
-
-    /* & div {
-      height: 100%;
-    } */
   }
 `;
 
 export const PokedexDropdown = styled.div`
+  width: 100%;
   display: flex;
   align-items: start;
-  justify-content: center;
+  justify-content: stretch;
   flex-direction: column;
 
   & label {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     justify-self: flex-start;
+  }
+
+  &:first-of-type {
+    grid-area: form;
+  }
+
+  &:last-of-type {
+    grid-area: generation;
   }
 `;
 
@@ -168,13 +166,6 @@ export const PokedexImage = styled.div`
   }
 `;
 
-export const LoadingImage = styled(Image)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-`;
-
 export const PokedexTypes = styled.div`
   width: 100%;
   display: flex;
@@ -214,6 +205,39 @@ export const PokedexTypes = styled.div`
 
   @media ${device.sm} {
     font-size: 1rem;
+  }
+`;
+
+export const PokedexPagination = styled(ReactPaginate)`
+  width: 90%;
+  margin: 5rem auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & li {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    & a {
+      cursor: pointer;
+    }
+  }
+
+  & .selected {
+    background: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.main};
+    border-radius: 50%;
+  }
+
+  & .disabled {
+    opacity: 0.7;
   }
 `;
 

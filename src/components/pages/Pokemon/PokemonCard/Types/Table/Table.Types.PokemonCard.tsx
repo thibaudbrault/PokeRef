@@ -1,4 +1,4 @@
-import { PokemonTypesTable } from '../Styled.Stats.PokemonCard';
+import { PokemonTypesTable } from '../Styled.Types.PokemonCard';
 
 type Props = {
   target: string;

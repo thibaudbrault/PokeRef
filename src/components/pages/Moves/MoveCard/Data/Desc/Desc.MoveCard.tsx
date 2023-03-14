@@ -61,7 +61,7 @@ function Desc({ move, version, machine }: Props) {
           (ma) =>
             ma.version_group.name === version && (
               <tr key={ma.move.name}>
-                <th>Machine / Record</th>
+                <th>Machine</th>
                 <td>
                   <span>{ma.item.name.toUpperCase()}</span>
                 </td>

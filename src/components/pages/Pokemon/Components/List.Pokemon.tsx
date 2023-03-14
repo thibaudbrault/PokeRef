@@ -2,7 +2,6 @@ import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { removeDash } from '@/utils/Typography';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { Dispatch, SetStateAction } from 'react';
 import { PokedexElement, PokedexList, PokedexTypes } from '../Styled.Pokemon';
 
 interface ITypesProps {
@@ -24,9 +23,9 @@ function ListPokemon({ filteredPokedex }: Props) {
   return (
     <PokedexList>
       {filteredPokedex?.map((p: IPokemon) => (
-        <PokedexElement>
+        <PokedexElement key={p.id}>
           <Sprites p={p} />
-          {p.id < 1008 && <p>#{p.id.toString().padStart(3, `0`)}</p>}
+          {p.id < 1011 && <p>#{p.id.toString().padStart(3, `0`)}</p>}
           <h2 data-testid="pokemonName">
             <Link
               href={{

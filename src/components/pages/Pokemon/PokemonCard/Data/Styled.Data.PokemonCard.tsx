@@ -18,6 +18,12 @@ export const PokemonDataSection = styled(Section)`
   }
 `;
 
+export const PokemonDataContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
 export const PokemonDataSprite = styled.div`
   display: flex;
   align-items: center;
@@ -43,6 +49,7 @@ export const PokemonDataTypes = styled.li`
 
   & div {
     margin: 2rem;
+    margin-left: 0;
     padding: 0.5rem;
     border-radius: 5px;
     text-transform: uppercase;
@@ -71,6 +78,18 @@ export const PokemonDataTypes = styled.li`
 
   @media ${device.sm} {
     justify-content: center;
+  }
+`;
+
+export const PokemonDataOldTypes = styled.li`
+  font-size: 1.7rem;
+
+  & span {
+    text-transform: capitalize;
+
+    &:not(:first-of-type) {
+      font-weight: 700;
+    }
   }
 `;
 
