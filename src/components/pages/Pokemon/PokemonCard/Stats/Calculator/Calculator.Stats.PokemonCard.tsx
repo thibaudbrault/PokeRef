@@ -1,39 +1,40 @@
-import { Bold } from '@/components/common/styles/Headings';
+import { Divider } from '@/components/common/styles/Misc';
 import { IPokemonStat } from '@/types/Pokemon/Pokemon';
 import { pokemonNatures } from '@/utils/DataArrays';
 import { removeDash } from '@/utils/Typography';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import Results from '../Results/Results.Stats.PokemonCard';
 import { PokemonCalcTable } from '../Styled.Stats.PokemonCard';
 
 type Props = {
   baseStat: IPokemonStat[];
 };
 
-interface IStatsForm {
-  [key: string]: number;
+export interface IStatsForm {
+  attackEv: number;
+  attackIv: number;
+  defenseEv: number;
+  defenseIv: number;
+  hpEv: number;
+  hpIv: number;
+  level: number;
+  specialAttackEv: number;
+  specialAttackIv: number;
+  specialDefenseEv: number;
+  specialDefenseIv: number;
+  speedEv: number;
+  speedIv: number;
+  nature: string;
 }
 
 function CalculatorStats({ baseStat }: Props) {
   const [stats, setStats] = useState<IStatsForm | null>(null);
 
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data: IStatsForm) => setStats(data);
+  console.log(stats);
 
-  const getNatureInfluence = (stat: string) => {
-    if (stats) {
-      if (
-        pokemonNatures.find((m) => m.name === stats.nature)?.positive === stat
-      ) {
-        return 1.1;
-      } else if (
-        pokemonNatures.find((m) => m.name === stats.nature)?.negative === stat
-      ) {
-        return 0.9;
-      }
-      return 1;
-    }
-  };
+  const { register, handleSubmit } = useForm<IStatsForm>();
+  const onSubmit: SubmitHandler<IStatsForm> = (data) => setStats(data);
 
   return (
     <>
@@ -43,7 +44,7 @@ function CalculatorStats({ baseStat }: Props) {
             <th>
               <label htmlFor="level">Level</label>
             </th>
-            <td>
+            <td colSpan={2}>
               <input
                 type="number"
                 min={1}
@@ -227,73 +228,10 @@ function CalculatorStats({ baseStat }: Props) {
         </PokemonCalcTable>
       </form>
       {stats && (
-        <div>
-          <p>
-            <Bold>Hp</Bold>: {``}
-            {Math.floor(
-              (stats.level / 100) *
-                (baseStat[0].base_stat * 2 + stats.hpIv + stats.hpEv / 4) +
-                stats.level +
-                10,
-            )}
-          </p>
-          <p>
-            <Bold>Attack</Bold>: {``}
-            {Math.floor(
-              ((stats.level / 100) *
-                (baseStat[1].base_stat * 2 +
-                  stats.attackIv +
-                  stats.attackEv / 4) +
-                5) *
-                getNatureInfluence(stats.nature),
-            )}
-          </p>
-          <p>
-            <Bold>Defense</Bold>: {``}
-            {Math.floor(
-              ((stats.level / 100) *
-                (baseStat[2].base_stat * 2 +
-                  stats.defenseIv +
-                  stats.defenseEv / 4) +
-                5) *
-                getNatureInfluence(stats.nature),
-            )}
-          </p>
-          <p>
-            <Bold>Special Attack</Bold>: {``}
-            {Math.floor(
-              ((stats.level / 100) *
-                (baseStat[3].base_stat * 2 +
-                  stats.specialAttackIv +
-                  stats.specialAttackEv / 4) +
-                5) *
-                getNatureInfluence(stats.nature),
-            )}
-          </p>
-          <p>
-            <Bold>Special Defense</Bold>: {``}
-            {Math.floor(
-              ((stats.level / 100) *
-                (baseStat[4].base_stat * 2 +
-                  stats.specialDefenseIv +
-                  stats.specialDefenseEv / 4) +
-                5) *
-                getNatureInfluence(stats.nature),
-            )}
-          </p>
-          <p>
-            <Bold>Speed</Bold>: {``}
-            {Math.floor(
-              ((stats.level / 100) *
-                (baseStat[5].base_stat * 2 + stats.speed + stats.speed / 4) +
-                5) *
-                getNatureInfluence(stats.nature),
-            )}
-          </p>
-          <p>
-            <Bold>Total</Bold>: {``}
-          </p>
-        </div>
+        <>
+          <Divider />
+          <Results stats={stats} baseStat={baseStat} />
+        </>
       )}
     </>
   );
