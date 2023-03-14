@@ -11,11 +11,10 @@
     "typescript"
   ],
   "scripts": {
-    "dev": "next",
+    "dev": "next dev -p 3005",
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "test": "jest --watch",
     "type-check": "tsc --noEmit",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",

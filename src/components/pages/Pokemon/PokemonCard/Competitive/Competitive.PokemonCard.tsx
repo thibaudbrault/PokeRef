@@ -113,8 +113,6 @@ function Competitive({ format, name }: Props) {
       .flat()[1].moves;
   };
 
-  console.log(filteredSets.petitcup);
-
   return (
     <Section>
       <H3>Competitive</H3>
