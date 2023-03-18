@@ -166,7 +166,7 @@ function Competitive({ format, name }: Props) {
                     ))
                   }}
                 />
-                {Object.keys(Object.values(Object.entries(filteredSets)[toggle][1])[1]).length > 1 &&
+                {/* {Object.keys(Object.values(Object.entries(filteredSets)[toggle][1])[1]).length > 1 &&
                   <div>
                     <p>Item: <b>{setSpecs(filteredSets, i, 'item')}</b></p>
                     <p>Nature: <b>{setSpecs(filteredSets, i, 'nature')}</b></p>
@@ -176,7 +176,7 @@ function Competitive({ format, name }: Props) {
                       </b>
                     </p>
                   </div>
-                }
+                } */}
               </PokemonSetSpecs>
               {s.description && (
                 <PokemonSetDesc

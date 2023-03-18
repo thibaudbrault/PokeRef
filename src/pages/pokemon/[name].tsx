@@ -11,6 +11,8 @@ import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { pokemonFilters } from '@/utils/DataArrays';
 import { removeDash } from '@/utils/Typography';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -98,6 +100,13 @@ function PokemonCard({ name }: Props) {
 
   const { pokemonId, pokemon, species, types, location, evolution } =
     useFetchPokemon(name);
+
+  const cards = useQuery({
+    queryKey: ['cards', name],
+    queryFn: async (name) => await axios.get(`https://api.pokemontcg.io/v2/cards?q=name:${name}`)
+  })
+
+  console.log(cards)
 
   // Modify game and version according to the id of the pokemon
   const pokemonFiltersFn = () => {
