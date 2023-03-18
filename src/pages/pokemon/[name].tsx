@@ -173,6 +173,7 @@ function PokemonCard({ name }: Props) {
           pokemonId={pokemon.data?.id}
           setGame={setGame}
           setVersion={setVersion}
+          setFormat={setFormat}
         />
 
         <Data pokemon={pokemon.data} species={species.data} game={game} />

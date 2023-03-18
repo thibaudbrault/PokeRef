@@ -72,7 +72,6 @@ export const PokedexList = styled.ul`
 `;
 
 export const PokedexElement = styled.li`
-  position: relative;
   width: 21rem;
   height: 32rem;
   padding: 2rem 3rem;
@@ -132,27 +131,6 @@ export const PokedexElement = styled.li`
     width: 20rem;
     height: 29rem;
     padding: 1.5rem 2.5rem;
-  }
-`;
-
-export const FavoritesBtn = styled.button`
-  border: none;
-  background: none;
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-
-  & svg {
-    font-size: 3rem;
-    fill: transparent;
-    stroke: ${({ theme }) => theme.main};
-    stroke-width: 1;
-  }
-
-  &.favorited {
-    & svg {
-      fill: ${({ theme }) => theme.red};
-    }
   }
 `;
 

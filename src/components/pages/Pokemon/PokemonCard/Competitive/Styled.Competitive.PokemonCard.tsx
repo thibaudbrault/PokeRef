@@ -18,6 +18,24 @@ export const PokemonSetsContainer = styled.ul`
   }
 `;
 
+export const PokemonSetSpecs = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+  background-color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.main};
+  border-radius: 5px;
+
+  & p {
+    font-size: 2rem;
+
+    & b {
+      font-weight: 700;
+    }
+  }
+`;
+
 export const PokemonSetDesc = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,8 +48,7 @@ export const PokemonSetDesc = styled.div`
   }
 
   & hr {
-    border: 1px solid ${({ theme }) => theme.secondary};
-    border-radius: 50px;
+    border-width: 0 0 1px 0;
   }
 `;
 

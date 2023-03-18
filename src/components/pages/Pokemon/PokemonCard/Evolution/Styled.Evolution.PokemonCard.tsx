@@ -34,6 +34,7 @@ export const PokemonEvolutionBase = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
 
     & a {
       font-size: 3rem;

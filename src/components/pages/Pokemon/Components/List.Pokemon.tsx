@@ -1,16 +1,8 @@
-import { auth } from '@/firebase-config';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { removeDash } from '@/utils/Typography';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import {
-  FavoritesBtn,
-  PokedexElement,
-  PokedexList,
-  PokedexTypes,
-} from '../Styled.Pokemon';
-import { EnHeart } from '@meronex/icons/en/';
+import { PokedexElement, PokedexList, PokedexTypes } from '../Styled.Pokemon';
 
 interface ITypesProps {
   p: IPokemon;
@@ -28,28 +20,10 @@ type Props = {
 };
 
 function ListPokemon({ filteredPokedex }: Props) {
-  const [fav, setFav] = useState<string[]>([]);
-
-  const favHandler = (name: string) => {
-    if (fav.includes(name)) {
-      setFav(fav.filter((fav) => fav !== name));
-    } else {
-      setFav([...fav, name]);
-    }
-  };
-
   return (
     <PokedexList>
       {filteredPokedex?.map((p: IPokemon) => (
         <PokedexElement key={p.id}>
-          {!auth.currentUser && (
-            <FavoritesBtn
-              className={fav.find((fav) => fav === p.name) ? 'favorited' : ''}
-              onClick={() => favHandler(p.name)}
-            >
-              <EnHeart />
-            </FavoritesBtn>
-          )}
           <Sprites p={p} />
           {p.id < 1011 && <p>#{p.id.toString().padStart(3, `0`)}</p>}
           <h2 data-testid="pokemonName">

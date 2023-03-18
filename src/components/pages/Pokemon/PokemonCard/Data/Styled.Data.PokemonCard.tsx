@@ -18,6 +18,12 @@ export const PokemonDataSection = styled(Section)`
   }
 `;
 
+export const PokemonCatchButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+`;
+
 export const PokemonDataContainer = styled.div`
   display: flex;
   flex-direction: column;
