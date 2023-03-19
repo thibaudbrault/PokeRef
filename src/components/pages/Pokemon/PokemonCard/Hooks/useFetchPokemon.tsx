@@ -1,5 +1,6 @@
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import {
+  getCards,
   getEvolution,
   getPokemon,
   getPokemonLocation,
@@ -12,7 +13,7 @@ import { useState } from 'react';
 export const useFetchPokemon = (name: string) => {
   const [pokemonId, setPokemonId] = useState<number | null>(null);
 
-  const [pokemon, types, location] = useQueries({
+  const [pokemon, types, location, cards] = useQueries({
     queries: [
       {
         queryKey: [`pokemon`, name],
@@ -32,6 +33,10 @@ export const useFetchPokemon = (name: string) => {
             `https://pokeapi.co/api/v2/pokemon/${name}/encounters`,
           ),
       },
+      {
+        queryKey: ['cards', name],
+        queryFn: () => getCards(name)
+      }
     ],
   });
 
@@ -59,5 +64,6 @@ export const useFetchPokemon = (name: string) => {
     types,
     location,
     evolution,
+    cards
   };
 };

@@ -100,13 +100,8 @@ function PokemonCard({ name }: Props) {
   const [version, setVersion] = useState<string | null>(null);
   const [format, setFormat] = useState<string | null>(null);
 
-  const { pokemonId, pokemon, species, types, location, evolution } =
+  const { pokemonId, pokemon, species, types, location, evolution, cards } =
     useFetchPokemon(name);
-
-  const { data: cards } = useQuery({
-    queryKey: ['cards', name],
-    queryFn: () => getCards(name)
-  })
 
   // Modify game and version according to the id of the pokemon
   const pokemonFiltersFn = () => {
@@ -212,7 +207,7 @@ function PokemonCard({ name }: Props) {
 
         <Sprites pokemon={pokemon.data} />
 
-        {cards && <Cards cards={cards} />}
+        {cards.data && <Cards cards={cards.data} />}
 
         <Link href="/" passHref>
           <BackBtn name="Pokedex" />
