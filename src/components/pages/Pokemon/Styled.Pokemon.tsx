@@ -155,7 +155,7 @@ export const PokedexImage = styled.div`
 
   &:hover ${SpriteShiny} {
     opacity: 1;
-    z-index: 99;
+    z-index: 3;
   }
 
   & img {

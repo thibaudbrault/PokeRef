@@ -124,4 +124,21 @@ export const Reset = createGlobalStyle`
             font-size: 7px;
         }
     }
+
+    .ReactModal__Overlay {
+        width: 100vw;
+        height: 100vh;
+        background-color: ${({ theme }) => theme.secondary} !important;
+        z-index: 4;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+
+        &--after-open {
+            opacity: 1;
+        }
+
+        &--before-close {
+            opacity: 0;
+        }
+    }
 `;

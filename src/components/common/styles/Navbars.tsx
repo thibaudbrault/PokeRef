@@ -193,7 +193,7 @@ export const MethodNav = styled.nav`
       padding: 1rem 1.5rem;
       width: 100%;
       height: 100%;
-      z-index: 99;
+      z-index: 3;
       color: ${({ theme }) => theme.main};
       cursor: pointer;
       transition: 0.3s ease-in-out;

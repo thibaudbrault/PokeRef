@@ -2,6 +2,7 @@ import { Subtitle, Title } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
+import Cards from '@/components/pages/Pokemon/PokemonCard/Cards/Cards.PokemonCard';
 import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
 import { useFetchPokemon } from '@/components/pages/Pokemon/PokemonCard/Hooks/useFetchPokemon';
 import Typing from '@/components/pages/Pokemon/PokemonCard/Types/Types.PokemonCard';
@@ -9,6 +10,7 @@ import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { pokemonFilters } from '@/utils/DataArrays';
+import { getCards } from '@/utils/DataFetch';
 import { removeDash } from '@/utils/Typography';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
 import { useQuery } from '@tanstack/react-query';
@@ -101,12 +103,10 @@ function PokemonCard({ name }: Props) {
   const { pokemonId, pokemon, species, types, location, evolution } =
     useFetchPokemon(name);
 
-  const cards = useQuery({
+  const { data: cards } = useQuery({
     queryKey: ['cards', name],
-    queryFn: async (name) => await axios.get(`https://api.pokemontcg.io/v2/cards?q=name:${name}`)
+    queryFn: () => getCards(name)
   })
-
-  console.log(cards)
 
   // Modify game and version according to the id of the pokemon
   const pokemonFiltersFn = () => {
@@ -119,7 +119,6 @@ function PokemonCard({ name }: Props) {
   };
 
   const audioRef = useRef<HTMLAudioElement>(null);
-
   const play = () => {
     if (audioRef.current) {
       audioRef.current.play();
@@ -212,6 +211,8 @@ function PokemonCard({ name }: Props) {
         {format && <Competitive format={format} name={name} />}
 
         <Sprites pokemon={pokemon.data} />
+
+        {cards && <Cards cards={cards} />}
 
         <Link href="/" passHref>
           <BackBtn name="Pokedex" />
