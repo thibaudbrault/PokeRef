@@ -80,16 +80,12 @@ export const HeaderBtnConnected = styled.div`
 `;
 
 export const HeaderContainer = styled.header`
-  width: 80%;
+  width: 90%;
   height: 10vh;
-  margin: 0 auto;
+  margin: 2rem auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  @media ${device.md} {
-    width: 90%;
-  }
 
   @media ${device.sm} {
     width: 95%;

@@ -31,8 +31,6 @@ export interface IStatsForm {
 function CalculatorStats({ baseStat }: Props) {
   const [stats, setStats] = useState<IStatsForm | null>(null);
 
-  console.log(stats);
-
   const { register, handleSubmit } = useForm<IStatsForm>();
   const onSubmit: SubmitHandler<IStatsForm> = (data) => setStats(data);
 

@@ -21,7 +21,7 @@ const nextConfig = withPWA({
   },
   swcMinify: true,
   images: {
-    domains: ['raw.githubusercontent.com', 'lh3.googleusercontent.com', 'play.pokemonshowdown.com']
+    domains: ['raw.githubusercontent.com', 'lh3.googleusercontent.com', 'play.pokemonshowdown.com', 'images.pokemontcg.io']
   },
 });
 

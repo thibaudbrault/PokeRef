@@ -122,7 +122,7 @@ export const PokedexElement = styled.li`
       border-radius: 50px 10px;
 
       @media ${device.sm} {
-        border-radius: 7px 35px;
+        border-radius: 35px 7px;
       }
     }
   }
@@ -155,7 +155,7 @@ export const PokedexImage = styled.div`
 
   &:hover ${SpriteShiny} {
     opacity: 1;
-    z-index: 99;
+    z-index: 3;
   }
 
   & img {

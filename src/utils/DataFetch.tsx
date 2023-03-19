@@ -5,6 +5,7 @@ import { IType } from '@/types/Pokemon/Type';
 import axios from 'axios';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 
+// Fetch all pokemon names and endpoints
 export const getPokedexResults = async () => {
   try {
     const res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1010`);
@@ -435,3 +436,14 @@ export const getFormat = async (url: string) => {
     console.error(err);
   }
 };
+
+// Fetch a pokemon's cards
+export const getCards = async (name: string) => {
+  try {
+    const res = await axios.get(`https://api.pokemontcg.io/v2/cards?q=name:${name}`)
+    const results = await res.data.data
+    return results
+  } catch (err) {
+    console.error(err);
+  }
+}

@@ -48,7 +48,7 @@
 <h4>Features</h4>
 
 ✅A page for every pokémon / move / ability / type / item and more  
-✅Filter pokémon by name / form / generation / type (possibility to filter by one or two types)  
+✅Filter pokémon by name / form / generation  
 ✅Filter moves / abilities / machines by name  
 ✅Change certain data according to the game selected  
 ✅Pokémon cries (up to n° 721)  

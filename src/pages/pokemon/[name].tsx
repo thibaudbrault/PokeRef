@@ -2,6 +2,7 @@ import { Subtitle, Title } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
+import Cards from '@/components/pages/Pokemon/PokemonCard/Cards/Cards.PokemonCard';
 import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
 import { useFetchPokemon } from '@/components/pages/Pokemon/PokemonCard/Hooks/useFetchPokemon';
 import Typing from '@/components/pages/Pokemon/PokemonCard/Types/Types.PokemonCard';
@@ -9,8 +10,11 @@ import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { pokemonFilters } from '@/utils/DataArrays';
+import { getCards } from '@/utils/DataFetch';
 import { removeDash } from '@/utils/Typography';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -99,6 +103,11 @@ function PokemonCard({ name }: Props) {
   const { pokemonId, pokemon, species, types, location, evolution } =
     useFetchPokemon(name);
 
+  const { data: cards } = useQuery({
+    queryKey: ['cards', name],
+    queryFn: () => getCards(name)
+  })
+
   // Modify game and version according to the id of the pokemon
   const pokemonFiltersFn = () => {
     pokemonId &&
@@ -110,7 +119,6 @@ function PokemonCard({ name }: Props) {
   };
 
   const audioRef = useRef<HTMLAudioElement>(null);
-
   const play = () => {
     if (audioRef.current) {
       audioRef.current.play();
@@ -173,6 +181,7 @@ function PokemonCard({ name }: Props) {
           pokemonId={pokemon.data?.id}
           setGame={setGame}
           setVersion={setVersion}
+          setFormat={setFormat}
         />
 
         <Data pokemon={pokemon.data} species={species.data} game={game} />
@@ -202,6 +211,8 @@ function PokemonCard({ name }: Props) {
         {format && <Competitive format={format} name={name} />}
 
         <Sprites pokemon={pokemon.data} />
+
+        {cards && <Cards cards={cards} />}
 
         <Link href="/" passHref>
           <BackBtn name="Pokedex" />
