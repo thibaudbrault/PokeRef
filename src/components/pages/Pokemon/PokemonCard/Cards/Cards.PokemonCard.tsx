@@ -1,17 +1,18 @@
-import { Bold, H3 } from '@/components/common/styles/Headings';
+import { Bold, H3, Small } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
+import { ICard } from '@/types/Cards/Card';
 import Image from 'next/image';
 import { useState } from 'react';
 import { PokemonCardList, PokemonCardModal } from './Styled.Cards.PokemonCard';
 
 type Props = {
-    cards: any;
+    cards: ICard[];
 }
 
 function Cards({ cards }: Props) {
 
     const [modalIsOpen, setIsOpen] = useState<boolean>(false);
-    const [modalImg, setModalImg] = useState<string>('')
+    const [modalData, setModalData] = useState<string | null>(null);
 
     const openModal = () => {
         setIsOpen(true);
@@ -20,19 +21,17 @@ function Cards({ cards }: Props) {
     const closeModal = () => {
         setIsOpen(false);
     }
-
-    console.log(cards)
-
     return (
         <Section>
             <H3>Cards</H3>
+            <Small>Click on a card to zoom</Small>
             <PokemonCardList>
                 {cards.map(c =>
                     <li>
                         <button
                             onClick={() => {
                                 openModal();
-                                setModalImg(c.images.large)
+                                setModalData(c.images.large)
                             }}
                         >
                             <Image
@@ -45,21 +44,23 @@ function Cards({ cards }: Props) {
                         <p>Set: <Bold>{c.set.name}</Bold></p>
                     </li>
                 )}
-                <PokemonCardModal
-                    isOpen={modalIsOpen}
-                    onRequestClose={closeModal}
-                    preventScroll={true}
-                    closeTimeoutMS={500}
-                >
-                    <Image
-                        src={modalImg}
-                        alt={''}
-                        width={0}
-                        height={0}
-                        sizes='100vw'
-                        style={{ width: '100%', height: 'auto' }}
-                    />
-                </PokemonCardModal>
+                {modalData && (
+                    <PokemonCardModal
+                        isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        preventScroll={true}
+                        closeTimeoutMS={500}
+                    >
+                        <Image
+                            src={modalData}
+                            alt={''}
+                            width={0}
+                            height={0}
+                            sizes='100vw'
+                            style={{ width: '100%', height: 'auto' }}
+                        />
+                    </PokemonCardModal>
+                )}
             </PokemonCardList>
         </Section>
     )

@@ -1,7 +1,9 @@
 export interface ICard {
+    abilities?: ICardAbilities[];
     artist: string;
     attacks: ICardAttacks[];
     cardmarket: ICardMarket;
+    evolvesFrom: string[];
     evolvesTo: string[];
     flavorText?: string;
     hp: string;
@@ -22,6 +24,12 @@ export interface ICard {
     tcgplayer: ICardMarket;
     types: string[];
     weakness?: ICardWeakness[];
+}
+
+export interface ICardAbilities {
+    name: string;
+    text: string;
+    type: string;
 }
 
 export interface ICardAttacks {

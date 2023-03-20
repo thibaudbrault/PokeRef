@@ -82,91 +82,90 @@ function Competitive({ format, name }: Props) {
     )
     .find((n) => n.pokemonSetsName === capitalize(name));
 
-  const { pokemonAnalysesName, ...filteredAnalyses } = pokemonAnalyses;
-  const { pokemonSetsName, ...filteredSets } = pokemonSets;
+  if (pokemonAnalyses && pokemonSets) {
+    const { pokemonAnalysesName, ...filteredAnalyses } = pokemonAnalyses;
+    const { pokemonSetsName, ...filteredSets } = pokemonSets;
 
-  const formattedName = (formatName: string) => {
-    return (
-      Object.entries(formats.data)
-        .filter((f) => f[0] === formatName && f[1])
-        .flat()[1] || formatName
-    );
-  };
+    const formattedName = (formatName: string) => {
+      return (
+        Object.entries(formats.data)
+          .filter((f) => f[0] === formatName && f[1])
+          .flat()[1] || formatName
+      );
+    };
 
-  const setsEntries = <T,>(obj: T): T => {
-    return Object.entries(obj)[toggle][1];
-  };
+    const setsEntries = <T,>(obj: T): T => {
+      return Object.entries(obj)[toggle][1];
+    };
 
-  const overview: string | undefined = setsEntries(
-    filteredAnalyses as IFormatAnalysesSets,
-  ).overview;
+    const overview: string | undefined = setsEntries(
+      filteredAnalyses as IFormatAnalysesSets,
+    ).overview;
 
-  const comments: string | undefined = setsEntries(
-    filteredAnalyses as IFormatAnalysesSets,
-  ).comments;
+    const comments: string | undefined = setsEntries(
+      filteredAnalyses as IFormatAnalysesSets,
+    ).comments;
 
-  const textFormatting = (str: string) =>
-    str.replaceAll(`-types`, ` types`).replaceAll(`-type`, ` type`);
+    const textFormatting = (str: string) =>
+      str.replaceAll(`-types`, ` types`).replaceAll(`-type`, ` type`);
 
-  const setSpecs = (obj: {}, i: number, value: string) => {
-    return ((Object.values(Object.entries(obj)[toggle][1])[i])[value])
-  };
+    const setSpecs = (obj: {}, i: number, value: string) => {
+      return ((Object.values(Object.entries(obj)[toggle][1])[i])[value])
+    };
 
-  const wrapMoves = (tag: string, move: string | number, index: number) => {
-    if (tag === 'p' && typeof move === 'string') {
-      return `<${tag}>Move ${index + 1}: <b>${move}</b></${tag}>`
-    } else if (tag === 'span' && typeof move === 'string') {
-      return `<${tag}>${move}</${tag}>`
-    } else if (typeof move === 'number') {
-      return null
+    const wrapMoves = (tag: string, move: string | number, index: number) => {
+      if (tag === 'p' && typeof move === 'string') {
+        return `<${tag}>Move ${index + 1}: <b>${move}</b></${tag}>`
+      } else if (tag === 'span' && typeof move === 'string') {
+        return `<${tag}>${move}</${tag}>`
+      } else if (typeof move === 'number') {
+        return null
+      }
     }
-  }
 
-  const majEv = {
-    hp: 'Hp',
-    atk: 'Atk',
-    def: 'Def',
-    spa: 'SpA',
-    spd: 'SpD',
-    spe: 'Spe'
-  }
+    const majEv = {
+      hp: 'Hp',
+      atk: 'Atk',
+      def: 'Def',
+      spa: 'SpA',
+      spd: 'SpD',
+      spe: 'Spe'
+    }
 
-  // console.log(Object.entries(setSpecs(filteredSets, 0, 'evs')).join(' / '))
-
-  return (
-    <Section>
-      <H3>Competitive</H3>
-      <MethodNav>
-        {Object.keys(filteredAnalyses).map((fa, i) => (
-          <button
-            key={fa}
-            className={toggle === i ? `button_active` : ``}
-            onClick={() => setToggle(i)}
-          >
-            <p>{formattedName(fa) as string}</p>
-          </button>
-        ))}
-      </MethodNav>
-      <PokemonSetsContainer>
-        {overview && (
-          <li>
-            <H4>Overview</H4>
-            <PokemonSetDesc dangerouslySetInnerHTML={{ __html: overview }} />
-          </li>
-        )}
-        {setsEntries(filteredAnalyses as IFormatAnalysesSets).sets.map(
-          (s: IFormatsAnalysesSetName, i) => (
-            <li key={s.name}>
-              <H4>{s.name}</H4>
-              <PokemonSetSpecs>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: setSpecs(filteredSets, i, 'moves').map((move: string | string[], index: number) => wrapMoves('p',
-                      Array.isArray(move) ? move.map(j => wrapMoves('span', j, index)).join(' / ') : move, index
-                    ))
-                  }}
-                />
-                {/* {Object.keys(Object.values(Object.entries(filteredSets)[toggle][1])[1]).length > 1 &&
+    return (
+      <Section>
+        <H3>Competitive</H3>
+        <MethodNav>
+          {Object.keys(filteredAnalyses).map((fa, i) => (
+            <button
+              key={fa}
+              className={toggle === i ? `button_active` : ``}
+              onClick={() => setToggle(i)}
+            >
+              <p>{formattedName(fa) as string}</p>
+            </button>
+          ))}
+        </MethodNav>
+        <PokemonSetsContainer>
+          {overview && (
+            <li>
+              <H4>Overview</H4>
+              <PokemonSetDesc dangerouslySetInnerHTML={{ __html: overview }} />
+            </li>
+          )}
+          {setsEntries(filteredAnalyses as IFormatAnalysesSets).sets.map(
+            (s: IFormatsAnalysesSetName, i) => (
+              <li key={s.name}>
+                <H4>{s.name}</H4>
+                <PokemonSetSpecs>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: setSpecs(filteredSets, i, 'moves').map((move: string | string[], index: number) => wrapMoves('p',
+                        Array.isArray(move) ? move.map(j => wrapMoves('span', j, index)).join(' / ') : move, index
+                      ))
+                    }}
+                  />
+                  {/* {Object.keys(Object.values(Object.entries(filteredSets)[toggle][1])[1]).length > 1 &&
                   <div>
                     <p>Item: <b>{setSpecs(filteredSets, i, 'item')}</b></p>
                     <p>Nature: <b>{setSpecs(filteredSets, i, 'nature')}</b></p>
@@ -177,27 +176,28 @@ function Competitive({ format, name }: Props) {
                     </p>
                   </div>
                 } */}
-              </PokemonSetSpecs>
-              {s.description && (
-                <PokemonSetDesc
-                  dangerouslySetInnerHTML={{
-                    __html: textFormatting(s.description),
-                  }}
-                />
-              )}
+                </PokemonSetSpecs>
+                {s.description && (
+                  <PokemonSetDesc
+                    dangerouslySetInnerHTML={{
+                      __html: textFormatting(s.description),
+                    }}
+                  />
+                )}
+              </li>
+            ),
+          )}
+          {comments && (
+            <li>
+              <PokemonSetComment
+                dangerouslySetInnerHTML={{ __html: textFormatting(comments) }}
+              />
             </li>
-          ),
-        )}
-        {comments && (
-          <li>
-            <PokemonSetComment
-              dangerouslySetInnerHTML={{ __html: textFormatting(comments) }}
-            />
-          </li>
-        )}
-      </PokemonSetsContainer>
-    </Section>
-  );
+          )}
+        </PokemonSetsContainer>
+      </Section>
+    );
+  }
 }
 
 export default Competitive;

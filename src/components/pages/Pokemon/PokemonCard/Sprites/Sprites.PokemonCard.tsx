@@ -3,8 +3,7 @@ import { Section } from '@/components/common/styles/Sizing';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import Image from 'next/image';
 import {
-  PokemonAnimatedSpritesDiv,
-  PokemonSpritesDiv,
+  PokemonSpritesDiv
 } from './Styled.Sprites.PokemonCard';
 
 type Props = {
@@ -109,13 +108,13 @@ function Sprites({ pokemon }: Props) {
       {pokemon.id < 650 && (
         <Section>
           <H3>Animated Sprites</H3>
-          <PokemonAnimatedSpritesDiv>
+          <PokemonSpritesDiv>
             <div>
               <Image
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif`}
                 alt={pokemon.name}
-                width={48}
-                height={48}
+                width={96}
+                height={96}
               />
               <p>Front Default</p>
             </div>
@@ -123,8 +122,8 @@ function Sprites({ pokemon }: Props) {
               <Image
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/${pokemon.id}.gif`}
                 alt={pokemon.name}
-                width={48}
-                height={48}
+                width={96}
+                height={96}
               />
               <p>Back Default</p>
             </div>
@@ -133,8 +132,8 @@ function Sprites({ pokemon }: Props) {
                 <Image
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/female/${pokemon.id}.gif`}
                   alt={pokemon.name}
-                  width={48}
-                  height={48}
+                  width={96}
+                  height={96}
                 />
                 <p>Front Female</p>
               </div>
@@ -144,8 +143,8 @@ function Sprites({ pokemon }: Props) {
                 <Image
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/female/${pokemon.id}.gif`}
                   alt={pokemon.name}
-                  width={48}
-                  height={48}
+                  width={96}
+                  height={96}
                 />
                 <p>Back Female</p>
               </div>
@@ -154,8 +153,8 @@ function Sprites({ pokemon }: Props) {
               <Image
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/${pokemon.id}.gif`}
                 alt={pokemon.name}
-                width={48}
-                height={48}
+                width={96}
+                height={96}
               />
               <p>Front Shiny</p>
             </div>
@@ -163,8 +162,8 @@ function Sprites({ pokemon }: Props) {
               <Image
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/${pokemon.id}.gif`}
                 alt={pokemon.name}
-                width={48}
-                height={48}
+                width={96}
+                height={96}
               />
               <p>Back Shiny</p>
             </div>
@@ -173,8 +172,8 @@ function Sprites({ pokemon }: Props) {
                 <Image
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/female/${pokemon.id}.gif`}
                   alt={pokemon.name}
-                  width={48}
-                  height={48}
+                  width={96}
+                  height={96}
                 />
                 <p>Front Shiny Female</p>
               </div>
@@ -184,13 +183,13 @@ function Sprites({ pokemon }: Props) {
                 <Image
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/female/${pokemon.id}.gif`}
                   alt={pokemon.name}
-                  width={48}
-                  height={48}
+                  width={96}
+                  height={96}
                 />
                 <p>Back Shiny Female</p>
               </div>
             )}
-          </PokemonAnimatedSpritesDiv>
+          </PokemonSpritesDiv>
         </Section>
       )}
     </>

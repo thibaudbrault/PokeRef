@@ -7,6 +7,7 @@ export const PokemonCardList = styled.ul`
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     gap: 4rem;
+    padding-top: 2rem;
 
     & li {
         text-align: center;
@@ -43,10 +44,16 @@ export const PokemonCardList = styled.ul`
 export const PokemonCardModal = styled(Modal)`
     width: 60%;
     height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
     overflow-y: hidden !important;
 
     @media ${device.sm} {

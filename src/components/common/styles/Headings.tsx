@@ -78,7 +78,7 @@ export const LeftSubtitle = styled(Subtitle)`
 `;
 
 export const H2 = styled.h2`
-  margin: 0 0 1rem;
+  margin-bottom: 1rem;
   font-size: 4.5rem;
   font-weight: 700;
   text-transform: capitalize;
@@ -86,14 +86,14 @@ export const H2 = styled.h2`
 `;
 
 export const H3 = styled.h3`
-  margin: 0 0 1rem;
+  margin-bottom: 1rem;
   font-size: 3.5rem;
   font-weight: 700;
   text-transform: capitalize;
 `;
 
 export const H4 = styled.h4`
-  margin: 0 0 1rem;
+  margin-bottom: 1rem;
   font-size: 2.5rem;
   font-weight: 700;
   text-transform: capitalize;
@@ -105,4 +105,9 @@ export const Capitalize = styled.span`
 
 export const Bold = styled.span`
   font-weight: 700;
+`;
+
+export const Small = styled.small`
+  margin-top: -0.5rem;
+  font-size: 1.2rem;
 `;

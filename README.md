@@ -52,12 +52,14 @@
 ✅Filter moves / abilities / machines by name  
 ✅Change certain data according to the game selected  
 ✅Pokémon cries (up to n° 721)  
+✅Competitive information for every pokémon with data from Smogon  
 ✅Dark and light mode  
 ✅404 page  
 ✅Autocomplete search  
 ✅Responsive
 
-🛠Add a Competitive section in a pokémon's details page
+🛠Add a Competitive section in a pokémon's details page  
+🛠Cards section
 
 🔜Profile page with possibility to view favorites  
 🔜Types relations for each pokémon  
@@ -123,7 +125,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - Tried to virtualize the moves, abilities and items pages' lists. I tried to implement it by using <a href="https://github.com/bvaughn/react-virtualized" target="_blank">react-virtualized</a> and <a href="https://github.com/petyosi/react-virtuoso" target="_blank">react-virtuoso</a>, but I had a few problems (the main one being that it did not take into account the sorting of the list and returned the list without it).
 - Implementing React-Query. I had to learn how to modify my custom hooks to make it work with React-Query and how to import the data from the hooks. It took me some time to make the transition works, but I don't regret it because my code is more readable (mainly the part where I import my hooks, but also the way I handle the loading state to return an animation while the data is being fetched) and it's an easy way to cache data.
 - Moving from CRA to Next. The main problem I had was learning to use dynamic routing and when I understood it the migration became easier. It still took me some time because I had to move all my files in other folders, change the paths in imports, implement the <Image /> component along with a width and height, correct some problems with the images (the creation of multiple spans wrapping the image that was solved by using next/future/image before moving to Next 13) and a few other problems with the <Link /> component (the fact that it can't have multiple children, that it needs to have a 'href' instead of the 'to' used in react-router to give the path and that you need to put an anchor tag inside the Link and use passHref).
-- Converting all the files to Typescript and declare all the types. Currently working on it and nearly finished.
+- Converting all the files to Typescript and declare all the types. 
 
 <h4>Contents</h4>
 
