@@ -56,23 +56,7 @@ export const PokemonCardModal = styled(Modal)`
     transform: translate(-50%, -50%);
     overflow-y: hidden !important;
 
-    & button {
-        background: none;
-        border: none;
-        
-        & img, div {
-            cursor: pointer;
-        }
-    }
-
     @media ${device.sm} {
         width: 80%;
     }
-`;
-
-export const PokemonCardInfo = styled.div`
-    padding: 1.5rem;
-    background-color: ${({ theme }) => theme.main};
-    color: ${({ theme }) => theme.secondary};
-    border-radius: 5px;
 `;
