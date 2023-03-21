@@ -11,7 +11,7 @@ type Props = {
 function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
   return (
     <GenNav>
-      <ol>
+      <ul>
         {(pokemonId < 152 || pokemonId > 10000) && (
           <li>
             <button>Gen I</button>
@@ -394,7 +394,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
             </div>
           </li>
         )}
-      </ol>
+      </ul>
     </GenNav>
   );
 }

@@ -31,7 +31,7 @@ export const PokemonSetSpecs = styled.div`
     font-size: 2rem;
 
     & b {
-      font-weight: 700;
+      font-weight: 600;
     }
   }
 `;
@@ -44,7 +44,7 @@ export const PokemonSetDesc = styled.div`
 
   & h1 {
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   & hr {
@@ -56,7 +56,7 @@ export const PokemonSetComment = styled(PokemonSetDesc)`
   & h1 {
     margin: 1rem 0 0;
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: capitalize;
   }
 `;

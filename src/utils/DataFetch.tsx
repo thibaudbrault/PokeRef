@@ -440,7 +440,11 @@ export const getFormat = async (url: string) => {
 // Fetch a pokemon's cards
 export const getCards = async (name: string) => {
   try {
-    const res = await axios.get(`https://api.pokemontcg.io/v2/cards?q=name:${name}`)
+    const res = await axios.get(`https://api.pokemontcg.io/v2/cards?q=name:${name}`, {
+      headers: {
+        'X-Api-Key': process.env.NEXT_POKEMONTCG_API_KEY as string
+      }
+    })
     const results = await res.data.data
     return results
   } catch (err) {

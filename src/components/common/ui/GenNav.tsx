@@ -11,7 +11,7 @@ type Props = {
 function Nav({ setGame, setVersion }: Props) {
   return (
     <GenNav>
-      <ol>
+      <ul>
         {genNav.map((g) => (
           <li key={g.gen}>
             <button>{g.gen}</button>
@@ -30,7 +30,7 @@ function Nav({ setGame, setVersion }: Props) {
             </div>
           </li>
         ))}
-      </ol>
+      </ul>
     </GenNav>
   );
 }

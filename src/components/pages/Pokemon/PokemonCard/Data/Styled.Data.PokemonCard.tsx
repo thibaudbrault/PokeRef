@@ -56,7 +56,7 @@ export const PokemonDataTypes = styled.li`
   & div {
     margin: 2rem;
     margin-left: 0;
-    padding: 0.5rem;
+    padding: 0 1.5rem;
     border-radius: 5px;
     text-transform: uppercase;
     text-align: center;
@@ -68,8 +68,8 @@ export const PokemonDataTypes = styled.li`
     & a {
       display: flex;
       align-items: center;
-      font-family: 'Press Start 2P';
-      font-size: 1.7rem;
+      font-family: 'Oswald';
+      font-size: 3rem;
 
       & img {
         cursor: pointer;
@@ -94,7 +94,7 @@ export const PokemonDataOldTypes = styled.li`
     text-transform: capitalize;
 
     &:not(:first-of-type) {
-      font-weight: 700;
+      font-weight: 600;
     }
   }
 `;
@@ -109,21 +109,15 @@ export const PokemonDataTable = styled(Table)`
 
   & td {
     font-size: 1.7rem;
-    font-weight: 700;
+    font-weight: 600;
     text-align: left;
     text-transform: capitalize;
 
-    & ol {
+    & ul {
       margin-left: 2rem;
       & li {
         list-style-type: decimal;
         text-align: left;
-
-        & small {
-          font-weight: 400;
-          font-size: 1.5rem;
-          text-transform: lowercase;
-        }
       }
     }
   }

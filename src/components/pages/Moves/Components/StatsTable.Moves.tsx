@@ -1,9 +1,9 @@
-import { LeftTitle } from '@/components/common/styles/Headings';
+import { LeftH2 } from '@/components/common/styles/Headings';
 import {
   FullWidthTable,
   TableContainer,
   TBold,
-  TCapitalize,
+  TCapitalize
 } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks/useTableParams';
 import { INature } from '@/types/Pokemon/Nature';
@@ -120,7 +120,7 @@ function StatsTable({ stats }: Props) {
 
   return (
     <section>
-      <LeftTitle>Stats</LeftTitle>
+      <LeftH2>Stats</LeftH2>
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>
           {tableHeader()}

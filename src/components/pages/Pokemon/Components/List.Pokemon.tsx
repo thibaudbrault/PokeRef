@@ -21,12 +21,12 @@ type Props = {
 
 function ListPokemon({ filteredPokedex }: Props) {
   return (
-    <PokedexList>
+    <PokedexList data-test-id="pokemonList">
       {filteredPokedex?.map((p: IPokemon) => (
-        <PokedexElement key={p.id}>
+        <PokedexElement key={p.id} data-test-id="pokemonElement">
           <Sprites p={p} />
           {p.id < 1011 && <p>#{p.id.toString().padStart(3, `0`)}</p>}
-          <h2 data-testid="pokemonName">
+          <h2>
             <Link
               href={{
                 pathname: `/pokemon/[name]`,

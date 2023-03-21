@@ -20,7 +20,7 @@ export const Reset = createGlobalStyle`
     del, dfn, em, img, ins, kbd, q, s, samp,
     small, strike, strong, sub, sup, tt, var,
     b, u, center,
-    dl, dt, dd, ol, ul, li,
+    dl, dt, dd, ul, ul, li,
     fieldset, form, label, legend,
     table, caption, tbody, tfoot, thead, tr, th, td,
     article, aside, canvas, details, embed, 
@@ -49,7 +49,7 @@ export const Reset = createGlobalStyle`
         display: block;
     }
 
-    ol, ul {
+    ul, ul {
         list-style: none;
     }
 
@@ -77,9 +77,8 @@ export const Reset = createGlobalStyle`
         color: ${({ theme }) => theme.secondary};
         background-color: ${({ theme }) => theme.main};
         background-image: ${({ theme }) => theme.background};
-        font-family: 'Quicksand', sans-serif;
+        font-family: 'Quicksand', serif;
         font-weight: 400;
-        transition: all 0.3s ease-in-out;
         
         & #nprogress {
             & .bar {
@@ -105,6 +104,10 @@ export const Reset = createGlobalStyle`
                 display: none;
             }
         }
+    }
+
+    h1, h2, h3, h4, h5, h6, nav {
+        font-family: 'Oswald', sans-serif;
     }
 
     @media ${device.md} {

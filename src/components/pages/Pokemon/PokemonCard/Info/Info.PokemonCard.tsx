@@ -4,6 +4,7 @@ import { H3 } from '@/components/common/styles/Headings';
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
+import { capitalize } from '@/utils/Typography';
 import { InfoTable } from '../Utils/DataTables';
 import {
   PokemonInfoSection,
@@ -24,7 +25,7 @@ function Info({ pokemon, species, evolution }: Props) {
     <PokemonInfoSection>
       {InfoTable.map((data) => (
         <div key={data.category}>
-          <H3>{data.category}</H3>
+          <H3>{capitalize(data.category)}</H3>
           <PokemonInfoTable>
             <tbody>
               {Array(Object.keys(data).length - 1)

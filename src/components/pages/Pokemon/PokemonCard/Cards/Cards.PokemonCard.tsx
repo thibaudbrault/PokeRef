@@ -1,4 +1,4 @@
-import { Bold, H3, Small } from '@/components/common/styles/Headings';
+import { Bold, H3 } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
 import { ICard } from '@/types/Cards/Card';
 import Image from 'next/image';
@@ -24,7 +24,6 @@ function Cards({ cards }: Props) {
     return (
         <Section>
             <H3>Cards</H3>
-            <Small>Click on a card to zoom</Small>
             <PokemonCardList>
                 {cards.map(c =>
                     <li>

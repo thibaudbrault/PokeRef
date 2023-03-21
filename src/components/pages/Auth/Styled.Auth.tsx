@@ -54,7 +54,7 @@ export const AuthTitle = styled.div`
 
 export const AuthChoice = styled.p`
   font-size: 1.7rem;
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 export const AuthInput = styled.div`
@@ -93,7 +93,7 @@ export const AuthSwitch = styled.p`
   text-align: center;
   font-size: 1.7rem;
   & a {
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
     border-bottom: 1px solid transparent;
     transition: 0.3s ease-in-out;
@@ -107,7 +107,7 @@ export const AuthBtn = styled.button`
   width: 100%;
   padding: 1rem 0;
   font-size: 1.7rem;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
   background: ${({ theme }) => theme.main};
   border: 1px solid ${({ theme }) => theme.main};

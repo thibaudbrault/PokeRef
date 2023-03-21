@@ -107,7 +107,7 @@ function Sprites({ pokemon }: Props) {
 
       {pokemon.id < 650 && (
         <Section>
-          <H3>Animated Sprites</H3>
+          <H3>Animated sprites</H3>
           <PokemonSpritesDiv>
             <div>
               <Image

@@ -86,8 +86,8 @@ export const PokedexElement = styled.li`
   transition: 0.3s ease-in-out;
 
   & h2 {
-    font-size: 1.5rem;
-    font-family: 'Press Start 2P';
+    font-size: 3rem;
+    font-family: 'Oswald';
     text-transform: capitalize;
 
     & a {
@@ -172,40 +172,44 @@ export const PokedexTypes = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-size: 1.3rem;
-
+  gap: 1rem;
+  
   & div {
     width: 100%;
-    margin: 0.5rem 0;
     padding: 0.5rem;
     border-radius: 5px;
     text-transform: uppercase;
     text-align: center;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
     color: #c4c4c4;
+    font-size: 1.7rem;
+    text-shadow: ${({ theme }) => theme.main} -1px -1px 0px,
+        ${({ theme }) => theme.main} 1px -1px 0px,
+        ${({ theme }) => theme.main} -1px 1px 0px,
+        ${({ theme }) => theme.main} 1px 1px 0px;
     border: 1px solid rgba(22, 22, 22, 0.2);
-    cursor: pointer;
-
+    
     & a {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 1rem;
+      cursor: pointer;
 
       & img {
         cursor: pointer;
       }
 
       & span {
-        font-family: 'Press Start 2P';
+        font-family: 'Oswald', sans-serif;
         cursor: pointer;
       }
     }
+
+    @media ${device.sm} {
+      font-size: 1rem;
+    }
   }
 
-  @media ${device.sm} {
-    font-size: 1rem;
-  }
 `;
 
 export const PokedexPagination = styled(ReactPaginate)`
@@ -222,7 +226,7 @@ export const PokedexPagination = styled(ReactPaginate)`
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
 
     & a {

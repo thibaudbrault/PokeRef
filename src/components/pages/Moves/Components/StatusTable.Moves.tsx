@@ -1,18 +1,18 @@
 import { useMemo } from 'react';
 
-import { LeftTitle } from '@/components/common/styles/Headings';
+import { LeftH2 } from '@/components/common/styles/Headings';
 import {
   FullWidthTable,
   TableContainer,
-  TBold,
+  TBold
 } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IMove } from '@/types/Moves/Move';
 import { IMoveAilment } from '@/types/Moves/MoveAilment';
+import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 import { StatusMoves } from '../Styled.Moves';
-import { removeDash } from '@/utils/Typography';
 
 type Props = {
   status?: IMoveAilment[];
@@ -62,7 +62,7 @@ function StatusTable({ status }: Props) {
 
   return (
     <>
-      <LeftTitle>Status</LeftTitle>
+      <LeftH2>Status</LeftH2>
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>
           {tableHeader()}

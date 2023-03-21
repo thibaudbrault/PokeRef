@@ -73,7 +73,7 @@ export const MoveListEmpty = styled.span`
   min-height: 25vh;
   display: none;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
 `;
 

@@ -74,7 +74,7 @@ export const Dropdown = styled(Select)`
 
     & .select__placeholder {
       color: ${({ theme }) => theme.secondary};
-      font-size: 1.3rem;
+      font-size: 1.5rem;
     }
 
     & .select__indicator-separator {
@@ -90,7 +90,7 @@ export const Dropdown = styled(Select)`
     color: ${({ theme }) => theme.secondary};
     background: ${({ theme }) => theme.main};
     text-transform: capitalize;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 
     & .select__option {
       cursor: pointer;

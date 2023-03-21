@@ -1,3 +1,4 @@
+import { Small } from '@/components/common/styles/Headings';
 import { IMachine } from '@/types/Machines/Machine';
 import { IMove } from '@/types/Moves/Move';
 import Image from 'next/image';
@@ -5,7 +6,7 @@ import Link from 'next/link';
 import {
   MoveCardDataCategory,
   MoveCardDataTable,
-  MoveCardDataType,
+  MoveCardDataType
 } from '../Styled.Data.MoveCard';
 
 type Props = {
@@ -75,7 +76,7 @@ function Desc({ move, version, machine }: Props) {
         <tr>
           <th>PP</th>
           <td>
-            {move.pp} <small>(max. {maxPp})</small>
+            {move.pp} <Small>(max. {maxPp})</Small>
           </td>
         </tr>
         <tr>

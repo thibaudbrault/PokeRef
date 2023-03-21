@@ -56,7 +56,7 @@ export const PokemonStatsDetails = styled.details`
     width: fit-content;
     margin-bottom: 2rem;
     font-size: 2.3rem;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: capitalize;
     cursor: pointer;
   }
@@ -67,7 +67,7 @@ export const PokemonCalcTable = styled(FullWidthTable)`
   & th {
     color: ${({ theme }) => theme.secondary};
     font-size: 1.7rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: capitalize;
     background: rgba(130, 130, 130, 0.2);
   }
@@ -128,7 +128,7 @@ export const PokemonCalcTable = styled(FullWidthTable)`
       border-radius: 5px;
       padding: 1rem 1.5rem;
       font-size: 1.7rem;
-      font-weight: 700;
+      font-weight: 600;
       transition: 0.3s ease-in-out;
 
       &:hover {

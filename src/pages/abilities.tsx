@@ -1,11 +1,11 @@
-import { LeftTitle } from '@/components/common/styles/Headings';
+import { LeftH2 } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import {
   FullWidthTable,
   TableContainer,
   TBold,
   TEffect,
-  TLink,
+  TLink
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
@@ -16,7 +16,7 @@ import {
   dehydrate,
   QueryClient,
   useQuery,
-  UseQueryResult,
+  UseQueryResult
 } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';
@@ -93,7 +93,7 @@ function AbilitiesPage() {
     <>
       <HeadingAbilities />
       <MainBig>
-        <LeftTitle>Abilities</LeftTitle>
+        <LeftH2>Abilities</LeftH2>
         <TableContainer ref={tableContainerRef}>
           <FullWidthTable>
             {tableHeader()}

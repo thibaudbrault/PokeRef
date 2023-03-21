@@ -19,8 +19,8 @@ function TypesPokemon({ p }: Props) {
         <Image
           src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${pt.type.name}.png`}
           alt={pt.type.name}
-          width={15}
-          height={15}
+          width={20}
+          height={20}
         />
         <span>{pt.type.name}</span>
       </Link>

@@ -23,15 +23,9 @@ export const MoveCardDataTable = styled(Table)`
 
   & td {
     font-size: 1.7rem;
-    font-weight: 700;
+    font-weight: 600;
     text-align: left;
     text-transform: capitalize;
-
-    & small {
-      font-size: 1.5rem;
-      font-weight: 400;
-      text-transform: lowercase;
-    }
   }
 
   @media ${device.sm} {

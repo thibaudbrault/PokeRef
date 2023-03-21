@@ -9,10 +9,13 @@ export const TypesList = styled.ul`
   flex-wrap: wrap;
 
   & li {
-    transition: 0.3s ease-in-out;
 
-    &:hover {
-      transform: scale(1.03);
+    & div {
+      transition: 0.3s ease-in-out;
+  
+      &:hover {
+        transform: scale(1.03);
+      }
     }
   }
 `;
@@ -35,13 +38,15 @@ export const ModifiedType = styled(Type)`
 
     & h2 {
       margin-top: 1rem;
-      font-size: 2rem;
-      font-family: 'Press Start 2P';
+      font-size: 3rem;
       border-radius: 5px;
       text-transform: uppercase;
       text-align: center;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-      color: #c4c4c4;
+      color: ${({ theme }) => theme.secondary};
+      text-shadow: ${({ theme }) => theme.main} -1px -1px 0px,
+        ${({ theme }) => theme.main} 1px -1px 0px,
+        ${({ theme }) => theme.main} -1px 1px 0px,
+        ${({ theme }) => theme.main} 1px 1px 0px;
       cursor: pointer;
     }
   }

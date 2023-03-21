@@ -15,7 +15,7 @@ export const HeaderBtnConnect = styled.div`
     border-radius: 5px;
     color: ${({ theme }) => theme.main};
     font-size: 1.3rem;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease-in-out;
 
@@ -52,7 +52,7 @@ export const HeaderBtnConnected = styled.div`
     border-radius: 5px;
     color: ${({ theme }) => theme.main};
     font-size: 1.3rem;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease-in-out;
 

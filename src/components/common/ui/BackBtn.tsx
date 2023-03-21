@@ -11,7 +11,7 @@ const BackButton = styled.span`
   width: fit-content;
   padding: 1rem 1.5rem;
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
   background: none;
   color: ${({ theme }) => theme.secondary};
   border: 1px solid ${({ theme }) => theme.secondary};
