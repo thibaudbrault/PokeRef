@@ -1,4 +1,5 @@
 import { Small } from '@/components/common/styles/Headings';
+import { Type } from '@/components/common/styles/Themes';
 import { IMachine } from '@/types/Machines/Machine';
 import { IMove } from '@/types/Moves/Move';
 import Image from 'next/image';
@@ -24,8 +25,8 @@ function Desc({ move, version, machine }: Props) {
       <tbody>
         <tr>
           <th>Type</th>
-          <td>
-            <MoveCardDataType id={move?.type?.name}>
+          <MoveCardDataType>
+            <Type id={move?.type?.name}>
               <Link
                 href={{
                   pathname: `/type/[name]`,
@@ -41,8 +42,8 @@ function Desc({ move, version, machine }: Props) {
                 />
                 <span>{move?.type?.name}</span>
               </Link>
-            </MoveCardDataType>
-          </td>
+            </Type>
+          </MoveCardDataType>
         </tr>
         <tr>
           <th>Category</th>

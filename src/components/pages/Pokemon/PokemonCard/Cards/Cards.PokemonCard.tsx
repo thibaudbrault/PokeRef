@@ -40,7 +40,7 @@ function Cards({ cards }: Props) {
                                 height={308}
                             />
                         </button>
-                        <p>Set: <Bold>{c.set.name}</Bold></p>
+                        <p>Set: <Bold>{c.set.name.replaceAll('—', ' ')}</Bold></p>
                     </li>
                 )}
                 {modalData && (

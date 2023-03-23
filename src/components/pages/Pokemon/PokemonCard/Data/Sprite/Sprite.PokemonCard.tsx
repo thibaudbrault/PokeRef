@@ -8,6 +8,9 @@ type Props = {
 };
 
 function Sprite({ pokemon, species }: Props) {
+
+  console.log(pokemon.sprites)
+
   return (
     <>
       <PokemonDataImg

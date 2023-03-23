@@ -57,8 +57,8 @@ export const MoveText = styled.p`
 `;
 
 export const MoveLink = styled(Link)`
-  font-size: 1.5rem;
-  font-family: 'Press Start 2P';
+  font-size: 3rem;
+  font-family: 'Oswald', sans-serif;
   text-transform: capitalize;
   transition: 0.3s ease-in-out;
   cursor: pointer;

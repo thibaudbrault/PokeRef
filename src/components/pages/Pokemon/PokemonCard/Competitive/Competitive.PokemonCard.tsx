@@ -82,10 +82,10 @@ function Competitive({ format, name }: Props) {
     )
     .find((n) => n.pokemonSetsName === capitalize(name));
 
-  if (pokemonAnalyses && pokemonSets) {
-    const { pokemonAnalysesName, ...filteredAnalyses } = pokemonAnalyses;
-    const { pokemonSetsName, ...filteredSets } = pokemonSets;
+  const { pokemonAnalysesName, ...filteredAnalyses } = pokemonAnalyses;
+  const { pokemonSetsName, ...filteredSets } = pokemonSets;
 
+  if (pokemonAnalyses && pokemonSets && filteredAnalyses === true && filteredSets === true) {
     const formattedName = (formatName: string) => {
       return (
         Object.entries(formats.data)

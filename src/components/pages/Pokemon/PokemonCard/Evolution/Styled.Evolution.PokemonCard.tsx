@@ -65,12 +65,14 @@ export const PokemonEvolutionStages = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 export const PokemonEvolutionFinal = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 export const PokemonEvolutionElement = styled.div`

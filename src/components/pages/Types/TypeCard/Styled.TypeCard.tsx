@@ -70,56 +70,6 @@ export const TypeListSubtitle = styled(Subtitle)`
   text-transform: none;
 `;
 
-export const TypePokemonList = styled.ul`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  & li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 3rem;
-    width: 21rem;
-    height: 32rem;
-    padding: 2rem 3rem;
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 5px;
-    font-size: 1.5rem;
-    text-align: center;
-    border: 1px solid transparent;
-    transition: 0.3s ease-in-out;
-
-    & p {
-      font-size: 1.5rem;
-    }
-
-    & a {
-      font-size: 1.5rem;
-      font-family: 'Press Start 2P';
-      text-transform: capitalize;
-      cursor: pointer;
-      transition: 0.3s ease-in-out;
-
-      &:hover {
-        color: ${({ theme }) => theme.red};
-      }
-    }
-
-    &:hover {
-      border: 1px solid ${({ theme }) => theme.red};
-    }
-
-    @media ${device.sm} {
-      width: 18rem;
-      height: 27rem;
-      margin: 2rem;
-      padding: 1.5rem 2.5rem;
-    }
-  }
-`;
 
 export const TypeMovesTable = styled(Table)`
   width: 100%;
