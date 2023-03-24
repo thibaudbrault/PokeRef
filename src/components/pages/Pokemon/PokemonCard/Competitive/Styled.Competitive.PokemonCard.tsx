@@ -20,6 +20,7 @@ export const PokemonSetsContainer = styled.ul`
 
 export const PokemonSetSpecs = styled.div`
   display: grid;
+  align-items: stretch;
   grid-template-columns: 1fr 1fr;
   margin-bottom: 1rem;
   padding: 1.5rem;
@@ -27,11 +28,16 @@ export const PokemonSetSpecs = styled.div`
   color: ${({ theme }) => theme.main};
   border-radius: 5px;
 
-  & p {
-    font-size: 2rem;
+  & ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    & li {
+      font-size: 2rem;
 
-    & b {
-      font-weight: 600;
+      & b {
+        font-weight: 600;
+      }
     }
   }
 `;

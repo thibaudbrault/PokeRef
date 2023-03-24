@@ -6,7 +6,7 @@ import {
   TCategory,
   TEffect,
   TLink,
-  TType
+  TType,
 } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import { useTableParams } from '@/hooks/useTableParams';

@@ -33,7 +33,7 @@ export const GenNav = styled.nav`
         white-space: nowrap;
         background: #c4c4c4;
         border-radius: 5px;
-        -webkit-box-shadow: 2px 2px 15px 2px #161616; 
+        -webkit-box-shadow: 2px 2px 15px 2px #161616;
         box-shadow: 2px 2px 15px 2px #161616;
 
         & button {

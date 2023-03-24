@@ -1,8 +1,8 @@
-import { expect, test } from '@playwright/test'
+import { expect, test } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:3005/')
-})
+  await page.goto('http://localhost:3005/');
+});
 
 // test("Should have 50 pokemon in a page", async ({ page }) => {
 //     const count = await page.getByTestId('pokemonElement').count()
@@ -29,16 +29,18 @@ test.beforeEach(async ({ page }) => {
 //     await expect(page.getByRole('link', { name: 'ivysaur' })).toBeVisible()
 // })
 
-test('Should modify filters value when selecting multiple', async ({ page }) => {
-    await page.locator('#form', { hasText: 'Select' }).click()
-    await page.getByText('Gmax', { exact: true }).click()
-    await expect(page.getByRole('link', { name: 'pikachu gmax' })).toBeVisible()
-    await page.locator('#generation', { hasText: 'Select' }).click()
-    await page.getByText('Generation II', { exact: true }).click()
-    await expect(page.getByRole('link', { name: 'ampharos' })).toBeVisible()
-    await page.locator('.select__clear-indicator').click()
-    await expect(page.getByRole('link', { name: 'ninetales' })).toBeVisible()
-})
+test('Should modify filters value when selecting multiple', async ({
+  page,
+}) => {
+  await page.locator('#form', { hasText: 'Select' }).click();
+  await page.getByText('Gmax', { exact: true }).click();
+  await expect(page.getByRole('link', { name: 'pikachu gmax' })).toBeVisible();
+  await page.locator('#generation', { hasText: 'Select' }).click();
+  await page.getByText('Generation II', { exact: true }).click();
+  await expect(page.getByRole('link', { name: 'ampharos' })).toBeVisible();
+  await page.locator('.select__clear-indicator').click();
+  await expect(page.getByRole('link', { name: 'ninetales' })).toBeVisible();
+});
 
 // test('Should be able to change page', async ({ page }) => {
 //     await expect(page.getByRole('link', { name: 'raichu' })).toBeVisible()

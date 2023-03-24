@@ -344,8 +344,8 @@ export const getAllEvo = async (evolution: IEvolutionChain) => {
       ee.evolves_to.map((eee) => eee.species.url),
     );
     const finalPromiseRes = await Promise.all(
-      finalRes[0].map(res => axios.get(res))
-    )
+      finalRes[0].map((res) => axios.get(res)),
+    );
     const results = [
       basePromiseRes.data,
       middlePromiseRes.map((res) => res.data),
@@ -439,14 +439,17 @@ export const getFormat = async (url: string) => {
 // Fetch a pokemon's cards
 export const getCards = async (name: string) => {
   try {
-    const res = await axios.get(`https://api.pokemontcg.io/v2/cards?q=name:${name}`, {
-      headers: {
-        'X-Api-Key': process.env.NEXT_POKEMONTCG_API_KEY as string
-      }
-    })
-    const results = await res.data.data
-    return results
+    const res = await axios.get(
+      `https://api.pokemontcg.io/v2/cards?q=name:${name}`,
+      {
+        headers: {
+          'X-Api-Key': process.env.NEXT_POKEMONTCG_API_KEY as string,
+        },
+      },
+    );
+    const results = await res.data.data;
+    return results;
   } catch (err) {
     console.error(err);
   }
-}
+};

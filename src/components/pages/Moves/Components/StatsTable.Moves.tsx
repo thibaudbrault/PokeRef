@@ -3,7 +3,7 @@ import {
   FullWidthTable,
   TableContainer,
   TBold,
-  TCapitalize
+  TCapitalize,
 } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks/useTableParams';
 import { INature } from '@/types/Pokemon/Nature';

@@ -9,10 +9,9 @@ export const TypesList = styled.ul`
   flex-wrap: wrap;
 
   & li {
-
     & div {
       transition: 0.3s ease-in-out;
-  
+
       &:hover {
         transform: scale(1.03);
       }

@@ -70,7 +70,6 @@ export const TypeListSubtitle = styled(Subtitle)`
   text-transform: none;
 `;
 
-
 export const TypeMovesTable = styled(Table)`
   width: 100%;
   margin: 3rem auto 0;

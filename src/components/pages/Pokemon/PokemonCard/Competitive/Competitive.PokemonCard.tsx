@@ -14,8 +14,6 @@ import toast from 'react-hot-toast';
 import {
   PokemonSetComment,
   PokemonSetDesc,
-  PokemonSetMore,
-  PokemonSetMoves,
   PokemonSetsContainer,
   PokemonSetSpecs,
 } from './Styled.Competitive.PokemonCard';
@@ -85,7 +83,12 @@ function Competitive({ format, name }: Props) {
   const { pokemonAnalysesName, ...filteredAnalyses } = pokemonAnalyses;
   const { pokemonSetsName, ...filteredSets } = pokemonSets;
 
-  if (pokemonAnalyses && pokemonSets && filteredAnalyses === true && filteredSets === true) {
+  if (
+    pokemonAnalyses &&
+    pokemonSets &&
+    Object.keys(filteredAnalyses).length > 0 &&
+    Object.keys(filteredSets).length > 0
+  ) {
     const formattedName = (formatName: string) => {
       return (
         Object.entries(formats.data)
@@ -110,18 +113,18 @@ function Competitive({ format, name }: Props) {
       str.replaceAll(`-types`, ` types`).replaceAll(`-type`, ` type`);
 
     const setSpecs = (obj: {}, i: number, value: string) => {
-      return ((Object.values(Object.entries(obj)[toggle][1])[i])[value])
+      return Object.values(Object.entries(obj)[toggle][1])[i][value];
     };
 
     const wrapMoves = (tag: string, move: string | number, index: number) => {
-      if (tag === 'p' && typeof move === 'string') {
-        return `<${tag}>Move ${index + 1}: <b>${move}</b></${tag}>`
+      if (tag === 'li' && typeof move === 'string') {
+        return `<${tag}>Move ${index + 1}: <b>${move}</b></${tag}>`;
       } else if (tag === 'span' && typeof move === 'string') {
-        return `<${tag}>${move}</${tag}>`
+        return `<${tag}>${move}</${tag}>`;
       } else if (typeof move === 'number') {
-        return null
+        return null;
       }
-    }
+    };
 
     const majEv = {
       hp: 'Hp',
@@ -129,8 +132,8 @@ function Competitive({ format, name }: Props) {
       def: 'Def',
       spa: 'SpA',
       spd: 'SpD',
-      spe: 'Spe'
-    }
+      spe: 'Spe',
+    };
 
     return (
       <Section>
@@ -149,7 +152,7 @@ function Competitive({ format, name }: Props) {
         <PokemonSetsContainer>
           {overview && (
             <li>
-              <H4>Overview</H4>
+              <H4>Analysis</H4>
               <PokemonSetDesc dangerouslySetInnerHTML={{ __html: overview }} />
             </li>
           )}
@@ -158,24 +161,46 @@ function Competitive({ format, name }: Props) {
               <li key={s.name}>
                 <H4>{s.name}</H4>
                 <PokemonSetSpecs>
-                  <div
+                  <ul
                     dangerouslySetInnerHTML={{
-                      __html: setSpecs(filteredSets, i, 'moves').map((move: string | string[], index: number) => wrapMoves('p',
-                        Array.isArray(move) ? move.map(j => wrapMoves('span', j, index)).join(' / ') : move, index
-                      ))
+                      __html: setSpecs(filteredSets, i, 'moves').map(
+                        (move: string | string[], index: number) =>
+                          wrapMoves(
+                            'li',
+                            Array.isArray(move)
+                              ? move
+                                  .map((j) => wrapMoves('span', j, index))
+                                  .join(' / ')
+                              : move,
+                            index,
+                          ),
+                      ),
                     }}
                   />
-                  {/* {Object.keys(Object.values(Object.entries(filteredSets)[toggle][1])[1]).length > 1 &&
-                  <div>
-                    <p>Item: <b>{setSpecs(filteredSets, i, 'item')}</b></p>
-                    <p>Nature: <b>{setSpecs(filteredSets, i, 'nature')}</b></p>
-                    <p>
-                      EVs: <b>
-                        {Object.entries(setSpecs(filteredSets, i, 'evs')).join(' / ').replaceAll(',', ' ').replace(/\b(?:hp|atk|def|spa|spd|spe)\b/gi, matched => majEv[matched])}
-                      </b>
-                    </p>
-                  </div>
-                } */}
+                  {Object.keys(
+                    Object.values(Object.entries(filteredSets)[toggle][1])[0],
+                  ).length > 1 && (
+                    <ul>
+                      <li>
+                        Item: <b>{setSpecs(filteredSets, i, 'item')}</b>
+                      </li>
+                      <li>
+                        Nature: <b>{setSpecs(filteredSets, i, 'nature')}</b>
+                      </li>
+                      <li>
+                        EVs:{' '}
+                        <b>
+                          {Object.entries(setSpecs(filteredSets, i, 'evs'))
+                            .join(' / ')
+                            .replaceAll(',', ' ')
+                            .replace(
+                              /\b(?:hp|atk|def|spa|spd|spe)\b/gi,
+                              (matched) => majEv[matched],
+                            )}
+                        </b>
+                      </li>
+                    </ul>
+                  )}
                 </PokemonSetSpecs>
                 {s.description && (
                   <PokemonSetDesc

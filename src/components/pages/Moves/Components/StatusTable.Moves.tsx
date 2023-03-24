@@ -4,7 +4,7 @@ import { LeftH2 } from '@/components/common/styles/Headings';
 import {
   FullWidthTable,
   TableContainer,
-  TBold
+  TBold,
 } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IMove } from '@/types/Moves/Move';

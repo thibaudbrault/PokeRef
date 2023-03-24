@@ -7,7 +7,7 @@ import Link from 'next/link';
 import {
   MoveCardDataCategory,
   MoveCardDataTable,
-  MoveCardDataType
+  MoveCardDataType,
 } from '../Styled.Data.MoveCard';
 
 type Props = {

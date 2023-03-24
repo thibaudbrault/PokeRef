@@ -35,8 +35,8 @@ export const useFetchPokemon = (name: string) => {
       },
       {
         queryKey: ['cards', name],
-        queryFn: () => getCards(name)
-      }
+        queryFn: () => getCards(name),
+      },
     ],
   });
 
@@ -64,6 +64,6 @@ export const useFetchPokemon = (name: string) => {
     types,
     location,
     evolution,
-    cards
+    cards,
   };
 };

@@ -146,7 +146,7 @@ export const TType = styled.td`
     border-radius: 5px;
     text-transform: uppercase;
     text-align: center;
-    
+
     & a {
       display: flex;
       align-items: center;

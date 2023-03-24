@@ -5,7 +5,7 @@ import {
   TableContainer,
   TBold,
   TEffect,
-  TLink
+  TLink,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
@@ -16,7 +16,7 @@ import {
   dehydrate,
   QueryClient,
   useQuery,
-  UseQueryResult
+  UseQueryResult,
 } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';

@@ -173,7 +173,7 @@ export const PokedexTypes = styled.div`
   justify-content: center;
   flex-direction: column;
   gap: 1rem;
-  
+
   & div {
     width: 100%;
     padding: 0.5rem;
@@ -183,11 +183,11 @@ export const PokedexTypes = styled.div`
     color: #c4c4c4;
     font-size: 1.7rem;
     text-shadow: ${({ theme }) => theme.main} -1px -1px 0px,
-        ${({ theme }) => theme.main} 1px -1px 0px,
-        ${({ theme }) => theme.main} -1px 1px 0px,
-        ${({ theme }) => theme.main} 1px 1px 0px;
+      ${({ theme }) => theme.main} 1px -1px 0px,
+      ${({ theme }) => theme.main} -1px 1px 0px,
+      ${({ theme }) => theme.main} 1px 1px 0px;
     border: 1px solid rgba(22, 22, 22, 0.2);
-    
+
     & a {
       display: flex;
       align-items: center;
@@ -209,7 +209,6 @@ export const PokedexTypes = styled.div`
       font-size: 1rem;
     }
   }
-
 `;
 
 export const PokedexPagination = styled(ReactPaginate)`

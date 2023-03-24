@@ -2,9 +2,7 @@ import { H3 } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import Image from 'next/image';
-import {
-  PokemonSpritesDiv
-} from './Styled.Sprites.PokemonCard';
+import { PokemonSpritesDiv } from './Styled.Sprites.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
