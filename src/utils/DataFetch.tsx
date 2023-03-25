@@ -4,6 +4,7 @@ import { IAbility } from '@/types/Pokemon/Ability';
 import { IType } from '@/types/Pokemon/Type';
 import axios from 'axios';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { removeLongName } from './Typography';
 
 // Fetch all pokemon names and endpoints
 export const getPokedexResults = async () => {
@@ -336,22 +337,29 @@ export const getAllEvo = async (evolution: IEvolutionChain) => {
   try {
     const baseRes = evolution.chain.species.url;
     const basePromiseRes = await axios.get(baseRes);
-    const middleRes = evolution.chain.evolves_to.map((ee) => ee.species.url);
-    const middlePromiseRes = await Promise.all(
-      middleRes.map((res) => axios.get(res)),
-    );
-    const finalRes = evolution.chain.evolves_to.map((ee) =>
-      ee.evolves_to.map((eee) => eee.species.url),
-    );
-    const finalPromiseRes = await Promise.all(
-      finalRes[0].map((res) => axios.get(res)),
-    );
-    const results = [
-      basePromiseRes.data,
-      middlePromiseRes.map((res) => res.data),
-      finalPromiseRes.map((res) => res.data),
-    ].flat();
-    return results;
+    if (evolution.chain.evolves_to.length > 0) {
+      const middleRes = evolution.chain.evolves_to.map((ee) => ee.species.url);
+      const middlePromiseRes = await Promise.all(
+        middleRes.map((res) => axios.get(res)),
+      );
+      const finalRes = evolution.chain.evolves_to.map((ee) =>
+        ee.evolves_to.map((eee) => eee.species.url),
+      );
+      const finalPromiseRes = await Promise.all(
+        finalRes[0].map((res) => axios.get(res)),
+      );
+      const results = [
+        basePromiseRes.data,
+        middlePromiseRes.map((res) => res.data),
+        finalPromiseRes.map((res) => res.data),
+      ].flat();
+      return results;
+    } else {
+      const results = [
+        basePromiseRes.data
+      ]
+      return results
+    }
   } catch (err) {
     console.error(err);
   }
@@ -440,7 +448,7 @@ export const getFormat = async (url: string) => {
 export const getCards = async (name: string) => {
   try {
     const res = await axios.get(
-      `https://api.pokemontcg.io/v2/cards?q=name:${name}`,
+      `https://api.pokemontcg.io/v2/cards?q=name:${removeLongName(name)}`,
       {
         headers: {
           'X-Api-Key': process.env.NEXT_POKEMONTCG_API_KEY as string,

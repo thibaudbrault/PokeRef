@@ -90,7 +90,7 @@ export const LeftH2 = styled(H2)`
 `;
 
 export const H3 = styled.h3`
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-size: 3.5rem;
   text-transform: capitalize;
 `;

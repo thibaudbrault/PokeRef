@@ -1,15 +1,14 @@
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { getPokedex, getPokedexResults } from '@/utils/DataFetch';
+import { getPokedexResults } from '@/utils/DataFetch';
 import ImageWithFallback from '@/utils/ImageWithFallback';
-import { removeDash } from '@/utils/Typography';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { removeDash, removeLongName } from '@/utils/Typography';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { useState } from 'react';
 import { INamedApiResource } from '../../types/Utility/NamedApiResourceList';
 import {
   AutocompleteContainer,
   AutocompleteId,
   AutocompleteInput,
-  AutocompleteLink,
+  AutocompleteLink
 } from './Styled.Autocomplete';
 
 function Autocomplete() {
@@ -69,7 +68,7 @@ function Autocomplete() {
                     }}
                     className="bold"
                   >
-                    {removeDash(pm.name)}
+                    {removeLongName(removeDash(pm.name))}
                   </AutocompleteLink>
                   <AutocompleteId>
                     #

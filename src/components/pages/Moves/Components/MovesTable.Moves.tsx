@@ -33,6 +33,7 @@ function MovesTable({ moves }: Props) {
         cell: (info) => (
           <TBold>
             <TLink
+              id={info.getValue<string>()}
               href={{
                 pathname: `/move/[name]`,
                 query: { name: info.getValue<string>() },

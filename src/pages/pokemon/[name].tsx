@@ -11,7 +11,7 @@ import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { pokemonFilters } from '@/utils/DataArrays';
 import { getCards } from '@/utils/DataFetch';
-import { removeDash } from '@/utils/Typography';
+import { removeDash, removeLongName } from '@/utils/Typography';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -154,7 +154,7 @@ function PokemonCard({ name }: Props) {
               {removeDash(pokemon.data?.name).split(` `).reverse().join(` `)}
             </Title>
           ) : (
-            <Title>{removeDash(pokemon.data?.name)}</Title>
+            <Title>{removeLongName(removeDash(name))}</Title>
           )}
           {pokemon.data?.id < 722 && (
             <div>

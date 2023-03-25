@@ -1,5 +1,5 @@
 import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { removeDash } from '@/utils/Typography';
+import { removeDash, removeLongName } from '@/utils/Typography';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { PokedexElement, PokedexList, PokedexTypes } from '../Styled.Pokemon';
@@ -34,10 +34,7 @@ function ListPokemon({ filteredPokedex }: Props) {
               }}
               key={p.name}
             >
-              {removeDash(p.name)
-                .replace(`single strike`, ``)
-                .replace(`rapid strike`, ``)
-                .replace(`red meteor`, ``)}
+              {removeLongName(removeDash(p.name))}
             </Link>
           </h2>
           <PokedexTypes>

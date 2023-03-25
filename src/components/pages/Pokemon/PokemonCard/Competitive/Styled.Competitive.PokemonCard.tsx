@@ -22,6 +22,7 @@ export const PokemonSetSpecs = styled.div`
   display: grid;
   align-items: stretch;
   grid-template-columns: 1fr 1fr;
+  gap: 2rem;
   margin-bottom: 1rem;
   padding: 1.5rem;
   background-color: ${({ theme }) => theme.secondary};

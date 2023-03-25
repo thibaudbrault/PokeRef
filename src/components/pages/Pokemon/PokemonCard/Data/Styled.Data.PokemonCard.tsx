@@ -10,7 +10,7 @@ export const PokemonDataSection = styled(Section)`
   grid-template-columns: 55% 45%;
   gap: 3rem;
 
-  @media ${device.sm} {
+  @media ${device.md} {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,25 +60,27 @@ export const PokemonDataTypes = styled.li`
     border-radius: 5px;
     text-transform: uppercase;
     text-align: center;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    color: #c4c4c4;
-    border: 1px solid rgba(22, 22, 22, 0.2);
     cursor: pointer;
-
+    
     & a {
       display: flex;
       align-items: center;
-      font-family: 'Oswald';
-      font-size: 3rem;
+      gap: 0.5rem;
 
       & img {
         cursor: pointer;
       }
 
       & span {
-        padding-left: 0.5rem;
-        cursor: pointer;
-      }
+        font-family: 'Oswald';
+        font-size: 3rem;
+        color: #c4c4c4;
+        text-shadow: ${({ theme }) => theme.main} -1px -1px 0px,
+          ${({ theme }) => theme.main} 1px -1px 0px,
+          ${({ theme }) => theme.main} -1px 1px 0px,
+          ${({ theme }) => theme.main} 1px 1px 0px;
+          cursor: pointer;
+        }
     }
   }
 
@@ -127,7 +129,7 @@ const PokemonDataPill = styled.span`
   margin: 1rem 0 0;
   padding: 1rem 1.5rem;
   border-radius: 50px;
-  font-size: 1.7rem;
+  font-size: 2rem;
   transition: 0.3s ease-in-out;
 `;
 
@@ -135,6 +137,7 @@ export const PokemonDataSpecial = styled(PokemonDataPill)`
   border: 1px solid ${({ theme }) => theme.purple};
   background: ${({ theme }) => theme.purple};
   color: #c4c4c4;
+  font-weight: 600;
 `;
 
 export const PokemonDataImg = styled.img`
