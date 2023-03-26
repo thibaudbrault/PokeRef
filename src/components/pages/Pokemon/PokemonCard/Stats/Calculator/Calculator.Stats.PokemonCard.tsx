@@ -1,4 +1,4 @@
-import { Divider } from '@/components/common/styles/Misc';
+import { Divider } from '@/components/common/ui/Divider';
 import { IPokemonStat } from '@/types/Pokemon/Pokemon';
 import { pokemonNatures } from '@/utils/DataArrays';
 import { removeDash } from '@/utils/Typography';

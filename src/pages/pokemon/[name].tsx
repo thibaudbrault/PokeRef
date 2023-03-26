@@ -1,20 +1,17 @@
 import { Subtitle, Title } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
+import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
-import Cards from '@/components/pages/Pokemon/PokemonCard/Cards/Cards.PokemonCard';
+import Contents from '@/components/pages/Pokemon/PokemonCard/Contents/Contents.PokemonCard';
 import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
 import { useFetchPokemon } from '@/components/pages/Pokemon/PokemonCard/Hooks/useFetchPokemon';
-import Typing from '@/components/pages/Pokemon/PokemonCard/Types/Types.PokemonCard';
 import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { pokemonFilters } from '@/utils/DataArrays';
-import { getCards } from '@/utils/DataFetch';
 import { removeDash, removeLongName } from '@/utils/Typography';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -60,6 +57,9 @@ const Stats = dynamic(
   () =>
     import(`@/components/pages/Pokemon/PokemonCard/Stats/Stats.PokemonCard`),
 );
+const Typing = dynamic(
+  () => import('@/components/pages/Pokemon/PokemonCard/Types/Types.PokemonCard')
+);
 const Moves = dynamic<IMovesProps>(
   () =>
     import(
@@ -90,6 +90,9 @@ const Sprites = dynamic(
       `@/components/pages/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard`
     ),
 );
+const Cards = dynamic(
+  () => import('@/components/pages/Pokemon/PokemonCard/Cards/Cards.PokemonCard')
+);
 
 type Props = {
   name: string;
@@ -99,6 +102,7 @@ function PokemonCard({ name }: Props) {
   const [game, setGame] = useState<string | null>(null);
   const [version, setVersion] = useState<string | null>(null);
   const [format, setFormat] = useState<string | null>(null);
+  const [contentsOpen, setContentsOpen] = useState<boolean>(false)
 
   const { pokemonId, pokemon, species, types, location, evolution, cards } =
     useFetchPokemon(name);
@@ -179,9 +183,15 @@ function PokemonCard({ name }: Props) {
           setFormat={setFormat}
         />
 
+        <Contents />
+
         <Data pokemon={pokemon.data} species={species.data} game={game} />
 
+        <Divider />
+
         {evolution.data && <Evolution evolution={evolution.data} name={name} />}
+
+        <Divider />
 
         {pokemonId && pokemonId < 10000 && (
           <Info
@@ -191,23 +201,54 @@ function PokemonCard({ name }: Props) {
           />
         )}
 
+        <Divider />
+
         <Stats pokemon={pokemon.data} />
 
-        <Typing pokemon={pokemon.data} types={types.data} />
+        <Divider />
 
-        {version && (
-          <Moves pokemon={pokemon.data} version={version} name={name} />
+        {types.data && (
+          <>
+            <Typing pokemon={pokemon.data} types={types.data} />
+            <Divider />
+          </>
         )}
 
-        {game && <Locations location={location.data} game={game} />}
+        {version && (
+          <>
+            <Moves pokemon={pokemon.data} version={version} name={name} />
+            <Divider />
+          </>
+        )}
 
-        {pokemon.data.forms.length > 1 && <Forms pokemon={pokemon.data} />}
+        {game && (
+          <>
+            <Locations location={location.data} game={game} />
+            <Divider />
+          </>
+        )}
 
-        {format && <Competitive format={format} name={name} />}
+        {pokemon.data.forms.length > 1 && (
+          <>
+            <Forms pokemon={pokemon.data} />
+            <Divider />
+          </>
+        )}
+
+        {format && (
+          <>
+            <Competitive format={format} name={name} />
+            <Divider />
+          </>
+        )}
 
         <Sprites pokemon={pokemon.data} />
 
-        {cards.data && <Cards cards={cards.data} />}
+        <Divider />
+
+        {cards.data && (
+          <Cards cards={cards.data} />
+        )}
 
         <Link href="/" passHref>
           <BackBtn name="Pokedex" />

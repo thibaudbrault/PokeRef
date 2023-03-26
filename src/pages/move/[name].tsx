@@ -1,5 +1,5 @@
 import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
-import { Divider } from '@/components/common/styles/Misc';
+import { Divider } from '@/components/common/ui/Divider';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingMove from '@/components/pages/Moves/MoveCard/Heading';

@@ -139,8 +139,6 @@ function Competitive({ format, name }: Props) {
         spe: 'Spe',
       };
 
-      console.log(filteredSets)
-
       return (
         <Section>
           <H3>Competitive</H3>

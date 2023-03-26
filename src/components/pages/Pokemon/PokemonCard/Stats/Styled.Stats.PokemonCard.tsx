@@ -23,7 +23,7 @@ export const PokemonStatsCircles = styled.div`
     &-text {
       fill: ${({ theme }) => theme.secondary};
       font-size: 1.3rem;
-      stroke-width: 0.4;
+      font-weight: 600;
     }
   }
 

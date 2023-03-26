@@ -214,6 +214,18 @@ export const getPokemon = async (url: string) => {
   }
 };
 
+// Fetch pokemon's types
+export const getPokemonTypes = async (pokemon: IPokemon) => {
+  try {
+    const res = pokemon.types.map((t) => t.type.url);
+    const promiseRes = await Promise.all(res.map((res) => axios.get(res)))
+    const results = promiseRes.map((res) => res.data)
+    return results
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 // Fetch pokemon's forms
 export const getPokemonForms = async (pokemon: IPokemon) => {
   try {

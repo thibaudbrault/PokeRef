@@ -51,7 +51,13 @@ export const TypeDamageTable = styled(Table)`
         gap: 1.5rem;
 
         & a {
+          width: 32px;
+          height: 32px;
           cursor: pointer;
+
+          & img {
+            cursor: pointer;
+          }
         }
       }
     }

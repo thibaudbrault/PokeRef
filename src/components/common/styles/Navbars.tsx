@@ -4,7 +4,7 @@ import { device } from './Sizing';
 export const GenNav = styled.nav`
   position: relative;
   padding: 5rem 0;
-  z-index: 2;
+  z-index: 5;
 
   & ul {
     display: flex;
