@@ -15,7 +15,7 @@ type Props = {
 
 function Typing({ pokemon, types }: Props) {
   return (
-    <Section>
+    <Section id="types">
       <H3>Types relations</H3>
       <PokemonTypesList>
         {types.map(t =>

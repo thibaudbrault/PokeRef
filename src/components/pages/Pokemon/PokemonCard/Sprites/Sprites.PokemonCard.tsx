@@ -11,7 +11,7 @@ type Props = {
 function Sprites({ pokemon }: Props) {
   return (
     <>
-      <Section>
+      <Section id="sprites">
         <H3>Sprites</H3>
         <PokemonSpritesDiv>
           <div>

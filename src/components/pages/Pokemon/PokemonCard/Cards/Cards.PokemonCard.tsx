@@ -21,7 +21,7 @@ function Cards({ cards }: Props) {
     setIsOpen(false);
   };
   return (
-    <Section>
+    <Section id="cards">
       <H3>Cards</H3>
       <PokemonCardList>
         {cards.map((c) => (

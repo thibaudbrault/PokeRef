@@ -102,7 +102,6 @@ function PokemonCard({ name }: Props) {
   const [game, setGame] = useState<string | null>(null);
   const [version, setVersion] = useState<string | null>(null);
   const [format, setFormat] = useState<string | null>(null);
-  const [contentsOpen, setContentsOpen] = useState<boolean>(false)
 
   const { pokemonId, pokemon, species, types, location, evolution, cards } =
     useFetchPokemon(name);

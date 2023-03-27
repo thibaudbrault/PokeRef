@@ -22,7 +22,7 @@ function Info({ pokemon, species, evolution }: Props) {
   const male = 100 - (species?.gender_rate / 8) * 100;
 
   return (
-    <PokemonInfoSection>
+    <PokemonInfoSection id="information">
       {InfoTable.map((data) => (
         <div key={data.category}>
           <H3>{capitalize(data.category)}</H3>

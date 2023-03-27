@@ -38,191 +38,193 @@ function CalculatorStats({ baseStat }: Props) {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <PokemonCalcTable>
-          <tr>
-            <th>
-              <label htmlFor="level">Level</label>
-            </th>
-            <td colSpan={2}>
-              <input
-                type="number"
-                min={1}
-                max={100}
-                {...register(`level`, { valueAsNumber: true })}
-                required
-                placeholder="LVL (max 100)"
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <label htmlFor="hp">Hp</label>
-            </th>
-            <td>
-              <input
-                type="number"
-                min={0}
-                max={252}
-                {...register(`hpEv`, { valueAsNumber: true })}
-                required
-                placeholder="EV (max 252)"
-              />
-            </td>
-            <td>
-              <input
-                type="number"
-                min={0}
-                max={31}
-                {...register(`hpIv`, { valueAsNumber: true })}
-                required
-                placeholder="IV (max 31)"
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <label htmlFor="attack">Attack</label>
-            </th>
-            <td>
-              <input
-                type="number"
-                min={0}
-                max={252}
-                {...register(`attackEv`, { valueAsNumber: true })}
-                required
-                placeholder="EV (max 252)"
-              />
-            </td>
-            <td>
-              <input
-                type="number"
-                min={0}
-                max={31}
-                {...register(`attackIv`, { valueAsNumber: true })}
-                required
-                placeholder="IV (max 31)"
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <label htmlFor="defense">Defense</label>
-            </th>
-            <td>
-              <input
-                type="number"
-                min={0}
-                max={252}
-                {...register(`defenseEv`, { valueAsNumber: true })}
-                required
-                placeholder="EV (max 252)"
-              />
-            </td>
-            <td>
-              <input
-                type="number"
-                min={0}
-                max={31}
-                {...register(`defenseIv`, { valueAsNumber: true })}
-                required
-                placeholder="IV (max 31)"
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <label htmlFor="specialAttack">Special Attack</label>
-            </th>
-            <td>
-              <input
-                type="number"
-                min={0}
-                max={252}
-                {...register(`specialAttackEv`, { valueAsNumber: true })}
-                required
-                placeholder="EV (max 252)"
-              />
-            </td>
-            <td>
-              <input
-                type="number"
-                min={0}
-                max={31}
-                {...register(`specialAttackIv`, { valueAsNumber: true })}
-                required
-                placeholder="IV (max 31)"
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <label htmlFor="specialDefense">Special Defense</label>
-            </th>
-            <td>
-              <input
-                type="number"
-                min={0}
-                max={252}
-                {...register(`specialDefenseEv`, { valueAsNumber: true })}
-                required
-                placeholder="EV (max 252)"
-              />
-            </td>
-            <td>
-              <input
-                type="number"
-                min={0}
-                max={31}
-                {...register(`specialDefenseIv`, { valueAsNumber: true })}
-                required
-                placeholder="IV (max 31)"
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <label htmlFor="speed">Speed</label>
-            </th>
-            <td>
-              <input
-                type="number"
-                min={0}
-                max={252}
-                {...register(`speedEv`, { valueAsNumber: true })}
-                required
-                placeholder="EV (max 252)"
-              />
-            </td>
-            <td>
-              <input
-                type="number"
-                min={0}
-                max={31}
-                {...register(`speedIv`, { valueAsNumber: true })}
-                required
-                placeholder="IV (max 31)"
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <label htmlFor="nature">Nature</label>
-            </th>
-            <td colSpan={2}>
-              <select {...register(`nature`)} required>
-                {pokemonNatures.map((n) => (
-                  <option key={n.name} value={n.name}>
-                    {n.name} : + {removeDash(n.positive)} / -{` `}
-                    {removeDash(n.negative)}
-                  </option>
-                ))}
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={3}>
-              <button>Calculate</button>
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <th>
+                <label htmlFor="level">Level</label>
+              </th>
+              <td colSpan={2}>
+                <input
+                  type="number"
+                  min={1}
+                  max={100}
+                  {...register(`level`, { valueAsNumber: true })}
+                  required
+                  placeholder="LVL (max 100)"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label htmlFor="hp">Hp</label>
+              </th>
+              <td>
+                <input
+                  type="number"
+                  min={0}
+                  max={252}
+                  {...register(`hpEv`, { valueAsNumber: true })}
+                  required
+                  placeholder="EV (max 252)"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  min={0}
+                  max={31}
+                  {...register(`hpIv`, { valueAsNumber: true })}
+                  required
+                  placeholder="IV (max 31)"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label htmlFor="attack">Attack</label>
+              </th>
+              <td>
+                <input
+                  type="number"
+                  min={0}
+                  max={252}
+                  {...register(`attackEv`, { valueAsNumber: true })}
+                  required
+                  placeholder="EV (max 252)"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  min={0}
+                  max={31}
+                  {...register(`attackIv`, { valueAsNumber: true })}
+                  required
+                  placeholder="IV (max 31)"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label htmlFor="defense">Defense</label>
+              </th>
+              <td>
+                <input
+                  type="number"
+                  min={0}
+                  max={252}
+                  {...register(`defenseEv`, { valueAsNumber: true })}
+                  required
+                  placeholder="EV (max 252)"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  min={0}
+                  max={31}
+                  {...register(`defenseIv`, { valueAsNumber: true })}
+                  required
+                  placeholder="IV (max 31)"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label htmlFor="specialAttack">Special Attack</label>
+              </th>
+              <td>
+                <input
+                  type="number"
+                  min={0}
+                  max={252}
+                  {...register(`specialAttackEv`, { valueAsNumber: true })}
+                  required
+                  placeholder="EV (max 252)"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  min={0}
+                  max={31}
+                  {...register(`specialAttackIv`, { valueAsNumber: true })}
+                  required
+                  placeholder="IV (max 31)"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label htmlFor="specialDefense">Special Defense</label>
+              </th>
+              <td>
+                <input
+                  type="number"
+                  min={0}
+                  max={252}
+                  {...register(`specialDefenseEv`, { valueAsNumber: true })}
+                  required
+                  placeholder="EV (max 252)"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  min={0}
+                  max={31}
+                  {...register(`specialDefenseIv`, { valueAsNumber: true })}
+                  required
+                  placeholder="IV (max 31)"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label htmlFor="speed">Speed</label>
+              </th>
+              <td>
+                <input
+                  type="number"
+                  min={0}
+                  max={252}
+                  {...register(`speedEv`, { valueAsNumber: true })}
+                  required
+                  placeholder="EV (max 252)"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  min={0}
+                  max={31}
+                  {...register(`speedIv`, { valueAsNumber: true })}
+                  required
+                  placeholder="IV (max 31)"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label htmlFor="nature">Nature</label>
+              </th>
+              <td colSpan={2}>
+                <select {...register(`nature`)} required>
+                  {pokemonNatures.map((n) => (
+                    <option key={n.name} value={n.name}>
+                      {n.name} : + {removeDash(n.positive)} / -{` `}
+                      {removeDash(n.negative)}
+                    </option>
+                  ))}
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={3}>
+                <button>Calculate</button>
+              </td>
+            </tr>
+          </tbody>
         </PokemonCalcTable>
       </form>
       {stats && (

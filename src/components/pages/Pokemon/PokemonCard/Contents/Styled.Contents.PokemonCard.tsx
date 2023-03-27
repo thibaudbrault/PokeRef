@@ -40,4 +40,20 @@ export const PokemonContents = styled.section`
         }
     }
   }
+
+  & ol {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+
+    & li {
+      font-size: 1.5rem;
+
+      & a {
+        cursor: pointer;
+      }
+    }
+  }
 `;

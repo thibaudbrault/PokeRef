@@ -46,7 +46,7 @@ function Evolution({ evolution, name }: Props) {
   }
 
   return (
-    <PokemonEvolutionSection>
+    <PokemonEvolutionSection id="evolution">
       <H3>Evolution chain</H3>
       <PokemonEvolutionContainer>
         <PokemonEvolutionBase>

@@ -17,6 +17,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useInView } from 'react-intersection-observer';
 import { useFetchMachines } from '../Hooks/useFetchMachines';
 import { IMoveWithDetails, useFetchMoves } from '../Hooks/useFetchMoves';
 import { PokemonMovesSection } from './Styled.Moves.PokemonCard';
@@ -170,9 +171,9 @@ function MovesPokemon({ pokemon, version, name }: Props) {
           <TCapitalize>
             {info.getValue()
               ? removeDash(info?.getValue<IMoveAilment>().name).replace(
-                  `none`,
-                  `-`,
-                )
+                `none`,
+                `-`,
+              )
               : `-`}
           </TCapitalize>
         ),
@@ -180,6 +181,12 @@ function MovesPokemon({ pokemon, version, name }: Props) {
     ],
     [learn, version],
   );
+
+  const { ref, inView, entry } = useInView({
+    threshold: 0,
+  });
+
+  console.log(inView)
 
   const { tableContainerRef, tableHeader, tableBody } = useTableParams(
     data,
@@ -195,7 +202,7 @@ function MovesPokemon({ pokemon, version, name }: Props) {
   }
 
   return (
-    <PokemonMovesSection>
+    <PokemonMovesSection id="moves" ref={ref}>
       <H3>Moves</H3>
       <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
       <TableContainer ref={tableContainerRef}>

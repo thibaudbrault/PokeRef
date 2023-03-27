@@ -25,15 +25,15 @@ function Data({ pokemon, species, game }: Props) {
   const catchHandler = () => {
     Math.random() < species.capture_rate / 765 &&
       (setCatchable(false),
-      toast.success(`Congrats 🎉 ! You caught ${capitalize(pokemon.name)}`, {
-        style: {
-          fontSize: `1.7rem`,
-        },
-      }));
+        toast.success(`Congrats 🎉 ! You caught ${capitalize(pokemon.name)}`, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        }));
   };
 
   return (
-    <PokemonDataSection>
+    <PokemonDataSection id="presentation">
       <PokemonCatchButton onClick={catchHandler}>
         {catchable ? 'Catch' : 'Caught'}
       </PokemonCatchButton>

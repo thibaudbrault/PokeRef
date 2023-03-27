@@ -140,7 +140,7 @@ function Competitive({ format, name }: Props) {
       };
 
       return (
-        <Section>
+        <Section id="competitve">
           <H3>Competitive</H3>
           <MethodNav>
             {Object.keys(filteredAnalyses).map((fa, i) => (

@@ -1,6 +1,6 @@
 import { IMove } from '@/types/Moves/Move';
 import { IPokemon, IPokemonMove } from '@/types/Pokemon/Pokemon';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import axios from 'axios';
 
 export interface IMoveWithDetails extends IPokemonMove {

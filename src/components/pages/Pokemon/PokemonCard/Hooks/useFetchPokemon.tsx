@@ -5,8 +5,7 @@ import {
   getPokemon,
   getPokemonLocation,
   getPokemonTypes,
-  getSpecies,
-  getTypes,
+  getSpecies
 } from '@/utils/DataFetch';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
