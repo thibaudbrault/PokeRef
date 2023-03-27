@@ -46,7 +46,7 @@ function Evolution({ evolution, name }: Props) {
   }
 
   return (
-    <PokemonEvolutionSection>
+    <PokemonEvolutionSection id="evolution">
       <H3>Evolution chain</H3>
       <PokemonEvolutionContainer>
         <PokemonEvolutionBase>
@@ -70,7 +70,7 @@ function Evolution({ evolution, name }: Props) {
                   query: { name: evolution?.chain?.species?.name },
                 }}
               >
-                {evolution?.chain?.species?.name}
+                {removeDash(evolution?.chain?.species?.name)}
               </Link>
             </>
           </div>
@@ -233,8 +233,8 @@ function Evolution({ evolution, name }: Props) {
                               {eed.relative_physical_stats === 1
                                 ? ` Attack > Defense`
                                 : eed.relative_physical_stats === 0
-                                ? ` Attack = Defense`
-                                : ` Defense > Attack`}
+                                  ? ` Attack = Defense`
+                                  : ` Defense > Attack`}
                             </span>
                           </PokemonEvolutionText>
                         )}
@@ -489,8 +489,8 @@ function Evolution({ evolution, name }: Props) {
                                       {eeed.relative_physical_stats === 1
                                         ? ` Attack > Defense`
                                         : eeed.relative_physical_stats === 0
-                                        ? ` Attack = Defense`
-                                        : ` Defense > Attack`}
+                                          ? ` Attack = Defense`
+                                          : ` Defense > Attack`}
                                     </span>
                                   </PokemonEvolutionText>
                                 )}

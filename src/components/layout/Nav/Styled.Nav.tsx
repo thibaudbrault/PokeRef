@@ -25,7 +25,7 @@ export const MainNavList = styled.ul`
       position: relative;
       white-space: nowrap;
       font-size: 2rem;
-      font-weight: 700;
+      font-weight: 600;
       text-transform: capitalize;
       cursor: pointer;
       transition: 0.3s ease-in-out;

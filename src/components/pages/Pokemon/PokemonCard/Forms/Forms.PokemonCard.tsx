@@ -168,7 +168,7 @@ function Forms({ pokemon }: Props) {
   }
 
   return (
-    <Section>
+    <Section id="forms">
       <H3>Forms</H3>
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>

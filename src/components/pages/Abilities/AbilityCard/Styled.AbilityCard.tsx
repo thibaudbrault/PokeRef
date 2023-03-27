@@ -18,7 +18,7 @@ export const AbilityCardTable = styled(Table)`
   & th {
     background: rgba(130, 130, 130, 0.2);
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: capitalize;
   }
 

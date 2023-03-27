@@ -1,5 +1,5 @@
 import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { removeDash } from '@/utils/Typography';
+import { removeDash, removeLongName } from '@/utils/Typography';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { PokedexElement, PokedexList, PokedexTypes } from '../Styled.Pokemon';
@@ -21,12 +21,12 @@ type Props = {
 
 function ListPokemon({ filteredPokedex }: Props) {
   return (
-    <PokedexList>
+    <PokedexList data-test-id="pokemonList">
       {filteredPokedex?.map((p: IPokemon) => (
-        <PokedexElement key={p.id}>
+        <PokedexElement key={p.id} data-test-id="pokemonElement">
           <Sprites p={p} />
           {p.id < 1011 && <p>#{p.id.toString().padStart(3, `0`)}</p>}
-          <h2 data-testid="pokemonName">
+          <h2>
             <Link
               href={{
                 pathname: `/pokemon/[name]`,
@@ -34,10 +34,7 @@ function ListPokemon({ filteredPokedex }: Props) {
               }}
               key={p.name}
             >
-              {removeDash(p.name)
-                .replace(`single strike`, ``)
-                .replace(`rapid strike`, ``)
-                .replace(`red meteor`, ``)}
+              {removeLongName(removeDash(p.name))}
             </Link>
           </h2>
           <PokedexTypes>

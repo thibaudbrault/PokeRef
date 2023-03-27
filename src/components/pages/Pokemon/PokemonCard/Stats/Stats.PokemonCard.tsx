@@ -66,7 +66,7 @@ function Bars({ pokemon }: Props) {
   };
 
   return (
-    <Section>
+    <Section id="stats">
       <H3>Base stats</H3>
       <MethodNav>
         <button

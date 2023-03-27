@@ -1,4 +1,4 @@
-import { Divider } from '@/components/common/styles/Misc';
+import { Divider } from '@/components/common/ui/Divider';
 import { auth } from '@/firebase-config';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import Link from 'next/link';

@@ -6,13 +6,18 @@ import { device } from '@/components/common/styles/Sizing';
 export const AutocompleteInput = styled(Input)`
   min-width: 25rem;
 
+  & label {
+    font-size: 1.7rem;
+  }
+
   & input {
     width: 100%;
     height: 100%;
     padding: 0 1rem;
 
     &::placeholder {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
+      font-family: 'Quicksand', serif;
       color: ${({ theme }) => theme.secondary};
     }
   }

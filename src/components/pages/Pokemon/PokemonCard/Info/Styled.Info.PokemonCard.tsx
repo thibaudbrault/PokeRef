@@ -38,7 +38,7 @@ export const PokemonInfoTable = styled(Table)`
 
   & td {
     font-size: 1.7rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: capitalize;
     text-align: start;
 

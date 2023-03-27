@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { device, Section } from '../../../../common/styles/Sizing';
-import { Table } from '../../../../common/styles/Table';
+import { Table, TType } from '../../../../common/styles/Table';
 import { Type } from '../../../../common/styles/Themes';
 
 export const MoveCardDataSection = styled(Section)`
@@ -23,15 +23,9 @@ export const MoveCardDataTable = styled(Table)`
 
   & td {
     font-size: 1.7rem;
-    font-weight: 700;
+    font-weight: 600;
     text-align: left;
     text-transform: capitalize;
-
-    & small {
-      font-size: 1.5rem;
-      font-weight: 400;
-      text-transform: lowercase;
-    }
   }
 
   @media ${device.sm} {
@@ -39,29 +33,9 @@ export const MoveCardDataTable = styled(Table)`
   }
 `;
 
-export const MoveCardDataType = styled(Type)`
-  display: inline-block;
-  padding: 1rem 2rem;
-  border-radius: 5px;
-  cursor: pointer;
-
-  & a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    & img {
-      vertical-align: middle;
-      cursor: pointer;
-    }
-
-    & span {
-      padding-left: 0.5rem;
-      font-family: 'Press Start 2P';
-      vertical-align: middle;
-      cursor: pointer;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    }
+export const MoveCardDataType = styled(TType)`
+  & div {
+    margin: 0;
   }
 `;
 

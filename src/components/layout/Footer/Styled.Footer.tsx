@@ -38,8 +38,14 @@ export const LeftFooter = styled.div`
 
 export const CenterFooter = styled.div`
   justify-self: center;
-  font-size: 3rem;
-  font-family: 'Press Start 2P';
+  font-size: 4rem;
+  letter-spacing: 1px;
+  font-family: 'Oswald';
+  color: ${({ theme }) => theme.secondary};
+  text-shadow: ${({ theme }) => theme.main} -1px -1px 0px,
+    ${({ theme }) => theme.main} 1px -1px 0px,
+    ${({ theme }) => theme.main} -1px 1px 0px,
+    ${({ theme }) => theme.main} 1px 1px 0px;
   text-align: center;
 `;
 

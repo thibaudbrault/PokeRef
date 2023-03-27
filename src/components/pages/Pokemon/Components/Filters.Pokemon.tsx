@@ -1,6 +1,6 @@
 import Autocomplete from '@/components/autocomplete/Autocomplete';
 import { Dropdown } from '@/components/common/styles/Inputs';
-import { Divider } from '@/components/common/styles/Misc';
+import { Divider } from '@/components/common/ui/Divider';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import {
   formOptions,

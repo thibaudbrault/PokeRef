@@ -1,4 +1,4 @@
-import { LeftTitle } from '@/components/common/styles/Headings';
+import { LeftH2 } from '@/components/common/styles/Headings';
 import {
   FullWidthTable,
   TableContainer,
@@ -33,6 +33,7 @@ function MovesTable({ moves }: Props) {
         cell: (info) => (
           <TBold>
             <TLink
+              id={info.getValue<string>()}
               href={{
                 pathname: `/move/[name]`,
                 query: { name: info.getValue<string>() },
@@ -76,8 +77,8 @@ function MovesTable({ moves }: Props) {
               >
                 <Image
                   alt={info.getValue<string>()}
-                  width={15}
-                  height={15}
+                  width={20}
+                  height={20}
                   src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue()}.png`}
                 />
                 <span>{info.getValue<string>()}</span>
@@ -106,7 +107,7 @@ function MovesTable({ moves }: Props) {
 
   return (
     <section>
-      <LeftTitle>Moves</LeftTitle>
+      <LeftH2>Moves</LeftH2>
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>
           {tableHeader()}

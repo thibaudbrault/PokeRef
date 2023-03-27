@@ -4,8 +4,8 @@ import {
   getEvolution,
   getPokemon,
   getPokemonLocation,
-  getSpecies,
-  getTypes,
+  getPokemonTypes,
+  getSpecies
 } from '@/utils/DataFetch';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -13,7 +13,7 @@ import { useState } from 'react';
 export const useFetchPokemon = (name: string) => {
   const [pokemonId, setPokemonId] = useState<number | null>(null);
 
-  const [pokemon, types, location, cards] = useQueries({
+  const [pokemon, location, cards] = useQueries({
     queries: [
       {
         queryKey: [`pokemon`, name],
@@ -21,10 +21,6 @@ export const useFetchPokemon = (name: string) => {
         onSuccess: (data: IPokemon) => {
           setPokemonId(data.id);
         },
-      },
-      {
-        queryKey: [`types`, name],
-        queryFn: getTypes,
       },
       {
         queryKey: [`encounter`, name],
@@ -35,10 +31,16 @@ export const useFetchPokemon = (name: string) => {
       },
       {
         queryKey: ['cards', name],
-        queryFn: () => getCards(name)
-      }
+        queryFn: () => getCards(name),
+      },
     ],
   });
+
+  const types = useQuery({
+    queryKey: ['types', name],
+    queryFn: () => getPokemonTypes(pokemon.data),
+    enabled: !!pokemon.data && pokemon.data.id < 10000,
+  })
 
   const species = useQuery({
     queryKey: [`species`, name],
@@ -64,6 +66,6 @@ export const useFetchPokemon = (name: string) => {
     types,
     location,
     evolution,
-    cards
+    cards,
   };
 };

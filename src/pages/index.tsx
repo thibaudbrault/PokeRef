@@ -6,19 +6,18 @@ import {
   PokedexPagination,
   PokedexVerticalText,
 } from '@/components/pages/Pokemon/Styled.Pokemon';
+import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IOptionsOffsetLimit } from '@/utils/DataArrays';
 import { getPokedex } from '@/utils/DataFetch';
 import {
   dehydrate,
   QueryClient,
-  useInfiniteQuery,
   useQuery,
   UseQueryResult,
 } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
 
 const Filters = dynamic(
   () => import(`@/components/pages/Pokemon/Components/Filters.Pokemon`),

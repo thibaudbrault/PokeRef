@@ -59,7 +59,6 @@
 ✅Responsive
 
 🛠Add a Competitive section in a pokémon's details page  
-🛠Cards section
 
 🔜Profile page with possibility to view favorites  
 🔜Types relations for each pokémon  

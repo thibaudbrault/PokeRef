@@ -6,7 +6,7 @@ import { FullWidthTable } from '../../common/styles/Table';
 export const LocationSection = styled.section`
   & p {
     font-size: 1.7rem;
-    font-weight: 700;
+    font-weight: 600;
     text-align: center;
   }
 `;
@@ -26,7 +26,7 @@ export const LocationNavContainer = styled.section`
     transform: translate(-50%);
     display: none;
     font-size: 5rem;
-    font-weight: 700;
+    font-weight: 600;
     text-align: center;
   }
 
@@ -49,7 +49,7 @@ export const LocationNav = styled(MethodNav)`
   }
 `;
 
-export const LocationList = styled.ol`
+export const LocationList = styled.ul`
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(4, 1fr);

@@ -37,8 +37,8 @@ export const PokemonEvolutionBase = styled.div`
     gap: 1rem;
 
     & a {
-      font-size: 3rem;
-      font-weight: 500;
+      font-size: 2rem;
+      font-weight: 600;
       text-transform: capitalize;
       cursor: pointer;
       transition: 0.3s ease-in-out;
@@ -65,12 +65,14 @@ export const PokemonEvolutionStages = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 export const PokemonEvolutionFinal = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 export const PokemonEvolutionElement = styled.div`
@@ -87,8 +89,8 @@ export const PokemonEvolutionElement = styled.div`
     gap: 1rem;
 
     & a {
-      font-size: 3rem;
-      font-weight: 500;
+      font-size: 2rem;
+      font-weight: 600;
       text-align: center;
       text-transform: capitalize;
       cursor: pointer;
@@ -118,11 +120,11 @@ export const PokemonEvolutionElement = styled.div`
 `;
 
 export const PokemonEvolutionText = styled.p`
-  font-size: 2rem;
+  font-size: 1.7rem;
   text-align: center;
 
   & span {
-    font-weight: 700;
+    font-weight: 600;
     text-transform: capitalize;
   }
 `;

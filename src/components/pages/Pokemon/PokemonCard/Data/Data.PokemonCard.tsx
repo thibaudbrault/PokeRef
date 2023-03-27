@@ -20,25 +20,21 @@ type Props = {
 };
 
 function Data({ pokemon, species, game }: Props) {
-
-  const [catchable, setCatchable] = useState<boolean>(true)
+  const [catchable, setCatchable] = useState<boolean>(true);
 
   const catchHandler = () => {
-    Math.random() < (species.capture_rate / 765) && (
-      setCatchable(false),
-      toast.success(`Congrats 🎉 ! You caught ${capitalize(pokemon.name)}`, {
-        style: {
-          fontSize: `1.7rem`,
-        },
-      })
-    )
-  }
+    Math.random() < species.capture_rate / 765 &&
+      (setCatchable(false),
+        toast.success(`Congrats 🎉 ! You caught ${capitalize(pokemon.name)}`, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        }));
+  };
 
   return (
-    <PokemonDataSection>
-      <PokemonCatchButton
-        onClick={catchHandler}
-      >
+    <PokemonDataSection id="presentation">
+      <PokemonCatchButton onClick={catchHandler}>
         {catchable ? 'Catch' : 'Caught'}
       </PokemonCatchButton>
       <PokemonDataContainer>

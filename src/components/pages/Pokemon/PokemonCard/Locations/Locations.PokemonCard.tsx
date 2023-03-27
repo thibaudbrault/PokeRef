@@ -110,7 +110,7 @@ function Locations({ location, game }: Props) {
   );
 
   return (
-    <Section>
+    <Section id="locations">
       <H3>Locations</H3>
       <TableContainer ref={tableContainerRef}>
         <LocationTable>

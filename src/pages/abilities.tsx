@@ -1,4 +1,4 @@
-import { LeftTitle } from '@/components/common/styles/Headings';
+import { LeftH2 } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import {
   FullWidthTable,
@@ -93,7 +93,7 @@ function AbilitiesPage() {
     <>
       <HeadingAbilities />
       <MainBig>
-        <LeftTitle>Abilities</LeftTitle>
+        <LeftH2>Abilities</LeftH2>
         <TableContainer ref={tableContainerRef}>
           <FullWidthTable>
             {tableHeader()}

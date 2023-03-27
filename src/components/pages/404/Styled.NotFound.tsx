@@ -15,7 +15,7 @@ export const NotFoundImg = styled.img`
 
 export const NotFoundText = styled.p`
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 600;
   &:first-of-type {
     padding-top: 3rem;
   }

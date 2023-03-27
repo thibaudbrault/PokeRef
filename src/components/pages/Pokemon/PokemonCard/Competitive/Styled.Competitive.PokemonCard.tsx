@@ -20,18 +20,25 @@ export const PokemonSetsContainer = styled.ul`
 
 export const PokemonSetSpecs = styled.div`
   display: grid;
+  align-items: stretch;
   grid-template-columns: 1fr 1fr;
+  gap: 2rem;
   margin-bottom: 1rem;
   padding: 1.5rem;
   background-color: ${({ theme }) => theme.secondary};
   color: ${({ theme }) => theme.main};
   border-radius: 5px;
 
-  & p {
-    font-size: 2rem;
+  & ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    & li {
+      font-size: 2rem;
 
-    & b {
-      font-weight: 700;
+      & b {
+        font-weight: 600;
+      }
     }
   }
 `;
@@ -44,7 +51,7 @@ export const PokemonSetDesc = styled.div`
 
   & h1 {
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   & hr {
@@ -56,7 +63,7 @@ export const PokemonSetComment = styled(PokemonSetDesc)`
   & h1 {
     margin: 1rem 0 0;
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: capitalize;
   }
 `;

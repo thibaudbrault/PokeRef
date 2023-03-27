@@ -4,9 +4,9 @@ import { device } from './Sizing';
 export const GenNav = styled.nav`
   position: relative;
   padding: 5rem 0;
-  z-index: 2;
+  z-index: 5;
 
-  & ol {
+  & ul {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -19,12 +19,11 @@ export const GenNav = styled.nav`
       & button {
         background: none;
         border: none;
-        font-size: 1.7rem;
-        font-weight: 700;
+        font-size: 2rem;
         color: ${({ theme }) => theme.secondary};
 
         @media ${device.sm} {
-          font-size: 1.5rem;
+          font-size: 1.7rem;
         }
       }
 
@@ -34,6 +33,8 @@ export const GenNav = styled.nav`
         white-space: nowrap;
         background: #c4c4c4;
         border-radius: 5px;
+        -webkit-box-shadow: 2px 2px 15px 2px #161616;
+        box-shadow: 2px 2px 15px 2px #161616;
 
         & button {
           display: block;
@@ -50,7 +51,6 @@ export const GenNav = styled.nav`
           }
 
           @media ${device.sm} {
-            font-size: 1.3rem;
             white-space: break-spaces;
           }
         }
@@ -86,7 +86,7 @@ export const MethodNav = styled.nav`
     border: 1px solid transparent;
     color: ${({ theme }) => theme.secondary};
     font-size: 1.7rem;
-    font-weight: 700;
+    font-weight: 600;
     transition: 0.3s ease-in-out;
 
     &::before {
@@ -143,7 +143,7 @@ export const MethodNav = styled.nav`
   .button_active {
     position: relative;
     font-size: 1.7rem;
-    font-weight: 700;
+    font-weight: 600;
     border: 1px solid transparent;
     border-radius: 5px;
     background: ${({ theme }) => theme.secondary};
