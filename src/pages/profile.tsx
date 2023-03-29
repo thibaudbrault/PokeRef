@@ -4,7 +4,6 @@ import { MainBig, Section } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { ProfileList } from '@/components/pages/Profile/Styled.Profile';
 import { auth, db } from '@/firebase-config';
-import { IPokemonFormat } from '@/types/Competitive/Stats';
 import { formatOptions, IOptions } from '@/utils/DataArrays';
 import { getFormat } from '@/utils/DataFetch';
 import { useQueries } from '@tanstack/react-query';

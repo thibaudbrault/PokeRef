@@ -1,4 +1,5 @@
 import { Capitalize, H3 } from '@/components/common/styles/Headings';
+import { Dropdown } from '@/components/common/styles/Inputs';
 import { Section } from '@/components/common/styles/Sizing';
 import {
   TableContainer,
@@ -11,11 +12,12 @@ import Loader from '@/components/common/ui/Loader/Loader';
 import { Sup } from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IOptions, typeOptions } from '@/utils/DataArrays';
 import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { TypeListSubtitle, TypeMovesTable } from '../Styled.TypeCard';
 
 type Props = {
@@ -27,6 +29,8 @@ function PokemonType({ typeName, pokemon }: Props) {
   if (!typeName || !pokemon?.length) {
     return <Loader />;
   }
+
+  const [type, setType] = useState<IOptions[]>([]);
 
   const data = useMemo(() => pokemon.filter((p) => p.id < 10000), [pokemon]);
 
@@ -143,6 +147,28 @@ function PokemonType({ typeName, pokemon }: Props) {
       <TypeListSubtitle>
         {data.length} Pokémon are <Capitalize>{typeName}</Capitalize> type
       </TypeListSubtitle>
+      <Dropdown
+        isMulti
+        isClearable
+        isSearchable={false}
+        name="type"
+        id="type"
+        className="selectOptions"
+        classNamePrefix="select"
+        options={typeOptions}
+        placeholder="Select"
+        // @ts-ignore
+        components={
+          type &&
+          type?.length >= 2 && {
+            Menu: () => null,
+            MenuList: () => null,
+            DropdownIndicator: () => null,
+            IndicatorSeparator: () => null,
+          }
+        }
+        onChange={(option) => option && setType(option)}
+      />
       <TableContainer ref={tableContainerRef}>
         {data.length > 0 && (
           <TypeMovesTable>
