@@ -8,6 +8,7 @@ export const PokemonContents = styled.section`
   font-size: 2rem;
   background: ${({ theme }) => theme.main};
   border: 1px solid ${({ theme }) => theme.secondary};
+  border-radius: 5px;
   z-index: 3;
 
   & div {
@@ -16,28 +17,28 @@ export const PokemonContents = styled.section`
     justify-content: space-between;
 
     & p {
-        font-size: 2rem;
-        font-weight: 600;
-        text-transform: uppercase;
+      font-size: 2rem;
+      font-weight: 600;
+      text-transform: uppercase;
     }
 
     & button {
-        width: 3rem;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: none;
-        border: none;
-        border-radius: 50%;
-        font-size: 2.5rem;
-        font-weight: 600;
-        color: ${({ theme }) => theme.secondary};
-        transition: 0.3s ease-in-out;
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      border-radius: 50%;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: ${({ theme }) => theme.secondary};
+      transition: 0.3s ease-in-out;
 
-        &:hover {
-            background: rgba(130, 130, 130, 0.2);
-        }
+      &:hover {
+        background: rgba(130, 130, 130, 0.2);
+      }
     }
   }
 

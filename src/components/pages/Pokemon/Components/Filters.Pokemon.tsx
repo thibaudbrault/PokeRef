@@ -9,6 +9,7 @@ import {
 } from '@/utils/DataArrays';
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
 import { SingleValue } from 'react-select';
+import makeAnimated from 'react-select/animated';
 import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
 
 type Props = {
@@ -73,6 +74,8 @@ function Filters({
     setForm(null);
   };
 
+  const animatedComponents = makeAnimated();
+
   useEffect(() => {
     getFilterPokemon();
   }, [getFilterPokemon]);
@@ -90,6 +93,7 @@ function Filters({
             value={form}
             className="selectOptions"
             classNamePrefix="select"
+            components={animatedComponents}
             isClearable
             options={formOptions}
             placeholder="Select"
@@ -109,6 +113,7 @@ function Filters({
             value={generation}
             className="selectOptions"
             classNamePrefix="select"
+            components={animatedComponents}
             isClearable
             options={generationsOptions}
             placeholder="Select"

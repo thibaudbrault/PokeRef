@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Subtitle } from '../../../common/styles/Headings';
-import { device } from '../../../common/styles/Sizing';
 import { Table, TBold } from '../../../common/styles/Table';
 
 export const TypeDamageSection = styled.section`
@@ -72,17 +71,16 @@ export const TypeDamageTable = styled(Table)`
   }
 `;
 
-export const TypeListSubtitle = styled(Subtitle)`
-  text-transform: none;
+export const TypeListSubtitleContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  margin-bottom: 3rem;
 `;
 
-export const TypeMovesTable = styled(Table)`
-  width: 100%;
-  margin: 3rem auto 0;
-
-  @media ${device.md} {
-    width: auto;
-  }
+export const TypeListSubtitle = styled(Subtitle)`
+  text-transform: none;
+  text-align: left;
 `;
 
 export const TypeMovesName = styled(TBold)`
