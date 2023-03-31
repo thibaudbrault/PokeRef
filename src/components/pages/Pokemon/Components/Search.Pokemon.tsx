@@ -4,15 +4,15 @@ import { removeDash, removeLongName } from '@/utils/Typography';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import Fuse from 'fuse.js';
 import { useState } from 'react';
-import { INamedApiResource } from '../../../../../types/Utility/NamedApiResourceList';
+import { INamedApiResource } from '@/types/Utility/NamedApiResourceList';
 import {
   AutocompleteContainer,
   AutocompleteId,
   AutocompleteInput,
   AutocompleteLink,
-} from './Styled.Autocomplete.Pokemon';
+} from '@/components/common/styles/Autocomplete';
 
-function Autocomplete() {
+function SearchPokemon() {
   const { data: pokedex }: UseQueryResult<INamedApiResource[]> = useQuery({
     queryKey: [`pokedex`],
     queryFn: getPokedexResults,
@@ -84,4 +84,4 @@ function Autocomplete() {
   );
 }
 
-export default Autocomplete;
+export default SearchPokemon;

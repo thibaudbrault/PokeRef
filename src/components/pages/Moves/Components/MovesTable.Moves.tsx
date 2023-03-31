@@ -16,6 +16,8 @@ import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
+import { SearchContainer } from '../Styled.Moves';
+import SearchMoves from './Search.Moves';
 
 type Props = {
   moves?: IMove[];
@@ -107,7 +109,10 @@ function MovesTable({ moves }: Props) {
 
   return (
     <section>
-      <LeftH2>Moves</LeftH2>
+      <SearchContainer>
+        <LeftH2>Moves</LeftH2>
+        <SearchMoves moves={moves} />
+      </SearchContainer>
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>
           {tableHeader()}

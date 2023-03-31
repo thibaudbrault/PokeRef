@@ -1,6 +1,6 @@
-import Autocomplete from '@/components/pages/Pokemon/Components/Autocomplete/Autocomplete.Pokemon';
 import { Dropdown } from '@/components/common/styles/Inputs';
 import { Divider } from '@/components/common/ui/Divider';
+import SearchPokemon from '@/components/pages/Pokemon/Components/Search.Pokemon';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import {
   formOptions,
@@ -83,7 +83,7 @@ function Filters({
   return (
     <>
       <PokedexSearch>
-        <Autocomplete />
+        <SearchPokemon />
         <PokedexDropdown>
           <label htmlFor="form">Form</label>
           <Dropdown

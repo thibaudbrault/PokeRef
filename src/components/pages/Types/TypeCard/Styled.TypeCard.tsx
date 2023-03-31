@@ -74,6 +74,7 @@ export const TypeDamageTable = styled(Table)`
 export const TypeListSubtitleContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 3rem;
 `;
