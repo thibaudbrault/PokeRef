@@ -58,8 +58,6 @@
     "yup": "0.32.11"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.2.0",
-    "@commitlint/config-conventional": "17.2.0",
     "@playwright/test": "1.31.2",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
