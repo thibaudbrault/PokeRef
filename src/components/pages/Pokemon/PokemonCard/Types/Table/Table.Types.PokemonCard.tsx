@@ -11,9 +11,6 @@ type Props = {
 };
 
 function TableTyping({ target, pokemonTypes, types }: Props) {
-
-  console.log(types)
-
   return (
     <>
       {types.length === 1 && (

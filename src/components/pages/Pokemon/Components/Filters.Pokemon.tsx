@@ -1,6 +1,6 @@
-import Autocomplete from '@/components/autocomplete/Autocomplete';
 import { Dropdown } from '@/components/common/styles/Inputs';
 import { Divider } from '@/components/common/ui/Divider';
+import SearchPokemon from '@/components/pages/Pokemon/Components/Search.Pokemon';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import {
   formOptions,
@@ -9,6 +9,7 @@ import {
 } from '@/utils/DataArrays';
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
 import { SingleValue } from 'react-select';
+import makeAnimated from 'react-select/animated';
 import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
 
 type Props = {
@@ -73,6 +74,8 @@ function Filters({
     setForm(null);
   };
 
+  const animatedComponents = makeAnimated();
+
   useEffect(() => {
     getFilterPokemon();
   }, [getFilterPokemon]);
@@ -80,7 +83,7 @@ function Filters({
   return (
     <>
       <PokedexSearch>
-        <Autocomplete />
+        <SearchPokemon />
         <PokedexDropdown>
           <label htmlFor="form">Form</label>
           <Dropdown
@@ -90,6 +93,7 @@ function Filters({
             value={form}
             className="selectOptions"
             classNamePrefix="select"
+            components={animatedComponents}
             isClearable
             options={formOptions}
             placeholder="Select"
@@ -109,6 +113,7 @@ function Filters({
             value={generation}
             className="selectOptions"
             classNamePrefix="select"
+            components={animatedComponents}
             isClearable
             options={generationsOptions}
             placeholder="Select"

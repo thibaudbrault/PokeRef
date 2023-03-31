@@ -53,15 +53,15 @@
 ✅Change certain data according to the game selected  
 ✅Pokémon cries (up to n° 721)  
 ✅Competitive information for every pokémon with data from Smogon  
+✅List of every pokémon cards for every pokémon  
 ✅Dark and light mode  
 ✅404 page  
-✅Autocomplete search  
+✅Fuzzy search with Fuse.js  
 ✅Responsive
 
-🛠Add a Competitive section in a pokémon's details page  
+🛠Types relations for each pokémon
 
 🔜Profile page with possibility to view favorites  
-🔜Types relations for each pokémon  
 🔜Contest section in a move's page
 
 <h4>Performance improvements</h4>
@@ -73,13 +73,13 @@
 ✅Turned into a PWA with the next-pwa package  
 ✅Paginated home page
 
-🛠Refactoring the code  
+🛠Refactoring the code
 
-🔜Will look into what can be improved  
+🔜Will look into what can be improved
 
 <h2 id="setup">Setup</h2>
 
-<h4>Clone the repo</h4>  
+<h4>Clone the repo</h4>
 
 ```bash
 git clone https://github.com/thibaudbrault/PokeRef.git
@@ -97,7 +97,7 @@ npm install
 npm run dev
 ```
 
-<h4>Enjoy :)</h4>
+<h4>Enjoy 😃</h4>
 
 <h2 id="description">Description</h2>
 
@@ -124,7 +124,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - Tried to virtualize the moves, abilities and items pages' lists. I tried to implement it by using <a href="https://github.com/bvaughn/react-virtualized" target="_blank">react-virtualized</a> and <a href="https://github.com/petyosi/react-virtuoso" target="_blank">react-virtuoso</a>, but I had a few problems (the main one being that it did not take into account the sorting of the list and returned the list without it).
 - Implementing React-Query. I had to learn how to modify my custom hooks to make it work with React-Query and how to import the data from the hooks. It took me some time to make the transition works, but I don't regret it because my code is more readable (mainly the part where I import my hooks, but also the way I handle the loading state to return an animation while the data is being fetched) and it's an easy way to cache data.
 - Moving from CRA to Next. The main problem I had was learning to use dynamic routing and when I understood it the migration became easier. It still took me some time because I had to move all my files in other folders, change the paths in imports, implement the <Image /> component along with a width and height, correct some problems with the images (the creation of multiple spans wrapping the image that was solved by using next/future/image before moving to Next 13) and a few other problems with the <Link /> component (the fact that it can't have multiple children, that it needs to have a 'href' instead of the 'to' used in react-router to give the path and that you need to put an anchor tag inside the Link and use passHref).
-- Converting all the files to Typescript and declare all the types. 
+- Converting all the files to Typescript and declare all the types.
 
 <h4>Contents</h4>
 
@@ -153,7 +153,8 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 <h4>Data</h4>
 
 <a href="https://pokeapi.co/docs/v2" target="_blank">PokéAPI</a>  
-<a href="https://github.com/pkmn/smogon" target="_blank">Smogon</a>
+<a href="https://github.com/pkmn/smogon" target="_blank">Smogon</a>  
+<a href="https://pokemontcg.io/" target="_blank">PokemonTCG</a>
 
 <h4>Dependencies</h4>
 
@@ -161,6 +162,8 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 <a href="https://www.npmjs.com/package/@tanstack/react-table" target="_blank">Tanstack React-Table</a>  
 <a href="https://www.npmjs.com/package/react-hook-form" target="_blank">React Hook Form</a>  
 <a href="https://www.npmjs.com/package/react-select" target="_blank">React Select</a>  
+<a href="https://www.npmjs.com/package/react-paginate" target="_blank">React Paginate</a>  
+<a href="https://www.npmjs.com/package/fuse.js" target="_blank">Fuse.js</a>  
 <a href="https://www.npmjs.com/package/yup" target="_blank">Yup</a>  
 <a href="https://www.npmjs.com/package/eslint" target="_blank">ESLint</a>  
 <a href="https://www.npmjs.com/package/prettier" target="_blank">Prettier</a>  

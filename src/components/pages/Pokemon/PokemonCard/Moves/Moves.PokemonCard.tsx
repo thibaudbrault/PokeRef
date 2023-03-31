@@ -171,9 +171,9 @@ function MovesPokemon({ pokemon, version, name }: Props) {
           <TCapitalize>
             {info.getValue()
               ? removeDash(info?.getValue<IMoveAilment>().name).replace(
-                `none`,
-                `-`,
-              )
+                  `none`,
+                  `-`,
+                )
               : `-`}
           </TCapitalize>
         ),
@@ -185,8 +185,6 @@ function MovesPokemon({ pokemon, version, name }: Props) {
   const { ref, inView, entry } = useInView({
     threshold: 0,
   });
-
-  console.log(inView)
 
   const { tableContainerRef, tableHeader, tableBody } = useTableParams(
     data,

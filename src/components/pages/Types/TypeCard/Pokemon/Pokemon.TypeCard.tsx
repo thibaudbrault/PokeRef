@@ -2,6 +2,7 @@ import { Capitalize, H3 } from '@/components/common/styles/Headings';
 import { Dropdown } from '@/components/common/styles/Inputs';
 import { Section } from '@/components/common/styles/Sizing';
 import {
+  FullWidthTable,
   TableContainer,
   TBold,
   TLink,
@@ -12,13 +13,16 @@ import Loader from '@/components/common/ui/Loader/Loader';
 import { Sup } from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { IOptions, typeOptions } from '@/utils/DataArrays';
+import { IOptionsFixed, typeOptions } from '@/utils/DataArrays';
 import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
-import { TypeListSubtitle, TypeMovesTable } from '../Styled.TypeCard';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  TypeListSubtitle,
+  TypeListSubtitleContainer,
+} from '../Styled.TypeCard';
 
 type Props = {
   typeName?: string;
@@ -30,7 +34,20 @@ function PokemonType({ typeName, pokemon }: Props) {
     return <Loader />;
   }
 
-  const [type, setType] = useState<IOptions[]>([]);
+  const [type, setType] = useState<IOptionsFixed[]>([]);
+  const [typeArray, setTypeArray] = useState<IOptionsFixed[]>(typeOptions);
+
+  const fixCurType = (name: string, isFixed: boolean) => {
+    return setTypeArray(
+      typeArray.map((t) => {
+        if (t.value === name) {
+          return { ...t, isFixed };
+        } else {
+          return t;
+        }
+      }),
+    );
+  };
 
   const data = useMemo(() => pokemon.filter((p) => p.id < 10000), [pokemon]);
 
@@ -141,40 +158,47 @@ function PokemonType({ typeName, pokemon }: Props) {
     columns,
   );
 
+  useEffect(() => {
+    fixCurType(typeName, true);
+  }, []);
+
   return (
     <Section>
       <H3>Pokémon</H3>
-      <TypeListSubtitle>
-        {data.length} Pokémon are <Capitalize>{typeName}</Capitalize> type
-      </TypeListSubtitle>
-      <Dropdown
-        isMulti
-        isClearable
-        isSearchable={false}
-        name="type"
-        id="type"
-        className="selectOptions"
-        classNamePrefix="select"
-        options={typeOptions}
-        placeholder="Select"
-        // @ts-ignore
-        components={
-          type &&
-          type?.length >= 2 && {
-            Menu: () => null,
-            MenuList: () => null,
-            DropdownIndicator: () => null,
-            IndicatorSeparator: () => null,
+      <TypeListSubtitleContainer>
+        <TypeListSubtitle>
+          {data.length} Pokémon are <Capitalize>{typeName}</Capitalize> type
+        </TypeListSubtitle>
+        <Dropdown
+          value={type}
+          isMulti
+          isClearable={typeArray.some((t) => !t.isFixed)}
+          isSearchable={false}
+          name="type"
+          id="type"
+          className="selectOptions"
+          classNamePrefix="select"
+          options={typeArray}
+          placeholder="Select"
+          // @ts-ignore
+          components={
+            type &&
+            type?.length >= 2 && {
+              Menu: () => null,
+              MenuList: () => null,
+              DropdownIndicator: () => null,
+              IndicatorSeparator: () => null,
+            }
           }
-        }
-        onChange={(option) => option && setType(option)}
-      />
+          onChange={(option) => option && setType(option as IOptionsFixed[])}
+        />
+      </TypeListSubtitleContainer>
       <TableContainer ref={tableContainerRef}>
         {data.length > 0 && (
-          <TypeMovesTable>
+          <FullWidthTable>
             {tableHeader()}
             {tableBody()}
-          </TypeMovesTable>
+          </FullWidthTable>
         )}
       </TableContainer>
     </Section>

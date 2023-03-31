@@ -2,37 +2,35 @@ import { getPokedexResults } from '@/utils/DataFetch';
 import ImageWithFallback from '@/utils/ImageWithFallback';
 import { removeDash, removeLongName } from '@/utils/Typography';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import Fuse from 'fuse.js';
 import { useState } from 'react';
-import { INamedApiResource } from '../../types/Utility/NamedApiResourceList';
+import { INamedApiResource } from '@/types/Utility/NamedApiResourceList';
 import {
   AutocompleteContainer,
   AutocompleteId,
   AutocompleteInput,
-  AutocompleteLink
-} from './Styled.Autocomplete';
+  AutocompleteLink,
+} from '@/components/common/styles/Autocomplete';
 
-function Autocomplete() {
+function SearchPokemon() {
   const { data: pokedex }: UseQueryResult<INamedApiResource[]> = useQuery({
     queryKey: [`pokedex`],
     queryFn: getPokedexResults,
   });
 
-  const [pokedexMatch, setPokedexMatch] = useState<
-    INamedApiResource[] | undefined
+  const [searchRes, setSearchRes] = useState<
+    Fuse.FuseResult<INamedApiResource>[]
   >([]);
   const [searchText, setSearchText] = useState(``);
 
   const searchPokedex = (text: string) => {
-    let matches: INamedApiResource[] | undefined = [];
-    setSearchText(text);
-    if (text.length > 0) {
-      matches =
-        pokedexMatch &&
-        pokedex?.filter((pokedex: INamedApiResource) => {
-          const regex = new RegExp(`${text}`, `gi`);
-          return pokedex.name.match(regex);
-        });
-      setPokedexMatch(matches?.slice(0, 5));
+    if (pokedex) {
+      const fuse = new Fuse(pokedex, {
+        keys: ['name'],
+        includeMatches: true,
+      });
+      setSearchText(text);
+      setSearchRes(fuse.search(text).slice(0, 5));
     }
   };
 
@@ -47,12 +45,12 @@ function Autocomplete() {
       {searchText && (
         <AutocompleteContainer>
           <ul>
-            {pokedexMatch &&
-              pokedexMatch?.map((pm) => (
-                <li key={pm.name}>
+            {searchRes &&
+              searchRes?.map((res) => (
+                <li key={res.item.name}>
                   <ImageWithFallback
                     src={
-                      `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pm.url
+                      `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${res.item.url
                         .replace('https://pokeapi.co/api/v2/pokemon/', '')
                         .slice(0, -1)}.png` || ``
                     }
@@ -64,15 +62,15 @@ function Autocomplete() {
                   <AutocompleteLink
                     href={{
                       pathname: `/pokemon/[name]`,
-                      query: { name: pm.name },
+                      query: { name: res.item.name },
                     }}
                     className="bold"
                   >
-                    {removeLongName(removeDash(pm.name))}
+                    {removeLongName(removeDash(res.item.name))}
                   </AutocompleteLink>
                   <AutocompleteId>
                     #
-                    {pm.url
+                    {res.item.url
                       .replace('https://pokeapi.co/api/v2/pokemon/', '')
                       .slice(0, -1)
                       .padStart(3, `0`)}
@@ -86,4 +84,4 @@ function Autocomplete() {
   );
 }
 
-export default Autocomplete;
+export default SearchPokemon;

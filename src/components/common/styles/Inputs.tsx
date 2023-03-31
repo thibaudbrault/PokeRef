@@ -51,7 +51,7 @@ export const Dropdown = styled(Select)`
     border: 1px solid ${({ theme }) => theme.secondary};
     border-radius: 5px;
     text-transform: capitalize;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     transition: 0.3s ease-in-out;
 
     &--is-focused {

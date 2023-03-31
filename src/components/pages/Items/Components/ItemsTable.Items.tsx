@@ -1,4 +1,4 @@
-import { LeftTitle } from '@/components/common/styles/Headings';
+import { LeftH2 } from '@/components/common/styles/Headings';
 import {
   FullWidthTable,
   TableContainer,
@@ -86,7 +86,7 @@ function ItemsTable({ items }: Props) {
 
   return (
     <section>
-      <LeftTitle>Items</LeftTitle>
+      <LeftH2>Items</LeftH2>
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>
           {tableHeader()}

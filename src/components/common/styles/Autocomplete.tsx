@@ -1,7 +1,7 @@
 import { Input } from '@/components/common/styles/Inputs';
+import { device } from '@/components/common/styles/Sizing';
 import { TLink } from '@/components/common/styles/Table';
 import styled from 'styled-components';
-import { device } from '@/components/common/styles/Sizing';
 
 export const AutocompleteInput = styled(Input)`
   min-width: 25rem;
@@ -14,6 +14,7 @@ export const AutocompleteInput = styled(Input)`
     width: 100%;
     height: 100%;
     padding: 0 1rem;
+    text-transform: capitalize;
 
     &::placeholder {
       font-size: 1.5rem;
@@ -39,7 +40,7 @@ export const AutocompleteContainer = styled.div`
   & ul {
     width: 100%;
     position: absolute;
-    top: 0;
+    top: 0.5rem;
     left: 0;
     background: ${({ theme }) => theme.secondary};
     color: ${({ theme }) => theme.main};
@@ -48,8 +49,8 @@ export const AutocompleteContainer = styled.div`
     & li {
       display: flex;
       align-items: center;
-      justify-content: space-around;
-      padding: 0.5rem 0;
+      justify-content: space-between;
+      padding: 0.5rem 10%;
     }
   }
 `;

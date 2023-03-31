@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 
+export const SearchContainer = styled.div`
+  display: grid;
+  grid-template-areas: '. search search';
+  gap: 1rem;
+  margin-bottom: 3rem;
+
+  & h2 {
+    margin-bottom: 0;
+  }
+`;
+
 export const StatusMoves = styled.td`
   display: flex;
   align-items: center;
