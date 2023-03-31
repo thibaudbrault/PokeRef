@@ -29,7 +29,7 @@ export const PokedexDropdown = styled.div`
   flex-direction: column;
 
   & label {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     margin-bottom: 0.5rem;
     justify-self: flex-start;
   }

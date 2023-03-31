@@ -14,6 +14,7 @@ export const AutocompleteInput = styled(Input)`
     width: 100%;
     height: 100%;
     padding: 0 1rem;
+    text-transform: capitalize;
 
     &::placeholder {
       font-size: 1.5rem;
