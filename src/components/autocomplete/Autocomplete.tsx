@@ -8,8 +8,9 @@ import {
   AutocompleteContainer,
   AutocompleteId,
   AutocompleteInput,
-  AutocompleteLink
+  AutocompleteLink,
 } from './Styled.Autocomplete';
+import Fuse from 'fuse.js';
 
 function Autocomplete() {
   const { data: pokedex }: UseQueryResult<INamedApiResource[]> = useQuery({
@@ -35,6 +36,10 @@ function Autocomplete() {
       setPokedexMatch(matches?.slice(0, 5));
     }
   };
+
+  const fuse = new Fuse(pokedex);
+  const results = fuse.search('bulb');
+  console.log(results);
 
   return (
     <AutocompleteInput>
