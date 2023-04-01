@@ -218,13 +218,13 @@ export const getPokemon = async (url: string) => {
 export const getPokemonTypes = async (pokemon: IPokemon) => {
   try {
     const res = pokemon.types.map((t) => t.type.url);
-    const promiseRes = await Promise.all(res.map((res) => axios.get(res)))
-    const results = promiseRes.map((res) => res.data)
-    return results
+    const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
+    const results = promiseRes.map((res) => res.data);
+    return results;
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 // Fetch pokemon's forms
 export const getPokemonForms = async (pokemon: IPokemon) => {
@@ -367,10 +367,8 @@ export const getAllEvo = async (evolution: IEvolutionChain) => {
       ].flat();
       return results;
     } else {
-      const results = [
-        basePromiseRes.data
-      ]
-      return results
+      const results = [basePromiseRes.data];
+      return results;
     }
   } catch (err) {
     console.error(err);

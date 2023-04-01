@@ -80,11 +80,7 @@ function Competitive({ format, name }: Props) {
     )
     .find((n) => n.pokemonSetsName === removeLongName(capitalize(name)));
 
-  if (
-    pokemonAnalyses &&
-    pokemonSets
-  ) {
-
+  if (pokemonAnalyses && pokemonSets) {
     const { pokemonAnalysesName, ...filteredAnalyses } = pokemonAnalyses;
     const { pokemonSetsName, ...filteredSets } = pokemonSets;
 
@@ -92,7 +88,6 @@ function Competitive({ format, name }: Props) {
       Object.keys(filteredAnalyses).length > 0 &&
       Object.keys(filteredSets).length > 0
     ) {
-
       const formattedName = (formatName: string) => {
         return (
           Object.entries(formats.data)
@@ -157,7 +152,9 @@ function Competitive({ format, name }: Props) {
             {overview && (
               <li>
                 <H4>Analysis</H4>
-                <PokemonSetDesc dangerouslySetInnerHTML={{ __html: overview }} />
+                <PokemonSetDesc
+                  dangerouslySetInnerHTML={{ __html: overview }}
+                />
               </li>
             )}
             {setsEntries(filteredAnalyses as IFormatAnalysesSets).sets.map(
@@ -173,8 +170,8 @@ function Competitive({ format, name }: Props) {
                               'li',
                               Array.isArray(move)
                                 ? move
-                                  .map((j) => wrapMoves('span', j, index))
-                                  .join(' / ')
+                                    .map((j) => wrapMoves('span', j, index))
+                                    .join(' / ')
                                 : move,
                               index,
                             ),
@@ -184,47 +181,47 @@ function Competitive({ format, name }: Props) {
                     {Object.keys(
                       Object.values(Object.entries(filteredSets)[toggle][1])[0],
                     ).length > 1 && (
-                        <ul>
-                          <li>
-                            {typeof setSpecs(filteredSets, i, 'item') === 'string' ? (
-                              <>
-                                Item: <b>{setSpecs(filteredSets, i, 'item')}</b>
-                              </>
-                            ) : (
-                              <>
-                                Items: <b>
-                                  {setSpecs(filteredSets, i, 'item').join(" / ")}
-                                </b>
-                              </>
-                            )}
-                          </li>
-                          <li>
-                            Nature: <b>{setSpecs(filteredSets, i, 'nature')}</b>
-                          </li>
-                          <li>
-                            EVs:{' '}
-                            <b>
-                              {Object.entries(setSpecs(filteredSets, i, 'evs'))
-                                .join(' / ')
-                                .replaceAll(',', ' ')
-                                .replace(
-                                  /\b(?:hp|atk|def|spa|spd|spe)\b/gi,
-                                  (matched) => majEv[matched],
-                                )}
-                            </b>
-                          </li>
-                        </ul>
-                      )}
+                      <ul>
+                        <li>
+                          {typeof setSpecs(filteredSets, i, 'item') ===
+                          'string' ? (
+                            <>
+                              Item: <b>{setSpecs(filteredSets, i, 'item')}</b>
+                            </>
+                          ) : (
+                            <>
+                              Items:{' '}
+                              <b>
+                                {setSpecs(filteredSets, i, 'item').join(' / ')}
+                              </b>
+                            </>
+                          )}
+                        </li>
+                        <li>
+                          Nature: <b>{setSpecs(filteredSets, i, 'nature')}</b>
+                        </li>
+                        <li>
+                          EVs:{' '}
+                          <b>
+                            {Object.entries(setSpecs(filteredSets, i, 'evs'))
+                              .join(' / ')
+                              .replaceAll(',', ' ')
+                              .replace(
+                                /\b(?:hp|atk|def|spa|spd|spe)\b/gi,
+                                (matched) => majEv[matched],
+                              )}
+                          </b>
+                        </li>
+                      </ul>
+                    )}
                   </PokemonSetSpecs>
-                  {
-                    s.description && (
-                      <PokemonSetDesc
-                        dangerouslySetInnerHTML={{
-                          __html: textFormatting(s.description),
-                        }}
-                      />
-                    )
-                  }
+                  {s.description && (
+                    <PokemonSetDesc
+                      dangerouslySetInnerHTML={{
+                        __html: textFormatting(s.description),
+                      }}
+                    />
+                  )}
                 </li>
               ),
             )}
@@ -236,7 +233,7 @@ function Competitive({ format, name }: Props) {
               </li>
             )}
           </PokemonSetsContainer>
-        </Section >
+        </Section>
       );
     }
   }

@@ -5,7 +5,10 @@ import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IType } from '@/types/Pokemon/Type';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PokemonTypesContainer, PokemonTypesList } from './Styled.Types.PokemonCard';
+import {
+  PokemonTypesContainer,
+  PokemonTypesList,
+} from './Styled.Types.PokemonCard';
 import TableTyping from './Table/Table.Types.PokemonCard';
 
 type Props = {
@@ -18,7 +21,7 @@ function Typing({ pokemon, types }: Props) {
     <Section id="types">
       <H3>Types relations</H3>
       <PokemonTypesList>
-        {types.map(t =>
+        {types.map((t) => (
           <Type id={t.name}>
             <Link
               href={{
@@ -35,7 +38,7 @@ function Typing({ pokemon, types }: Props) {
               <span>{t.name}</span>
             </Link>
           </Type>
-        )}
+        ))}
       </PokemonTypesList>
       <PokemonTypesContainer>
         <TableTyping target="to" pokemonTypes={pokemon.types} types={types} />

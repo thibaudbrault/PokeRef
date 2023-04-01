@@ -5,7 +5,7 @@ import {
   getPokemon,
   getPokemonLocation,
   getPokemonTypes,
-  getSpecies
+  getSpecies,
 } from '@/utils/DataFetch';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -40,7 +40,7 @@ export const useFetchPokemon = (name: string) => {
     queryKey: ['types', name],
     queryFn: () => getPokemonTypes(pokemon.data),
     enabled: !!pokemon.data && pokemon.data.id < 10000,
-  })
+  });
 
   const species = useQuery({
     queryKey: [`species`, name],
