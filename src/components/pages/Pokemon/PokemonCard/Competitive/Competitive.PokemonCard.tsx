@@ -134,8 +134,15 @@ function Competitive({ format, name }: Props) {
         spe: 'Spe',
       };
 
+      const detailedSets = (
+        Object.keys(
+          Object.values(Object.entries(filteredSets)[toggle][1])[0],
+        ),
+      );
+
+
       return (
-        <Section id="competitve">
+        <Section id="competitive">
           <H3>Competitive</H3>
           <MethodNav>
             {Object.keys(filteredAnalyses).map((fa, i) => (
@@ -178,9 +185,7 @@ function Competitive({ format, name }: Props) {
                         ),
                       }}
                     />
-                    {Object.keys(
-                      Object.values(Object.entries(filteredSets)[toggle][1])[0],
-                    ).length > 1 && (
+                    {detailedSets.length > 1 && detailedSets.find((d: string) => d !== 'level' && d !== 'moves') && (
                       <ul>
                         <li>
                           {typeof setSpecs(filteredSets, i, 'item') ===

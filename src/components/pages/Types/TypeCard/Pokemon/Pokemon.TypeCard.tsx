@@ -49,6 +49,8 @@ function PokemonType({ typeName, pokemon }: Props) {
     );
   };
 
+  console.log(type);
+
   const data = useMemo(() => pokemon.filter((p) => p.id < 10000), [pokemon]);
 
   const columns = useMemo<ColumnDef<IPokemon>[]>(
@@ -158,6 +160,12 @@ function PokemonType({ typeName, pokemon }: Props) {
     columns,
   );
 
+  const styles = {
+    multiValueRemove: (base, state) => {
+      return state.data.isFixed ? { ...base, display: 'none' } : base;
+    },
+  };
+
   useEffect(() => {
     fixCurType(typeName, true);
   }, []);
@@ -171,9 +179,11 @@ function PokemonType({ typeName, pokemon }: Props) {
         </TypeListSubtitle>
         <Dropdown
           value={type}
+          defaultValue={typeArray.some((t) => t.isFixed)}
           isMulti
           isClearable={typeArray.some((t) => !t.isFixed)}
           isSearchable={false}
+          styles={styles}
           name="type"
           id="type"
           className="selectOptions"
