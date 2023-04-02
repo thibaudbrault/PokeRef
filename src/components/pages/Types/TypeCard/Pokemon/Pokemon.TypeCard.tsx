@@ -49,8 +49,6 @@ function PokemonType({ typeName, pokemon }: Props) {
     );
   };
 
-  console.log(type);
-
   const data = useMemo(() => pokemon.filter((p) => p.id < 10000), [pokemon]);
 
   const columns = useMemo<ColumnDef<IPokemon>[]>(
@@ -161,6 +159,7 @@ function PokemonType({ typeName, pokemon }: Props) {
   );
 
   const styles = {
+    // @ts-ignore
     multiValueRemove: (base, state) => {
       return state.data.isFixed ? { ...base, display: 'none' } : base;
     },

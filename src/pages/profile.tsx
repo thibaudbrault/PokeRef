@@ -76,7 +76,11 @@ function Profile() {
   }, [formatValue]);
 
   if (stats.status === `error` || analyses.status === `error`) {
-    return toast.error(`Something went wrong`);
+    return toast.error(`Something went wrong`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (stats.status === `loading` || analyses.status === `loading`) {

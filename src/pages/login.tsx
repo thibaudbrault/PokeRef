@@ -48,7 +48,7 @@ function Login() {
   const submitForm = async (data: FormInput) => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
-      toast.success(`Welcome back`, {
+      toast.success(`Welcome back 👋`, {
         style: {
           fontSize: `1.7rem`,
         },
@@ -56,7 +56,11 @@ function Login() {
       router.push(`/`);
     } catch (error) {
       if (error instanceof Error) {
-        toast.error(error.message);
+        toast.error(error.message, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        });
       }
     }
   };

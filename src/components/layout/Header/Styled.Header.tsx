@@ -14,7 +14,7 @@ export const HeaderBtnConnect = styled.div`
     border: 1px solid transparent;
     border-radius: 5px;
     color: ${({ theme }) => theme.main};
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease-in-out;
@@ -51,7 +51,7 @@ export const HeaderBtnConnected = styled.div`
     border: 1px solid transparent;
     border-radius: 5px;
     color: ${({ theme }) => theme.main};
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease-in-out;
@@ -120,7 +120,7 @@ export const BurgerOpen = styled.button`
   position: fixed;
   top: 5vh;
   right: 5vw;
-  z-index: 4;
+  z-index: 99;
   padding: 1rem;
   border: none;
   border-radius: 50px;

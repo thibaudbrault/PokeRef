@@ -55,6 +55,7 @@ function Register() {
         await setDoc(usersCollectionRef, {
           name: data.username,
           email: data.email,
+          caught: [],
         });
         toast.success(`Congrats 🎉! Your account is now created`, {
           style: {

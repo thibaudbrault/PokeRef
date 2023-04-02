@@ -47,7 +47,11 @@ function MoveCard({ name }: Props) {
   } = useFetchMove(name);
 
   if (isError) {
-    toast.error(`Something went wrong: ${error?.message}`);
+    toast.error(`Something went wrong: ${error?.message}`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (isLoading) {

@@ -57,7 +57,11 @@ function Competitive({ format, name }: Props) {
     formats.status === `error` ||
     sets.status === `error`
   ) {
-    return toast.error(`Something went wrong`);
+    return toast.error(`Something went wrong`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (
@@ -134,12 +138,9 @@ function Competitive({ format, name }: Props) {
         spe: 'Spe',
       };
 
-      const detailedSets = (
-        Object.keys(
-          Object.values(Object.entries(filteredSets)[toggle][1])[0],
-        ),
+      const detailedSets = Object.keys(
+        Object.values(Object.entries(filteredSets)[toggle][1])[0],
       );
-
 
       return (
         <Section id="competitive">
@@ -185,40 +186,45 @@ function Competitive({ format, name }: Props) {
                         ),
                       }}
                     />
-                    {detailedSets.length > 1 && detailedSets.find((d: string) => d !== 'level' && d !== 'moves') && (
-                      <ul>
-                        <li>
-                          {typeof setSpecs(filteredSets, i, 'item') ===
-                          'string' ? (
-                            <>
-                              Item: <b>{setSpecs(filteredSets, i, 'item')}</b>
-                            </>
-                          ) : (
-                            <>
-                              Items:{' '}
-                              <b>
-                                {setSpecs(filteredSets, i, 'item').join(' / ')}
-                              </b>
-                            </>
-                          )}
-                        </li>
-                        <li>
-                          Nature: <b>{setSpecs(filteredSets, i, 'nature')}</b>
-                        </li>
-                        <li>
-                          EVs:{' '}
-                          <b>
-                            {Object.entries(setSpecs(filteredSets, i, 'evs'))
-                              .join(' / ')
-                              .replaceAll(',', ' ')
-                              .replace(
-                                /\b(?:hp|atk|def|spa|spd|spe)\b/gi,
-                                (matched) => majEv[matched],
-                              )}
-                          </b>
-                        </li>
-                      </ul>
-                    )}
+                    {detailedSets.length > 1 &&
+                      detailedSets.find(
+                        (d: string) => d !== 'level' && d !== 'moves',
+                      ) && (
+                        <ul>
+                          <li>
+                            {typeof setSpecs(filteredSets, i, 'item') ===
+                            'string' ? (
+                              <>
+                                Item: <b>{setSpecs(filteredSets, i, 'item')}</b>
+                              </>
+                            ) : (
+                              <>
+                                Items:{' '}
+                                <b>
+                                  {setSpecs(filteredSets, i, 'item').join(
+                                    ' / ',
+                                  )}
+                                </b>
+                              </>
+                            )}
+                          </li>
+                          <li>
+                            Nature: <b>{setSpecs(filteredSets, i, 'nature')}</b>
+                          </li>
+                          <li>
+                            EVs:{' '}
+                            <b>
+                              {Object.entries(setSpecs(filteredSets, i, 'evs'))
+                                .join(' / ')
+                                .replaceAll(',', ' ')
+                                .replace(
+                                  /\b(?:hp|atk|def|spa|spd|spe)\b/gi,
+                                  (matched) => majEv[matched],
+                                )}
+                            </b>
+                          </li>
+                        </ul>
+                      )}
                   </PokemonSetSpecs>
                   {s.description && (
                     <PokemonSetDesc

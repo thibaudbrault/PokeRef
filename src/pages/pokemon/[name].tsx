@@ -136,7 +136,11 @@ function PokemonCard({ name }: Props) {
     types.status === `error` ||
     location.status === `error`
   ) {
-    return toast.error(`Something went wrong`);
+    return toast.error(`Something went wrong`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (
