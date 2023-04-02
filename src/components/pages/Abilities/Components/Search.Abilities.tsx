@@ -4,23 +4,22 @@ import {
   AutocompleteInput,
   AutocompleteLink,
 } from '@/components/common/styles/Autocomplete';
-import { IMove } from '@/types/Moves/Move';
-import ImageWithFallback from '@/utils/ImageWithFallback';
+import { IAbility } from '@/types/Pokemon/Ability';
 import { capitalize, removeDash } from '@/utils/Typography';
 import Fuse from 'fuse.js';
 import { useState } from 'react';
 
 type Props = {
-  moves?: IMove[];
+  abilities?: IAbility[];
 };
 
-function SearchMoves({ moves }: Props) {
-  const [searchRes, setSearchRes] = useState<Fuse.FuseResult<IMove>[]>([]);
+function SearchAbilities({ abilities }: Props) {
+  const [searchRes, setSearchRes] = useState<Fuse.FuseResult<IAbility>[]>([]);
   const [searchText, setSearchText] = useState(``);
 
-  const searchMoves = (text: string) => {
-    if (moves) {
-      const fuse = new Fuse(moves, {
+  const searchAbilities = (text: string) => {
+    if (abilities) {
+      const fuse = new Fuse(abilities, {
         keys: ['name'],
         includeMatches: true,
       });
@@ -34,8 +33,8 @@ function SearchMoves({ moves }: Props) {
       <label htmlFor="search">Search</label>
       <input
         type="text"
-        placeholder="Move Name"
-        onChange={(e) => searchMoves(e.target.value)}
+        placeholder="Ability Name"
+        onChange={(e) => searchAbilities(e.target.value)}
       />
       {searchText && (
         <AutocompleteContainer>
@@ -43,16 +42,9 @@ function SearchMoves({ moves }: Props) {
             {searchRes &&
               searchRes?.map((res) => (
                 <li key={res.item.name}>
-                  <ImageWithFallback
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-${res.item.type.name}.png`}
-                    alt=""
-                    width={32}
-                    height={32}
-                    fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
-                  />
                   <AutocompleteLink
                     href={{
-                      pathname: `/move/[name]`,
+                      pathname: `/ability/[name]`,
                       query: { name: res.item.name },
                     }}
                     className="bold"
@@ -60,7 +52,7 @@ function SearchMoves({ moves }: Props) {
                     {capitalize(removeDash(res.item.name))}
                   </AutocompleteLink>
                   <AutocompleteId>
-                    {capitalize(res.item.type.name)}
+                    {res.item.pokemon.length} Pokémon
                   </AutocompleteId>
                 </li>
               ))}
@@ -71,4 +63,4 @@ function SearchMoves({ moves }: Props) {
   );
 }
 
-export default SearchMoves;
+export default SearchAbilities;

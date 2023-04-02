@@ -33,8 +33,19 @@ export const PokemonSetSpecs = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    visibility: hidden;
+
     & li {
       font-size: 2rem;
+      visibility: visible;
+
+      &:first-of-type {
+        margin-bottom: 0;
+      }
+
+      &:last-of-type {
+        margin-top: 0;
+      }
 
       & b {
         font-weight: 600;

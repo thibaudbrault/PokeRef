@@ -58,7 +58,8 @@ const Stats = dynamic(
     import(`@/components/pages/Pokemon/PokemonCard/Stats/Stats.PokemonCard`),
 );
 const Typing = dynamic(
-  () => import('@/components/pages/Pokemon/PokemonCard/Types/Types.PokemonCard')
+  () =>
+    import('@/components/pages/Pokemon/PokemonCard/Types/Types.PokemonCard'),
 );
 const Moves = dynamic<IMovesProps>(
   () =>
@@ -91,7 +92,8 @@ const Sprites = dynamic(
     ),
 );
 const Cards = dynamic(
-  () => import('@/components/pages/Pokemon/PokemonCard/Cards/Cards.PokemonCard')
+  () =>
+    import('@/components/pages/Pokemon/PokemonCard/Cards/Cards.PokemonCard'),
 );
 
 type Props = {
@@ -245,9 +247,7 @@ function PokemonCard({ name }: Props) {
 
         <Divider />
 
-        {cards.data && (
-          <Cards cards={cards.data} />
-        )}
+        {cards.data && <Cards cards={cards.data} />}
 
         <Link href="/" passHref>
           <BackBtn name="Pokedex" />

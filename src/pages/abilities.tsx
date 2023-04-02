@@ -8,6 +8,8 @@ import {
   TLink,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
+import SearchAbilities from '@/components/pages/Abilities/Components/Search.Abilities';
+import { SearchContainer } from '@/components/pages/Moves/Styled.Moves';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IAbility } from '@/types/Pokemon/Ability';
 import { getAbilities } from '@/utils/DataFetch';
@@ -93,7 +95,10 @@ function AbilitiesPage() {
     <>
       <HeadingAbilities />
       <MainBig>
-        <LeftH2>Abilities</LeftH2>
+        <SearchContainer>
+          <LeftH2>Abilities</LeftH2>
+          <SearchAbilities abilities={abilities} />
+        </SearchContainer>
         <TableContainer ref={tableContainerRef}>
           <FullWidthTable>
             {tableHeader()}

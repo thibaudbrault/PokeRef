@@ -61,7 +61,7 @@ export const PokemonDataTypes = styled.li`
     text-transform: uppercase;
     text-align: center;
     cursor: pointer;
-    
+
     & a {
       display: flex;
       align-items: center;
@@ -79,8 +79,8 @@ export const PokemonDataTypes = styled.li`
           ${({ theme }) => theme.main} 1px -1px 0px,
           ${({ theme }) => theme.main} -1px 1px 0px,
           ${({ theme }) => theme.main} 1px 1px 0px;
-          cursor: pointer;
-        }
+        cursor: pointer;
+      }
     }
   }
 
