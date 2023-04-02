@@ -44,7 +44,10 @@ function Data({ pokemon, species, game }: Props) {
     if (Math.random() < species.capture_rate / 765 && auth.currentUser) {
       const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
       await updateDoc(usersCollectionRef, {
-        caught: arrayUnion(pokemon.name),
+        caught: arrayUnion({
+          0: pokemon.name,
+          1: pokemon.sprites.front_default,
+        }),
       });
       toast.success(`Congrats 🎉 ! You caught ${capitalize(pokemon.name)}`, {
         style: {
@@ -53,20 +56,6 @@ function Data({ pokemon, species, game }: Props) {
       });
     }
   };
-
-  // const releaseHandler = async () => {
-  //   if (auth.currentUser) {
-  //     const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
-  //     await updateDoc(usersCollectionRef, {
-  //       caught: arrayRemove(pokemon.name),
-  //     });
-  //     toast.success(`You released ${capitalize(pokemon.name)}`, {
-  //       style: {
-  //         fontSize: `1.7rem`,
-  //       },
-  //     });
-  //   }
-  // };
 
   useEffect(() => {
     if (auth.currentUser) {

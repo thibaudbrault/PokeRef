@@ -2,12 +2,24 @@ import { H2 } from '@/components/common/styles/Headings';
 import { Dropdown } from '@/components/common/styles/Inputs';
 import { MainBig, Section } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
-import { ProfileList } from '@/components/pages/Profile/Styled.Profile';
+import {
+  ProfileCaught,
+  ProfileList,
+} from '@/components/pages/Profile/Styled.Profile';
 import { auth, db } from '@/firebase-config';
 import { formatOptions, IOptions } from '@/utils/DataArrays';
 import { getFormat } from '@/utils/DataFetch';
+import { capitalize, removeDash } from '@/utils/Typography';
 import { useQueries } from '@tanstack/react-query';
-import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';
+import {
+  arrayRemove,
+  doc,
+  DocumentData,
+  getDoc,
+  updateDoc,
+} from 'firebase/firestore/lite';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -29,8 +41,6 @@ function Profile() {
   const [formatValue, setFormatValue] = useState<IOptions | null>(null);
   const [formatQuery, setFormatQuery] = useState<string>(`gen9vgc2023`);
   const [pokemon, setPokemon] = useState<IOptions | null>(null);
-
-  const team = [];
 
   const [stats, analyses] = useQueries({
     queries: [
@@ -59,6 +69,23 @@ function Profile() {
     }
   };
 
+  const releaseHandler = async (name: string, img: string) => {
+    if (auth.currentUser) {
+      const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+      await updateDoc(usersCollectionRef, {
+        caught: arrayRemove({
+          0: name,
+          1: img,
+        }),
+      });
+      toast.success(`You released ${capitalize(name)}`, {
+        style: {
+          fontSize: `1.7rem`,
+        },
+      });
+    }
+  };
+
   const setFormat = (option: SingleValue<IOptions>) => {
     if (option) {
       setFormatValue(option);
@@ -83,7 +110,7 @@ function Profile() {
     });
   }
 
-  if (stats.status === `loading` || analyses.status === `loading`) {
+  if (stats.status === `loading` || analyses.status === `loading` || !user) {
     return <Loader />;
   }
 
@@ -117,7 +144,25 @@ function Profile() {
         </ProfileList>
       </Section>
       <section>
-        <H2>{user?.name}'s teams</H2>
+        <H2>{user?.name}'s caught pokémon</H2>
+        <ProfileCaught>
+          {user?.caught.map((p: string[]) => (
+            <li>
+              <Image src={p[1]} alt="" width={96} height={96} />
+              <Link
+                href={{
+                  pathname: `/pokemon/[name]`,
+                  query: { name: p[0] },
+                }}
+              >
+                {removeDash(p[0])}
+              </Link>
+              <button onClick={() => releaseHandler(p[0], p[1])}>
+                Release
+              </button>
+            </li>
+          ))}
+        </ProfileCaught>
       </section>
     </MainBig>
   );
