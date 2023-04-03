@@ -8,7 +8,6 @@ import {
   updateDoc,
   getDoc,
   DocumentData,
-  arrayRemove,
 } from 'firebase/firestore/lite';
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
@@ -31,6 +30,7 @@ type Props = {
 
 function Data({ pokemon, species, game }: Props) {
   const [user, setUser] = useState<DocumentData | undefined>();
+  const [isCaught, setIsCaught] = useState<boolean>(false);
 
   const getUserDoc = async () => {
     if (auth.currentUser) {
@@ -49,6 +49,7 @@ function Data({ pokemon, species, game }: Props) {
           1: pokemon.sprites.front_default,
         }),
       });
+      setIsCaught(true);
       toast.success(`Congrats 🎉 ! You caught ${capitalize(pokemon.name)}`, {
         style: {
           fontSize: `1.7rem`,
@@ -60,12 +61,19 @@ function Data({ pokemon, species, game }: Props) {
   useEffect(() => {
     if (auth.currentUser) {
       getUserDoc();
+      console.log('reload');
     }
-  }, [auth.currentUser]);
+  }, [auth.currentUser, isCaught]);
+
+  console.log(isCaught);
+  console.log(user);
 
   return (
     <PokemonDataSection id="presentation">
-      {user && !user.caught.some((n: string) => n === pokemon.name) ? (
+      {user &&
+      !user.caught.some(
+        (n: string) => n === pokemon.name && isCaught === false,
+      ) ? (
         <PokemonCatchButton onClick={catchHandler}>Catch</PokemonCatchButton>
       ) : (
         <PokemonCaughtText>Caught</PokemonCaughtText>

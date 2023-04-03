@@ -13,6 +13,7 @@ import { capitalize, removeDash } from '@/utils/Typography';
 import { useQueries } from '@tanstack/react-query';
 import {
   arrayRemove,
+  deleteDoc,
   doc,
   DocumentData,
   getDoc,
@@ -71,18 +72,52 @@ function Profile() {
 
   const releaseHandler = async (name: string, img: string) => {
     if (auth.currentUser) {
-      const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
-      await updateDoc(usersCollectionRef, {
-        caught: arrayRemove({
-          0: name,
-          1: img,
-        }),
-      });
-      toast.success(`You released ${capitalize(name)}`, {
-        style: {
-          fontSize: `1.7rem`,
-        },
-      });
+      try {
+        const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+        await updateDoc(usersCollectionRef, {
+          caught: arrayRemove({
+            0: name,
+            1: img,
+          }),
+        });
+        toast.success(`You released ${capitalize(name)}`, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        });
+      } catch (err) {
+        if (err instanceof Error) {
+          toast.error(err.message, {
+            style: {
+              fontSize: `1.7rem`,
+            },
+          });
+        }
+      }
+    }
+  };
+
+  const deleteAccount = async () => {
+    if (auth.currentUser) {
+      try {
+        const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+        await deleteDoc(usersCollectionRef);
+        await auth.currentUser.delete();
+        toast.success(`Congrats 🎉! Your account is now created`, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        });
+        router.push(`/`);
+      } catch (err) {
+        if (err instanceof Error) {
+          toast.error(err.message, {
+            style: {
+              fontSize: `1.7rem`,
+            },
+          });
+        }
+      }
     }
   };
 
