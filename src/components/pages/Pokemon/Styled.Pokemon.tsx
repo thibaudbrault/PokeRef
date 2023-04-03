@@ -63,6 +63,7 @@ export const PokedexVerticalText = styled.p`
 
 export const PokedexList = styled.ul`
   max-width: 1300px;
+  min-height: 80vh;
   margin: 0 auto;
   display: flex;
   align-items: center;
