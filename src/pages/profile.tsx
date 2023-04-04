@@ -18,7 +18,8 @@ import {
   DocumentData,
   getDoc,
   updateDoc,
-} from 'firebase/firestore/lite';
+  onSnapshot,
+} from 'firebase/firestore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -134,6 +135,13 @@ function Profile() {
       router.push(`/`);
     } else {
       getUserDoc();
+      const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+      const unsubscribe = onSnapshot(usersCollectionRef, (doc) => {
+        setUser(doc.data());
+      });
+      return () => {
+        unsubscribe();
+      };
     }
   }, [formatValue]);
 

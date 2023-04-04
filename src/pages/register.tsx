@@ -1,7 +1,7 @@
 import { auth, db } from '@/firebase-config';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore/lite';
+import { doc, setDoc } from 'firebase/firestore';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';

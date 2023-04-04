@@ -1,14 +1,15 @@
 import { auth, db } from '@/firebase-config';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
-import { capitalize } from '@/utils/Typography';
+import { capitalize, removeDash } from '@/utils/Typography';
 import {
   arrayUnion,
   doc,
   updateDoc,
   getDoc,
   DocumentData,
-} from 'firebase/firestore/lite';
+  onSnapshot,
+} from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import Base from './Base/Base.PokemonCard';
@@ -30,7 +31,6 @@ type Props = {
 
 function Data({ pokemon, species, game }: Props) {
   const [user, setUser] = useState<DocumentData | undefined>();
-  const [isCaught, setIsCaught] = useState<boolean>(false);
 
   const getUserDoc = async () => {
     if (auth.currentUser) {
@@ -49,10 +49,10 @@ function Data({ pokemon, species, game }: Props) {
           1: pokemon.sprites.front_default,
         }),
       });
-      setIsCaught(true);
-      toast.success(`Congrats 🎉 ! You caught ${capitalize(pokemon.name)}`, {
+      toast.success(`Congrats 🎉 ! You caught ${removeDash(pokemon.name)}`, {
         style: {
           fontSize: `1.7rem`,
+          textTransform: 'capitalize',
         },
       });
     }
@@ -61,18 +61,21 @@ function Data({ pokemon, species, game }: Props) {
   useEffect(() => {
     if (auth.currentUser) {
       getUserDoc();
-      console.log('reload');
+      const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+      const unsubscribe = onSnapshot(usersCollectionRef, (doc) => {
+        setUser(doc.data());
+      });
+      return () => {
+        unsubscribe();
+      };
     }
-  }, [auth.currentUser, isCaught]);
-
-  console.log(isCaught);
-  console.log(user);
+  }, [auth.currentUser]);
 
   return (
     <PokemonDataSection id="presentation">
       {user &&
-      !user.caught.some(
-        (n: string) => n === pokemon.name && isCaught === false,
+      user.caught.every(
+        (n: Record<string, string>) => n[0] !== pokemon.name,
       ) ? (
         <PokemonCatchButton onClick={catchHandler}>Catch</PokemonCatchButton>
       ) : (
