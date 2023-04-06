@@ -471,3 +471,19 @@ export const getCards = async (name: string) => {
     console.error(err);
   }
 };
+
+export const getTrainers = async (
+  owner: string,
+  repo: string,
+  folder: string,
+) => {
+  try {
+    const res = await axios.get(
+      `https://api.github.com/repos/${owner}/${repo}/contents/${folder}/trainers?ref=main`,
+    );
+    const results = await res.data;
+    return results;
+  } catch (err) {
+    console.error(err);
+  }
+};

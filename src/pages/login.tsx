@@ -1,9 +1,10 @@
 import { H2 } from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
+import { MainBig, MainForm } from '@/components/common/styles/Sizing';
 import {
   AuthBtn,
   AuthButtons,
   AuthChoice,
+  AuthClose,
   AuthContainer,
   AuthForm,
   AuthImage,
@@ -21,6 +22,7 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import * as yup from 'yup';
+import { FiX } from '@meronex/icons/fi';
 
 type FormInput = {
   email: string;
@@ -76,9 +78,12 @@ function Login() {
   };
 
   return (
-    <MainBig>
+    <MainForm>
       <AuthContainer>
-        <AuthImage></AuthImage>
+        <AuthClose href={'/'}>
+          <FiX />
+        </AuthClose>
+        <AuthImage />
         <AuthForm onSubmit={handleSubmit(submitForm)}>
           <AuthTitle>
             <H2>Login</H2>
@@ -95,7 +100,7 @@ function Login() {
                 {...register(`email`)}
               />
               {typeof errors.email?.message === `string` && (
-                <p>{errors.email?.message}</p>
+                <small>{errors.email?.message}</small>
               )}
             </div>
             <div>
@@ -106,7 +111,7 @@ function Login() {
                 {...register(`password`)}
               />
               {typeof errors.password?.message === `string` && (
-                <p>{errors.password?.message}</p>
+                <small>{errors.password?.message}</small>
               )}
             </div>
             <AuthBtn type="submit">Login</AuthBtn>
@@ -127,14 +132,14 @@ function Login() {
                 </span>
               </AuthSecBtn>
             </AuthButtons>
-            <AuthSwitch>
-              Don't have an account yet ?{` `}
-              <Link href="/register">Register</Link>
-            </AuthSwitch>
           </AuthInput>
+          <AuthSwitch>
+            Don't have an account yet ?{` `}
+            <Link href="/register">Register</Link>
+          </AuthSwitch>
         </AuthForm>
       </AuthContainer>
-    </MainBig>
+    </MainForm>
   );
 }
 

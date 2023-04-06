@@ -39,11 +39,17 @@ export const MainBig = styled.main`
   }
 `;
 
-export const MainDashboard = styled(MainBig)`
-  width: 90%;
-  margin: 5% auto;
-  border: 1px solid ${({ theme }) => theme.secondary};
-  border-radius: 5px;
+export const MainForm = styled(MainBig)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 100;
 `;
 
 export const Section = styled.section`

@@ -73,14 +73,15 @@ function Data({ pokemon, species, game }: Props) {
 
   return (
     <PokemonDataSection id="presentation">
-      {user &&
-      user.caught.every(
-        (n: Record<string, string>) => n[0] !== pokemon.name,
-      ) ? (
-        <PokemonCatchButton onClick={catchHandler}>Catch</PokemonCatchButton>
-      ) : (
-        <PokemonCaughtText>Caught</PokemonCaughtText>
-      )}
+      {pokemon.id < 10000 &&
+        (user &&
+        user.caught.every(
+          (n: Record<string, string>) => n[0] !== pokemon.name,
+        ) ? (
+          <PokemonCatchButton onClick={catchHandler}>Catch</PokemonCatchButton>
+        ) : (
+          <PokemonCaughtText>Caught</PokemonCaughtText>
+        ))}
       <PokemonDataContainer>
         <Desc species={species} pokemon={pokemon} game={game} />
         <Base species={species} pokemon={pokemon} />

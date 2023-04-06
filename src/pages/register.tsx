@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-
 import { H2 } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import {
@@ -32,7 +31,10 @@ const schema = yup
     username: yup.string().required(),
     email: yup.string().email().required(),
     password: yup.string().min(6).required(),
-    cpassword: yup.string().oneOf([yup.ref(`password`), null]),
+    cpassword: yup
+      .string()
+      .oneOf([yup.ref(`password`), null])
+      .required(),
   })
   .required();
 
@@ -56,6 +58,11 @@ function Register() {
           name: data.username,
           email: data.email,
           caught: [],
+          balls: [
+            { name: 'pokeball', number: 20 },
+            { name: 'superball', number: 5 },
+            { name: 'hyperball', number: 0 },
+          ],
         });
         toast.success(`Congrats 🎉! Your account is now created`, {
           style: {
