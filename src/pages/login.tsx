@@ -1,5 +1,5 @@
 import { H2 } from '@/components/common/styles/Headings';
-import { MainBig, MainForm } from '@/components/common/styles/Sizing';
+import { MainForm } from '@/components/common/styles/Sizing';
 import {
   AuthBtn,
   AuthButtons,
@@ -9,20 +9,24 @@ import {
   AuthForm,
   AuthImage,
   AuthInput,
+  AuthModal,
+  AuthResetPwd,
   AuthSecBtn,
   AuthSwitch,
   AuthTitle,
 } from '@/components/pages/Auth/Styled.Auth';
 import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
+import { capitalize } from '@/utils/Typography';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { FiX } from '@meronex/icons/fi';
 import { GrGithub, GrGoogle } from '@meronex/icons/gr';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import * as yup from 'yup';
-import { FiX } from '@meronex/icons/fi';
 
 type FormInput = {
   email: string;
@@ -38,7 +42,15 @@ const schema = yup
 
 function Login() {
   const router = useRouter();
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
 
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   const {
     register,
     handleSubmit,
@@ -77,6 +89,8 @@ function Login() {
     router.push(`/`);
   };
 
+  console.log(modalIsOpen);
+
   return (
     <MainForm>
       <AuthContainer>
@@ -100,7 +114,7 @@ function Login() {
                 {...register(`email`)}
               />
               {typeof errors.email?.message === `string` && (
-                <small>{errors.email?.message}</small>
+                <small>{capitalize(errors.email?.message)}</small>
               )}
             </div>
             <div>
@@ -111,8 +125,11 @@ function Login() {
                 {...register(`password`)}
               />
               {typeof errors.password?.message === `string` && (
-                <small>{errors.password?.message}</small>
+                <small>{capitalize(errors.password?.message)}</small>
               )}
+              <AuthResetPwd type="button" onClick={openModal}>
+                J'ai oublié mon mot de passe
+              </AuthResetPwd>
             </div>
             <AuthBtn type="submit">Login</AuthBtn>
           </AuthInput>
@@ -139,6 +156,17 @@ function Login() {
           </AuthSwitch>
         </AuthForm>
       </AuthContainer>
+      <AuthModal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        preventScroll={true}
+        closeTimeoutMS={500}
+      >
+        <button onClick={closeModal}>
+          <FiX />
+        </button>
+        <H2>Reset your password</H2>
+      </AuthModal>
     </MainForm>
   );
 }

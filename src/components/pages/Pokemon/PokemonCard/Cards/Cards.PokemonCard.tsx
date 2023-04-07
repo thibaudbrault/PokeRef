@@ -20,6 +20,7 @@ function Cards({ cards }: Props) {
   const closeModal = () => {
     setIsOpen(false);
   };
+
   return (
     <Section id="cards">
       <H3>Cards</H3>

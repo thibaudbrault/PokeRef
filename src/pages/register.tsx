@@ -1,15 +1,8 @@
-import { auth, db } from '@/firebase-config';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { H2 } from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
+import { MainForm } from '@/components/common/styles/Sizing';
 import {
   AuthBtn,
+  AuthClose,
   AuthContainer,
   AuthForm,
   AuthImage2,
@@ -17,7 +10,16 @@ import {
   AuthSwitch,
   AuthTitle,
 } from '@/components/pages/Auth/Styled.Auth';
+import { auth, db } from '@/firebase-config';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { FiX } from '@meronex/icons/fi';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import * as yup from 'yup';
 
 type FormInput = {
   username: string;
@@ -83,9 +85,12 @@ function Register() {
   };
 
   return (
-    <MainBig>
+    <MainForm>
       <AuthContainer>
-        <AuthImage2></AuthImage2>
+        <AuthClose href={'/'}>
+          <FiX />
+        </AuthClose>
+        <AuthImage2 />
         <AuthForm onSubmit={handleSubmit(submitForm)}>
           <AuthTitle>
             <H2>Register</H2>
@@ -134,7 +139,7 @@ function Register() {
           </AuthSwitch>
         </AuthForm>
       </AuthContainer>
-    </MainBig>
+    </MainForm>
   );
 }
 

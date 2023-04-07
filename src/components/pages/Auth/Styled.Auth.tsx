@@ -1,6 +1,7 @@
 import { device } from '@/components/common/styles/Sizing';
 import styled from 'styled-components';
 import Link from 'next/link';
+import Modal from 'react-modal';
 
 export const AuthContainer = styled.div`
   position: relative;
@@ -78,7 +79,7 @@ export const AuthTitle = styled.div`
   & p {
     width: 90%;
     margin: 0 auto;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     text-align: center;
     font-weight: 400;
   }
@@ -99,6 +100,9 @@ export const AuthInput = styled.div`
   margin: 0 auto;
   & div {
     width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
     & input {
       width: 100%;
       padding: 1rem;
@@ -115,8 +119,21 @@ export const AuthInput = styled.div`
       margin-left: 0.5rem;
       color: ${({ theme }) => theme.red};
       font-size: 1.3rem;
-      text-transform: capitalize;
     }
+  }
+`;
+
+export const AuthResetPwd = styled.button`
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  font-size: 1.3rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    border-bottom: 1px solid ${({ theme }) => theme.main};
   }
 `;
 
@@ -176,4 +193,21 @@ export const AuthSecBtn = styled(AuthBtn)`
   & span {
     cursor: pointer;
   }
+`;
+
+export const AuthModal = styled(Modal)`
+  width: 60%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  color: ${({ theme }) => theme.main};
+  transform: translate(-50%, -50%);
+  overflow-y: hidden !important;
 `;

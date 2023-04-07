@@ -132,7 +132,7 @@ export const Reset = createGlobalStyle`
         width: 100vw;
         height: 100vh;
         background-color: ${({ theme }) => theme.secondary} !important;
-        z-index: 4;
+        z-index: 1000;
         opacity: 0;
         transition: opacity 0.5s ease-in-out;
 
