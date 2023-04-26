@@ -71,8 +71,6 @@ function Data({ pokemon, species, game }: Props) {
     }
   }, [auth.currentUser]);
 
-  console.log(user);
-
   return (
     <PokemonDataSection id="presentation">
       {user &&

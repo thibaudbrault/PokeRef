@@ -89,8 +89,6 @@ function Login() {
     router.push(`/`);
   };
 
-  console.log(modalIsOpen);
-
   return (
     <MainForm>
       <AuthContainer>

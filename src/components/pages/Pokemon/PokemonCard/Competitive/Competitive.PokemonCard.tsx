@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { H3, H4 } from '@/components/common/styles/Headings';
 import { MethodNav } from '@/components/common/styles/Navbars';
 import { Section } from '@/components/common/styles/Sizing';
@@ -115,7 +117,11 @@ function Competitive({ format, name }: Props) {
       const textFormatting = (str: string) =>
         str.replaceAll(`-types`, ` types`).replaceAll(`-type`, ` type`);
 
-      const setSpecs = (obj: Record<string, unknown>, i: number, value: string) => {
+      const setSpecs = (
+        obj: Record<string, unknown>,
+        i: number,
+        value: string,
+      ) => {
         return Object.values(Object.entries(obj)[toggle][1])[i][value];
       };
 

@@ -59,8 +59,6 @@ function Profile() {
     testArr.push(trainerSprites[randomNb]);
   }
 
-  console.log(testArr);
-
   const getUserDoc = async () => {
     if (auth.currentUser) {
       const usersCollectionRef = doc(db, `users`, auth.currentUser.uid);
