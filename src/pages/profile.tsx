@@ -1,55 +1,65 @@
-import { H2 } from '@/components/common/styles/Headings';
-import { Dropdown } from '@/components/common/styles/Inputs';
+import { LeftH2, LeftSubtitle } from '@/components/common/styles/Headings';
+import { Input } from '@/components/common/styles/Inputs';
 import { MainBig, Section } from '@/components/common/styles/Sizing';
-import Loader from '@/components/common/ui/Loader/Loader';
-import { ProfileList } from '@/components/pages/Profile/Styled.Profile';
+import { ProfileCaught } from '@/components/pages/Profile/Styled.Profile';
 import { auth, db } from '@/firebase-config';
-import { formatOptions, IOptions } from '@/utils/DataArrays';
-import { getFormat } from '@/utils/DataFetch';
-import { useQueries } from '@tanstack/react-query';
-import { doc, DocumentData, getDoc } from 'firebase/firestore/lite';
+import { getTrainers } from '@/utils/DataFetch';
+import { capitalize, removeDash } from '@/utils/Typography';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useQuery } from '@tanstack/react-query';
+import {
+  arrayRemove,
+  deleteDoc,
+  doc,
+  DocumentData,
+  getDoc,
+  onSnapshot,
+  updateDoc,
+} from 'firebase/firestore';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { SingleValue } from 'react-select';
+import * as yup from 'yup';
+import {
+  ProfileForm,
+  ProfileDetails,
+} from '../components/pages/Profile/Styled.Profile';
 
-export type entryOf<o> = {
-  [k in keyof o]-?: [k, Exclude<o[k], undefined>];
-}[o extends readonly unknown[] ? keyof o & number : keyof o] &
-  unknown;
+type FormInput = {
+  username: string;
+  email: string;
+};
 
-export type entriesOf<o extends object> = entryOf<o>[] & unknown;
-
-export const entriesOf = <o extends object>(o: o) =>
-  Object.entries(o) as entriesOf<o>;
+const schema = yup
+  .object({
+    username: yup.string(),
+    email: yup.string().email(),
+  })
+  .required();
 
 function Profile() {
+  const owner = `thibaudbrault`;
+  const repo = `pokeref_medias`;
+  const folder = `sprites`;
   const router = useRouter();
   const [user, setUser] = useState<DocumentData | undefined>();
-  const [formatValue, setFormatValue] = useState<IOptions | null>(null);
-  const [formatQuery, setFormatQuery] = useState<string>(`gen9vgc2023`);
-  const [pokemon, setPokemon] = useState<IOptions | null>(null);
 
-  const team = [];
-
-  const [stats, analyses] = useQueries({
-    queries: [
-      {
-        queryKey: [`stats`, formatQuery],
-        queryFn: () =>
-          getFormat(
-            `https://raw.githubusercontent.com/pkmn/smogon/main/data/stats/${formatQuery}.json`,
-          ),
-      },
-      {
-        queryKey: [`analyses`, formatQuery],
-        queryFn: () =>
-          getFormat(
-            `https://raw.githubusercontent.com/pkmn/smogon/main/data/analyses/${formatQuery}.json`,
-          ),
-      },
-    ],
+  const { data: trainerSprites } = useQuery({
+    queryKey: [`trainers`],
+    queryFn: () => getTrainers(owner, repo, folder),
   });
+
+  const testArr = [];
+
+  for (let i = 0; i < 6; i++) {
+    const randomNb = Math.floor(Math.random() * trainerSprites.length);
+    testArr.push(trainerSprites[randomNb]);
+  }
+
+  console.log(testArr);
 
   const getUserDoc = async () => {
     if (auth.currentUser) {
@@ -59,11 +69,93 @@ function Profile() {
     }
   };
 
-  const setFormat = (option: SingleValue<IOptions>) => {
-    if (option) {
-      setFormatValue(option);
-      setFormatQuery(option.value);
-      setPokemon(null);
+  const releaseHandler = async (name: string, img: string) => {
+    if (auth.currentUser) {
+      try {
+        const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+        await updateDoc(usersCollectionRef, {
+          caught: arrayRemove({
+            0: name,
+            1: img,
+          }),
+        });
+        toast.success(`You released ${capitalize(name)}`, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        });
+      } catch (err) {
+        if (err instanceof Error) {
+          toast.error(err.message, {
+            style: {
+              fontSize: `1.7rem`,
+            },
+          });
+        }
+      }
+    }
+  };
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState,
+    formState: { errors, isSubmitSuccessful },
+  } = useForm<FormInput>({
+    resolver: yupResolver<yup.AnyObjectSchema>(schema),
+    defaultValues: {
+      username: ``,
+      email: ``,
+    },
+  });
+
+  const submitForm = async (data: FormInput) => {
+    try {
+      if (auth.currentUser) {
+        const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+        await updateDoc(usersCollectionRef, {
+          name: data.username !== `` ? data.username : user?.name,
+          email: data.email !== `` ? data.email : user?.email,
+        });
+        toast.success(`Your profile is modified`, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        });
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        });
+      }
+    }
+  };
+
+  const deleteAccount = async () => {
+    if (auth.currentUser) {
+      try {
+        const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+        await deleteDoc(usersCollectionRef);
+        await auth.currentUser.delete();
+        toast.success(`Congrats 🎉! Your account is now created`, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        });
+        router.push(`/`);
+      } catch (err) {
+        if (err instanceof Error) {
+          toast.error(err.message, {
+            style: {
+              fontSize: `1.7rem`,
+            },
+          });
+        }
+      }
     }
   };
 
@@ -72,50 +164,77 @@ function Profile() {
       router.push(`/`);
     } else {
       getUserDoc();
+      const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+      const unsubscribe = onSnapshot(usersCollectionRef, (doc) => {
+        setUser(doc.data());
+      });
+      return () => {
+        unsubscribe();
+      };
     }
-  }, [formatValue]);
+  }, [auth.currentUser]);
 
-  if (stats.status === `error` || analyses.status === `error`) {
-    return toast.error(`Something went wrong`);
-  }
-
-  if (stats.status === `loading` || analyses.status === `loading`) {
-    return <Loader />;
-  }
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset();
+    }
+  }, [formState, reset]);
 
   return (
-    <MainBig>
-      <Section>
-        <H2>Create teams</H2>
-        <Dropdown
-          id="format"
-          name="format"
-          value={formatValue}
-          className="selectOptions"
-          classNamePrefix="select"
-          options={formatOptions}
-          placeholder="Format"
-          onChange={(option) => {
-            setFormat(option as IOptions);
-          }}
-        />
-        <ProfileList>
-          {stats &&
-            entriesOf(stats.data.pokemon)
-              .slice(0, 6)
-              .map(([key, value]) => (
-                <li key={key}>
-                  <span>
-                    {key} : {(value.usage.weighted * 100).toFixed(2)}%
-                  </span>
-                </li>
-              ))}
-        </ProfileList>
-      </Section>
-      <section>
-        <H2>{user?.name}'s teams</H2>
-      </section>
-    </MainBig>
+    user && (
+      <MainBig>
+        <Section>
+          <LeftH2>{user.name}'s caught pokémon</LeftH2>
+          <LeftSubtitle>
+            You caught {user.caught.length} / 1010 Pokémon
+          </LeftSubtitle>
+          <ProfileCaught>
+            {user?.caught.map((p: string[], index: number) => (
+              <li key={p[index]}>
+                <Image src={p[1]} alt="" width={96} height={96} />
+                <Link
+                  href={{
+                    pathname: `/pokemon/[name]`,
+                    query: { name: p[0] },
+                  }}
+                >
+                  {removeDash(p[0])}
+                </Link>
+                <button onClick={() => releaseHandler(p[0], p[1])}>
+                  Release
+                </button>
+              </li>
+            ))}
+          </ProfileCaught>
+        </Section>
+        <Section>
+          <ProfileDetails>
+            <summary>Modify your profile</summary>
+            <ProfileForm onSubmit={handleSubmit(submitForm)}>
+              <Input>
+                <label htmlFor="username">Your trainer name</label>
+                <input
+                  type="text"
+                  id="username"
+                  placeholder={user.name}
+                  {...register(`username`)}
+                />
+              </Input>
+              <Input>
+                <label htmlFor="email">Your email</label>
+                <input
+                  type="text"
+                  id="email"
+                  placeholder={user.email}
+                  {...register(`email`)}
+                />
+              </Input>
+              <button type="submit">Update</button>
+            </ProfileForm>
+          </ProfileDetails>
+        </Section>
+      </MainBig>
+    )
   );
 }
 

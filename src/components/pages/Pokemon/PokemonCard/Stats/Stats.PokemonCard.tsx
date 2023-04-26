@@ -13,7 +13,7 @@ import {
 } from './Styled.Stats.PokemonCard';
 
 const CalculatorStats = dynamic(
-  () => import('./Calculator/Calculator.Stats.PokemonCard'),
+  () => import(`./Calculator/Calculator.Stats.PokemonCard`),
 );
 
 type Props = {

@@ -59,7 +59,7 @@ const Stats = dynamic(
 );
 const Typing = dynamic(
   () =>
-    import('@/components/pages/Pokemon/PokemonCard/Types/Types.PokemonCard'),
+    import(`@/components/pages/Pokemon/PokemonCard/Types/Types.PokemonCard`),
 );
 const Moves = dynamic<IMovesProps>(
   () =>
@@ -93,7 +93,7 @@ const Sprites = dynamic(
 );
 const Cards = dynamic(
   () =>
-    import('@/components/pages/Pokemon/PokemonCard/Cards/Cards.PokemonCard'),
+    import(`@/components/pages/Pokemon/PokemonCard/Cards/Cards.PokemonCard`),
 );
 
 type Props = {
@@ -136,7 +136,11 @@ function PokemonCard({ name }: Props) {
     types.status === `error` ||
     location.status === `error`
   ) {
-    return toast.error(`Something went wrong`);
+    return toast.error(`Something went wrong`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (

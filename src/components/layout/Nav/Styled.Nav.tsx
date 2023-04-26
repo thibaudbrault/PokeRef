@@ -100,7 +100,7 @@ export const ResponsiveNav = styled.nav`
   top: 0;
   left: 0;
   background: ${({ theme }) => theme.main};
-  z-index: 3;
+  z-index: 98;
 `;
 
 export const ResponsiveNavList = styled.ul`

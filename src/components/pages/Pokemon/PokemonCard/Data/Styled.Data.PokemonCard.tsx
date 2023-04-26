@@ -22,6 +22,32 @@ export const PokemonCatchButton = styled.button`
   position: absolute;
   top: 1rem;
   right: 1rem;
+  padding: 0.7rem 1.5rem;
+  background: ${({ theme }) => theme.secondary};
+  border: 1px solid ${({ theme }) => theme.secondary};
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    background: transparent;
+    color: ${({ theme }) => theme.secondary};
+  }
+`;
+
+export const PokemonCaughtText = styled.p`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.7rem 1.5rem;
+  background: transparent;
+  color: ${({ theme }) => theme.secondary};
+  border: 1px solid ${({ theme }) => theme.secondary};
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  opacity: 0.7;
 `;
 
 export const PokemonDataContainer = styled.div`

@@ -1,7 +1,7 @@
 /* eslint-disable*/
 
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore/lite';
+import { getFirestore } from 'firebase/firestore';
 import {
   getAuth,
   GoogleAuthProvider,
@@ -34,6 +34,12 @@ export const signInWithGoogle = () => {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
+      const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+      setDoc(usersCollectionRef, {
+        name: user.username,
+        email: user.email,
+        caught: [],
+      });
     })
     .catch((error) => {
       // Handle Errors here.
@@ -54,6 +60,12 @@ export const signInWithGithub = () => {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
+      const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
+      setDoc(usersCollectionRef, {
+        name: user.username,
+        email: user.email,
+        caught: [],
+      });
     })
     .catch((error) => {
       // Handle Errors here.

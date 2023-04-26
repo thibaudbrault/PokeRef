@@ -52,7 +52,7 @@ function Results({ stats, baseStat }: Props) {
                   stats.attackIv +
                   stats.attackEv / 4) +
                 5) *
-                getNatureInfluence('Attack'),
+                getNatureInfluence(`Attack`),
             )}
           </td>
           <td>
@@ -62,7 +62,7 @@ function Results({ stats, baseStat }: Props) {
                   stats.defenseIv +
                   stats.defenseEv / 4) +
                 5) *
-                getNatureInfluence('Defense'),
+                getNatureInfluence(`Defense`),
             )}
           </td>
           <td>
@@ -72,7 +72,7 @@ function Results({ stats, baseStat }: Props) {
                   stats.specialAttackIv +
                   stats.specialAttackEv / 4) +
                 5) *
-                getNatureInfluence('Sp-Atk'),
+                getNatureInfluence(`Sp-Atk`),
             )}
           </td>
           <td>
@@ -82,7 +82,7 @@ function Results({ stats, baseStat }: Props) {
                   stats.specialDefenseIv +
                   stats.specialDefenseEv / 4) +
                 5) *
-                getNatureInfluence('Sp-Def'),
+                getNatureInfluence(`Sp-Def`),
             )}
           </td>
           <td>
@@ -92,7 +92,7 @@ function Results({ stats, baseStat }: Props) {
                   stats.speedIv +
                   stats.speedEv / 4) +
                 5) *
-                getNatureInfluence('Speed'),
+                getNatureInfluence(`Speed`),
             )}
           </td>
         </tr>

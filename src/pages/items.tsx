@@ -11,7 +11,11 @@ function ItemsPage() {
   const { items, berries, toggle, setToggle, pageShown } = useToggleTable();
 
   if (items.status === `error` || berries.status === `error`) {
-    return toast.error(`Something went wrong`);
+    return toast.error(`Something went wrong`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (items.status === `loading` || berries.status === `loading`) {

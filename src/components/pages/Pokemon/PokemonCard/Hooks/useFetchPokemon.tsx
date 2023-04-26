@@ -30,14 +30,14 @@ export const useFetchPokemon = (name: string) => {
           ),
       },
       {
-        queryKey: ['cards', name],
+        queryKey: [`cards`, name],
         queryFn: () => getCards(name),
       },
     ],
   });
 
   const types = useQuery({
-    queryKey: ['types', name],
+    queryKey: [`types`, name],
     queryFn: () => getPokemonTypes(pokemon.data),
     enabled: !!pokemon.data && pokemon.data.id < 10000,
   });

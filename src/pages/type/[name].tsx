@@ -34,7 +34,11 @@ function TypeCard({ name }: Props) {
     useToggleTable(name);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error?.message}`);
+    return toast.error(`Something went wrong: ${error?.message}`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (isLoading) {

@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import { device } from '../../common/styles/Sizing';
 
 export const HeaderBtnConnect = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin: 0 auto;
   & a {
     display: flex;
     align-items: center;
@@ -14,7 +15,7 @@ export const HeaderBtnConnect = styled.div`
     border: 1px solid transparent;
     border-radius: 5px;
     color: ${({ theme }) => theme.main};
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease-in-out;
@@ -35,12 +36,18 @@ export const HeaderBtnConnect = styled.div`
       color: ${({ theme }) => theme.secondary};
     }
   }
+
+  @media ${device.md} {
+    width: 90%;
+    justify-content: space-evenly;
+  }
 `;
 
 export const HeaderBtnConnected = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin: 0 auto;
   & a,
   button {
     display: flex;
@@ -51,7 +58,7 @@ export const HeaderBtnConnected = styled.div`
     border: 1px solid transparent;
     border-radius: 5px;
     color: ${({ theme }) => theme.main};
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease-in-out;
@@ -74,7 +81,7 @@ export const HeaderBtnConnected = styled.div`
   }
 
   @media ${device.md} {
-    width: 100%;
+    width: 90%;
     justify-content: space-evenly;
   }
 `;
@@ -120,13 +127,20 @@ export const BurgerOpen = styled.button`
   position: fixed;
   top: 5vh;
   right: 5vw;
-  z-index: 4;
+  z-index: 99;
   padding: 1rem;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 50px;
   background-color: ${({ theme }) => theme.secondary};
   color: ${({ theme }) => theme.main};
   font-size: 3rem;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.secondary};
+    background-color: ${({ theme }) => theme.main};
+    color: ${({ theme }) => theme.secondary};
+  }
 
   @media ${device.md} {
     display: flex;

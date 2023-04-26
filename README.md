@@ -50,18 +50,19 @@
 ✅A page for every pokémon / move / ability / type / item and more  
 ✅Filter pokémon by name / form / generation  
 ✅Filter moves / abilities / machines by name  
+✅Fuzzy search for pokémon / moves / abilities and items pages  
 ✅Change certain data according to the game selected  
-✅Pokémon cries (up to n° 721)  
+✅Pokémon cries (up to pokémon n° 721)  
 ✅Competitive information for every pokémon with data from Smogon  
 ✅List of every pokémon cards for every pokémon  
 ✅Dark and light mode  
 ✅404 page  
-✅Fuzzy search with Fuse.js  
 ✅Responsive
 
+🛠Profile page with possibility to view favorites  
+🛠Check how the login with a provider works  
 🛠Types relations for each pokémon
 
-🔜Profile page with possibility to view favorites  
 🔜Contest section in a move's page
 
 <h4>Performance improvements</h4>
@@ -115,6 +116,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - Finally moved to Next JS (instead of CRA) + Styled-Components to learn to use Next JS. I chose to use Next JS to benefit from the image optimization given by the <Image /> component because the app has a lot of images to render and every optimization is welcome. I also chose it to benefit from the Static-Site generation.
 - Upgraded to Next 13. There were some problems that made the transition to using the app folder instead of the pages one not possible, but I benefited from the changes to the <Image /> component (it no longer creates spans) and the <Link /> component (it no longer need to have an anchor tag inside).
 - Added React-Table and converted all my tables to benefit from virtualization, sorting and filtering for every column making it easier to find the desired information.
+- Added Firebase for authentication and saving a user's caught pokémon with data stored in Firestore.
 
 <h4>Problems encountered (ordered from the oldest to the most recent)</h4>
 

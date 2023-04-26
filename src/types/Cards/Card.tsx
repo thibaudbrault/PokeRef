@@ -43,10 +43,7 @@ export interface ICardAttacks {
 export interface ICardMarket {
   url: string;
   updatedAt: string;
-  prices: ICardMarketPrices;
 }
-
-export interface ICardMarketPrices {}
 
 export interface ICardLegalities {
   standard?: string;

@@ -59,11 +59,15 @@ function Pokedex() {
   const handlePageChange = (data: { selected: number }) => {
     window.scrollTo(0, 0);
     setPage(data.selected);
-    setOffset(50 * data.selected);
+    setOffset((50 * data.selected) % 1010);
   };
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`);
+    return toast.error(`Something went wrong: ${error.message}`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (isLoading) {
@@ -77,6 +81,7 @@ function Pokedex() {
         <Filters
           pokedex={pokedex}
           setFilteredPokedex={setFilteredPokedex}
+          offset={offset}
           setOffset={setOffset}
           page={page}
           setPage={setPage}
@@ -96,7 +101,7 @@ function Pokedex() {
             nextLabel=">"
             pageRangeDisplayed={3}
             marginPagesDisplayed={2}
-            pageCount={Math.ceil(1010 / limit)}
+            pageCount={Math.ceil(1010 / 50)}
             previousLabel="<"
             renderOnZeroPageCount={() => null}
           />

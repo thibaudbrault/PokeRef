@@ -20,7 +20,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`red`);
                   setVersion(`red-blue`);
-                  setFormat('gen1');
+                  setFormat(`gen1`);
                 }}
               >
                 Red
@@ -29,7 +29,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`blue`);
                   setVersion(`red-blue`);
-                  setFormat('gen1');
+                  setFormat(`gen1`);
                 }}
               >
                 Blue
@@ -38,7 +38,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`yellow`);
                   setVersion(`yellow`);
-                  setFormat('gen1');
+                  setFormat(`gen1`);
                 }}
               >
                 Yellow
@@ -54,7 +54,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`gold`);
                   setVersion(`gold-silver`);
-                  setFormat('gen2');
+                  setFormat(`gen2`);
                 }}
               >
                 Gold
@@ -63,7 +63,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`silver`);
                   setVersion(`gold-silver`);
-                  setFormat('gen2');
+                  setFormat(`gen2`);
                 }}
               >
                 Silver
@@ -72,7 +72,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`crystal`);
                   setVersion(`crystal`);
-                  setFormat('gen2');
+                  setFormat(`gen2`);
                 }}
               >
                 Crystal
@@ -88,7 +88,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`ruby`);
                   setVersion(`ruby-sapphire`);
-                  setFormat('gen3');
+                  setFormat(`gen3`);
                 }}
               >
                 Ruby
@@ -97,7 +97,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`sapphire`);
                   setVersion(`ruby-sapphire`);
-                  setFormat('gen3');
+                  setFormat(`gen3`);
                 }}
               >
                 Sapphire
@@ -106,7 +106,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`emerald`);
                   setVersion(`emerald`);
-                  setFormat('gen3');
+                  setFormat(`gen3`);
                 }}
               >
                 Emerald
@@ -115,7 +115,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`firered`);
                   setVersion(`firered-leafgreen`);
-                  setFormat('gen3');
+                  setFormat(`gen3`);
                 }}
               >
                 Fire Red
@@ -124,7 +124,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`leafgreen`);
                   setVersion(`firered-leafgreen`);
-                  setFormat('gen3');
+                  setFormat(`gen3`);
                 }}
               >
                 Leaf Green
@@ -140,7 +140,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`diamond`);
                   setVersion(`diamond-pearl`);
-                  setFormat('gen4');
+                  setFormat(`gen4`);
                 }}
               >
                 Diamond
@@ -149,7 +149,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`pearl`);
                   setVersion(`diamond-pearl`);
-                  setFormat('gen4');
+                  setFormat(`gen4`);
                 }}
               >
                 Pearl
@@ -158,7 +158,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`platinum`);
                   setVersion(`platinum`);
-                  setFormat('gen4');
+                  setFormat(`gen4`);
                 }}
               >
                 Platinum
@@ -167,7 +167,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`heartgold`);
                   setVersion(`heartgold-soulsilver`);
-                  setFormat('gen4');
+                  setFormat(`gen4`);
                 }}
               >
                 Heart Gold
@@ -176,7 +176,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`soulsilver`);
                   setVersion(`heartgold-soulsilver`);
-                  setFormat('gen4');
+                  setFormat(`gen4`);
                 }}
               >
                 Soul Silver
@@ -192,7 +192,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`black`);
                   setVersion(`black-white`);
-                  setFormat('gen5');
+                  setFormat(`gen5`);
                 }}
               >
                 Black
@@ -201,7 +201,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`white`);
                   setVersion(`black-white`);
-                  setFormat('gen5');
+                  setFormat(`gen5`);
                 }}
               >
                 White
@@ -210,7 +210,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`black-2`);
                   setVersion(`black-2-white-2`);
-                  setFormat('gen5');
+                  setFormat(`gen5`);
                 }}
               >
                 Black 2
@@ -219,7 +219,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`white-2`);
                   setVersion(`black-2-white-2`);
-                  setFormat('gen5');
+                  setFormat(`gen5`);
                 }}
               >
                 White 2
@@ -235,7 +235,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`x`);
                   setVersion(`x-y`);
-                  setFormat('gen6');
+                  setFormat(`gen6`);
                 }}
               >
                 X
@@ -244,7 +244,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`y`);
                   setVersion(`x-y`);
-                  setFormat('gen6');
+                  setFormat(`gen6`);
                 }}
               >
                 Y
@@ -253,7 +253,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`omega-ruby`);
                   setVersion(`omega-ruby-alpha-sapphire`);
-                  setFormat('gen6');
+                  setFormat(`gen6`);
                 }}
               >
                 Omega Ruby
@@ -262,7 +262,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`alpha-sapphire`);
                   setVersion(`omega-ruby-alpha-sapphire`);
-                  setFormat('gen6');
+                  setFormat(`gen6`);
                 }}
               >
                 Alpha Sapphire
@@ -278,7 +278,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`sun`);
                   setVersion(`sun-moon`);
-                  setFormat('gen7');
+                  setFormat(`gen7`);
                 }}
               >
                 Sun
@@ -287,7 +287,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`moon`);
                   setVersion(`sun-moon`);
-                  setFormat('gen7');
+                  setFormat(`gen7`);
                 }}
               >
                 Moon
@@ -296,7 +296,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`ultra-sun`);
                   setVersion(`ultra-sun-ultra-moon`);
-                  setFormat('gen7');
+                  setFormat(`gen7`);
                 }}
               >
                 Ultra Sun
@@ -305,7 +305,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`ultra-moon`);
                   setVersion(`ultra-sun-ultra-moon`);
-                  setFormat('gen7');
+                  setFormat(`gen7`);
                 }}
               >
                 Ultra Moon
@@ -314,7 +314,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`lets-go-pikachu`);
                   setVersion(`lets-go-pikachu-lets-go-eevee`);
-                  setFormat('gen7');
+                  setFormat(`gen7`);
                 }}
               >
                 Let's Go Pikachu
@@ -323,7 +323,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`lets-go-eevee`);
                   setVersion(`lets-go-pikachu-lets-go-eevee`);
-                  setFormat('gen7');
+                  setFormat(`gen7`);
                 }}
               >
                 Let's Go Eevee
@@ -341,7 +341,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                     onClick={() => {
                       setGame(`sword`);
                       setVersion(`sword-shield`);
-                      setFormat('gen8');
+                      setFormat(`gen8`);
                     }}
                   >
                     Sword
@@ -350,7 +350,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                     onClick={() => {
                       setGame(`shield`);
                       setVersion(`sword-shield`);
-                      setFormat('gen8');
+                      setFormat(`gen8`);
                     }}
                   >
                     Shield
@@ -361,7 +361,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`legends-arceus`);
                   setVersion(`legends-arceus`);
-                  setFormat('gen8');
+                  setFormat(`gen8`);
                 }}
               >
                 Legends Arceus
@@ -377,7 +377,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`scarlet`);
                   setVersion(`scarlet-violet`);
-                  setFormat('gen9');
+                  setFormat(`gen9`);
                 }}
               >
                 Scarlet
@@ -386,7 +386,7 @@ function PokemonNav({ pokemonId, setGame, setVersion, setFormat }: Props) {
                 onClick={() => {
                   setGame(`violet`);
                   setVersion(`scarlet-violet`);
-                  setFormat('gen9');
+                  setFormat(`gen9`);
                 }}
               >
                 Violet

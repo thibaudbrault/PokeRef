@@ -149,7 +149,7 @@ function Sprites({ p }: Props) {
             alt={p.name}
             width={96}
             height={96}
-            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+            fallbackSrc={``}
           />
         </>
       )}

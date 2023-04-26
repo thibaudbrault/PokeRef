@@ -20,22 +20,23 @@ function Cards({ cards }: Props) {
   const closeModal = () => {
     setIsOpen(false);
   };
+
   return (
     <Section id="cards">
       <H3>Cards</H3>
       <PokemonCardList>
         {cards.map((c) => (
-          <li>
+          <li key={c.id}>
             <button
               onClick={() => {
                 openModal();
                 setModalData(c.images.large);
               }}
             >
-              <Image src={c.images.small} alt={''} width={220} height={308} />
+              <Image src={c.images.small} alt={``} width={220} height={308} />
             </button>
             <p>
-              Set: <Bold>{c.set.name.replaceAll('—', ' ')}</Bold>
+              Set: <Bold>{c.set.name.replaceAll(`—`, ` `)}</Bold>
             </p>
           </li>
         ))}
@@ -48,11 +49,11 @@ function Cards({ cards }: Props) {
           >
             <Image
               src={modalData}
-              alt={''}
+              alt={``}
               width={0}
               height={0}
               sizes="100vw"
-              style={{ width: '100%', height: 'auto' }}
+              style={{ width: `100%`, height: `auto` }}
             />
           </PokemonCardModal>
         )}

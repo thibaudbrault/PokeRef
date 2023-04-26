@@ -20,7 +20,7 @@ function SearchAbilities({ abilities }: Props) {
   const searchAbilities = (text: string) => {
     if (abilities) {
       const fuse = new Fuse(abilities, {
-        keys: ['name'],
+        keys: [`name`],
         includeMatches: true,
       });
       setSearchText(text);

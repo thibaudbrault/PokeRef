@@ -17,7 +17,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useInView } from 'react-intersection-observer';
 import { useFetchMachines } from '../Hooks/useFetchMachines';
 import { IMoveWithDetails, useFetchMoves } from '../Hooks/useFetchMoves';
 import { PokemonMovesSection } from './Styled.Moves.PokemonCard';
@@ -182,17 +181,17 @@ function MovesPokemon({ pokemon, version, name }: Props) {
     [learn, version],
   );
 
-  const { ref, inView, entry } = useInView({
-    threshold: 0,
-  });
-
   const { tableContainerRef, tableHeader, tableBody } = useTableParams(
     data,
     columns,
   );
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error?.message}`);
+    return toast.error(`Something went wrong: ${error?.message}`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (isLoading) {
@@ -200,7 +199,7 @@ function MovesPokemon({ pokemon, version, name }: Props) {
   }
 
   return (
-    <PokemonMovesSection id="moves" ref={ref}>
+    <PokemonMovesSection id="moves">
       <H3>Moves</H3>
       <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
       <TableContainer ref={tableContainerRef}>

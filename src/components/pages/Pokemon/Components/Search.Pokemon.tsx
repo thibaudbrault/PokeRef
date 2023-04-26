@@ -26,7 +26,7 @@ function SearchPokemon() {
   const searchPokedex = (text: string) => {
     if (pokedex) {
       const fuse = new Fuse(pokedex, {
-        keys: ['name'],
+        keys: [`name`],
         includeMatches: true,
       });
       setSearchText(text);
@@ -51,7 +51,7 @@ function SearchPokemon() {
                   <ImageWithFallback
                     src={
                       `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${res.item.url
-                        .replace('https://pokeapi.co/api/v2/pokemon/', '')
+                        .replace(`https://pokeapi.co/api/v2/pokemon/`, ``)
                         .slice(0, -1)}.png` || ``
                     }
                     alt=""
@@ -71,7 +71,7 @@ function SearchPokemon() {
                   <AutocompleteId>
                     #
                     {res.item.url
-                      .replace('https://pokeapi.co/api/v2/pokemon/', '')
+                      .replace(`https://pokeapi.co/api/v2/pokemon/`, ``)
                       .slice(0, -1)
                       .padStart(3, `0`)}
                   </AutocompleteId>
