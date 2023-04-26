@@ -61,9 +61,9 @@ function Register() {
           email: data.email,
           caught: [],
           balls: [
-            { name: 'pokeball', number: 20 },
-            { name: 'superball', number: 5 },
-            { name: 'hyperball', number: 0 },
+            { name: `pokeball`, number: 20 },
+            { name: `superball`, number: 5 },
+            { name: `hyperball`, number: 0 },
           ],
         });
         toast.success(`Congrats 🎉! Your account is now created`, {
@@ -87,7 +87,7 @@ function Register() {
   return (
     <MainForm>
       <AuthContainer>
-        <AuthClose href={'/'}>
+        <AuthClose href={`/`}>
           <FiX />
         </AuthClose>
         <AuthImage2 />

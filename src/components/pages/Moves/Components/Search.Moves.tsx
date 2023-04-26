@@ -21,7 +21,7 @@ function SearchMoves({ moves }: Props) {
   const searchMoves = (text: string) => {
     if (moves) {
       const fuse = new Fuse(moves, {
-        keys: ['name'],
+        keys: [`name`],
         includeMatches: true,
       });
       setSearchText(text);

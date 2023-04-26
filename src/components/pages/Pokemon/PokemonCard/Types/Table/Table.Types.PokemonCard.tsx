@@ -20,7 +20,7 @@ function TableTyping({ target, pokemonTypes, types }: Props) {
               <th>0x damage {target}</th>
               <td>
                 <div>
-                  {target === 'to'
+                  {target === `to`
                     ? types[0].damage_relations.no_damage_to.map((t) => (
                         <Link
                           key={t.name}
@@ -66,7 +66,7 @@ function TableTyping({ target, pokemonTypes, types }: Props) {
               <th>1/2x damage {target}</th>
               <td>
                 <div>
-                  {target === 'to'
+                  {target === `to`
                     ? types[0].damage_relations.half_damage_to.map((t) => (
                         <Link
                           key={t.name}
@@ -112,7 +112,7 @@ function TableTyping({ target, pokemonTypes, types }: Props) {
               <th>2x damage {target}</th>
               <td>
                 <div>
-                  {target === 'to'
+                  {target === `to`
                     ? types[0].damage_relations.double_damage_to.map((t) => (
                         <Link
                           key={t.name}

@@ -94,7 +94,7 @@ function Login() {
   return (
     <MainForm>
       <AuthContainer>
-        <AuthClose href={'/'}>
+        <AuthClose href={`/`}>
           <FiX />
         </AuthClose>
         <AuthImage />

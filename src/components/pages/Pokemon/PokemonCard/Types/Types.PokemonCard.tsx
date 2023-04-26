@@ -22,7 +22,7 @@ function Typing({ pokemon, types }: Props) {
       <H3>Types relations</H3>
       <PokemonTypesList>
         {types.map((t) => (
-          <Type id={t.name}>
+          <Type id={t.name} key={t.name}>
             <Link
               href={{
                 pathname: `/type/[name]`,

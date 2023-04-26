@@ -161,7 +161,7 @@ function PokemonType({ typeName, pokemon }: Props) {
   const styles = {
     // @ts-ignore
     multiValueRemove: (base, state) => {
-      return state.data.isFixed ? { ...base, display: 'none' } : base;
+      return state.data.isFixed ? { ...base, display: `none` } : base;
     },
   };
 

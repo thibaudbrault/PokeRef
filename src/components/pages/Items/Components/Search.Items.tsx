@@ -21,7 +21,7 @@ function SearchItems({ items }: Props) {
   const searchItems = (text: string) => {
     if (items) {
       const fuse = new Fuse(items, {
-        keys: ['name'],
+        keys: [`name`],
         includeMatches: true,
       });
       setSearchText(text);
@@ -44,7 +44,7 @@ function SearchItems({ items }: Props) {
               searchRes?.map((res) => (
                 <li key={res.item.name}>
                   <ImageWithFallback
-                    src={res.item.sprites.default || ''}
+                    src={res.item.sprites.default || ``}
                     alt=""
                     width={32}
                     height={32}

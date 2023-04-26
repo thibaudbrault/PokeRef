@@ -115,27 +115,27 @@ function Competitive({ format, name }: Props) {
       const textFormatting = (str: string) =>
         str.replaceAll(`-types`, ` types`).replaceAll(`-type`, ` type`);
 
-      const setSpecs = (obj: {}, i: number, value: string) => {
+      const setSpecs = (obj: Record<string, unknown>, i: number, value: string) => {
         return Object.values(Object.entries(obj)[toggle][1])[i][value];
       };
 
       const wrapMoves = (tag: string, move: string | number, index: number) => {
-        if (tag === 'li' && typeof move === 'string') {
+        if (tag === `li` && typeof move === `string`) {
           return `<${tag}>Move ${index + 1}: <b>${move}</b></${tag}>`;
-        } else if (tag === 'span' && typeof move === 'string') {
+        } else if (tag === `span` && typeof move === `string`) {
           return `<${tag}>${move}</${tag}>`;
-        } else if (typeof move === 'number') {
+        } else if (typeof move === `number`) {
           return null;
         }
       };
 
       const majEv = {
-        hp: 'Hp',
-        atk: 'Atk',
-        def: 'Def',
-        spa: 'SpA',
-        spd: 'SpD',
-        spe: 'Spe',
+        hp: `Hp`,
+        atk: `Atk`,
+        def: `Def`,
+        spa: `SpA`,
+        spd: `SpD`,
+        spe: `Spe`,
       };
 
       const detailedSets = Object.keys(
@@ -172,14 +172,14 @@ function Competitive({ format, name }: Props) {
                   <PokemonSetSpecs>
                     <ul
                       dangerouslySetInnerHTML={{
-                        __html: setSpecs(filteredSets, i, 'moves').map(
+                        __html: setSpecs(filteredSets, i, `moves`).map(
                           (move: string | string[], index: number) =>
                             wrapMoves(
-                              'li',
+                              `li`,
                               Array.isArray(move)
                                 ? move
-                                    .map((j) => wrapMoves('span', j, index))
-                                    .join(' / ')
+                                    .map((j) => wrapMoves(`span`, j, index))
+                                    .join(` / `)
                                 : move,
                               index,
                             ),
@@ -188,35 +188,35 @@ function Competitive({ format, name }: Props) {
                     />
                     {detailedSets.length > 1 &&
                       detailedSets.find(
-                        (d: string) => d !== 'level' && d !== 'moves',
+                        (d: string) => d !== `level` && d !== `moves`,
                       ) && (
                         <ul>
                           <li>
-                            {typeof setSpecs(filteredSets, i, 'item') ===
-                            'string' ? (
+                            {typeof setSpecs(filteredSets, i, `item`) ===
+                            `string` ? (
                               <>
-                                Item: <b>{setSpecs(filteredSets, i, 'item')}</b>
+                                Item: <b>{setSpecs(filteredSets, i, `item`)}</b>
                               </>
                             ) : (
                               <>
-                                Items:{' '}
+                                Items:{` `}
                                 <b>
-                                  {setSpecs(filteredSets, i, 'item').join(
-                                    ' / ',
+                                  {setSpecs(filteredSets, i, `item`).join(
+                                    ` / `,
                                   )}
                                 </b>
                               </>
                             )}
                           </li>
                           <li>
-                            Nature: <b>{setSpecs(filteredSets, i, 'nature')}</b>
+                            Nature: <b>{setSpecs(filteredSets, i, `nature`)}</b>
                           </li>
                           <li>
-                            EVs:{' '}
+                            EVs:{` `}
                             <b>
-                              {Object.entries(setSpecs(filteredSets, i, 'evs'))
-                                .join(' / ')
-                                .replaceAll(',', ' ')
+                              {Object.entries(setSpecs(filteredSets, i, `evs`))
+                                .join(` / `)
+                                .replaceAll(`,`, ` `)
                                 .replace(
                                   /\b(?:hp|atk|def|spa|spd|spe)\b/gi,
                                   (matched) => majEv[matched],

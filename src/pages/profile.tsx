@@ -41,18 +41,18 @@ const schema = yup
   .required();
 
 function Profile() {
-  const owner = 'thibaudbrault';
-  const repo = 'pokeref_medias';
-  const folder = 'sprites';
+  const owner = `thibaudbrault`;
+  const repo = `pokeref_medias`;
+  const folder = `sprites`;
   const router = useRouter();
   const [user, setUser] = useState<DocumentData | undefined>();
 
   const { data: trainerSprites } = useQuery({
-    queryKey: ['trainers'],
+    queryKey: [`trainers`],
     queryFn: () => getTrainers(owner, repo, folder),
   });
 
-  let testArr = [];
+  const testArr = [];
 
   for (let i = 0; i < 6; i++) {
     const randomNb = Math.floor(Math.random() * trainerSprites.length);
@@ -105,8 +105,8 @@ function Profile() {
   } = useForm<FormInput>({
     resolver: yupResolver<yup.AnyObjectSchema>(schema),
     defaultValues: {
-      username: '',
-      email: '',
+      username: ``,
+      email: ``,
     },
   });
 
@@ -115,8 +115,8 @@ function Profile() {
       if (auth.currentUser) {
         const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
         await updateDoc(usersCollectionRef, {
-          name: data.username !== '' ? data.username : user?.name,
-          email: data.email !== '' ? data.email : user?.email,
+          name: data.username !== `` ? data.username : user?.name,
+          email: data.email !== `` ? data.email : user?.email,
         });
         toast.success(`Your profile is modified`, {
           style: {
@@ -189,8 +189,8 @@ function Profile() {
             You caught {user.caught.length} / 1010 Pokémon
           </LeftSubtitle>
           <ProfileCaught>
-            {user?.caught.map((p: string[]) => (
-              <li>
+            {user?.caught.map((p: string[], index: number) => (
+              <li key={p[index]}>
                 <Image src={p[1]} alt="" width={96} height={96} />
                 <Link
                   href={{
@@ -217,7 +217,7 @@ function Profile() {
                   type="text"
                   id="username"
                   placeholder={user.name}
-                  {...register('username')}
+                  {...register(`username`)}
                 />
               </Input>
               <Input>
@@ -226,7 +226,7 @@ function Profile() {
                   type="text"
                   id="email"
                   placeholder={user.email}
-                  {...register('email')}
+                  {...register(`email`)}
                 />
               </Input>
               <button type="submit">Update</button>

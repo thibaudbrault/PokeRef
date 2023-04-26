@@ -1,16 +1,16 @@
 import { auth, db } from '@/firebase-config';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
-import { capitalize, removeDash } from '@/utils/Typography';
+import { removeDash } from '@/utils/Typography';
 import {
   arrayUnion,
   doc,
-  updateDoc,
-  getDoc,
   DocumentData,
+  getDoc,
   onSnapshot,
+  updateDoc,
 } from 'firebase/firestore';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import Base from './Base/Base.PokemonCard';
 import Desc from './Desc/Desc.PokemonCard';
@@ -52,7 +52,7 @@ function Data({ pokemon, species, game }: Props) {
       toast.success(`Congrats 🎉 ! You caught ${removeDash(pokemon.name)}`, {
         style: {
           fontSize: `1.7rem`,
-          textTransform: 'capitalize',
+          textTransform: `capitalize`,
         },
       });
     }
@@ -71,11 +71,13 @@ function Data({ pokemon, species, game }: Props) {
     }
   }, [auth.currentUser]);
 
+  console.log(user);
+
   return (
     <PokemonDataSection id="presentation">
-      {pokemon.id < 10000 &&
-        (user &&
-        user.caught.every(
+      {user &&
+        pokemon.id < 10000 &&
+        (user.caught.every(
           (n: Record<string, string>) => n[0] !== pokemon.name,
         ) ? (
           <PokemonCatchButton onClick={catchHandler}>Catch</PokemonCatchButton>
