@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 import { createGlobalStyle } from 'styled-components';
+import { device } from './Sizing';
 
 export const Reset = createGlobalStyle`
 
@@ -19,7 +20,7 @@ export const Reset = createGlobalStyle`
     del, dfn, em, img, ins, kbd, q, s, samp,
     small, strike, strong, sub, sup, tt, var,
     b, u, center,
-    dl, dt, dd, ol, ul, li,
+    dl, dt, dd, ul, ul, li,
     fieldset, form, label, legend,
     table, caption, tbody, tfoot, thead, tr, th, td,
     article, aside, canvas, details, embed, 
@@ -48,7 +49,7 @@ export const Reset = createGlobalStyle`
         display: block;
     }
 
-    ol, ul {
+    ul, ul {
         list-style: none;
     }
 
@@ -76,9 +77,8 @@ export const Reset = createGlobalStyle`
         color: ${({ theme }) => theme.secondary};
         background-color: ${({ theme }) => theme.main};
         background-image: ${({ theme }) => theme.background};
-        font-family: 'Quicksand', sans-serif;
+        font-family: 'Quicksand', serif;
         font-weight: 400;
-        transition: all 0.3s ease-in-out;
         
         & #nprogress {
             & .bar {
@@ -106,21 +106,42 @@ export const Reset = createGlobalStyle`
         }
     }
 
-    @media(max-width: 890px) {
+    h1, h2, h3, h4, h5, h6, nav {
+        font-family: 'Oswald', sans-serif;
+    }
+
+    @media ${device.md} {
         html {
             font-size: 9px;
         }
     }
 
-    @media(max-width: 650px) {
+    @media ${device.sm} {
         html {
             font-size: 8px;
         }
     }
 
-    @media(max-width: 420px) {
+    @media ${device.xs} {
         html {
             font-size: 7px;
+        }
+    }
+
+    .ReactModal__Overlay {
+        width: 100vw;
+        height: 100vh;
+        background-color: ${({ theme }) => theme.secondary} !important;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+
+        &--after-open {
+            opacity: 1;
+        }
+
+        &--before-close {
+            opacity: 0;
         }
     }
 `;

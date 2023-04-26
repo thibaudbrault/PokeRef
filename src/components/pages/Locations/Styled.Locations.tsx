@@ -6,7 +6,7 @@ import { FullWidthTable } from '../../common/styles/Table';
 export const LocationSection = styled.section`
   & p {
     font-size: 1.7rem;
-    font-weight: 700;
+    font-weight: 600;
     text-align: center;
   }
 `;
@@ -26,7 +26,7 @@ export const LocationNavContainer = styled.section`
     transform: translate(-50%);
     display: none;
     font-size: 5rem;
-    font-weight: 700;
+    font-weight: 600;
     text-align: center;
   }
 
@@ -49,7 +49,7 @@ export const LocationNav = styled(MethodNav)`
   }
 `;
 
-export const LocationList = styled.ol`
+export const LocationList = styled.ul`
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(4, 1fr);
@@ -80,12 +80,31 @@ export const LocationTable = styled(FullWidthTable)`
   & td {
     padding: 0;
     text-transform: capitalize;
+    border-top: 2px solid rgba(130, 130, 130, 0.2);
+    border-bottom: 2px solid rgba(130, 130, 130, 0.2);
     & p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
       padding: 1.5rem;
       border-top: 1px solid rgba(130, 130, 130, 0.2);
 
       &:first-of-type {
         border-top: none;
+      }
+    }
+
+    & span {
+      &:after {
+        margin-left: 1rem;
+        content: '&';
+      }
+
+      &:last-of-type {
+        &:after {
+          content: '';
+        }
       }
     }
   }

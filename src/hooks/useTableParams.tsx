@@ -3,7 +3,6 @@ import { BisChevronDown, BisChevronUp } from '@meronex/icons/bi';
 import {
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
   getSortedRowModel,
   SortingState,
   useReactTable,

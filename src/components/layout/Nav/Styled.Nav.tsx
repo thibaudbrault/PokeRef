@@ -25,7 +25,7 @@ export const MainNavList = styled.ul`
       position: relative;
       white-space: nowrap;
       font-size: 2rem;
-      font-weight: 700;
+      font-weight: 600;
       text-transform: capitalize;
       cursor: pointer;
       transition: 0.3s ease-in-out;
@@ -100,7 +100,7 @@ export const ResponsiveNav = styled.nav`
   top: 0;
   left: 0;
   background: ${({ theme }) => theme.main};
-  z-index: 3;
+  z-index: 98;
 `;
 
 export const ResponsiveNavList = styled.ul`

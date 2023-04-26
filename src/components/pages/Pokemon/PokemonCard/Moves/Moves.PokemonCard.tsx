@@ -187,7 +187,11 @@ function MovesPokemon({ pokemon, version, name }: Props) {
   );
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error?.message}`);
+    return toast.error(`Something went wrong: ${error?.message}`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (isLoading) {
@@ -195,7 +199,7 @@ function MovesPokemon({ pokemon, version, name }: Props) {
   }
 
   return (
-    <PokemonMovesSection>
+    <PokemonMovesSection id="moves">
       <H3>Moves</H3>
       <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
       <TableContainer ref={tableContainerRef}>

@@ -1,4 +1,8 @@
-import { LeftSubtitle, LeftTitle } from '@/components/common/styles/Headings';
+import {
+  Bold,
+  LeftH2,
+  LeftSubtitle,
+} from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import {
   FullWidthTable,
@@ -77,7 +81,11 @@ function MachinesPage() {
   );
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`);
+    return toast.error(`Something went wrong: ${error.message}`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (isLoading) {
@@ -87,8 +95,10 @@ function MachinesPage() {
   return (
     <>
       <MainBig>
-        <LeftTitle>Machines</LeftTitle>
-        <LeftSubtitle>{game}</LeftSubtitle>
+        <LeftH2>Machines</LeftH2>
+        <LeftSubtitle>
+          Game selected: <Bold>{game}</Bold>
+        </LeftSubtitle>
         <Nav setGame={setGame} setVersion={setVersion} />
         <TableContainer ref={tableContainerRef}>
           <FullWidthTable>

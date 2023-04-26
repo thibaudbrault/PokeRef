@@ -2,7 +2,7 @@ import {
   CardTitle,
   CardTitleWithImage,
 } from '@/components/common/styles/Headings';
-import { Divider } from '@/components/common/styles/Misc';
+import { Divider } from '@/components/common/ui/Divider';
 import { MethodNav } from '@/components/common/styles/Navbars';
 import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
@@ -34,7 +34,11 @@ function TypeCard({ name }: Props) {
     useToggleTable(name);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error?.message}`);
+    return toast.error(`Something went wrong: ${error?.message}`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (isLoading) {

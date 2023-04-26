@@ -1,47 +1,45 @@
 import ImageWithFallback from '@/utils/ImageWithFallback';
-import Image from 'next/image';
+import ReactPaginate from 'react-paginate';
 import styled from 'styled-components';
-import { Search } from '../../common/styles/Inputs';
 import { device } from '../../common/styles/Sizing';
 
-export const PokedexSearch = styled(Search)`
-  align-items: stretch;
-  gap: 1rem;
+export const PokedexSearch = styled.section`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 'search form generation';
+  gap: 2rem;
 
   @media ${device.md} {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-      'search search search'
-      'form generation type';
+      'search search'
+      'form generation';
     row-gap: 2rem;
     column-gap: 4rem;
-  }
-
-  @media ${device.xs} {
-    grid-template-columns: 1fr 1fr;
-
-    grid-template-areas:
-      'search form'
-      'generation type';
-
-    /* & div {
-      height: 100%;
-    } */
   }
 `;
 
 export const PokedexDropdown = styled.div`
+  width: 100%;
   display: flex;
   align-items: start;
-  justify-content: center;
+  justify-content: stretch;
   flex-direction: column;
 
   & label {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     margin-bottom: 0.5rem;
     justify-self: flex-start;
+  }
+
+  &:first-of-type {
+    grid-area: form;
+  }
+
+  &:last-of-type {
+    grid-area: generation;
   }
 `;
 
@@ -65,6 +63,7 @@ export const PokedexVerticalText = styled.p`
 
 export const PokedexList = styled.ul`
   max-width: 1300px;
+  min-height: 80vh;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -88,8 +87,8 @@ export const PokedexElement = styled.li`
   transition: 0.3s ease-in-out;
 
   & h2 {
-    font-size: 1.5rem;
-    font-family: 'Press Start 2P';
+    font-size: 3rem;
+    font-family: 'Oswald';
     text-transform: capitalize;
 
     & a {
@@ -124,7 +123,7 @@ export const PokedexElement = styled.li`
       border-radius: 50px 10px;
 
       @media ${device.sm} {
-        border-radius: 7px 35px;
+        border-radius: 35px 7px;
       }
     }
   }
@@ -157,7 +156,7 @@ export const PokedexImage = styled.div`
 
   &:hover ${SpriteShiny} {
     opacity: 1;
-    z-index: 99;
+    z-index: 3;
   }
 
   & img {
@@ -168,52 +167,81 @@ export const PokedexImage = styled.div`
   }
 `;
 
-export const LoadingImage = styled(Image)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-`;
-
 export const PokedexTypes = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-size: 1.3rem;
+  gap: 1rem;
 
   & div {
     width: 100%;
-    margin: 0.5rem 0;
     padding: 0.5rem;
     border-radius: 5px;
     text-transform: uppercase;
     text-align: center;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
     color: #c4c4c4;
+    font-size: 1.7rem;
+    text-shadow: ${({ theme }) => theme.main} -1px -1px 0px,
+      ${({ theme }) => theme.main} 1px -1px 0px,
+      ${({ theme }) => theme.main} -1px 1px 0px,
+      ${({ theme }) => theme.main} 1px 1px 0px;
     border: 1px solid rgba(22, 22, 22, 0.2);
-    cursor: pointer;
 
     & a {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 1rem;
+      cursor: pointer;
 
       & img {
         cursor: pointer;
       }
 
       & span {
-        font-family: 'Press Start 2P';
+        font-family: 'Oswald', sans-serif;
         cursor: pointer;
       }
     }
+
+    @media ${device.sm} {
+      font-size: 1rem;
+    }
+  }
+`;
+
+export const PokedexPagination = styled(ReactPaginate)`
+  width: 90%;
+  margin: 5rem auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & li {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    & a {
+      cursor: pointer;
+    }
   }
 
-  @media ${device.sm} {
-    font-size: 1rem;
+  & .selected {
+    background: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.main};
+    border-radius: 50%;
+  }
+
+  & .disabled {
+    opacity: 0.7;
   }
 `;
 

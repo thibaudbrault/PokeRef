@@ -1,4 +1,20 @@
+import { device } from '@/components/common/styles/Sizing';
 import styled from 'styled-components';
+
+export const SearchContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  margin-bottom: 3rem;
+
+  & h2 {
+    margin-bottom: 0;
+  }
+
+  @media ${device.md} {
+    grid-template-areas: '. search search';
+  }
+`;
 
 export const StatusMoves = styled.td`
   display: flex;

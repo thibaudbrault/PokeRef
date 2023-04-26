@@ -1,4 +1,4 @@
-import { LeftTitle } from '@/components/common/styles/Headings';
+import { LeftH2 } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import {
   FullWidthTable,
@@ -8,6 +8,8 @@ import {
   TLink,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
+import SearchAbilities from '@/components/pages/Abilities/Components/Search.Abilities';
+import { SearchContainer } from '@/components/pages/Moves/Styled.Moves';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IAbility } from '@/types/Pokemon/Ability';
 import { getAbilities } from '@/utils/DataFetch';
@@ -82,7 +84,11 @@ function AbilitiesPage() {
   );
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`);
+    return toast.error(`Something went wrong: ${error.message}`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (isLoading) {
@@ -93,7 +99,10 @@ function AbilitiesPage() {
     <>
       <HeadingAbilities />
       <MainBig>
-        <LeftTitle>Abilities</LeftTitle>
+        <SearchContainer>
+          <LeftH2>Abilities</LeftH2>
+          <SearchAbilities abilities={abilities} />
+        </SearchContainer>
         <TableContainer ref={tableContainerRef}>
           <FullWidthTable>
             {tableHeader()}

@@ -110,7 +110,7 @@ function Locations({ location, game }: Props) {
   );
 
   return (
-    <Section>
+    <Section id="locations">
       <H3>Locations</H3>
       <TableContainer ref={tableContainerRef}>
         <LocationTable>
@@ -118,7 +118,7 @@ function Locations({ location, game }: Props) {
           {tableBody()}
           <tfoot>
             <tr>
-              <td colSpan={5}>This pokémon is not present in this game</td>
+              <td colSpan={5}>Not present or not found in nature</td>
             </tr>
           </tfoot>
         </LocationTable>

@@ -23,6 +23,7 @@ export interface IMove {
   effect_changes: IAbilityEffectChange[];
   flavor_text_entries: IMoveFlavorText[];
   generation: INamedApiResource;
+  learned_by_pokemon: INamedApiResource[];
   machines: IMachineVersionDetail[];
   meta: IMoveMetaData;
   names: IName[];

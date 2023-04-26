@@ -38,7 +38,11 @@ function Evolution({ evolution, name }: Props) {
   });
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`);
+    return toast.error(`Something went wrong: ${error.message}`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (isLoading) {
@@ -46,7 +50,7 @@ function Evolution({ evolution, name }: Props) {
   }
 
   return (
-    <PokemonEvolutionSection>
+    <PokemonEvolutionSection id="evolution">
       <H3>Evolution chain</H3>
       <PokemonEvolutionContainer>
         <PokemonEvolutionBase>
@@ -70,7 +74,7 @@ function Evolution({ evolution, name }: Props) {
                   query: { name: evolution?.chain?.species?.name },
                 }}
               >
-                {evolution?.chain?.species?.name}
+                {removeDash(evolution?.chain?.species?.name)}
               </Link>
             </>
           </div>

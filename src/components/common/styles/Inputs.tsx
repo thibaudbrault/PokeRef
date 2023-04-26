@@ -1,6 +1,5 @@
 import Select from 'react-select';
 import styled from 'styled-components';
-import { device } from './Sizing';
 
 export const Search = styled.section`
   display: flex;
@@ -43,6 +42,7 @@ export const Input = styled.div`
 `;
 
 export const Dropdown = styled(Select)`
+  width: 100%;
   & .select__control {
     min-width: 15rem;
     padding: 0 0.5rem;
@@ -51,7 +51,7 @@ export const Dropdown = styled(Select)`
     border: 1px solid ${({ theme }) => theme.secondary};
     border-radius: 5px;
     text-transform: capitalize;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     transition: 0.3s ease-in-out;
 
     &--is-focused {
@@ -74,7 +74,7 @@ export const Dropdown = styled(Select)`
 
     & .select__placeholder {
       color: ${({ theme }) => theme.secondary};
-      font-size: 1.3rem;
+      font-size: 1.5rem;
     }
 
     & .select__indicator-separator {
@@ -90,7 +90,7 @@ export const Dropdown = styled(Select)`
     color: ${({ theme }) => theme.secondary};
     background: ${({ theme }) => theme.main};
     text-transform: capitalize;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 
     & .select__option {
       cursor: pointer;
@@ -136,9 +136,5 @@ export const Dropdown = styled(Select)`
       background-color: transparent;
       color: ${({ theme }) => theme.red};
     }
-  }
-
-  @media ${device.md} {
-    width: 100%;
   }
 `;

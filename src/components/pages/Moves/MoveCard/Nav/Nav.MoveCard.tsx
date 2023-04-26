@@ -11,7 +11,7 @@ type Props = {
 function Nav({ move, setVersion }: Props) {
   return (
     <GenNav>
-      <ol>
+      <ul>
         {move?.generation?.name === `generation-i` && (
           <li>
             <button>Gen I</button>
@@ -138,7 +138,7 @@ function Nav({ move, setVersion }: Props) {
             </div>
           </li>
         )}
-      </ol>
+      </ul>
     </GenNav>
   );
 }

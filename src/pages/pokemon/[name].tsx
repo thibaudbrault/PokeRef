@@ -1,19 +1,21 @@
 import { Subtitle, Title } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
+import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
+import Contents from '@/components/pages/Pokemon/PokemonCard/Contents/Contents.PokemonCard';
 import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
 import { useFetchPokemon } from '@/components/pages/Pokemon/PokemonCard/Hooks/useFetchPokemon';
 import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { pokemonFilters } from '@/utils/DataArrays';
-import { removeDash } from '@/utils/Typography';
+import { removeDash, removeLongName } from '@/utils/Typography';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 
 interface IEvolutionProps {
@@ -27,10 +29,18 @@ interface IMovesProps {
   name: string;
 }
 
+interface ICompetitiveProps {
+  format: string;
+  name: string;
+}
+
 interface IFormsProps {
   pokemon: IPokemon;
 }
 
+const Nav = dynamic(
+  () => import(`@/components/pages/Pokemon/PokemonCard/Nav/Nav.PokemonCard`),
+);
 const Data = dynamic(
   () => import(`@/components/pages/Pokemon/PokemonCard/Data/Data.PokemonCard`),
 );
@@ -47,6 +57,10 @@ const Stats = dynamic(
   () =>
     import(`@/components/pages/Pokemon/PokemonCard/Stats/Stats.PokemonCard`),
 );
+const Typing = dynamic(
+  () =>
+    import(`@/components/pages/Pokemon/PokemonCard/Types/Types.PokemonCard`),
+);
 const Moves = dynamic<IMovesProps>(
   () =>
     import(
@@ -58,6 +72,12 @@ const Locations = dynamic(
     import(
       `@/components/pages/Pokemon/PokemonCard/Locations/Locations.PokemonCard`
     ),
+);
+const Competitive = dynamic<ICompetitiveProps>(
+  () =>
+    import(
+      `@/components/pages/Pokemon/PokemonCard/Competitive/Competitive.PokemonCard`
+    ) as any,
 );
 const Forms = dynamic<IFormsProps>(
   () =>
@@ -71,8 +91,9 @@ const Sprites = dynamic(
       `@/components/pages/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard`
     ),
 );
-const Nav = dynamic(
-  () => import(`@/components/pages/Pokemon/PokemonCard/Nav/Nav.PokemonCard`),
+const Cards = dynamic(
+  () =>
+    import(`@/components/pages/Pokemon/PokemonCard/Cards/Cards.PokemonCard`),
 );
 
 type Props = {
@@ -80,18 +101,12 @@ type Props = {
 };
 
 function PokemonCard({ name }: Props) {
-  const {
-    pokemonId,
-    game,
-    setGame,
-    version,
-    setVersion,
-    pokemon,
-    species,
-    types,
-    location,
-    evolution,
-  } = useFetchPokemon(name);
+  const [game, setGame] = useState<string | null>(null);
+  const [version, setVersion] = useState<string | null>(null);
+  const [format, setFormat] = useState<string | null>(null);
+
+  const { pokemonId, pokemon, species, types, location, evolution, cards } =
+    useFetchPokemon(name);
 
   // Modify game and version according to the id of the pokemon
   const pokemonFiltersFn = () => {
@@ -99,12 +114,11 @@ function PokemonCard({ name }: Props) {
       pokemonFilters.filter((p) => {
         pokemonId > p.min &&
           pokemonId < p.max &&
-          (setGame(p.game), setVersion(p.version));
+          (setGame(p.game), setVersion(p.version), setFormat(p.format));
       });
   };
 
   const audioRef = useRef<HTMLAudioElement>(null);
-
   const play = () => {
     if (audioRef.current) {
       audioRef.current.play();
@@ -122,7 +136,11 @@ function PokemonCard({ name }: Props) {
     types.status === `error` ||
     location.status === `error`
   ) {
-    return toast.error(`Something went wrong`);
+    return toast.error(`Something went wrong`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (
@@ -145,7 +163,7 @@ function PokemonCard({ name }: Props) {
               {removeDash(pokemon.data?.name).split(` `).reverse().join(` `)}
             </Title>
           ) : (
-            <Title>{removeDash(pokemon.data?.name)}</Title>
+            <Title>{removeLongName(removeDash(name))}</Title>
           )}
           {pokemon.data?.id < 722 && (
             <div>
@@ -167,10 +185,18 @@ function PokemonCard({ name }: Props) {
           pokemonId={pokemon.data?.id}
           setGame={setGame}
           setVersion={setVersion}
+          setFormat={setFormat}
         />
 
+        <Contents />
+
         <Data pokemon={pokemon.data} species={species.data} game={game} />
+
+        <Divider />
+
         {evolution.data && <Evolution evolution={evolution.data} name={name} />}
+
+        <Divider />
 
         {pokemonId && pokemonId < 10000 && (
           <Info
@@ -180,17 +206,52 @@ function PokemonCard({ name }: Props) {
           />
         )}
 
-        <Stats pokemon={pokemon.data} types={types.data} />
+        <Divider />
 
-        {version && (
-          <Moves pokemon={pokemon.data} version={version} name={name} />
+        <Stats pokemon={pokemon.data} />
+
+        <Divider />
+
+        {types.data && (
+          <>
+            <Typing pokemon={pokemon.data} types={types.data} />
+            <Divider />
+          </>
         )}
 
-        {game && <Locations location={location.data} game={game} />}
+        {version && (
+          <>
+            <Moves pokemon={pokemon.data} version={version} name={name} />
+            <Divider />
+          </>
+        )}
 
-        {pokemon.data.forms.length > 1 && <Forms pokemon={pokemon.data} />}
+        {game && (
+          <>
+            <Locations location={location.data} game={game} />
+            <Divider />
+          </>
+        )}
+
+        {pokemon.data.forms.length > 1 && (
+          <>
+            <Forms pokemon={pokemon.data} />
+            <Divider />
+          </>
+        )}
+
+        {format && (
+          <>
+            <Competitive format={format} name={name} />
+            <Divider />
+          </>
+        )}
 
         <Sprites pokemon={pokemon.data} />
+
+        <Divider />
+
+        {cards.data && <Cards cards={cards.data} />}
 
         <Link href="/" passHref>
           <BackBtn name="Pokedex" />

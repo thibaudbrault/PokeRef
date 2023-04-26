@@ -25,6 +25,7 @@ function Sprite({ pokemon, species }: Props) {
           {species?.is_mythical && (
             <PokemonDataSpecial>Mythical</PokemonDataSpecial>
           )}
+          {species.is_baby && <PokemonDataSpecial>Baby</PokemonDataSpecial>}
         </>
       )}
     </>

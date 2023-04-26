@@ -1,4 +1,4 @@
-import { LeftTitle } from '@/components/common/styles/Headings';
+import { LeftH2 } from '@/components/common/styles/Headings';
 import {
   FullWidthTable,
   TableContainer,
@@ -120,7 +120,7 @@ function StatsTable({ stats }: Props) {
 
   return (
     <section>
-      <LeftTitle>Stats</LeftTitle>
+      <LeftH2>Stats</LeftH2>
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>
           {tableHeader()}

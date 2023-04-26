@@ -1,6 +1,9 @@
-import { H3, Capitalize } from '@/components/common/styles/Headings';
+import { Capitalize, H3 } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
-import { TableContainer } from '@/components/common/styles/Table';
+import {
+  FullWidthTable,
+  TableContainer,
+} from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IMove } from '@/types/Moves/Move';
@@ -11,10 +14,10 @@ import Link from 'next/link';
 import { useMemo } from 'react';
 import {
   TypeListSubtitle,
+  TypeListSubtitleContainer,
   TypeMovesComment,
   TypeMovesData,
   TypeMovesName,
-  TypeMovesTable,
 } from '../Styled.TypeCard';
 
 type Props = {
@@ -113,15 +116,17 @@ function MovesType({ type, moves }: Props) {
   return (
     <Section>
       <H3>Moves</H3>
-      <TypeListSubtitle>
-        {data.length} moves are <Capitalize>{type?.name}</Capitalize> type
-      </TypeListSubtitle>
+      <TypeListSubtitleContainer>
+        <TypeListSubtitle>
+          {data.length} moves are <Capitalize>{type?.name}</Capitalize> type
+        </TypeListSubtitle>
+      </TypeListSubtitleContainer>
       <TableContainer ref={tableContainerRef}>
         {data.length > 0 && (
-          <TypeMovesTable>
+          <FullWidthTable>
             {tableHeader()}
             {tableBody()}
-          </TypeMovesTable>
+          </FullWidthTable>
         )}
       </TableContainer>
       {type?.name !== `fairy` && (

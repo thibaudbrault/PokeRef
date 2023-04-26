@@ -1,64 +1,54 @@
-import Autocomplete from '@/components/autocomplete/Autocomplete';
 import { Dropdown } from '@/components/common/styles/Inputs';
-import { Divider } from '@/components/common/styles/Misc';
+import { Divider } from '@/components/common/ui/Divider';
+import SearchPokemon from '@/components/pages/Pokemon/Components/Search.Pokemon';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import {
   formOptions,
   generationsOptions,
-  IOptions,
   IOptionsOffsetLimit,
-  typeOptions,
 } from '@/utils/DataArrays';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
 import { SingleValue } from 'react-select';
+import makeAnimated from 'react-select/animated';
 import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
 
 type Props = {
   pokedex: IPokemon[];
   setFilteredPokedex: Dispatch<SetStateAction<IPokemon[]>>;
+  offset: number;
   setOffset: Dispatch<SetStateAction<number>>;
+  page: number;
+  setPage: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;
   form: IOptionsOffsetLimit | null;
   setForm: Dispatch<SetStateAction<IOptionsOffsetLimit | null>>;
   generation: IOptionsOffsetLimit | null;
   setGeneration: Dispatch<SetStateAction<IOptionsOffsetLimit | null>>;
-  type: IOptions[] | null;
-  setType: Dispatch<SetStateAction<IOptions[]>>;
 };
 
 function Filters({
   pokedex,
   setFilteredPokedex,
+  offset,
   setOffset,
+  page,
+  setPage,
   setLimit,
-  type,
-  setType,
   form,
   setForm,
   generation,
   setGeneration,
 }: Props) {
-  const getFilterPokemon = () => {
+  const getFilterPokemon = useCallback(() => {
     if (pokedex) {
       setFilteredPokedex(
         pokedex
-          .filter((pokedex) => {
-            if (!type?.length) {
-              return pokedex;
-            } else if (type.length === 1) {
-              return pokedex.types
-                .map((pt) => pt.type.name)
-                .includes(type[0].value);
-            } else if (type.length === 2 && pokedex.types.length === 2) {
-              return pokedex.types.every((pt) =>
-                type.find((t) => t.value.includes(pt.type.name)),
-              );
-            }
-          })
+          .map((pokedex) => pokedex)
+          .flat()
           .filter((pokedex) => {
             if (!form && !generation) {
-              setOffset(0);
-              setLimit(1008);
+              setOffset((50 * page) % 1010);
+              setLimit(offset === 1000 ? 10 : 50);
               return pokedex;
             } else if (form) {
               setOffset(form.offset);
@@ -72,49 +62,46 @@ function Filters({
           }),
       );
     }
-  };
+  }, [form, generation, page, pokedex]);
 
   const handleFormSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
     setForm(option);
+    setPage(0);
     setGeneration(null);
-    setType([]);
   };
 
   const handleGenSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
     setGeneration(option);
+    setPage(0);
     setForm(null);
-    setType([]);
   };
 
-  const handleTypeSelect = (option: IOptions[]) => {
-    if (option) {
-      setType(option);
-    }
-  };
+  const animatedComponents = makeAnimated();
 
   useEffect(() => {
     getFilterPokemon();
-
-    //NOTE: EsLint wants to add the function above in the dependency array
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pokedex, form, generation, type]);
+  }, [getFilterPokemon]);
 
   return (
     <>
       <PokedexSearch>
-        <Autocomplete pokedex={pokedex} />
+        <SearchPokemon />
         <PokedexDropdown>
           <label htmlFor="form">Form</label>
           <Dropdown
+            key={form?.value}
             name="form"
             id="form"
             value={form}
             className="selectOptions"
             classNamePrefix="select"
+            components={animatedComponents}
+            isClearable
             options={formOptions}
             placeholder="Select"
-            onChange={(option) => {
+            onChange={(option, { action }) => {
               handleFormSelect(option as IOptionsOffsetLimit);
+              action === `clear` && setForm(null);
             }}
           />
         </PokedexDropdown>
@@ -122,43 +109,19 @@ function Filters({
         <PokedexDropdown>
           <label htmlFor="generation">Generation</label>
           <Dropdown
+            key={generation?.value}
             name="generation"
             id="generation"
             value={generation}
             className="selectOptions"
             classNamePrefix="select"
+            components={animatedComponents}
+            isClearable
             options={generationsOptions}
             placeholder="Select"
-            onChange={(option) => {
+            onChange={(option, { action }) => {
               handleGenSelect(option as IOptionsOffsetLimit);
-            }}
-          />
-        </PokedexDropdown>
-
-        <PokedexDropdown>
-          <label htmlFor="type">Type</label>
-          <Dropdown
-            isMulti
-            isClearable
-            isSearchable={false}
-            name="type"
-            id="type"
-            className="selectOptions"
-            classNamePrefix="select"
-            options={typeOptions}
-            placeholder="Select"
-            // @ts-ignore
-            components={
-              type &&
-              type?.length >= 2 && {
-                Menu: () => null,
-                MenuList: () => null,
-                DropdownIndicator: () => null,
-                IndicatorSeparator: () => null,
-              }
-            }
-            onChange={(option) => {
-              handleTypeSelect(option as IOptions[]);
+              action === `clear` && setGeneration(null);
             }}
           />
         </PokedexDropdown>

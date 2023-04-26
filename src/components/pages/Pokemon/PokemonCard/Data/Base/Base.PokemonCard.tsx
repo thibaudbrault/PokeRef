@@ -1,3 +1,4 @@
+import { Small } from '@/components/common/styles/Headings';
 import { TLink } from '@/components/common/styles/Table';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IGenus, IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
@@ -31,7 +32,7 @@ function Base({ pokemon, species }: Props) {
         <tr>
           <th>abilities</th>
           <td>
-            <ol>
+            <ul>
               {pokemon.abilities?.map((pa) => (
                 <li key={pa.ability.name}>
                   <TLink
@@ -43,10 +44,10 @@ function Base({ pokemon, species }: Props) {
                   >
                     {removeDash(pa.ability.name)}
                   </TLink>
-                  {pa.is_hidden && <small> (hidden ability)</small>}
+                  {pa.is_hidden && <Small> (hidden ability)</Small>}
                 </li>
               ))}
-            </ol>
+            </ul>
           </td>
         </tr>
         <tr>

@@ -1,9 +1,10 @@
-import { LeftTitle } from '@/components/common/styles/Headings';
+import { LeftH2 } from '@/components/common/styles/Headings';
 import {
   FullWidthTable,
   TableContainer,
   TBold,
   TCapitalize,
+  TEffect,
   TLink,
 } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks/useTableParams';
@@ -12,6 +13,8 @@ import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import { useMemo } from 'react';
+import { SearchContainer } from '../../Moves/Styled.Moves';
+import SearchItems from './Search.Items';
 
 type Props = {
   items?: IItem[];
@@ -70,9 +73,9 @@ function ItemsTable({ items }: Props) {
         id: `effect`,
         header: `Effect`,
         cell: (info) => (
-          <td>
+          <TEffect>
             <span>{info.getValue<string>()}</span>
-          </td>
+          </TEffect>
         ),
       },
     ],
@@ -86,7 +89,10 @@ function ItemsTable({ items }: Props) {
 
   return (
     <section>
-      <LeftTitle>Items</LeftTitle>
+      <SearchContainer>
+        <LeftH2>Items</LeftH2>
+        <SearchItems items={items} />
+      </SearchContainer>
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>
           {tableHeader()}

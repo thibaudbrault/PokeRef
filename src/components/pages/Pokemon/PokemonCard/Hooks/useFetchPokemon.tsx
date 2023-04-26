@@ -1,20 +1,19 @@
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import {
+  getCards,
   getEvolution,
   getPokemon,
   getPokemonLocation,
+  getPokemonTypes,
   getSpecies,
-  getTypes,
 } from '@/utils/DataFetch';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 export const useFetchPokemon = (name: string) => {
   const [pokemonId, setPokemonId] = useState<number | null>(null);
-  const [game, setGame] = useState<string | null>(null);
-  const [version, setVersion] = useState<string | null>(null);
 
-  const [pokemon, types, location] = useQueries({
+  const [pokemon, location, cards] = useQueries({
     queries: [
       {
         queryKey: [`pokemon`, name],
@@ -24,17 +23,23 @@ export const useFetchPokemon = (name: string) => {
         },
       },
       {
-        queryKey: [`types`, name],
-        queryFn: getTypes,
-      },
-      {
         queryKey: [`encounter`, name],
         queryFn: () =>
           getPokemonLocation(
             `https://pokeapi.co/api/v2/pokemon/${name}/encounters`,
           ),
       },
+      {
+        queryKey: [`cards`, name],
+        queryFn: () => getCards(name),
+      },
     ],
+  });
+
+  const types = useQuery({
+    queryKey: [`types`, name],
+    queryFn: () => getPokemonTypes(pokemon.data),
+    enabled: !!pokemon.data && pokemon.data.id < 10000,
   });
 
   const species = useQuery({
@@ -56,14 +61,11 @@ export const useFetchPokemon = (name: string) => {
 
   return {
     pokemonId,
-    game,
-    setGame,
-    version,
-    setVersion,
     pokemon,
     species,
     types,
     location,
     evolution,
+    cards,
   };
 };

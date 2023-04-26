@@ -1,4 +1,4 @@
-import { LeftTitle } from '@/components/common/styles/Headings';
+import { LeftH2 } from '@/components/common/styles/Headings';
 import {
   FullWidthTable,
   TableContainer,
@@ -16,6 +16,8 @@ import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
+import { SearchContainer } from '../Styled.Moves';
+import SearchMoves from './Search.Moves';
 
 type Props = {
   moves?: IMove[];
@@ -33,6 +35,7 @@ function MovesTable({ moves }: Props) {
         cell: (info) => (
           <TBold>
             <TLink
+              id={info.getValue<string>()}
               href={{
                 pathname: `/move/[name]`,
                 query: { name: info.getValue<string>() },
@@ -76,8 +79,8 @@ function MovesTable({ moves }: Props) {
               >
                 <Image
                   alt={info.getValue<string>()}
-                  width={15}
-                  height={15}
+                  width={20}
+                  height={20}
                   src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue()}.png`}
                 />
                 <span>{info.getValue<string>()}</span>
@@ -106,7 +109,10 @@ function MovesTable({ moves }: Props) {
 
   return (
     <section>
-      <LeftTitle>Moves</LeftTitle>
+      <SearchContainer>
+        <LeftH2>Moves</LeftH2>
+        <SearchMoves moves={moves} />
+      </SearchContainer>
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>
           {tableHeader()}

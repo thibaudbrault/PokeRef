@@ -16,7 +16,11 @@ function Moves() {
     status.status === `error` ||
     stats.status === `error`
   ) {
-    return toast.error(`Something went wrong`);
+    return toast.error(`Something went wrong`, {
+      style: {
+        fontSize: `1.7rem`,
+      },
+    });
   }
 
   if (

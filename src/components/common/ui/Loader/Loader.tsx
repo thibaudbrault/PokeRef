@@ -1,10 +1,20 @@
-import Image from 'next/image';
+import Lottie from 'react-lottie';
+import pokeballLoading from './Lotties/pokeballLoading.json';
 import { LoadingImg } from './StyledLoader';
 
 function Loader() {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: pokeballLoading,
+    rendererSettings: {
+      preserveAspectRatio: `xMidYMid slice`,
+    },
+  };
+
   return (
     <LoadingImg>
-      <Image src={`/pokeball.svg`} alt="" width={192} height={192} />
+      <Lottie options={defaultOptions} height={192} width={192} />
     </LoadingImg>
   );
 }

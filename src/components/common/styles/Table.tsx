@@ -70,7 +70,7 @@ export const Table = styled.table`
     & tr {
       & td {
         font-size: 2.5rem;
-        font-weight: 700;
+        font-weight: 600;
       }
     }
   }
@@ -88,7 +88,7 @@ export const THead = styled.thead`
   & th {
     color: ${({ theme }) => theme.secondary};
     font-size: 1.7rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: capitalize;
     background: rgba(130, 130, 130, 0.2);
   }
@@ -107,7 +107,7 @@ export const TCapitalize = styled.td`
 export const TBold = styled.td`
   text-transform: capitalize;
   font-size: 1.7rem;
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 export const TLink = styled(Link)`
@@ -121,7 +121,7 @@ export const TLink = styled(Link)`
   }
 
   &.bold {
-    font-weight: 700;
+    font-weight: 600;
   }
 `;
 
@@ -140,26 +140,31 @@ export const TCategory = styled.td`
 
 export const TType = styled.td`
   & div {
-    display: inline;
-    padding: 0.7rem 1.5rem;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0.5rem 1.5rem;
     border-radius: 5px;
     text-transform: uppercase;
     text-align: center;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    color: #c4c4c4;
 
     & a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
       cursor: pointer;
+
       & img {
-        display: inline-block;
-        vertical-align: middle;
         cursor: pointer;
       }
       & span {
-        font-family: 'Press start 2P';
-        font-size: 1rem;
-        padding-left: 0.5rem;
-        vertical-align: middle;
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.7rem;
+        color: #c4c4c4;
+        text-shadow: ${({ theme }) => theme.main} -1px -1px 0px,
+          ${({ theme }) => theme.main} 1px -1px 0px,
+          ${({ theme }) => theme.main} -1px 1px 0px,
+          ${({ theme }) => theme.main} 1px 1px 0px;
         cursor: pointer;
       }
     }

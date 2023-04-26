@@ -13,7 +13,7 @@ export const ItemCardDataEffect = styled.div`
   & h3 {
     margin: 0 0 1rem;
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 600;
   }
 
   & p {
@@ -26,7 +26,7 @@ export const ItemCardDataCost = styled.p`
   font-size: 1.7rem;
 
   & span {
-    font-weight: 700;
+    font-weight: 600;
   }
 `;
 
@@ -35,7 +35,7 @@ export const ItemCardDataHeld = styled.p`
   font-size: 1.7rem;
 
   & span {
-    font-weight: 700;
+    font-weight: 600;
   }
 
   & a {
@@ -62,14 +62,14 @@ export const ItemCardDescSection = styled.section`
 export const ItemCardDescTitle = styled.h3`
   margin: 0 0 2rem;
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: capitalize;
 `;
 export const ItemCardDescTable = styled(Table)`
   & th {
     background: rgba(130, 130, 130, 0.2);
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: capitalize;
   }
 
