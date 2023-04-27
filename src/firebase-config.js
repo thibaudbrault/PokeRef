@@ -11,12 +11,11 @@ import {
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API,
-  authDomain: 'pokeref.firebaseapp.com',
-  projectId: 'pokeref',
-  storageBucket: 'pokeref.appspot.com',
-  messagingSenderId: '302178530281',
+  authDomain: 'pokeref-c3f22.firebaseapp.com',
+  projectId: 'pokeref-c3f22',
+  storageBucket: 'pokeref-c3f22.appspot.com',
+  messagingSenderId: '171787348753',
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP,
-  measurementId: 'G-61JGJP2LRJ',
 };
 
 const app = initializeApp(firebaseConfig);

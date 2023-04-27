@@ -41,23 +41,8 @@ const schema = yup
   .required();
 
 function Profile() {
-  const owner = `thibaudbrault`;
-  const repo = `pokeref_medias`;
-  const folder = `sprites`;
   const router = useRouter();
   const [user, setUser] = useState<DocumentData | undefined>();
-
-  const { data: trainerSprites } = useQuery({
-    queryKey: [`trainers`],
-    queryFn: () => getTrainers(owner, repo, folder),
-  });
-
-  const testArr = [];
-
-  for (let i = 0; i < 6; i++) {
-    const randomNb = Math.floor(Math.random() * trainerSprites.length);
-    testArr.push(trainerSprites[randomNb]);
-  }
 
   const getUserDoc = async () => {
     if (auth.currentUser) {
