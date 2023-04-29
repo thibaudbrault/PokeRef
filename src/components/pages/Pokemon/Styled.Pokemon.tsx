@@ -104,8 +104,12 @@ export const PokedexElement = styled.li`
     }
   }
 
-  & p {
+  & .number {
+    padding: 0.1rem 0.7rem;
     font-size: 1.3rem;
+    color: #c4c4c4;
+    background-color: #161616;
+    border-radius: 50px;
   }
 
   &:nth-child(even) {
@@ -181,7 +185,7 @@ export const PokedexTypes = styled.div`
     border-radius: 5px;
     text-transform: uppercase;
     text-align: center;
-    color: #c4c4c4;
+    color: ${({ theme }) => theme.secondary};
     font-size: 1.7rem;
     text-shadow: ${({ theme }) => theme.main} -1px -1px 0px,
       ${({ theme }) => theme.main} 1px -1px 0px,
