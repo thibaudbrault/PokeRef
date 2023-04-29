@@ -1,6 +1,6 @@
 import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
-import { Divider } from '@/components/common/ui/Divider';
 import BackBtn from '@/components/common/ui/BackBtn';
+import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingMove from '@/components/pages/Moves/MoveCard/Heading';
 import { useFetchMove } from '@/components/pages/Moves/MoveCard/Hooks/useFetchMove';

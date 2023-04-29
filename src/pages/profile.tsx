@@ -3,10 +3,8 @@ import { Input } from '@/components/common/styles/Inputs';
 import { MainBig, Section } from '@/components/common/styles/Sizing';
 import { ProfileCaught } from '@/components/pages/Profile/Styled.Profile';
 import { auth, db } from '@/firebase-config';
-import { getTrainers } from '@/utils/DataFetch';
 import { capitalize, removeDash } from '@/utils/Typography';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useQuery } from '@tanstack/react-query';
 import {
   arrayRemove,
   deleteDoc,
@@ -24,8 +22,8 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as yup from 'yup';
 import {
-  ProfileForm,
   ProfileDetails,
+  ProfileForm,
 } from '../components/pages/Profile/Styled.Profile';
 
 type FormInput = {

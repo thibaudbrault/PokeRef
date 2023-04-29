@@ -196,11 +196,14 @@ export const AuthSecBtn = styled(AuthBtn)`
 `;
 
 export const AuthModal = styled(Modal)`
-  width: 60%;
-  height: auto;
+  width: fit-content;
+  height: fit-content;
+  padding: 5rem 8rem;
+  max-width: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -208,6 +211,31 @@ export const AuthModal = styled(Modal)`
   bottom: auto;
   margin-right: -50%;
   color: ${({ theme }) => theme.main};
+  border: 1px solid ${({ theme }) => theme.main};
+  border-radius: 5px;
   transform: translate(-50%, -50%);
   overflow-y: hidden !important;
+`;
+
+export const AuthResetClose = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.red};
+  }
+`;
+
+export const AuthResetForm = styled(AuthForm)`
+  width: 100%;
+  margin-top: 5rem;
+`;
+
+export const AuthResetInput = styled(AuthInput)`
+  width: 100%;
 `;

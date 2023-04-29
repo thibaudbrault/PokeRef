@@ -1,4 +1,5 @@
 import { MainBig } from '@/components/common/styles/Sizing';
+import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingPokedex from '@/components/pages/Pokemon/Heading';
 import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
@@ -93,6 +94,7 @@ function Pokedex() {
         />
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
         <ListPokemon filteredPokedex={filteredPokedex} />
+        <Divider />
         {scrollBtn()}
         {!form && !generation && (
           <PokedexPagination
