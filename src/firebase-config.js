@@ -12,6 +12,7 @@ import {
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API,
   authDomain: 'pokeref.firebaseapp.com',
+  databaseURL: 'https://pokeref-default-rtdb.europe-west1.firebasedatabase.app',
   projectId: 'pokeref',
   storageBucket: 'pokeref.appspot.com',
   messagingSenderId: '302178530281',

@@ -1,5 +1,6 @@
 import { H2 } from '@/components/common/styles/Headings';
 import { MainForm } from '@/components/common/styles/Sizing';
+import ResetPwd from '@/components/pages/Auth/ResetPwd';
 import {
   AuthBtn,
   AuthButtons,
@@ -9,7 +10,6 @@ import {
   AuthForm,
   AuthImage,
   AuthInput,
-  AuthModal,
   AuthResetPwd,
   AuthSecBtn,
   AuthSwitch,
@@ -31,12 +31,14 @@ import * as yup from 'yup';
 type FormInput = {
   email: string;
   password: string;
+  resetEmail: string;
 };
 
 const schema = yup
   .object({
     email: yup.string().email().required(),
     password: yup.string().min(6).required(),
+    resetEmail: yup.string().email().required(),
   })
   .required();
 
@@ -48,9 +50,6 @@ function Login() {
     setIsOpen(true);
   };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
   const {
     register,
     handleSubmit,
@@ -154,17 +153,7 @@ function Login() {
           </AuthSwitch>
         </AuthForm>
       </AuthContainer>
-      <AuthModal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        preventScroll={true}
-        closeTimeoutMS={500}
-      >
-        <button onClick={closeModal}>
-          <FiX />
-        </button>
-        <H2>Reset your password</H2>
-      </AuthModal>
+      <ResetPwd modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
     </MainForm>
   );
 }

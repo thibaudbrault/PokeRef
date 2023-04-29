@@ -3,10 +3,8 @@ import { Input } from '@/components/common/styles/Inputs';
 import { MainBig, Section } from '@/components/common/styles/Sizing';
 import { ProfileCaught } from '@/components/pages/Profile/Styled.Profile';
 import { auth, db } from '@/firebase-config';
-import { getTrainers } from '@/utils/DataFetch';
 import { capitalize, removeDash } from '@/utils/Typography';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useQuery } from '@tanstack/react-query';
 import {
   arrayRemove,
   deleteDoc,
@@ -24,8 +22,8 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as yup from 'yup';
 import {
-  ProfileForm,
   ProfileDetails,
+  ProfileForm,
 } from '../components/pages/Profile/Styled.Profile';
 
 type FormInput = {
@@ -41,23 +39,8 @@ const schema = yup
   .required();
 
 function Profile() {
-  const owner = `thibaudbrault`;
-  const repo = `pokeref_medias`;
-  const folder = `sprites`;
   const router = useRouter();
   const [user, setUser] = useState<DocumentData | undefined>();
-
-  const { data: trainerSprites } = useQuery({
-    queryKey: [`trainers`],
-    queryFn: () => getTrainers(owner, repo, folder),
-  });
-
-  const testArr = [];
-
-  for (let i = 0; i < 6; i++) {
-    const randomNb = Math.floor(Math.random() * trainerSprites.length);
-    testArr.push(trainerSprites[randomNb]);
-  }
 
   const getUserDoc = async () => {
     if (auth.currentUser) {
