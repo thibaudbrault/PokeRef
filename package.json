@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "2.9.10",
+    "@lottiefiles/react-lottie-player": "3.5.3",
     "@meronex/icons": "4.0.0",
     "@tanstack/match-sorter-utils": "8.7.6",
     "@tanstack/react-query": "4.24.6",
@@ -43,7 +44,6 @@
     "react-error-boundary": "3.1.4",
     "react-hook-form": "7.41.3",
     "react-hot-toast": "2.4.0",
-    "react-lottie": "1.2.3",
     "react-modal": "3.16.1",
     "react-paginate": "8.1.4",
     "react-select": "5.7.0",
