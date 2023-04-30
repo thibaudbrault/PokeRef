@@ -1,20 +1,16 @@
-import Lottie from 'react-lottie';
+import { Player } from '@lottiefiles/react-lottie-player';
 import pokeballLoading from './Lotties/pokeballLoading.json';
 import { SmallLoadingImg } from './StyledLoader';
 
 function SmallLoader() {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: pokeballLoading,
-    rendererSettings: {
-      preserveAspectRatio: `xMidYMid slice`,
-    },
-  };
-
   return (
     <SmallLoadingImg>
-      <Lottie options={defaultOptions} height={48} width={48} />
+      <Player
+        autoplay
+        loop
+        src={pokeballLoading}
+        style={{ height: `48px`, width: `48px` }}
+      />
     </SmallLoadingImg>
   );
 }
