@@ -46,11 +46,7 @@ export default class MyDocument extends Document {
           <meta name="googlebot-news" content="noindex, nosnippet" />
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/icon-192x192.png" />
-          <link
-            rel="shortcut icon"
-            href="/favicons/favicon.ico"
-            type="image/x-icon"
-          />
+          <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
