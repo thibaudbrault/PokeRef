@@ -9,7 +9,7 @@ function Loader() {
         autoplay
         loop
         src={pokeballLoading}
-        style={{ height: '192px', width: '192px' }}
+        style={{ height: `192px`, width: `192px` }}
       />
     </LoadingImg>
   );

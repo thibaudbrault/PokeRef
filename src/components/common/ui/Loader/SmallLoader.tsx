@@ -9,7 +9,7 @@ function SmallLoader() {
         autoplay
         loop
         src={pokeballLoading}
-        style={{ height: '48px', width: '48px' }}
+        style={{ height: `48px`, width: `48px` }}
       />
     </SmallLoadingImg>
   );
