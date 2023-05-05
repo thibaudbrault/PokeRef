@@ -32,7 +32,7 @@ function Forms({ pokemon }: Props) {
     error,
     data: forms,
   }: UseQueryResult<IPokemonForm[], Error> = useQuery({
-    queryKey: [`forms`],
+    queryKey: [`forms`, pokemon],
     queryFn: () => getPokemonForms(pokemon),
   });
 

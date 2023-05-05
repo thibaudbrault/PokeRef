@@ -67,6 +67,8 @@ export const useSwitchGame = (name: string) => {
 
   useEffect(() => {
     gameUsed();
+
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.data?.region.name]);
 
   const {
@@ -75,7 +77,7 @@ export const useSwitchGame = (name: string) => {
     error,
     data: area,
   }: UseQueryResult<ILocationArea, Error> = useQuery({
-    queryKey: [`area`, toggleState, game, name],
+    queryKey: [`area`, toggleState, game, name, areaUrl],
     queryFn: () => areaUrl && getArea(areaUrl),
     enabled: !!areaUrl && !!game && !!encounter.data,
   });

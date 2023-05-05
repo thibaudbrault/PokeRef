@@ -77,13 +77,7 @@ function Profile() {
     }
   };
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState,
-    formState: { errors, isSubmitSuccessful },
-  } = useForm<FormInput>({
+  const { register, handleSubmit, reset, formState } = useForm<FormInput>({
     resolver: yupResolver<yup.AnyObjectSchema>(schema),
     defaultValues: {
       username: ``,
@@ -153,6 +147,8 @@ function Profile() {
         unsubscribe();
       };
     }
+
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.currentUser]);
 
   useEffect(() => {

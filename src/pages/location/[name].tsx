@@ -15,7 +15,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import toast from 'react-hot-toast';
 
 const HeadingLocation = dynamic(
@@ -61,15 +61,21 @@ function LocationCard({ name }: Props) {
     })
     .filter((a) => a.version_details.length);
 
-  const filteredEncounter = (condition: string) => {
-    return encounter.data?.find(
-      (e: IEncounterConditionValue) => e.name === condition,
-    );
-  };
+  const filteredEncounter = useCallback(
+    (condition: string) => {
+      return encounter.data?.find(
+        (e: IEncounterConditionValue) => e.name === condition,
+      );
+    },
+    [encounter.data],
+  );
 
-  const filteredMethod = (condition: string) => {
-    return method.data?.find((m: IEncounterMethod) => m.name === condition);
-  };
+  const filteredMethod = useCallback(
+    (condition: string) => {
+      return method.data?.find((m: IEncounterMethod) => m.name === condition);
+    },
+    [method.data],
+  );
 
   const [data, setData] = useState<IPokemonEncounter[]>([]);
 
@@ -77,7 +83,7 @@ function LocationCard({ name }: Props) {
     if (filteredArea) {
       setData(filteredArea);
     }
-  }, [area, game]);
+  }, [filteredArea, game]);
 
   const columns = useMemo<ColumnDef<IPokemonEncounter>[]>(
     () => [
@@ -175,7 +181,7 @@ function LocationCard({ name }: Props) {
         ),
       },
     ],
-    [filteredArea, game],
+    [filteredEncounter, filteredMethod],
   );
 
   const { tableContainerRef, tableHeader, tableBody } = useTableParams(

@@ -4,7 +4,6 @@ import {
   FullWidthTable,
   TableContainer,
 } from '@/components/common/styles/Table';
-import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IMove } from '@/types/Moves/Move';
 import { IType } from '@/types/Pokemon/Type';
@@ -26,10 +25,6 @@ type Props = {
 };
 
 function MovesType({ type, moves }: Props) {
-  if (!type || !moves?.length) {
-    return <Loader />;
-  }
-
   const data = useMemo(
     () => [
       ...new Set(
@@ -38,7 +33,7 @@ function MovesType({ type, moves }: Props) {
           .flat(),
       ),
     ],
-    [moves],
+    [type?.moves],
   );
 
   const columns = useMemo<ColumnDef<IMove>[]>(

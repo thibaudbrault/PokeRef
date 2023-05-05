@@ -15,7 +15,7 @@ export const useFilterAbility = (name: string) => {
   });
 
   const { data: pokemon } = useQuery({
-    queryKey: [`abilityPokemon`, name],
+    queryKey: [`abilityPokemon`, name, ability],
     queryFn: () => ability && getAbilityPokemon(ability),
     enabled: !!ability,
   });

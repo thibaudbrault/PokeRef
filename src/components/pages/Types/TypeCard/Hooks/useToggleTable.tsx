@@ -21,13 +21,13 @@ export const useToggleTable = (name: string) => {
   });
 
   const { data: pokemon }: UseQueryResult<IPokemon[]> = useQuery({
-    queryKey: [`typePokemon`, name],
+    queryKey: [`typePokemon`, name, type],
     queryFn: () => type && getTypePokemon(type),
     enabled: !!type,
   });
 
   const { data: moves }: UseQueryResult<IMove[]> = useQuery({
-    queryKey: [`typeMoves`, name],
+    queryKey: [`typeMoves`, name, type],
     queryFn: () => type && getTypeMoves(type),
     enabled: !!type,
   });

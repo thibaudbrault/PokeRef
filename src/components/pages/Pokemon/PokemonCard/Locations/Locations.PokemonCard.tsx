@@ -101,7 +101,7 @@ function Locations({ location, game }: Props) {
         ),
       },
     ],
-    [],
+    [filteredLocation],
   );
 
   const { tableContainerRef, tableHeader, tableBody } = useTableParams(

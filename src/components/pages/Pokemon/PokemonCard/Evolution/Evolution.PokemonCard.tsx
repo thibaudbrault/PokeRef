@@ -32,7 +32,7 @@ function Evolution({ evolution, name }: Props) {
     error,
     data: evo,
   }: UseQueryResult<IPokemon[], Error> = useQuery({
-    queryKey: [`evos`, name],
+    queryKey: [`evos`, name, evolution],
     queryFn: () => getAllEvo(evolution),
     enabled: !!evolution,
   });

@@ -129,6 +129,8 @@ function PokemonCard({ name }: Props) {
 
   useEffect(() => {
     pokemonFiltersFn();
+
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemonId]);
 
   if (
