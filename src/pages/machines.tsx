@@ -15,12 +15,7 @@ import { useTableParams } from '@/hooks/useTableParams';
 import { IMachine } from '@/types/Machines/Machine';
 import { getMachines } from '@/utils/DataFetch';
 import { removeDash, uppercase } from '@/utils/Typography';
-import {
-  dehydrate,
-  QueryClient,
-  useQuery,
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';
 import { useMemo, useState } from 'react';
@@ -117,16 +112,3 @@ function MachinesPage() {
 }
 
 export default MachinesPage;
-
-export async function getStaticProps() {
-  const queryClient = new QueryClient();
-  queryClient.prefetchQuery({
-    queryKey: [`machines`],
-    queryFn: getMachines,
-  });
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}

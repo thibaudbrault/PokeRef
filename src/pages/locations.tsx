@@ -6,12 +6,7 @@ import { IRegion } from '@/types/Locations/Region';
 import { regions } from '@/utils/DataArrays';
 import { getRegions } from '@/utils/DataFetch';
 import { capitalize } from '@/utils/Typography';
-import {
-  dehydrate,
-  QueryClient,
-  useQuery,
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -70,16 +65,3 @@ function LocationsPage() {
 }
 
 export default LocationsPage;
-
-export async function getStaticProps() {
-  const queryClient = new QueryClient();
-  queryClient.prefetchQuery({
-    queryKey: [`regions`],
-    queryFn: getRegions,
-  });
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}

@@ -3,11 +3,9 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingMoves from '@/components/pages/Moves/Heading';
 import { useToggleTable } from '@/components/pages/Moves/Hooks/useToggleTable';
-import { getMoves, getStats, getStatus } from '@/utils/DataFetch';
-import { dehydrate, QueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
-function Moves() {
+function MovesPage() {
   const { moves, status, stats, toggle, setToggle, pageShown } =
     useToggleTable();
 
@@ -61,28 +59,4 @@ function Moves() {
   );
 }
 
-export default Moves;
-
-export async function getStaticProps() {
-  const queryClient = new QueryClient();
-
-  await Promise.all([
-    queryClient.prefetchQuery({
-      queryKey: [`moves`],
-      queryFn: getMoves,
-    }),
-    queryClient.prefetchQuery({
-      queryKey: [`status`],
-      queryFn: getStatus,
-    }),
-    queryClient.prefetchQuery({
-      queryKey: [`stats`],
-      queryFn: getStats,
-    }),
-  ]);
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
+export default MovesPage;
