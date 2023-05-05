@@ -29,11 +29,11 @@ export const useSwitchGame = (name: string) => {
         },
       },
       {
-        queryKey: [`encounterCondition`],
+        queryKey: [`encounterCondition`, name],
         queryFn: getEncounterCondition,
       },
       {
-        queryKey: [`encounterMethod`],
+        queryKey: [`encounterMethod`, name],
         queryFn: getEncounterMethod,
       },
     ],

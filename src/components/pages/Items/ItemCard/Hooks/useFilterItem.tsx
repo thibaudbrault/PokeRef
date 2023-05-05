@@ -9,7 +9,7 @@ export const useFilterItem = (name: string) => {
     error,
     data: item,
   }: UseQueryResult<IItem, Error> = useQuery({
-    queryKey: [`item`],
+    queryKey: [`item`, name],
     queryFn: () => getItem(name),
   });
 
