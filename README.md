@@ -59,7 +59,6 @@
 ✅404 page  
 ✅Responsive
 
-🛠Profile page with possibility to view favorites  
 🛠Check how the login with a provider works  
 🛠Types relations for each pokémon
 
@@ -67,16 +66,14 @@
 
 <h4>Performance improvements</h4>
 
-✅Use of Next SSG for static pages and SSR for dynamic pages  
+✅Use of Next SSR for dynamic pages  
 ✅Use of React-Query to fetch data only once by using `cacheTime: Infinity` and `staleTime: Infinity`. The data will very rarely change so there is no use in re-fetching it every x minutes / hours  
 ✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important  
 ✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded  
 ✅Turned into a PWA with the next-pwa package  
 ✅Paginated home page
 
-🛠Refactoring the code
-
-🔜Will look into what can be improved
+🛠Paginate Moves and Items tables
 
 <h2 id="setup">Setup</h2>
 
