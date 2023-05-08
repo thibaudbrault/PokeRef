@@ -1,5 +1,6 @@
 {
-  "plugins": ["prettier"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["prettier", "@typescript-eslint/eslint-plugin"],
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
@@ -9,6 +10,7 @@
   "rules": {
     "prettier/prettier": "error",
     "camelcase": "off",
+    "no-unused-vars": "off",
     "import/prefer-default-export": "off",
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",
@@ -50,6 +52,12 @@
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          {
+            "varsIgnorePattern": "^_"
+          }
+        ],
         "@typescript-eslint/quotes": [
           2,
           "backtick",

@@ -1,16 +1,15 @@
-import { IPokemonType } from '@/types/Pokemon/Pokemon';
 import { IType } from '@/types/Pokemon/Type';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { PokemonTypesTable } from '../Styled.Types.PokemonCard';
 
 type Props = {
   target: string;
-  pokemonTypes: IPokemonType[];
   types: IType[];
 };
 
-function TableTyping({ target, pokemonTypes, types }: Props) {
+function TableTyping({ target, types }: Props) {
   return (
     <>
       {types.length === 1 && (

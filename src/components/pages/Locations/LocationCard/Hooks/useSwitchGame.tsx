@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 
 export const useSwitchGame = (name: string) => {
   const [game, setGame] = useState<string | null>(null);
-  const [version, setVersion] = useState<string | null>(null);
+  const [_version, setVersion] = useState<string | null>(null);
   const [toggleState, setToggleState] = useState<number>(0);
   const [areaUrl, setAreaUrl] = useState<string | null>(null);
 

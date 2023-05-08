@@ -110,7 +110,7 @@ function Profile() {
     }
   };
 
-  const deleteAccount = async () => {
+  const _deleteAccount = async () => {
     if (auth.currentUser) {
       try {
         const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);

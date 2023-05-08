@@ -62,7 +62,9 @@ function Filters({
           }),
       );
     }
-  }, [form, generation, page, pokedex]);
+
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form, generation, page, pokedex, offset]);
 
   const handleFormSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
     setForm(option);

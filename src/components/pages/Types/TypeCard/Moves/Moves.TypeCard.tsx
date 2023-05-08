@@ -33,7 +33,7 @@ function MovesType({ type, moves }: Props) {
           .flat(),
       ),
     ],
-    [type?.moves],
+    [type?.moves, moves],
   );
 
   const columns = useMemo<ColumnDef<IMove>[]>(
