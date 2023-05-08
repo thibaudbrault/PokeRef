@@ -3,8 +3,6 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingItems from '@/components/pages/Items/Heading';
 import { useToggleTable } from '@/components/pages/Items/Hooks/useToggleTable';
-import { getBerries, getItems } from '@/utils/DataFetch';
-import { dehydrate, QueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
 function ItemsPage() {
@@ -47,23 +45,3 @@ function ItemsPage() {
 }
 
 export default ItemsPage;
-
-export async function getStaticProps() {
-  const queryClient = new QueryClient();
-
-  await Promise.all([
-    queryClient.prefetchQuery({
-      queryKey: [`items`],
-      queryFn: getItems,
-    }),
-    queryClient.prefetchQuery({
-      queryKey: [`berries`],
-      queryFn: getBerries,
-    }),
-  ]);
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}

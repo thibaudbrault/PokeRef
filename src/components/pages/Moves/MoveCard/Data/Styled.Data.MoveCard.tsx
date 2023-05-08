@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { device, Section } from '../../../../common/styles/Sizing';
-import { Table, TType } from '../../../../common/styles/Table';
-import { Type } from '../../../../common/styles/Themes';
+import { device, Section } from '@/components/common/styles/Sizing';
+import { Table, TType } from '@/components/common/styles/Table';
 
 export const MoveCardDataSection = styled(Section)`
   display: grid;

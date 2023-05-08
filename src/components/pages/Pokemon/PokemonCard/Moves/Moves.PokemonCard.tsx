@@ -178,6 +178,8 @@ function MovesPokemon({ pokemon, version, name }: Props) {
         ),
       },
     ],
+
+    //eslint-disable-next-line react-hooks/exhaustive-deps
     [learn, version],
   );
 

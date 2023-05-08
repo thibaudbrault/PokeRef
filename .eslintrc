@@ -1,15 +1,16 @@
 {
-  "plugins": [
-    "prettier"
-  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["prettier", "@typescript-eslint/eslint-plugin"],
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "prettier"
   ],
   "rules": {
     "prettier/prettier": "error",
     "camelcase": "off",
+    "no-unused-vars": "off",
     "import/prefer-default-export": "off",
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",
@@ -30,17 +31,9 @@
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
-        "components": [
-          "Link"
-        ],
-        "specialLink": [
-          "hrefLeft",
-          "hrefRight"
-        ],
-        "aspects": [
-          "invalidHref",
-          "preferButton"
-        ]
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
       }
     ]
   },
@@ -48,26 +41,23 @@
     {
       "files": "**/*.+(ts|tsx)",
       "parser": "@typescript-eslint/parser",
-      "plugins": [
-        "@typescript-eslint/eslint-plugin"
-      ],
-      "extends": [
-        "plugin:@typescript-eslint/recommended",
-        "prettier"
-      ],
+      "plugins": ["@typescript-eslint/eslint-plugin"],
+      "extends": ["plugin:@typescript-eslint/recommended", "prettier"],
       "rules": {
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
-        "no-use-before-define": [
-          0
-        ],
-        "@typescript-eslint/no-use-before-define": [
-          1
-        ],
+        "no-use-before-define": [0],
+        "@typescript-eslint/no-use-before-define": [1],
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          {
+            "varsIgnorePattern": "^_"
+          }
+        ],
         "@typescript-eslint/quotes": [
           2,
           "backtick",

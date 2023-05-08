@@ -17,13 +17,13 @@ export const useFetchMove = (name: string) => {
   });
 
   const { status, data: pokemon }: UseQueryResult<IPokemon[]> = useQuery({
-    queryKey: [`pokemonMove`],
+    queryKey: [`pokemonMove`, name, move],
     queryFn: () => move && getMovePokemon(move),
     enabled: !!move,
   });
 
   const { data: machine }: UseQueryResult<IMachine[]> = useQuery({
-    queryKey: [`machine`],
+    queryKey: [`machine`, name, move],
     queryFn: () => move && getMoveMachines(move),
     enabled: !!move,
   });

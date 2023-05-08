@@ -37,13 +37,13 @@ export const useFetchPokemon = (name: string) => {
   });
 
   const types = useQuery({
-    queryKey: [`types`, name],
+    queryKey: [`types`, name, pokemon.data],
     queryFn: () => getPokemonTypes(pokemon.data),
     enabled: !!pokemon.data && pokemon.data.id < 10000,
   });
 
   const species = useQuery({
-    queryKey: [`species`, name],
+    queryKey: [`species`, name, pokemon.data.id],
     queryFn: () =>
       getSpecies(
         `https://pokeapi.co/api/v2/pokemon-species/${pokemon.data.id}`,
@@ -54,7 +54,7 @@ export const useFetchPokemon = (name: string) => {
   const evolutionChainUrl = species.data?.evolution_chain?.url;
 
   const evolution = useQuery({
-    queryKey: [`evolution`, name],
+    queryKey: [`evolution`, name, evolutionChainUrl],
     queryFn: () => getEvolution(evolutionChainUrl),
     enabled: !!evolutionChainUrl,
   });

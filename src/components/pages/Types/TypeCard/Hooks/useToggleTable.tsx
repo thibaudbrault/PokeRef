@@ -6,8 +6,15 @@ import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 
+interface IPokemonTypeProps {
+  typeName?: string;
+  pokemon?: IPokemon[];
+}
+
 const MovesType = dynamic(() => import(`../Moves/Moves.TypeCard`));
-const PokemonType = dynamic(() => import(`../Pokemon/Pokemon.TypeCard`));
+const PokemonType = dynamic<IPokemonTypeProps>(
+  () => import(`../Pokemon/Pokemon.TypeCard`) as any,
+);
 
 export const useToggleTable = (name: string) => {
   const {
@@ -21,13 +28,13 @@ export const useToggleTable = (name: string) => {
   });
 
   const { data: pokemon }: UseQueryResult<IPokemon[]> = useQuery({
-    queryKey: [`typePokemon`],
+    queryKey: [`typePokemon`, name, type],
     queryFn: () => type && getTypePokemon(type),
     enabled: !!type,
   });
 
   const { data: moves }: UseQueryResult<IMove[]> = useQuery({
-    queryKey: [`typeMoves`],
+    queryKey: [`typeMoves`, name, type],
     queryFn: () => type && getTypeMoves(type),
     enabled: !!type,
   });

@@ -38,6 +38,8 @@ export function useTableParams(data, columns) {
 
   useEffect(() => {
     table.setSorting([{ id: `sort`, desc: false }]);
+
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const tableHeader = () => {

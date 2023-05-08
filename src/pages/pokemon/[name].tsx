@@ -129,6 +129,8 @@ function PokemonCard({ name }: Props) {
 
   useEffect(() => {
     pokemonFiltersFn();
+
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemonId]);
 
   if (
@@ -214,7 +216,7 @@ function PokemonCard({ name }: Props) {
 
         {types.data && (
           <>
-            <Typing pokemon={pokemon.data} types={types.data} />
+            <Typing types={types.data} />
             <Divider />
           </>
         )}

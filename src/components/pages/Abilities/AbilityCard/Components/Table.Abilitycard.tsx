@@ -4,7 +4,6 @@ import {
   TBold,
   TLink,
 } from '@/components/common/styles/Table';
-import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IAbility } from '@/types/Pokemon/Ability';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
@@ -20,11 +19,10 @@ type Props = {
 };
 
 function TableAbilitycard({ ability, pokemon }: Props) {
-  if (!ability || !pokemon?.length) {
-    return <Loader />;
-  }
-
-  const data = useMemo(() => pokemon, [pokemon]);
+  const data = useMemo(
+    () => pokemon && pokemon.length > 0 && pokemon,
+    [pokemon],
+  );
 
   const columns = useMemo<ColumnDef<IPokemon>[]>(
     () => [
@@ -132,7 +130,7 @@ function TableAbilitycard({ ability, pokemon }: Props) {
         ),
       },
     ],
-    [],
+    [ability?.name],
   );
 
   const { tableContainerRef, tableHeader, tableBody } = useTableParams(

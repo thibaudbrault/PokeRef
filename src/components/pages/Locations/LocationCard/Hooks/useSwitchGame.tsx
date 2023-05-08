@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 
 export const useSwitchGame = (name: string) => {
   const [game, setGame] = useState<string | null>(null);
-  const [version, setVersion] = useState<string | null>(null);
+  const [_version, setVersion] = useState<string | null>(null);
   const [toggleState, setToggleState] = useState<number>(0);
   const [areaUrl, setAreaUrl] = useState<string | null>(null);
 
@@ -29,11 +29,11 @@ export const useSwitchGame = (name: string) => {
         },
       },
       {
-        queryKey: [`encounterCondition`],
+        queryKey: [`encounterCondition`, name],
         queryFn: getEncounterCondition,
       },
       {
-        queryKey: [`encounterMethod`],
+        queryKey: [`encounterMethod`, name],
         queryFn: getEncounterMethod,
       },
     ],
@@ -67,6 +67,8 @@ export const useSwitchGame = (name: string) => {
 
   useEffect(() => {
     gameUsed();
+
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.data?.region.name]);
 
   const {
@@ -75,7 +77,7 @@ export const useSwitchGame = (name: string) => {
     error,
     data: area,
   }: UseQueryResult<ILocationArea, Error> = useQuery({
-    queryKey: [`area`, toggleState, game, name],
+    queryKey: [`area`, toggleState, game, name, areaUrl],
     queryFn: () => areaUrl && getArea(areaUrl),
     enabled: !!areaUrl && !!game && !!encounter.data,
   });

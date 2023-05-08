@@ -30,7 +30,7 @@ type Props = {
 };
 
 function MoveCard({ name }: Props) {
-  const [learn, setLearn] = useState<string>(`level-up`);
+  const [_learn, setLearn] = useState<string>(`level-up`);
 
   const {
     move,

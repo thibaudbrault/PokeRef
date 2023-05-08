@@ -9,7 +9,6 @@ import {
   TType,
 } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
-import Loader from '@/components/common/ui/Loader/Loader';
 import { Sup } from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
@@ -18,7 +17,7 @@ import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import {
   TypeListSubtitle,
   TypeListSubtitleContainer,
@@ -30,26 +29,28 @@ type Props = {
 };
 
 function PokemonType({ typeName, pokemon }: Props) {
-  if (!typeName || !pokemon?.length) {
-    return <Loader />;
-  }
-
   const [type, setType] = useState<IOptionsFixed[]>([]);
   const [typeArray, setTypeArray] = useState<IOptionsFixed[]>(typeOptions);
 
-  const fixCurType = (name: string, isFixed: boolean) => {
-    return setTypeArray(
-      typeArray.map((t) => {
-        if (t.value === name) {
-          return { ...t, isFixed };
-        } else {
-          return t;
-        }
-      }),
-    );
-  };
+  const fixCurType = useCallback(
+    (name: string, isFixed: boolean) => {
+      return setTypeArray(
+        typeArray.map((t) => {
+          if (t.value === name) {
+            return { ...t, isFixed };
+          } else {
+            return t;
+          }
+        }),
+      );
+    },
+    [typeArray],
+  );
 
-  const data = useMemo(() => pokemon.filter((p) => p.id < 10000), [pokemon]);
+  const data = useMemo(
+    () => pokemon && pokemon.length > 0 && pokemon.filter((p) => p.id < 10000),
+    [pokemon],
+  );
 
   const columns = useMemo<ColumnDef<IPokemon>[]>(
     () => [
@@ -166,52 +167,56 @@ function PokemonType({ typeName, pokemon }: Props) {
   };
 
   useEffect(() => {
-    fixCurType(typeName, true);
-  }, []);
+    if (typeName) {
+      fixCurType(typeName, true);
+    }
+  }, [fixCurType, typeName]);
 
-  return (
-    <Section>
-      <H3>Pokémon</H3>
-      <TypeListSubtitleContainer>
-        <TypeListSubtitle>
-          {data.length} Pokémon are <Capitalize>{typeName}</Capitalize> type
-        </TypeListSubtitle>
-        <Dropdown
-          value={type}
-          defaultValue={typeArray.some((t) => t.isFixed)}
-          isMulti
-          isClearable={typeArray.some((t) => !t.isFixed)}
-          isSearchable={false}
-          styles={styles}
-          name="type"
-          id="type"
-          className="selectOptions"
-          classNamePrefix="select"
-          options={typeArray}
-          placeholder="Select"
-          // @ts-ignore
-          components={
-            type &&
-            type?.length >= 2 && {
-              Menu: () => null,
-              MenuList: () => null,
-              DropdownIndicator: () => null,
-              IndicatorSeparator: () => null,
+  if (data) {
+    return (
+      <Section>
+        <H3>Pokémon</H3>
+        <TypeListSubtitleContainer>
+          <TypeListSubtitle>
+            {data.length} Pokémon are <Capitalize>{typeName}</Capitalize> type
+          </TypeListSubtitle>
+          <Dropdown
+            value={type}
+            defaultValue={typeArray.some((t) => t.isFixed)}
+            isMulti
+            isClearable={typeArray.some((t) => !t.isFixed)}
+            isSearchable={false}
+            styles={styles}
+            name="type"
+            id="type"
+            className="selectOptions"
+            classNamePrefix="select"
+            options={typeArray}
+            placeholder="Select"
+            // @ts-ignore
+            components={
+              type &&
+              type?.length >= 2 && {
+                Menu: () => null,
+                MenuList: () => null,
+                DropdownIndicator: () => null,
+                IndicatorSeparator: () => null,
+              }
             }
-          }
-          onChange={(option) => option && setType(option as IOptionsFixed[])}
-        />
-      </TypeListSubtitleContainer>
-      <TableContainer ref={tableContainerRef}>
-        {data.length > 0 && (
-          <FullWidthTable>
-            {tableHeader()}
-            {tableBody()}
-          </FullWidthTable>
-        )}
-      </TableContainer>
-    </Section>
-  );
+            onChange={(option) => option && setType(option as IOptionsFixed[])}
+          />
+        </TypeListSubtitleContainer>
+        <TableContainer ref={tableContainerRef}>
+          {data.length > 0 && (
+            <FullWidthTable>
+              {tableHeader()}
+              {tableBody()}
+            </FullWidthTable>
+          )}
+        </TableContainer>
+      </Section>
+    );
+  }
 }
 
 export default PokemonType;

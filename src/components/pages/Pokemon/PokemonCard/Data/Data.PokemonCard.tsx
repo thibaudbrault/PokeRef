@@ -69,7 +69,7 @@ function Data({ pokemon, species, game }: Props) {
         unsubscribe();
       };
     }
-  }, [auth.currentUser]);
+  }, []);
 
   return (
     <PokemonDataSection id="presentation">

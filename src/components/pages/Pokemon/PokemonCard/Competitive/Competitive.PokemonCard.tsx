@@ -87,8 +87,8 @@ function Competitive({ format, name }: Props) {
     .find((n) => n.pokemonSetsName === removeLongName(capitalize(name)));
 
   if (pokemonAnalyses && pokemonSets) {
-    const { pokemonAnalysesName, ...filteredAnalyses } = pokemonAnalyses;
-    const { pokemonSetsName, ...filteredSets } = pokemonSets;
+    const { _pokemonAnalysesName, ...filteredAnalyses } = pokemonAnalyses;
+    const { _pokemonSetsName, ...filteredSets } = pokemonSets;
 
     if (
       Object.keys(filteredAnalyses).length > 0 &&

@@ -14,12 +14,7 @@ import { useTableParams } from '@/hooks/useTableParams';
 import { IAbility } from '@/types/Pokemon/Ability';
 import { getAbilities } from '@/utils/DataFetch';
 import { removeDash } from '@/utils/Typography';
-import {
-  dehydrate,
-  QueryClient,
-  useQuery,
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
@@ -115,16 +110,3 @@ function AbilitiesPage() {
 }
 
 export default AbilitiesPage;
-
-export async function getStaticProps() {
-  const queryClient = new QueryClient();
-  queryClient.prefetchQuery({
-    queryKey: [`abilities`],
-    queryFn: getAbilities,
-  });
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}

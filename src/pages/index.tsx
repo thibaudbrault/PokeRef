@@ -10,12 +10,7 @@ import {
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IOptionsOffsetLimit } from '@/utils/DataArrays';
 import { getPokedex } from '@/utils/DataFetch';
-import {
-  dehydrate,
-  QueryClient,
-  useQuery,
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
@@ -114,17 +109,3 @@ function Pokedex() {
 }
 
 export default Pokedex;
-
-export async function getStaticProps() {
-  const queryClient = new QueryClient();
-  queryClient.prefetchQuery({
-    queryKey: [`pokedex`],
-    queryFn: () =>
-      getPokedex(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1010`),
-  });
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
