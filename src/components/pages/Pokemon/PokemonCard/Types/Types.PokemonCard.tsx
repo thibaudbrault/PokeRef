@@ -1,7 +1,6 @@
 import { H3 } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
 import { Type } from '@/components/common/styles/Themes';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IType } from '@/types/Pokemon/Type';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,11 +11,10 @@ import {
 import TableTyping from './Table/Table.Types.PokemonCard';
 
 type Props = {
-  pokemon: IPokemon;
   types: IType[];
 };
 
-function Typing({ pokemon, types }: Props) {
+function Typing({ types }: Props) {
   return (
     <Section id="types">
       <H3>Types relations</H3>
@@ -41,8 +39,8 @@ function Typing({ pokemon, types }: Props) {
         ))}
       </PokemonTypesList>
       <PokemonTypesContainer>
-        <TableTyping target="to" pokemonTypes={pokemon.types} types={types} />
-        <TableTyping target="from" pokemonTypes={pokemon.types} types={types} />
+        <TableTyping target="to" types={types} />
+        <TableTyping target="from" types={types} />
       </PokemonTypesContainer>
     </Section>
   );

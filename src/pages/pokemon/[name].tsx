@@ -216,7 +216,7 @@ function PokemonCard({ name }: Props) {
 
         {types.data && (
           <>
-            <Typing pokemon={pokemon.data} types={types.data} />
+            <Typing types={types.data} />
             <Divider />
           </>
         )}
