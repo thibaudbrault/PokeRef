@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const FooterContainer = styled.footer`
   display: flex;
   align-items: center;
-  height: 5vh;
   background: hsla(29, 92%, 70%, 1);
   background: linear-gradient(
     0deg,
