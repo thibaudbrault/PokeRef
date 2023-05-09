@@ -88,7 +88,6 @@ export const HeaderBtnConnected = styled.div`
 
 export const HeaderContainer = styled.header`
   width: 90%;
-  height: 10vh;
   margin: 2rem auto;
   display: flex;
   align-items: center;
