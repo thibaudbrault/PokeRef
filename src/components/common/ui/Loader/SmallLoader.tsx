@@ -1,16 +1,10 @@
-import { Player } from '@lottiefiles/react-lottie-player';
-import pokeballLoading from './Lotties/pokeballLoading.json';
+import Image from 'next/image';
 import { SmallLoadingImg } from './StyledLoader';
 
 function SmallLoader() {
   return (
     <SmallLoadingImg>
-      <Player
-        autoplay
-        loop
-        src={pokeballLoading}
-        style={{ height: `48px`, width: `48px` }}
-      />
+      <Image src={`/pokeball.svg`} alt="" width={48} height={48} />
     </SmallLoadingImg>
   );
 }
