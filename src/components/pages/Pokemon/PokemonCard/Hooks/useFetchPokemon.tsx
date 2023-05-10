@@ -48,7 +48,7 @@ export const useFetchPokemon = (name: string) => {
       getSpecies(
         `https://pokeapi.co/api/v2/pokemon-species/${pokemon.data.id}`,
       ),
-    enabled: !!pokemon.data && pokemon.data.id < 10000,
+    enabled: !!pokemon.data.id && pokemon.data.id < 10000,
   });
 
   const evolutionChainUrl = species.data?.evolution_chain?.url;

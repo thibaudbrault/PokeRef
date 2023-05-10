@@ -171,7 +171,7 @@ function Competitive({ format, name }: Props) {
                 />
               </li>
             )}
-            {setsEntries(filteredAnalyses as IFormatAnalysesSets).sets.map(
+            {setsEntries(filteredAnalyses as IFormatAnalysesSets).sets?.map(
               (s: IFormatsAnalysesSetName, i) => (
                 <li key={s.name}>
                   <H4>{s.name}</H4>
