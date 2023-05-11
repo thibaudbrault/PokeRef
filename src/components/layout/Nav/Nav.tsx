@@ -38,6 +38,7 @@ function Nav({ navOpen, setNavOpen }: Props) {
     if (!isBreakpoint) {
       setNavOpen(false);
     }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isBreakpoint]);
 
   const navArray: NavArray = [

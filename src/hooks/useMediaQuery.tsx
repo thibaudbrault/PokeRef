@@ -4,6 +4,7 @@ export function useMediaQuery(width: number) {
   const [targetReached, setTargetReached] = useState(false);
 
   const updateTarget = useCallback((e) => {
+    console.log(e);
     if (e.matches) {
       setTargetReached(true);
     } else {
@@ -20,6 +21,8 @@ export function useMediaQuery(width: number) {
     }
 
     return () => media.removeEventListener(`change`, updateTarget);
+
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return targetReached;

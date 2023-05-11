@@ -43,12 +43,13 @@ export const useFetchPokemon = (name: string) => {
   });
 
   const species = useQuery({
-    queryKey: [`species`, name, pokemon.data.id],
+    //eslint-disable-next-line @tanstack/query/exhaustive-deps
+    queryKey: [`species`, name, pokemon.data],
     queryFn: () =>
       getSpecies(
         `https://pokeapi.co/api/v2/pokemon-species/${pokemon.data.id}`,
       ),
-    enabled: !!pokemon.data.id && pokemon.data.id < 10000,
+    enabled: !!pokemon.data && pokemon.data.id < 10000,
   });
 
   const evolutionChainUrl = species.data?.evolution_chain?.url;
