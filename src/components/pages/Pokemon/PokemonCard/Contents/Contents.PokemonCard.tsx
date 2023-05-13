@@ -10,7 +10,7 @@ function Contents() {
       <div>
         <p>Table of contents</p>
         <button onClick={() => setContentsOpen(!contentsOpen)}>
-          {contentsOpen ? <MdAdd /> : <MdRemove />}
+          {contentsOpen ? <MdRemove /> : <MdAdd />}
         </button>
       </div>
       {contentsOpen && (
