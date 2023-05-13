@@ -79,6 +79,7 @@ export const MethodNav = styled.nav`
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  gap: 1rem;
 
   & button {
     position: relative;
