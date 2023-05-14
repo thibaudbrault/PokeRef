@@ -1,5 +1,6 @@
 import { Divider } from '@/components/common/ui/Divider';
 import { auth } from '@/firebase-config';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import Link from 'next/link';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
@@ -8,6 +9,7 @@ import {
   MainNav,
   MainNavList,
   ResponsiveNav,
+  ResponsiveNavContainer,
   ResponsiveNavList,
 } from './Styled.Nav';
 
@@ -22,7 +24,7 @@ type NavArray = {
 
 function Nav({ navOpen, setNavOpen }: Props) {
   const [user, setUser] = useState<User | null>();
-  // const usersCollectionRef = collection(db, `users`);
+  const isBreakpoint = useMediaQuery(890);
 
   const logout = async () => {
     await signOut(auth);
@@ -33,7 +35,11 @@ function Nav({ navOpen, setNavOpen }: Props) {
     onAuthStateChanged(auth, (currentUser) => {
       return setUser(currentUser);
     });
-  }, []);
+    if (!isBreakpoint) {
+      setNavOpen(false);
+    }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isBreakpoint]);
 
   const navArray: NavArray = [
     { name: `pokémon` },
@@ -45,19 +51,21 @@ function Nav({ navOpen, setNavOpen }: Props) {
     { name: `locations` },
   ];
 
-  return navOpen ? (
+  return navOpen && isBreakpoint ? (
     <ResponsiveNav>
-      <ResponsiveNavList>
-        {navArray.map((nav) => (
-          <li key={nav.name}>
-            <Link
-              href={nav.name === `pokémon` ? `/` : `/${nav.name}`}
-              onClick={() => setNavOpen(false)}
-            >
-              {nav.name}
-            </Link>
-          </li>
-        ))}
+      <ResponsiveNavContainer>
+        <ResponsiveNavList>
+          {navArray.map((nav) => (
+            <li key={nav.name}>
+              <Link
+                href={nav.name === `pokémon` ? `/` : `/${nav.name}`}
+                onClick={() => setNavOpen(false)}
+              >
+                {nav.name}
+              </Link>
+            </li>
+          ))}
+        </ResponsiveNavList>
         <Divider />
         {user ? (
           <HeaderBtnConnected>
@@ -76,7 +84,7 @@ function Nav({ navOpen, setNavOpen }: Props) {
             </Link>
           </HeaderBtnConnect>
         )}
-      </ResponsiveNavList>
+      </ResponsiveNavContainer>
     </ResponsiveNav>
   ) : (
     <MainNav>

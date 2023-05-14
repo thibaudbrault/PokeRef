@@ -103,8 +103,17 @@ export const ResponsiveNav = styled.nav`
   z-index: 98;
 `;
 
-export const ResponsiveNavList = styled.ul`
+export const ResponsiveNavContainer = styled.div`
   height: 100%;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export const ResponsiveNavList = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
