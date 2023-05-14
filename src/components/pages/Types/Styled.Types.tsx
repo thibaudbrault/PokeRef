@@ -10,6 +10,7 @@ export const TypesList = styled.ul`
 
   & li {
     & div {
+      border: 1px solid ${({ theme }) => theme.secondary};
       transition: 0.3s ease-in-out;
 
       &:hover {

@@ -38,7 +38,7 @@ export const HeaderBtnConnect = styled.div`
   }
 
   @media ${device.md} {
-    width: 90%;
+    width: 80%;
     justify-content: space-evenly;
   }
 `;
@@ -81,7 +81,7 @@ export const HeaderBtnConnected = styled.div`
   }
 
   @media ${device.md} {
-    width: 90%;
+    width: 80%;
     justify-content: space-evenly;
   }
 `;
