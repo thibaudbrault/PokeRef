@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from 'react';
 
 export function useMediaQuery(width: number) {
   const [targetReached, setTargetReached] = useState(false);
-  
+
   // @ts-ignore
   const updateTarget = useCallback((e) => {
     console.log(e);

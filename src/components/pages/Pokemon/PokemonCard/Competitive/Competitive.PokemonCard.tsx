@@ -87,7 +87,9 @@ function Competitive({ format, name }: Props) {
     .find((n) => n.pokemonSetsName === removeLongName(capitalize(name)));
 
   if (pokemonAnalyses && pokemonSets) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { pokemonAnalysesName, ...filteredAnalyses } = pokemonAnalyses;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { pokemonSetsName, ...filteredSets } = pokemonSets;
 
     if (
