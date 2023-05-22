@@ -8,10 +8,12 @@ import {
 } from './Styled.Footer';
 
 function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <FooterContainer id="footer">
       <FooterInner>
-        <LeftFooter>Created by Thibaud Brault</LeftFooter>
+        <LeftFooter>© {year} PokéRef</LeftFooter>
         <CenterFooter>PokéRef</CenterFooter>
         <RightFooter>
           <a
