@@ -7,8 +7,8 @@ import {
 } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
+import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
-import TableAbilitycard from '@/components/pages/Abilities/AbilityCard/Components/Table.Abilitycard';
 import HeadingAbility from '@/components/pages/Abilities/AbilityCard/Heading';
 import { useFilterAbility } from '@/components/pages/Abilities/AbilityCard/Hooks/useFilterAbility';
 import {
@@ -25,6 +25,12 @@ const DescAbilityCard = dynamic(
   () =>
     import(
       `@/components/pages/Abilities/AbilityCard/Components/Desc.AbilityCard`
+    ),
+);
+const TableAbilityCard = dynamic(
+  () =>
+    import(
+      `@/components/pages/Abilities/AbilityCard/Components/Table.AbilityCard`
     ),
 );
 
@@ -82,12 +88,13 @@ function AbilityCard({ name }: Props) {
           )}
         </AbilityCardSection>
         <DescAbilityCard filterDesc={filterDesc} />
+        <Divider />
         <AbilityCardSection>
           <H3>
             Pokemon with{` `}
             <Capitalize>{ability && removeDash(ability?.name)}</Capitalize>
           </H3>
-          <TableAbilitycard ability={ability} pokemon={pokemon} />
+          <TableAbilityCard ability={ability} pokemon={pokemon} />
         </AbilityCardSection>
         <Link href="/abilities" passHref>
           <BackBtn name="Abilities" />

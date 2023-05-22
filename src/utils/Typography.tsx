@@ -1,4 +1,4 @@
-export const removeDash = (str: string) => str?.replace(/-/g, ` `);
+export const removeDash = (str: string) => str?.replace(/\b-\b/g, ` `);
 
 export const uppercase = (str: string) => str.toUpperCase();
 
