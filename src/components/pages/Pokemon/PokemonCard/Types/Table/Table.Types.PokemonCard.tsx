@@ -1,4 +1,6 @@
+import ToolTip from '@/components/common/ui/ToolTip';
 import { IType } from '@/types/Pokemon/Type';
+import { capitalize } from '@/utils/Typography';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -23,6 +25,8 @@ function TableTyping({ target, types }: Props) {
                     ? types[0].damage_relations.no_damage_to.map((t) => (
                         <Link
                           key={t.name}
+                          data-tooltip-id="type-tooltip"
+                          data-tooltip-content={capitalize(t.name)}
                           href={{
                             pathname: `/type/[name]`,
                             query: { name: t.name },
@@ -31,7 +35,6 @@ function TableTyping({ target, types }: Props) {
                           <Image
                             src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${t.name}.png`}
                             alt={t.name}
-                            title={t.name}
                             width={32}
                             height={32}
                           />
@@ -40,6 +43,8 @@ function TableTyping({ target, types }: Props) {
                     : types[0].damage_relations.no_damage_from.map((t) => (
                         <Link
                           key={t.name}
+                          data-tooltip-id="type-tooltip"
+                          data-tooltip-content={capitalize(t.name)}
                           href={{
                             pathname: `/type/[name]`,
                             query: { name: t.name },
@@ -48,7 +53,6 @@ function TableTyping({ target, types }: Props) {
                           <Image
                             src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${t.name}.png`}
                             alt={t.name}
-                            title={t.name}
                             width={32}
                             height={32}
                           />
@@ -69,6 +73,8 @@ function TableTyping({ target, types }: Props) {
                     ? types[0].damage_relations.half_damage_to.map((t) => (
                         <Link
                           key={t.name}
+                          data-tooltip-id="type-tooltip"
+                          data-tooltip-content={capitalize(t.name)}
                           href={{
                             pathname: `/type/[name]`,
                             query: { name: t.name },
@@ -77,7 +83,6 @@ function TableTyping({ target, types }: Props) {
                           <Image
                             src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${t.name}.png`}
                             alt={t.name}
-                            title={t.name}
                             width={32}
                             height={32}
                           />
@@ -86,6 +91,8 @@ function TableTyping({ target, types }: Props) {
                     : types[0].damage_relations.half_damage_from.map((t) => (
                         <Link
                           key={t.name}
+                          data-tooltip-id="type-tooltip"
+                          data-tooltip-content={capitalize(t.name)}
                           href={{
                             pathname: `/type/[name]`,
                             query: { name: t.name },
@@ -94,7 +101,6 @@ function TableTyping({ target, types }: Props) {
                           <Image
                             src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${t.name}.png`}
                             alt={t.name}
-                            title={t.name}
                             width={32}
                             height={32}
                           />
@@ -115,6 +121,8 @@ function TableTyping({ target, types }: Props) {
                     ? types[0].damage_relations.double_damage_to.map((t) => (
                         <Link
                           key={t.name}
+                          data-tooltip-id="type-tooltip"
+                          data-tooltip-content={capitalize(t.name)}
                           href={{
                             pathname: `/type/[name]`,
                             query: { name: t.name },
@@ -123,7 +131,6 @@ function TableTyping({ target, types }: Props) {
                           <Image
                             src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${t.name}.png`}
                             alt={t.name}
-                            title={t.name}
                             width={32}
                             height={32}
                           />
@@ -132,6 +139,8 @@ function TableTyping({ target, types }: Props) {
                     : types[0].damage_relations.double_damage_from.map((t) => (
                         <Link
                           key={t.name}
+                          data-tooltip-id="type-tooltip"
+                          data-tooltip-content={capitalize(t.name)}
                           href={{
                             pathname: `/type/[name]`,
                             query: { name: t.name },
@@ -140,7 +149,6 @@ function TableTyping({ target, types }: Props) {
                           <Image
                             src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${t.name}.png`}
                             alt={t.name}
-                            title={t.name}
                             width={32}
                             height={32}
                           />
@@ -186,6 +194,7 @@ function TableTyping({ target, types }: Props) {
           </tbody>
         </PokemonTypesTable>
       )}
+      <ToolTip id="type-tooltip" />
     </>
   );
 }

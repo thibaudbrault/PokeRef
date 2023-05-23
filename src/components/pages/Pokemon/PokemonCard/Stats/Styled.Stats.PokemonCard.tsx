@@ -13,17 +13,17 @@ export const PokemonStatsCircles = styled.div`
     height: 100%;
 
     &-trail {
-      stroke: ${({ theme }) => theme.secondary};
+      stroke: ${({ theme }) => theme.secondary} !important;
     }
 
     &-path {
-      stroke: ${({ theme }) => theme.red};
+      stroke: ${({ theme }) => theme.red} !important;
     }
 
     &-text {
-      fill: ${({ theme }) => theme.secondary};
-      font-size: 1.3rem;
-      font-weight: 600;
+      fill: ${({ theme }) => theme.secondary} !important;
+      font-size: 1.3rem !important;
+      font-weight: 600 !important;
     }
   }
 

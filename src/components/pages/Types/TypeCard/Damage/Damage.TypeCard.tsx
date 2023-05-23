@@ -1,12 +1,11 @@
 import { Capitalize } from '@/components/common/styles/Headings';
-import ToolTip from '@/components/common/ui/Tooltip';
+import ToolTip from '@/components/common/ui/ToolTip';
 import { MoveCardDataTable } from '@/components/pages/Moves/MoveCard/Data/Styled.Data.MoveCard';
 import { IType } from '@/types/Pokemon/Type';
 import { capitalize, removeDash } from '@/utils/Typography';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TypeDamageSection, TypeDamageTable } from '../Styled.TypeCard';
-import { Tooltip } from 'react-tooltip';
 
 type Props = {
   type?: IType;
