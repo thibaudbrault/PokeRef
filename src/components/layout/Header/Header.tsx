@@ -65,11 +65,17 @@ function Header({ navOpen, setNavOpen, themeToggler, theme }: Props) {
           </HeaderBtnConnect>
         )}
         {navOpen ? (
-          <BurgerOpen onClick={() => setNavOpen(!navOpen)}>
+          <BurgerOpen
+            aria-label="Open menu"
+            onClick={() => setNavOpen(!navOpen)}
+          >
             <FiX />
           </BurgerOpen>
         ) : (
-          <BurgerClose onClick={() => setNavOpen(!navOpen)}>
+          <BurgerClose
+            aria-label="Close menu"
+            onClick={() => setNavOpen(!navOpen)}
+          >
             <FiMenu />
           </BurgerClose>
         )}
