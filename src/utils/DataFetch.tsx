@@ -458,7 +458,9 @@ export const getFormat = async (url: string) => {
 export const getCards = async (name: string) => {
   try {
     const res = await axios.get(
-      `https://api.pokemontcg.io/v2/cards?q=name:${removeLongName(name)}`,
+      `https://api.pokemontcg.io/v2/cards?q=name:${removeLongName(
+        name,
+      )}&orderBy=set.releaseDate`,
       {
         headers: {
           'X-Api-Key': process.env.NEXT_POKEMONTCG_API_KEY as string,
