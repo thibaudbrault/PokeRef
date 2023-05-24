@@ -1,6 +1,7 @@
 import { Bold, H3 } from '@/components/common/styles/Headings';
 import { MethodNav } from '@/components/common/styles/Navbars';
 import { Section } from '@/components/common/styles/Sizing';
+import ToolTip from '@/components/common/ui/ToolTip';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
@@ -66,88 +67,111 @@ function Bars({ pokemon }: Props) {
   };
 
   return (
-    <Section id="stats">
-      <H3>Base stats</H3>
-      <MethodNav>
-        <button
-          className={toggle === 1 ? `button_active` : ``}
-          onClick={() => setToggle(1)}
-        >
-          <p>Base</p>
-        </button>
-        <button
-          className={toggle === 2 ? `button_active` : ``}
-          onClick={() => setToggle(2)}
-        >
-          <p title="0 IV, 0 EV and negative nature">Min -</p>
-        </button>
-        <button
-          className={toggle === 3 ? `button_active` : ``}
-          onClick={() => setToggle(3)}
-        >
-          <p title="0 IV, 0 EV and neutral nature">Min</p>
-        </button>
-        <button
-          className={toggle === 4 ? `button_active` : ``}
-          onClick={() => setToggle(4)}
-        >
-          <p title="31 IV, 252 EV and neutral nature">Max</p>
-        </button>
-        <button
-          className={toggle === 5 ? `button_active` : ``}
-          onClick={() => setToggle(5)}
-        >
-          <p title="31 IV, 252 EV and positive nature">Max +</p>
-        </button>
-      </MethodNav>
-      <PokemonStatsCircles>
-        <CircularProgressbar
-          maxValue={toggle === 1 ? 255 : 720}
-          value={hpCalc(percentageHp)}
-          text={`${hpCalc(percentageHp)} Hp`}
-          strokeWidth={5}
-        />
-        <CircularProgressbar
-          maxValue={toggle === 1 ? 255 : 720}
-          value={statCalc(percentageAtk)}
-          text={`${statCalc(percentageAtk)} Atk`}
-          strokeWidth={5}
-        />
-        <CircularProgressbar
-          maxValue={toggle === 1 ? 255 : 720}
-          value={statCalc(percentageDef)}
-          text={`${statCalc(percentageDef)} Def`}
-          strokeWidth={5}
-        />
-        <CircularProgressbar
-          maxValue={toggle === 1 ? 255 : 720}
-          value={statCalc(percentageSpAtk)}
-          text={`${statCalc(percentageSpAtk)} Sp Atk`}
-          strokeWidth={5}
-        />
-        <CircularProgressbar
-          maxValue={toggle === 1 ? 255 : 720}
-          value={statCalc(percentageSpDef)}
-          text={`${statCalc(percentageSpDef)} Sp Def`}
-          strokeWidth={5}
-        />
-        <CircularProgressbar
-          maxValue={toggle === 1 ? 255 : 720}
-          value={statCalc(percentageSpd)}
-          text={`${statCalc(percentageSpd)} Spd`}
-          strokeWidth={5}
-        />
-      </PokemonStatsCircles>
-      {toggle === 1 && (
-        <PokemonStatsTotal>
-          <Bold>Total</Bold>: {percentageTotal}
-        </PokemonStatsTotal>
-      )}
-      <PokemonStatsDetails>
-        <summary>Stats calculator</summary>
-        <CalculatorStats baseStat={pokemon.stats} />
-      </PokemonStatsDetails>
-    </Section>
+    <>
+      <Section id="stats">
+        <H3>Base stats</H3>
+        <MethodNav>
+          <button
+            className={toggle === 1 ? `button_active` : ``}
+            onClick={() => setToggle(1)}
+          >
+            <p>Base</p>
+          </button>
+          <button
+            className={toggle === 2 ? `button_active` : ``}
+            onClick={() => setToggle(2)}
+          >
+            <p
+              data-tooltip-id="stat-tooltip"
+              data-tooltip-content="0 IV, 0 EV and negative nature"
+            >
+              Min -
+            </p>
+          </button>
+          <button
+            className={toggle === 3 ? `button_active` : ``}
+            onClick={() => setToggle(3)}
+          >
+            <p
+              data-tooltip-id="stat-tooltip"
+              data-tooltip-content="0 IV, 0 EV and neutral nature"
+            >
+              Min
+            </p>
+          </button>
+          <button
+            className={toggle === 4 ? `button_active` : ``}
+            onClick={() => setToggle(4)}
+          >
+            <p
+              data-tooltip-id="stat-tooltip"
+              data-tooltip-content="31 IV, 252 EV and neutral nature"
+            >
+              Max
+            </p>
+          </button>
+          <button
+            className={toggle === 5 ? `button_active` : ``}
+            onClick={() => setToggle(5)}
+          >
+            <p
+              data-tooltip-id="stat-tooltip"
+              data-tooltip-content="31 IV, 252 EV and positive nature"
+            >
+              Max +
+            </p>
+          </button>
+        </MethodNav>
+        <PokemonStatsCircles>
+          <CircularProgressbar
+            maxValue={toggle === 1 ? 255 : 720}
+            value={hpCalc(percentageHp)}
+            text={`${hpCalc(percentageHp)} Hp`}
+            strokeWidth={5}
+          />
+          <CircularProgressbar
+            maxValue={toggle === 1 ? 255 : 720}
+            value={statCalc(percentageAtk)}
+            text={`${statCalc(percentageAtk)} Atk`}
+            strokeWidth={5}
+          />
+          <CircularProgressbar
+            maxValue={toggle === 1 ? 255 : 720}
+            value={statCalc(percentageDef)}
+            text={`${statCalc(percentageDef)} Def`}
+            strokeWidth={5}
+          />
+          <CircularProgressbar
+            maxValue={toggle === 1 ? 255 : 720}
+            value={statCalc(percentageSpAtk)}
+            text={`${statCalc(percentageSpAtk)} Sp Atk`}
+            strokeWidth={5}
+          />
+          <CircularProgressbar
+            maxValue={toggle === 1 ? 255 : 720}
+            value={statCalc(percentageSpDef)}
+            text={`${statCalc(percentageSpDef)} Sp Def`}
+            strokeWidth={5}
+          />
+          <CircularProgressbar
+            maxValue={toggle === 1 ? 255 : 720}
+            value={statCalc(percentageSpd)}
+            text={`${statCalc(percentageSpd)} Spd`}
+            strokeWidth={5}
+          />
+        </PokemonStatsCircles>
+        {toggle === 1 && (
+          <PokemonStatsTotal>
+            <Bold>Total</Bold>: {percentageTotal}
+          </PokemonStatsTotal>
+        )}
+        <PokemonStatsDetails>
+          <summary>Stats calculator</summary>
+          <CalculatorStats baseStat={pokemon.stats} />
+        </PokemonStatsDetails>
+      </Section>
+      <ToolTip id="stat-tooltip" />
+    </>
   );
 }
 
