@@ -111,12 +111,12 @@ export const HeaderBtnContainer = styled.div`
 `;
 
 export const HeaderBtnTheme = styled.button`
-  width: 3rem;
-  height: 3rem;
+  width: 48px;
+  height: 48px;
   background: none;
   border: none;
   color: ${({ theme }) => theme.secondary};
-  font-size: 3rem;
+  font-size: 48px;
 `;
 
 export const BurgerOpen = styled.button`
@@ -132,7 +132,7 @@ export const BurgerOpen = styled.button`
   border-radius: 50px;
   background-color: ${({ theme }) => theme.secondary};
   color: ${({ theme }) => theme.main};
-  font-size: 3rem;
+  font-size: 48px;
   transition: 0.3s ease-in-out;
 
   &:hover {
@@ -148,7 +148,7 @@ export const BurgerOpen = styled.button`
 
 export const BurgerClose = styled.button`
   display: none;
-  font-size: 3rem;
+  font-size: 48px;
   background: transparent;
   border: none;
   color: ${({ theme }) => theme.secondary};

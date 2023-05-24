@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { device } from './Sizing';
+import { Tooltip } from 'react-tooltip';
 
 export const H1 = styled.h1`
   padding: 0 1rem;
@@ -113,4 +114,8 @@ export const Small = styled.small`
   font-size: 1.5rem;
   font-weight: 400;
   text-transform: lowercase;
+`;
+
+export const StyledTooltip = styled(Tooltip)`
+  font-size: 1.3rem !important;
 `;

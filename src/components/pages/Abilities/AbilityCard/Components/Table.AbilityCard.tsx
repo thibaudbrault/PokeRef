@@ -18,11 +18,13 @@ type Props = {
   pokemon?: IPokemon[];
 };
 
-function TableAbilitycard({ ability, pokemon }: Props) {
+function TableAbilityCard({ ability, pokemon }: Props) {
   const data = useMemo(
     () => pokemon && pokemon.length > 0 && pokemon,
     [pokemon],
   );
+
+  console.log(pokemon);
 
   const columns = useMemo<ColumnDef<IPokemon>[]>(
     () => [
@@ -148,4 +150,4 @@ function TableAbilitycard({ ability, pokemon }: Props) {
   );
 }
 
-export default TableAbilitycard;
+export default TableAbilityCard;

@@ -80,6 +80,7 @@ export const PokedexElement = styled.li`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  gap: 1rem;
   background: rgba(255, 255, 255, 0.4);
   border: 1px solid transparent;
   border-radius: 25px;
@@ -97,10 +98,6 @@ export const PokedexElement = styled.li`
       &:hover {
         color: ${({ theme }) => theme.red};
       }
-    }
-
-    @media ${device.sm} {
-      font-size: 1.3rem;
     }
   }
 
@@ -208,10 +205,6 @@ export const PokedexTypes = styled.div`
         font-family: 'Oswald', sans-serif;
         cursor: pointer;
       }
-    }
-
-    @media ${device.sm} {
-      font-size: 1rem;
     }
   }
 `;
