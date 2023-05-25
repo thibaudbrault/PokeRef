@@ -4,7 +4,7 @@ import { device } from '../../common/styles/Sizing';
 export const HeaderBtnConnect = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 1rem;
   margin: 0 auto;
   & a {
     display: flex;
@@ -46,7 +46,7 @@ export const HeaderBtnConnect = styled.div`
 export const HeaderBtnConnected = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 1rem;
   margin: 0 auto;
   & a,
   button {
@@ -107,7 +107,7 @@ export const HeaderContainer = styled.header`
 export const HeaderBtnContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 3rem;
 `;
 
 export const HeaderBtnTheme = styled.button`

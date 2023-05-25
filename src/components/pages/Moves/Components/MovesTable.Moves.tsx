@@ -9,7 +9,7 @@ import {
   TType,
 } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
-import { useTableParams } from '@/hooks/useTableParams';
+import { usePaginatedTableParams } from '@/hooks/usePaginatedTableParams';
 import { IMove } from '@/types/Moves/Move';
 import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
@@ -102,10 +102,8 @@ function MovesTable({ moves }: Props) {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
+  const { tableContainerRef, tableHeader, tableBody, tablePagination } =
+    usePaginatedTableParams(data, columns);
 
   return (
     <section>
@@ -118,6 +116,7 @@ function MovesTable({ moves }: Props) {
           {tableHeader()}
           {tableBody()}
         </FullWidthTable>
+        {tablePagination()}
       </TableContainer>
     </section>
   );

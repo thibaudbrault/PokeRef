@@ -7,7 +7,7 @@ import {
   TEffect,
   TLink,
 } from '@/components/common/styles/Table';
-import { useTableParams } from '@/hooks/useTableParams';
+import { usePaginatedTableParams } from '@/hooks/usePaginatedTableParams';
 import { IItem } from '@/types/Items/Item';
 import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
@@ -82,10 +82,8 @@ function ItemsTable({ items }: Props) {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
+  const { tableContainerRef, tableHeader, tableBody, tablePagination } =
+    usePaginatedTableParams(data, columns);
 
   return (
     <section>
@@ -98,6 +96,7 @@ function ItemsTable({ items }: Props) {
           {tableHeader()}
           {tableBody()}
         </FullWidthTable>
+        {tablePagination()}
       </TableContainer>
     </section>
   );

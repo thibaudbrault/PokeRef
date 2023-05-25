@@ -160,7 +160,7 @@ export const TType = styled.td`
       & span {
         font-family: 'Oswald', sans-serif;
         font-size: 1.7rem;
-        color: #c4c4c4;
+        color: ${({ theme }) => theme.secondary};
         text-shadow: ${({ theme }) => theme.main} -1px -1px 0px,
           ${({ theme }) => theme.main} 1px -1px 0px,
           ${({ theme }) => theme.main} -1px 1px 0px,

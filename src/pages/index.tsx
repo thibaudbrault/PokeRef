@@ -1,12 +1,10 @@
+import { Pagination } from '@/components/common/styles/Pagination';
 import { MainBig } from '@/components/common/styles/Sizing';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingPokedex from '@/components/pages/Pokemon/Heading';
 import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
-import {
-  PokedexPagination,
-  PokedexVerticalText,
-} from '@/components/pages/Pokemon/Styled.Pokemon';
+import { PokedexVerticalText } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IOptionsOffsetLimit } from '@/utils/DataArrays';
 import { getPokedex } from '@/utils/DataFetch';
@@ -92,7 +90,7 @@ function Pokedex() {
         <Divider />
         {scrollBtn()}
         {!form && !generation && (
-          <PokedexPagination
+          <Pagination
             breakLabel="..."
             onPageChange={handlePageChange}
             nextLabel=">"
