@@ -10,7 +10,7 @@ import {
 import Loader from '@/components/common/ui/Loader/Loader';
 import SearchAbilities from '@/components/pages/Abilities/Components/Search.Abilities';
 import { SearchContainer } from '@/components/pages/Moves/Styled.Moves';
-import { useTableParams } from '@/hooks/useTableParams';
+import { usePaginatedTableParams } from '@/hooks/usePaginatedTableParams';
 import { IAbility } from '@/types/Pokemon/Ability';
 import { getAbilities } from '@/utils/DataFetch';
 import { removeDash } from '@/utils/Typography';
@@ -73,10 +73,8 @@ function AbilitiesPage() {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
+  const { tableContainerRef, tableHeader, tableBody, tablePagination } =
+    usePaginatedTableParams(data, columns);
 
   if (isError) {
     return toast.error(`Something went wrong: ${error.message}`, {
@@ -103,6 +101,7 @@ function AbilitiesPage() {
             {tableHeader()}
             {tableBody()}
           </FullWidthTable>
+          {tablePagination()}
         </TableContainer>
       </MainBig>
     </>
