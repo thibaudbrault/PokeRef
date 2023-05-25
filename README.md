@@ -71,9 +71,7 @@
 ✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important  
 ✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded  
 ✅Turned into a PWA with the next-pwa package  
-✅Paginated home page
-
-🛠Paginate Moves and Items tables
+✅Paginated pokedex, moves, abilities and items pages
 
 <h2 id="setup">Setup</h2>
 
