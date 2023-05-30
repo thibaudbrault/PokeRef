@@ -12,8 +12,10 @@ type Props = {
 
 function Base({ pokemon, species }: Props) {
   // Convert height and weight to meters and kilograms and round the number
-  const height = (pokemon.height * 0.1).toFixed(2);
-  const weight = (pokemon.weight * 0.1).toFixed(2);
+  const height = Number.parseFloat((pokemon.height * 0.1).toFixed(2));
+  const weight = Number.parseFloat((pokemon.weight * 0.1).toFixed(2));
+  const heightFt = (height * 3.28084).toFixed(1).replace(`.`, `'`) + `"`;
+  const weightLb = Number.parseFloat((weight * 2.20462).toFixed(2));
 
   const filterGenera: IGenus | undefined =
     species && species.genera.find((sg) => sg.language.name === `en`);
@@ -52,11 +54,15 @@ function Base({ pokemon, species }: Props) {
         </tr>
         <tr>
           <th>height</th>
-          <td>{height.toString()} m</td>
+          <td>
+            {height.toString()} m ({heightFt})
+          </td>
         </tr>
         <tr>
           <th>weight</th>
-          <td>{weight.toString()} kg</td>
+          <td>
+            {weight.toString()} kg ({weightLb} lbs)
+          </td>
         </tr>
         {pokemon.id < 10000 && (
           <>
