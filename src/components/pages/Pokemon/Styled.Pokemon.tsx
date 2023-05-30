@@ -208,7 +208,7 @@ export const PokedexTypes = styled.div`
   }
 `;
 
-export const ToBottom = styled.a`
+export const ScrollBtn = styled.a`
   padding: 0.5rem;
   display: flex;
   position: fixed;

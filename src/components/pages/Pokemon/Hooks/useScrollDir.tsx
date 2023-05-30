@@ -1,4 +1,4 @@
-import { ToBottom } from '@/components/pages/Pokemon/Styled.Pokemon';
+import { ScrollBtn } from '@/components/pages/Pokemon/Styled.Pokemon';
 import { FaAngleDown, FaAngleUp } from '@meronex/icons/fa';
 import { useEffect, useState } from 'react';
 
@@ -36,15 +36,15 @@ export const useScrollDir = () => {
   const scrollBtn = () => {
     if (scrollDir === `down`) {
       return (
-        <ToBottom href="#footer" aria-label="To Bottom">
+        <ScrollBtn href="#footer" aria-label="To Bottom">
           <FaAngleDown />
-        </ToBottom>
+        </ScrollBtn>
       );
     } else {
       return (
-        <ToBottom href="#header" aria-label="To Top">
+        <ScrollBtn href="#header" aria-label="To Top">
           <FaAngleUp />
-        </ToBottom>
+        </ScrollBtn>
       );
     }
   };
