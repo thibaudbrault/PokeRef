@@ -94,6 +94,12 @@ export const H3 = styled.h3`
   margin-bottom: 1.5rem;
   font-size: 3.5rem;
   text-transform: capitalize;
+
+  &:first-letter {
+    background: ${({ theme }) => theme.red};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 `;
 
 export const H4 = styled.h4`
