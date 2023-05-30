@@ -217,18 +217,29 @@ function Competitive({ format, name }: Props) {
                             )}
                           </li>
                           <li>
-                            Nature: <b>{setSpecs(filteredSets, i, `nature`)}</b>
+                            Nature:{` `}
+                            <b>
+                              {typeof setSpecs(filteredSets, i, `nature`) ===
+                              `string`
+                                ? setSpecs(filteredSets, i, `nature`)
+                                : `-`}
+                            </b>
                           </li>
                           <li>
                             EVs:{` `}
                             <b>
-                              {Object.entries(setSpecs(filteredSets, i, `evs`))
-                                .join(` / `)
-                                .replaceAll(`,`, ` `)
-                                .replace(
-                                  /\b(?:hp|atk|def|spa|spd|spe)\b/gi,
-                                  (matched) => majEv[matched],
-                                )}
+                              {typeof setSpecs(filteredSets, i, `evs`) ===
+                              `object`
+                                ? Object.entries(
+                                    setSpecs(filteredSets, i, `evs`),
+                                  )
+                                    .join(` / `)
+                                    .replaceAll(`,`, ` `)
+                                    .replace(
+                                      /\b(?:hp|atk|def|spa|spd|spe)\b/gi,
+                                      (matched) => majEv[matched],
+                                    )
+                                : `-`}
                             </b>
                           </li>
                         </ul>
