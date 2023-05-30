@@ -12,6 +12,8 @@ import Header from '@/components/layout/Header/Header';
 import Nav from '@/components/layout/Nav/Nav';
 import NextNProgress from 'nextjs-progressbar';
 import { Toaster } from 'react-hot-toast';
+import Chat from '@/components/layout/Chat/Chat';
+import { auth } from '@/firebase-config';
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
@@ -61,6 +63,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
             <Toaster />
+            <Reset />
             <NextNProgress />
             <Header
               navOpen={navOpen}
@@ -69,7 +72,8 @@ function MyApp({ Component, pageProps }: AppProps) {
               theme={theme}
             />
             <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
-            <Reset />
+            {/* {auth.currentUser && <Chat />} */}
+            <Chat />
             <Component {...pageProps} />
             <Footer />
           </ThemeProvider>

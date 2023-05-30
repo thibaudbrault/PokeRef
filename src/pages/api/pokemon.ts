@@ -2,19 +2,24 @@ import openai from '@/openai-config';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 type Data = {
-  name: any;
+  result: string;
 };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>,
+  res: NextApiResponse<Data>,
 ) {
-  const completion = await openai.createCompletion({
-    model: `text-davinci-003`,
-    prompt: `What is the height of Charizard in metric units ?`,
+  const completion = await openai.createChatCompletion({
+    model: `gpt-3.5-turbo`,
+    messages: [
+      {
+        role: `user`,
+        content: req.body.prompt,
+      },
+    ],
   });
 
-  const result = completion.data.choices[0].text;
+  const result = completion.data.choices[0].message.content;
 
   res.status(200).json({ result });
 }
