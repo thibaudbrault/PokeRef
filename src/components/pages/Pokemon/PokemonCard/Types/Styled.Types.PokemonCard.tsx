@@ -2,12 +2,6 @@ import { TypeDamageTable } from '@/components/pages/Types/TypeCard/Styled.TypeCa
 import styled from 'styled-components';
 import { PokedexTypes } from '../../Styled.Pokemon';
 
-export const PokemonTypesContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-`;
-
 export const PokemonTypesList = styled(PokedexTypes)`
   width: fit-content;
   flex-direction: row;
@@ -22,6 +16,7 @@ export const PokemonTypesList = styled(PokedexTypes)`
 
 export const PokemonTypesTable = styled(TypeDamageTable)`
   height: auto;
+  width: 100%;
   & tr {
     & td {
       height: auto;
