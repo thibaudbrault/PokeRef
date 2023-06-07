@@ -60,7 +60,7 @@ export const TypeDamageTable = styled(Table)`
       }
     }
 
-    &:nth-of-type(3) {
+    &:nth-of-type(4) {
       border-bottom: 5px solid rgba(130, 130, 130, 0.2);
     }
   }

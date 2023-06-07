@@ -6,12 +6,43 @@ import { capitalize, removeDash } from '@/utils/Typography';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TypeDamageSection, TypeDamageTable } from '../Styled.TypeCard';
+import typesRelationData from '@/data/types.json';
 
 type Props = {
   type?: IType;
 };
 
+type TypesRelation = {
+  [key: string]: Record<string, number>;
+};
+
 function DamageType({ type }: Props) {
+  const typesRelation: TypesRelation = typesRelationData;
+  const name = type?.name || ``;
+  const typeEffectiveness: Record<string, number> = typesRelation[name];
+
+  const getTypeEffectiveness = (multiplier: number) => {
+    return Object.entries(typeEffectiveness)
+      .filter(([key, value]) => value === multiplier)
+      .map(([key]) => key);
+  };
+
+  const getTypeWeaknessess = (multiplier: number) => {
+    const typeData: { key: string; value: number }[] = [];
+    for (const [key, objValue] of Object.entries(typesRelation)) {
+      const value = objValue[name];
+      if (typeof value === `number`) {
+        typeData.push({
+          key,
+          value,
+        });
+      }
+    }
+    return typeData
+      .filter((type) => type.value === multiplier)
+      .map((filteredType) => filteredType.key);
+  };
+
   return (
     type && (
       <>
@@ -33,19 +64,19 @@ function DamageType({ type }: Props) {
               <th>Deals 0X damage to</th>
               <td>
                 <div>
-                  {type?.damage_relations?.no_damage_to?.map((ndt) => (
+                  {getTypeEffectiveness(0).map((type) => (
                     <Link
-                      key={ndt.name}
+                      key={type}
                       data-tooltip-id="type-tooltip"
-                      data-tooltip-content={capitalize(ndt.name)}
+                      data-tooltip-content={capitalize(type)}
                       href={{
                         pathname: `/type/[name]`,
-                        query: { name: ndt?.name },
+                        query: { name: type },
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${ndt.name}.png`}
-                        alt={ndt.name}
+                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        alt={type}
                         width={32}
                         height={32}
                       />
@@ -58,19 +89,44 @@ function DamageType({ type }: Props) {
               <th>Deals 1/2X damage to</th>
               <td>
                 <div>
-                  {type?.damage_relations?.half_damage_to?.map((hdt) => (
+                  {getTypeEffectiveness(0.5).map((type) => (
                     <Link
-                      key={hdt.name}
+                      key={type}
                       data-tooltip-id="type-tooltip"
-                      data-tooltip-content={capitalize(hdt.name)}
+                      data-tooltip-content={capitalize(type)}
                       href={{
                         pathname: `/type/[name]`,
-                        query: { name: hdt?.name },
+                        query: { name: type },
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${hdt.name}.png`}
-                        alt={hdt.name}
+                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        alt={type}
+                        width={32}
+                        height={32}
+                      />
+                    </Link>
+                  ))}
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>Deals 1X damage to</th>
+              <td>
+                <div>
+                  {getTypeEffectiveness(1).map((type) => (
+                    <Link
+                      key={type}
+                      data-tooltip-id="type-tooltip"
+                      data-tooltip-content={capitalize(type)}
+                      href={{
+                        pathname: `/type/[name]`,
+                        query: { name: type },
+                      }}
+                    >
+                      <Image
+                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        alt={type}
                         width={32}
                         height={32}
                       />
@@ -83,19 +139,19 @@ function DamageType({ type }: Props) {
               <th>Deals 2X damage to</th>
               <td>
                 <div>
-                  {type?.damage_relations?.double_damage_to?.map((ddt) => (
+                  {getTypeEffectiveness(2).map((type) => (
                     <Link
-                      key={ddt.name}
+                      key={type}
                       data-tooltip-id="type-tooltip"
-                      data-tooltip-content={capitalize(ddt.name)}
+                      data-tooltip-content={capitalize(type)}
                       href={{
                         pathname: `/type/[name]`,
-                        query: { name: ddt?.name },
+                        query: { name: type },
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${ddt.name}.png`}
-                        alt={ddt.name}
+                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        alt={type}
                         width={32}
                         height={32}
                       />
@@ -108,19 +164,19 @@ function DamageType({ type }: Props) {
               <th>Takes 0X damage from</th>
               <td>
                 <div>
-                  {type?.damage_relations?.no_damage_from?.map((ndf) => (
+                  {getTypeWeaknessess(0).map((type) => (
                     <Link
-                      key={ndf.name}
+                      key={type}
                       data-tooltip-id="type-tooltip"
-                      data-tooltip-content={capitalize(ndf.name)}
+                      data-tooltip-content={capitalize(type)}
                       href={{
                         pathname: `/type/[name]`,
-                        query: { name: ndf?.name },
+                        query: { name: type },
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${ndf.name}.png`}
-                        alt={ndf.name}
+                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        alt={type}
                         width={32}
                         height={32}
                       />
@@ -133,19 +189,44 @@ function DamageType({ type }: Props) {
               <th>Takes 1/2X damage from</th>
               <td>
                 <div>
-                  {type?.damage_relations?.half_damage_from?.map((hdf) => (
+                  {getTypeWeaknessess(0.5).map((type) => (
                     <Link
-                      key={hdf.name}
+                      key={type}
                       data-tooltip-id="type-tooltip"
-                      data-tooltip-content={capitalize(hdf.name)}
+                      data-tooltip-content={capitalize(type)}
                       href={{
                         pathname: `/type/[name]`,
-                        query: { name: hdf?.name },
+                        query: { name: type },
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${hdf.name}.png`}
-                        alt={hdf.name}
+                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        alt={type}
+                        width={32}
+                        height={32}
+                      />
+                    </Link>
+                  ))}
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>Takes 1X damage from</th>
+              <td>
+                <div>
+                  {getTypeWeaknessess(1).map((type) => (
+                    <Link
+                      key={type}
+                      data-tooltip-id="type-tooltip"
+                      data-tooltip-content={capitalize(type)}
+                      href={{
+                        pathname: `/type/[name]`,
+                        query: { name: type },
+                      }}
+                    >
+                      <Image
+                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        alt={type}
                         width={32}
                         height={32}
                       />
@@ -158,19 +239,19 @@ function DamageType({ type }: Props) {
               <th>Takes 2X damage from</th>
               <td>
                 <div>
-                  {type?.damage_relations?.double_damage_from?.map((ddf) => (
+                  {getTypeWeaknessess(2).map((type) => (
                     <Link
-                      key={ddf.name}
+                      key={type}
                       data-tooltip-id="type-tooltip"
-                      data-tooltip-content={capitalize(ddf.name)}
+                      data-tooltip-content={capitalize(type)}
                       href={{
                         pathname: `/type/[name]`,
-                        query: { name: ddf?.name },
+                        query: { name: type },
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${ddf.name}.png`}
-                        alt={ddf.name}
+                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        alt={type}
                         width={32}
                         height={32}
                       />

@@ -4,7 +4,7 @@ import { capitalize } from '@/utils/Typography';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PokemonTypesTable } from '../Styled.Types.PokemonCard';
-import typesRelationData from '../Types.json';
+import typesRelationData from '@/data/types.json';
 
 type Props = {
   types: IType[];
