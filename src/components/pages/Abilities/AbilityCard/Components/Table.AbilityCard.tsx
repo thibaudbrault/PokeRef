@@ -24,8 +24,6 @@ function TableAbilityCard({ ability, pokemon }: Props) {
     [pokemon],
   );
 
-  console.log(pokemon);
-
   const columns = useMemo<ColumnDef<IPokemon>[]>(
     () => [
       {
