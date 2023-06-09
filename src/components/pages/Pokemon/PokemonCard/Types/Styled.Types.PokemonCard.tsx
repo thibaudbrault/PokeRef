@@ -22,7 +22,7 @@ export const PokemonTypesTable = styled(TypeDamageTable)`
       height: auto;
     }
 
-    &:nth-of-type(3) {
+    &:nth-of-type(4) {
       border-bottom: 1px solid rgba(130, 130, 130, 0.2);
     }
   }
