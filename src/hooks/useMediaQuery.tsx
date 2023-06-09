@@ -5,7 +5,6 @@ export function useMediaQuery(width: number) {
 
   // @ts-ignore
   const updateTarget = useCallback((e) => {
-    console.log(e);
     if (e.matches) {
       setTargetReached(true);
     } else {

@@ -4,10 +4,8 @@ import { Type } from '@/components/common/styles/Themes';
 import { IType } from '@/types/Pokemon/Type';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  PokemonTypesContainer,
-  PokemonTypesList,
-} from './Styled.Types.PokemonCard';
+
+import { PokemonTypesList } from './Styled.Types.PokemonCard';
 import TableTyping from './Table/Table.Types.PokemonCard';
 
 type Props = {
@@ -38,10 +36,9 @@ function Typing({ types }: Props) {
           </Type>
         ))}
       </PokemonTypesList>
-      <PokemonTypesContainer>
-        <TableTyping target="to" types={types} />
-        <TableTyping target="from" types={types} />
-      </PokemonTypesContainer>
+      <div>
+        <TableTyping types={types} />
+      </div>
     </Section>
   );
 }

@@ -45,7 +45,6 @@ function ResetPwd({ modalIsOpen, setIsOpen }: Props) {
   };
 
   const resetPwdForm = async (data: FormInput) => {
-    console.log(data);
     try {
       await sendPasswordResetEmail(auth, data.resetEmail);
       toast.success(`Check your mails ✉`, {

@@ -170,7 +170,7 @@ function PokemonType({ typeName, pokemon }: Props) {
     if (typeName) {
       fixCurType(typeName, true);
     }
-  }, [fixCurType, typeName]);
+  }, [typeName]);
 
   if (data) {
     return (
