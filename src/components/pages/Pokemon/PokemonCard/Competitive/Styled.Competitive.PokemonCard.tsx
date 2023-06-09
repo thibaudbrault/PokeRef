@@ -1,3 +1,4 @@
+import { device } from '@/components/common/styles/Sizing';
 import styled from 'styled-components';
 
 export const PokemonSetsContainer = styled.ul`
@@ -51,6 +52,11 @@ export const PokemonSetSpecs = styled.div`
         font-weight: 600;
       }
     }
+  }
+
+  @media ${device.md} {
+    display: flex;
+    flex-direction: column;
   }
 `;
 
