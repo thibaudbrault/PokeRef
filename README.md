@@ -7,7 +7,8 @@
 
 <div align="center">
 
-![GitHub repo size](https://img.shields.io/github/repo-size/thibaudbrault/pokeref)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/thibaudbrault/pokeref/dev)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/thibaudbrault/pokeref/ci.yml)
 ![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
 
@@ -60,7 +61,7 @@
 ✅Responsive
 
 🛠Check how the login with a provider works  
-🛠Types relations for each pokémon
+🛠Second type select in the list of pokémon in a type page
 
 🔜Contest section in a move's page
 
