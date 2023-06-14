@@ -12,6 +12,7 @@ import Header from '@/components/layout/Header/Header';
 import Nav from '@/components/layout/Nav/Nav';
 import NextNProgress from 'nextjs-progressbar';
 import { Toaster } from 'react-hot-toast';
+import PlausibleProvider from 'next-plausible';
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
@@ -60,18 +61,23 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
-            <Toaster />
-            <NextNProgress />
-            <Header
-              navOpen={navOpen}
-              setNavOpen={setNavOpen}
-              themeToggler={themeToggler}
-              theme={theme}
-            />
-            <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
-            <Reset />
-            <Component {...pageProps} />
-            <Footer />
+            <PlausibleProvider
+              domain="pokeref.app"
+              enabled={process.env.NODE_ENV === `production`}
+            >
+              <Toaster />
+              <NextNProgress />
+              <Header
+                navOpen={navOpen}
+                setNavOpen={setNavOpen}
+                themeToggler={themeToggler}
+                theme={theme}
+              />
+              <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
+              <Reset />
+              <Component {...pageProps} />
+              <Footer />
+            </PlausibleProvider>
           </ThemeProvider>
         </QueryClientProvider>
       </ErrorBoundary>
