@@ -27,7 +27,7 @@
     "@meronex/icons": "4.0.0",
     "@tanstack/match-sorter-utils": "8.7.6",
     "@tanstack/react-query": "4.24.6",
-    "@tanstack/react-query-devtools": "4.24.6",
+    "@tanstack/react-query-devtools": "4.29.7",
     "@tanstack/react-table": "8.7.9",
     "axios": "^0.27.2",
     "firebase": "9.15.0",
