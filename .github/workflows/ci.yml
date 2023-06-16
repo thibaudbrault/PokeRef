@@ -20,13 +20,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Check types
-        run: npm run type-check
+        run: pnpm type-check
 
       - name: Check linting
-        run: npm run lint
+        run: pnpm lint
