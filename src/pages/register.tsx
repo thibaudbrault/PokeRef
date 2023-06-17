@@ -35,7 +35,7 @@ const schema = yup
     password: yup.string().min(6).required(),
     cpassword: yup
       .string()
-      .oneOf([yup.ref(`password`), null])
+      .oneOf([yup.ref(`password`)])
       .required(),
   })
   .required();
