@@ -57,7 +57,7 @@ function SearchPokemon() {
                     alt=""
                     width={48}
                     height={48}
-                    fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+                    fallbackSrc={`/images/other/unknown.png`}
                   />
                   <AutocompleteLink
                     href={{

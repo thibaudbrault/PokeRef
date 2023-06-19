@@ -118,7 +118,7 @@ function MovesPokemon({ pokemon, version, name }: Props) {
               }}
             >
               <Image
-                src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue<string>()}.png`}
+                src={`/images/types/${info.getValue<string>()}.png`}
                 alt={info.getValue<string>()}
                 width={32}
                 height={32}

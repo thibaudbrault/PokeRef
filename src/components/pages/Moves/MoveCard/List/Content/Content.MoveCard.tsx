@@ -56,7 +56,7 @@ function Content({ pokemon, moveName, version, toggle }: Props) {
                         alt={p.name}
                         width={96}
                         height={96}
-                        fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+                        fallbackSrc={`/images/other/unknown.png`}
                       />
                       <MoveLink
                         href={{

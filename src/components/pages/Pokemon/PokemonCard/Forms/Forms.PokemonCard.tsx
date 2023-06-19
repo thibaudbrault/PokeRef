@@ -104,10 +104,7 @@ function Forms({ pokemon }: Props) {
                 }}
               >
                 <Image
-                  src={
-                    `https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue()}.png` ||
-                    ``
-                  }
+                  src={`/images/types/${info.getValue()}.png` || ``}
                   alt={`-`}
                   width={15}
                   height={15}
@@ -136,10 +133,7 @@ function Forms({ pokemon }: Props) {
                 }}
               >
                 <Image
-                  src={
-                    `https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue()}.png` ||
-                    ``
-                  }
+                  src={`/images/types/${info.getValue()}.png` || ``}
                   alt={`-`}
                   width={15}
                   height={15}

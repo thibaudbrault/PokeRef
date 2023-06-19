@@ -104,7 +104,7 @@ function PokemonType({ typeName, pokemon }: Props) {
                 }}
               >
                 <Image
-                  src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue()}.png`}
+                  src={`/images/types/${info.getValue()}.png`}
                   alt={info.getValue<string>()}
                   width={15}
                   height={15}
@@ -134,10 +134,7 @@ function PokemonType({ typeName, pokemon }: Props) {
                   }}
                 >
                   <Image
-                    src={
-                      `https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue()}.png` ||
-                      ``
-                    }
+                    src={`/images/types/${info.getValue()}.png` || ``}
                     alt={`-`}
                     width={15}
                     height={15}

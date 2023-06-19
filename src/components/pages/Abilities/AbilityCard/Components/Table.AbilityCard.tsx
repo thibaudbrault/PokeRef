@@ -37,7 +37,7 @@ function TableAbilityCard({ ability, pokemon }: Props) {
               alt="-"
               width={96}
               height={96}
-              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+              fallbackSrc={`/images/other/unknown.png`}
             />
           </td>
         ),

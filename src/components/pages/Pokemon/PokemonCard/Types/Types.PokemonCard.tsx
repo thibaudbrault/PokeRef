@@ -26,7 +26,7 @@ function Typing({ types }: Props) {
               }}
             >
               <Image
-                src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${t.name}.png`}
+                src={`/images/types/${t.name}.png`}
                 alt={t.name}
                 width={30}
                 height={30}

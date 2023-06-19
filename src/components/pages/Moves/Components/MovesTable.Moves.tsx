@@ -57,7 +57,7 @@ function MovesTable({ moves }: Props) {
                 alt={info.getValue<string>()}
                 width={20}
                 height={20}
-                src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/seals/home/move-${info.getValue()}.png`}
+                src={`/images/status/move-${info.getValue()}.png`}
               />
               <span>{info.getValue<string>()}</span>
             </div>
@@ -81,7 +81,7 @@ function MovesTable({ moves }: Props) {
                   alt={info.getValue<string>()}
                   width={20}
                   height={20}
-                  src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${info.getValue()}.png`}
+                  src={`/images/types/${info.getValue()}.png`}
                 />
                 <span>{info.getValue<string>()}</span>
               </Link>

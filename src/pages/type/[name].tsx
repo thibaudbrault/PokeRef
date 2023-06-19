@@ -51,7 +51,7 @@ function TypeCard({ name }: Props) {
       <MainBig>
         <CardTitleWithImage>
           <Image
-            src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${name}.png`}
+            src={`/images/types/${name}.png`}
             alt=""
             width={96}
             height={96}

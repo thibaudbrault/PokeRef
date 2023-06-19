@@ -18,7 +18,7 @@ function ListTypes({ types }: Props) {
               key={t.name}
             >
               <Image
-                src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${t.name}.png`}
+                src={`/images/types/${t.name}.png`}
                 alt={t.name}
                 width={50}
                 height={50}

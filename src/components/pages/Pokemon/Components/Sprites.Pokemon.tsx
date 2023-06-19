@@ -20,7 +20,7 @@ function Sprites({ p }: Props) {
             alt={p.name}
             width={96}
             height={96}
-            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+            fallbackSrc={`/images/other/unknown.png`}
           />
         )}
       {p.id > 151 &&
@@ -38,7 +38,7 @@ function Sprites({ p }: Props) {
               alt={p.name}
               width={96}
               height={96}
-              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+              fallbackSrc={`/images/other/unknown.png`}
             />
             <SpriteShiny
               src={
@@ -52,7 +52,7 @@ function Sprites({ p }: Props) {
               alt={p.name}
               width={96}
               height={96}
-              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+              fallbackSrc={`/images/other/unknown.png`}
             />
           </>
         )}
@@ -67,7 +67,7 @@ function Sprites({ p }: Props) {
               alt={p.name}
               width={96}
               height={96}
-              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+              fallbackSrc={`/images/other/unknown.png`}
             />
             <SpriteShiny
               src={p.sprites.versions[`generation-iii`].emerald.front_shiny}
@@ -75,7 +75,7 @@ function Sprites({ p }: Props) {
               alt={p.name}
               width={96}
               height={96}
-              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+              fallbackSrc={`/images/other/unknown.png`}
             />
           </>
         )}
@@ -90,7 +90,7 @@ function Sprites({ p }: Props) {
               alt={p.name}
               width={96}
               height={96}
-              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+              fallbackSrc={`/images/other/unknown.png`}
             />
             <SpriteShiny
               src={p.sprites.versions[`generation-iv`].platinum.front_shiny}
@@ -98,7 +98,7 @@ function Sprites({ p }: Props) {
               alt={p.name}
               width={96}
               height={96}
-              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+              fallbackSrc={`/images/other/unknown.png`}
             />
           </>
         )}
@@ -117,7 +117,7 @@ function Sprites({ p }: Props) {
               alt={p.name}
               width={96}
               height={96}
-              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+              fallbackSrc={`/images/other/unknown.png`}
             />
             <SpriteShiny
               src={
@@ -129,7 +129,7 @@ function Sprites({ p }: Props) {
               alt={p.name}
               width={96}
               height={96}
-              fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+              fallbackSrc={`/images/other/unknown.png`}
             />
           </>
         )}
@@ -141,7 +141,7 @@ function Sprites({ p }: Props) {
             alt={p.name}
             width={96}
             height={96}
-            fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+            fallbackSrc={`/images/other/unknown.png`}
           />
           <SpriteShiny
             src={p.sprites.front_shiny || ``}
