@@ -48,7 +48,7 @@ function SearchMoves({ moves }: Props) {
                     alt=""
                     width={32}
                     height={32}
-                    fallbackSrc={`https://play.pokemonshowdown.com/sprites/gen5/0.png`}
+                    fallbackSrc={`/images/other/unknown.png`}
                   />
                   <AutocompleteLink
                     href={{

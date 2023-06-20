@@ -1,7 +1,4 @@
-<div align="center">
-  
-  ![PokéRef](/public/readme%20images/Pok%C3%A9Ref.png)
-</div>
+<h1 align="center" style="font-size:80px">PokéRef</h1>
 
 ---
 

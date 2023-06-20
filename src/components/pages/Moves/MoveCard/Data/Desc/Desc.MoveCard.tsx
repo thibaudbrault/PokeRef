@@ -35,7 +35,7 @@ function Desc({ move, version, machine }: Props) {
                 key={move?.type?.name}
               >
                 <Image
-                  src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${move?.type?.name}.png`}
+                  src={`/images/types/${move?.type?.name}.png`}
                   alt={move?.type?.name}
                   width={20}
                   height={20}
@@ -50,7 +50,7 @@ function Desc({ move, version, machine }: Props) {
           <MoveCardDataCategory id={move.damage_class.name}>
             <div>
               <Image
-                src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/seals/home/move-${move.damage_class.name}.png`}
+                src={`/images/status/move-${move.damage_class.name}.png`}
                 alt={move.damage_class.name}
                 width={35}
                 height={35}

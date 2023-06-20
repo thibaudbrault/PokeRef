@@ -75,7 +75,7 @@ function DamageType({ type }: Props) {
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        src={`/images/types/${type}.png`}
                         alt={type}
                         width={32}
                         height={32}
@@ -100,7 +100,7 @@ function DamageType({ type }: Props) {
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        src={`/images/types/${type}.png`}
                         alt={type}
                         width={32}
                         height={32}
@@ -125,7 +125,7 @@ function DamageType({ type }: Props) {
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        src={`/images/types/${type}.png`}
                         alt={type}
                         width={32}
                         height={32}
@@ -150,7 +150,7 @@ function DamageType({ type }: Props) {
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        src={`/images/types/${type}.png`}
                         alt={type}
                         width={32}
                         height={32}
@@ -175,7 +175,7 @@ function DamageType({ type }: Props) {
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        src={`/images/types/${type}.png`}
                         alt={type}
                         width={32}
                         height={32}
@@ -200,7 +200,7 @@ function DamageType({ type }: Props) {
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        src={`/images/types/${type}.png`}
                         alt={type}
                         width={32}
                         height={32}
@@ -225,7 +225,7 @@ function DamageType({ type }: Props) {
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        src={`/images/types/${type}.png`}
                         alt={type}
                         width={32}
                         height={32}
@@ -250,7 +250,7 @@ function DamageType({ type }: Props) {
                       }}
                     >
                       <Image
-                        src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${type}.png`}
+                        src={`/images/types/${type}.png`}
                         alt={type}
                         width={32}
                         height={32}

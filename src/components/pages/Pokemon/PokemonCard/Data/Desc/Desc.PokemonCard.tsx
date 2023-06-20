@@ -57,7 +57,7 @@ function Desc({ pokemon, species, game }: Props) {
                 }}
               >
                 <Image
-                  src={`https://raw.githubusercontent.com/msikma/pokesprite/master/misc/types/masters/${pt.type.name}.png`}
+                  src={`/images/types/${pt.type.name}.png`}
                   alt={pt.type.name}
                   width={25}
                   height={25}
