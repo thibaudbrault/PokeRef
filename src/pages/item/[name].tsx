@@ -2,32 +2,20 @@ import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
 import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
+import {
+  Cost,
+  Desc,
+  Fling,
+  Held,
+} from '@/components/pages/Items/ItemCard/Components';
 import HeadingItem from '@/components/pages/Items/ItemCard/Heading';
 import { useFilterItem } from '@/components/pages/Items/ItemCard/Hooks/useFilterItem';
-import {
-  ItemCardDataEffect,
-  ItemCardDataImage,
-  ItemCardDataSection,
-} from '@/components/pages/Items/ItemCard/Styled.ItemCard';
+import styles from '@/components/pages/Items/ItemCard/ItemCard.module.scss';
 import { removeDash } from '@/utils/Typography';
 import { GetServerSidePropsContext } from 'next';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
-
-const DescItemcard = dynamic(
-  () => import(`@/components/pages/Items/ItemCard/Components/Desc.Itemcard`),
-);
-const FlingItemCard = dynamic(
-  () => import(`@/components/pages/Items/ItemCard/Components/Fling.ItemCard`),
-);
-const HeldItemcard = dynamic(
-  () => import(`@/components/pages/Items/ItemCard/Components/Held.Itemcard`),
-);
-const CostItemCard = dynamic(
-  () => import(`@/components/pages/Items/ItemCard/Components/Cost.ItemCard`),
-);
 
 type Props = {
   name: string;
@@ -55,17 +43,17 @@ function ItemCard({ name }: Props) {
         <MainBig>
           <CardTitle>{removeDash(item?.name)}</CardTitle>
           <Subtitle>{removeDash(item?.category.name)}</Subtitle>
-          <ItemCardDataSection>
+          <section className={styles.section}>
             <div>
-              <ItemCardDataEffect>
+              <div className={styles.effect}>
                 <h3>Effect</h3>
                 <p>{filterEffect?.effect}</p>
-              </ItemCardDataEffect>
-              <CostItemCard item={item} />
-              <HeldItemcard item={item} />
-              <FlingItemCard item={item} />
+              </div>
+              <Cost item={item} />
+              <Held item={item} />
+              <Fling item={item} />
             </div>
-            <ItemCardDataImage>
+            <div className={styles.image}>
               {item && (
                 <Image
                   src={item?.sprites?.default}
@@ -74,9 +62,9 @@ function ItemCard({ name }: Props) {
                   height={96}
                 />
               )}
-            </ItemCardDataImage>
-          </ItemCardDataSection>
-          <DescItemcard item={item} />
+            </div>
+          </section>
+          <Desc item={item} />
           <Link href="/items" passHref>
             <BackBtn name="Items" />
           </Link>

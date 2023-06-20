@@ -1,20 +1,15 @@
 import { IItem } from '@/types/Items/Item';
 import { removeDash } from '@/utils/Typography';
-import {
-  ItemCardDescSection,
-  ItemCardDescTable,
-  ItemCardDescTitle,
-} from '../Styled.ItemCard';
 
 type Props = {
   item?: IItem;
 };
 
-function DescItemcard({ item }: Props) {
+function DescItemCard({ item }: Props) {
   return (
-    <ItemCardDescSection>
-      <ItemCardDescTitle>Game descriptions</ItemCardDescTitle>
-      <ItemCardDescTable>
+    <section className="section">
+      <h3 className="h3">Game descriptions</h3>
+      <table className="descTable">
         <tbody>
           {item?.flavor_text_entries?.map((ift) =>
             ift.language.name === `en` ? (
@@ -27,9 +22,9 @@ function DescItemcard({ item }: Props) {
             ),
           )}
         </tbody>
-      </ItemCardDescTable>
-    </ItemCardDescSection>
+      </table>
+    </section>
   );
 }
 
-export default DescItemcard;
+export default DescItemCard;

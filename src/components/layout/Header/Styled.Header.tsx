@@ -88,7 +88,7 @@ export const HeaderBtnConnected = styled.div`
 
 export const HeaderContainer = styled.header`
   width: 90%;
-  margin: 2rem auto;
+  margin: 0 auto 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

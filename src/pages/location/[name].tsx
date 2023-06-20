@@ -1,10 +1,10 @@
 import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
 import { MainBig, Section } from '@/components/common/styles/Sizing';
-import { TableContainer, TBold, TLink } from '@/components/common/styles/Table';
+import { TBold, TLink, TableContainer } from '@/components/common/styles/Table';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useSwitchGame } from '@/components/pages/Locations/LocationCard/Hooks/useSwitchGame';
-import { LocationTable } from '@/components/pages/Locations/Styled.Locations';
+import styles from '@/components/pages/Locations/Locations.module.scss';
 import { useTableParams } from '@/hooks/useTableParams';
 import { IEncounterConditionValue } from '@/types/Encounters/EncounterConditionValue';
 import { IEncounterMethod } from '@/types/Encounters/EncounterMethod';
@@ -15,7 +15,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useEffect, useMemo, useState, useCallback } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const HeadingLocation = dynamic(
@@ -223,7 +223,7 @@ function LocationCard({ name }: Props) {
         <Nav setGame={setGame} setVersion={setVersion} />
         <Section>
           <TableContainer ref={tableContainerRef}>
-            <LocationTable>
+            <table className={styles.table}>
               {tableHeader()}
               {tableBody()}
               <tfoot>
@@ -231,7 +231,7 @@ function LocationCard({ name }: Props) {
                   <td colSpan={5}>This area is not present in this game</td>
                 </tr>
               </tfoot>
-            </LocationTable>
+            </table>
           </TableContainer>
         </Section>
         <Link href="/locations" passHref>

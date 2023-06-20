@@ -1,7 +1,7 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { learnMethod, regions } from './DataArrays';
 import { MethodNav } from '@/components/common/styles/Navbars';
-import { LocationNav } from '@/components/pages/Locations/Styled.Locations';
+import styles from '@/components/pages/Locations/Locations.module.scss';
+import { Dispatch, SetStateAction } from 'react';
+import { learnMethod, regions } from './DataArrays';
 import { removeDash } from './Typography';
 
 interface IProps {
@@ -34,7 +34,7 @@ export const LearnMethod = ({ toggle, setToggle, setLearn }: ILearnProps) => {
 
 export const RegionsMethod = ({ toggle, setToggle }: IProps) => {
   return (
-    <LocationNav>
+    <nav className={styles.nav}>
       {Object.keys(regions)?.map((r, i) => (
         <button
           className={toggle === i ? `button_active` : ``}
@@ -44,6 +44,6 @@ export const RegionsMethod = ({ toggle, setToggle }: IProps) => {
           <p>{regions[r]}</p>
         </button>
       ))}
-    </LocationNav>
+    </nav>
   );
 };

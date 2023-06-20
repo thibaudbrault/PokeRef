@@ -1,17 +1,15 @@
-import styled from 'styled-components';
-import { MethodNav } from '../../common/styles/Navbars';
-import { device } from '../../common/styles/Sizing';
-import { FullWidthTable } from '../../common/styles/Table';
+@use '@/styles/common' as *;
+@use '@/styles/abstracts' as *;
 
-export const LocationSection = styled.section`
+.section {
   & p {
     font-size: 1.7rem;
     font-weight: 600;
     text-align: center;
   }
-`;
+}
 
-export const LocationNavContainer = styled.section`
+.navSection {
   width: 100%;
   height: 100%;
 
@@ -33,9 +31,10 @@ export const LocationNavContainer = styled.section`
   & nav:empty + span {
     display: block;
   }
-`;
+}
 
-export const LocationNav = styled(MethodNav)`
+.nav {
+  @extend .methodNav;
   padding-bottom: 3rem;
 
   & button {
@@ -43,13 +42,13 @@ export const LocationNav = styled(MethodNav)`
       text-transform: capitalize;
     }
 
-    @media ${device.sm} {
+    @include sm {
       font-size: 1.5rem;
     }
   }
-`;
+}
 
-export const LocationList = styled.ul`
+.ul {
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(4, 1fr);
@@ -66,17 +65,19 @@ export const LocationList = styled.ul`
       transition: 0.3s ease-in-out;
       border-bottom: 1px solid transparent;
       &:hover {
-        border-bottom: 1px solid ${({ theme }) => theme.secondary};
+        @include themed() {
+          border-bottom: 1px solid t('text');
+        }
       }
     }
   }
 
-  @media ${device.sm} {
+  @include sm {
     grid-template-columns: repeat(3, 1fr);
   }
-`;
+}
 
-export const LocationTable = styled(FullWidthTable)`
+.table {
   & td {
     padding: 0;
     text-transform: capitalize;
@@ -114,4 +115,4 @@ export const LocationTable = styled(FullWidthTable)`
       padding: 1.5rem;
     }
   }
-`;
+}

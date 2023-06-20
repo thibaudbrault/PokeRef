@@ -11,7 +11,7 @@ import ImageWithFallback from '@/utils/ImageWithFallback';
 import { removeDash } from '@/utils/Typography';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
-import { Sup } from '../Styled.AbilityCard';
+import styles from '@/components/pages/Abilities/AbilityCard/AbilityCard.module.scss';
 
 type Props = {
   ability?: IAbility;
@@ -64,7 +64,7 @@ function TableAbilityCard({ ability, pokemon }: Props) {
         id: `firstAbility`,
         header: () => (
           <span>
-            1<Sup>st</Sup> ability
+            1<sup className={styles.sup}>st</sup> ability
           </span>
         ),
         cell: (info) => (
@@ -89,7 +89,7 @@ function TableAbilityCard({ ability, pokemon }: Props) {
         id: `secondAbility`,
         header: () => (
           <span>
-            2<Sup>nd</Sup> ability
+            2<sup className={styles.sup}>nd</sup> ability
           </span>
         ),
         cell: (info) => (

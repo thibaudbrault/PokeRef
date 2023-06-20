@@ -1,14 +1,7 @@
 import { getBerries, getItems } from '@/utils/DataFetch';
-import dynamic from 'next/dynamic';
-import { useState } from 'react';
 import { useQueries } from '@tanstack/react-query';
-
-const ItemsTable = dynamic(
-  () => import(`@/components/pages/Items/Components/ItemsTable.Items`),
-);
-const BerriesTable = dynamic(
-  () => import(`@/components/pages/Items/Components/BerriesTable.Items`),
-);
+import { useState } from 'react';
+import { BerriesTable, ItemsTable } from '../Components';
 
 export const useToggleTable = () => {
   const [items, berries] = useQueries({

@@ -1,7 +1,7 @@
+import styles from '@/components/pages/Locations/Locations.module.scss';
 import { IRegion } from '@/types/Locations/Region';
 import { removeDash } from '@/utils/Typography';
 import Link from 'next/link';
-import { LocationList, LocationSection } from '../Styled.Locations';
 
 type Props = {
   location: string | null;
@@ -10,11 +10,11 @@ type Props = {
 
 function ListLocations({ location, locations }: Props) {
   return (
-    <LocationSection>
+    <section className={styles.section}>
       {locations?.map(
         (l) =>
           l.name === location && (
-            <LocationList key={l.name}>
+            <ul className={styles.ul} key={l.name}>
               {l.locations
                 .sort((a, b) => a.name.localeCompare(b.name))
                 ?.map((ll) => (
@@ -33,10 +33,10 @@ function ListLocations({ location, locations }: Props) {
                     </Link>
                   </li>
                 ))}
-            </LocationList>
+            </ul>
           ),
       )}
-    </LocationSection>
+    </section>
   );
 }
 

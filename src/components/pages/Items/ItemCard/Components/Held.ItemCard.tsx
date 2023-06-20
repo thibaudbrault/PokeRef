@@ -1,17 +1,16 @@
 import { IItem, IItemHolderPokemon } from '@/types/Items/Item';
 import { removeDash } from '@/utils/Typography';
 import Link from 'next/link';
-import { ItemCardDataHeld } from '../Styled.ItemCard';
 
 type Props = {
   item?: IItem;
 };
 
-function HeldItemcard({ item }: Props) {
+function HeldItemCard({ item }: Props) {
   return (
     <>
       {item?.held_by_pokemon.length !== 0 && (
-        <ItemCardDataHeld>
+        <p className="held">
           <span>Held by :</span>
           {item?.held_by_pokemon?.map((ih: IItemHolderPokemon) => (
             <Link
@@ -24,10 +23,10 @@ function HeldItemcard({ item }: Props) {
               {removeDash(ih.pokemon.name)}
             </Link>
           ))}
-        </ItemCardDataHeld>
+        </p>
       )}
     </>
   );
 }
 
-export default HeldItemcard;
+export default HeldItemCard;

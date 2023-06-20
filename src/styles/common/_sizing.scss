@@ -1,0 +1,10 @@
+@use '../abstracts' as *;
+
+.section {
+  margin-bottom: 5rem;
+}
+
+.sectionTop {
+  @extend .section;
+  margin-top: 5rem;
+}

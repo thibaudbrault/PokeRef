@@ -37,7 +37,7 @@ dependencies:
     version: 2.5.0(react@18.2.0)
   next:
     specifier: 13.4.3
-    version: 13.4.3(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)
+    version: 13.4.3(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)(sass@1.63.4)
   next-plausible:
     specifier: 3.7.2
     version: 3.7.2(next@13.4.3)(react-dom@18.2.0)(react@18.2.0)
@@ -83,6 +83,9 @@ dependencies:
   react-virtual:
     specifier: 2.10.4
     version: 2.10.4(react@18.2.0)
+  sass:
+    specifier: 1.63.4
+    version: 1.63.4
   styled-components:
     specifier: 6.0.0-rc.3
     version: 6.0.0-rc.3(react-dom@18.2.0)(react@18.2.0)
@@ -3004,7 +3007,6 @@ packages:
       normalize-path: 3.0.0
       picomatch: 2.3.1
     dev: false
-    optional: true
 
   /argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
@@ -3202,7 +3204,6 @@ packages:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
     dev: false
-    optional: true
 
   /bplist-parser@0.2.0:
     resolution: {integrity: sha512-z0M+byMThzQmD9NILRniCUXYsYpjwnlO8N5uCFaCqIOpqRsJCrQL9NK3JsD67CN5a08nF5oIL2bD6loTdHOuKw==}
@@ -3322,7 +3323,6 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: false
-    optional: true
 
   /chrome-trace-event@1.0.3:
     resolution: {integrity: sha512-p3KULyQg4S7NIHixdwbGX+nFHkoBiA4YQmyWtjb8XngSKV124nJmRysgAeujbUVb15vh+RvFUfCPqU7rXk+hZg==}
@@ -4619,6 +4619,10 @@ packages:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
 
+  /immutable@4.3.0:
+    resolution: {integrity: sha512-0AOCmOip+xgJwEVTQj1EfiDDOkPmuyllDuTuEX+DDXUgapLAsBIfkg3sxCYyCEA8mQqZrrxPUGjcOQ2JS3WLkg==}
+    dev: false
+
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -4675,7 +4679,6 @@ packages:
     dependencies:
       binary-extensions: 2.2.0
     dev: false
-    optional: true
 
   /is-boolean-object@1.1.2:
     resolution: {integrity: sha512-gDYaKHJmnj4aWxyj6YHyXVpdQawtVLHU5cb+eztPGczf6cjuTdwve5ZIEfgXqH4e57An1D1AKf8CZ3kYrQRqYA==}
@@ -5237,7 +5240,7 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      next: 13.4.3(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.4.3(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)(sass@1.63.4)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -5250,7 +5253,7 @@ packages:
       babel-loader: 8.3.0(@babel/core@7.22.5)(webpack@5.87.0)
       clean-webpack-plugin: 4.0.0(webpack@5.87.0)
       globby: 11.1.0
-      next: 13.4.3(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.4.3(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)(sass@1.63.4)
       terser-webpack-plugin: 5.3.9(webpack@5.87.0)
       workbox-webpack-plugin: 6.6.0(webpack@5.87.0)
       workbox-window: 6.6.0
@@ -5276,10 +5279,10 @@ packages:
       '@next/env': 13.4.5
       fast-glob: 3.2.12
       minimist: 1.2.8
-      next: 13.4.3(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.4.3(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)(sass@1.63.4)
     dev: false
 
-  /next@13.4.3(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0):
+  /next@13.4.3(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)(sass@1.63.4):
     resolution: {integrity: sha512-FV3pBrAAnAIfOclTvncw9dDohyeuEEXPe5KNcva91anT/rdycWbgtu3IjUj4n5yHnWK8YEPo0vrUecHmnmUNbA==}
     engines: {node: '>=16.8.0'}
     hasBin: true
@@ -5307,6 +5310,7 @@ packages:
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+      sass: 1.63.4
       styled-jsx: 5.1.1(@babel/core@7.22.5)(react@18.2.0)
       zod: 3.21.4
     optionalDependencies:
@@ -5331,7 +5335,7 @@ packages:
       react: '>= 16.0.0'
     dependencies:
       '@types/nprogress': 0.2.0
-      next: 13.4.3(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.4.3(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)(sass@1.63.4)
       nprogress: 0.2.0
       prop-types: 15.8.1
       react: 18.2.0
@@ -5870,7 +5874,6 @@ packages:
     dependencies:
       picomatch: 2.3.1
     dev: false
-    optional: true
 
   /regenerate-unicode-properties@10.1.0:
     resolution: {integrity: sha512-d1VudCLoIGitcU/hEg2QqvyGZQmdC0Lf8BqdOMXGFSvJP4bNV1+XqbPQeHHLD51Jh4QJJ225dlIFvY4Ly6MXmQ==}
@@ -6042,6 +6045,16 @@ packages:
       call-bind: 1.0.2
       get-intrinsic: 1.2.1
       is-regex: 1.1.4
+
+  /sass@1.63.4:
+    resolution: {integrity: sha512-Sx/+weUmK+oiIlI+9sdD0wZHsqpbgQg8wSwSnGBjwb5GwqFhYNwwnI+UWZtLjKvKyFlKkatRK235qQ3mokyPoQ==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.3.0
+      source-map-js: 1.0.2
+    dev: false
 
   /scheduler@0.23.0:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}

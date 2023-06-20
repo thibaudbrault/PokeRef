@@ -8,26 +8,41 @@ import {
   HeaderBtnTheme,
   HeaderContainer,
 } from '@/components/layout/Header/Styled.Header';
+import { ThemeContext } from '@/contexts/Theme';
 import { auth } from '@/firebase-config';
 import { FiMenu, FiX } from '@meronex/icons/fi';
 import { RiMoonClearLine, RiSunLine } from '@meronex/icons/ri';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import Link from 'next/link';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 type Props = {
   navOpen: boolean;
   setNavOpen: Dispatch<SetStateAction<boolean>>;
-  themeToggler: () => void;
-  theme: string;
 };
 
-function Header({ navOpen, setNavOpen, themeToggler, theme }: Props) {
+function Header({ navOpen, setNavOpen }: Props) {
   const [user, setUser] = useState<User | null>();
   // const usersCollectionRef = collection(db, `users`);
 
+  const { theme, setTheme } = useContext(ThemeContext);
+
   const logout = async () => {
     await signOut(auth);
+  };
+
+  const themeHandler = () => {
+    if (theme === `light`) {
+      setTheme(`dark`);
+    } else {
+      setTheme(`light`);
+    }
   };
 
   useEffect(() => {
@@ -38,12 +53,12 @@ function Header({ navOpen, setNavOpen, themeToggler, theme }: Props) {
 
   return (
     <HeaderContainer id="header">
-      <H1>
+      <h1 className="h1">
         <Link href={`/`}>PokéRef</Link>
-      </H1>
+      </h1>
       <HeaderBtnContainer>
         <HeaderBtnTheme
-          onClick={themeToggler}
+          onClick={themeHandler}
           aria-label="Switch Theme"
           data-testid="themeBtn"
         >

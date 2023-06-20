@@ -1,7 +1,7 @@
 import { H3 } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
 import { TableContainer, TBold } from '@/components/common/styles/Table';
-import { LocationTable } from '@/components/pages/Locations/Styled.Locations';
+import styles from '@/components/pages/Locations/Locations.module.scss';
 import { useTableParams } from '@/hooks/useTableParams';
 import { ILocationAreaEncounter } from '@/types/Pokemon/Pokemon';
 import { IEncounter } from '@/types/Utility/CommonModels';
@@ -114,7 +114,7 @@ function Locations({ location, game }: Props) {
     <Section id="locations">
       <H3>Locations</H3>
       <TableContainer ref={tableContainerRef}>
-        <LocationTable>
+        <table className={styles.table}>
           {tableHeader()}
           {tableBody()}
           <tfoot>
@@ -122,7 +122,7 @@ function Locations({ location, game }: Props) {
               <td colSpan={5}>Not present or not found in nature</td>
             </tr>
           </tfoot>
-        </LocationTable>
+        </table>
       </TableContainer>
     </Section>
   );

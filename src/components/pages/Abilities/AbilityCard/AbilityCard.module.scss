@@ -1,0 +1,11 @@
+.effect {
+  margin: 0 0 3rem;
+  & p {
+    font-size: 1.7rem;
+  }
+}
+
+.sup {
+  vertical-align: super;
+  font-size: smaller;
+}

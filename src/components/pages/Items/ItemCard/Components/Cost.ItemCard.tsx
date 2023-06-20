@@ -1,5 +1,5 @@
+import styles from '@/components/pages/Items/ItemCard/ItemCard.module.scss';
 import { IItem } from '@/types/Items/Item';
-import { ItemCardDataCost } from '../Styled.ItemCard';
 
 type Props = {
   item?: IItem;
@@ -9,9 +9,9 @@ function CostItemCard({ item }: Props) {
   return (
     <>
       {item?.cost !== 0 && (
-        <ItemCardDataCost>
+        <p className={styles.cost}>
           <span>Cost :</span> {item?.cost} Pokédollars
-        </ItemCardDataCost>
+        </p>
       )}
     </>
   );

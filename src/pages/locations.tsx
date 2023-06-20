@@ -1,7 +1,7 @@
 import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import HeadingLocations from '@/components/pages/Locations/Heading';
-import { LocationSection } from '@/components/pages/Locations/Styled.Locations';
+import styles from '@/components/pages/Locations/Locations.module.scss';
 import { IRegion } from '@/types/Locations/Region';
 import { regions } from '@/utils/DataArrays';
 import { getRegions } from '@/utils/DataFetch';
@@ -55,9 +55,9 @@ function LocationsPage() {
         <RegionsMethod toggle={toggle} setToggle={setToggle} />
         <ListLocations location={location} locations={locations} />
         {location === `galar` || location === `hisui` ? (
-          <LocationSection>
+          <section className={styles.section}>
             <p>No data for {capitalize(location)}</p>
-          </LocationSection>
+          </section>
         ) : null}
       </MainBig>
     </>

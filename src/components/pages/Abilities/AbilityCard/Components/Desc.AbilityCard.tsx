@@ -1,7 +1,6 @@
 import { H3 } from '@/components/common/styles/Headings';
 import { IAbilityFlavorText } from '@/types/Pokemon/Ability';
 import { removeDash } from '@/utils/Typography';
-import { AbilityCardSection, AbilityCardTable } from '../Styled.AbilityCard';
 
 type Props = {
   filterDesc?: IAbilityFlavorText[];
@@ -9,9 +8,9 @@ type Props = {
 
 function DescAbilityCard({ filterDesc }: Props) {
   return (
-    <AbilityCardSection>
+    <section className="sectionTop">
       <H3>Game descriptions</H3>
-      <AbilityCardTable>
+      <table className="descTable">
         <tbody>
           {filterDesc?.map((fd) => (
             <tr key={fd.flavor_text}>
@@ -20,8 +19,8 @@ function DescAbilityCard({ filterDesc }: Props) {
             </tr>
           ))}
         </tbody>
-      </AbilityCardTable>
-    </AbilityCardSection>
+      </table>
+    </section>
   );
 }
 

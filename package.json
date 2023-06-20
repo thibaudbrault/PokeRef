@@ -49,6 +49,7 @@
     "react-select": "5.7.0",
     "react-tooltip": "5.13.1",
     "react-virtual": "2.10.4",
+    "sass": "1.63.4",
     "styled-components": "6.0.0-rc.3",
     "yup": "1.2.0"
   },

@@ -1,6 +1,7 @@
 import { ILocation } from '@/types/Locations/Location';
 import { removeDash } from '@/utils/Typography';
 import { LocationNav, LocationNavContainer } from '../../Styled.Locations';
+import styles from '@/components/pages/Locations/Locations.module.scss';
 
 type Props = {
   location?: ILocation;
@@ -10,8 +11,8 @@ type Props = {
 
 function AreaLocationCard({ location, toggleState, toggleTable }: Props) {
   return (
-    <LocationNavContainer>
-      <LocationNav>
+    <section className={styles.navSection}>
+      <nav className={styles.nav}>
         {location?.areas?.map((la, i) => (
           <button
             key={la.name}
@@ -25,9 +26,9 @@ function AreaLocationCard({ location, toggleState, toggleTable }: Props) {
             </p>
           </button>
         ))}
-      </LocationNav>
+      </nav>
       <span>There is no information about this area</span>
-    </LocationNavContainer>
+    </section>
   );
 }
 

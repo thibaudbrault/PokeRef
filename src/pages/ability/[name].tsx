@@ -9,30 +9,17 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
+import styles from '@/components/pages/Abilities/AbilityCard/AbilityCard.module.scss';
+import {
+  DescAbilityCard,
+  TableAbilityCard,
+} from '@/components/pages/Abilities/AbilityCard/Components';
 import HeadingAbility from '@/components/pages/Abilities/AbilityCard/Heading';
 import { useFilterAbility } from '@/components/pages/Abilities/AbilityCard/Hooks/useFilterAbility';
-import {
-  AbilityCardEffect,
-  AbilityCardSection,
-} from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
 import { removeDash } from '@/utils/Typography';
 import { GetServerSidePropsContext } from 'next';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
-
-const DescAbilityCard = dynamic(
-  () =>
-    import(
-      `@/components/pages/Abilities/AbilityCard/Components/Desc.AbilityCard`
-    ),
-);
-const TableAbilityCard = dynamic(
-  () =>
-    import(
-      `@/components/pages/Abilities/AbilityCard/Components/Table.AbilityCard`
-    ),
-);
 
 type Props = {
   name: string;
@@ -68,34 +55,34 @@ function AbilityCard({ name }: Props) {
     <>
       <HeadingAbility name={name} />
       <MainBig>
-        <CardTitle>{ability && removeDash(ability?.name)}</CardTitle>
+        <h2 className="pageTitle">{ability && removeDash(ability?.name)}</h2>
         <Subtitle>{ability && removeDash(ability?.generation?.name)}</Subtitle>
 
-        <AbilityCardSection>
-          <AbilityCardEffect>
+        <section className={styles.section}>
+          <div className={styles.effect}>
             <H3>Effect</H3>
             <p>{filterEffect?.effect}</p>
-          </AbilityCardEffect>
+          </div>
           {filterOverworld && (
-            <AbilityCardEffect>
+            <div className={styles.effect}>
               <H4>Overworld</H4>
               <p>
                 {filterOverworld?.effect
                   .slice(filterOverworld.effect.indexOf(overworld))
                   .replace(`Overworld:`, ``)}
               </p>
-            </AbilityCardEffect>
+            </div>
           )}
-        </AbilityCardSection>
+        </section>
         <DescAbilityCard filterDesc={filterDesc} />
         <Divider />
-        <AbilityCardSection>
+        <section className={styles.section}>
           <H3>
             Pokemon with{` `}
             <Capitalize>{ability && removeDash(ability?.name)}</Capitalize>
           </H3>
           <TableAbilityCard ability={ability} pokemon={pokemon} />
-        </AbilityCardSection>
+        </section>
         <Link href="/abilities" passHref>
           <BackBtn name="Abilities" />
         </Link>
