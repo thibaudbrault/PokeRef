@@ -1,6 +1,6 @@
 import styles from '@/components/pages/Locations/Locations.module.scss';
-import { IRegion } from '@/types/Locations/Region';
-import { removeDash } from '@/utils/Typography';
+import { IRegion } from '@/types';
+import { removeDash } from '@/utils';
 import Link from 'next/link';
 
 type Props = {

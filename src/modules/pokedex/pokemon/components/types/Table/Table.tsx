@@ -1,6 +1,6 @@
 import ToolTip from '@/components/common/ui/ToolTip';
-import { IType } from '@/types/Pokemon/Type';
-import { capitalize } from '@/utils/Typography';
+import { IType } from '@/types';
+import { capitalize } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PokemonTypesTable } from '../Styled.Types.PokemonCard';

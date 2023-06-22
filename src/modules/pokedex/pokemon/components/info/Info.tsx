@@ -1,10 +1,8 @@
 // @ts-nocheck
 
 import { H3 } from '@/components/common/styles/Headings';
-import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
-import { capitalize } from '@/utils/Typography';
+import { IEvolutionChain, IPokemon, IPokemonSpecies } from '@/types';
+import { capitalize } from '@/utils';
 import { InfoTable } from '../../utils';
 import {
   PokemonInfoSection,

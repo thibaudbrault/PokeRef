@@ -6,11 +6,14 @@ import Loader from '@/components/common/ui/Loader/Loader';
 import styles from '@/components/pages/Locations/Locations.module.scss';
 import { useTableParams } from '@/hooks/useTableParams';
 import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
-import { IEncounterConditionValue } from '@/types/Encounters/EncounterConditionValue';
-import { IEncounterMethod } from '@/types/Encounters/EncounterMethod';
-import { IPokemonEncounter } from '@/types/Locations/LocationArea';
-import { IEncounter, IName } from '@/types/Utility/CommonModels';
-import { removeDash } from '@/utils/Typography';
+import {
+  IEncounter,
+  IEncounterConditionValue,
+  IEncounterMethod,
+  IName,
+  IPokemonEncounter,
+} from '@/types';
+import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';

@@ -1,7 +1,6 @@
 import { Small } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
-import { IMachine } from '@/types/Machines/Machine';
-import { IMove } from '@/types/Moves/Move';
+import { IMachine, IMove } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import {

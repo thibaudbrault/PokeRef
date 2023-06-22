@@ -1,6 +1,6 @@
 import { H3 } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemon } from '@/types';
 import Image from 'next/image';
 import { PokemonSpritesDiv } from './Styled.Sprites.PokemonCard';
 

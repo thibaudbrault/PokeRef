@@ -9,10 +9,8 @@ import {
 import { Type } from '@/components/common/styles/Themes';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { useTableParams } from '@/hooks/useTableParams';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { IPokemonForm } from '@/types/Pokemon/PokemonForm';
-import { getPokemonForms } from '@/utils/DataFetch';
-import { removeDash } from '@/utils/Typography';
+import { IPokemon, IPokemonForm } from '@/types';
+import { getPokemonForms, removeDash } from '@/utils';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';

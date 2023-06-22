@@ -1,7 +1,6 @@
 import { Divider } from '@/components/common/ui/Divider';
-import { IPokemonStat } from '@/types/Pokemon/Pokemon';
-import { pokemonNatures } from '@/utils/DataArrays';
-import { removeDash } from '@/utils/Typography';
+import { IPokemonStat } from '@/types';
+import { pokemonNatures, removeDash } from '@/utils';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { PokemonCalcTable } from '../Styled.Stats.PokemonCard';

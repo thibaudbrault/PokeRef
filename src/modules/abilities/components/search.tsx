@@ -4,8 +4,8 @@ import {
   AutocompleteInput,
   AutocompleteLink,
 } from '@/components/common/styles/Autocomplete';
-import { IAbility } from '@/types/Pokemon/Ability';
-import { capitalize, removeDash } from '@/utils/Typography';
+import { IAbility } from '@/types';
+import { capitalize, removeDash } from '@/utils';
 import Fuse from 'fuse.js';
 import { useState } from 'react';
 

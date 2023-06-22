@@ -1,4 +1,4 @@
-import { getMoves, getStats, getStatus } from '@/utils/DataFetch';
+import { getMoves, getStats, getStatus } from '@/utils';
 import { useQueries } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Moves, Stats, Status } from '../components';

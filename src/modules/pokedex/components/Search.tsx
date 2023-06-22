@@ -1,10 +1,13 @@
-import { getPokedexResults } from '@/utils/DataFetch';
-import ImageWithFallback from '@/utils/ImageWithFallback';
-import { removeDash, removeLongName } from '@/utils/Typography';
+import {
+  ImageWithFallback,
+  getPokedexResults,
+  removeDash,
+  removeLongName,
+} from '@/utils';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import Fuse from 'fuse.js';
 import { useState } from 'react';
-import { INamedApiResource } from '@/types/Utility/NamedApiResourceList';
+import { INamedApiResource } from '@/types';
 import {
   AutocompleteContainer,
   AutocompleteId,

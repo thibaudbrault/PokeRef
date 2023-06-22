@@ -1,11 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Bold, Capitalize, H3, H4 } from '@/components/common/styles/Headings';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
-import { IMove } from '@/types/Moves/Move';
-import { IMoveTarget } from '@/types/Moves/MoveTarget';
-import { IDescription } from '@/types/Utility/CommonModels';
-import { getMoveTarget } from '@/utils/DataFetch';
-import { removeDash } from '@/utils/Typography';
+import { IDescription, IMove, IMoveTarget } from '@/types';
+import { getMoveTarget, removeDash } from '@/utils';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import {

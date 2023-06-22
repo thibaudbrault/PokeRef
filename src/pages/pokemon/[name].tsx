@@ -21,8 +21,7 @@ import {
   Cards,
   Types,
 } from '@/modules/pokedex/pokemon';
-import { pokemonFilters } from '@/utils/DataArrays';
-import { removeDash, removeLongName } from '@/utils/Typography';
+import { pokemonFilters, removeDash, removeLongName } from '@/utils';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
 import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';

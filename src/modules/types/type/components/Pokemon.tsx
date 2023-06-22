@@ -10,9 +10,8 @@ import {
 } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import { useTableParams } from '@/hooks/useTableParams';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { IOptionsFixed, typeOptions } from '@/utils/DataArrays';
-import { removeDash } from '@/utils/Typography';
+import { IPokemon } from '@/types';
+import { IOptionsFixed, removeDash, typeOptions } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';

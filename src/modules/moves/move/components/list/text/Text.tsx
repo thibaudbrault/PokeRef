@@ -1,5 +1,5 @@
 import { H3 } from '@/components/common/styles/Headings';
-import { removeDash } from '@/utils/Typography';
+import { removeDash } from '@/utils';
 import { MoveText } from '../../../Styled.MoveCard';
 
 type Props = {

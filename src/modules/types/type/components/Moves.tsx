@@ -5,9 +5,8 @@ import {
   TableContainer,
 } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks/useTableParams';
-import { IMove } from '@/types/Moves/Move';
-import { IType } from '@/types/Pokemon/Type';
-import { removeDash } from '@/utils/Typography';
+import { IMove, IType } from '@/types';
+import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 import { useMemo } from 'react';

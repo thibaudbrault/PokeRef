@@ -1,5 +1,4 @@
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
+import { IPokemon, IPokemonSpecies } from '@/types';
 import { PokemonDataImg, PokemonDataSpecial } from '../Styled.Data.PokemonCard';
 
 type Props = {

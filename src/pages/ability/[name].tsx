@@ -15,7 +15,7 @@ import {
   useFilterAbility,
 } from '@/modules/abilities/ability';
 import styles from '@/modules/abilities/ability/Ability.module.scss';
-import { removeDash } from '@/utils/Typography';
+import { removeDash } from '@/utils';
 import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 import toast from 'react-hot-toast';

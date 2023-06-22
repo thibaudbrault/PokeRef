@@ -1,7 +1,5 @@
-import { IMove } from '@/types/Moves/Move';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { IType } from '@/types/Pokemon/Type';
-import { getType, getTypeMoves, getTypePokemon } from '@/utils/DataFetch';
+import { IMove, IPokemon, IType } from '@/types';
+import { getType, getTypeMoves, getTypePokemon } from '@/utils';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Moves, Pokemon } from '../components';

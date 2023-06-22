@@ -1,4 +1,4 @@
-import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemon } from '@/types';
 import { PokedexImage, SpriteNormal, SpriteShiny } from '../Styled.Pokemon';
 
 type Props = {

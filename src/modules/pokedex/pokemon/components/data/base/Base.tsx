@@ -1,8 +1,7 @@
 import { Small } from '@/components/common/styles/Headings';
 import { TLink } from '@/components/common/styles/Table';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { IGenus, IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
-import { removeDash } from '@/utils/Typography';
+import { IGenus, IPokemon, IPokemonSpecies } from '@/types';
+import { removeDash } from '@/utils';
 import { PokemonDataTable } from '../Styled.Data.PokemonCard';
 
 type Props = {

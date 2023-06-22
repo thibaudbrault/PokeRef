@@ -1,11 +1,7 @@
 import { Dropdown } from '@/components/common/styles/Inputs';
 import { Divider } from '@/components/common/ui/Divider';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import {
-  formOptions,
-  generationsOptions,
-  IOptionsOffsetLimit,
-} from '@/utils/DataArrays';
+import { IPokemon } from '@/types';
+import { formOptions, generationsOptions, IOptionsOffsetLimit } from '@/utils';
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
 import { SingleValue } from 'react-select';
 import makeAnimated from 'react-select/animated';

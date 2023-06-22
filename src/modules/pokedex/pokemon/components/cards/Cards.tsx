@@ -1,6 +1,6 @@
 import { Bold, H3 } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
-import { ICard } from '@/types/Cards/Card';
+import { ICard } from '@/types';
 import Image from 'next/image';
 import { useState } from 'react';
 import { PokemonCardList, PokemonCardModal } from './Styled.Cards.PokemonCard';

@@ -1,11 +1,10 @@
-import { ILocation } from '@/types/Locations/Location';
-import { ILocationArea } from '@/types/Locations/LocationArea';
+import { ILocation, ILocationArea } from '@/types';
 import {
   getArea,
   getEncounterCondition,
   getEncounterMethod,
   getLocation,
-} from '@/utils/DataFetch';
+} from '@/utils';
 import { useQueries, useQuery, UseQueryResult } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 

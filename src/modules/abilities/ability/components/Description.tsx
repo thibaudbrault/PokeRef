@@ -1,6 +1,6 @@
 import { H3 } from '@/components/common/styles/Headings';
-import { IAbilityFlavorText } from '@/types/Pokemon/Ability';
-import { removeDash } from '@/utils/Typography';
+import { IAbilityFlavorText } from '@/types';
+import { removeDash } from '@/utils';
 
 type Props = {
   filterDesc?: IAbilityFlavorText[];

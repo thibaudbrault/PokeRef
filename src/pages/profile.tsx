@@ -1,9 +1,13 @@
 import { LeftH2, LeftSubtitle } from '@/components/common/styles/Headings';
 import { Input } from '@/components/common/styles/Inputs';
 import { MainBig, Section } from '@/components/common/styles/Sizing';
-import { ProfileCaught } from '@/components/pages/Profile/Styled.Profile';
 import { auth, db } from '@/firebase-config';
-import { capitalize, removeDash } from '@/utils/Typography';
+import {
+  ProfileCaught,
+  ProfileDetails,
+  ProfileForm,
+} from '@/modules/profile/Styled.Profile';
+import { capitalize, removeDash } from '@/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   arrayRemove,
@@ -21,10 +25,6 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as yup from 'yup';
-import {
-  ProfileDetails,
-  ProfileForm,
-} from '../components/pages/Profile/Styled.Profile';
 
 type FormInput = {
   username: string;

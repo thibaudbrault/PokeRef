@@ -7,9 +7,8 @@ import {
   TBold,
 } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks/useTableParams';
-import { IMove } from '@/types/Moves/Move';
-import { IMoveAilment } from '@/types/Moves/MoveAilment';
-import { removeDash } from '@/utils/Typography';
+import { IMove, IMoveAilment } from '@/types';
+import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 import { StatusMoves } from '../Styled.Moves';

@@ -8,10 +8,8 @@ import {
 } from '@/components/common/styles/Table';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { useTableParams } from '@/hooks/useTableParams';
-import { IMoveAilment } from '@/types/Moves/MoveAilment';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { LearnMethod } from '@/utils/ObjectsMap';
-import { removeDash, uppercase } from '@/utils/Typography';
+import { IMoveAilment, IPokemon } from '@/types';
+import { LearnMethod, removeDash, uppercase } from '@/utils';
 import { CellContext, ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';

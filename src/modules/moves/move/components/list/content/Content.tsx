@@ -1,6 +1,5 @@
-import { IPokemon, IPokemonMoveVersion } from '@/types/Pokemon/Pokemon';
-import ImageWithFallback from '@/utils/ImageWithFallback';
-import { removeDash } from '@/utils/Typography';
+import { IPokemon, IPokemonMoveVersion } from '@/types';
+import { removeDash, ImageWithFallback } from '@/utils';
 import { MoveLink, MoveList, MoveListEmpty } from '../../../Styled.MoveCard';
 
 type Props = {

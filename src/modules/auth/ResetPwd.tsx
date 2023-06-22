@@ -1,6 +1,6 @@
 import { H2 } from '@/components/common/styles/Headings';
 import { auth } from '@/firebase-config';
-import { capitalize } from '@/utils/Typography';
+import { capitalize } from '@/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
 import { sendPasswordResetEmail } from 'firebase/auth';

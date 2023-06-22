@@ -1,5 +1,5 @@
 import styles from '@/components/pages/Items/ItemCard/ItemCard.module.scss';
-import { IItem } from '@/types/Items/Item';
+import { IItem } from '@/types';
 
 type Props = {
   item?: IItem;

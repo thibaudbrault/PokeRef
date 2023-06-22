@@ -1,7 +1,6 @@
 import { auth, db } from '@/firebase-config';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
-import { removeDash } from '@/utils/Typography';
+import { IPokemon, IPokemonSpecies } from '@/types';
+import { removeDash } from '@/utils';
 import {
   arrayUnion,
   doc,

@@ -3,7 +3,7 @@ import BackBtn from '@/components/common/ui/BackBtn';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { Heading, Nav, useFetchMove, Data, List } from '@/modules/moves/move';
-import { removeDash } from '@/utils/Typography';
+import { removeDash } from '@/utils';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -12,7 +12,7 @@ import toast from 'react-hot-toast';
 import { MoveMainBig } from '@/modules/moves/move/Styled.MoveCard';
 
 const LearnMethod = dynamic(() =>
-  import(`@/utils/ObjectsMap`).then((res) => res.LearnMethod),
+  import(`@/utils`).then((res) => res.LearnMethod),
 );
 
 type Props = {

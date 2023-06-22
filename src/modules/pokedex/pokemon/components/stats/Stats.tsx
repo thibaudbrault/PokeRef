@@ -2,7 +2,7 @@ import { Bold, H3 } from '@/components/common/styles/Headings';
 import { MethodNav } from '@/components/common/styles/Navbars';
 import { Section } from '@/components/common/styles/Sizing';
 import ToolTip from '@/components/common/ui/ToolTip';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemon } from '@/types';
 import { useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';

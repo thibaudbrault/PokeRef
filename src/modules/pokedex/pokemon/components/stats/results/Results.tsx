@@ -1,6 +1,6 @@
 import { THead } from '@/components/common/styles/Table';
-import { IPokemonStat } from '@/types/Pokemon/Pokemon';
-import { pokemonNatures } from '@/utils/DataArrays';
+import { IPokemonStat } from '@/types';
+import { pokemonNatures } from '@/utils';
 import { IStatsForm } from '../calculator/Calculator';
 import { PokemonStatsResults } from '../Styled.Stats.PokemonCard';
 

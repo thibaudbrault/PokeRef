@@ -4,9 +4,8 @@ import {
   AutocompleteInput,
   AutocompleteLink,
 } from '@/components/common/styles/Autocomplete';
-import { IMove } from '@/types/Moves/Move';
-import ImageWithFallback from '@/utils/ImageWithFallback';
-import { capitalize, removeDash } from '@/utils/Typography';
+import { IMove } from '@/types';
+import { ImageWithFallback, capitalize, removeDash } from '@/utils';
 import Fuse from 'fuse.js';
 import { useState } from 'react';
 

@@ -10,14 +10,14 @@ import {
 } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import { usePaginatedTableParams } from '@/hooks/usePaginatedTableParams';
-import { IMove } from '@/types/Moves/Move';
-import { removeDash } from '@/utils/Typography';
+import { IMove } from '@/types';
+import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import { SearchContainer } from '../Styled.Moves';
 import { Search } from './Search';
+import { SearchContainer } from '../Styled.Moves';
 
 type Props = {
   moves?: IMove[];

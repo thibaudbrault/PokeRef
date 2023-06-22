@@ -8,8 +8,8 @@ import {
   TLink,
 } from '@/components/common/styles/Table';
 import { usePaginatedTableParams } from '@/hooks/usePaginatedTableParams';
-import { IItem } from '@/types/Items/Item';
-import { removeDash } from '@/utils/Typography';
+import { IItem } from '@/types';
+import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import { useMemo } from 'react';

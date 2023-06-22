@@ -1,4 +1,4 @@
-import { IType } from '@/types/Pokemon/Type';
+import { IType } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ModifiedType } from '../Styled.Types';

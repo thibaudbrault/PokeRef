@@ -4,12 +4,8 @@ import { H3, H4 } from '@/components/common/styles/Headings';
 import { MethodNav } from '@/components/common/styles/Navbars';
 import { Section } from '@/components/common/styles/Sizing';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
-import {
-  IFormatAnalysesSets,
-  IFormatsAnalysesSetName,
-} from '@/types/Competitive/Analyses';
-import { getFormat } from '@/utils/DataFetch';
-import { capitalize, removeLongName } from '@/utils/Typography';
+import { IFormatAnalysesSets, IFormatsAnalysesSetName } from '@/types';
+import { capitalize, getFormat, removeLongName } from '@/utils';
 import { useQueries } from '@tanstack/react-query';
 import { useState } from 'react';
 import toast from 'react-hot-toast';

@@ -1,5 +1,5 @@
-import { IItem, IItemHolderPokemon } from '@/types/Items/Item';
-import { removeDash } from '@/utils/Typography';
+import { IItem, IItemHolderPokemon } from '@/types';
+import { removeDash } from '@/utils';
 import Link from 'next/link';
 
 type Props = {

@@ -1,6 +1,6 @@
 import styles from '@/components/pages/Locations/Locations.module.scss';
-import { ILocation } from '@/types/Locations/Location';
-import { removeDash } from '@/utils/Typography';
+import { ILocation } from '@/types';
+import { removeDash } from '@/utils';
 
 type Props = {
   location?: ILocation;

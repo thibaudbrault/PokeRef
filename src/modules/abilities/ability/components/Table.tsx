@@ -5,13 +5,11 @@ import {
   TLink,
 } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks/useTableParams';
-import { IAbility } from '@/types/Pokemon/Ability';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import ImageWithFallback from '@/utils/ImageWithFallback';
-import { removeDash } from '@/utils/Typography';
+import { IAbility, IPokemon } from '@/types';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import styles from '@/components/pages/Abilities/AbilityCard/AbilityCard.module.scss';
+import { ImageWithFallback, removeDash } from '@/utils';
 
 type Props = {
   ability?: IAbility;

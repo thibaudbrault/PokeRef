@@ -1,5 +1,5 @@
 import { device } from '@/components/common/styles/Sizing';
-import ImageWithFallback from '@/utils/ImageWithFallback';
+import { ImageWithFallback } from '@/utils';
 import styled from 'styled-components';
 
 export const PokedexSearch = styled.section`

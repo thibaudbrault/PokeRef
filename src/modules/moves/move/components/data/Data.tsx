@@ -1,5 +1,4 @@
-import { IMachine } from '@/types/Machines/Machine';
-import { IMove } from '@/types/Moves/Move';
+import { IMachine, IMove } from '@/types';
 import { MoveCardDataSection } from './Styled.Data.MoveCard';
 import { Description } from './description';
 import { Effect } from './effect';

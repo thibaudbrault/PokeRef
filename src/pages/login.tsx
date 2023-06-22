@@ -16,7 +16,7 @@ import {
   AuthSwitch,
   AuthTitle,
 } from '@/modules/auth/Styled.Auth';
-import { capitalize } from '@/utils/Typography';
+import { capitalize } from '@/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
 import { GrGithub, GrGoogle } from '@meronex/icons/gr';

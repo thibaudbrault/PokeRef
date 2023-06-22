@@ -1,7 +1,7 @@
 import { Capitalize } from '@/components/common/styles/Headings';
 import ToolTip from '@/components/common/ui/ToolTip';
-import { IType } from '@/types/Pokemon/Type';
-import { capitalize, removeDash } from '@/utils/Typography';
+import { IType } from '@/types';
+import { capitalize, removeDash } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TypeDamageSection, TypeDamageTable } from '../Styled.TypeCard';

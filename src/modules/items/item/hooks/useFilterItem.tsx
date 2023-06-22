@@ -1,5 +1,5 @@
-import { IItem } from '@/types/Items/Item';
-import { getItem } from '@/utils/DataFetch';
+import { IItem } from '@/types';
+import { getItem } from '@/utils';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 export const useFilterItem = (name: string) => {

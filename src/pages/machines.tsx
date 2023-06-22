@@ -13,9 +13,8 @@ import {
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
 import { Heading } from '@/modules/machines';
-import { IMachine } from '@/types/Machines/Machine';
-import { getMachines } from '@/utils/DataFetch';
-import { removeDash, uppercase } from '@/utils/Typography';
+import { IMachine } from '@/types';
+import { getMachines, removeDash, uppercase } from '@/utils';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';

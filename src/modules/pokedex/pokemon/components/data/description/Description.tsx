@@ -1,8 +1,7 @@
 import { Bold, Capitalize } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
-import { removeDash } from '@/utils/Typography';
+import { IPokemon, IPokemonSpecies } from '@/types';
+import { removeDash } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import {

@@ -1,4 +1,4 @@
-import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemon } from '@/types';
 import {
   getCards,
   getEvolution,
@@ -6,7 +6,7 @@ import {
   getPokemonLocation,
   getPokemonTypes,
   getSpecies,
-} from '@/utils/DataFetch';
+} from '@/utils';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 

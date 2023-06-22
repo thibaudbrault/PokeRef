@@ -6,9 +6,8 @@ import {
   TCapitalize,
 } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks/useTableParams';
-import { INature } from '@/types/Pokemon/Nature';
-import { IMoveStatAffect, IStat } from '@/types/Pokemon/Stat';
-import { removeDash } from '@/utils/Typography';
+import { IMoveStatAffect, INature, IStat } from '@/types';
+import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 import { useMemo } from 'react';

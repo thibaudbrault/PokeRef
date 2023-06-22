@@ -1,5 +1,5 @@
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { removeDash, removeLongName } from '@/utils/Typography';
+import { IPokemon } from '@/types';
+import { removeDash, removeLongName } from '@/utils';
 import Link from 'next/link';
 import { PokedexElement, PokedexList, PokedexTypes } from '../Styled.Pokemon';
 import { Sprites } from './Sprites';

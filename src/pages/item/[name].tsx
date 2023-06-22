@@ -12,7 +12,7 @@ import {
 } from '@/modules/items/item';
 
 import styles from '@/modules/items/item/Item.module.scss';
-import { removeDash } from '@/utils/Typography';
+import { removeDash } from '@/utils';
 import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';

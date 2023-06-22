@@ -1,7 +1,7 @@
 import { H3 } from '@/components/common/styles/Headings';
 import { Section } from '@/components/common/styles/Sizing';
 import { Type } from '@/components/common/styles/Themes';
-import { IType } from '@/types/Pokemon/Type';
+import { IType } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 

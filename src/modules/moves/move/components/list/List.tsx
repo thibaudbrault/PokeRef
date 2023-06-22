@@ -1,5 +1,5 @@
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemon } from '@/types';
 import {
   BreedingMoveText,
   EvolvingMoveText,

@@ -1,9 +1,7 @@
 import { H3 } from '@/components/common/styles/Headings';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
-import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { getAllEvo } from '@/utils/DataFetch';
-import { removeDash } from '@/utils/Typography';
+import { IEvolutionChain, IPokemon } from '@/types';
+import { getAllEvo, removeDash } from '@/utils';
 import { FaChevronRight } from '@meronex/icons/fa';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import Image from 'next/image';

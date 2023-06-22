@@ -1,6 +1,5 @@
 import { GenNav } from '@/components/common/styles/Navbars';
-import { genNav } from '@/utils/DataArrays';
-import { removeDash } from '@/utils/Typography';
+import { genNav, removeDash } from '@/utils';
 import { Dispatch, SetStateAction } from 'react';
 
 type Props = {

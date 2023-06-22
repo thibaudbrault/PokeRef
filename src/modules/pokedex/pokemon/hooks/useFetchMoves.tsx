@@ -1,5 +1,4 @@
-import { IMove } from '@/types/Moves/Move';
-import { IPokemon, IPokemonMove } from '@/types/Pokemon/Pokemon';
+import { IMove, IPokemon, IPokemonMove } from '@/types';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import axios from 'axios';
 

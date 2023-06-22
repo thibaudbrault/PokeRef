@@ -3,9 +3,8 @@ import { Section } from '@/components/common/styles/Sizing';
 import { TableContainer, TBold } from '@/components/common/styles/Table';
 import styles from '@/components/pages/Locations/Locations.module.scss';
 import { useTableParams } from '@/hooks/useTableParams';
-import { ILocationAreaEncounter } from '@/types/Pokemon/Pokemon';
-import { IEncounter } from '@/types/Utility/CommonModels';
-import { removeDash } from '@/utils/Typography';
+import { IEncounter, ILocationAreaEncounter } from '@/types';
+import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
 

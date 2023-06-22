@@ -1,7 +1,10 @@
-import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
-import { IPokemon, IPokemonStat } from '@/types/Pokemon/Pokemon';
-import { IPokemonSpecies } from '@/types/Pokemon/PokemonSpecies';
-import { removeDash } from '@/utils/Typography';
+import {
+  IEvolutionChain,
+  IPokemon,
+  IPokemonSpecies,
+  IPokemonStat,
+} from '@/types';
+import { removeDash } from '@/utils';
 import Link from 'next/link';
 
 interface Pokemon {

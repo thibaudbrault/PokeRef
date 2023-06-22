@@ -2,17 +2,15 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import styles from '@/components/pages/Locations/Locations.module.scss';
 import { Heading, List } from '@/modules/locations';
-import { IRegion } from '@/types/Locations/Region';
-import { regions } from '@/utils/DataArrays';
-import { getRegions } from '@/utils/DataFetch';
-import { capitalize } from '@/utils/Typography';
+import { IRegion } from '@/types';
+import { capitalize, getRegions, regions } from '@/utils';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const RegionsMethod = dynamic(() =>
-  import(`@/utils/ObjectsMap`).then((res) => res.RegionsMethod),
+  import(`@/utils`).then((res) => res.RegionsMethod),
 );
 
 function LocationsPage() {

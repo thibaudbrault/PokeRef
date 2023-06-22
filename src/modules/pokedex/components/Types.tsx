@@ -1,5 +1,5 @@
 import { Type } from '@/components/common/styles/Themes';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { IPokemon } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 

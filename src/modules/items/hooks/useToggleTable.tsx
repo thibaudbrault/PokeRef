@@ -1,4 +1,4 @@
-import { getBerries, getItems } from '@/utils/DataFetch';
+import { getBerries, getItems } from '@/utils';
 import { useQueries } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Berries, Items } from '../components';

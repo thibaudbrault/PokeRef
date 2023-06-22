@@ -6,8 +6,8 @@ import {
   TCapitalize,
 } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks/useTableParams';
-import { IBerry } from '@/types/Berries/Berry';
-import { removeDash } from '@/utils/Typography';
+import { IBerry } from '@/types';
+import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
 
