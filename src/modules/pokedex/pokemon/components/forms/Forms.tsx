@@ -1,5 +1,3 @@
-import { H3 } from '@/components/common/styles/Headings';
-import { Section } from '@/components/common/styles/Sizing';
 import {
   FullWidthTable,
   TableContainer,
@@ -8,7 +6,7 @@ import {
 } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
-import { useTableParams } from '@/hooks/useTableParams';
+import { useTableParams } from '@/hooks';
 import { IPokemon, IPokemonForm } from '@/types';
 import { getPokemonForms, removeDash } from '@/utils';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
@@ -163,14 +161,14 @@ export function Forms({ pokemon }: Props) {
   }
 
   return (
-    <Section id="forms">
-      <H3>Forms</H3>
+    <section className="section" id="forms">
+      <h3 className="h3">Forms</h3>
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>
           {tableHeader()}
           {tableBody()}
         </FullWidthTable>
       </TableContainer>
-    </Section>
+    </section>
   );
 }

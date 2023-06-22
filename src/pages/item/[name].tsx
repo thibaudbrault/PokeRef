@@ -1,5 +1,3 @@
-import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
 import {
@@ -41,9 +39,9 @@ function ItemCard({ name }: Props) {
     return (
       <>
         <Heading name={name} />
-        <MainBig>
-          <CardTitle>{removeDash(item?.name)}</CardTitle>
-          <Subtitle>{removeDash(item?.category.name)}</Subtitle>
+        <main className="mainBig">
+          <h2 className="pageTitle">{removeDash(item?.name)}</h2>
+          <h4 className="subtitle">{removeDash(item?.category.name)}</h4>
           <section className={styles.section}>
             <div>
               <div className={styles.effect}>
@@ -69,7 +67,7 @@ function ItemCard({ name }: Props) {
           <Link href="/items" passHref>
             <BackBtn name="Items" />
           </Link>
-        </MainBig>
+        </main>
       </>
     );
   }

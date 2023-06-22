@@ -7,7 +7,7 @@ import {
   HeaderBtnTheme,
   HeaderContainer,
 } from '@/components/layout/Header/Styled.Header';
-import { ThemeContext } from '@/contexts/Theme';
+import { ThemeContext } from '@/contexts';
 import { auth } from '@/firebase-config';
 import { FiMenu, FiX } from '@meronex/icons/fi';
 import { RiMoonClearLine, RiSunLine } from '@meronex/icons/ri';
@@ -26,7 +26,7 @@ type Props = {
   setNavOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-function Header({ navOpen, setNavOpen }: Props) {
+export function Header({ navOpen, setNavOpen }: Props) {
   const [user, setUser] = useState<User | null>();
   // const usersCollectionRef = collection(db, `users`);
 
@@ -97,5 +97,3 @@ function Header({ navOpen, setNavOpen }: Props) {
     </HeaderContainer>
   );
 }
-
-export default Header;

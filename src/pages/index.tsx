@@ -1,12 +1,11 @@
 import { Pagination } from '@/components/common/styles/Pagination';
-import { MainBig } from '@/components/common/styles/Sizing';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
 import { PokedexVerticalText } from '@/modules/pokedex/Styled.Pokemon';
 import { IPokemon } from '@/types';
 import { IOptionsOffsetLimit, getPokedex } from '@/utils';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
@@ -61,7 +60,7 @@ function Pokedex() {
   return (
     <>
       <Heading />
-      <MainBig>
+      <main className="mainBig">
         <Filters
           pokedex={pokedex}
           setFilteredPokedex={setFilteredPokedex}
@@ -91,7 +90,7 @@ function Pokedex() {
             renderOnZeroPageCount={() => null}
           />
         )}
-      </MainBig>
+      </main>
     </>
   );
 }

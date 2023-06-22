@@ -1,11 +1,10 @@
-import { LeftH2 } from '@/components/common/styles/Headings';
 import {
   FullWidthTable,
   TableContainer,
   TBold,
   TCapitalize,
 } from '@/components/common/styles/Table';
-import { useTableParams } from '@/hooks/useTableParams';
+import { useTableParams } from '@/hooks';
 import { IMoveStatAffect, INature, IStat } from '@/types';
 import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
@@ -119,7 +118,7 @@ export function Stats({ stats }: Props) {
 
   return (
     <section>
-      <LeftH2>Stats</LeftH2>
+      <h2 className="leftH2">Stats</h2>
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>
           {tableHeader()}

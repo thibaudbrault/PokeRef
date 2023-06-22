@@ -1,5 +1,3 @@
-import { H2 } from '@/components/common/styles/Headings';
-import { MainForm } from '@/components/common/styles/Sizing';
 import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
 import ResetPwd from '@/modules/auth/ResetPwd';
 import {
@@ -89,7 +87,7 @@ function Login() {
   };
 
   return (
-    <MainForm>
+    <main className="mainForm">
       <AuthContainer>
         <AuthClose href={`/`}>
           <FiX />
@@ -97,7 +95,7 @@ function Login() {
         <AuthImage />
         <AuthForm onSubmit={handleSubmit(submitForm)}>
           <AuthTitle>
-            <H2>Login</H2>
+            <h2 className="h2">Login</h2>
             <p>
               Go to your profile to create teams and find your favorites pokémon
             </p>
@@ -154,7 +152,7 @@ function Login() {
         </AuthForm>
       </AuthContainer>
       <ResetPwd modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
-    </MainForm>
+    </main>
   );
 }
 

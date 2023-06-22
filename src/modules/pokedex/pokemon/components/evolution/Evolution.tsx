@@ -1,9 +1,8 @@
-import { H3 } from '@/components/common/styles/Headings';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IEvolutionChain, IPokemon } from '@/types';
 import { getAllEvo, removeDash } from '@/utils';
 import { FaChevronRight } from '@meronex/icons/fa';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
@@ -49,7 +48,7 @@ export function Evolution({ evolution, name }: Props) {
 
   return (
     <PokemonEvolutionSection id="evolution">
-      <H3>Evolution chain</H3>
+      <h3 className="h3">Evolution chain</h3>
       <PokemonEvolutionContainer>
         <PokemonEvolutionBase>
           <div>

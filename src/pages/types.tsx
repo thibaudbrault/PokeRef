@@ -1,10 +1,9 @@
-import { MainSmall } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { Heading, List } from '@/modules/types';
 import { TypesList } from '@/modules/types/Styled.Types';
 import { IType } from '@/types';
 import { getTypes } from '@/utils';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
 function TypesPage() {
@@ -33,11 +32,11 @@ function TypesPage() {
   return (
     <>
       <Heading />
-      <MainSmall>
+      <main className="mainSmall">
         <TypesList>
           <List types={types} />
         </TypesList>
-      </MainSmall>
+      </main>
     </>
   );
 }

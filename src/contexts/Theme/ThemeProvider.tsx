@@ -1,11 +1,11 @@
 import { ReactNode, useEffect, useState } from 'react';
-import ThemeContext, { initialThemeState } from './ThemeContext';
+import { ThemeContext, initialThemeState } from './ThemeContext';
 
 type Props = {
   children: ReactNode;
 };
 
-const ThemeProvider = ({ children }: Props) => {
+export const ThemeProvider = ({ children }: Props) => {
   const [theme, setTheme] = useState(initialThemeState.theme);
 
   const localStorage = globalThis.window?.localStorage;
@@ -28,5 +28,3 @@ const ThemeProvider = ({ children }: Props) => {
     </ThemeContext.Provider>
   );
 };
-
-export default ThemeProvider;

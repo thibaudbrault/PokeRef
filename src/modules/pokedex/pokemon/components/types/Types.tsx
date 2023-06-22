@@ -1,5 +1,3 @@
-import { H3 } from '@/components/common/styles/Headings';
-import { Section } from '@/components/common/styles/Sizing';
 import { Type } from '@/components/common/styles/Themes';
 import { IType } from '@/types';
 import Image from 'next/image';
@@ -14,8 +12,8 @@ type Props = {
 
 export function Types({ types }: Props) {
   return (
-    <Section id="types">
-      <H3>Types relations</H3>
+    <section className="section" id="types">
+      <h3 className="h3">Types relations</h3>
       <PokemonTypesList>
         {types.map((t) => (
           <Type id={t.name} key={t.name}>
@@ -39,6 +37,6 @@ export function Types({ types }: Props) {
       <div>
         <Table types={types} />
       </div>
-    </Section>
+    </section>
   );
 }

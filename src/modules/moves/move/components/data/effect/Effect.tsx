@@ -1,9 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Bold, Capitalize, H3, H4 } from '@/components/common/styles/Headings';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IDescription, IMove, IMoveTarget } from '@/types';
 import { getMoveTarget, removeDash } from '@/utils';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import {
   MoveCardDataList,
@@ -48,13 +47,13 @@ export function Effect({ move, version }: Props) {
   return (
     <MoveCardDataList>
       <li>
-        <H3>Effects</H3>
+        <h3 className="h3">Effects</h3>
 
         <MoveCardDataText>
-          <Capitalize>
+          <span className="capitalize">
             <i>{removeDash(move?.name)}</i>
             {` `}
-          </Capitalize>
+          </span>
           {move.effect_entries
             ?.find((me) => me.language.name === `en`)
             ?.short_effect.replace(
@@ -78,8 +77,8 @@ export function Effect({ move, version }: Props) {
           {move?.meta.ailment?.name !== `none` && (
             <li>
               <p>
-                <Bold>Status</Bold> :{` `}
-                <Capitalize>{move.meta.ailment.name}</Capitalize>
+                <span className="bold">Status</span> :{` `}
+                <span className="capitalize">{move.meta.ailment.name}</span>
               </p>
               <p>
                 {move?.meta?.ailment_chance !== 0 && (
@@ -135,7 +134,7 @@ export function Effect({ move, version }: Props) {
       <li>
         {move.stat_changes.length > 0 && (
           <>
-            <H4>Stat modification</H4>
+            <h4 className="h4">Stat modification</h4>
             <MoveCardDataStat>
               {move.stat_changes?.map((ms) =>
                 ms.change < 0 ? (
@@ -145,7 +144,11 @@ export function Effect({ move, version }: Props) {
                       `has a ${move.meta.stat_chance}% chance to`}
                     {` `}
                     lower the target's{` `}
-                    <Capitalize>{removeDash(ms.stat.name)}</Capitalize> by{` `}
+                    <span className="capitalize">
+                      {removeDash(ms.stat.name)}
+                    </span>
+                    {` `}
+                    by{` `}
                     {Math.abs(ms.change)} stage
                   </li>
                 ) : (
@@ -156,7 +159,7 @@ export function Effect({ move, version }: Props) {
                       : `raises`}
                     {` `}
                     the target's{` `}
-                    <Capitalize>{ms.stat.name}</Capitalize>
+                    <span className="capitalize">{ms.stat.name}</span>
                     {` `}
                     by {Math.abs(ms.change)} stage
                   </li>
@@ -170,20 +173,20 @@ export function Effect({ move, version }: Props) {
       <li>
         {move.past_values.length > 0 && (
           <>
-            <H4>Changes</H4>
+            <h4 className="h4">Changes</h4>
             <MoveCardDataStat>
               {move.past_values?.map((mp) => (
                 <>
                   {mp.power && (
                     <li>
                       Before{` `}
-                      <Capitalize>
+                      <span className="capitalize">
                         {removeDash(mp.version_group.name)}
-                      </Capitalize>
+                      </span>
                       {` `}:{` `}
-                      <Capitalize>
+                      <span className="capitalize">
                         <i>{removeDash(move.name)}</i>
-                      </Capitalize>
+                      </span>
                       {` `}
                       had {mp.power} base power
                     </li>
@@ -191,13 +194,13 @@ export function Effect({ move, version }: Props) {
                   {mp.accuracy && (
                     <li>
                       Before{` `}
-                      <Capitalize>
+                      <span className="capitalize">
                         {removeDash(mp.version_group.name)}
-                      </Capitalize>
+                      </span>
                       {` `}:{` `}
-                      <Capitalize>
+                      <span className="capitalize">
                         <i>{removeDash(move.name)}</i>
-                      </Capitalize>
+                      </span>
                       {` `}
                       had {mp.accuracy} accuracy
                     </li>
@@ -205,13 +208,13 @@ export function Effect({ move, version }: Props) {
                   {mp.pp && (
                     <li>
                       Before{` `}
-                      <Capitalize>
+                      <span className="capitalize">
                         {removeDash(mp.version_group.name)}
-                      </Capitalize>
+                      </span>
                       {` `}:{` `}
-                      <Capitalize>
+                      <span className="capitalize">
                         <i>{removeDash(move.name)}</i>
-                      </Capitalize>
+                      </span>
                       {` `}
                       had {mp.pp} PP
                     </li>
@@ -219,13 +222,13 @@ export function Effect({ move, version }: Props) {
                   {mp.type && (
                     <li>
                       Before{` `}
-                      <Capitalize>
+                      <span className="capitalize">
                         {removeDash(mp.version_group.name)}
-                      </Capitalize>
+                      </span>
                       {` `}:{` `}
-                      <Capitalize>
+                      <span className="capitalize">
                         <i>{removeDash(move.name)}</i>
-                      </Capitalize>
+                      </span>
                       {` `}
                       was {mp.type?.name} type
                     </li>
@@ -238,7 +241,7 @@ export function Effect({ move, version }: Props) {
       </li>
 
       <li>
-        <H4>Target</H4>
+        <h4 className="h4">Target</h4>
         <MoveCardDataTarget>
           {
             filteredTarget(move.target.name)?.descriptions.find(

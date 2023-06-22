@@ -1,4 +1,3 @@
-import { Bold, Capitalize } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
 import { IPokemon, IPokemonSpecies } from '@/types';
 import { removeDash } from '@/utils';
@@ -35,14 +34,16 @@ export function Description({ pokemon, species, game }: Props) {
                   .replace(`\u000c`, ` `)
                   .replace(`POKéMON`, `Pokémon`)
               ) : (
-                <Bold>There is no description for this Pokémon</Bold>
+                <span className="bold">
+                  There is no description for this Pokémon
+                </span>
               )}
             </span>
             <p>
               Pokémon{` `}
-              <Capitalize>
+              <span className="capitalize">
                 <i>{game && removeDash(game)}</i>
-              </Capitalize>
+              </span>
             </p>
           </PokemonDataDesc>
         )}

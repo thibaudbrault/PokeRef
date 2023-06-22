@@ -4,7 +4,7 @@ import {
   TBold,
   TLink,
 } from '@/components/common/styles/Table';
-import { useTableParams } from '@/hooks/useTableParams';
+import { useTableParams } from '@/hooks';
 import { IAbility, IPokemon } from '@/types';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';

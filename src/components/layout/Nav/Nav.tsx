@@ -1,6 +1,6 @@
 import { Divider } from '@/components/common/ui/Divider';
 import { auth } from '@/firebase-config';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { useMediaQuery } from '@/hooks';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import Link from 'next/link';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
@@ -22,7 +22,7 @@ type NavArray = {
   name: string;
 }[];
 
-function Nav({ navOpen, setNavOpen }: Props) {
+export function Nav({ navOpen, setNavOpen }: Props) {
   const [user, setUser] = useState<User | null>();
   const isBreakpoint = useMediaQuery(890);
 
@@ -100,5 +100,3 @@ function Nav({ navOpen, setNavOpen }: Props) {
     </MainNav>
   );
 }
-
-export default Nav;

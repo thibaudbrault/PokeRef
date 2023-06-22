@@ -1,12 +1,11 @@
-import { Capitalize } from '@/components/common/styles/Headings';
 import ToolTip from '@/components/common/ui/ToolTip';
+import typesRelationData from '@/data/types.json';
+import { MoveCardDataTable } from '@/modules/moves/move/components/data/Styled.Data.MoveCard';
+import styles from '@/modules/types/type/Type.module.scss';
 import { IType } from '@/types';
 import { capitalize, removeDash } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { TypeDamageSection, TypeDamageTable } from '../Styled.TypeCard';
-import typesRelationData from '@/data/types.json';
-import { MoveCardDataTable } from '@/modules/moves/move/components/data/Styled.Data.MoveCard';
 
 type Props = {
   type?: IType;
@@ -45,7 +44,7 @@ export function Damage({ type }: Props) {
 
   return (
     <>
-      <TypeDamageSection>
+      <section className={styles.section}>
         <MoveCardDataTable>
           <tr>
             <th>Generation</th>
@@ -54,11 +53,11 @@ export function Damage({ type }: Props) {
           <tr>
             <th>Damage class</th>
             <td>
-              <Capitalize>{type?.move_damage_class.name}</Capitalize>
+              <span className="capitalize">{type?.move_damage_class.name}</span>
             </td>
           </tr>
         </MoveCardDataTable>
-        <TypeDamageTable>
+        <table className={styles.table}>
           <tr>
             <th>Deals 0X damage to</th>
             <td>
@@ -259,8 +258,8 @@ export function Damage({ type }: Props) {
               </div>
             </td>
           </tr>
-        </TypeDamageTable>
-      </TypeDamageSection>
+        </table>
+      </section>
       <ToolTip id="type-tooltip" />
     </>
   );

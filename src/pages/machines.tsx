@@ -1,21 +1,15 @@
 import {
-  Bold,
-  LeftH2,
-  LeftSubtitle,
-} from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
-import {
   FullWidthTable,
-  TableContainer,
   TBold,
   TLink,
+  TableContainer,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
-import { useTableParams } from '@/hooks/useTableParams';
+import { useTableParams } from '@/hooks';
 import { Heading } from '@/modules/machines';
 import { IMachine } from '@/types';
 import { getMachines, removeDash, uppercase } from '@/utils';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';
 import { useMemo, useState } from 'react';
@@ -90,11 +84,11 @@ function MachinesPage() {
   return (
     <>
       <Heading />
-      <MainBig>
-        <LeftH2>Machines</LeftH2>
-        <LeftSubtitle>
-          Game selected: <Bold>{game}</Bold>
-        </LeftSubtitle>
+      <main className="mainBig">
+        <h2 className="leftH2">Machines</h2>
+        <h4 className="leftSubtitle">
+          Game selected: <span className="bold">{game}</span>
+        </h4>
         <Nav setGame={setGame} setVersion={setVersion} />
         <TableContainer ref={tableContainerRef}>
           <FullWidthTable>
@@ -107,7 +101,7 @@ function MachinesPage() {
             </tfoot>
           </FullWidthTable>
         </TableContainer>
-      </MainBig>
+      </main>
     </>
   );
 }

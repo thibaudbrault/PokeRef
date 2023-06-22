@@ -1,19 +1,17 @@
-import { LeftH2 } from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
 import {
   FullWidthTable,
-  TableContainer,
   TBold,
   TEffect,
   TLink,
+  TableContainer,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
-import { usePaginatedTableParams } from '@/hooks/usePaginatedTableParams';
+import { usePaginatedTableParams } from '@/hooks';
 import { SearchContainer } from '@/modules/Moves/Styled.Moves';
 import { Heading, Search } from '@/modules/abilities';
 import { IAbility } from '@/types';
 import { getAbilities, removeDash } from '@/utils';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import toast from 'react-hot-toast';
@@ -85,9 +83,9 @@ function AbilitiesPage() {
   return (
     <>
       <Heading />
-      <MainBig>
+      <main className="mainBig">
         <SearchContainer>
-          <LeftH2>Abilities</LeftH2>
+          <h2 className="leftH2">Abilities</h2>
           <Search abilities={abilities} />
         </SearchContainer>
         <TableContainer ref={tableContainerRef}>
@@ -97,7 +95,7 @@ function AbilitiesPage() {
           </FullWidthTable>
           {tablePagination()}
         </TableContainer>
-      </MainBig>
+      </main>
     </>
   );
 }

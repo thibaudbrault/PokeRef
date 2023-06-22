@@ -1,6 +1,4 @@
-import { Bold, H3 } from '@/components/common/styles/Headings';
 import { MethodNav } from '@/components/common/styles/Navbars';
-import { Section } from '@/components/common/styles/Sizing';
 import ToolTip from '@/components/common/ui/ToolTip';
 import { IPokemon } from '@/types';
 import { useState } from 'react';
@@ -64,8 +62,8 @@ export function Stats({ pokemon }: Props) {
 
   return (
     <>
-      <Section id="stats">
-        <H3>Base stats</H3>
+      <section className="section" id="stats">
+        <h3 className="h3">Base stats</h3>
         <MethodNav>
           <button
             className={toggle === 1 ? `button_active` : ``}
@@ -158,14 +156,14 @@ export function Stats({ pokemon }: Props) {
         </PokemonStatsCircles>
         {toggle === 1 && (
           <PokemonStatsTotal>
-            <Bold>Total</Bold>: {percentageTotal}
+            <span className="bold">Total</span>: {percentageTotal}
           </PokemonStatsTotal>
         )}
         <PokemonStatsDetails>
           <summary>Stats calculator</summary>
           <Calculator baseStat={pokemon.stats} />
         </PokemonStatsDetails>
-      </Section>
+      </section>
       <ToolTip id="stat-tooltip" />
     </>
   );

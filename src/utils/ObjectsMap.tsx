@@ -1,5 +1,5 @@
 import { MethodNav } from '@/components/common/styles/Navbars';
-import styles from '@/components/pages/Locations/Locations.module.scss';
+import styles from '@/modules/locations/Locations.module.scss';
 import { Dispatch, SetStateAction } from 'react';
 import { learnMethod, regions } from './DataArrays';
 import { removeDash } from './Typography';

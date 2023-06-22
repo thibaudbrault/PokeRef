@@ -1,4 +1,3 @@
-import { Small } from '@/components/common/styles/Headings';
 import { Type } from '@/components/common/styles/Themes';
 import { IMachine, IMove } from '@/types';
 import Image from 'next/image';
@@ -76,7 +75,7 @@ export function Description({ move, version, machine }: Props) {
         <tr>
           <th>PP</th>
           <td>
-            {move.pp} <Small>(max. {maxPp})</Small>
+            {move.pp} <small className="small">(max. {maxPp})</small>
           </td>
         </tr>
         <tr>

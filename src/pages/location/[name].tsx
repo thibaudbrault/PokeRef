@@ -1,10 +1,8 @@
-import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
-import { MainBig, Section } from '@/components/common/styles/Sizing';
 import { TBold, TLink, TableContainer } from '@/components/common/styles/Table';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
 import styles from '@/components/pages/Locations/Locations.module.scss';
-import { useTableParams } from '@/hooks/useTableParams';
+import { useTableParams } from '@/hooks';
 import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
 import {
   IEncounter,
@@ -198,24 +196,24 @@ function LocationCard({ name }: Props) {
   return (
     <>
       <Heading name={name} />
-      <MainBig>
-        <CardTitle>
+      <main className="mainBig">
+        <h2 className="pageTitle">
           {location &&
             removeDash(location.data?.name).replace(
               /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea/g,
               ``,
             )}
-        </CardTitle>
-        <Subtitle>
+        </h2>
+        <h4 className="subtitle">
           {game && `${location.data?.region.name} - ${removeDash(game)}`}
-        </Subtitle>
+        </h4>
         <Area
           location={location.data}
           toggleState={toggleState}
           toggleTable={toggleTable}
         />
         <Nav setGame={setGame} setVersion={setVersion} />
-        <Section>
+        <section className="section">
           <TableContainer ref={tableContainerRef}>
             <table className={styles.table}>
               {tableHeader()}
@@ -227,11 +225,11 @@ function LocationCard({ name }: Props) {
               </tfoot>
             </table>
           </TableContainer>
-        </Section>
+        </section>
         <Link href="/locations" passHref>
           <BackBtn name="Locations" />
         </Link>
-      </MainBig>
+      </main>
     </>
   );
 }

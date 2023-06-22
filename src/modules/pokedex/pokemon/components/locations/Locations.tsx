@@ -1,8 +1,6 @@
-import { H3 } from '@/components/common/styles/Headings';
-import { Section } from '@/components/common/styles/Sizing';
 import { TableContainer, TBold } from '@/components/common/styles/Table';
 import styles from '@/components/pages/Locations/Locations.module.scss';
-import { useTableParams } from '@/hooks/useTableParams';
+import { useTableParams } from '@/hooks';
 import { IEncounter, ILocationAreaEncounter } from '@/types';
 import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
@@ -110,8 +108,8 @@ export function Locations({ location, game }: Props) {
   );
 
   return (
-    <Section id="locations">
-      <H3>Locations</H3>
+    <section className="section" id="locations">
+      <h3 className="h3">Locations</h3>
       <TableContainer ref={tableContainerRef}>
         <table className={styles.table}>
           {tableHeader()}
@@ -123,6 +121,6 @@ export function Locations({ location, game }: Props) {
           </tfoot>
         </table>
       </TableContainer>
-    </Section>
+    </section>
   );
 }

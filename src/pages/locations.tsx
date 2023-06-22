@@ -1,10 +1,9 @@
-import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
 import styles from '@/components/pages/Locations/Locations.module.scss';
 import { Heading, List } from '@/modules/locations';
 import { IRegion } from '@/types';
 import { capitalize, getRegions, regions } from '@/utils';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -45,7 +44,7 @@ function LocationsPage() {
   return (
     <>
       <Heading />
-      <MainBig>
+      <main className="mainBig">
         <RegionsMethod toggle={toggle} setToggle={setToggle} />
         <List location={location} locations={locations} />
         {location === `galar` || location === `hisui` ? (
@@ -53,7 +52,7 @@ function LocationsPage() {
             <p>No data for {capitalize(location)}</p>
           </section>
         ) : null}
-      </MainBig>
+      </main>
     </>
   );
 }

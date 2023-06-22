@@ -1,20 +1,19 @@
-import { H2 } from '@/components/common/styles/Headings';
 import { auth } from '@/firebase-config';
 import { capitalize } from '@/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
 import { sendPasswordResetEmail } from 'firebase/auth';
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import * as yup from 'yup';
 import {
+  AuthBtn,
   AuthModal,
   AuthResetClose,
   AuthResetForm,
   AuthResetInput,
-  AuthBtn,
 } from './Styled.Auth';
-import * as yup from 'yup';
 
 type Props = {
   modalIsOpen: boolean;
@@ -74,7 +73,7 @@ function ResetPwd({ modalIsOpen, setIsOpen }: Props) {
       <AuthResetClose onClick={closeModal}>
         <FiX />
       </AuthResetClose>
-      <H2>Reset your password</H2>
+      <h2 className="h2">Reset your password</h2>
       <AuthResetForm onSubmit={handleSubmit(resetPwdForm)}>
         <AuthResetInput>
           <div>

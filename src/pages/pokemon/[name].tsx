@@ -1,25 +1,23 @@
-import { Subtitle, Title } from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { PokemonTitle } from '@/modules/pokedex/Styled.Pokemon';
 import {
+  Cards,
+  Competitive,
   Content,
-  Heading,
-  Nav,
   Data,
   Evolution,
-  Info,
-  Stats,
-  useFetchPokemon,
-  Moves,
-  Locations,
   Forms,
-  Competitive,
+  Heading,
+  Info,
+  Locations,
+  Moves,
+  Nav,
   Sprites,
-  Cards,
+  Stats,
   Types,
+  useFetchPokemon,
 } from '@/modules/pokedex/pokemon';
 import { pokemonFilters, removeDash, removeLongName } from '@/utils';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
@@ -90,14 +88,14 @@ function PokemonCard({ name }: Props) {
   return (
     <>
       <Heading name={name} />
-      <MainBig>
+      <main className="mainBig">
         <PokemonTitle>
           {pokemon.data?.name?.includes(`mega`) ? (
-            <Title>
+            <h2 className="title">
               {removeDash(pokemon.data?.name).split(` `).reverse().join(` `)}
-            </Title>
+            </h2>
           ) : (
-            <Title>{removeLongName(removeDash(name))}</Title>
+            <h2 className="title">{removeLongName(removeDash(name))}</h2>
           )}
           {pokemon.data?.id < 722 && (
             <div>
@@ -112,7 +110,9 @@ function PokemonCard({ name }: Props) {
           )}
         </PokemonTitle>
         {species.data && (
-          <Subtitle>{removeDash(species.data?.generation?.name)}</Subtitle>
+          <h4 className="subtitle">
+            {removeDash(species.data?.generation?.name)}
+          </h4>
         )}
 
         <Nav
@@ -190,7 +190,7 @@ function PokemonCard({ name }: Props) {
         <Link href="/" passHref>
           <BackBtn name="Pokedex" />
         </Link>
-      </MainBig>
+      </main>
     </>
   );
 }

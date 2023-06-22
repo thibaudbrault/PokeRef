@@ -1,6 +1,5 @@
 // @ts-nocheck
 
-import { H3 } from '@/components/common/styles/Headings';
 import { IEvolutionChain, IPokemon, IPokemonSpecies } from '@/types';
 import { capitalize } from '@/utils';
 import { InfoTable } from '../../utils';
@@ -23,7 +22,7 @@ export function Info({ pokemon, species, evolution }: Props) {
     <PokemonInfoSection id="information">
       {InfoTable.map((data) => (
         <div key={data.category}>
-          <H3>{capitalize(data.category)}</H3>
+          <h3 className="h3">{capitalize(data.category)}</h3>
           <PokemonInfoTable>
             <tbody>
               {Array(Object.keys(data).length - 1)

@@ -3,17 +3,13 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useState } from 'react';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
-
-// import { Reset } from '@/components/common/styles/Reset';
-import Footer from '@/components/layout/Footer/Footer';
-import Header from '@/components/layout/Header/Header';
-import Nav from '@/components/layout/Nav/Nav';
 import PlausibleProvider from 'next-plausible';
 import NextNProgress from 'nextjs-progressbar';
 import { Toaster } from 'react-hot-toast';
 
-import { ThemeProvider } from '@/contexts/Theme';
+import { ThemeProvider } from '@/contexts';
 import '@/styles/styles.scss';
+import { Footer, Header, Nav } from '@/components/layout';
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
@@ -54,7 +50,6 @@ function MyApp({ Component, pageProps }: AppProps) {
               <NextNProgress />
               <Header navOpen={navOpen} setNavOpen={setNavOpen} />
               <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
-              {/* <Reset /> */}
               <Component {...pageProps} />
               <Footer />
             </PlausibleProvider>

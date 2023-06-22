@@ -1,5 +1,3 @@
-import { H3 } from '@/components/common/styles/Headings';
-import { Section } from '@/components/common/styles/Sizing';
 import { IPokemon } from '@/types';
 import Image from 'next/image';
 import { PokemonSpritesDiv } from './Styled.Sprites.PokemonCard';
@@ -11,8 +9,8 @@ type Props = {
 export function Sprites({ pokemon }: Props) {
   return (
     <>
-      <Section id="sprites">
-        <H3>Sprites</H3>
+      <section className="section" id="sprites">
+        <h3 className="h3">Sprites</h3>
         <PokemonSpritesDiv>
           <div>
             <Image
@@ -101,11 +99,11 @@ export function Sprites({ pokemon }: Props) {
             </div>
           )}
         </PokemonSpritesDiv>
-      </Section>
+      </section>
 
       {pokemon.id < 650 && (
-        <Section>
-          <H3>Animated sprites</H3>
+        <section className="section">
+          <h3 className="h3">Animated sprites</h3>
           <PokemonSpritesDiv>
             <div>
               <Image
@@ -188,7 +186,7 @@ export function Sprites({ pokemon }: Props) {
               </div>
             )}
           </PokemonSpritesDiv>
-        </Section>
+        </section>
       )}
     </>
   );

@@ -1,22 +1,14 @@
-import { Capitalize, H3 } from '@/components/common/styles/Headings';
-import { Section } from '@/components/common/styles/Sizing';
 import {
   FullWidthTable,
   TableContainer,
 } from '@/components/common/styles/Table';
-import { useTableParams } from '@/hooks/useTableParams';
+import { useTableParams } from '@/hooks';
+import styles from '@/modules/types/type/Type.module.scss';
 import { IMove, IType } from '@/types';
 import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import {
-  TypeListSubtitle,
-  TypeListSubtitleContainer,
-  TypeMovesComment,
-  TypeMovesData,
-  TypeMovesName,
-} from '../Styled.TypeCard';
 
 type Props = {
   type?: IType;
@@ -42,7 +34,7 @@ export function Moves({ type, moves }: Props) {
         id: `sort`,
         header: `Name`,
         cell: (info) => (
-          <TypeMovesName>
+          <td className={styles.name}>
             <Link
               href={{
                 pathname: `/move/[name]`,
@@ -51,7 +43,7 @@ export function Moves({ type, moves }: Props) {
             >
               {removeDash(info.getValue<string>())}
             </Link>
-          </TypeMovesName>
+          </td>
         ),
       },
       {
@@ -59,7 +51,7 @@ export function Moves({ type, moves }: Props) {
         id: `category`,
         header: `Category`,
         cell: (info) => (
-          <TypeMovesData>{info.getValue<string>()}</TypeMovesData>
+          <td className={styles.data}>{info.getValue<string>()}</td>
         ),
       },
       {
@@ -67,7 +59,7 @@ export function Moves({ type, moves }: Props) {
         id: `power`,
         header: `Power`,
         cell: (info) => (
-          <TypeMovesData>{info.getValue<string>() || `-`}</TypeMovesData>
+          <td className={styles.data}>{info.getValue<string>() || `-`}</td>
         ),
       },
       {
@@ -75,7 +67,7 @@ export function Moves({ type, moves }: Props) {
         id: `pp`,
         header: `PP`,
         cell: (info) => (
-          <TypeMovesData>{info.getValue<string>()}</TypeMovesData>
+          <td className={styles.data}>{info.getValue<string>()}</td>
         ),
       },
       {
@@ -83,7 +75,7 @@ export function Moves({ type, moves }: Props) {
         id: `accuracy`,
         header: `Accuracy`,
         cell: (info) => (
-          <TypeMovesData>{info.getValue<string>() || `-`}</TypeMovesData>
+          <td className={styles.data}>{info.getValue<string>() || `-`}</td>
         ),
       },
       {
@@ -91,11 +83,11 @@ export function Moves({ type, moves }: Props) {
         id: `status`,
         header: `Status`,
         cell: (info) => (
-          <TypeMovesData>
+          <td className={styles.data}>
             {info.getValue<string>() !== `none` || !info.getValue<string>()
               ? info.getValue<string>()
               : `-`}
-          </TypeMovesData>
+          </td>
         ),
       },
     ],
@@ -108,13 +100,14 @@ export function Moves({ type, moves }: Props) {
   );
 
   return (
-    <Section>
-      <H3>Moves</H3>
-      <TypeListSubtitleContainer>
-        <TypeListSubtitle>
-          {data.length} moves are <Capitalize>{type?.name}</Capitalize> type
-        </TypeListSubtitle>
-      </TypeListSubtitleContainer>
+    <section className="section">
+      <h3 className="h3">Moves</h3>
+      <div className={styles.container}>
+        <h4 className={styles.subtitle}>
+          {data.length} moves are{` `}
+          <span className="capitalize">{type?.name}</span> type
+        </h4>
+      </div>
       <TableContainer ref={tableContainerRef}>
         {data.length > 0 && (
           <FullWidthTable>
@@ -124,11 +117,13 @@ export function Moves({ type, moves }: Props) {
         )}
       </TableContainer>
       {type?.name !== `fairy` && (
-        <TypeMovesComment>
-          <Capitalize>{type?.name}</Capitalize> attacks were{` `}
-          <Capitalize>{type?.move_damage_class?.name}</Capitalize> before Gen IV
-        </TypeMovesComment>
+        <p className={styles.comment}>
+          <span className="capitalize">{type?.name}</span> attacks were{` `}
+          <span className="capitalize">{type?.move_damage_class?.name}</span>
+          {` `}
+          before Gen IV
+        </p>
       )}
-    </Section>
+    </section>
   );
 }

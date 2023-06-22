@@ -1,15 +1,14 @@
-import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
 import BackBtn from '@/components/common/ui/BackBtn';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
-import { Heading, Nav, useFetchMove, Data, List } from '@/modules/moves/move';
+import { Data, Heading, List, Nav, useFetchMove } from '@/modules/moves/move';
+import { MoveMainBig } from '@/modules/moves/move/Styled.MoveCard';
 import { removeDash } from '@/utils';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { MoveMainBig } from '@/modules/moves/move/Styled.MoveCard';
 
 const LearnMethod = dynamic(() =>
   import(`@/utils`).then((res) => res.LearnMethod),
@@ -53,8 +52,8 @@ function MoveCard({ name }: Props) {
       <Heading name={name} />
       {move && (
         <MoveMainBig>
-          <CardTitle>{removeDash(move.name)}</CardTitle>
-          <Subtitle>{removeDash(move.generation.name)}</Subtitle>
+          <h2 className="pageTitle">{removeDash(move.name)}</h2>
+          <h4 className="subtitle">{removeDash(move.generation.name)}</h4>
 
           <Nav move={move} setVersion={setVersion} />
 

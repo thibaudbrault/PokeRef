@@ -1,5 +1,3 @@
-import { Bold, H3 } from '@/components/common/styles/Headings';
-import { Section } from '@/components/common/styles/Sizing';
 import { ICard } from '@/types';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -22,8 +20,8 @@ export function Cards({ cards }: Props) {
   };
 
   return (
-    <Section id="cards">
-      <H3>Cards</H3>
+    <section className="section" id="cards">
+      <h3 className="h3">Cards</h3>
       <PokemonCardList>
         {cards.map((c) => (
           <li key={c.id}>
@@ -36,7 +34,8 @@ export function Cards({ cards }: Props) {
               <Image src={c.images.small} alt={``} width={220} height={308} />
             </button>
             <p>
-              Set: <Bold>{c.set.name.replaceAll(`—`, ` `)}</Bold>
+              Set:{` `}
+              <span className="bold">{c.set.name.replaceAll(`—`, ` `)}</span>
             </p>
           </li>
         ))}
@@ -58,6 +57,6 @@ export function Cards({ cards }: Props) {
           </PokemonCardModal>
         )}
       </PokemonCardList>
-    </Section>
+    </section>
   );
 }

@@ -1,11 +1,10 @@
-import { LeftH2 } from '@/components/common/styles/Headings';
 import {
   FullWidthTable,
   TableContainer,
   TBold,
   TCapitalize,
 } from '@/components/common/styles/Table';
-import { useTableParams } from '@/hooks/useTableParams';
+import { useTableParams } from '@/hooks';
 import { IBerry } from '@/types';
 import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
@@ -71,7 +70,7 @@ export function Berries({ berries }: Props) {
 
   return (
     <section>
-      <LeftH2>Berries</LeftH2>
+      <h2 className="leftH2">Berries</h2>
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>
           {tableHeader()}

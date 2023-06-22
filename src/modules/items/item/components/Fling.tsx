@@ -1,4 +1,3 @@
-import { Capitalize } from '@/components/common/styles/Headings';
 import { IItem } from '@/types';
 import { removeDash } from '@/utils';
 
@@ -12,7 +11,8 @@ export function Fling({ item }: Props) {
       {item?.fling_effect && (
         <p className="fling">
           When the pokémon holds{` `}
-          <Capitalize>{removeDash(item?.name)}</Capitalize> the move{` `}
+          <span className="capitalize">{removeDash(item?.name)}</span> the move
+          {` `}
           <i>Fling</i> has {item?.fling_power} power.
           {item?.fling_effect.name &&
             item?.fling_effect.name !== `berry-effect` &&

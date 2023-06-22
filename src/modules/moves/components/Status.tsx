@@ -1,12 +1,11 @@
 import { useMemo } from 'react';
 
-import { LeftH2 } from '@/components/common/styles/Headings';
 import {
   FullWidthTable,
   TableContainer,
   TBold,
 } from '@/components/common/styles/Table';
-import { useTableParams } from '@/hooks/useTableParams';
+import { useTableParams } from '@/hooks';
 import { IMove, IMoveAilment } from '@/types';
 import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
@@ -61,7 +60,7 @@ export function Status({ status }: Props) {
 
   return (
     <>
-      <LeftH2>Status</LeftH2>
+      <h2 className="leftH2">Status</h2>
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>
           {tableHeader()}

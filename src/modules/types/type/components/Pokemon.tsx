@@ -1,6 +1,4 @@
-import { Capitalize, H3 } from '@/components/common/styles/Headings';
 import { Dropdown } from '@/components/common/styles/Inputs';
-import { Section } from '@/components/common/styles/Sizing';
 import {
   FullWidthTable,
   TBold,
@@ -9,17 +7,14 @@ import {
   TableContainer,
 } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
-import { useTableParams } from '@/hooks/useTableParams';
+import { useTableParams } from '@/hooks';
+import styles from '@/modules/types/type/Type.module.scss';
 import { IPokemon } from '@/types';
 import { IOptionsFixed, removeDash, typeOptions } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import {
-  TypeListSubtitle,
-  TypeListSubtitleContainer,
-} from '../Styled.TypeCard';
 
 type Props = {
   typeName?: string;
@@ -154,7 +149,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
     columns,
   );
 
-  const styles = {
+  const dropdownStyles = {
     // @ts-ignore
     multiValueRemove: (base, state) => {
       return state.data.isFixed ? { ...base, display: `none` } : base;
@@ -168,13 +163,14 @@ export function Pokemon({ typeName, pokemon }: Props) {
   }, [typeName]);
 
   return (
-    <Section>
-      <H3>Pokémon</H3>
-      <TypeListSubtitleContainer>
+    <section className="section">
+      <h3 className="h3">Pokémon</h3>
+      <div className={styles.container}>
         {data && (
-          <TypeListSubtitle>
-            {data.length} Pokémon are <Capitalize>{typeName}</Capitalize> type
-          </TypeListSubtitle>
+          <h4 className={styles.subtitle}>
+            {data.length} Pokémon are{` `}
+            <span className="capitalize">{typeName}</span> type
+          </h4>
         )}
         <Dropdown
           value={type}
@@ -182,7 +178,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
           isMulti
           isClearable={typeArray.some((t) => !t.isFixed)}
           isSearchable={false}
-          styles={styles}
+          styles={dropdownStyles}
           name="type"
           id="type"
           className="selectOptions"
@@ -201,7 +197,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
           }
           onChange={(option) => option && setType(option as IOptionsFixed[])}
         />
-      </TypeListSubtitleContainer>
+      </div>
       <TableContainer ref={tableContainerRef}>
         {data && data.length > 0 && (
           <FullWidthTable>
@@ -210,6 +206,6 @@ export function Pokemon({ typeName, pokemon }: Props) {
           </FullWidthTable>
         )}
       </TableContainer>
-    </Section>
+    </section>
   );
 }

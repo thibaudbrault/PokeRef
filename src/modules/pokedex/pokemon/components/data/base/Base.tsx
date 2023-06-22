@@ -1,4 +1,3 @@
-import { Small } from '@/components/common/styles/Headings';
 import { TLink } from '@/components/common/styles/Table';
 import { IGenus, IPokemon, IPokemonSpecies } from '@/types';
 import { removeDash } from '@/utils';
@@ -45,7 +44,9 @@ export function Base({ pokemon, species }: Props) {
                   >
                     {removeDash(pa.ability.name)}
                   </TLink>
-                  {pa.is_hidden && <Small> (hidden ability)</Small>}
+                  {pa.is_hidden && (
+                    <small className="small"> (hidden ability)</small>
+                  )}
                 </li>
               ))}
             </ul>

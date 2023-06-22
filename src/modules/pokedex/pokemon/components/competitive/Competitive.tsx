@@ -1,8 +1,6 @@
 // @ts-nocheck
 
-import { H3, H4 } from '@/components/common/styles/Headings';
 import { MethodNav } from '@/components/common/styles/Navbars';
-import { Section } from '@/components/common/styles/Sizing';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IFormatAnalysesSets, IFormatsAnalysesSetName } from '@/types';
 import { capitalize, getFormat, removeLongName } from '@/utils';
@@ -12,8 +10,8 @@ import toast from 'react-hot-toast';
 import {
   PokemonSetComment,
   PokemonSetDesc,
-  PokemonSetsContainer,
   PokemonSetSpecs,
+  PokemonSetsContainer,
 } from './Styled.Competitive.PokemonCard';
 
 type Props = {
@@ -147,8 +145,8 @@ export function Competitive({ format, name }: Props) {
       );
 
       return (
-        <Section id="competitive">
-          <H3>Competitive</H3>
+        <section className="section" id="competitive">
+          <h3 className="h3">Competitive</h3>
           <MethodNav>
             {Object.keys(filteredAnalyses).map((fa, i) => (
               <button
@@ -163,7 +161,7 @@ export function Competitive({ format, name }: Props) {
           <PokemonSetsContainer>
             {overview && (
               <li>
-                <H4>Analysis</H4>
+                <h4 className="h4">Analysis</h4>
                 <PokemonSetDesc
                   dangerouslySetInnerHTML={{ __html: overview }}
                 />
@@ -172,7 +170,7 @@ export function Competitive({ format, name }: Props) {
             {setsEntries(filteredAnalyses as IFormatAnalysesSets).sets?.map(
               (s: IFormatsAnalysesSetName, i) => (
                 <li key={s.name}>
-                  <H4>{s.name}</H4>
+                  <h4 className="h4">{s.name}</h4>
                   <PokemonSetSpecs>
                     <ul
                       dangerouslySetInnerHTML={{
@@ -259,7 +257,7 @@ export function Competitive({ format, name }: Props) {
               </li>
             )}
           </PokemonSetsContainer>
-        </Section>
+        </section>
       );
     }
   }

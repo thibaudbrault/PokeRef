@@ -1,4 +1,3 @@
-import { LeftH2 } from '@/components/common/styles/Headings';
 import {
   FullWidthTable,
   TableContainer,
@@ -9,15 +8,15 @@ import {
   TType,
 } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
-import { usePaginatedTableParams } from '@/hooks/usePaginatedTableParams';
+import { usePaginatedTableParams } from '@/hooks';
 import { IMove } from '@/types';
 import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import { Search } from './Search';
 import { SearchContainer } from '../Styled.Moves';
+import { Search } from './Search';
 
 type Props = {
   moves?: IMove[];
@@ -108,7 +107,7 @@ export function Moves({ moves }: Props) {
   return (
     <section>
       <SearchContainer>
-        <LeftH2>Moves</LeftH2>
+        <h2 className="leftH2">Moves</h2>
         <Search moves={moves} />
       </SearchContainer>
       <TableContainer ref={tableContainerRef}>

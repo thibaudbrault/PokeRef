@@ -1,5 +1,3 @@
-import { H2 } from '@/components/common/styles/Headings';
-import { MainForm } from '@/components/common/styles/Sizing';
 import {
   AuthBtn,
   AuthClose,
@@ -85,7 +83,7 @@ function Register() {
   };
 
   return (
-    <MainForm>
+    <main className="mainForm">
       <AuthContainer>
         <AuthClose href={`/`}>
           <FiX />
@@ -93,7 +91,7 @@ function Register() {
         <AuthImage2 />
         <AuthForm onSubmit={handleSubmit(submitForm)}>
           <AuthTitle>
-            <H2>Register</H2>
+            <h2 className="h2">Register</h2>
             <p>Create teams and save your favorites pokémon</p>
           </AuthTitle>
           <AuthInput>
@@ -139,7 +137,7 @@ function Register() {
           </AuthSwitch>
         </AuthForm>
       </AuthContainer>
-    </MainForm>
+    </main>
   );
 }
 

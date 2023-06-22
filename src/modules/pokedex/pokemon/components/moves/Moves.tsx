@@ -1,4 +1,3 @@
-import { H3 } from '@/components/common/styles/Headings';
 import {
   FullWidthTable,
   TableContainer,
@@ -7,7 +6,7 @@ import {
   TLink,
 } from '@/components/common/styles/Table';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
-import { useTableParams } from '@/hooks/useTableParams';
+import { useTableParams } from '@/hooks';
 import { IMoveAilment, IPokemon } from '@/types';
 import { LearnMethod, removeDash, uppercase } from '@/utils';
 import { CellContext, ColumnDef } from '@tanstack/react-table';
@@ -15,8 +14,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
-import { PokemonMovesSection } from './Styled.Moves.PokemonCard';
 import { IMoveWithDetails, useFetchMachines, useFetchMoves } from '../../hooks';
+import { PokemonMovesSection } from './Styled.Moves.PokemonCard';
 
 type Props = {
   pokemon: IPokemon;
@@ -199,7 +198,7 @@ export function Moves({ pokemon, version, name }: Props) {
 
   return (
     <PokemonMovesSection id="moves">
-      <H3>Moves</H3>
+      <h3 className="h3">Moves</h3>
       <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
       <TableContainer ref={tableContainerRef}>
         <FullWidthTable>

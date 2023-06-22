@@ -1,10 +1,3 @@
-import {
-  Capitalize,
-  H3,
-  H4,
-  Subtitle,
-} from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
@@ -53,18 +46,20 @@ function Ability({ name }: Props) {
   return (
     <>
       <Heading name={name} />
-      <MainBig>
+      <main className="mainBig">
         <h2 className="pageTitle">{ability && removeDash(ability?.name)}</h2>
-        <Subtitle>{ability && removeDash(ability?.generation?.name)}</Subtitle>
+        <h4 className="subtitle">
+          {ability && removeDash(ability?.generation?.name)}
+        </h4>
 
         <section className={styles.section}>
           <div className={styles.effect}>
-            <H3>Effect</H3>
+            <h3 className="h3">Effect</h3>
             <p>{filterEffect?.effect}</p>
           </div>
           {filterOverworld && (
             <div className={styles.effect}>
-              <H4>Overworld</H4>
+              <h4 className="h4">Overworld</h4>
               <p>
                 {filterOverworld?.effect
                   .slice(filterOverworld.effect.indexOf(overworld))
@@ -76,16 +71,18 @@ function Ability({ name }: Props) {
         <Description filterDesc={filterDesc} />
         <Divider />
         <section className={styles.section}>
-          <H3>
+          <h3 className="h3">
             Pokemon with{` `}
-            <Capitalize>{ability && removeDash(ability?.name)}</Capitalize>
-          </H3>
+            <span className="capitalize">
+              {ability && removeDash(ability?.name)}
+            </span>
+          </h3>
           <Table ability={ability} pokemon={pokemon} />
         </section>
         <Link href="/abilities" passHref>
           <BackBtn name="Abilities" />
         </Link>
-      </MainBig>
+      </main>
     </>
   );
 }

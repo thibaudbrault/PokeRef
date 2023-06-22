@@ -5,5 +5,4 @@ export const initialThemeState = {
   setTheme: () => null,
 };
 
-const ThemeContext = React.createContext(initialThemeState);
-export default ThemeContext;
+export const ThemeContext = React.createContext(initialThemeState);

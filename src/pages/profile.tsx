@@ -1,6 +1,4 @@
-import { LeftH2, LeftSubtitle } from '@/components/common/styles/Headings';
 import { Input } from '@/components/common/styles/Inputs';
-import { MainBig, Section } from '@/components/common/styles/Sizing';
 import { auth, db } from '@/firebase-config';
 import {
   ProfileCaught,
@@ -10,10 +8,10 @@ import {
 import { capitalize, removeDash } from '@/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
+  DocumentData,
   arrayRemove,
   deleteDoc,
   doc,
-  DocumentData,
   getDoc,
   onSnapshot,
   updateDoc,
@@ -159,12 +157,12 @@ function Profile() {
 
   return (
     user && (
-      <MainBig>
-        <Section>
-          <LeftH2>{user.name}'s caught pokémon</LeftH2>
-          <LeftSubtitle>
+      <main className="mainBig">
+        <section className="section">
+          <h2 className="leftH2">{user.name}'s caught pokémon</h2>
+          <h4 className="leftSubtitle">
             You caught {user.caught.length} / 1010 Pokémon
-          </LeftSubtitle>
+          </h4>
           <ProfileCaught>
             {user?.caught.map((p: string[], index: number) => (
               <li key={p[index]}>
@@ -183,8 +181,8 @@ function Profile() {
               </li>
             ))}
           </ProfileCaught>
-        </Section>
-        <Section>
+        </section>
+        <section className="section">
           <ProfileDetails>
             <summary>Modify your profile</summary>
             <ProfileForm onSubmit={handleSubmit(submitForm)}>
@@ -209,8 +207,8 @@ function Profile() {
               <button type="submit">Update</button>
             </ProfileForm>
           </ProfileDetails>
-        </Section>
-      </MainBig>
+        </section>
+      </main>
     )
   );
 }

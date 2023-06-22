@@ -7,7 +7,7 @@ import {
   RightFooter,
 } from './Styled.Footer';
 
-function Footer() {
+export function Footer() {
   const year = new Date().getFullYear();
 
   return (
@@ -29,5 +29,3 @@ function Footer() {
     </FooterContainer>
   );
 }
-
-export default Footer;

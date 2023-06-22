@@ -1,4 +1,3 @@
-import { H3 } from '@/components/common/styles/Headings';
 import { IAbilityFlavorText } from '@/types';
 import { removeDash } from '@/utils';
 
@@ -9,7 +8,7 @@ type Props = {
 export function Description({ filterDesc }: Props) {
   return (
     <section className="sectionTop">
-      <H3>Game descriptions</H3>
+      <h3 className="h3">Game descriptions</h3>
       <table className="descTable">
         <tbody>
           {filterDesc?.map((fd) => (

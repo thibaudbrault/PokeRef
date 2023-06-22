@@ -1,27 +1,5 @@
-import { Subtitle } from '@/components/common/styles/Headings';
-import { TBold, Table } from '@/components/common/styles/Table';
+import { Table } from '@/components/common/styles/Table';
 import styled from 'styled-components';
-
-export const TypeDamageSection = styled.section`
-  margin: 5rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-
-  & table {
-    & tr {
-      height: 100px;
-
-      & th {
-        width: 33%;
-      }
-
-      & td {
-        text-align: left;
-      }
-    }
-  }
-`;
 
 export const TypeDamageTable = styled(Table)`
   width: 100%;
@@ -68,39 +46,4 @@ export const TypeDamageTable = styled(Table)`
   &:first-of-type {
     margin-bottom: 5rem;
   }
-`;
-
-export const TypeListSubtitleContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 3rem;
-`;
-
-export const TypeListSubtitle = styled(Subtitle)`
-  text-transform: none;
-  text-align: left;
-`;
-
-export const TypeMovesName = styled(TBold)`
-  & a {
-    border-bottom: 1px solid transparent;
-    cursor: pointer;
-
-    &:hover {
-      border-bottom: 1px solid ${({ theme }) => theme.secondary};
-    }
-  }
-`;
-
-export const TypeMovesData = styled.td`
-  text-align: center;
-  text-transform: capitalize;
-`;
-
-export const TypeMovesComment = styled.p`
-  text-align: center;
-  font-size: 1.5rem;
-  margin: 0.75rem 0 0;
 `;
