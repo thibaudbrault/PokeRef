@@ -12,6 +12,7 @@ import {
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks/useTableParams';
+import { Heading } from '@/modules/machines';
 import { IMachine } from '@/types/Machines/Machine';
 import { getMachines } from '@/utils/DataFetch';
 import { removeDash, uppercase } from '@/utils/Typography';
@@ -89,6 +90,7 @@ function MachinesPage() {
 
   return (
     <>
+      <Heading />
       <MainBig>
         <LeftH2>Machines</LeftH2>
         <LeftSubtitle>

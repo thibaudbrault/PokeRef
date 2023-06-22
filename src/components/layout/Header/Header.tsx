@@ -1,4 +1,3 @@
-import { H1 } from '@/components/common/styles/Headings';
 import {
   BurgerClose,
   BurgerOpen,
@@ -12,7 +11,7 @@ import { ThemeContext } from '@/contexts/Theme';
 import { auth } from '@/firebase-config';
 import { FiMenu, FiX } from '@meronex/icons/fi';
 import { RiMoonClearLine, RiSunLine } from '@meronex/icons/ri';
-import { onAuthStateChanged, signOut, User } from 'firebase/auth';
+import { User, onAuthStateChanged, signOut } from 'firebase/auth';
 import Link from 'next/link';
 import {
   Dispatch,

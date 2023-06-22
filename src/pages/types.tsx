@@ -1,16 +1,11 @@
 import { MainSmall } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingTypes from '@/components/pages/Types/Heading';
-import { TypesList } from '@/components/pages/Types/Styled.Types';
+import { Heading, List } from '@/modules/types';
+import { TypesList } from '@/modules/types/Styled.Types';
 import { IType } from '@/types/Pokemon/Type';
 import { getTypes } from '@/utils/DataFetch';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
-
-const ListTypes = dynamic(
-  () => import(`@/components/pages/Types/Components/List.Types`),
-);
 
 function TypesPage() {
   const {
@@ -37,10 +32,10 @@ function TypesPage() {
 
   return (
     <>
-      <HeadingTypes />
+      <Heading />
       <MainSmall>
         <TypesList>
-          <ListTypes types={types} />
+          <List types={types} />
         </TypesList>
       </MainSmall>
     </>

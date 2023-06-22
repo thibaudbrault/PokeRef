@@ -1,7 +1,7 @@
 import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingLocations from '@/components/pages/Locations/Heading';
 import styles from '@/components/pages/Locations/Locations.module.scss';
+import { Heading, List } from '@/modules/locations';
 import { IRegion } from '@/types/Locations/Region';
 import { regions } from '@/utils/DataArrays';
 import { getRegions } from '@/utils/DataFetch';
@@ -10,10 +10,6 @@ import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-
-const ListLocations = dynamic(
-  () => import(`@/components/pages/Locations/Components/List.Locations`),
-);
 
 const RegionsMethod = dynamic(() =>
   import(`@/utils/ObjectsMap`).then((res) => res.RegionsMethod),
@@ -50,10 +46,10 @@ function LocationsPage() {
 
   return (
     <>
-      <HeadingLocations />
+      <Heading />
       <MainBig>
         <RegionsMethod toggle={toggle} setToggle={setToggle} />
-        <ListLocations location={location} locations={locations} />
+        <List location={location} locations={locations} />
         {location === `galar` || location === `hisui` ? (
           <section className={styles.section}>
             <p>No data for {capitalize(location)}</p>

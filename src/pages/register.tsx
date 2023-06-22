@@ -9,7 +9,7 @@ import {
   AuthInput,
   AuthSwitch,
   AuthTitle,
-} from '@/components/pages/Auth/Styled.Auth';
+} from '@/components/Auth/Styled.Auth';
 import { auth, db } from '@/firebase-config';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';

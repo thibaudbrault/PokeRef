@@ -3,9 +3,9 @@ import { MainBig, Section } from '@/components/common/styles/Sizing';
 import { TBold, TLink, TableContainer } from '@/components/common/styles/Table';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
-import { useSwitchGame } from '@/components/pages/Locations/LocationCard/Hooks/useSwitchGame';
 import styles from '@/components/pages/Locations/Locations.module.scss';
 import { useTableParams } from '@/hooks/useTableParams';
+import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
 import { IEncounterConditionValue } from '@/types/Encounters/EncounterConditionValue';
 import { IEncounterMethod } from '@/types/Encounters/EncounterMethod';
 import { IPokemonEncounter } from '@/types/Locations/LocationArea';
@@ -18,16 +18,7 @@ import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 
-const HeadingLocation = dynamic(
-  () => import(`@/components/pages/Locations/LocationCard/Heading`),
-);
 const Nav = dynamic(() => import(`@/components/common/ui/GenNav`));
-const AreaLocationCard = dynamic(
-  () =>
-    import(
-      `@/components/pages/Locations/LocationCard/Components/Area.LocationCard`
-    ),
-);
 
 type Props = {
   name: string;
@@ -203,7 +194,7 @@ function LocationCard({ name }: Props) {
 
   return (
     <>
-      <HeadingLocation name={name} />
+      <Heading name={name} />
       <MainBig>
         <CardTitle>
           {location &&
@@ -215,7 +206,7 @@ function LocationCard({ name }: Props) {
         <Subtitle>
           {game && `${location.data?.region.name} - ${removeDash(game)}`}
         </Subtitle>
-        <AreaLocationCard
+        <Area
           location={location.data}
           toggleState={toggleState}
           toggleTable={toggleTable}

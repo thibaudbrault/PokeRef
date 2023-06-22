@@ -3,98 +3,31 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
-import Contents from '@/components/pages/Pokemon/PokemonCard/Contents/Contents.PokemonCard';
-import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
-import { useFetchPokemon } from '@/components/pages/Pokemon/PokemonCard/Hooks/useFetchPokemon';
-import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
-import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
+import { PokemonTitle } from '@/modules/pokedex/Styled.Pokemon';
+import {
+  Content,
+  Heading,
+  Nav,
+  Data,
+  Evolution,
+  Info,
+  Stats,
+  useFetchPokemon,
+  Moves,
+  Locations,
+  Forms,
+  Competitive,
+  Sprites,
+  Cards,
+  Types,
+} from '@/modules/pokedex/pokemon';
 import { pokemonFilters } from '@/utils/DataArrays';
 import { removeDash, removeLongName } from '@/utils/Typography';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
 import { GetServerSidePropsContext } from 'next';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
-
-interface IEvolutionProps {
-  evolution: IEvolutionChain;
-  name: string;
-}
-
-interface IMovesProps {
-  pokemon: IPokemon;
-  version: string;
-  name: string;
-}
-
-interface ICompetitiveProps {
-  format: string;
-  name: string;
-}
-
-interface IFormsProps {
-  pokemon: IPokemon;
-}
-
-const Nav = dynamic(
-  () => import(`@/components/pages/Pokemon/PokemonCard/Nav/Nav.PokemonCard`),
-);
-const Data = dynamic(
-  () => import(`@/components/pages/Pokemon/PokemonCard/Data/Data.PokemonCard`),
-);
-const Evolution = dynamic<IEvolutionProps>(
-  () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Evolution/Evolution.PokemonCard`
-    ) as any,
-);
-const Info = dynamic(
-  () => import(`@/components/pages/Pokemon/PokemonCard/Info/Info.PokemonCard`),
-);
-const Stats = dynamic(
-  () =>
-    import(`@/components/pages/Pokemon/PokemonCard/Stats/Stats.PokemonCard`),
-);
-const Typing = dynamic(
-  () =>
-    import(`@/components/pages/Pokemon/PokemonCard/Types/Types.PokemonCard`),
-);
-const Moves = dynamic<IMovesProps>(
-  () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Moves/Moves.PokemonCard`
-    ) as any,
-);
-const Locations = dynamic(
-  () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Locations/Locations.PokemonCard`
-    ),
-);
-const Competitive = dynamic<ICompetitiveProps>(
-  () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Competitive/Competitive.PokemonCard`
-    ) as any,
-);
-const Forms = dynamic<IFormsProps>(
-  () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Forms/Forms.PokemonCard`
-    ) as any,
-);
-const Sprites = dynamic(
-  () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard`
-    ),
-);
-const Cards = dynamic(
-  () =>
-    import(`@/components/pages/Pokemon/PokemonCard/Cards/Cards.PokemonCard`),
-);
 
 type Props = {
   name: string;
@@ -157,7 +90,7 @@ function PokemonCard({ name }: Props) {
 
   return (
     <>
-      <HeadingPokemon name={name} />
+      <Heading name={name} />
       <MainBig>
         <PokemonTitle>
           {pokemon.data?.name?.includes(`mega`) ? (
@@ -190,7 +123,7 @@ function PokemonCard({ name }: Props) {
           setFormat={setFormat}
         />
 
-        <Contents />
+        <Content />
 
         <Data pokemon={pokemon.data} species={species.data} game={game} />
 
@@ -216,7 +149,7 @@ function PokemonCard({ name }: Props) {
 
         {types.data && (
           <>
-            <Typing types={types.data} />
+            <Types types={types.data} />
             <Divider />
           </>
         )}

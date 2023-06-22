@@ -4,13 +4,14 @@ import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
 import {
   Cost,
-  Desc,
+  Description,
   Fling,
+  Heading,
   Held,
-} from '@/components/pages/Items/ItemCard/Components';
-import HeadingItem from '@/components/pages/Items/ItemCard/Heading';
-import { useFilterItem } from '@/components/pages/Items/ItemCard/Hooks/useFilterItem';
-import styles from '@/components/pages/Items/ItemCard/ItemCard.module.scss';
+  useFilterItem,
+} from '@/modules/items/item';
+
+import styles from '@/modules/items/item/Item.module.scss';
 import { removeDash } from '@/utils/Typography';
 import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
@@ -39,7 +40,7 @@ function ItemCard({ name }: Props) {
   if (item) {
     return (
       <>
-        <HeadingItem name={name} />
+        <Heading name={name} />
         <MainBig>
           <CardTitle>{removeDash(item?.name)}</CardTitle>
           <Subtitle>{removeDash(item?.category.name)}</Subtitle>
@@ -64,7 +65,7 @@ function ItemCard({ name }: Props) {
               )}
             </div>
           </section>
-          <Desc item={item} />
+          <Description item={item} />
           <Link href="/items" passHref>
             <BackBtn name="Items" />
           </Link>

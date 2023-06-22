@@ -1,6 +1,7 @@
 import { H2 } from '@/components/common/styles/Headings';
 import { MainForm } from '@/components/common/styles/Sizing';
-import ResetPwd from '@/components/pages/Auth/ResetPwd';
+import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
+import ResetPwd from '@/modules/auth/ResetPwd';
 import {
   AuthBtn,
   AuthButtons,
@@ -14,8 +15,7 @@ import {
   AuthSecBtn,
   AuthSwitch,
   AuthTitle,
-} from '@/components/pages/Auth/Styled.Auth';
-import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
+} from '@/modules/auth/Styled.Auth';
 import { capitalize } from '@/utils/Typography';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';

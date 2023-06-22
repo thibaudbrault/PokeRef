@@ -1,8 +1,7 @@
 import { MethodNav } from '@/components/common/styles/Navbars';
 import { MainBig } from '@/components/common/styles/Sizing';
 import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingItems from '@/components/pages/Items/Heading';
-import { useToggleTable } from '@/components/pages/Items/Hooks/useToggleTable';
+import { Heading, useToggleTable } from '@/modules/items';
 import toast from 'react-hot-toast';
 
 function ItemsPage() {
@@ -22,7 +21,7 @@ function ItemsPage() {
 
   return (
     <>
-      <HeadingItems />
+      <Heading />
       <MainBig>
         <MethodNav>
           <button

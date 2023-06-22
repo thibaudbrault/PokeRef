@@ -2,23 +2,14 @@ import { Pagination } from '@/components/common/styles/Pagination';
 import { MainBig } from '@/components/common/styles/Sizing';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingPokedex from '@/components/pages/Pokemon/Heading';
-import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
-import { PokedexVerticalText } from '@/components/pages/Pokemon/Styled.Pokemon';
+import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
+import { PokedexVerticalText } from '@/modules/pokedex/Styled.Pokemon';
 import { IPokemon } from '@/types/Pokemon/Pokemon';
 import { IOptionsOffsetLimit } from '@/utils/DataArrays';
 import { getPokedex } from '@/utils/DataFetch';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-
-const Filters = dynamic(
-  () => import(`@/components/pages/Pokemon/Components/Filters.Pokemon`),
-);
-const ListPokemon = dynamic(
-  () => import(`@/components/pages/Pokemon/Components/List.Pokemon`),
-);
 
 function Pokedex() {
   const [filteredPokedex, setFilteredPokedex] = useState<IPokemon[]>([]);
@@ -70,7 +61,7 @@ function Pokedex() {
 
   return (
     <>
-      <HeadingPokedex />
+      <Heading />
       <MainBig>
         <Filters
           pokedex={pokedex}
@@ -86,7 +77,7 @@ function Pokedex() {
           setGeneration={setGeneration}
         />
         <PokedexVerticalText>ポケモン</PokedexVerticalText>
-        <ListPokemon filteredPokedex={filteredPokedex} />
+        <List filteredPokedex={filteredPokedex} />
         <Divider />
         {scrollBtn()}
         {!form && !generation && (

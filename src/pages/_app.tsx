@@ -1,4 +1,3 @@
-import { darkTheme, lightTheme } from '@/components/common/styles/Themes';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -9,12 +8,12 @@ import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import Footer from '@/components/layout/Footer/Footer';
 import Header from '@/components/layout/Header/Header';
 import Nav from '@/components/layout/Nav/Nav';
+import PlausibleProvider from 'next-plausible';
 import NextNProgress from 'nextjs-progressbar';
 import { Toaster } from 'react-hot-toast';
-import PlausibleProvider from 'next-plausible';
 
-import '@/styles/styles.scss';
 import { ThemeProvider } from '@/contexts/Theme';
+import '@/styles/styles.scss';
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (

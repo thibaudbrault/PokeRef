@@ -1,6 +1,5 @@
 import {
   Capitalize,
-  CardTitle,
   H3,
   H4,
   Subtitle,
@@ -9,13 +8,13 @@ import { MainBig } from '@/components/common/styles/Sizing';
 import BackBtn from '@/components/common/ui/BackBtn';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
-import styles from '@/components/pages/Abilities/AbilityCard/AbilityCard.module.scss';
 import {
-  DescAbilityCard,
-  TableAbilityCard,
-} from '@/components/pages/Abilities/AbilityCard/Components';
-import HeadingAbility from '@/components/pages/Abilities/AbilityCard/Heading';
-import { useFilterAbility } from '@/components/pages/Abilities/AbilityCard/Hooks/useFilterAbility';
+  Description,
+  Heading,
+  Table,
+  useFilterAbility,
+} from '@/modules/abilities/ability';
+import styles from '@/modules/abilities/ability/Ability.module.scss';
 import { removeDash } from '@/utils/Typography';
 import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
@@ -25,7 +24,7 @@ type Props = {
   name: string;
 };
 
-function AbilityCard({ name }: Props) {
+function Ability({ name }: Props) {
   const overworld = `Overworld`;
 
   const {
@@ -53,7 +52,7 @@ function AbilityCard({ name }: Props) {
 
   return (
     <>
-      <HeadingAbility name={name} />
+      <Heading name={name} />
       <MainBig>
         <h2 className="pageTitle">{ability && removeDash(ability?.name)}</h2>
         <Subtitle>{ability && removeDash(ability?.generation?.name)}</Subtitle>
@@ -74,14 +73,14 @@ function AbilityCard({ name }: Props) {
             </div>
           )}
         </section>
-        <DescAbilityCard filterDesc={filterDesc} />
+        <Description filterDesc={filterDesc} />
         <Divider />
         <section className={styles.section}>
           <H3>
             Pokemon with{` `}
             <Capitalize>{ability && removeDash(ability?.name)}</Capitalize>
           </H3>
-          <TableAbilityCard ability={ability} pokemon={pokemon} />
+          <Table ability={ability} pokemon={pokemon} />
         </section>
         <Link href="/abilities" passHref>
           <BackBtn name="Abilities" />
@@ -91,7 +90,7 @@ function AbilityCard({ name }: Props) {
   );
 }
 
-export default AbilityCard;
+export default Ability;
 
 export function getServerSideProps(context: GetServerSidePropsContext) {
   const { name } = context.query;

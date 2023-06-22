@@ -8,21 +8,16 @@ import {
   TLink,
 } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
-import SearchAbilities from '@/components/pages/Abilities/Components/Search.Abilities';
-import { SearchContainer } from '@/components/pages/Moves/Styled.Moves';
 import { usePaginatedTableParams } from '@/hooks/usePaginatedTableParams';
+import { SearchContainer } from '@/modules/Moves/Styled.Moves';
+import { Heading, Search } from '@/modules/abilities';
 import { IAbility } from '@/types/Pokemon/Ability';
 import { getAbilities } from '@/utils/DataFetch';
 import { removeDash } from '@/utils/Typography';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
-import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
 import toast from 'react-hot-toast';
-
-const HeadingAbilities = dynamic(
-  () => import(`@/components/pages/Abilities/Heading`),
-);
 
 function AbilitiesPage() {
   const {
@@ -90,11 +85,11 @@ function AbilitiesPage() {
 
   return (
     <>
-      <HeadingAbilities />
+      <Heading />
       <MainBig>
         <SearchContainer>
           <LeftH2>Abilities</LeftH2>
-          <SearchAbilities abilities={abilities} />
+          <Search abilities={abilities} />
         </SearchContainer>
         <TableContainer ref={tableContainerRef}>
           <FullWidthTable>

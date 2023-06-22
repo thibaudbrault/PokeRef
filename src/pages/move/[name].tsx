@@ -2,25 +2,15 @@ import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
 import BackBtn from '@/components/common/ui/BackBtn';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingMove from '@/components/pages/Moves/MoveCard/Heading';
-import { useFetchMove } from '@/components/pages/Moves/MoveCard/Hooks/useFetchMove';
-import { MoveMainBig } from '@/components/pages/Moves/MoveCard/Styled.MoveCard';
+import { Heading, Nav, useFetchMove, Data, List } from '@/modules/moves/move';
 import { removeDash } from '@/utils/Typography';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { MoveMainBig } from '@/modules/moves/move/Styled.MoveCard';
 
-const Nav = dynamic(
-  () => import(`@/components/pages/Moves/MoveCard/Nav/Nav.MoveCard`),
-);
-const Data = dynamic(
-  () => import(`@/components/pages/Moves/MoveCard/Data/Data.MoveCard`),
-);
-const List = dynamic(
-  () => import(`@/components/pages/Moves/MoveCard/List/List.MoveCard`),
-);
 const LearnMethod = dynamic(() =>
   import(`@/utils/ObjectsMap`).then((res) => res.LearnMethod),
 );
@@ -60,7 +50,7 @@ function MoveCard({ name }: Props) {
 
   return (
     <>
-      <HeadingMove name={name} />
+      <Heading name={name} />
       {move && (
         <MoveMainBig>
           <CardTitle>{removeDash(move.name)}</CardTitle>
