@@ -3,10 +3,7 @@
 import { IEvolutionChain, IPokemon, IPokemonSpecies } from '@/types';
 import { capitalize } from '@/utils';
 import { InfoTable } from '../../utils';
-import {
-  PokemonInfoSection,
-  PokemonInfoTable,
-} from './Styled.Info.PokemonCard';
+import styles from './Info.module.scss';
 
 type Props = {
   pokemon: IPokemon;
@@ -19,11 +16,11 @@ export function Info({ pokemon, species, evolution }: Props) {
   const male = 100 - (species?.gender_rate / 8) * 100;
 
   return (
-    <PokemonInfoSection id="information">
+    <section className={styles.section} id="information">
       {InfoTable.map((data) => (
         <div key={data.category}>
           <h3 className="h3">{capitalize(data.category)}</h3>
-          <PokemonInfoTable>
+          <table className={styles.table}>
             <tbody>
               {Array(Object.keys(data).length - 1)
                 .fill(true)
@@ -42,9 +39,9 @@ export function Info({ pokemon, species, evolution }: Props) {
                   </tr>
                 ))}
             </tbody>
-          </PokemonInfoTable>
+          </table>
         </div>
       ))}
-    </PokemonInfoSection>
+    </section>
   );
 }

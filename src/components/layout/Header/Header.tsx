@@ -1,12 +1,3 @@
-import {
-  BurgerClose,
-  BurgerOpen,
-  HeaderBtnConnect,
-  HeaderBtnConnected,
-  HeaderBtnContainer,
-  HeaderBtnTheme,
-  HeaderContainer,
-} from '@/components/layout/Header/Styled.Header';
 import { ThemeContext } from '@/contexts';
 import { auth } from '@/firebase-config';
 import { FiMenu, FiX } from '@meronex/icons/fi';
@@ -20,6 +11,7 @@ import {
   useEffect,
   useState,
 } from 'react';
+import styles from './Header.module.scss';
 
 type Props = {
   navOpen: boolean;
@@ -51,12 +43,13 @@ export function Header({ navOpen, setNavOpen }: Props) {
   }, []);
 
   return (
-    <HeaderContainer id="header">
+    <header className={styles.header} id="header">
       <h1 className="h1">
         <Link href={`/`}>PokéRef</Link>
       </h1>
-      <HeaderBtnContainer>
-        <HeaderBtnTheme
+      <div className={styles.buttons}>
+        <button
+          className={styles.theme}
           onClick={themeHandler}
           aria-label="Switch Theme"
           data-testid="themeBtn"
@@ -66,34 +59,36 @@ export function Header({ navOpen, setNavOpen }: Props) {
           ) : (
             <RiMoonClearLine data-testid="moon" />
           )}
-        </HeaderBtnTheme>
+        </button>
         {user ? (
-          <HeaderBtnConnected>
+          <div className={styles.connected}>
             <button onClick={logout}>Sign Out</button>
             <Link href="/profile">Profile</Link>
-          </HeaderBtnConnected>
+          </div>
         ) : (
-          <HeaderBtnConnect>
+          <div className={styles.connect}>
             <Link href="/login">Login</Link>
             <Link href="/register">Register</Link>
-          </HeaderBtnConnect>
+          </div>
         )}
         {navOpen ? (
-          <BurgerOpen
+          <button
+            className={styles.open}
             aria-label="Open menu"
             onClick={() => setNavOpen(!navOpen)}
           >
             <FiX />
-          </BurgerOpen>
+          </button>
         ) : (
-          <BurgerClose
+          <button
+            className={styles.close}
             aria-label="Close menu"
             onClick={() => setNavOpen(!navOpen)}
           >
             <FiMenu />
-          </BurgerClose>
+          </button>
         )}
-      </HeaderBtnContainer>
-    </HeaderContainer>
+      </div>
+    </header>
   );
 }

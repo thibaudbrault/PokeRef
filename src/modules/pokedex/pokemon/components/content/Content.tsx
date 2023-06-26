@@ -1,12 +1,12 @@
 import { MdAdd, MdRemove } from '@meronex/icons/ios';
 import { useState } from 'react';
-import { PokemonContents } from './Styled.Contents.PokemonCard';
+import styles from './Content.module.scss';
 
 export function Content() {
   const [contentsOpen, setContentsOpen] = useState<boolean>(false);
 
   return (
-    <PokemonContents>
+    <section className={styles.section}>
       <div>
         <p>Table of contents</p>
         <button onClick={() => setContentsOpen(!contentsOpen)}>
@@ -53,6 +53,6 @@ export function Content() {
           </li>
         </ol>
       )}
-    </PokemonContents>
+    </section>
   );
 }

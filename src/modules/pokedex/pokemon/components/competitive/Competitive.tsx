@@ -7,12 +7,7 @@ import { capitalize, getFormat, removeLongName } from '@/utils';
 import { useQueries } from '@tanstack/react-query';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import {
-  PokemonSetComment,
-  PokemonSetDesc,
-  PokemonSetSpecs,
-  PokemonSetsContainer,
-} from './Styled.Competitive.PokemonCard';
+import styles from './Competitive.module.scss';
 
 type Props = {
   format: string;
@@ -158,11 +153,12 @@ export function Competitive({ format, name }: Props) {
               </button>
             ))}
           </MethodNav>
-          <PokemonSetsContainer>
+          <ul className={styles.list}>
             {overview && (
               <li>
                 <h4 className="h4">Analysis</h4>
-                <PokemonSetDesc
+                <div
+                  className={styles.desc}
                   dangerouslySetInnerHTML={{ __html: overview }}
                 />
               </li>
@@ -171,7 +167,7 @@ export function Competitive({ format, name }: Props) {
               (s: IFormatsAnalysesSetName, i) => (
                 <li key={s.name}>
                   <h4 className="h4">{s.name}</h4>
-                  <PokemonSetSpecs>
+                  <div className={styles.specs}>
                     <ul
                       dangerouslySetInnerHTML={{
                         __html: setSpecs(filteredSets, i, `moves`).map(
@@ -238,9 +234,10 @@ export function Competitive({ format, name }: Props) {
                           </li>
                         </ul>
                       )}
-                  </PokemonSetSpecs>
+                  </div>
                   {s.description && (
-                    <PokemonSetDesc
+                    <div
+                      className={styles.desc}
                       dangerouslySetInnerHTML={{
                         __html: textFormatting(s.description),
                       }}
@@ -251,12 +248,13 @@ export function Competitive({ format, name }: Props) {
             )}
             {comments && (
               <li>
-                <PokemonSetComment
+                <div
+                  className={styles.comment}
                   dangerouslySetInnerHTML={{ __html: textFormatting(comments) }}
                 />
               </li>
             )}
-          </PokemonSetsContainer>
+          </ul>
         </section>
       );
     }

@@ -1,17 +1,17 @@
+import styles from '@/modules/pokedex/Pokedex.module.scss';
 import { FaAngleDown, FaAngleUp } from '@meronex/icons/fa';
 import { useEffect, useState } from 'react';
-import { ToBottom } from '../Styled.Pokemon';
 
 export const useScrollDir = () => {
   const [scrollDir, setScrollDir] = useState(`down`);
 
   useEffect(() => {
     const threshold = 0;
-    let lastScrollY = window.pageYOffset;
+    let lastScrollY = window.scrollY;
     let ticking = false;
 
     const updateScrollDir = () => {
-      const scrollY = window.pageYOffset;
+      const scrollY = window.scrollY;
 
       if (Math.abs(scrollY - lastScrollY) < threshold) {
         ticking = false;
@@ -36,15 +36,15 @@ export const useScrollDir = () => {
   const scrollBtn = () => {
     if (scrollDir === `down`) {
       return (
-        <ToBottom href="#footer" aria-label="To Bottom">
+        <a className={styles.scroll} href="#footer" aria-label="To Bottom">
           <FaAngleDown />
-        </ToBottom>
+        </a>
       );
     } else {
       return (
-        <ToBottom href="#header" aria-label="To Top">
+        <a className={styles.scroll} href="#header" aria-label="To Top">
           <FaAngleUp />
-        </ToBottom>
+        </a>
       );
     }
   };

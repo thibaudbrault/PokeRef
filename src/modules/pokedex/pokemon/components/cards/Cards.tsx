@@ -1,7 +1,8 @@
 import { ICard } from '@/types';
 import Image from 'next/image';
 import { useState } from 'react';
-import { PokemonCardList, PokemonCardModal } from './Styled.Cards.PokemonCard';
+import Modal from 'react-modal';
+import styles from './Cards.module.scss';
 
 type Props = {
   cards: ICard[];
@@ -22,7 +23,7 @@ export function Cards({ cards }: Props) {
   return (
     <section className="section" id="cards">
       <h3 className="h3">Cards</h3>
-      <PokemonCardList>
+      <ul className={styles.list}>
         {cards.map((c) => (
           <li key={c.id}>
             <button
@@ -40,7 +41,8 @@ export function Cards({ cards }: Props) {
           </li>
         ))}
         {modalData && (
-          <PokemonCardModal
+          <Modal
+            className={styles.modal}
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
             preventScroll={true}
@@ -54,9 +56,9 @@ export function Cards({ cards }: Props) {
               sizes="100vw"
               style={{ width: `100%`, height: `auto` }}
             />
-          </PokemonCardModal>
+          </Modal>
         )}
-      </PokemonCardList>
+      </ul>
     </section>
   );
 }

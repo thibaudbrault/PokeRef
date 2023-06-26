@@ -1,78 +1,83 @@
-import { Pulse } from '@/components/common/styles/Animations';
-import { Section, device } from '@/components/common/styles/Sizing';
-import { Table } from '@/components/common/styles/Table';
-import styled from 'styled-components';
+@use '@/styles/abstracts' as *;
+@use '@/styles/common' as *;
 
-export const PokemonDataSection = styled(Section)`
+.section {
+  @extend .section;
   position: relative;
   display: grid;
   align-items: center;
   grid-template-columns: 55% 45%;
   gap: 3rem;
 
-  @media ${device.md} {
+  @include md {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column-reverse;
   }
-`;
+}
 
-export const PokemonCatchButton = styled.button`
+.catch {
   position: absolute;
   top: 1rem;
   right: 1rem;
   padding: 0.7rem 1.5rem;
-  background: ${({ theme }) => theme.secondary};
-  border: 1px solid ${({ theme }) => theme.secondary};
   border-radius: 5px;
   font-size: 1.5rem;
   font-weight: 600;
   transition: 0.3s ease-in-out;
+  @include themed {
+    background: t('text');
+    border: 1px solid t('text');
+  }
 
   &:hover {
     background: transparent;
-    color: ${({ theme }) => theme.secondary};
+    @include themed {
+      color: t('text');
+    }
   }
-`;
+}
 
-export const PokemonCaughtText = styled.p`
+.caught {
   position: absolute;
   top: 1rem;
   right: 1rem;
   padding: 0.7rem 1.5rem;
   background: transparent;
-  color: ${({ theme }) => theme.secondary};
-  border: 1px solid ${({ theme }) => theme.secondary};
   border-radius: 5px;
   font-size: 1.5rem;
   font-weight: 600;
   opacity: 0.7;
-`;
+  @include themed {
+    color: t('text');
+    border: 1px solid t('text');
+  }
+}
 
-export const PokemonDataContainer = styled.div`
+.container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-`;
+}
 
-export const PokemonDataSprite = styled.div`
+.sprite {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-`;
+}
 
-export const PokemonDataDesc = styled.li`
+.desc {
   font-size: 2rem;
 
   & p {
     padding-top: 0.5rem;
     font-size: 1.3rem;
   }
-`;
+}
 
-export const PokemonDataTypes = styled.li`
+.types {
   position: relative;
   width: 100%;
   display: flex;
@@ -100,22 +105,22 @@ export const PokemonDataTypes = styled.li`
       & span {
         font-family: 'Oswald';
         font-size: 3rem;
-        color: #c4c4c4;
-        text-shadow: ${({ theme }) => theme.main} -1px -1px 0px,
-          ${({ theme }) => theme.main} 1px -1px 0px,
-          ${({ theme }) => theme.main} -1px 1px 0px,
-          ${({ theme }) => theme.main} 1px 1px 0px;
         cursor: pointer;
+        @include themed {
+          color: t('bg');
+          text-shadow: t('text') -1px -1px 0px, t('text') 1px -1px 0px,
+            t('text') -1px 1px 0px, t('text') 1px 1px 0px;
+        }
       }
     }
   }
 
-  @media ${device.sm} {
+  @include sm {
     justify-content: center;
   }
-`;
+}
 
-export const PokemonDataOldTypes = styled.li`
+.oldTypes {
   font-size: 1.7rem;
 
   & span {
@@ -125,9 +130,10 @@ export const PokemonDataOldTypes = styled.li`
       font-weight: 600;
     }
   }
-`;
+}
 
-export const PokemonDataTable = styled(Table)`
+.table {
+  @extend .table;
   width: 90%;
 
   & th {
@@ -149,28 +155,30 @@ export const PokemonDataTable = styled(Table)`
       }
     }
   }
-`;
+}
 
-const PokemonDataPill = styled.span`
+.pill {
   margin: 1rem 0 0;
   padding: 1rem 1.5rem;
   border-radius: 50px;
   font-size: 2rem;
   transition: 0.3s ease-in-out;
-`;
+}
 
-export const PokemonDataSpecial = styled(PokemonDataPill)`
-  border: 1px solid ${({ theme }) => theme.purple};
-  background: ${({ theme }) => theme.purple};
+.special {
+  @extend .pill;
+  border: 1px solid $purple;
+  background: $purple;
   color: #c4c4c4;
   font-weight: 600;
-`;
+}
 
-export const PokemonDataImg = styled.img`
-  animation: ${Pulse} 5s infinite;
+.image {
+  @include pulse;
+  @include animate(pulse, 5s, inifnite);
 
-  @media ${device.sm} {
+  @include sm {
     width: 75%;
     margin-bottom: 1rem;
   }
-`;
+}

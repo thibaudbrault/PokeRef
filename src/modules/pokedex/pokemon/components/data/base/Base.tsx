@@ -1,7 +1,7 @@
 import { TLink } from '@/components/common/styles/Table';
 import { IGenus, IPokemon, IPokemonSpecies } from '@/types';
 import { removeDash } from '@/utils';
-import { PokemonDataTable } from '../Styled.Data.PokemonCard';
+import styles from '../Data.module.scss';
 
 type Props = {
   pokemon: IPokemon;
@@ -19,7 +19,7 @@ export function Base({ pokemon, species }: Props) {
     species && species.genera.find((sg) => sg.language.name === `en`);
 
   return (
-    <PokemonDataTable>
+    <table className={styles.table}>
       <tbody>
         <tr>
           <th>pokédex number</th>
@@ -81,6 +81,6 @@ export function Base({ pokemon, species }: Props) {
           </>
         )}
       </tbody>
-    </PokemonDataTable>
+    </table>
   );
 }

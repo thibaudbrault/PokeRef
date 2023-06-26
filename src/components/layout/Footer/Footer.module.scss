@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+@use '@/styles/abstracts' as *;
 
-export const FooterContainer = styled.footer`
+.footer {
   display: flex;
   align-items: center;
   background: hsla(29, 92%, 70%, 1);
@@ -19,36 +19,36 @@ export const FooterContainer = styled.footer`
     hsla(29, 92%, 70%, 1) 0%,
     hsla(0, 87%, 73%, 1) 100%
   );
-`;
+}
 
-export const FooterInner = styled.div`
+.inner {
   width: 90%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 30% 40% 30%;
   align-items: center;
-  color: #161616;
-`;
+  color: $dark;
+}
 
-export const LeftFooter = styled.div`
+.left {
   justify-self: left;
   font-size: 1.3rem;
-`;
+}
 
-export const CenterFooter = styled.div`
+.center {
   justify-self: center;
   font-size: 4rem;
   letter-spacing: 1px;
   font-family: 'Oswald';
-  color: ${({ theme }) => theme.secondary};
-  text-shadow: ${({ theme }) => theme.main} -1px -1px 0px,
-    ${({ theme }) => theme.main} 1px -1px 0px,
-    ${({ theme }) => theme.main} -1px 1px 0px,
-    ${({ theme }) => theme.main} 1px 1px 0px;
   text-align: center;
-`;
+  @include themed {
+    color: t('text');
+    text-shadow: t('bg') -1px -1px 0px, t('bg') 1px -1px 0px,
+      t('bg') -1px 1px 0px, t('bg') 1px 1px 0px;
+  }
+}
 
-export const RightFooter = styled.div`
+.right {
   justify-self: right;
   height: 4rem;
   width: 4rem;
@@ -64,4 +64,4 @@ export const RightFooter = styled.div`
       height: 100%;
     }
   }
-`;
+}

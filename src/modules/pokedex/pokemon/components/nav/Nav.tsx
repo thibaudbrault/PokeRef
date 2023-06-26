@@ -1,4 +1,3 @@
-import { GenNav } from '@/components/common/styles/Navbars';
 import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
@@ -10,11 +9,11 @@ type Props = {
 
 export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
   return (
-    <GenNav id="generations">
+    <nav className="genNav" id="generations">
       <ul>
         {(pokemonId < 152 || pokemonId > 10000) && (
           <li>
-            <button>Gen I</button>
+            <button className="gen">Gen I</button>
             <div>
               <button
                 onClick={() => {
@@ -48,7 +47,7 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
         )}
         {(pokemonId < 252 || pokemonId > 10000) && (
           <li>
-            <button>Gen II</button>
+            <button className="gen">Gen II</button>
             <div>
               <button
                 onClick={() => {
@@ -82,7 +81,7 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
         )}
         {(pokemonId < 387 || pokemonId > 10000) && (
           <li>
-            <button>Gen III</button>
+            <button className="gen">Gen III</button>
             <div>
               <button
                 onClick={() => {
@@ -134,7 +133,7 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
         )}
         {(pokemonId < 494 || pokemonId > 10000) && (
           <li>
-            <button>Gen IV</button>
+            <button className="gen">Gen IV</button>
             <div>
               <button
                 onClick={() => {
@@ -186,7 +185,7 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
         )}
         {(pokemonId < 650 || pokemonId > 10000) && (
           <li>
-            <button>Gen V</button>
+            <button className="gen">Gen V</button>
             <div>
               <button
                 onClick={() => {
@@ -229,7 +228,7 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
         )}
         {(pokemonId < 722 || pokemonId > 10000) && (
           <li>
-            <button>Gen VI</button>
+            <button className="gen">Gen VI</button>
             <div>
               <button
                 onClick={() => {
@@ -272,7 +271,7 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
         )}
         {(pokemonId < 810 || pokemonId > 10000) && (
           <li>
-            <button>Gen VII</button>
+            <button className="gen">Gen VII</button>
             <div>
               <button
                 onClick={() => {
@@ -333,7 +332,7 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
         )}
         {(pokemonId < 905 || pokemonId > 10000) && (
           <li>
-            <button>Gen VIII</button>
+            <button className="gen">Gen VIII</button>
             <div>
               {pokemonId < 898 && (
                 <>
@@ -371,7 +370,7 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
         )}
         {(pokemonId < 1011 || pokemonId > 10000) && (
           <li>
-            <button>Gen IX</button>
+            <button className="gen">Gen IX</button>
             <div>
               <button
                 onClick={() => {
@@ -395,6 +394,6 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
           </li>
         )}
       </ul>
-    </GenNav>
+    </nav>
   );
 }

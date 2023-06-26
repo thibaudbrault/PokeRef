@@ -3,11 +3,7 @@ import { IPokemon, IPokemonSpecies } from '@/types';
 import { removeDash } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  PokemonDataDesc,
-  PokemonDataOldTypes,
-  PokemonDataTypes,
-} from '../Styled.Data.PokemonCard';
+import styles from '../Data.module.scss';
 
 type Props = {
   pokemon: IPokemon;
@@ -27,7 +23,7 @@ export function Description({ pokemon, species, game }: Props) {
     <>
       <ul>
         {pokemon.id < 10000 && (
-          <PokemonDataDesc>
+          <li className={styles.desc}>
             <span>
               {filterDesc && filterDesc?.flavor_text ? (
                 filterDesc?.flavor_text
@@ -45,9 +41,9 @@ export function Description({ pokemon, species, game }: Props) {
                 <i>{game && removeDash(game)}</i>
               </span>
             </p>
-          </PokemonDataDesc>
+          </li>
         )}
-        <PokemonDataTypes>
+        <li className={styles.types}>
           {pokemon?.types?.map((pt) => (
             <Type id={pt.type.name} key={pt.type.name}>
               <Link
@@ -66,8 +62,8 @@ export function Description({ pokemon, species, game }: Props) {
               </Link>
             </Type>
           ))}
-        </PokemonDataTypes>
-        <PokemonDataOldTypes>
+        </li>
+        <li className={styles.oldTypes}>
           {pokemon.past_types.map((pp) => (
             <p key={pp.generation.name}>
               Up to <span>{removeDash(pp.generation.name)}</span> (included) :
@@ -77,7 +73,7 @@ export function Description({ pokemon, species, game }: Props) {
               ))}
             </p>
           ))}
-        </PokemonDataOldTypes>
+        </li>
       </ul>
     </>
   );

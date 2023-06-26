@@ -104,7 +104,7 @@
     cursor: pointer;
 
     &:hover {
-      @include themed() {
+      @include themed {
         border-bottom: 1px solid t('text');
       }
     }

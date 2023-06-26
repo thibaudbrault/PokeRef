@@ -1,3 +1,5 @@
+@use '@/styles/common/sizing' as *;
+
 .main {
   @extend .mainBig;
   display: flex;

@@ -15,6 +15,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import Select from 'react-select';
 
 type Props = {
   typeName?: string;
@@ -172,7 +173,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
             <span className="capitalize">{typeName}</span> type
           </h4>
         )}
-        <Dropdown
+        <Select
           value={type}
           defaultValue={typeArray.some((t) => t.isFixed)}
           isMulti
@@ -181,7 +182,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
           styles={dropdownStyles}
           name="type"
           id="type"
-          className="selectOptions"
+          className="dropdown selectOptions"
           classNamePrefix="select"
           options={typeArray}
           placeholder="Select"

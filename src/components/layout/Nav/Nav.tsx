@@ -1,17 +1,11 @@
 import { Divider } from '@/components/common/ui/Divider';
+import header from '@/components/layout/Header/Header.module.scss';
 import { auth } from '@/firebase-config';
 import { useMediaQuery } from '@/hooks';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import Link from 'next/link';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { HeaderBtnConnect, HeaderBtnConnected } from '../Header/Styled.Header';
-import {
-  MainNav,
-  MainNavList,
-  ResponsiveNav,
-  ResponsiveNavContainer,
-  ResponsiveNavList,
-} from './Styled.Nav';
+import styles from './Nav.module.scss';
 
 type Props = {
   navOpen: boolean;
@@ -52,9 +46,9 @@ export function Nav({ navOpen, setNavOpen }: Props) {
   ];
 
   return navOpen && isBreakpoint ? (
-    <ResponsiveNav>
-      <ResponsiveNavContainer>
-        <ResponsiveNavList>
+    <nav className={styles.mobileNav}>
+      <div className={styles.mobileInner}>
+        <ul className={styles.mobileList}>
           {navArray.map((nav) => (
             <li key={nav.name}>
               <Link
@@ -65,30 +59,30 @@ export function Nav({ navOpen, setNavOpen }: Props) {
               </Link>
             </li>
           ))}
-        </ResponsiveNavList>
+        </ul>
         <Divider />
         {user ? (
-          <HeaderBtnConnected>
+          <div className={header.connected}>
             <button onClick={logout}>Sign Out</button>
             <Link href="/profile" onClick={() => setNavOpen(false)}>
               Profile
             </Link>
-          </HeaderBtnConnected>
+          </div>
         ) : (
-          <HeaderBtnConnect>
+          <div className={header.connect}>
             <Link href="/login" onClick={() => setNavOpen(false)}>
               Login
             </Link>
             <Link href="/register" onClick={() => setNavOpen(false)}>
               Register
             </Link>
-          </HeaderBtnConnect>
+          </div>
         )}
-      </ResponsiveNavContainer>
-    </ResponsiveNav>
+      </div>
+    </nav>
   ) : (
-    <MainNav>
-      <MainNavList>
+    <nav className={styles.nav}>
+      <ul className={styles.list}>
         {navArray.map((nav) => (
           <li key={nav.name}>
             <Link href={nav.name === `pokémon` ? `/` : `/${nav.name}`}>
@@ -96,7 +90,7 @@ export function Nav({ navOpen, setNavOpen }: Props) {
             </Link>
           </li>
         ))}
-      </MainNavList>
-    </MainNav>
+      </ul>
+    </nav>
   );
 }

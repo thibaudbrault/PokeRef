@@ -1,21 +1,15 @@
 import { FaGithub } from '@meronex/icons/fa';
-import {
-  CenterFooter,
-  FooterContainer,
-  FooterInner,
-  LeftFooter,
-  RightFooter,
-} from './Styled.Footer';
+import styles from './Footer.module.scss';
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <FooterContainer id="footer">
-      <FooterInner>
-        <LeftFooter>© {year} PokéRef</LeftFooter>
-        <CenterFooter>PokéRef</CenterFooter>
-        <RightFooter>
+    <footer className={styles.footer} id="footer">
+      <div className={styles.inner}>
+        <div className={styles.left}>© {year} PokéRef</div>
+        <div className={styles.center}>PokéRef</div>
+        <div className={styles.right}>
           <a
             href="https://github.com/thibaudbrault/PokeRef"
             aria-label="Github"
@@ -24,8 +18,8 @@ export function Footer() {
           >
             <FaGithub />
           </a>
-        </RightFooter>
-      </FooterInner>
-    </FooterContainer>
+        </div>
+      </div>
+    </footer>
   );
 }

@@ -223,7 +223,7 @@ nav {
   z-index: 1000;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
-  @include themed() {
+  @include themed {
     background-color: t('text') !important;
   }
 

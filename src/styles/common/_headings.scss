@@ -5,7 +5,7 @@
   font-size: 10rem;
   letter-spacing: 3px;
   cursor: pointer;
-  @include themed() {
+  @include gthemed {
     color: t('bg');
     text-shadow: t('text') -1px -1px 0px, t('text') 1px -1px 0px,
       t('text') -1px 1px 0px, t('text') 1px 1px 0px;
@@ -41,7 +41,7 @@
   color: #c4c4c4;
   text-transform: capitalize;
   text-align: center;
-  @include themed() {
+  @include gthemed {
     color: t('bg');
     text-shadow: t('text') -1px -1px 0px, t('text') 1px -1px 0px,
       t('text') -1px 1px 0px, t('text') 1px 1px 0px;

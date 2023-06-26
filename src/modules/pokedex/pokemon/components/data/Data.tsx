@@ -2,24 +2,18 @@ import { auth, db } from '@/firebase-config';
 import { IPokemon, IPokemonSpecies } from '@/types';
 import { removeDash } from '@/utils';
 import {
+  DocumentData,
   arrayUnion,
   doc,
-  DocumentData,
   getDoc,
   onSnapshot,
   updateDoc,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import {
-  PokemonCatchButton,
-  PokemonCaughtText,
-  PokemonDataContainer,
-  PokemonDataSection,
-  PokemonDataSprite,
-} from './Styled.Data.PokemonCard';
-import { Description } from './description';
+import styles from './Data.module.scss';
 import { Base } from './base';
+import { Description } from './description';
 import { Sprite } from './sprite';
 
 type Props = {
@@ -71,23 +65,25 @@ export function Data({ pokemon, species, game }: Props) {
   }, []);
 
   return (
-    <PokemonDataSection id="presentation">
+    <section className={styles.section} id="presentation">
       {user &&
         pokemon.id < 10000 &&
         (user.caught.every(
           (n: Record<string, string>) => n[0] !== pokemon.name,
         ) ? (
-          <PokemonCatchButton onClick={catchHandler}>Catch</PokemonCatchButton>
+          <button className={styles.catch} onClick={catchHandler}>
+            Catch
+          </button>
         ) : (
-          <PokemonCaughtText>Caught</PokemonCaughtText>
+          <p className={styles.caught}>Caught</p>
         ))}
-      <PokemonDataContainer>
+      <div className={styles.container}>
         <Description species={species} pokemon={pokemon} game={game} />
         <Base species={species} pokemon={pokemon} />
-      </PokemonDataContainer>
-      <PokemonDataSprite>
+      </div>
+      <div className={styles.sprite}>
         <Sprite species={species} pokemon={pokemon} />
-      </PokemonDataSprite>
-    </PokemonDataSection>
+      </div>
+    </section>
   );
 }

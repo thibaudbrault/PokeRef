@@ -1,6 +1,6 @@
 import { IPokemon } from '@/types';
 import Image from 'next/image';
-import { PokemonSpritesDiv } from './Styled.Sprites.PokemonCard';
+import styles from './Sprites.module.scss';
 
 type Props = {
   pokemon: IPokemon;
@@ -11,7 +11,7 @@ export function Sprites({ pokemon }: Props) {
     <>
       <section className="section" id="sprites">
         <h3 className="h3">Sprites</h3>
-        <PokemonSpritesDiv>
+        <div className={styles.sprites}>
           <div>
             <Image
               src={pokemon?.sprites?.front_default}
@@ -98,13 +98,13 @@ export function Sprites({ pokemon }: Props) {
               <p>Back Shiny Female</p>
             </div>
           )}
-        </PokemonSpritesDiv>
+        </div>
       </section>
 
       {pokemon.id < 650 && (
         <section className="section">
           <h3 className="h3">Animated sprites</h3>
-          <PokemonSpritesDiv>
+          <div className={styles.sprites}>
             <div>
               <Image
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif`}
@@ -185,7 +185,7 @@ export function Sprites({ pokemon }: Props) {
                 <p>Back Shiny Female</p>
               </div>
             )}
-          </PokemonSpritesDiv>
+          </div>
         </section>
       )}
     </>

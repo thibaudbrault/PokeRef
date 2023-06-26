@@ -1,11 +1,10 @@
-import { Dropdown } from '@/components/common/styles/Inputs';
 import { Divider } from '@/components/common/ui/Divider';
 import { IPokemon } from '@/types';
 import { formOptions, generationsOptions, IOptionsOffsetLimit } from '@/utils';
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
-import { SingleValue } from 'react-select';
+import Select, { SingleValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
-import { PokedexDropdown, PokedexSearch } from '../Styled.Pokemon';
+import styles from '../Pokedex.module.scss';
 import { Search } from './Search';
 
 type Props = {
@@ -82,16 +81,16 @@ export function Filters({
 
   return (
     <>
-      <PokedexSearch>
+      <section className={styles.search}>
         <Search />
-        <PokedexDropdown>
+        <div className={styles.dropdown}>
           <label htmlFor="form">Form</label>
-          <Dropdown
+          <Select
             key={form?.value}
             name="form"
             id="form"
             value={form}
-            className="selectOptions"
+            className="dropdown selectOptions"
             classNamePrefix="select"
             components={animatedComponents}
             isClearable
@@ -102,16 +101,16 @@ export function Filters({
               action === `clear` && setForm(null);
             }}
           />
-        </PokedexDropdown>
+        </div>
 
-        <PokedexDropdown>
+        <div className={styles.dropdown}>
           <label htmlFor="generation">Generation</label>
-          <Dropdown
+          <Select
             key={generation?.value}
             name="generation"
             id="generation"
             value={generation}
-            className="selectOptions"
+            className="dropdown selectOptions"
             classNamePrefix="select"
             components={animatedComponents}
             isClearable
@@ -122,8 +121,8 @@ export function Filters({
               action === `clear` && setGeneration(null);
             }}
           />
-        </PokedexDropdown>
-      </PokedexSearch>
+        </div>
+      </section>
       <Divider />
     </>
   );

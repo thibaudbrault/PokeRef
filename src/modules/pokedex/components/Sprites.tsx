@@ -1,5 +1,6 @@
 import { IPokemon } from '@/types';
-import { PokedexImage, SpriteNormal, SpriteShiny } from '../Styled.Pokemon';
+import { ImageWithFallback } from '@/utils';
+import styles from '../Pokedex.module.scss';
 
 type Props = {
   p: IPokemon;
@@ -7,10 +8,11 @@ type Props = {
 
 export function Sprites({ p }: Props) {
   return (
-    <PokedexImage>
+    <div className={styles.image}>
       {p.id < 152 &&
         p.sprites.versions[`generation-i`][`red-blue`].front_transparent && (
-          <SpriteNormal
+          <ImageWithFallback
+            className={styles.sprite}
             src={
               p.sprites.versions[`generation-i`][`red-blue`].front_transparent
             }
@@ -28,7 +30,8 @@ export function Sprites({ p }: Props) {
         p.sprites.versions[`generation-ii`].crystal.front_transparent &&
         p.sprites.versions[`generation-ii`].crystal.front_shiny_transparent && (
           <>
-            <SpriteNormal
+            <ImageWithFallback
+              className={styles.sprite}
               src={
                 p.sprites.versions[`generation-ii`].crystal.front_transparent
               }
@@ -40,7 +43,8 @@ export function Sprites({ p }: Props) {
               height={96}
               fallbackSrc={`/images/other/unknown.png`}
             />
-            <SpriteShiny
+            <ImageWithFallback
+              className={styles.shiny}
               src={
                 p.sprites.versions[`generation-ii`].crystal
                   .front_shiny_transparent
@@ -61,7 +65,8 @@ export function Sprites({ p }: Props) {
         p.sprites.versions[`generation-iii`].emerald.front_default &&
         p.sprites.versions[`generation-iii`].emerald.front_shiny && (
           <>
-            <SpriteNormal
+            <ImageWithFallback
+              className={styles.sprite}
               src={p.sprites.versions[`generation-iii`].emerald.front_default}
               key={p.sprites.versions[`generation-iii`].emerald.front_default}
               alt={p.name}
@@ -69,7 +74,8 @@ export function Sprites({ p }: Props) {
               height={96}
               fallbackSrc={`/images/other/unknown.png`}
             />
-            <SpriteShiny
+            <ImageWithFallback
+              className={styles.shiny}
               src={p.sprites.versions[`generation-iii`].emerald.front_shiny}
               key={p.sprites.versions[`generation-iii`].emerald.front_shiny}
               alt={p.name}
@@ -84,7 +90,8 @@ export function Sprites({ p }: Props) {
         p.sprites.versions[`generation-iv`].platinum.front_default &&
         p.sprites.versions[`generation-iv`].platinum.front_shiny && (
           <>
-            <SpriteNormal
+            <ImageWithFallback
+              className={styles.sprite}
               src={p.sprites.versions[`generation-iv`].platinum.front_default}
               key={p.sprites.versions[`generation-iv`].platinum.front_default}
               alt={p.name}
@@ -92,7 +99,8 @@ export function Sprites({ p }: Props) {
               height={96}
               fallbackSrc={`/images/other/unknown.png`}
             />
-            <SpriteShiny
+            <ImageWithFallback
+              className={styles.shiny}
               src={p.sprites.versions[`generation-iv`].platinum.front_shiny}
               key={p.sprites.versions[`generation-iv`].platinum.front_shiny}
               alt={p.name}
@@ -107,7 +115,8 @@ export function Sprites({ p }: Props) {
         p.sprites.versions[`generation-v`][`black-white`].front_default &&
         p.sprites.versions[`generation-v`][`black-white`].front_shiny && (
           <>
-            <SpriteNormal
+            <ImageWithFallback
+              className={styles.sprite}
               src={
                 p.sprites.versions[`generation-v`][`black-white`].front_default
               }
@@ -119,7 +128,8 @@ export function Sprites({ p }: Props) {
               height={96}
               fallbackSrc={`/images/other/unknown.png`}
             />
-            <SpriteShiny
+            <ImageWithFallback
+              className={styles.shiny}
               src={
                 p.sprites.versions[`generation-v`][`black-white`].front_shiny
               }
@@ -135,7 +145,8 @@ export function Sprites({ p }: Props) {
         )}
       {p.id > 649 && (
         <>
-          <SpriteNormal
+          <ImageWithFallback
+            className={styles.sprite}
             src={p.sprites.front_default || ``}
             key={p.sprites.front_default || ``}
             alt={p.name}
@@ -143,7 +154,8 @@ export function Sprites({ p }: Props) {
             height={96}
             fallbackSrc={`/images/other/unknown.png`}
           />
-          <SpriteShiny
+          <ImageWithFallback
+            className={styles.shiny}
             src={p.sprites.front_shiny || ``}
             key={p.sprites.front_shiny || ``}
             alt={p.name}
@@ -153,6 +165,6 @@ export function Sprites({ p }: Props) {
           />
         </>
       )}
-    </PokedexImage>
+    </div>
   );
 }

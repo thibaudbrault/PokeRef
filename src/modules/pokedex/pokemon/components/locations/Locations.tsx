@@ -1,6 +1,6 @@
 import { TableContainer, TBold } from '@/components/common/styles/Table';
-import styles from '@/components/pages/Locations/Locations.module.scss';
 import { useTableParams } from '@/hooks';
+import styles from '@/modules/locations/Locations.module.scss';
 import { IEncounter, ILocationAreaEncounter } from '@/types';
 import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';

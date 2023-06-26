@@ -15,7 +15,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { IMoveWithDetails, useFetchMachines, useFetchMoves } from '../../hooks';
-import { PokemonMovesSection } from './Styled.Moves.PokemonCard';
+import styles from './Moves.module.scss';
 
 type Props = {
   pokemon: IPokemon;
@@ -197,7 +197,7 @@ export function Moves({ pokemon, version, name }: Props) {
   }
 
   return (
-    <PokemonMovesSection id="moves">
+    <section className={styles.section} id="moves">
       <h3 className="h3">Moves</h3>
       <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
       <TableContainer ref={tableContainerRef}>
@@ -211,6 +211,6 @@ export function Moves({ pokemon, version, name }: Props) {
           </tfoot>
         </FullWidthTable>
       </TableContainer>
-    </PokemonMovesSection>
+    </section>
   );
 }

@@ -1,13 +1,13 @@
-import styled from 'styled-components';
-import { device, Section } from '@/components/common/styles/Sizing';
-import { Table } from '@/components/common/styles/Table';
+@use '@/styles/abstracts' as *;
+@use '@/styles/common' as *;
 
-export const PokemonInfoSection = styled(Section)`
+.section {
+  @extend .section;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
 
-  @media ${device.lg} {
+  @include lg {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,9 +26,10 @@ export const PokemonInfoSection = styled(Section)`
       }
     }
   }
-`;
+}
 
-export const PokemonInfoTable = styled(Table)`
+.table {
+  @extend .table;
   width: 90%;
 
   & th {
@@ -57,4 +58,4 @@ export const PokemonInfoTable = styled(Table)`
   & tr:has(td:empty) {
     display: none;
   }
-`;
+}

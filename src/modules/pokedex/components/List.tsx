@@ -1,7 +1,7 @@
 import { IPokemon } from '@/types';
 import { removeDash, removeLongName } from '@/utils';
 import Link from 'next/link';
-import { PokedexElement, PokedexList, PokedexTypes } from '../Styled.Pokemon';
+import styles from '../Pokedex.module.scss';
 import { Sprites } from './Sprites';
 import { Types } from './Types';
 
@@ -11,12 +11,12 @@ type Props = {
 
 export function List({ filteredPokedex }: Props) {
   return (
-    <PokedexList data-test-id="pokemonList">
+    <ul className={styles.list} data-test-id="pokemonList">
       {filteredPokedex?.map((p: IPokemon) => (
-        <PokedexElement key={p.id} data-test-id="pokemonElement">
+        <li className={styles.element} key={p.id} data-test-id="pokemonElement">
           <Sprites p={p} />
           {p.id < 1011 && (
-            <p className="number">#{p.id.toString().padStart(3, `0`)}</p>
+            <p className={styles.number}>#{p.id.toString().padStart(3, `0`)}</p>
           )}
           <h2>
             <Link
@@ -29,11 +29,11 @@ export function List({ filteredPokedex }: Props) {
               {removeLongName(removeDash(p.name))}
             </Link>
           </h2>
-          <PokedexTypes>
+          <div className={styles.types}>
             <Types p={p} />
-          </PokedexTypes>
-        </PokedexElement>
+          </div>
+        </li>
       ))}
-    </PokedexList>
+    </ul>
   );
 }

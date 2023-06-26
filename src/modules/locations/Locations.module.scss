@@ -65,7 +65,7 @@
       transition: 0.3s ease-in-out;
       border-bottom: 1px solid transparent;
       &:hover {
-        @include themed() {
+        @include themed {
           border-bottom: 1px solid t('text');
         }
       }

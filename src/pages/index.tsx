@@ -2,7 +2,7 @@ import { Pagination } from '@/components/common/styles/Pagination';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
-import { PokedexVerticalText } from '@/modules/pokedex/Styled.Pokemon';
+import styles from '@/modules/pokedex/Pokedex.module.scss';
 import { IPokemon } from '@/types';
 import { IOptionsOffsetLimit, getPokedex } from '@/utils';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
@@ -74,7 +74,7 @@ function Pokedex() {
           generation={generation}
           setGeneration={setGeneration}
         />
-        <PokedexVerticalText>ポケモン</PokedexVerticalText>
+        <p className={styles.verticalText}>ポケモン</p>
         <List filteredPokedex={filteredPokedex} />
         <Divider />
         {scrollBtn()}

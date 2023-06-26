@@ -1,7 +1,7 @@
 import BackBtn from '@/components/common/ui/BackBtn';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
-import { PokemonTitle } from '@/modules/pokedex/Styled.Pokemon';
+import styles from '@/modules/pokedex/Pokedex.module.scss';
 import {
   Cards,
   Competitive,
@@ -89,7 +89,7 @@ function PokemonCard({ name }: Props) {
     <>
       <Heading name={name} />
       <main className="mainBig">
-        <PokemonTitle>
+        <section className={styles.section}>
           {pokemon.data?.name?.includes(`mega`) ? (
             <h2 className="title">
               {removeDash(pokemon.data?.name).split(` `).reverse().join(` `)}
@@ -108,7 +108,7 @@ function PokemonCard({ name }: Props) {
               />
             </div>
           )}
-        </PokemonTitle>
+        </section>
         {species.data && (
           <h4 className="subtitle">
             {removeDash(species.data?.generation?.name)}

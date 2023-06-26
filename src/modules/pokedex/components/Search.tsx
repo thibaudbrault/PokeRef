@@ -14,6 +14,7 @@ import {
   AutocompleteInput,
   AutocompleteLink,
 } from '@/components/common/styles/Autocomplete';
+import Link from 'next/link';
 
 export function Search() {
   const { data: pokedex }: UseQueryResult<INamedApiResource[]> = useQuery({
@@ -38,7 +39,7 @@ export function Search() {
   };
 
   return (
-    <AutocompleteInput>
+    <div className="search">
       <label htmlFor="search">Search</label>
       <input
         type="text"
@@ -46,7 +47,7 @@ export function Search() {
         onChange={(e) => searchPokedex(e.target.value)}
       />
       {searchText && (
-        <AutocompleteContainer>
+        <div className="searchContainer">
           <ul>
             {searchRes &&
               searchRes?.map((res) => (
@@ -62,27 +63,27 @@ export function Search() {
                     height={48}
                     fallbackSrc={`/images/other/unknown.png`}
                   />
-                  <AutocompleteLink
+                  <Link
                     href={{
                       pathname: `/pokemon/[name]`,
                       query: { name: res.item.name },
                     }}
-                    className="bold"
+                    className="searchLink bold"
                   >
                     {removeLongName(removeDash(res.item.name))}
-                  </AutocompleteLink>
-                  <AutocompleteId>
+                  </Link>
+                  <span className="searchId">
                     #
                     {res.item.url
                       .replace(`https://pokeapi.co/api/v2/pokemon/`, ``)
                       .slice(0, -1)
                       .padStart(3, `0`)}
-                  </AutocompleteId>
+                  </span>
                 </li>
               ))}
           </ul>
-        </AutocompleteContainer>
+        </div>
       )}
-    </AutocompleteInput>
+    </div>
   );
 }

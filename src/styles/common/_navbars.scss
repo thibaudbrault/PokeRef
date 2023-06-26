@@ -15,11 +15,11 @@
       display: inline-block;
       position: relative;
 
-      & button {
+      .gen {
         background: none;
         border: none;
         font-size: 2rem;
-        @include themed() {
+        @include gthemed {
           color: t('text');
         }
 
@@ -32,10 +32,10 @@
         display: none;
         position: absolute;
         white-space: nowrap;
-        background: #c4c4c4;
+        background-color: $light;
         border-radius: 5px;
-        -webkit-box-shadow: 2px 2px 15px 2px #161616;
-        box-shadow: 2px 2px 15px 2px #161616;
+        -webkit-box-shadow: 2px 2px 15px 2px $dark;
+        box-shadow: 2px 2px 15px 2px $dark;
 
         & button {
           display: block;
@@ -44,9 +44,9 @@
           border: none;
           margin: 1rem;
           text-align: left;
-          color: #161616;
           text-transform: capitalize;
           cursor: pointer;
+          color: $dark;
           &:hover {
             color: $red;
           }
@@ -89,7 +89,7 @@
     font-size: 1.7rem;
     font-weight: 600;
     transition: 0.3s ease-in-out;
-    @include themed() {
+    @include gthemed {
       color: t('text');
     }
 
@@ -122,7 +122,7 @@
       transition: 0.3s ease-in-out;
       border-radius: 5px;
       transform: scale(1.2, 1.2);
-      @include themed() {
+      @include gthemed {
         background-color: t('text');
         border: 1px solid t('text');
       }
@@ -141,7 +141,7 @@
       cursor: pointer;
       transition: 0.3s ease-in-out;
       &:hover {
-        @include themed() {
+        @include gthemed {
           color: t('bg');
         }
       }
@@ -155,7 +155,7 @@
     border: 1px solid transparent;
     border-radius: 5px;
     transition: 0.3s ease-in-out;
-    @include themed() {
+    @include gthemed {
       background: t('text');
       color: t('bg');
     }
@@ -189,7 +189,7 @@
       transition: 0.3s ease-in-out;
       border-radius: 5px;
       transform: scale(1.2, 1.2);
-      @include themed() {
+      @include gthemed {
         border: 1px solid t('text');
         background-color: t('bg');
       }
@@ -208,11 +208,11 @@
       z-index: 3;
       cursor: pointer;
       transition: 0.3s ease-in-out;
-      @include themed() {
+      @include gthemed {
         color: t('bg');
       }
       &:hover {
-        @include themed() {
+        @include gthemed {
           color: t('text');
         }
       }

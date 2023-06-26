@@ -10,14 +10,14 @@
 
   &::-webkit-scrollbar-track {
     border-radius: 5px;
-    @include themed() {
+    @include gthemed {
       background-color: t('bg');
     }
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    @include themed() {
+    @include gthemed {
       background-color: t('text');
     }
   }
@@ -109,7 +109,7 @@
     font-weight: 600;
     text-transform: capitalize;
     background: rgba(130, 130, 130, 0.2);
-    @include themed() {
+    @include gthemed {
       color: t('text');
     }
   }
@@ -125,6 +125,10 @@
   text-transform: capitalize;
 }
 
+.tUppercase {
+  text-transform: uppercase;
+}
+
 .tBold {
   text-transform: capitalize;
   font-size: 1.7rem;
@@ -138,7 +142,7 @@
   transition: 0.3s ease-in-out;
 
   &:hover {
-    @include themed() {
+    @include gthemed {
       border-bottom: 1px solid t('text');
     }
   }
@@ -183,7 +187,7 @@
       & span {
         font-family: 'Oswald', sans-serif;
         font-size: 1.7rem;
-        @include themed() {
+        @include gthemed {
           color: t('text');
           text-shadow: t('bg') -1px -1px 0px, t('bg') 1px -1px 0px,
             t('bg') -1px 1px 0px, t('bg') 1px 1px 0px;

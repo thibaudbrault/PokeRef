@@ -1,6 +1,6 @@
-import { TypeDamageTable } from '@/components/pages/Types/TypeCard/Styled.TypeCard';
 import styled from 'styled-components';
-import { PokedexTypes } from '../../Styled.Pokemon';
+import { TypeDamageTable } from '@/modules/types/type/Styled.TypeCard';
+import { PokedexTypes } from '@/modules/pokedex/Styled.Pokemon';
 
 export const PokemonTypesList = styled(PokedexTypes)`
   width: fit-content;

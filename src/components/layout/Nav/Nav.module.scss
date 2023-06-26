@@ -1,17 +1,16 @@
-import styled from 'styled-components';
-import { device } from '../../common/styles/Sizing';
+@use '@/styles/abstracts' as *;
 
-export const MainNav = styled.nav`
+.nav {
   min-height: 4vh;
   max-width: 1700px;
   margin: 0 auto;
 
-  @media ${device.md} {
+  @include md {
     display: none;
   }
-`;
+}
 
-export const MainNavList = styled.ul`
+.list {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -33,7 +32,6 @@ export const MainNavList = styled.ul`
         position: absolute;
         width: 100%;
         height: 1px;
-        background-color: ${({ theme }) => theme.secondary};
         top: 100%;
         left: 0;
         pointer-events: none;
@@ -43,12 +41,14 @@ export const MainNavList = styled.ul`
         transition-property: transform, opacity;
         transition-duration: 0.3s;
         transition-timing-function: cubic-bezier(0.2, 1, 0.8, 1);
+        @include themed {
+          background-color: t('text');
+        }
       }
       &::after {
         position: absolute;
         width: 100%;
         height: 1px;
-        background: ${({ theme }) => theme.secondary};
         top: 100%;
         left: 0;
         pointer-events: none;
@@ -58,6 +58,9 @@ export const MainNavList = styled.ul`
         transition-property: transform, opacity;
         transition-duration: 0.3s;
         transition-timing-function: cubic-bezier(0.2, 1, 0.8, 1);
+        @include themed {
+          background-color: t('text');
+        }
       }
       &:hover::before {
         opacity: 1;
@@ -87,23 +90,25 @@ export const MainNavList = styled.ul`
       }
     }
 
-    @media ${device.lg} {
+    @include lg {
       margin-bottom: 2rem;
     }
   }
-`;
+}
 
-export const ResponsiveNav = styled.nav`
+.mobileNav {
   height: 100vh;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.main};
   z-index: 98;
-`;
+  @include themed {
+    background: t('bg');
+  }
+}
 
-export const ResponsiveNavContainer = styled.div`
+.mobileInner {
   height: 100%;
   width: 100%;
   padding: 2rem;
@@ -111,9 +116,9 @@ export const ResponsiveNavContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-`;
+}
 
-export const ResponsiveNavList = styled.ul`
+.mobileList {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,4 +132,4 @@ export const ResponsiveNavList = styled.ul`
       cursor: pointer;
     }
   }
-`;
+}

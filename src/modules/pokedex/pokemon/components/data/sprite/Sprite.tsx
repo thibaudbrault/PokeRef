@@ -1,5 +1,5 @@
 import { IPokemon, IPokemonSpecies } from '@/types';
-import { PokemonDataImg, PokemonDataSpecial } from '../Styled.Data.PokemonCard';
+import styles from '../Data.module.scss';
 
 type Props = {
   pokemon: IPokemon;
@@ -9,7 +9,8 @@ type Props = {
 export function Sprite({ pokemon, species }: Props) {
   return (
     <>
-      <PokemonDataImg
+      <img
+        className={styles.images}
         src={pokemon.sprites.other[`official-artwork`].front_default}
         alt={pokemon.name}
         loading="lazy"
@@ -19,12 +20,12 @@ export function Sprite({ pokemon, species }: Props) {
       {pokemon.id < 10000 && (
         <>
           {species?.is_legendary && (
-            <PokemonDataSpecial>Legendary</PokemonDataSpecial>
+            <span className={styles.special}>Legendary</span>
           )}
           {species?.is_mythical && (
-            <PokemonDataSpecial>Mythical</PokemonDataSpecial>
+            <span className={styles.special}>Mythical</span>
           )}
-          {species.is_baby && <PokemonDataSpecial>Baby</PokemonDataSpecial>}
+          {species.is_baby && <span className={styles.special}>Baby</span>}
         </>
       )}
     </>

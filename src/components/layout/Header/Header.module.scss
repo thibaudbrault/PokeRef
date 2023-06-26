@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import { device } from '../../common/styles/Sizing';
+@use '@/styles/abstracts' as *;
 
-export const HeaderBtnConnect = styled.div`
+.connect {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
@@ -11,39 +10,45 @@ export const HeaderBtnConnect = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0.7rem 1.5rem;
-    background: ${({ theme }) => theme.secondary};
     border: 1px solid transparent;
     border-radius: 5px;
-    color: ${({ theme }) => theme.main};
     font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease-in-out;
+    @include themed {
+      background-color: t('text');
+      color: t('bg');
+    }
 
-    @media ${device.md} {
+    @include md {
       font-size: 3rem;
     }
 
     &:first-of-type {
       background: transparent;
-      border-color: ${({ theme }) => theme.secondary};
-      color: ${({ theme }) => theme.secondary};
+      @include themed {
+        border-color: t('text');
+        color: t('text');
+      }
     }
 
     &:hover {
       background: transparent;
-      border-color: ${({ theme }) => theme.secondary};
-      color: ${({ theme }) => theme.secondary};
+      @include themed {
+        border-color: t('text');
+        color: t('text');
+      }
     }
   }
 
-  @media ${device.md} {
+  @include md {
     width: 80%;
     justify-content: space-evenly;
   }
-`;
+}
 
-export const HeaderBtnConnected = styled.div`
+.connected {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
@@ -54,72 +59,81 @@ export const HeaderBtnConnected = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0.7rem 1.5rem;
-    background: ${({ theme }) => theme.secondary};
     border: 1px solid transparent;
     border-radius: 5px;
-    color: ${({ theme }) => theme.main};
     font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease-in-out;
+    @include themed {
+      background-color: t('text');
+      color: t('bg');
+    }
 
     &:hover {
       background: transparent;
-      border-color: ${({ theme }) => theme.secondary};
-      color: ${({ theme }) => theme.secondary};
+      @include themed {
+        border-color: t('text');
+        color: t('text');
+      }
     }
 
-    @media ${device.md} {
+    @include md {
       font-size: 3rem;
     }
   }
 
   & :first-child {
     background: transparent;
-    border-color: ${({ theme }) => theme.secondary};
-    color: ${({ theme }) => theme.secondary};
+    @include themed {
+      border-color: t('text');
+      color: t('text');
+    }
   }
 
-  @media ${device.md} {
+  @include md {
     width: 80%;
     justify-content: space-evenly;
   }
-`;
+}
 
-export const HeaderContainer = styled.header`
+.header {
   width: 90%;
   margin: 0 auto 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  @media ${device.sm} {
+  @include sm {
     width: 95%;
   }
 
-  & ${HeaderBtnConnect}, ${HeaderBtnConnected} {
-    @media ${device.md} {
+  & .connect,
+  .connected {
+    @include md {
       display: none;
     }
   }
-`;
+}
 
-export const HeaderBtnContainer = styled.div`
+.buttons {
   display: flex;
   align-items: center;
   gap: 3rem;
-`;
+}
 
-export const HeaderBtnTheme = styled.button`
+.theme {
   width: 48px;
   height: 48px;
   background: none;
   border: none;
-  color: ${({ theme }) => theme.secondary};
   font-size: 48px;
-`;
+  @include themed {
+    color: t('text');
+  }
+}
 
-export const BurgerOpen = styled.button`
+.open {
   display: none;
   align-items: center;
   justify-content: center;
@@ -130,30 +144,36 @@ export const BurgerOpen = styled.button`
   padding: 1rem;
   border: 1px solid transparent;
   border-radius: 50px;
-  background-color: ${({ theme }) => theme.secondary};
-  color: ${({ theme }) => theme.main};
   font-size: 48px;
   transition: 0.3s ease-in-out;
+  @include themed {
+    background-color: t('text');
+    color: t('bg');
+  }
 
   &:hover {
-    border: 1px solid ${({ theme }) => theme.secondary};
-    background-color: ${({ theme }) => theme.main};
-    color: ${({ theme }) => theme.secondary};
+    @include themed {
+      border: 1px solid t('text');
+      background-color: t('bg');
+      color: t('text');
+    }
   }
 
-  @media ${device.md} {
+  @include md {
     display: flex;
   }
-`;
+}
 
-export const BurgerClose = styled.button`
+.close {
   display: none;
   font-size: 48px;
   background: transparent;
   border: none;
-  color: ${({ theme }) => theme.secondary};
+  @include themed {
+    color: t('text');
+  }
 
-  @media ${device.md} {
+  @include md {
     display: flex;
   }
-`;
+}
