@@ -2,7 +2,7 @@
 @use '@/styles/common' as *;
 
 .section {
-  @extend .section;
+  @extend %section;
   @include sm {
     padding-bottom: 0;
   }

@@ -5,10 +5,11 @@
   font-size: 10rem;
   letter-spacing: 3px;
   cursor: pointer;
+
   @include gthemed {
     color: t('bg');
-    text-shadow: t('text') -1px -1px 0px, t('text') 1px -1px 0px,
-      t('text') -1px 1px 0px, t('text') 1px 1px 0px;
+    text-shadow: t('text') -1px -1px 0, t('text') 1px -1px 0,
+      t('text') -1px 1px 0, t('text') 1px 1px 0;
   }
 
   @include lg {
@@ -35,45 +36,61 @@
   }
 }
 
-.title {
+%title {
   margin-bottom: 1.5rem;
   font-size: 6rem;
   color: #c4c4c4;
   text-transform: capitalize;
   text-align: center;
+
   @include gthemed {
     color: t('bg');
-    text-shadow: t('text') -1px -1px 0px, t('text') 1px -1px 0px,
-      t('text') -1px 1px 0px, t('text') 1px 1px 0px;
+    text-shadow: t('text') -1px -1px 0, t('text') 1px -1px 0,
+      t('text') -1px 1px 0, t('text') 1px 1px 0;
   }
 }
 
+.title {
+  @extend %title;
+}
+
 .pageTitle {
-  @extend .title;
+  @extend %title;
+
   margin-bottom: 0.5rem;
 }
 
-.subtitle {
+%subtitle {
   font-size: 2rem;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   text-align: center;
 }
 
+.subtitle {
+  @extend %subtitle;
+}
+
 .leftSubtitle {
-  @extend .subtitle;
+  @extend %subtitle;
+
   text-align: left;
 }
 
-.h2 {
+%h2 {
   margin-bottom: 1rem;
   font-size: 4.5rem;
   text-transform: capitalize;
   text-align: center;
 }
 
+.h2 {
+  @extend %h2;
+}
+
 .leftH2 {
-  @extend .h2;
+  @extend %h2;
+
   text-align: left;
 }
 
@@ -82,10 +99,9 @@
   font-size: 3.5rem;
   text-transform: capitalize;
 
-  &:first-letter {
+  &::first-letter {
     background: $red;
     background-clip: text;
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 }

@@ -34,7 +34,8 @@
 }
 
 .nav {
-  @extend .methodNav;
+  @extend %methodNav;
+
   padding-bottom: 3rem;
 
   & button {
@@ -64,6 +65,7 @@
       cursor: pointer;
       transition: 0.3s ease-in-out;
       border-bottom: 1px solid transparent;
+
       &:hover {
         @include themed {
           border-bottom: 1px solid t('text');
@@ -81,15 +83,16 @@
   & td {
     padding: 0;
     text-transform: capitalize;
-    border-top: 2px solid rgba(130, 130, 130, 0.2);
-    border-bottom: 2px solid rgba(130, 130, 130, 0.2);
+    border-top: 2px solid rgb(130 130 130 / 20%);
+    border-bottom: 2px solid rgb(130 130 130 / 20%);
+
     & p {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 1rem;
       padding: 1.5rem;
-      border-top: 1px solid rgba(130, 130, 130, 0.2);
+      border-top: 1px solid rgb(130 130 130 / 20%);
 
       &:first-of-type {
         border-top: none;
@@ -97,13 +100,13 @@
     }
 
     & span {
-      &:after {
+      &::after {
         margin-left: 1rem;
         content: '&';
       }
 
       &:last-of-type {
-        &:after {
+        &::after {
           content: '';
         }
       }

@@ -1,4 +1,5 @@
 @use '../abstracts' as *;
+@use 'sass:map';
 
 *,
 *::before,
@@ -54,7 +55,6 @@ center,
 dl,
 dt,
 dd,
-ul,
 ul,
 li,
 fieldset,
@@ -120,7 +120,6 @@ section {
   display: block;
 }
 
-ul,
 ul {
   list-style: none;
 }
@@ -130,10 +129,10 @@ q {
   quotes: none;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
   content: '';
   content: none;
 }
@@ -150,36 +149,36 @@ html {
 
 body {
   min-height: 100vh;
-  font-family: 'Quicksand', serif;
+  font-family: Quicksand, serif;
   font-weight: 400;
 
   .theme--dark {
-    color: map-get(map-get($themes, 'dark'), 'text');
-    background-color: map-get(map-get($themes, 'dark'), 'bg');
+    color: map.get(map.get($themes, 'dark'), 'text');
+    background-color: map.get(map.get($themes, 'dark'), 'bg');
   }
 
   .theme--light {
-    color: map-get(map-get($themes, 'light'), 'text');
-    background-color: map-get(map-get($themes, 'light'), 'bg');
+    color: map.get(map.get($themes, 'light'), 'text');
+    background-color: map.get(map.get($themes, 'light'), 'bg');
   }
 
   & #nprogress {
     & .bar {
-      background: hsla(29, 92%, 70%, 1);
+      background: hsl(29deg 92% 70% / 100%);
       background: linear-gradient(
         0deg,
-        hsla(29, 92%, 70%, 1) 0%,
-        hsla(0, 87%, 73%, 1) 100%
+        hsl(29deg 92% 70% / 100%) 0%,
+        hsl(0deg 87% 73% / 100%) 100%
       );
-      background: -moz-linear-gradient(
+      background: linear-gradient(
         0deg,
-        hsla(29, 92%, 70%, 1) 0%,
-        hsla(0, 87%, 73%, 1) 100%
+        hsl(29deg 92% 70% / 100%) 0%,
+        hsl(0deg 87% 73% / 100%) 100%
       );
-      background: -webkit-linear-gradient(
+      background: linear-gradient(
         0deg,
-        hsla(29, 92%, 70%, 1) 0%,
-        hsla(0, 87%, 73%, 1) 100%
+        hsl(29deg 92% 70% / 100%) 0%,
+        hsl(0deg 87% 73% / 100%) 100%
       );
     }
 
@@ -196,7 +195,7 @@ h4,
 h5,
 h6,
 nav {
-  font-family: 'Oswald', sans-serif;
+  font-family: Oswald, sans-serif;
 }
 
 @include md {
@@ -223,6 +222,7 @@ nav {
   z-index: 1000;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
+
   @include themed {
     background-color: t('text') !important;
   }

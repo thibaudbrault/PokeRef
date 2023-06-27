@@ -19,6 +19,7 @@
         background: none;
         border: none;
         font-size: 2rem;
+
         @include gthemed {
           color: t('text');
         }
@@ -34,7 +35,6 @@
         white-space: nowrap;
         background-color: $light;
         border-radius: 5px;
-        -webkit-box-shadow: 2px 2px 15px 2px $dark;
         box-shadow: 2px 2px 15px 2px $dark;
 
         & button {
@@ -47,6 +47,7 @@
           text-transform: capitalize;
           cursor: pointer;
           color: $dark;
+
           &:hover {
             color: $red;
           }
@@ -74,7 +75,7 @@
   }
 }
 
-.methodNav {
+%methodNav {
   padding-bottom: 2.5rem;
   display: flex;
   align-items: center;
@@ -89,6 +90,7 @@
     font-size: 1.7rem;
     font-weight: 600;
     transition: 0.3s ease-in-out;
+
     @include gthemed {
       color: t('text');
     }
@@ -122,6 +124,7 @@
       transition: 0.3s ease-in-out;
       border-radius: 5px;
       transform: scale(1.2, 1.2);
+
       @include gthemed {
         background-color: t('text');
         border: 1px solid t('text');
@@ -140,6 +143,7 @@
       z-index: 2;
       cursor: pointer;
       transition: 0.3s ease-in-out;
+
       &:hover {
         @include gthemed {
           color: t('bg');
@@ -155,6 +159,7 @@
     border: 1px solid transparent;
     border-radius: 5px;
     transition: 0.3s ease-in-out;
+
     @include gthemed {
       background: t('text');
       color: t('bg');
@@ -189,6 +194,7 @@
       transition: 0.3s ease-in-out;
       border-radius: 5px;
       transform: scale(1.2, 1.2);
+
       @include gthemed {
         border: 1px solid t('text');
         background-color: t('bg');
@@ -208,9 +214,11 @@
       z-index: 3;
       cursor: pointer;
       transition: 0.3s ease-in-out;
+
       @include gthemed {
         color: t('bg');
       }
+
       &:hover {
         @include gthemed {
           color: t('text');
@@ -218,4 +226,8 @@
       }
     }
   }
+}
+
+.methodNav {
+  @extend %methodNav;
 }

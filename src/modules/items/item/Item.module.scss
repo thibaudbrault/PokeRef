@@ -1,7 +1,8 @@
 @use '@/styles/common/sizing' as *;
 
 .section {
-  @extend .section;
+  @extend %section;
+
   display: grid;
   grid-template-columns: 75% 25%;
 }

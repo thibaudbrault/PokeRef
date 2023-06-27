@@ -3,7 +3,8 @@
 @use '../abstracts' as *;
 
 .search {
-  @extend .input;
+  @extend %input;
+
   min-width: 25rem;
 
   & label {
@@ -18,7 +19,8 @@
 
     &::placeholder {
       font-size: 1.5rem;
-      font-family: 'Quicksand', serif;
+      font-family: Quicksand, serif;
+
       @include gthemed {
         color: t('text');
       }
@@ -45,6 +47,7 @@
     top: 0.5rem;
     left: 0;
     border-radius: 5px;
+
     @include gthemed {
       background: t('text');
       color: t('bg');
@@ -60,8 +63,10 @@
 }
 
 .searchLink {
-  @extend .tLink;
+  @extend %tLink;
+
   font-size: 1.7rem;
+
   &:hover {
     text-decoration: underline;
   }

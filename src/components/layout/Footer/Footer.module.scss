@@ -3,21 +3,21 @@
 .footer {
   display: flex;
   align-items: center;
-  background: hsla(29, 92%, 70%, 1);
+  background: hsl(29deg 92% 70% / 100%);
   background: linear-gradient(
     0deg,
-    hsla(29, 92%, 70%, 1) 0%,
-    hsla(0, 87%, 73%, 1) 100%
+    hsl(29deg 92% 70% / 100%) 0%,
+    hsl(0deg 87% 73% / 100%) 100%
   );
-  background: -moz-linear-gradient(
+  background: linear-gradient(
     0deg,
-    hsla(29, 92%, 70%, 1) 0%,
-    hsla(0, 87%, 73%, 1) 100%
+    hsl(29deg 92% 70% / 100%) 0%,
+    hsl(0deg 87% 73% / 100%) 100%
   );
-  background: -webkit-linear-gradient(
+  background: linear-gradient(
     0deg,
-    hsla(29, 92%, 70%, 1) 0%,
-    hsla(0, 87%, 73%, 1) 100%
+    hsl(29deg 92% 70% / 100%) 0%,
+    hsl(0deg 87% 73% / 100%) 100%
   );
 }
 
@@ -39,12 +39,13 @@
   justify-self: center;
   font-size: 4rem;
   letter-spacing: 1px;
-  font-family: 'Oswald';
+  font-family: Oswald, sans-serif;
   text-align: center;
+
   @include themed {
     color: t('text');
-    text-shadow: t('bg') -1px -1px 0px, t('bg') 1px -1px 0px,
-      t('bg') -1px 1px 0px, t('bg') 1px 1px 0px;
+    text-shadow: t('bg') -1px -1px 0, t('bg') 1px -1px 0, t('bg') -1px 1px 0,
+      t('bg') 1px 1px 0;
   }
 }
 

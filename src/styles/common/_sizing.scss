@@ -1,12 +1,21 @@
 @use '../abstracts' as *;
 
-.section {
+%section {
   margin-bottom: 5rem;
 }
 
-.sectionTop {
-  @extend .section;
+.section {
+  @extend %section;
+}
+
+%sectionTop {
+  @extend %section;
+
   margin-top: 5rem;
+}
+
+.sectionTop {
+  @extend %sectionTop;
 }
 
 @mixin main {
@@ -16,7 +25,8 @@
 }
 
 .mainSmall {
-  @include main();
+  @include main;
+
   max-width: 1300px;
 
   @include sm {
@@ -24,14 +34,19 @@
   }
 }
 
-.mainBig {
-  @include main();
+%mainBig {
+  @include main;
+
   position: relative;
   max-width: 1700px;
 
   @include sm {
     padding: 3rem;
   }
+}
+
+.mainBig {
+  @extend %mainBig;
 }
 
 .mainForm {

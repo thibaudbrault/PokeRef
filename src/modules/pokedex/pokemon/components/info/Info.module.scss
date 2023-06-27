@@ -2,7 +2,8 @@
 @use '@/styles/common' as *;
 
 .section {
-  @extend .section;
+  @extend %section;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
@@ -29,11 +30,12 @@
 }
 
 .table {
-  @extend .table;
+  @extend %table;
+
   width: 90%;
 
   & th {
-    background: rgba(130, 130, 130, 0.2);
+    background: rgb(130 130 130 / 20%);
     text-transform: capitalize;
   }
 

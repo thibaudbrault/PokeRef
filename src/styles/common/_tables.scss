@@ -10,6 +10,7 @@
 
   &::-webkit-scrollbar-track {
     border-radius: 5px;
+
     @include gthemed {
       background-color: t('bg');
     }
@@ -17,13 +18,14 @@
 
   &::-webkit-scrollbar-thumb {
     border-radius: 5px;
+
     @include gthemed {
       background-color: t('text');
     }
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: rgba(130, 130, 130, 0.2);
+    background: rgb(130 130 130 / 20%);
   }
 
   & td {
@@ -31,10 +33,10 @@
   }
 }
 
-.table {
+%table {
   display: table;
   text-align: center;
-  border: 1px solid rgba(130, 130, 130, 0.2);
+  border: 1px solid rgb(130 130 130 / 20%);
   border-collapse: collapse;
   border-left: none;
   border-right: none;
@@ -43,7 +45,7 @@
   & th {
     padding: 1.5rem;
     font-size: 1.5rem;
-    border: 1px solid rgba(130, 130, 130, 0.2);
+    border: 1px solid rgb(130 130 130 / 20%);
     border-collapse: collapse;
     vertical-align: middle;
 
@@ -59,8 +61,8 @@
   & td {
     padding: 1.5rem;
     font-size: 1.5rem;
-    border-top: 1px solid rgba(130, 130, 130, 0.2);
-    border-bottom: 1px solid rgba(130, 130, 130, 0.2);
+    border-top: 1px solid rgb(130 130 130 / 20%);
+    border-bottom: 1px solid rgb(130 130 130 / 20%);
     border-left: none;
     border-right: none;
     vertical-align: middle;
@@ -83,16 +85,23 @@
   }
 }
 
+.table {
+  @extend %table;
+}
+
 .fullWidthTable {
-  @extend .table;
+  @extend %table;
+
   width: 100%;
 }
 
 .descTable {
-  @extend .table;
+  @extend %table;
+
   width: 100%;
+
   & th {
-    background: rgba(130, 130, 130, 0.2);
+    background: rgb(130 130 130 / 20%);
     font-size: 1.5rem;
     font-weight: 600;
     text-transform: capitalize;
@@ -108,7 +117,8 @@
     font-size: 1.7rem;
     font-weight: 600;
     text-transform: capitalize;
-    background: rgba(130, 130, 130, 0.2);
+    background: rgb(130 130 130 / 20%);
+
     @include gthemed {
       color: t('text');
     }
@@ -117,7 +127,7 @@
 
 .tr {
   &:hover {
-    background: rgba(130, 130, 130, 0.2);
+    background: rgb(130 130 130 / 20%);
   }
 }
 
@@ -129,13 +139,17 @@
   text-transform: uppercase;
 }
 
-.tBold {
+%tBold {
   text-transform: capitalize;
   font-size: 1.7rem;
   font-weight: 600;
 }
 
-.tLink {
+.tBold {
+  @extend %tBold;
+}
+
+%tLink {
   text-transform: capitalize;
   border-bottom: 1px solid transparent;
   cursor: pointer;
@@ -147,9 +161,13 @@
     }
   }
 
-  &.bold {
+  .bold {
     font-weight: 600;
   }
+}
+
+.tLink {
+  @extend %tLink;
 }
 
 .tCategory {
@@ -184,14 +202,17 @@
       & img {
         cursor: pointer;
       }
+
       & span {
-        font-family: 'Oswald', sans-serif;
+        font-family: Oswald, sans-serif;
         font-size: 1.7rem;
+
         @include gthemed {
           color: t('text');
-          text-shadow: t('bg') -1px -1px 0px, t('bg') 1px -1px 0px,
-            t('bg') -1px 1px 0px, t('bg') 1px 1px 0px;
+          text-shadow: t('bg') -1px -1px 0, t('bg') 1px -1px 0,
+            t('bg') -1px 1px 0, t('bg') 1px 1px 0;
         }
+
         cursor: pointer;
       }
     }

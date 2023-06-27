@@ -1,7 +1,8 @@
 @use '@/styles/common/sizing' as *;
 
 .main {
-  @extend .mainBig;
+  @extend %mainBig;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,6 +17,7 @@
 .text {
   font-size: 2rem;
   font-weight: 600;
+
   &:first-of-type {
     padding-top: 3rem;
   }

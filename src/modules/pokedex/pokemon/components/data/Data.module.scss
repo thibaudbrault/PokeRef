@@ -2,7 +2,8 @@
 @use '@/styles/common' as *;
 
 .section {
-  @extend .section;
+  @extend %section;
+
   position: relative;
   display: grid;
   align-items: center;
@@ -103,13 +104,13 @@
       }
 
       & span {
-        font-family: 'Oswald';
+        font-family: Oswald, sans-serif;
         font-size: 3rem;
         cursor: pointer;
         @include themed {
           color: t('bg');
-          text-shadow: t('text') -1px -1px 0px, t('text') 1px -1px 0px,
-            t('text') -1px 1px 0px, t('text') 1px 1px 0px;
+          text-shadow: t('text') -1px -1px 0, t('text') 1px -1px 0,
+            t('text') -1px 1px 0, t('text') 1px 1px 0;
         }
       }
     }
@@ -133,11 +134,12 @@
 }
 
 .table {
-  @extend .table;
+  @extend %table;
+
   width: 90%;
 
   & th {
-    background: rgba(130, 130, 130, 0.2);
+    background: rgb(130 130 130 / 20%);
     text-transform: capitalize;
   }
 
@@ -149,6 +151,7 @@
 
     & ul {
       margin-left: 2rem;
+
       & li {
         list-style-type: decimal;
         text-align: left;
@@ -157,7 +160,7 @@
   }
 }
 
-.pill {
+%pill {
   margin: 1rem 0 0;
   padding: 1rem 1.5rem;
   border-radius: 50px;
@@ -165,8 +168,13 @@
   transition: 0.3s ease-in-out;
 }
 
+.pill {
+  @extend %pill;
+}
+
 .special {
-  @extend .pill;
+  @extend %pill;
+
   border: 1px solid $purple;
   background: $purple;
   color: #c4c4c4;
