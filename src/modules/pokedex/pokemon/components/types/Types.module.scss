@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import { TypeDamageTable } from '@/modules/types/type/Styled.TypeCard';
-import { PokedexTypes } from '@/modules/pokedex/Styled.Pokemon';
+@use '@/modules/pokedex/Pokedex.module.scss' as *;
+@use '@/modules/types/type/Type.module.scss' as *;
 
-export const PokemonTypesList = styled(PokedexTypes)`
+.list {
+  @extend %types;
   width: fit-content;
   flex-direction: row;
   margin-bottom: 1rem;
@@ -12,9 +12,10 @@ export const PokemonTypesList = styled(PokedexTypes)`
     padding: 0.5rem 1.5rem;
     font-size: 2rem;
   }
-`;
+}
 
-export const PokemonTypesTable = styled(TypeDamageTable)`
+.table {
+  @extend %typeTable;
   height: auto;
   width: 100%;
   & tr {
@@ -30,4 +31,4 @@ export const PokemonTypesTable = styled(TypeDamageTable)`
   &:first-of-type {
     margin-bottom: 0;
   }
-`;
+}

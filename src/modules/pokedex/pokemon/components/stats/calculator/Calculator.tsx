@@ -3,7 +3,7 @@ import { IPokemonStat } from '@/types';
 import { pokemonNatures, removeDash } from '@/utils';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { PokemonCalcTable } from '../Styled.Stats.PokemonCard';
+import styles from '../Stats.module.scss';
 import { Results } from '../results';
 
 type Props = {
@@ -36,7 +36,7 @@ export function Calculator({ baseStat }: Props) {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <PokemonCalcTable>
+        <table className={styles.table}>
           <tbody>
             <tr>
               <th>
@@ -224,7 +224,7 @@ export function Calculator({ baseStat }: Props) {
               </td>
             </tr>
           </tbody>
-        </PokemonCalcTable>
+        </table>
       </form>
       {stats && (
         <>

@@ -1,6 +1,6 @@
 import ToolTip from '@/components/common/ui/ToolTip';
 import typesRelationData from '@/data/types.json';
-import { MoveCardDataTable } from '@/modules/moves/move/components/data/Styled.Data.MoveCard';
+import moves from '@/modules/moves/move/components/data/Data.module.scss';
 import styles from '@/modules/types/type/Type.module.scss';
 import { IType } from '@/types';
 import { capitalize, removeDash } from '@/utils';
@@ -45,7 +45,7 @@ export function Damage({ type }: Props) {
   return (
     <>
       <section className={styles.section}>
-        <MoveCardDataTable>
+        <table className={moves.table}>
           <tr>
             <th>Generation</th>
             <td>{type && removeDash(type?.generation.name)}</td>
@@ -56,7 +56,7 @@ export function Damage({ type }: Props) {
               <span className="capitalize">{type?.move_damage_class.name}</span>
             </td>
           </tr>
-        </MoveCardDataTable>
+        </table>
         <table className={styles.table}>
           <tr>
             <th>Deals 0X damage to</th>

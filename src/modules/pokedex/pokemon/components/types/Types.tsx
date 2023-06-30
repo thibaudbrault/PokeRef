@@ -2,9 +2,8 @@ import { Type } from '@/components/common/styles/Themes';
 import { IType } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
-
-import { PokemonTypesList } from './Styled.Types.PokemonCard';
 import { Table } from './Table';
+import styles from './Types.module.scss';
 
 type Props = {
   types: IType[];
@@ -14,7 +13,7 @@ export function Types({ types }: Props) {
   return (
     <section className="section" id="types">
       <h3 className="h3">Types relations</h3>
-      <PokemonTypesList>
+      <div className={styles.list}>
         {types.map((t) => (
           <Type id={t.name} key={t.name}>
             <Link
@@ -33,7 +32,7 @@ export function Types({ types }: Props) {
             </Link>
           </Type>
         ))}
-      </PokemonTypesList>
+      </div>
       <div>
         <Table types={types} />
       </div>

@@ -1,4 +1,3 @@
-import { TBold, TCapitalize } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks';
 import { IMoveStatAffect, INature, IStat } from '@/types';
 import { removeDash } from '@/utils';
@@ -23,7 +22,7 @@ export function Stats({ stats }: Props) {
             accessorKey: `name`,
             id: `sort`,
             cell: (info) => (
-              <TBold>{removeDash(info.getValue<string>())}</TBold>
+              <td className="tBold">{removeDash(info.getValue<string>())}</td>
             ),
           },
         ],
@@ -82,22 +81,22 @@ export function Stats({ stats }: Props) {
             accessorKey: `affecting_natures.increase`,
             header: `Increase`,
             cell: (info) => (
-              <TCapitalize>
+              <td className="tCapitalize">
                 {info.getValue<INature[]>().map((i) => (
                   <p key={i.name}>{i.name}</p>
                 ))}
-              </TCapitalize>
+              </td>
             ),
           },
           {
             accessorKey: `affecting_natures.decrease`,
             header: `Decrease`,
             cell: (info) => (
-              <TCapitalize>
+              <td className="tCapitalize">
                 {info.getValue<INature[]>().map((i) => (
                   <p key={i.name}>{i.name}</p>
                 ))}
-              </TCapitalize>
+              </td>
             ),
           },
         ],

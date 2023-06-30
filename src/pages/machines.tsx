@@ -1,4 +1,3 @@
-import { TBold, TLink } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks';
 import { Heading } from '@/modules/machines';
@@ -7,6 +6,7 @@ import { getMachines, removeDash, uppercase } from '@/utils';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -36,7 +36,9 @@ function MachinesPage() {
         accessorKey: `item.name`,
         id: `sort`,
         header: `Name`,
-        cell: (info) => <TBold>{uppercase(info.getValue<string>())}</TBold>,
+        cell: (info) => (
+          <td className="tBold">{uppercase(info.getValue<string>())}</td>
+        ),
       },
       {
         accessorKey: `move.name`,
@@ -44,14 +46,15 @@ function MachinesPage() {
         header: `Move`,
         cell: (info) => (
           <td>
-            <TLink
+            <Link
+              className="tLink"
               href={{
                 pathname: `/move/[name]`,
                 query: { name: info.getValue<string>() },
               }}
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
+            </Link>
           </td>
         ),
       },

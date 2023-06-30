@@ -1,6 +1,6 @@
 import Loader from '@/components/common/ui/Loader/Loader';
 import { Heading, List } from '@/modules/types';
-import { TypesList } from '@/modules/types/Styled.Types';
+import styles from '@/modules/types/Types.module.scss';
 import { IType } from '@/types';
 import { getTypes } from '@/utils';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
@@ -33,9 +33,9 @@ function TypesPage() {
     <>
       <Heading />
       <main className="mainSmall">
-        <TypesList>
+        <ul className={styles.list}>
           <List types={types} />
-        </TypesList>
+        </ul>
       </main>
     </>
   );

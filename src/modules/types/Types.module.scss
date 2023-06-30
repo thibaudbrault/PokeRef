@@ -1,8 +1,6 @@
-import { device } from '@/components/common/styles/Sizing';
-import { Type } from '@/components/common/styles/Themes';
-import styled from 'styled-components';
+@use '@/styles/abstracts' as *;
 
-export const TypesList = styled.ul`
+.list {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,17 +8,20 @@ export const TypesList = styled.ul`
 
   & li {
     & div {
-      border: 1px solid ${({ theme }) => theme.secondary};
       transition: 0.3s ease-in-out;
+      @include themed {
+        border: 1px solid t('text');
+      }
 
       &:hover {
         transform: scale(1.03);
       }
     }
   }
-`;
+}
 
-export const ModifiedType = styled(Type)`
+.type {
+  @extend %type;
   width: 20rem;
   margin: 3rem;
   border-radius: 5px;
@@ -42,16 +43,16 @@ export const ModifiedType = styled(Type)`
       border-radius: 5px;
       text-transform: uppercase;
       text-align: center;
-      color: ${({ theme }) => theme.secondary};
-      text-shadow: ${({ theme }) => theme.main} -1px -1px 0px,
-        ${({ theme }) => theme.main} 1px -1px 0px,
-        ${({ theme }) => theme.main} -1px 1px 0px,
-        ${({ theme }) => theme.main} 1px 1px 0px;
       cursor: pointer;
+      @include themed {
+        color: t('text');
+        text-shadow: t('bg') -1px -1px 0px, t('bg') 1px -1px 0px,
+          t('bg') -1px 1px 0px, t('bg') 1px 1px 0px;
+      }
     }
   }
 
-  @media ${device.sm} {
+  @include sm {
     margin: 2rem;
   }
-`;
+}

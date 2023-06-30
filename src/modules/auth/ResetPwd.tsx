@@ -6,14 +6,9 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import Modal from 'react-modal';
 import * as yup from 'yup';
-import {
-  AuthBtn,
-  AuthModal,
-  AuthResetClose,
-  AuthResetForm,
-  AuthResetInput,
-} from './Styled.Auth';
+import styles from './Auth.module.scss';
 
 type Props = {
   modalIsOpen: boolean;
@@ -63,19 +58,20 @@ function ResetPwd({ modalIsOpen, setIsOpen }: Props) {
   };
 
   return (
-    <AuthModal
+    <Modal
+      className={styles.modal}
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
       preventScroll={true}
       closeTimeoutMS={500}
       shouldCloseOnOverlayClick={false}
     >
-      <AuthResetClose onClick={closeModal}>
+      <button className={styles.closeReset} onClick={closeModal}>
         <FiX />
-      </AuthResetClose>
+      </button>
       <h2 className="h2">Reset your password</h2>
-      <AuthResetForm onSubmit={handleSubmit(resetPwdForm)}>
-        <AuthResetInput>
+      <form className={styles.resetForm} onSubmit={handleSubmit(resetPwdForm)}>
+        <div className={styles.resetInput}>
           <div>
             <input
               type="email"
@@ -87,10 +83,12 @@ function ResetPwd({ modalIsOpen, setIsOpen }: Props) {
               <small>{capitalize(errors.resetEmail?.message)}</small>
             )}
           </div>
-        </AuthResetInput>
-        <AuthBtn type="submit">Reset</AuthBtn>
-      </AuthResetForm>
-    </AuthModal>
+        </div>
+        <button className={styles.button} type="submit">
+          Reset
+        </button>
+      </form>
+    </Modal>
   );
 }
 

@@ -1,6 +1,6 @@
-import { TLink } from '@/components/common/styles/Table';
 import { IGenus, IPokemon, IPokemonSpecies } from '@/types';
 import { removeDash } from '@/utils';
+import Link from 'next/link';
 import styles from '../Data.module.scss';
 
 type Props = {
@@ -35,7 +35,8 @@ export function Base({ pokemon, species }: Props) {
             <ul>
               {pokemon.abilities?.map((pa) => (
                 <li key={pa.ability.name}>
-                  <TLink
+                  <Link
+                    className="tLink"
                     href={{
                       pathname: `/ability/[name]`,
                       query: { name: pa.ability.name },
@@ -43,7 +44,7 @@ export function Base({ pokemon, species }: Props) {
                     key={pa.ability.name}
                   >
                     {removeDash(pa.ability.name)}
-                  </TLink>
+                  </Link>
                   {pa.is_hidden && (
                     <small className="small"> (hidden ability)</small>
                   )}

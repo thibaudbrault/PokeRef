@@ -1,9 +1,9 @@
-import { TBold, TLink } from '@/components/common/styles/Table';
 import styles from '@/components/pages/Abilities/AbilityCard/AbilityCard.module.scss';
 import { useTableParams } from '@/hooks';
 import { IAbility, IPokemon } from '@/types';
 import { ImageWithFallback, removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
+import Link from 'next/link';
 import { useMemo } from 'react';
 
 type Props = {
@@ -40,16 +40,17 @@ export function Table({ ability, pokemon }: Props) {
         id: `sort`,
         header: `Name`,
         cell: (info) => (
-          <TBold>
-            <TLink
+          <td className="tBold">
+            <Link
+              className="tLink"
               href={{
                 pathname: `/pokemon/[name]`,
                 query: { name: info.getValue<string>() },
               }}
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
-          </TBold>
+            </Link>
+          </td>
         ),
       },
       {
@@ -62,17 +63,19 @@ export function Table({ ability, pokemon }: Props) {
         ),
         cell: (info) => (
           <td>
-            <TLink
+            <Link
               href={{
                 pathname: `/ability/[name]`,
                 query: { name: info.getValue<string>() },
               }}
               className={
-                info.getValue<string>() === ability?.name ? `bold` : ``
+                info.getValue<string>() === ability?.name
+                  ? `tLink bold`
+                  : `tLink`
               }
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
+            </Link>
           </td>
         ),
       },
@@ -87,17 +90,19 @@ export function Table({ ability, pokemon }: Props) {
         ),
         cell: (info) => (
           <td>
-            <TLink
+            <Link
               href={{
                 pathname: `/ability/[name]`,
                 query: { name: info.getValue<string>() },
               }}
               className={
-                info.getValue<string>() === ability?.name ? `bold` : ``
+                info.getValue<string>() === ability?.name
+                  ? `tLink bold`
+                  : `tLink`
               }
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
+            </Link>
           </td>
         ),
       },
@@ -108,17 +113,19 @@ export function Table({ ability, pokemon }: Props) {
         header: () => <span>hidden ability</span>,
         cell: (info) => (
           <td>
-            <TLink
+            <Link
               href={{
                 pathname: `/ability/[name]`,
                 query: { name: info.getValue<string>() },
               }}
               className={
-                info.getValue<string>() === ability?.name ? `bold` : ``
+                info.getValue<string>() === ability?.name
+                  ? `tLink bold`
+                  : `tLink`
               }
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
+            </Link>
           </td>
         ),
       },

@@ -1,8 +1,7 @@
-import { device } from '@/components/common/styles/Sizing';
-import { FullWidthTable } from '@/components/common/styles/Table';
-import styled from 'styled-components';
+@use '@/styles/abstracts' as *;
+@use '@/styles/common' as *;
 
-export const PokemonStatsCircles = styled.div`
+.circles {
   margin: 3rem 0 0;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -13,27 +12,31 @@ export const PokemonStatsCircles = styled.div`
     height: 100%;
 
     &-trail {
-      stroke: ${({ theme }) => theme.secondary} !important;
+      @include themed {
+        stroke: t('text') !important;
+      }
     }
 
     &-path {
-      stroke: ${({ theme }) => theme.red} !important;
+      stroke: $red !important;
     }
 
     &-text {
-      fill: ${({ theme }) => theme.secondary} !important;
       font-size: 1.3rem !important;
       font-weight: 600 !important;
+      @include themed {
+        fill: t('text') !important;
+      }
     }
   }
 
-  @media ${device.lg} {
+  @include lg {
     height: 30rem;
     row-gap: 3rem;
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media ${device.sm} {
+  @include sm {
     height: 45rem;
     row-gap: 4rem;
     grid-template-columns: 1fr 1fr;
@@ -44,14 +47,14 @@ export const PokemonStatsCircles = styled.div`
       }
     }
   }
-`;
+}
 
-export const PokemonStatsTotal = styled.p`
+.total {
   margin: 2rem 0;
   font-size: 1.7rem;
-`;
+}
 
-export const PokemonStatsDetails = styled.details`
+.details {
   & summary {
     width: fit-content;
     margin-bottom: 2rem;
@@ -60,16 +63,19 @@ export const PokemonStatsDetails = styled.details`
     text-transform: capitalize;
     cursor: pointer;
   }
-`;
+}
 
-export const PokemonCalcTable = styled(FullWidthTable)`
+.table {
+  @extend %fullWidthTable;
   border-bottom: none;
   & th {
-    color: ${({ theme }) => theme.secondary};
     font-size: 1.7rem;
     font-weight: 600;
     text-transform: capitalize;
     background: rgba(130, 130, 130, 0.2);
+    @include themed {
+      color: t('text');
+    }
   }
 
   & tr:last-of-type {
@@ -85,18 +91,22 @@ export const PokemonCalcTable = styled(FullWidthTable)`
       width: 100%;
       padding: 0.7rem;
       background: transparent;
-      color: ${({ theme }) => theme.secondary};
-      border: 1px solid ${({ theme }) => theme.secondary};
       border-radius: 5px;
       outline: none;
+      @include themed {
+        color: t('text');
+        border: 1px solid t('text');
+      }
 
       &::placeholder {
-        color: ${({ theme }) => theme.secondary};
         opacity: 1;
+        @include themed {
+          color: t('text');
+        }
       }
 
       &:focus {
-        border: 1px solid ${({ theme }) => theme.red};
+        border: 1px solid $red;
       }
     }
 
@@ -116,25 +126,31 @@ export const PokemonCalcTable = styled(FullWidthTable)`
 
       & option {
         text-transform: capitalize;
-        background: ${({ theme }) => theme.main};
-        color: ${({ theme }) => theme.secondary};
+        @include themed {
+          background: t('bg');
+          color: t('text');
+        }
       }
     }
 
     & button {
-      background: ${({ theme }) => theme.secondary};
-      color: ${({ theme }) => theme.main};
       border: 1px solid transparent;
       border-radius: 5px;
       padding: 1rem 1.5rem;
       font-size: 1.7rem;
       font-weight: 600;
       transition: 0.3s ease-in-out;
+      @include themed {
+        background: t('text');
+        color: t('bg');
+      }
 
       &:hover {
-        color: ${({ theme }) => theme.secondary};
-        background: ${({ theme }) => theme.main};
-        border: 1px solid ${({ theme }) => theme.secondary};
+        @include themed {
+          border: 1px solid t('text');
+          color: t('text');
+          background: t('bg');
+        }
       }
 
       &:active {
@@ -142,11 +158,12 @@ export const PokemonCalcTable = styled(FullWidthTable)`
       }
     }
   }
-`;
+}
 
-export const PokemonStatsResults = styled(FullWidthTable)`
+.results {
+  @extend %fullWidthTable;
   & td {
     border-left: 1px solid rgba(130, 130, 130, 0.2);
     border-right: 1px solid rgba(130, 130, 130, 0.2);
   }
-`;
+}

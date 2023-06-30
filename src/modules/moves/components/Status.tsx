@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 
-import { TBold } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks';
 import { IMove, IMoveAilment } from '@/types';
 import { removeDash } from '@/utils';
@@ -24,7 +23,9 @@ export function Status({ status }: Props) {
         accessorKey: `name`,
         id: `sort`,
         header: `Status`,
-        cell: (info) => <TBold>{removeDash(info.getValue<string>())}</TBold>,
+        cell: (info) => (
+          <td className="tBold">{removeDash(info.getValue<string>())}</td>
+        ),
       },
       {
         accessorFn: (row) => row.moves,

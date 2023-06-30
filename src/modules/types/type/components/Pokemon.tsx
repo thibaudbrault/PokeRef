@@ -1,4 +1,3 @@
-import { TBold, TLink, TType } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/types/type/Type.module.scss';
@@ -61,16 +60,17 @@ export function Pokemon({ typeName, pokemon }: Props) {
         id: `sort`,
         header: `Name`,
         cell: (info) => (
-          <TBold>
-            <TLink
+          <td className="tBold">
+            <Link
+              className="tLink"
               href={{
                 pathname: `/pokemon/[name]`,
                 query: { name: info.getValue<string>() },
               }}
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
-          </TBold>
+            </Link>
+          </td>
         ),
       },
       {
@@ -82,7 +82,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
           </span>
         ),
         cell: (info) => (
-          <TType>
+          <td className="tType">
             <Type id={info.getValue<string>()}>
               <Link
                 href={{
@@ -99,7 +99,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
                 <span>{info.getValue<string>()}</span>
               </Link>
             </Type>
-          </TType>
+          </td>
         ),
       },
       {
@@ -112,7 +112,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
         ),
         cell: (info) =>
           info.getValue() ? (
-            <TType>
+            <td className="tType">
               <Type id={info.getValue<string>()}>
                 <Link
                   href={{
@@ -129,7 +129,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
                   <span>{info.getValue<string>()}</span>
                 </Link>
               </Type>
-            </TType>
+            </td>
           ) : (
             <td>-</td>
           ),

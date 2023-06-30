@@ -1,12 +1,12 @@
-import { TBold, TEffect, TLink } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { usePaginatedTableParams } from '@/hooks';
-import { SearchContainer } from '@/modules/Moves/Styled.Moves';
 import { Heading, Search } from '@/modules/abilities';
+import moves from '@/modules/moves/Moves.module.scss';
 import { IAbility } from '@/types';
 import { getAbilities, removeDash } from '@/utils';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
+import Link from 'next/link';
 import { useMemo } from 'react';
 import toast from 'react-hot-toast';
 
@@ -30,16 +30,17 @@ function AbilitiesPage() {
         id: `sort`,
         header: `Name`,
         cell: (info) => (
-          <TBold>
-            <TLink
+          <td className="tBold">
+            <Link
+              className="tLink"
               href={{
                 pathname: `/ability/[name]`,
                 query: { name: info.getValue<string>() },
               }}
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
-          </TBold>
+            </Link>
+          </td>
         ),
       },
       {
@@ -50,9 +51,9 @@ function AbilitiesPage() {
         id: `effect`,
         header: `Effect`,
         cell: (info) => (
-          <TEffect>
+          <td className="tEffect">
             <span>{info.getValue<string>()}</span>
-          </TEffect>
+          </td>
         ),
       },
     ],
@@ -78,10 +79,10 @@ function AbilitiesPage() {
     <>
       <Heading />
       <main className="mainBig">
-        <SearchContainer>
+        <div className={moves.search}>
           <h2 className="leftH2">Abilities</h2>
           <Search abilities={abilities} />
-        </SearchContainer>
+        </div>
         <section className="tableContainer" ref={tableContainerRef}>
           <table className="fullWidthTable">
             {tableHeader()}

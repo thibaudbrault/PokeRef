@@ -169,7 +169,7 @@
   }
 }
 
-.types {
+%types {
   width: 100%;
   display: flex;
   align-items: center;
@@ -209,6 +209,10 @@
       }
     }
   }
+}
+
+.types {
+  @extend %types;
 }
 
 .scroll {

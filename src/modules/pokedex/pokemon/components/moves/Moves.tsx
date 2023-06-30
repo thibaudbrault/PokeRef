@@ -1,4 +1,3 @@
-import { TBold, TCapitalize, TLink } from '@/components/common/styles/Table';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { useTableParams } from '@/hooks';
 import { IMoveAilment, IPokemon } from '@/types';
@@ -83,16 +82,17 @@ export function Moves({ pokemon, version, name }: Props) {
         id: `name`,
         header: `Name`,
         cell: (info) => (
-          <TBold>
-            <TLink
+          <td className="tBold">
+            <Link
+              className="tLink"
               href={{
                 pathname: `/move/[name]`,
                 query: { name: info.getValue<string>() },
               }}
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
-          </TBold>
+            </Link>
+          </td>
         ),
       },
       {
@@ -122,49 +122,55 @@ export function Moves({ pokemon, version, name }: Props) {
         accessorKey: `details.damage_class.name`,
         id: `category`,
         header: `Category`,
-        cell: (info) => <TCapitalize>{info.getValue<string>()}</TCapitalize>,
+        cell: (info) => (
+          <td className="tCapitalize">{info.getValue<string>()}</td>
+        ),
       },
       {
         accessorKey: `details.power`,
         id: `power`,
         header: `Power`,
         cell: (info) => (
-          <TCapitalize>{info.getValue<string>() || `-`}</TCapitalize>
+          <td className="tCapitalize">{info.getValue<string>() || `-`}</td>
         ),
       },
       {
         accessorKey: `details.pp`,
         id: `pp`,
         header: `PP`,
-        cell: (info) => <TCapitalize>{info.getValue<string>()}</TCapitalize>,
+        cell: (info) => (
+          <td className="tCapitalize">{info.getValue<string>()}</td>
+        ),
       },
       {
         accessorKey: `details.accuracy`,
         id: `accuracy`,
         header: `Accuracy`,
         cell: (info) => (
-          <TCapitalize>{info.getValue<string>() || `-`}</TCapitalize>
+          <td className="tCapitalize">{info.getValue<string>() || `-`}</td>
         ),
       },
       {
         accessorKey: `details.priority`,
         id: `priority`,
         header: `Priority`,
-        cell: (info) => <TCapitalize>{info.getValue<string>()}</TCapitalize>,
+        cell: (info) => (
+          <td className="tCapitalize">{info.getValue<string>()}</td>
+        ),
       },
       {
         accessorKey: `details.meta.ailment`,
         id: `status`,
         header: `Status`,
         cell: (info) => (
-          <TCapitalize>
+          <td className="tCapitalize">
             {info.getValue()
               ? removeDash(info?.getValue<IMoveAilment>().name).replace(
                   `none`,
                   `-`,
                 )
               : `-`}
-          </TCapitalize>
+          </td>
         ),
       },
     ],

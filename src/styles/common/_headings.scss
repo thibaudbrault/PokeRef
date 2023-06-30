@@ -71,10 +71,14 @@
   @extend %subtitle;
 }
 
-.leftSubtitle {
+%leftSubtitle {
   @extend %subtitle;
 
   text-align: left;
+}
+
+.leftSubtitle {
+  @extend %leftSubtitle;
 }
 
 %h2 {

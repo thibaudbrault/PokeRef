@@ -1,4 +1,3 @@
-import { TBold, TLink } from '@/components/common/styles/Table';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
 import styles from '@/components/pages/Locations/Locations.module.scss';
@@ -84,16 +83,17 @@ function LocationCard({ name }: Props) {
         id: `name`,
         header: `Pokemon`,
         cell: (info) => (
-          <TBold>
-            <TLink
+          <td className="tBold">
+            <Link
+              className="tLink"
               href={{
                 pathname: `/pokemon/[name]`,
                 query: { name: info.getValue<string>() },
               }}
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
-          </TBold>
+            </Link>
+          </td>
         ),
       },
       {

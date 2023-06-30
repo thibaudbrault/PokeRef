@@ -1,15 +1,10 @@
-import {
-  TBold,
-  TCapitalize,
-  TEffect,
-  TLink,
-} from '@/components/common/styles/Table';
 import { usePaginatedTableParams } from '@/hooks';
-import { SearchContainer } from '@/modules/moves/Styled.Moves';
+import moves from '@/modules/moves/Moves.module.scss';
 import { IItem } from '@/types';
 import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useMemo } from 'react';
 import { Search } from './Search';
 
@@ -42,16 +37,17 @@ export function Items({ items }: Props) {
         id: `sort`,
         header: `Name`,
         cell: (info) => (
-          <TBold>
-            <TLink
+          <td className="tBold">
+            <Link
+              className="tLink"
               href={{
                 pathname: `/item/[name]`,
                 query: { name: info.getValue<string>() },
               }}
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
-          </TBold>
+            </Link>
+          </td>
         ),
       },
       {
@@ -59,7 +55,7 @@ export function Items({ items }: Props) {
         id: `category`,
         header: `Category`,
         cell: (info) => (
-          <TCapitalize>{removeDash(info.getValue<string>())}</TCapitalize>
+          <td className="tCapitalize">{removeDash(info.getValue<string>())}</td>
         ),
       },
       {
@@ -70,9 +66,9 @@ export function Items({ items }: Props) {
         id: `effect`,
         header: `Effect`,
         cell: (info) => (
-          <TEffect>
+          <td className="tEffect">
             <span>{info.getValue<string>()}</span>
-          </TEffect>
+          </td>
         ),
       },
     ],
@@ -84,10 +80,10 @@ export function Items({ items }: Props) {
 
   return (
     <section>
-      <SearchContainer>
+      <div className={moves.search}>
         <h2 className="leftH2">Items</h2>
         <Search items={items} />
-      </SearchContainer>
+      </div>
       <section className="tableContainer" ref={tableContainerRef}>
         <table className="fullWidthTable">
           {tableHeader()}

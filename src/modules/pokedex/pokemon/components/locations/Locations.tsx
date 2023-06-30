@@ -1,4 +1,3 @@
-import { TBold } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/locations/Locations.module.scss';
 import { IEncounter, ILocationAreaEncounter } from '@/types';
@@ -34,12 +33,12 @@ export function Locations({ location, game }: Props) {
         id: `sort`,
         header: `Location`,
         cell: (info) => (
-          <TBold>
+          <td className="tBold">
             {removeDash(info.getValue<string>()).replace(
               /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea|area|sea/g,
               ``,
             )}
-          </TBold>
+          </td>
         ),
       },
       {

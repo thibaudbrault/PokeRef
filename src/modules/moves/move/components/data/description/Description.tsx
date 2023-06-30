@@ -2,11 +2,7 @@ import { Type } from '@/components/common/styles/Themes';
 import { IMachine, IMove } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  MoveCardDataCategory,
-  MoveCardDataTable,
-  MoveCardDataType,
-} from '../Styled.Data.MoveCard';
+import styles from '../Data.module.scss';
 
 type Props = {
   move: IMove;
@@ -19,11 +15,11 @@ export function Description({ move, version, machine }: Props) {
   const maxPp = move.pp * 1.6;
 
   return (
-    <MoveCardDataTable>
+    <table className={styles.table}>
       <tbody>
         <tr>
           <th>Type</th>
-          <MoveCardDataType>
+          <td className={styles.type}>
             <Type id={move?.type?.name}>
               <Link
                 href={{
@@ -41,11 +37,11 @@ export function Description({ move, version, machine }: Props) {
                 <span>{move?.type?.name}</span>
               </Link>
             </Type>
-          </MoveCardDataType>
+          </td>
         </tr>
         <tr>
           <th>Category</th>
-          <MoveCardDataCategory id={move.damage_class.name}>
+          <td className={styles.category} id={move.damage_class.name}>
             <div>
               <Image
                 src={`/images/status/move-${move.damage_class.name}.png`}
@@ -55,7 +51,7 @@ export function Description({ move, version, machine }: Props) {
               />
               <span>{move.damage_class.name}</span>
             </div>
-          </MoveCardDataCategory>
+          </td>
         </tr>
         {machine?.map(
           (ma) =>
@@ -91,6 +87,6 @@ export function Description({ move, version, machine }: Props) {
           <td>{move.priority}</td>
         </tr>
       </tbody>
-    </MoveCardDataTable>
+    </table>
   );
 }

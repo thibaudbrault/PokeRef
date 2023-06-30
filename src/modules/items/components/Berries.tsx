@@ -1,4 +1,3 @@
-import { TBold, TCapitalize } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks';
 import { IBerry } from '@/types';
 import { removeDash } from '@/utils';
@@ -18,14 +17,16 @@ export function Berries({ berries }: Props) {
         accessorKey: `name`,
         id: `sort`,
         header: `Name`,
-        cell: (info) => <TBold>{removeDash(info.getValue<string>())}</TBold>,
+        cell: (info) => (
+          <td className="tBold">{removeDash(info.getValue<string>())}</td>
+        ),
       },
       {
         accessorKey: `firmness.name`,
         id: `firmness`,
         header: `Firmness`,
         cell: (info) => (
-          <TCapitalize>{removeDash(info.getValue<string>())}</TCapitalize>
+          <td className="tCapitalize">{removeDash(info.getValue<string>())}</td>
         ),
       },
       {
@@ -33,14 +34,16 @@ export function Berries({ berries }: Props) {
           row.flavors.find((f) => f.potency > 0)?.flavor.name,
         id: `flavor`,
         header: `Flavor`,
-        cell: (info) => <TCapitalize>{info.getValue<string>()}</TCapitalize>,
+        cell: (info) => (
+          <td className="tCapitalize">{info.getValue<string>()}</td>
+        ),
       },
       {
         accessorKey: `growth_time`,
         id: `growth`,
         header: `Growth`,
         cell: (info) => (
-          <TCapitalize>{info.getValue<number>()} hr / stage</TCapitalize>
+          <td className="tCapitalize">{info.getValue<number>()} hr / stage</td>
         ),
       },
       {
@@ -48,10 +51,10 @@ export function Berries({ berries }: Props) {
         id: `naturalGift`,
         header: `Natural Gift`,
         cell: (info) => (
-          <TCapitalize>
+          <td className="tCapitalize">
             <p>{info.getValue<IBerry>().natural_gift_type.name}</p>
             <p>{info.getValue<IBerry>().natural_gift_power}</p>
-          </TCapitalize>
+          </td>
         ),
       },
     ],

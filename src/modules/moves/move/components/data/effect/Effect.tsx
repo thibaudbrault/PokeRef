@@ -4,13 +4,7 @@ import { IDescription, IMove, IMoveTarget } from '@/types';
 import { getMoveTarget, removeDash } from '@/utils';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import {
-  MoveCardDataList,
-  MoveCardDataMeta,
-  MoveCardDataStat,
-  MoveCardDataTarget,
-  MoveCardDataText,
-} from '../Styled.Data.MoveCard';
+import styles from '../Data.module.scss';
 
 type Props = {
   move: IMove;
@@ -45,11 +39,11 @@ export function Effect({ move, version }: Props) {
   }
 
   return (
-    <MoveCardDataList>
+    <ul className={styles.list}>
       <li>
         <h3 className="h3">Effects</h3>
 
-        <MoveCardDataText>
+        <p className={styles.text}>
           <span className="capitalize">
             <i>{removeDash(move?.name)}</i>
             {` `}
@@ -71,9 +65,9 @@ export function Effect({ move, version }: Props) {
             ?.flavor_text.replace(/(?<=(?:^|[.?!])\W*)[a-z]/g, (i) =>
               i.toUpperCase(),
             )}
-        </MoveCardDataText>
+        </p>
 
-        <MoveCardDataMeta>
+        <ul className={styles.meta}>
           {move?.meta.ailment?.name !== `none` && (
             <li>
               <p>
@@ -128,14 +122,14 @@ export function Effect({ move, version }: Props) {
             move.meta.min_turns === move.meta.max_turns && (
               <li>This move last {move.meta.min_turns} turns</li>
             )}
-        </MoveCardDataMeta>
+        </ul>
       </li>
 
       <li>
         {move.stat_changes.length > 0 && (
           <>
             <h4 className="h4">Stat modification</h4>
-            <MoveCardDataStat>
+            <ul className={styles.stat}>
               {move.stat_changes?.map((ms) =>
                 ms.change < 0 ? (
                   <li key={ms.stat.name}>
@@ -165,7 +159,7 @@ export function Effect({ move, version }: Props) {
                   </li>
                 ),
               )}
-            </MoveCardDataStat>
+            </ul>
           </>
         )}
       </li>
@@ -174,7 +168,7 @@ export function Effect({ move, version }: Props) {
         {move.past_values.length > 0 && (
           <>
             <h4 className="h4">Changes</h4>
-            <MoveCardDataStat>
+            <ul className={styles.stat}>
               {move.past_values?.map((mp) => (
                 <>
                   {mp.power && (
@@ -235,21 +229,21 @@ export function Effect({ move, version }: Props) {
                   )}
                 </>
               ))}
-            </MoveCardDataStat>
+            </ul>
           </>
         )}
       </li>
 
       <li>
         <h4 className="h4">Target</h4>
-        <MoveCardDataTarget>
+        <p className={styles.target}>
           {
             filteredTarget(move.target.name)?.descriptions.find(
               (td: IDescription) => td.language.name === `en`,
             )?.description
           }
-        </MoveCardDataTarget>
+        </p>
       </li>
-    </MoveCardDataList>
+    </ul>
   );
 }

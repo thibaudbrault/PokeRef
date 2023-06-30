@@ -1,4 +1,3 @@
-import { TBold, TType } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { useTableParams } from '@/hooks';
@@ -52,7 +51,9 @@ export function Forms({ pokemon }: Props) {
         accessorFn: (row) => row.form_name,
         id: `sort`,
         header: `Name`,
-        cell: (info) => <TBold>{removeDash(info.getValue<string>())}</TBold>,
+        cell: (info) => (
+          <td className="tBold">{removeDash(info.getValue<string>())}</td>
+        ),
       },
       {
         accessorKey: `is_battle_only`,
@@ -85,7 +86,7 @@ export function Forms({ pokemon }: Props) {
           </span>
         ),
         cell: (info) => (
-          <TType>
+          <td className="tType">
             <Type id={info.getValue<string>()}>
               <Link
                 href={{
@@ -102,7 +103,7 @@ export function Forms({ pokemon }: Props) {
                 <span>{info.getValue<string>()}</span>
               </Link>
             </Type>
-          </TType>
+          </td>
         ),
       },
       {
@@ -114,7 +115,7 @@ export function Forms({ pokemon }: Props) {
           </span>
         ),
         cell: (info) => (
-          <TType>
+          <td className="tType">
             <Type id={info.getValue<string>()}>
               <Link
                 href={{
@@ -131,7 +132,7 @@ export function Forms({ pokemon }: Props) {
                 <span>{info.getValue<string>()}</span>
               </Link>
             </Type>
-          </TType>
+          </td>
         ),
       },
     ],

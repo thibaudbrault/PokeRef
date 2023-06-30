@@ -3,11 +3,7 @@ import { IPokemon } from '@/types';
 import { useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import {
-  PokemonStatsCircles,
-  PokemonStatsDetails,
-  PokemonStatsTotal,
-} from './Styled.Stats.PokemonCard';
+import styles from './Stats.module.scss';
 import { Calculator } from './calculator';
 
 type Props = {
@@ -115,7 +111,7 @@ export function Stats({ pokemon }: Props) {
             </p>
           </button>
         </nav>
-        <PokemonStatsCircles>
+        <div className={styles.circles}>
           <CircularProgressbar
             maxValue={toggle === 1 ? 255 : 720}
             value={hpCalc(percentageHp)}
@@ -152,16 +148,16 @@ export function Stats({ pokemon }: Props) {
             text={`${statCalc(percentageSpd)} Spd`}
             strokeWidth={5}
           />
-        </PokemonStatsCircles>
+        </div>
         {toggle === 1 && (
-          <PokemonStatsTotal>
+          <p className={styles.total}>
             <span className="bold">Total</span>: {percentageTotal}
-          </PokemonStatsTotal>
+          </p>
         )}
-        <PokemonStatsDetails>
+        <details className={styles.details}>
           <summary>Stats calculator</summary>
           <Calculator baseStat={pokemon.stats} />
-        </PokemonStatsDetails>
+        </details>
       </section>
       <ToolTip id="stat-tooltip" />
     </>

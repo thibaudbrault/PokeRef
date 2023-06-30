@@ -1,19 +1,6 @@
 import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
+import styles from '@/modules/auth/Auth.module.scss';
 import ResetPwd from '@/modules/auth/ResetPwd';
-import {
-  AuthBtn,
-  AuthButtons,
-  AuthChoice,
-  AuthClose,
-  AuthContainer,
-  AuthForm,
-  AuthImage,
-  AuthInput,
-  AuthResetPwd,
-  AuthSecBtn,
-  AuthSwitch,
-  AuthTitle,
-} from '@/modules/auth/Styled.Auth';
 import { capitalize } from '@/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
@@ -88,19 +75,19 @@ function Login() {
 
   return (
     <main className="mainForm">
-      <AuthContainer>
-        <AuthClose href={`/`}>
+      <div className={styles.container}>
+        <Link className={styles.close} href={`/`}>
           <FiX />
-        </AuthClose>
-        <AuthImage />
-        <AuthForm onSubmit={handleSubmit(submitForm)}>
-          <AuthTitle>
+        </Link>
+        <div className={styles.image} />
+        <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
+          <div className={styles.title}>
             <h2 className="h2">Login</h2>
             <p>
               Go to your profile to create teams and find your favorites pokémon
             </p>
-          </AuthTitle>
-          <AuthInput>
+          </div>
+          <div className={styles.input}>
             <div>
               <input
                 type="email"
@@ -122,35 +109,49 @@ function Login() {
               {typeof errors.password?.message === `string` && (
                 <small>{capitalize(errors.password?.message)}</small>
               )}
-              <AuthResetPwd type="button" onClick={openModal}>
+              <button
+                className={styles.reset}
+                type="button"
+                onClick={openModal}
+              >
                 J'ai oublié mon mot de passe
-              </AuthResetPwd>
+              </button>
             </div>
-            <AuthBtn type="submit">Login</AuthBtn>
-          </AuthInput>
-          <AuthChoice>OR</AuthChoice>
-          <AuthInput>
-            <AuthButtons>
-              <AuthSecBtn type="button" onClick={googleConnect}>
+            <button className={styles.button} type="submit">
+              Login
+            </button>
+          </div>
+          <p className={styles.choice}>OR</p>
+          <div className={styles.input}>
+            <div className={styles.providers}>
+              <button
+                className={styles.secButton}
+                type="button"
+                onClick={googleConnect}
+              >
                 Sign In with Google
                 <span>
                   <GrGoogle />
                 </span>
-              </AuthSecBtn>
-              <AuthSecBtn type="button" onClick={githubConnect}>
+              </button>
+              <button
+                className={styles.secButton}
+                type="button"
+                onClick={githubConnect}
+              >
                 Sign In with Github
                 <span>
                   <GrGithub />
                 </span>
-              </AuthSecBtn>
-            </AuthButtons>
-          </AuthInput>
-          <AuthSwitch>
+              </button>
+            </div>
+          </div>
+          <p className={styles.switch}>
             Don't have an account yet ?{` `}
             <Link href="/register">Register</Link>
-          </AuthSwitch>
-        </AuthForm>
-      </AuthContainer>
+          </p>
+        </form>
+      </div>
       <ResetPwd modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
     </main>
   );

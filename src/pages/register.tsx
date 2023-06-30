@@ -1,14 +1,5 @@
-import {
-  AuthBtn,
-  AuthClose,
-  AuthContainer,
-  AuthForm,
-  AuthImage2,
-  AuthInput,
-  AuthSwitch,
-  AuthTitle,
-} from '@/components/Auth/Styled.Auth';
 import { auth, db } from '@/firebase-config';
+import styles from '@/modules/auth/Auth.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -84,17 +75,17 @@ function Register() {
 
   return (
     <main className="mainForm">
-      <AuthContainer>
-        <AuthClose href={`/`}>
+      <div className={styles.container}>
+        <Link className={styles.close} href={`/`}>
           <FiX />
-        </AuthClose>
-        <AuthImage2 />
-        <AuthForm onSubmit={handleSubmit(submitForm)}>
-          <AuthTitle>
+        </Link>
+        <div className={styles.image2} />
+        <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
+          <div className={styles.title}>
             <h2 className="h2">Register</h2>
             <p>Create teams and save your favorites pokémon</p>
-          </AuthTitle>
-          <AuthInput>
+          </div>
+          <div className={styles.input}>
             <div>
               <input
                 type="text"
@@ -130,13 +121,15 @@ function Register() {
                 {...register(`cpassword`)}
               />
             </div>
-            <AuthBtn type="submit">Register</AuthBtn>
-          </AuthInput>
-          <AuthSwitch>
+            <button className={styles.button} type="submit">
+              Register
+            </button>
+          </div>
+          <p className={styles.switch}>
             Already have an account ? <Link href="/login">Login</Link>
-          </AuthSwitch>
-        </AuthForm>
-      </AuthContainer>
+          </p>
+        </form>
+      </div>
     </main>
   );
 }

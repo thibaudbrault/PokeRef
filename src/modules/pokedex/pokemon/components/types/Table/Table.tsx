@@ -1,10 +1,10 @@
 import ToolTip from '@/components/common/ui/ToolTip';
+import typesRelationData from '@/data/types.json';
 import { IType } from '@/types';
 import { capitalize } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PokemonTypesTable } from '../Styled.Types.PokemonCard';
-import typesRelationData from '@/data/types.json';
+import styles from '../Types.module.scss';
 
 type Props = {
   types: IType[];
@@ -44,7 +44,7 @@ export function Table({ types }: Props) {
 
   return (
     <>
-      <PokemonTypesTable>
+      <table className={styles.table}>
         <tbody>
           <tr>
             <th>0x damage from</th>
@@ -201,7 +201,7 @@ export function Table({ types }: Props) {
             </tr>
           )}
         </tbody>
-      </PokemonTypesTable>
+      </table>
       <ToolTip id="type-tooltip" />
     </>
   );

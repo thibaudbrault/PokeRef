@@ -85,10 +85,14 @@
   }
 }
 
-.fullWidthTable {
+%fullWidthTable {
   @extend %table;
 
   width: 100%;
+}
+
+.fullWidthTable {
+  @extend %fullWidthTable;
 }
 
 .descTable {
@@ -179,7 +183,7 @@
   }
 }
 
-.tType {
+%tType {
   & div {
     width: fit-content;
     margin: 0 auto;
@@ -213,6 +217,10 @@
       }
     }
   }
+}
+
+.tType {
+  @extend %tType;
 }
 
 .tEffect {

@@ -1,10 +1,3 @@
-import {
-  TBold,
-  TCategory,
-  TEffect,
-  TLink,
-  TType,
-} from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import { usePaginatedTableParams } from '@/hooks';
 import { IMove } from '@/types';
@@ -30,8 +23,9 @@ export function Moves({ moves }: Props) {
         id: `sort`,
         header: `Name`,
         cell: (info) => (
-          <TBold>
-            <TLink
+          <td className="tBold">
+            <Link
+              className="tLink"
               id={info.getValue<string>()}
               href={{
                 pathname: `/move/[name]`,
@@ -39,8 +33,8 @@ export function Moves({ moves }: Props) {
               }}
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
-          </TBold>
+            </Link>
+          </td>
         ),
       },
       {
@@ -48,7 +42,7 @@ export function Moves({ moves }: Props) {
         id: `category`,
         header: `Category`,
         cell: (info) => (
-          <TCategory id={info.getValue<string>()}>
+          <td className="tCategory" id={info.getValue<string>()}>
             <div>
               <Image
                 alt={info.getValue<string>()}
@@ -58,7 +52,7 @@ export function Moves({ moves }: Props) {
               />
               <span>{info.getValue<string>()}</span>
             </div>
-          </TCategory>
+          </td>
         ),
       },
       {
@@ -66,7 +60,7 @@ export function Moves({ moves }: Props) {
         id: `type`,
         header: `Type`,
         cell: (info) => (
-          <TType>
+          <td className="tType">
             <Type id={info.getValue<string>()}>
               <Link
                 href={{
@@ -83,7 +77,7 @@ export function Moves({ moves }: Props) {
                 <span>{info.getValue<string>()}</span>
               </Link>
             </Type>
-          </TType>
+          </td>
         ),
       },
       {
@@ -93,7 +87,7 @@ export function Moves({ moves }: Props) {
           })?.flavor_text || `-`,
         id: `effect`,
         header: `Effect`,
-        cell: (info) => <TEffect>{info.getValue<string>()}</TEffect>,
+        cell: (info) => <td className="tEffect">{info.getValue<string>()}</td>,
       },
     ],
     [],

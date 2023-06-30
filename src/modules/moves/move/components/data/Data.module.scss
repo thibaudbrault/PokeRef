@@ -1,21 +1,22 @@
-import styled from 'styled-components';
-import { device, Section } from '@/components/common/styles/Sizing';
-import { Table, TType } from '@/components/common/styles/Table';
+@use '@/styles/abstracts' as *;
+@use '@/styles/common' as *;
 
-export const MoveCardDataSection = styled(Section)`
+.section {
+  @extend %section;
   display: grid;
   grid-template-columns: 1fr 1.3fr;
   column-gap: 3rem;
 
-  @media ${device.sm} {
+  @include sm {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column-reverse;
   }
-`;
+}
 
-export const MoveCardDataTable = styled(Table)`
+.table {
+  @extend %table;
   & th {
     background: rgba(130, 130, 130, 0.2);
   }
@@ -27,18 +28,19 @@ export const MoveCardDataTable = styled(Table)`
     text-transform: capitalize;
   }
 
-  @media ${device.sm} {
+  @include sm {
     width: 100%;
   }
-`;
+}
 
-export const MoveCardDataType = styled(TType)`
+.type {
+  @extend %tType;
   & div {
     margin: 0;
   }
-`;
+}
 
-export const MoveCardDataCategory = styled.td`
+.category {
   & div {
     display: flex;
     align-items: center;
@@ -47,7 +49,7 @@ export const MoveCardDataCategory = styled.td`
     & img {
       vertical-align: middle;
 
-      @media ${device.sm} {
+      @include sm {
         width: 25px;
         height: 25px;
       }
@@ -59,37 +61,37 @@ export const MoveCardDataCategory = styled.td`
       vertical-align: middle;
     }
   }
-`;
+}
 
-export const MoveCardDataList = styled.ul`
+.list {
   margin-top: 2rem;
 
   & li {
     margin: 0 0 2rem;
   }
 
-  @media ${device.sm} {
+  @include sm {
     width: 100%;
     margin: 0 0 2rem;
   }
-`;
+}
 
-export const MoveCardDataText = styled.p`
+.text {
   font-size: 1.7rem;
-`;
+}
 
-export const MoveCardDataMeta = styled.ul`
+.meta {
   margin-top: 1rem;
   font-size: 1.5rem;
-`;
+}
 
-export const MoveCardDataStat = styled.ul`
+.stat {
   margin-left: 2rem;
   font-size: 1.5rem;
-`;
+}
 
-export const MoveCardDataTarget = styled.p`
+.target {
   text-transform: capitalize;
   margin-left: 2rem;
   font-size: 1.5rem;
-`;
+}
