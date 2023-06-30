@@ -1,4 +1,3 @@
-import { MethodNav } from '@/components/common/styles/Navbars';
 import ToolTip from '@/components/common/ui/ToolTip';
 import { IPokemon } from '@/types';
 import { useState } from 'react';
@@ -64,7 +63,7 @@ export function Stats({ pokemon }: Props) {
     <>
       <section className="section" id="stats">
         <h3 className="h3">Base stats</h3>
-        <MethodNav>
+        <nav className="methodNav">
           <button
             className={toggle === 1 ? `button_active` : ``}
             onClick={() => setToggle(1)}
@@ -115,7 +114,7 @@ export function Stats({ pokemon }: Props) {
               Max +
             </p>
           </button>
-        </MethodNav>
+        </nav>
         <PokemonStatsCircles>
           <CircularProgressbar
             maxValue={toggle === 1 ? 255 : 720}

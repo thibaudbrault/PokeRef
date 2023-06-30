@@ -1,4 +1,4 @@
-import { TableContainer, TBold } from '@/components/common/styles/Table';
+import { TBold } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/locations/Locations.module.scss';
 import { IEncounter, ILocationAreaEncounter } from '@/types';
@@ -110,7 +110,7 @@ export function Locations({ location, game }: Props) {
   return (
     <section className="section" id="locations">
       <h3 className="h3">Locations</h3>
-      <TableContainer ref={tableContainerRef}>
+      <section className="tableContainer" ref={tableContainerRef}>
         <table className={styles.table}>
           {tableHeader()}
           {tableBody()}
@@ -120,7 +120,7 @@ export function Locations({ location, game }: Props) {
             </tr>
           </tfoot>
         </table>
-      </TableContainer>
+      </section>
     </section>
   );
 }

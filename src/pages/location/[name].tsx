@@ -1,4 +1,4 @@
-import { TBold, TLink, TableContainer } from '@/components/common/styles/Table';
+import { TBold, TLink } from '@/components/common/styles/Table';
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
 import styles from '@/components/pages/Locations/Locations.module.scss';
@@ -214,7 +214,7 @@ function LocationCard({ name }: Props) {
         />
         <Nav setGame={setGame} setVersion={setVersion} />
         <section className="section">
-          <TableContainer ref={tableContainerRef}>
+          <section className="tableContainer" ref={tableContainerRef}>
             <table className={styles.table}>
               {tableHeader()}
               {tableBody()}
@@ -224,7 +224,7 @@ function LocationCard({ name }: Props) {
                 </tr>
               </tfoot>
             </table>
-          </TableContainer>
+          </section>
         </section>
         <Link href="/locations" passHref>
           <BackBtn name="Locations" />

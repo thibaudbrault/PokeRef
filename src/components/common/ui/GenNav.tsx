@@ -1,4 +1,3 @@
-import { GenNav } from '@/components/common/styles/Navbars';
 import { genNav, removeDash } from '@/utils';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -9,7 +8,7 @@ type Props = {
 
 function Nav({ setGame, setVersion }: Props) {
   return (
-    <GenNav>
+    <nav className="genNav">
       <ul>
         {genNav.map((g) => (
           <li key={g.gen}>
@@ -30,7 +29,7 @@ function Nav({ setGame, setVersion }: Props) {
           </li>
         ))}
       </ul>
-    </GenNav>
+    </nav>
   );
 }
 

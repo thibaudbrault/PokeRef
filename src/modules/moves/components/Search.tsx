@@ -1,12 +1,7 @@
-import {
-  AutocompleteContainer,
-  AutocompleteId,
-  AutocompleteInput,
-  AutocompleteLink,
-} from '@/components/common/styles/Autocomplete';
 import { IMove } from '@/types';
 import { ImageWithFallback, capitalize, removeDash } from '@/utils';
 import Fuse from 'fuse.js';
+import Link from 'next/link';
 import { useState } from 'react';
 
 type Props = {
@@ -29,7 +24,7 @@ export function Search({ moves }: Props) {
   };
 
   return (
-    <AutocompleteInput>
+    <div className="search">
       <label htmlFor="search">Search</label>
       <input
         type="text"
@@ -37,7 +32,7 @@ export function Search({ moves }: Props) {
         onChange={(e) => searchMoves(e.target.value)}
       />
       {searchText && (
-        <AutocompleteContainer>
+        <div className="searchContainer">
           <ul>
             {searchRes &&
               searchRes?.map((res) => (
@@ -49,23 +44,23 @@ export function Search({ moves }: Props) {
                     height={32}
                     fallbackSrc={`/images/other/unknown.png`}
                   />
-                  <AutocompleteLink
+                  <Link
                     href={{
                       pathname: `/move/[name]`,
                       query: { name: res.item.name },
                     }}
-                    className="bold"
+                    className="searchLink bold"
                   >
                     {capitalize(removeDash(res.item.name))}
-                  </AutocompleteLink>
-                  <AutocompleteId>
+                  </Link>
+                  <span className="searchId">
                     {capitalize(res.item.type.name)}
-                  </AutocompleteId>
+                  </span>
                 </li>
               ))}
           </ul>
-        </AutocompleteContainer>
+        </div>
       )}
-    </AutocompleteInput>
+    </div>
   );
 }

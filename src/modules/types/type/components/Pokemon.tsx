@@ -1,11 +1,4 @@
-import { Dropdown } from '@/components/common/styles/Inputs';
-import {
-  FullWidthTable,
-  TBold,
-  TLink,
-  TType,
-  TableContainer,
-} from '@/components/common/styles/Table';
+import { TBold, TLink, TType } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/types/type/Type.module.scss';
@@ -199,14 +192,14 @@ export function Pokemon({ typeName, pokemon }: Props) {
           onChange={(option) => option && setType(option as IOptionsFixed[])}
         />
       </div>
-      <TableContainer ref={tableContainerRef}>
+      <section className="tableContainer" ref={tableContainerRef}>
         {data && data.length > 0 && (
-          <FullWidthTable>
+          <table className="fullWidthTable">
             {tableHeader()}
             {tableBody()}
-          </FullWidthTable>
+          </table>
         )}
-      </TableContainer>
+      </section>
     </section>
   );
 }

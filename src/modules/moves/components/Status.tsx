@@ -1,16 +1,12 @@
 import { useMemo } from 'react';
 
-import {
-  FullWidthTable,
-  TableContainer,
-  TBold,
-} from '@/components/common/styles/Table';
+import { TBold } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks';
 import { IMove, IMoveAilment } from '@/types';
 import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
-import { StatusMoves } from '../Styled.Moves';
+import styles from '../Moves.module.scss';
 
 type Props = {
   status?: IMoveAilment[];
@@ -34,7 +30,7 @@ export function Status({ status }: Props) {
         accessorFn: (row) => row.moves,
         header: `Moves`,
         cell: (info) => (
-          <StatusMoves>
+          <td className={styles.status}>
             {info.getValue<IMove[]>().map((i) => (
               <Link
                 key={i.id}
@@ -46,7 +42,7 @@ export function Status({ status }: Props) {
                 {removeDash(i.name)}
               </Link>
             ))}
-          </StatusMoves>
+          </td>
         ),
       },
     ],
@@ -61,12 +57,12 @@ export function Status({ status }: Props) {
   return (
     <>
       <h2 className="leftH2">Status</h2>
-      <TableContainer ref={tableContainerRef}>
-        <FullWidthTable>
+      <section className="tableContainer" ref={tableContainerRef}>
+        <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}
-        </FullWidthTable>
-      </TableContainer>
+        </table>
+      </section>
     </>
   );
 }

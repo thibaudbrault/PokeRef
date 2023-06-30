@@ -1,15 +1,10 @@
-import {
-  FullWidthTable,
-  TableContainer,
-  TBold,
-  TLink,
-} from '@/components/common/styles/Table';
+import { TBold, TLink } from '@/components/common/styles/Table';
+import styles from '@/components/pages/Abilities/AbilityCard/AbilityCard.module.scss';
 import { useTableParams } from '@/hooks';
 import { IAbility, IPokemon } from '@/types';
+import { ImageWithFallback, removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
-import styles from '@/components/pages/Abilities/AbilityCard/AbilityCard.module.scss';
-import { ImageWithFallback, removeDash } from '@/utils';
 
 type Props = {
   ability?: IAbility;
@@ -137,11 +132,11 @@ export function Table({ ability, pokemon }: Props) {
   );
 
   return (
-    <TableContainer ref={tableContainerRef}>
-      <FullWidthTable>
+    <section className="tableContainer" ref={tableContainerRef}>
+      <table className="fullWidthTable">
         {tableHeader()}
         {tableBody()}
-      </FullWidthTable>
-    </TableContainer>
+      </table>
+    </section>
   );
 }

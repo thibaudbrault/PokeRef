@@ -1,9 +1,4 @@
-import {
-  FullWidthTable,
-  TableContainer,
-  TBold,
-  TCapitalize,
-} from '@/components/common/styles/Table';
+import { TBold, TCapitalize } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks';
 import { IBerry } from '@/types';
 import { removeDash } from '@/utils';
@@ -71,12 +66,12 @@ export function Berries({ berries }: Props) {
   return (
     <section>
       <h2 className="leftH2">Berries</h2>
-      <TableContainer ref={tableContainerRef}>
-        <FullWidthTable>
+      <section className="tableContainer" ref={tableContainerRef}>
+        <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}
-        </FullWidthTable>
-      </TableContainer>
+        </table>
+      </section>
     </section>
   );
 }

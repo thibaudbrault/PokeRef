@@ -1,8 +1,7 @@
-import { THead } from '@/components/common/styles/Table';
 import { IPokemonStat } from '@/types';
 import { pokemonNatures } from '@/utils';
-import { IStatsForm } from '../calculator/Calculator';
 import { PokemonStatsResults } from '../Styled.Stats.PokemonCard';
+import { IStatsForm } from '../calculator/Calculator';
 
 type Props = {
   stats: IStatsForm;
@@ -25,7 +24,7 @@ export function Results({ stats, baseStat }: Props) {
 
   return (
     <PokemonStatsResults>
-      <THead>
+      <thead className="tHead">
         <tr>
           <th>Hp</th>
           <th>Attack</th>
@@ -34,7 +33,7 @@ export function Results({ stats, baseStat }: Props) {
           <th>Special Defense</th>
           <th>Speed</th>
         </tr>
-      </THead>
+      </thead>
       <tbody>
         <tr>
           <td>

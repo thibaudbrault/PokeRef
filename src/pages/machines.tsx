@@ -1,9 +1,4 @@
-import {
-  FullWidthTable,
-  TBold,
-  TLink,
-  TableContainer,
-} from '@/components/common/styles/Table';
+import { TBold, TLink } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { useTableParams } from '@/hooks';
 import { Heading } from '@/modules/machines';
@@ -90,8 +85,8 @@ function MachinesPage() {
           Game selected: <span className="bold">{game}</span>
         </h4>
         <Nav setGame={setGame} setVersion={setVersion} />
-        <TableContainer ref={tableContainerRef}>
-          <FullWidthTable>
+        <section className="tableContainer" ref={tableContainerRef}>
+          <table className="fullWidthTable">
             {tableHeader()}
             {tableBody()}
             <tfoot>
@@ -99,8 +94,8 @@ function MachinesPage() {
                 <td colSpan={2}>There is no data for this game</td>
               </tr>
             </tfoot>
-          </FullWidthTable>
-        </TableContainer>
+          </table>
+        </section>
       </main>
     </>
   );

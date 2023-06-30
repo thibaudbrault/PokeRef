@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import ReactPaginate from 'react-paginate';
+@use '../abstracts/' as *;
 
-export const Pagination = styled(ReactPaginate)`
+.pagination {
   width: 90%;
   margin: 5rem auto 0;
   display: flex;
@@ -24,12 +23,14 @@ export const Pagination = styled(ReactPaginate)`
   }
 
   & .selected {
-    background: ${({ theme }) => theme.secondary};
-    color: ${({ theme }) => theme.main};
     border-radius: 50%;
+    @include themed {
+      background: t('text');
+      color: t('bg');
+    }
   }
 
   & .disabled {
     opacity: 0.7;
   }
-`;
+}

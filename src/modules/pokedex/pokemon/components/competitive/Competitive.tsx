@@ -1,6 +1,5 @@
 // @ts-nocheck
 
-import { MethodNav } from '@/components/common/styles/Navbars';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IFormatAnalysesSets, IFormatsAnalysesSetName } from '@/types';
 import { capitalize, getFormat, removeLongName } from '@/utils';
@@ -142,7 +141,7 @@ export function Competitive({ format, name }: Props) {
       return (
         <section className="section" id="competitive">
           <h3 className="h3">Competitive</h3>
-          <MethodNav>
+          <nav className="methodNav">
             {Object.keys(filteredAnalyses).map((fa, i) => (
               <button
                 key={fa}
@@ -152,7 +151,7 @@ export function Competitive({ format, name }: Props) {
                 <p>{formattedName(fa) as string}</p>
               </button>
             ))}
-          </MethodNav>
+          </nav>
           <ul className={styles.list}>
             {overview && (
               <li>

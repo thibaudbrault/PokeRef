@@ -1,15 +1,10 @@
-import {
-  FullWidthTable,
-  TableContainer,
-  TBold,
-  TType,
-} from '@/components/common/styles/Table';
+import { TBold, TType } from '@/components/common/styles/Table';
 import { Type } from '@/components/common/styles/Themes';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { useTableParams } from '@/hooks';
 import { IPokemon, IPokemonForm } from '@/types';
 import { getPokemonForms, removeDash } from '@/utils';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -163,12 +158,12 @@ export function Forms({ pokemon }: Props) {
   return (
     <section className="section" id="forms">
       <h3 className="h3">Forms</h3>
-      <TableContainer ref={tableContainerRef}>
-        <FullWidthTable>
+      <section className="tableContainer" ref={tableContainerRef}>
+        <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}
-        </FullWidthTable>
-      </TableContainer>
+        </table>
+      </section>
     </section>
   );
 }

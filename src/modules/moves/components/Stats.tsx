@@ -1,16 +1,11 @@
-import {
-  FullWidthTable,
-  TableContainer,
-  TBold,
-  TCapitalize,
-} from '@/components/common/styles/Table';
+import { TBold, TCapitalize } from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks';
 import { IMoveStatAffect, INature, IStat } from '@/types';
 import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import { StatsMoves } from '../Styled.Moves';
+import styles from '../Moves.module.scss';
 
 type Props = {
   stats?: IStat[];
@@ -40,7 +35,7 @@ export function Stats({ stats }: Props) {
             accessorKey: `affecting_moves.increase`,
             header: `Increase`,
             cell: (info) => (
-              <StatsMoves>
+              <td className={styles.stats}>
                 {info.getValue<IMoveStatAffect[]>().map((i) => (
                   <Link
                     key={i.move.name}
@@ -54,14 +49,14 @@ export function Stats({ stats }: Props) {
                     </p>
                   </Link>
                 ))}
-              </StatsMoves>
+              </td>
             ),
           },
           {
             accessorKey: `affecting_moves.decrease`,
             header: `Decrease`,
             cell: (info) => (
-              <StatsMoves>
+              <td className={styles.stats}>
                 {info.getValue<IMoveStatAffect[]>().map((i) => (
                   <Link
                     key={i.move.name}
@@ -75,7 +70,7 @@ export function Stats({ stats }: Props) {
                     </p>
                   </Link>
                 ))}
-              </StatsMoves>
+              </td>
             ),
           },
         ],
@@ -119,12 +114,12 @@ export function Stats({ stats }: Props) {
   return (
     <section>
       <h2 className="leftH2">Stats</h2>
-      <TableContainer ref={tableContainerRef}>
-        <FullWidthTable>
+      <section className="tableContainer" ref={tableContainerRef}>
+        <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}
-        </FullWidthTable>
-      </TableContainer>
+        </table>
+      </section>
     </section>
   );
 }

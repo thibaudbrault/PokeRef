@@ -1,12 +1,7 @@
-import {
-  AutocompleteContainer,
-  AutocompleteId,
-  AutocompleteInput,
-  AutocompleteLink,
-} from '@/components/common/styles/Autocomplete';
 import { IAbility } from '@/types';
 import { capitalize, removeDash } from '@/utils';
 import Fuse from 'fuse.js';
+import Link from 'next/link';
 import { useState } from 'react';
 
 type Props = {
@@ -29,7 +24,7 @@ export function Search({ abilities }: Props) {
   };
 
   return (
-    <AutocompleteInput>
+    <div className="search">
       <label htmlFor="search">Search</label>
       <input
         type="text"
@@ -37,28 +32,28 @@ export function Search({ abilities }: Props) {
         onChange={(e) => searchAbilities(e.target.value)}
       />
       {searchText && (
-        <AutocompleteContainer>
+        <div className="searchContainer">
           <ul>
             {searchRes &&
               searchRes?.map((res) => (
                 <li key={res.item.name}>
-                  <AutocompleteLink
+                  <Link
                     href={{
                       pathname: `/ability/[name]`,
                       query: { name: res.item.name },
                     }}
-                    className="bold"
+                    className="searchLink bold"
                   >
                     {capitalize(removeDash(res.item.name))}
-                  </AutocompleteLink>
-                  <AutocompleteId>
+                  </Link>
+                  <span className="searchId">
                     {res.item.pokemon.length} Pokémon
-                  </AutocompleteId>
+                  </span>
                 </li>
               ))}
           </ul>
-        </AutocompleteContainer>
+        </div>
       )}
-    </AutocompleteInput>
+    </div>
   );
 }

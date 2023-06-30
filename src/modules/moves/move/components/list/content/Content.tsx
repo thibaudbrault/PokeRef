@@ -1,6 +1,7 @@
 import { IPokemon, IPokemonMoveVersion } from '@/types';
-import { removeDash, ImageWithFallback } from '@/utils';
-import { MoveLink, MoveList, MoveListEmpty } from '../../../Styled.MoveCard';
+import { ImageWithFallback, removeDash } from '@/utils';
+import Link from 'next/link';
+import styles from '../../../Move.module.scss';
 
 type Props = {
   pokemon?: IPokemon[];
@@ -36,7 +37,7 @@ export function Content({ pokemon, moveName, version, toggle }: Props) {
 
   return (
     <>
-      <MoveList>
+      <ul className={styles.list}>
         {pokemon?.map((p) =>
           p.moves.map(
             (pm) =>
@@ -53,7 +54,8 @@ export function Content({ pokemon, moveName, version, toggle }: Props) {
                         height={96}
                         fallbackSrc={`/images/other/unknown.png`}
                       />
-                      <MoveLink
+                      <Link
+                        className={styles.link}
                         href={{
                           pathname: `/pokemon/[name]`,
                           query: { name: p.name },
@@ -61,7 +63,7 @@ export function Content({ pokemon, moveName, version, toggle }: Props) {
                         key={p.name}
                       >
                         {removeDash(p.name)}
-                      </MoveLink>
+                      </Link>
                       {pmv.level_learned_at > 1 && (
                         <p>Level {pmv.level_learned_at}</p>
                       )}
@@ -71,8 +73,10 @@ export function Content({ pokemon, moveName, version, toggle }: Props) {
               ),
           ),
         )}
-      </MoveList>
-      <MoveListEmpty>This move can't be learned with this method</MoveListEmpty>
+      </ul>
+      <span className={styles.empty}>
+        This move can't be learned with this method
+      </span>
     </>
   );
 }

@@ -2,7 +2,7 @@ import BackBtn from '@/components/common/ui/BackBtn';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { Data, Heading, List, Nav, useFetchMove } from '@/modules/moves/move';
-import { MoveMainBig } from '@/modules/moves/move/Styled.MoveCard';
+import styles from '@/modules/moves/move/Move.module.scss';
 import { removeDash } from '@/utils';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
@@ -51,7 +51,7 @@ function MoveCard({ name }: Props) {
     <>
       <Heading name={name} />
       {move && (
-        <MoveMainBig>
+        <main className={styles.main}>
           <h2 className="pageTitle">{removeDash(move.name)}</h2>
           <h4 className="subtitle">{removeDash(move.generation.name)}</h4>
 
@@ -78,7 +78,7 @@ function MoveCard({ name }: Props) {
           <Link href="/moves" passHref>
             <BackBtn name="Moves" />
           </Link>
-        </MoveMainBig>
+        </main>
       )}
     </>
   );

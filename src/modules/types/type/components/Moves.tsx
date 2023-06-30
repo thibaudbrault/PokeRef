@@ -1,7 +1,3 @@
-import {
-  FullWidthTable,
-  TableContainer,
-} from '@/components/common/styles/Table';
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/types/type/Type.module.scss';
 import { IMove, IType } from '@/types';
@@ -108,14 +104,14 @@ export function Moves({ type, moves }: Props) {
           <span className="capitalize">{type?.name}</span> type
         </h4>
       </div>
-      <TableContainer ref={tableContainerRef}>
+      <section className="tableContainer" ref={tableContainerRef}>
         {data.length > 0 && (
-          <FullWidthTable>
+          <table className="fullWidthTable">
             {tableHeader()}
             {tableBody()}
-          </FullWidthTable>
+          </table>
         )}
-      </TableContainer>
+      </section>
       {type?.name !== `fairy` && (
         <p className={styles.comment}>
           <span className="capitalize">{type?.name}</span> attacks were{` `}

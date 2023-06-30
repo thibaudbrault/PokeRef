@@ -1,10 +1,4 @@
-import {
-  FullWidthTable,
-  TBold,
-  TEffect,
-  TLink,
-  TableContainer,
-} from '@/components/common/styles/Table';
+import { TBold, TEffect, TLink } from '@/components/common/styles/Table';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { usePaginatedTableParams } from '@/hooks';
 import { SearchContainer } from '@/modules/Moves/Styled.Moves';
@@ -88,13 +82,13 @@ function AbilitiesPage() {
           <h2 className="leftH2">Abilities</h2>
           <Search abilities={abilities} />
         </SearchContainer>
-        <TableContainer ref={tableContainerRef}>
-          <FullWidthTable>
+        <section className="tableContainer" ref={tableContainerRef}>
+          <table className="fullWidthTable">
             {tableHeader()}
             {tableBody()}
-          </FullWidthTable>
+          </table>
           {tablePagination()}
-        </TableContainer>
+        </section>
       </main>
     </>
   );

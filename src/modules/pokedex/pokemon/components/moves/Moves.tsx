@@ -1,10 +1,4 @@
-import {
-  FullWidthTable,
-  TableContainer,
-  TBold,
-  TCapitalize,
-  TLink,
-} from '@/components/common/styles/Table';
+import { TBold, TCapitalize, TLink } from '@/components/common/styles/Table';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { useTableParams } from '@/hooks';
 import { IMoveAilment, IPokemon } from '@/types';
@@ -200,8 +194,8 @@ export function Moves({ pokemon, version, name }: Props) {
     <section className={styles.section} id="moves">
       <h3 className="h3">Moves</h3>
       <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
-      <TableContainer ref={tableContainerRef}>
-        <FullWidthTable>
+      <section className="tableContainer" ref={tableContainerRef}>
+        <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}
           <tfoot>
@@ -209,8 +203,8 @@ export function Moves({ pokemon, version, name }: Props) {
               <td colSpan={9}>There is no move learned this way</td>
             </tr>
           </tfoot>
-        </FullWidthTable>
-      </TableContainer>
+        </table>
+      </section>
     </section>
   );
 }

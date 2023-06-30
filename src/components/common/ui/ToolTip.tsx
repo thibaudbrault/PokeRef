@@ -1,4 +1,4 @@
-import { StyledTooltip } from '../styles/Headings';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 type Props = {
   id: string;
@@ -7,7 +7,7 @@ type Props = {
 const ToolTip = ({ id }: Props) => {
   return (
     <>
-      <StyledTooltip id={id} />
+      <ReactTooltip style={{ fontSize: '1.3rem' }} id={id} />
     </>
   );
 };

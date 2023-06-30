@@ -1,4 +1,3 @@
-import { MethodNav } from '@/components/common/styles/Navbars';
 import BackBtn from '@/components/common/ui/BackBtn';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
@@ -44,7 +43,7 @@ function TypeCard({ name }: Props) {
         </div>
         <Damage type={type} />
         <Divider />
-        <MethodNav>
+        <nav className="methodNav">
           <button
             className={toggle === 1 ? `button_active` : ``}
             onClick={() => setToggle(1)}
@@ -57,7 +56,7 @@ function TypeCard({ name }: Props) {
           >
             <p>Moves</p>
           </button>
-        </MethodNav>
+        </nav>
         {pageShown()}
         <Link href="/types" passHref>
           <BackBtn name="Types" />

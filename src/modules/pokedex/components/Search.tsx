@@ -1,20 +1,14 @@
+import { INamedApiResource } from '@/types';
 import {
   ImageWithFallback,
   getPokedexResults,
   removeDash,
   removeLongName,
 } from '@/utils';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import Fuse from 'fuse.js';
-import { useState } from 'react';
-import { INamedApiResource } from '@/types';
-import {
-  AutocompleteContainer,
-  AutocompleteId,
-  AutocompleteInput,
-  AutocompleteLink,
-} from '@/components/common/styles/Autocomplete';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export function Search() {
   const { data: pokedex }: UseQueryResult<INamedApiResource[]> = useQuery({

@@ -1,8 +1,7 @@
-import { MainBig, device } from '@/components/common/styles/Sizing';
-import Link from 'next/link';
-import styled from 'styled-components';
+@use '@/styles/abstracts' as *;
+@use '@/styles/common' as *;
 
-export const MoveList = styled.ul`
+.list {
   min-height: 25vh;
   display: flex;
   align-items: center;
@@ -19,7 +18,7 @@ export const MoveList = styled.ul`
     width: 21rem;
     height: 32rem;
     padding: 2rem 3rem;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgb(255 255 255 / 40%);
     border-radius: 5px;
     font-size: 1.5rem;
     text-align: center;
@@ -27,10 +26,10 @@ export const MoveList = styled.ul`
     transition: 0.3s ease-in-out;
 
     &:hover {
-      border: 1px solid ${({ theme }) => theme.red};
+      border: 1px solid $red;
     }
 
-    @media ${device.sm} {
+    @include sm {
       width: 18rem;
       height: 27rem;
       margin: 2rem;
@@ -42,43 +41,45 @@ export const MoveList = styled.ul`
     margin-bottom: 0;
   }
 
-  @media ${device.sm} {
+  @include sm {
     justify-content: space-evenly;
   }
-`;
+}
 
-export const MoveText = styled.p`
+.text {
   margin: 0 0 3rem;
   font-size: 1.5rem;
 
   & span {
     text-transform: capitalize;
   }
-`;
+}
 
-export const MoveLink = styled(Link)`
+.link {
   font-size: 3rem;
-  font-family: 'Oswald', sans-serif;
+  font-family: Oswald, sans-serif;
   text-transform: capitalize;
   transition: 0.3s ease-in-out;
   cursor: pointer;
 
   &:hover {
-    color: ${({ theme }) => theme.red};
+    color: $red;
   }
-`;
+}
 
-export const MoveListEmpty = styled.span`
+.empty {
   width: 100%;
   min-height: 25vh;
   display: none;
   font-size: 2rem;
   font-weight: 600;
   text-align: center;
-`;
+}
 
-export const MoveMainBig = styled(MainBig)`
-  & ${MoveList}:empty + ${MoveListEmpty} {
+.main {
+  @extend %mainBig;
+
+  & .list:empty + .empty {
     display: block;
   }
-`;
+}

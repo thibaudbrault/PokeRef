@@ -1,10 +1,5 @@
-import { Input } from '@/components/common/styles/Inputs';
 import { auth, db } from '@/firebase-config';
-import {
-  ProfileCaught,
-  ProfileDetails,
-  ProfileForm,
-} from '@/modules/profile/Styled.Profile';
+import styles from '@/modules/profile/Profile.module.scss';
 import { capitalize, removeDash } from '@/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -163,7 +158,7 @@ function Profile() {
           <h4 className="leftSubtitle">
             You caught {user.caught.length} / 1010 Pokémon
           </h4>
-          <ProfileCaught>
+          <ul className={styles.caught}>
             {user?.caught.map((p: string[], index: number) => (
               <li key={p[index]}>
                 <Image src={p[1]} alt="" width={96} height={96} />
@@ -180,13 +175,13 @@ function Profile() {
                 </button>
               </li>
             ))}
-          </ProfileCaught>
+          </ul>
         </section>
         <section className="section">
-          <ProfileDetails>
+          <details className={styles.details}>
             <summary>Modify your profile</summary>
-            <ProfileForm onSubmit={handleSubmit(submitForm)}>
-              <Input>
+            <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
+              <div className="input">
                 <label htmlFor="username">Your trainer name</label>
                 <input
                   type="text"
@@ -194,8 +189,8 @@ function Profile() {
                   placeholder={user.name}
                   {...register(`username`)}
                 />
-              </Input>
-              <Input>
+              </div>
+              <div className="input">
                 <label htmlFor="email">Your email</label>
                 <input
                   type="text"
@@ -203,10 +198,10 @@ function Profile() {
                   placeholder={user.email}
                   {...register(`email`)}
                 />
-              </Input>
+              </div>
               <button type="submit">Update</button>
-            </ProfileForm>
-          </ProfileDetails>
+            </form>
+          </details>
         </section>
       </main>
     )

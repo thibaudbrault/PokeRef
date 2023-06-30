@@ -16,18 +16,6 @@ export const device = {
   xl: `(max-width: ${size.xl})`,
 };
 
-export const MainBig = styled.main`
-  min-height: 100vh;
-  position: relative;
-  max-width: 1700px;
-  margin: 0 auto;
-  padding: 5rem;
-
-  @media ${device.sm} {
-    padding: 3rem;
-  }
-`;
-
 export const Section = styled.section`
   margin-bottom: 5rem;
 `;

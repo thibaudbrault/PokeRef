@@ -1,7 +1,6 @@
-import { device } from '@/components/common/styles/Sizing';
-import styled from 'styled-components';
+@use '@/styles/abstracts' as *;
 
-export const SearchContainer = styled.div`
+.search {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 1rem;
@@ -11,12 +10,12 @@ export const SearchContainer = styled.div`
     margin-bottom: 0;
   }
 
-  @media ${device.md} {
+  @include md {
     grid-template-areas: '. search search';
   }
-`;
+}
 
-export const StatusMoves = styled.td`
+.status {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,17 +30,20 @@ export const StatusMoves = styled.td`
     cursor: pointer;
 
     &:hover {
-      border-bottom: 1px solid ${({ theme }) => theme.secondary};
+      @include themed {
+        border-bottom: 1px solid t('text');
+      }
     }
   }
-`;
+}
 
-export const StatsMoves = styled.td`
+.stats {
   & a {
     display: flex;
     justify-content: center;
     width: 100%;
     margin: 0.5rem;
+
     & p {
       width: fit-content;
       text-transform: capitalize;
@@ -50,8 +52,10 @@ export const StatsMoves = styled.td`
       transition: 0.3s ease-in-out;
 
       &:hover {
-        border-bottom: 1px solid ${({ theme }) => theme.secondary};
+        @include themed {
+          border-bottom: 1px solid t('text');
+        }
       }
     }
   }
-`;
+}

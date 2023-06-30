@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-import { GenNav } from '@/components/common/styles/Navbars';
 import { IMove } from '@/types';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -10,7 +9,7 @@ type Props = {
 
 export function Nav({ move, setVersion }: Props) {
   return (
-    <GenNav>
+    <nav className="genNav">
       <ul>
         {move?.generation?.name === `generation-i` && (
           <li>
@@ -139,6 +138,6 @@ export function Nav({ move, setVersion }: Props) {
           </li>
         )}
       </ul>
-    </GenNav>
+    </nav>
   );
 }

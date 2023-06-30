@@ -1,4 +1,3 @@
-import { Pagination } from '@/components/common/styles/Pagination';
 import { Divider } from '@/components/common/ui/Divider';
 import Loader from '@/components/common/ui/Loader/Loader';
 import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
@@ -8,6 +7,7 @@ import { IOptionsOffsetLimit, getPokedex } from '@/utils';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import ReactPaginate from 'react-paginate';
 
 function Pokedex() {
   const [filteredPokedex, setFilteredPokedex] = useState<IPokemon[]>([]);
@@ -79,7 +79,8 @@ function Pokedex() {
         <Divider />
         {scrollBtn()}
         {!form && !generation && (
-          <Pagination
+          <ReactPaginate
+            containerClassName="pagination"
             breakLabel="..."
             onPageChange={handlePageChange}
             nextLabel=">"

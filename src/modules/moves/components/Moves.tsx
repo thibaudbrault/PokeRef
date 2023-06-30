@@ -1,6 +1,4 @@
 import {
-  FullWidthTable,
-  TableContainer,
   TBold,
   TCategory,
   TEffect,
@@ -15,7 +13,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import { SearchContainer } from '../Styled.Moves';
+import styles from '../Moves.module.scss';
 import { Search } from './Search';
 
 type Props = {
@@ -106,17 +104,17 @@ export function Moves({ moves }: Props) {
 
   return (
     <section>
-      <SearchContainer>
+      <div className={styles.search}>
         <h2 className="leftH2">Moves</h2>
         <Search moves={moves} />
-      </SearchContainer>
-      <TableContainer ref={tableContainerRef}>
-        <FullWidthTable>
+      </div>
+      <section className="tableContainer" ref={tableContainerRef}>
+        <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}
-        </FullWidthTable>
+        </table>
         {tablePagination()}
-      </TableContainer>
+      </section>
     </section>
   );
 }
