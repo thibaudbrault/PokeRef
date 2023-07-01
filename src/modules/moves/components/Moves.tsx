@@ -102,13 +102,13 @@ export function Moves({ moves }: Props) {
         <h2 className="leftH2">Moves</h2>
         <Search moves={moves} />
       </div>
-      <section className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={tableContainerRef}>
         <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}
         </table>
         {tablePagination()}
-      </section>
+      </div>
     </section>
   );
 }

@@ -1,7 +1,7 @@
 @use '@/modules/pokedex/Pokedex.module.scss' as *;
 @use '@/modules/types/type/Type.module.scss' as *;
 
-.list {
+.typesList {
   @extend %types;
   width: fit-content;
   flex-direction: row;

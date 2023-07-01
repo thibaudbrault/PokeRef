@@ -1,5 +1,5 @@
 import Loader from '@/components/common/ui/Loader/Loader';
-import styles from '@/components/pages/Locations/Locations.module.scss';
+import styles from '@/modules/locations/Locations.module.scss';
 import { Heading, List } from '@/modules/locations';
 import { IRegion } from '@/types';
 import { capitalize, getRegions, regions } from '@/utils';

@@ -1,6 +1,6 @@
 import BackBtn from '@/components/common/ui/BackBtn';
 import Loader from '@/components/common/ui/Loader/Loader';
-import styles from '@/components/pages/Locations/Locations.module.scss';
+import styles from '@/modules/locations/Locations.module.scss';
 import { useTableParams } from '@/hooks';
 import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
 import {
@@ -214,7 +214,7 @@ function LocationCard({ name }: Props) {
         />
         <Nav setGame={setGame} setVersion={setVersion} />
         <section className="section">
-          <section className="tableContainer" ref={tableContainerRef}>
+          <div className="tableContainer" ref={tableContainerRef}>
             <table className={styles.table}>
               {tableHeader()}
               {tableBody()}
@@ -224,7 +224,7 @@ function LocationCard({ name }: Props) {
                 </tr>
               </tfoot>
             </table>
-          </section>
+          </div>
         </section>
         <Link href="/locations" passHref>
           <BackBtn name="Locations" />

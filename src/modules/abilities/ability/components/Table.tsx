@@ -1,5 +1,5 @@
-import styles from '@/components/pages/Abilities/AbilityCard/AbilityCard.module.scss';
 import { useTableParams } from '@/hooks';
+import styles from '@/modules/abilities/ability/Ability.module.scss';
 import { IAbility, IPokemon } from '@/types';
 import { ImageWithFallback, removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';

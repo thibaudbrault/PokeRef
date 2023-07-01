@@ -80,6 +80,7 @@
 }
 
 .table {
+  @extend %fullWidthTable;
   & td {
     padding: 0;
     text-transform: capitalize;

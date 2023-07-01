@@ -1,4 +1,4 @@
-import styles from '@/components/pages/Items/ItemCard/ItemCard.module.scss';
+import styles from '@/modules/items/item/Item.module.scss';
 import { IItem } from '@/types';
 
 type Props = {

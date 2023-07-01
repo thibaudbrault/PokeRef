@@ -13,7 +13,7 @@ export function Nav({ move, setVersion }: Props) {
       <ul>
         {move?.generation?.name === `generation-i` && (
           <li>
-            <button>Gen I</button>
+            <button className="gen">Gen I</button>
             <div>
               <button onClick={() => setVersion(`red-blue`)}>Red / Blue</button>
               <button onClick={() => setVersion(`yellow`)}>Yellow</button>
@@ -23,7 +23,7 @@ export function Nav({ move, setVersion }: Props) {
         {(move?.generation?.name === `generation-i` ||
           move?.generation?.name === `generation-ii`) && (
           <li>
-            <button>Gen II</button>
+            <button className="gen">Gen II</button>
             <div>
               <button onClick={() => setVersion(`gold-silver`)}>
                 Gold / Silver
@@ -36,7 +36,7 @@ export function Nav({ move, setVersion }: Props) {
           move?.generation?.name === `generation-ii` ||
           move?.generation?.name === `generation-iii`) && (
           <li>
-            <button>Gen III</button>
+            <button className="gen">Gen III</button>
             <div>
               <button onClick={() => setVersion(`ruby-sapphire`)}>
                 Ruby / Sapphire
@@ -53,7 +53,7 @@ export function Nav({ move, setVersion }: Props) {
           move?.generation?.name === `generation-iii` ||
           move?.generation?.name === `generation-iv`) && (
           <li>
-            <button>Gen IV</button>
+            <button className="gen">Gen IV</button>
             <div>
               <button onClick={() => setVersion(`diamond-pearl`)}>
                 Diamond / Pearl
@@ -71,7 +71,7 @@ export function Nav({ move, setVersion }: Props) {
           move?.generation?.name === `generation-iv` ||
           move?.generation?.name === `generation-v`) && (
           <li>
-            <button>Gen V</button>
+            <button className="gen">Gen V</button>
             <div>
               <button onClick={() => setVersion(`black-white`)}>
                 Black / White
@@ -89,7 +89,7 @@ export function Nav({ move, setVersion }: Props) {
           move?.generation?.name === `generation-v` ||
           move?.generation?.name === `generation-vi`) && (
           <li>
-            <button>Gen VI</button>
+            <button className="gen">Gen VI</button>
             <div>
               <button onClick={() => setVersion(`x-y`)}>X / Y</button>
               <button onClick={() => setVersion(`omega-ruby-alpha-sapphire`)}>
@@ -106,7 +106,7 @@ export function Nav({ move, setVersion }: Props) {
           move?.generation?.name === `generation-vi` ||
           move?.generation?.name === `generation-vii`) && (
           <li>
-            <button>Gen VII</button>
+            <button className="gen">Gen VII</button>
             <div>
               <button onClick={() => setVersion(`sun-moon`)}>Sun / Moon</button>
               <button onClick={() => setVersion(`ultra-sun-ultra-moon`)}>
@@ -129,7 +129,7 @@ export function Nav({ move, setVersion }: Props) {
           move?.generation?.name === `generation-vii` ||
           move?.generation?.name === `generation-viii`) && (
           <li>
-            <button>Gen VIII</button>
+            <button className="gen">Gen VIII</button>
             <div>
               <button onClick={() => setVersion(`sword-shield`)}>
                 Sword / Shield

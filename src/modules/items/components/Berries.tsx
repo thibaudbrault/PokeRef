@@ -69,12 +69,12 @@ export function Berries({ berries }: Props) {
   return (
     <section>
       <h2 className="leftH2">Berries</h2>
-      <section className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={tableContainerRef}>
         <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}
         </table>
-      </section>
+      </div>
     </section>
   );
 }

@@ -84,13 +84,13 @@ export function Items({ items }: Props) {
         <h2 className="leftH2">Items</h2>
         <Search items={items} />
       </div>
-      <section className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={tableContainerRef}>
         <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}
         </table>
         {tablePagination()}
-      </section>
+      </div>
     </section>
   );
 }

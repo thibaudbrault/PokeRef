@@ -80,7 +80,7 @@ function Pokedex() {
         {scrollBtn()}
         {!form && !generation && (
           <ReactPaginate
-            containerClassName="pagination"
+            className="pagination"
             breakLabel="..."
             onPageChange={handlePageChange}
             nextLabel=">"

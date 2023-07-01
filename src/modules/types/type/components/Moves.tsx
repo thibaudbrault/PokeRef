@@ -104,14 +104,14 @@ export function Moves({ type, moves }: Props) {
           <span className="capitalize">{type?.name}</span> type
         </h4>
       </div>
-      <section className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={tableContainerRef}>
         {data.length > 0 && (
           <table className="fullWidthTable">
             {tableHeader()}
             {tableBody()}
           </table>
         )}
-      </section>
+      </div>
       {type?.name !== `fairy` && (
         <p className={styles.comment}>
           <span className="capitalize">{type?.name}</span> attacks were{` `}

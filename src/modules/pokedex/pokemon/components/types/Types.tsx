@@ -13,7 +13,7 @@ export function Types({ types }: Props) {
   return (
     <section className="section" id="types">
       <h3 className="h3">Types relations</h3>
-      <div className={styles.list}>
+      <div className={styles.typesList}>
         {types.map((t) => (
           <Type id={t.name} key={t.name}>
             <Link

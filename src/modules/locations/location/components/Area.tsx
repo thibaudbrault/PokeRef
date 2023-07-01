@@ -1,4 +1,4 @@
-import styles from '@/components/pages/Locations/Locations.module.scss';
+import styles from '@/modules/locations/Locations.module.scss';
 import { ILocation } from '@/types';
 import { removeDash } from '@/utils';
 

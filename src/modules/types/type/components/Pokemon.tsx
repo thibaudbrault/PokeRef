@@ -192,14 +192,14 @@ export function Pokemon({ typeName, pokemon }: Props) {
           onChange={(option) => option && setType(option as IOptionsFixed[])}
         />
       </div>
-      <section className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={tableContainerRef}>
         {data && data.length > 0 && (
           <table className="fullWidthTable">
             {tableHeader()}
             {tableBody()}
           </table>
         )}
-      </section>
+      </div>
     </section>
   );
 }

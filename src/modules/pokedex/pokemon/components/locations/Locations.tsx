@@ -109,7 +109,7 @@ export function Locations({ location, game }: Props) {
   return (
     <section className="section" id="locations">
       <h3 className="h3">Locations</h3>
-      <section className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={tableContainerRef}>
         <table className={styles.table}>
           {tableHeader()}
           {tableBody()}
@@ -119,7 +119,7 @@ export function Locations({ location, game }: Props) {
             </tr>
           </tfoot>
         </table>
-      </section>
+      </div>
     </section>
   );
 }

@@ -200,7 +200,7 @@ export function Moves({ pokemon, version, name }: Props) {
     <section className={styles.section} id="moves">
       <h3 className="h3">Moves</h3>
       <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
-      <section className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={tableContainerRef}>
         <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}
@@ -210,7 +210,7 @@ export function Moves({ pokemon, version, name }: Props) {
             </tr>
           </tfoot>
         </table>
-      </section>
+      </div>
     </section>
   );
 }

@@ -159,12 +159,12 @@ export function Forms({ pokemon }: Props) {
   return (
     <section className="section" id="forms">
       <h3 className="h3">Forms</h3>
-      <section className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={tableContainerRef}>
         <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}
         </table>
-      </section>
+      </div>
     </section>
   );
 }
