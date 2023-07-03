@@ -81,8 +81,10 @@
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
       "pnpm lint",
-      "pnpm style",
       "pnpm format"
+    ],
+    "./src/**/*.scss": [
+      "pnpm style"
     ]
   }
 }
