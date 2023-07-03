@@ -3,7 +3,7 @@
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IFormatAnalysesSets, IFormatsAnalysesSetName } from '@/types';
 import { capitalize, getFormat, removeLongName } from '@/utils';
-import { useQueries } from '@tanstack/react-query';
+import { UseQueryResult, useQueries } from '@tanstack/react-query';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import styles from './Competitive.module.scss';
@@ -16,42 +16,48 @@ type Props = {
 export function Competitive({ format, name }: Props) {
   const [toggle, setToggle] = useState<number>(0);
 
-  const [analyses, formats, sets] = useQueries({
-    queries: [
-      {
-        queryKey: [`analyses`, format],
-        queryFn: () =>
-          getFormat(
-            `https://raw.githubusercontent.com/pkmn/smogon/main/data/analyses/${format}.json`,
-          ),
-      },
-      {
-        queryKey: [`formats`],
-        queryFn: () =>
-          getFormat(
-            `https://raw.githubusercontent.com/pkmn/smogon/main/data/formats/index.json`,
-          ),
-      },
-      {
-        queryKey: [`sets`, format],
-        queryFn: () =>
-          getFormat(
-            `https://raw.githubusercontent.com/pkmn/smogon/main/data/sets/${format}.json`,
-          ),
-      },
-    ],
-  });
+  const [analyses, formats, sets]: UseQueryResult<Record<string, unknown>> =
+    useQueries({
+      status: string,
+      queries: [
+        {
+          queryKey: [`analyses`, format],
+          queryFn: () =>
+            getFormat(
+              `https://raw.githubusercontent.com/pkmn/smogon/main/data/analyses/${format}.json`,
+            ),
+        },
+        {
+          queryKey: [`formats`],
+          queryFn: () =>
+            getFormat(
+              `https://raw.githubusercontent.com/pkmn/smogon/main/data/formats/index.json`,
+            ),
+        },
+        {
+          queryKey: [`sets`, format],
+          queryFn: () =>
+            getFormat(
+              `https://raw.githubusercontent.com/pkmn/smogon/main/data/sets/${format}.json`,
+            ),
+        },
+      ],
+    });
 
   if (
     analyses.status === `error` ||
     formats.status === `error` ||
     sets.status === `error`
   ) {
-    return toast.error(`Something went wrong`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return (
+      <>
+        {toast.error(`Something went wrong`, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        })}
+      </>
+    );
   }
 
   if (
@@ -76,9 +82,11 @@ export function Competitive({ format, name }: Props) {
 
   if (pokemonAnalyses && pokemonSets) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { pokemonAnalysesName, ...filteredAnalyses } = pokemonAnalyses;
+    const { pokemonAnalysesName, ...filteredAnalyses } =
+      pokemonAnalyses as IFormatAnalysesSets;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { pokemonSetsName, ...filteredSets } = pokemonSets;
+    const { pokemonSetsName, ...filteredSets } =
+      pokemonSets as IFormatAnalysesSets;
 
     if (
       Object.keys(filteredAnalyses).length > 0 &&
@@ -92,7 +100,9 @@ export function Competitive({ format, name }: Props) {
         );
       };
 
-      const setsEntries = <T,>(obj: T): T => {
+      const setsEntries = <T extends Record<string, unknown>>(
+        obj: T,
+      ): T[keyof T] => {
         return Object.entries(obj)[toggle][1];
       };
 
@@ -108,14 +118,18 @@ export function Competitive({ format, name }: Props) {
         str.replaceAll(`-types`, ` types`).replaceAll(`-type`, ` type`);
 
       const setSpecs = (
-        obj: Record<string, unknown>,
+        obj: IFormatsAnalysesSetName,
         i: number,
         value: string,
       ) => {
         return Object.values(Object.entries(obj)[toggle][1])[i][value];
       };
 
-      const wrapMoves = (tag: string, move: string | number, index: number) => {
+      const wrapMoves = (
+        tag: string,
+        move: string | number,
+        index: number,
+      ): string | null => {
         if (tag === `li` && typeof move === `string`) {
           return `<${tag}>Move ${index + 1}: <b>${move}</b></${tag}>`;
         } else if (tag === `span` && typeof move === `string`) {
@@ -257,5 +271,9 @@ export function Competitive({ format, name }: Props) {
         </section>
       );
     }
+  }
+
+  if (!pokemonAnalyses || !pokemonSets) {
+    return <div className="subtitle">No data available</div>;
   }
 }
