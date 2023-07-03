@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IDescription, IMove, IMoveTarget } from '@/types';
 import { getMoveTarget, removeDash } from '@/utils';
@@ -27,11 +26,15 @@ export function Effect({ move, version }: Props) {
   };
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error?.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return (
+      <>
+        {toast.error(`Something went wrong: ${error?.message}`, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        })}
+      </>
+    );
   }
 
   if (isLoading) {

@@ -3,6 +3,7 @@
 
 .typesList {
   @extend %types;
+
   width: fit-content;
   flex-direction: row;
   margin-bottom: 1rem;
@@ -16,15 +17,17 @@
 
 .table {
   @extend %typeTable;
+
   height: auto;
   width: 100%;
+
   & tr {
     & td {
       height: auto;
     }
 
     &:nth-of-type(4) {
-      border-bottom: 1px solid rgba(130, 130, 130, 0.2);
+      border-bottom: 1px solid rgb(130 130 130 / 20%);
     }
   }
 

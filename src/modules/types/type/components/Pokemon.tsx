@@ -1,4 +1,3 @@
-import { Type } from '@/components/common/styles/Themes';
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/types/type/Type.module.scss';
 import { IPokemon } from '@/types';
@@ -83,7 +82,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
         ),
         cell: (info) => (
           <td className="tType">
-            <Type id={info.getValue<string>()}>
+            <div className="type" id={info.getValue<string>()}>
               <Link
                 href={{
                   pathname: `/type/[name]`,
@@ -98,7 +97,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
                 />
                 <span>{info.getValue<string>()}</span>
               </Link>
-            </Type>
+            </div>
           </td>
         ),
       },
@@ -113,7 +112,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
         cell: (info) =>
           info.getValue() ? (
             <td className="tType">
-              <Type id={info.getValue<string>()}>
+              <div className="type" id={info.getValue<string>()}>
                 <Link
                   href={{
                     pathname: `/type/[name]`,
@@ -128,7 +127,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
                   />
                   <span>{info.getValue<string>()}</span>
                 </Link>
-              </Type>
+              </div>
             </td>
           ) : (
             <td>-</td>

@@ -1,5 +1,6 @@
 import { IPokemon, IPokemonSpecies } from '@/types';
 import styles from '../Data.module.scss';
+import Image from 'next/image';
 
 type Props = {
   pokemon: IPokemon;
@@ -9,14 +10,14 @@ type Props = {
 export function Sprite({ pokemon, species }: Props) {
   return (
     <>
-      <img
-        className={styles.images}
-        src={pokemon.sprites.other[`official-artwork`].front_default}
-        alt={pokemon.name}
-        loading="lazy"
-        width="75%"
-        height="75%"
-      />
+      <div className={styles.imageContainer}>
+        <Image
+          className={styles.image}
+          src={pokemon.sprites.other[`official-artwork`].front_default}
+          alt={pokemon.name}
+          fill={true}
+        />
+      </div>
       {pokemon.id < 10000 && (
         <>
           {species?.is_legendary && (

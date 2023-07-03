@@ -7,7 +7,7 @@ type Props = {
 const ToolTip = ({ id }: Props) => {
   return (
     <>
-      <ReactTooltip style={{ fontSize: '1.3rem' }} id={id} />
+      <ReactTooltip style={{ fontSize: `1.3rem` }} id={id} />
     </>
   );
 };

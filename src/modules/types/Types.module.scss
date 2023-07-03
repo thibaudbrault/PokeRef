@@ -21,7 +21,6 @@
 }
 
 .type {
-  @extend %type;
   width: 20rem;
   margin: 3rem;
   border-radius: 5px;
@@ -46,8 +45,8 @@
       cursor: pointer;
       @include themed {
         color: t('text');
-        text-shadow: t('bg') -1px -1px 0px, t('bg') 1px -1px 0px,
-          t('bg') -1px 1px 0px, t('bg') 1px 1px 0px;
+        text-shadow: t('bg') -1px -1px 0, t('bg') 1px -1px 0,
+          t('bg') -1px 1px 0, t('bg') 1px 1px 0;
       }
     }
   }

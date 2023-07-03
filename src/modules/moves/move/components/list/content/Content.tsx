@@ -1,5 +1,5 @@
 import { IPokemon, IPokemonMoveVersion } from '@/types';
-import { ImageWithFallback, removeDash } from '@/utils';
+import { ImageWithFallback, removeDash, removeLongName } from '@/utils';
 import Link from 'next/link';
 import styles from '../../../Move.module.scss';
 
@@ -62,7 +62,7 @@ export function Content({ pokemon, moveName, version, toggle }: Props) {
                         }}
                         key={p.name}
                       >
-                        {removeDash(p.name)}
+                        {removeLongName(removeDash(p.name))}
                       </Link>
                       {pmv.level_learned_at > 1 && (
                         <p>Level {pmv.level_learned_at}</p>

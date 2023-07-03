@@ -10,24 +10,17 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import * as yup from 'yup';
 
-type FormInput = {
-  username: string;
-  email: string;
-  password: string;
-  cpassword: string;
-};
+const schema = yup.object({
+  username: yup.string().required(),
+  email: yup.string().email().required(),
+  password: yup.string().min(6).required(),
+  cpassword: yup
+    .string()
+    .oneOf([yup.ref(`password`)])
+    .required(),
+});
 
-const schema = yup
-  .object({
-    username: yup.string().required(),
-    email: yup.string().email().required(),
-    password: yup.string().min(6).required(),
-    cpassword: yup
-      .string()
-      .oneOf([yup.ref(`password`)])
-      .required(),
-  })
-  .required();
+type FormInput = yup.Asserts<typeof schema>;
 
 function Register() {
   const router = useRouter();
@@ -37,7 +30,7 @@ function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormInput>({
-    resolver: yupResolver<yup.AnyObjectSchema>(schema),
+    resolver: yupResolver<FormInput>(schema),
   });
 
   const submitForm = async (data: FormInput) => {

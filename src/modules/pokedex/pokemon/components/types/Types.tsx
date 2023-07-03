@@ -1,4 +1,3 @@
-import { Type } from '@/components/common/styles/Themes';
 import { IType } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,7 +14,7 @@ export function Types({ types }: Props) {
       <h3 className="h3">Types relations</h3>
       <div className={styles.typesList}>
         {types.map((t) => (
-          <Type id={t.name} key={t.name}>
+          <div className="type" id={t.name} key={t.name}>
             <Link
               href={{
                 pathname: `/type/[name]`,
@@ -30,7 +29,7 @@ export function Types({ types }: Props) {
               />
               <span>{t.name}</span>
             </Link>
-          </Type>
+          </div>
         ))}
       </div>
       <div>

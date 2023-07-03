@@ -3,6 +3,7 @@
 
 .section {
   @extend %section;
+
   display: grid;
   grid-template-columns: 1fr 1.3fr;
   column-gap: 3rem;
@@ -17,8 +18,9 @@
 
 .table {
   @extend %table;
+
   & th {
-    background: rgba(130, 130, 130, 0.2);
+    background: rgb(130 130 130 / 20%);
   }
 
   & td {
@@ -35,6 +37,7 @@
 
 .type {
   @extend %tType;
+
   & div {
     margin: 0;
   }

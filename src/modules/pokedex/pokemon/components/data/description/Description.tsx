@@ -1,4 +1,3 @@
-import { Type } from '@/components/common/styles/Themes';
 import { IPokemon, IPokemonSpecies } from '@/types';
 import { removeDash } from '@/utils';
 import Image from 'next/image';
@@ -45,7 +44,7 @@ export function Description({ pokemon, species, game }: Props) {
         )}
         <li className={styles.types}>
           {pokemon?.types?.map((pt) => (
-            <Type id={pt.type.name} key={pt.type.name}>
+            <div className="type" id={pt.type.name} key={pt.type.name}>
               <Link
                 href={{
                   pathname: `/type/[name]`,
@@ -60,7 +59,7 @@ export function Description({ pokemon, species, game }: Props) {
                 />
                 <span>{pt.type.name}</span>
               </Link>
-            </Type>
+            </div>
           ))}
         </li>
         <li className={styles.oldTypes}>

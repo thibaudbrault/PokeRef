@@ -15,15 +15,11 @@ type Props = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-type FormInput = {
-  resetEmail: string;
-};
+const schema = yup.object({
+  resetEmail: yup.string().email().required(),
+});
 
-const schema = yup
-  .object({
-    resetEmail: yup.string().email().required(),
-  })
-  .required();
+type FormInput = yup.Asserts<typeof schema>;
 
 function ResetPwd({ modalIsOpen, setIsOpen }: Props) {
   const {
@@ -31,7 +27,7 @@ function ResetPwd({ modalIsOpen, setIsOpen }: Props) {
     handleSubmit,
     formState: { errors },
   } = useForm<FormInput>({
-    resolver: yupResolver<yup.AnyObjectSchema>(schema),
+    resolver: yupResolver<FormInput>(schema),
   });
 
   const closeModal = () => {

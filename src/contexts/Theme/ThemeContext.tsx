@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 export const initialThemeState = {
   theme: `dark`,
-  setTheme: () => null,
+  setTheme: (() => null) as Dispatch<SetStateAction<string>>,
 };
 
 export const ThemeContext = React.createContext(initialThemeState);

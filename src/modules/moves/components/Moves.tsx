@@ -1,4 +1,3 @@
-import { Type } from '@/components/common/styles/Themes';
 import { usePaginatedTableParams } from '@/hooks';
 import { IMove } from '@/types';
 import { removeDash } from '@/utils';
@@ -61,7 +60,7 @@ export function Moves({ moves }: Props) {
         header: `Type`,
         cell: (info) => (
           <td className="tType">
-            <Type id={info.getValue<string>()}>
+            <div className="type" id={info.getValue<string>()}>
               <Link
                 href={{
                   pathname: `/type/[name]`,
@@ -76,7 +75,7 @@ export function Moves({ moves }: Props) {
                 />
                 <span>{info.getValue<string>()}</span>
               </Link>
-            </Type>
+            </div>
           </td>
         ),
       },

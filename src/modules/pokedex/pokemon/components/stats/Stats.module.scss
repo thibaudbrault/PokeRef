@@ -8,20 +8,20 @@
   gap: 1rem;
   height: 15rem;
 
-  & .CircularProgressbar {
+  svg {
     height: 100%;
 
-    &-trail {
+    path:first-of-type {
       @include themed {
         stroke: t('text') !important;
       }
     }
 
-    &-path {
+    path:last-of-type {
       stroke: $red !important;
     }
 
-    &-text {
+    text {
       font-size: 1.3rem !important;
       font-weight: 600 !important;
       @include themed {
@@ -41,7 +41,7 @@
     row-gap: 4rem;
     grid-template-columns: 1fr 1fr;
 
-    & .CircularProgressbar {
+    .circle {
       &-text {
         font-size: 2rem;
       }
@@ -55,6 +55,8 @@
 }
 
 .details {
+  margin-top: 1rem;
+
   & summary {
     width: fit-content;
     margin-bottom: 2rem;
@@ -67,12 +69,14 @@
 
 .table {
   @extend %fullWidthTable;
+
   border-bottom: none;
+
   & th {
     font-size: 1.7rem;
     font-weight: 600;
     text-transform: capitalize;
-    background: rgba(130, 130, 130, 0.2);
+    background: rgb(130 130 130 / 20%);
     @include themed {
       color: t('text');
     }
@@ -112,11 +116,11 @@
 
     & input[type='number'] {
       appearance: textfield;
-      -moz-appearance: textfield;
+      appearance: textfield;
 
       &::-webkit-inner-spin-button,
       ::-webkit-outer-spin-button {
-        -webkit-appearance: textfield;
+        appearance: textfield;
       }
     }
 
@@ -162,8 +166,9 @@
 
 .results {
   @extend %fullWidthTable;
+
   & td {
-    border-left: 1px solid rgba(130, 130, 130, 0.2);
-    border-right: 1px solid rgba(130, 130, 130, 0.2);
+    border-left: 1px solid rgb(130 130 130 / 20%);
+    border-right: 1px solid rgb(130 130 130 / 20%);
   }
 }

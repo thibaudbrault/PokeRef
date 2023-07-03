@@ -67,6 +67,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: 100%;
 }
 
 .desc {
@@ -179,6 +180,12 @@
   background: $purple;
   color: #c4c4c4;
   font-weight: 600;
+}
+
+.imageContainer {
+  position: relative;
+  width: 75%;
+  height: 75%;
 }
 
 .image {

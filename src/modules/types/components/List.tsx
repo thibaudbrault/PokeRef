@@ -12,7 +12,7 @@ export function List({ types }: Props) {
     <>
       {types?.map((t: IType) => (
         <li key={t.name}>
-          <div className={styles.type} id={t.name}>
+          <div className={`${styles.type} type`} id={t.name}>
             <Link
               href={{ pathname: `/type/[name]`, query: { name: t?.name } }}
               key={t.name}

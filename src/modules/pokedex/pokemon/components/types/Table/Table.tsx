@@ -23,7 +23,7 @@ export function Table({ types }: Props) {
   const getTypeEffectiveness = (multiplier: number) => {
     if (types.length === 1) {
       return Object.entries(type1)
-        .filter(([key, value]) => value === multiplier)
+        .filter(([, value]) => value === multiplier)
         .map(([key]) => key);
     } else {
       const multipliedTypes: Record<string, number> = {};
@@ -37,7 +37,7 @@ export function Table({ types }: Props) {
         }
       }
       return Object.entries(multipliedTypes)
-        .filter(([key, value]) => value === multiplier)
+        .filter(([, value]) => value === multiplier)
         .map(([key]) => key);
     }
   };

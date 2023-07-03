@@ -22,7 +22,7 @@ export function Damage({ type }: Props) {
 
   const getTypeEffectiveness = (multiplier: number) => {
     return Object.entries(typeEffectiveness)
-      .filter(([key, value]) => value === multiplier)
+      .filter(([, value]) => value === multiplier)
       .map(([key]) => key);
   };
 

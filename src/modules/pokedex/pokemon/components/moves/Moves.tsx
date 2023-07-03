@@ -185,11 +185,15 @@ export function Moves({ pokemon, version, name }: Props) {
   );
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error?.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return (
+      <>
+        {toast.error(`Something went wrong: ${error?.message}`, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        })}
+      </>
+    );
   }
 
   if (isLoading) {

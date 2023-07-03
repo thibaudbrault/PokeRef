@@ -1,4 +1,3 @@
-import { Type } from '@/components/common/styles/Themes';
 import { IMachine, IMove } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,7 +19,7 @@ export function Description({ move, version, machine }: Props) {
         <tr>
           <th>Type</th>
           <td className={styles.type}>
-            <Type id={move?.type?.name}>
+            <div className="type" id={move?.type?.name}>
               <Link
                 href={{
                   pathname: `/type/[name]`,
@@ -36,7 +35,7 @@ export function Description({ move, version, machine }: Props) {
                 />
                 <span>{move?.type?.name}</span>
               </Link>
-            </Type>
+            </div>
           </td>
         </tr>
         <tr>

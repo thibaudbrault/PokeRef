@@ -17,7 +17,7 @@
     "test:headed": "playwright test --headed",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "type-check": "tsc --noEmit",
+    "type": "tsc --noEmit",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --fix",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
     "style": "stylelint \"src/**/*.scss\" --fix",

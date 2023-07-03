@@ -1,4 +1,3 @@
-import { Type } from '@/components/common/styles/Themes';
 import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { useTableParams } from '@/hooks';
 import { IPokemon, IPokemonForm } from '@/types';
@@ -87,7 +86,7 @@ export function Forms({ pokemon }: Props) {
         ),
         cell: (info) => (
           <td className="tType">
-            <Type id={info.getValue<string>()}>
+            <div className="type" id={info.getValue<string>()}>
               <Link
                 href={{
                   pathname: `/type/[name]`,
@@ -102,7 +101,7 @@ export function Forms({ pokemon }: Props) {
                 />
                 <span>{info.getValue<string>()}</span>
               </Link>
-            </Type>
+            </div>
           </td>
         ),
       },
@@ -116,7 +115,7 @@ export function Forms({ pokemon }: Props) {
         ),
         cell: (info) => (
           <td className="tType">
-            <Type id={info.getValue<string>()}>
+            <div className="type" id={info.getValue<string>()}>
               <Link
                 href={{
                   pathname: `/type/[name]`,
@@ -131,7 +130,7 @@ export function Forms({ pokemon }: Props) {
                 />
                 <span>{info.getValue<string>()}</span>
               </Link>
-            </Type>
+            </div>
           </td>
         ),
       },
@@ -145,11 +144,15 @@ export function Forms({ pokemon }: Props) {
   );
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return (
+      <>
+        {toast.error(`Something went wrong: ${error.message}`, {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        })}
+      </>
+    );
   }
 
   if (isLoading) {

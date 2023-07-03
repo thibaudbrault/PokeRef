@@ -19,17 +19,12 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as yup from 'yup';
 
-type FormInput = {
-  username: string;
-  email: string;
-};
+const schema = yup.object({
+  username: yup.string().required(),
+  email: yup.string().email().required(),
+});
 
-const schema = yup
-  .object({
-    username: yup.string(),
-    email: yup.string().email(),
-  })
-  .required();
+type FormInput = yup.Asserts<typeof schema>;
 
 function Profile() {
   const router = useRouter();
@@ -71,7 +66,7 @@ function Profile() {
   };
 
   const { register, handleSubmit, reset, formState } = useForm<FormInput>({
-    resolver: yupResolver<yup.AnyObjectSchema>(schema),
+    resolver: yupResolver<FormInput>(schema),
     defaultValues: {
       username: ``,
       email: ``,
