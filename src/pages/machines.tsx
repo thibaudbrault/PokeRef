@@ -1,4 +1,4 @@
-import Loader from '@/components/common/ui/Loader/Loader';
+import { Loader } from '@/components/Loader/Loader';
 import { useTableParams } from '@/hooks';
 import { Heading } from '@/modules/machines';
 import { IMachine } from '@/types';

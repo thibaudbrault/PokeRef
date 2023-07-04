@@ -1,6 +1,6 @@
-import BackBtn from '@/components/common/ui/BackBtn';
-import { Divider } from '@/components/common/ui/Divider';
-import Loader from '@/components/common/ui/Loader/Loader';
+import LinkButton from '@/components/Button/Button';
+import Divider from '@/components/Divider/Divider';
+import { Loader } from '@/components/Loader/Loader';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
 import {
   Cards,
@@ -22,7 +22,6 @@ import {
 import { pokemonFilters, removeDash, removeLongName } from '@/utils';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
 import { GetServerSidePropsContext } from 'next';
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -187,9 +186,7 @@ function PokemonCard({ name }: Props) {
 
         {cards.data && <Cards cards={cards.data} />}
 
-        <Link href="/" passHref>
-          <BackBtn name="Pokedex" />
-        </Link>
+        <LinkButton href="/" className="back" title="Back to Pokédex" icon />
       </main>
     </>
   );

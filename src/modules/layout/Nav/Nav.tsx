@@ -1,5 +1,5 @@
-import { Divider } from '@/components/common/ui/Divider';
-import header from '@/components/layout/Header/Header.module.scss';
+import Divider from '@/components/Divider/Divider';
+import header from '@/modules/layout/Header/Header.module.scss';
 import { auth } from '@/firebase-config';
 import { useMediaQuery } from '@/hooks';
 import { onAuthStateChanged, signOut, User } from 'firebase/auth';

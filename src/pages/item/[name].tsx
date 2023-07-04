@@ -1,5 +1,5 @@
-import BackBtn from '@/components/common/ui/BackBtn';
-import Loader from '@/components/common/ui/Loader/Loader';
+import LinkButton from '@/components/Button/Button';
+import { Loader } from '@/components/Loader/Loader';
 import {
   Cost,
   Description,
@@ -13,7 +13,6 @@ import styles from '@/modules/items/item/Item.module.scss';
 import { removeDash } from '@/utils';
 import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import toast from 'react-hot-toast';
 
 type Props = {
@@ -64,9 +63,12 @@ function ItemCard({ name }: Props) {
             </div>
           </section>
           <Description item={item} />
-          <Link href="/items" passHref>
-            <BackBtn name="Items" />
-          </Link>
+          <LinkButton
+            href="/items"
+            className="back"
+            title="Back to Items"
+            icon
+          />
         </main>
       </>
     );

@@ -1,7 +1,7 @@
-import BackBtn from '@/components/common/ui/BackBtn';
-import Loader from '@/components/common/ui/Loader/Loader';
-import styles from '@/modules/locations/Locations.module.scss';
+import LinkButton from '@/components/Button/Button';
+import { Loader } from '@/components/Loader/Loader';
 import { useTableParams } from '@/hooks';
+import styles from '@/modules/locations/Locations.module.scss';
 import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
 import {
   IEncounter,
@@ -226,9 +226,12 @@ function LocationCard({ name }: Props) {
             </table>
           </div>
         </section>
-        <Link href="/locations" passHref>
-          <BackBtn name="Locations" />
-        </Link>
+        <LinkButton
+          href="/locations"
+          className="back"
+          title="Back to Locations"
+          icon
+        />
       </main>
     </>
   );

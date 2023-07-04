@@ -1,11 +1,10 @@
-import BackBtn from '@/components/common/ui/BackBtn';
-import { Divider } from '@/components/common/ui/Divider';
-import Loader from '@/components/common/ui/Loader/Loader';
+import LinkButton from '@/components/Button/Button';
+import Divider from '@/components/Divider/Divider';
+import { Loader } from '@/components/Loader/Loader';
 import { Damage, Heading, useToggleTable } from '@/modules/types/type';
 import styles from '@/modules/types/type/Type.module.scss';
 import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import toast from 'react-hot-toast';
 
 type Props = {
@@ -58,9 +57,7 @@ function TypeCard({ name }: Props) {
           </button>
         </nav>
         {pageShown()}
-        <Link href="/types" passHref>
-          <BackBtn name="Types" />
-        </Link>
+        <LinkButton href="/types" className="back" title="Back to Types" icon />
       </main>
     </>
   );

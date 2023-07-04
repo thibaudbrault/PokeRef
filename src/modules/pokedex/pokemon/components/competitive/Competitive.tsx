@@ -1,12 +1,12 @@
 // @ts-nocheck
 
-import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IFormatAnalysesSets, IFormatsAnalysesSetName } from '@/types';
 import { capitalize, getFormat, removeLongName } from '@/utils';
 import { UseQueryResult, useQueries } from '@tanstack/react-query';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import styles from './Competitive.module.scss';
+import { SmallLoader } from '@/components/Loader/Loader';
 
 type Props = {
   format: string;
@@ -18,7 +18,6 @@ export function Competitive({ format, name }: Props) {
 
   const [analyses, formats, sets]: UseQueryResult<Record<string, unknown>> =
     useQueries({
-      status: string,
       queries: [
         {
           queryKey: [`analyses`, format],

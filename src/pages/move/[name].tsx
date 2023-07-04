@@ -1,12 +1,11 @@
-import BackBtn from '@/components/common/ui/BackBtn';
-import { Divider } from '@/components/common/ui/Divider';
-import Loader from '@/components/common/ui/Loader/Loader';
+import LinkButton from '@/components/Button/Button';
+import Divider from '@/components/Divider/Divider';
+import { Loader } from '@/components/Loader/Loader';
 import { Data, Heading, List, Nav, useFetchMove } from '@/modules/moves/move';
 import styles from '@/modules/moves/move/Move.module.scss';
 import { removeDash } from '@/utils';
 import { GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -75,9 +74,12 @@ function MoveCard({ name }: Props) {
             version={version}
           />
 
-          <Link href="/moves" passHref>
-            <BackBtn name="Moves" />
-          </Link>
+          <LinkButton
+            href="/moves"
+            className="back"
+            title="Back to Moves"
+            icon
+          />
         </main>
       )}
     </>

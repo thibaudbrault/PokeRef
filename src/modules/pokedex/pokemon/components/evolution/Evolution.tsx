@@ -1,4 +1,3 @@
-import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IEvolutionChain, IPokemon } from '@/types';
 import { getAllEvo, removeDash } from '@/utils';
 import { FaChevronRight } from '@meronex/icons/fa';
@@ -7,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import styles from './Evolution.module.scss';
+import { SmallLoader } from '@/components/Loader/Loader';
 
 type Props = {
   evolution: IEvolutionChain;

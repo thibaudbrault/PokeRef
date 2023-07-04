@@ -1,5 +1,5 @@
-import { Divider } from '@/components/common/ui/Divider';
-import Loader from '@/components/common/ui/Loader/Loader';
+import Divider from '@/components/Divider/Divider';
+import { Loader } from '@/components/Loader/Loader';
 import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
 import { IPokemon } from '@/types';

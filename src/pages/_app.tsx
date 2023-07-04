@@ -9,7 +9,7 @@ import { Toaster } from 'react-hot-toast';
 
 import { ThemeProvider } from '@/contexts';
 import '@/styles/styles.scss';
-import { Footer, Header, Nav } from '@/components/layout';
+import { Footer, Header, Nav } from '@/modules/layout';
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (

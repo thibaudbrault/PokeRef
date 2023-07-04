@@ -1,6 +1,4 @@
-import styled from 'styled-components';
-
-export const Divider = styled.hr`
+.divider {
   width: 90%;
   height: 1px;
   margin: 5rem auto;
@@ -10,4 +8,4 @@ export const Divider = styled.hr`
     hsla(0, 87%, 73%, 1) 100%
   );
   border: 0;
-`;
+}

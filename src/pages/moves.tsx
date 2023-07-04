@@ -1,4 +1,4 @@
-import Loader from '@/components/common/ui/Loader/Loader';
+import { Loader } from '@/components/Loader/Loader';
 import { Heading, useToggleTable } from '@/modules/moves';
 import toast from 'react-hot-toast';
 

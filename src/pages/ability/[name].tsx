@@ -1,6 +1,6 @@
-import BackBtn from '@/components/common/ui/BackBtn';
-import { Divider } from '@/components/common/ui/Divider';
-import Loader from '@/components/common/ui/Loader/Loader';
+import LinkButton from '@/components/Button/Button';
+import Divider from '@/components/Divider/Divider';
+import { Loader } from '@/components/Loader/Loader';
 import {
   Description,
   Heading,
@@ -10,7 +10,6 @@ import {
 import styles from '@/modules/abilities/ability/Ability.module.scss';
 import { removeDash } from '@/utils';
 import { GetServerSidePropsContext } from 'next';
-import Link from 'next/link';
 import toast from 'react-hot-toast';
 
 type Props = {
@@ -79,9 +78,12 @@ function Ability({ name }: Props) {
           </h3>
           <Table ability={ability} pokemon={pokemon} />
         </section>
-        <Link href="/abilities" passHref>
-          <BackBtn name="Abilities" />
-        </Link>
+        <LinkButton
+          href="/abilities"
+          className="back"
+          title="Back to Abilities"
+          icon
+        />
       </main>
     </>
   );

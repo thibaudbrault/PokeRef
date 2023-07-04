@@ -1,4 +1,4 @@
-import { Divider } from '@/components/common/ui/Divider';
+import Divider from '@/components/Divider/Divider';
 import { IPokemonStat } from '@/types';
 import { pokemonNatures, removeDash } from '@/utils';
 import { useState } from 'react';

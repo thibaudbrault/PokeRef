@@ -1,4 +1,4 @@
-import Loader from '@/components/common/ui/Loader/Loader';
+import { Loader } from '@/components/Loader/Loader';
 import styles from '@/modules/locations/Locations.module.scss';
 import { Heading, List } from '@/modules/locations';
 import { IRegion } from '@/types';

@@ -1,4 +1,4 @@
-import { Divider } from '@/components/common/ui/Divider';
+import Divider from '@/components/Divider/Divider';
 import { IPokemon } from '@/types';
 import { formOptions, generationsOptions, IOptionsOffsetLimit } from '@/utils';
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';

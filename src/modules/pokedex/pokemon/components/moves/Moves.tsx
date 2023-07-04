@@ -1,4 +1,3 @@
-import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { useTableParams } from '@/hooks';
 import { IMoveAilment, IPokemon } from '@/types';
 import { LearnMethod, removeDash, uppercase } from '@/utils';
@@ -9,6 +8,7 @@ import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { IMoveWithDetails, useFetchMachines, useFetchMoves } from '../../hooks';
 import styles from './Moves.module.scss';
+import { SmallLoader } from '@/components/Loader/Loader';
 
 type Props = {
   pokemon: IPokemon;

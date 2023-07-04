@@ -1,9 +1,9 @@
-import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IDescription, IMove, IMoveTarget } from '@/types';
 import { getMoveTarget, removeDash } from '@/utils';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import styles from '../Data.module.scss';
+import { SmallLoader } from '@/components/Loader/Loader';
 
 type Props = {
   move: IMove;

@@ -1,4 +1,4 @@
-import Loader from '@/components/common/ui/Loader/Loader';
+import { Loader } from '@/components/Loader/Loader';
 import { Heading, List } from '@/modules/types';
 import styles from '@/modules/types/Types.module.scss';
 import { IType } from '@/types';

@@ -1,4 +1,4 @@
-import Loader from '@/components/common/ui/Loader/Loader';
+import { Loader } from '@/components/Loader/Loader';
 import { usePaginatedTableParams } from '@/hooks';
 import { Heading, Search } from '@/modules/abilities';
 import moves from '@/modules/moves/Moves.module.scss';

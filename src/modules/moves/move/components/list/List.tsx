@@ -1,4 +1,3 @@
-import SmallLoader from '@/components/common/ui/Loader/SmallLoader';
 import { IPokemon } from '@/types';
 import {
   BreedingMoveText,
@@ -8,6 +7,7 @@ import {
   TutorMoveText,
 } from './text/Text';
 import { Content } from './content';
+import { SmallLoader } from '@/components/Loader/Loader';
 
 type Props = {
   pokemon?: IPokemon[];
