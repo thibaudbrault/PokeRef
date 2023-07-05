@@ -1,6 +1,6 @@
 import { FaChevronLeft } from '@meronex/icons/fa';
 import Link, { LinkProps } from 'next/link';
-import { HTMLProps, Ref } from 'react';
+import { HTMLProps, Ref, forwardRef } from 'react';
 import styles from './Button.module.scss';
 
 type ILink = {
@@ -11,14 +11,16 @@ type ILink = {
 } & LinkProps &
   HTMLProps<HTMLAnchorElement>;
 
-export function LinkButton({ title, icon, className, ...rest }: ILink) {
-  return (
-    <Link className={styles[className]} {...rest}>
-      {icon && <ButtonIcon />}
-      {title}
-    </Link>
-  );
-}
+export const LinkButton = forwardRef<HTMLAnchorElement, ILink>(
+  ({ title, icon, className, ...rest }, ref) => {
+    return (
+      <Link className={styles[className]} ref={ref} {...rest}>
+        {icon && <ButtonIcon />}
+        {title}
+      </Link>
+    );
+  },
+);
 
 const ButtonIcon = () => {
   return <FaChevronLeft />;
