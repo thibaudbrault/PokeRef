@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import styles from './Evolution.module.scss';
-import { SmallLoader } from '@/components/Loader/Loader';
+import { SmallLoader } from '@/components';
 
 type Props = {
   evolution: IEvolutionChain;

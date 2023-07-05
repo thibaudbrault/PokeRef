@@ -1,4 +1,4 @@
-import ToolTip from '@/components/common/ui/ToolTip';
+import { Tooltip } from '@/components';
 import { IPokemon } from '@/types';
 import { useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
@@ -159,7 +159,7 @@ export function Stats({ pokemon }: Props) {
           <Calculator baseStat={pokemon.stats} />
         </details>
       </section>
-      <ToolTip id="stat-tooltip" />
+      <Tooltip id="stat-tooltip" />
     </>
   );
 }

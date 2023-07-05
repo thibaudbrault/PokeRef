@@ -1,6 +1,4 @@
-import LinkButton from '@/components/Button/Button';
-import Divider from '@/components/Divider/Divider';
-import { Loader } from '@/components/Loader/Loader';
+import { LinkButton, Loader, Separator } from '@/components';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
 import {
   Cards,
@@ -125,11 +123,11 @@ function PokemonCard({ name }: Props) {
 
         <Data pokemon={pokemon.data} species={species.data} game={game} />
 
-        <Divider />
+        <Separator />
 
         {evolution.data && <Evolution evolution={evolution.data} name={name} />}
 
-        <Divider />
+        <Separator />
 
         {pokemonId && pokemonId < 10000 && (
           <Info
@@ -139,50 +137,50 @@ function PokemonCard({ name }: Props) {
           />
         )}
 
-        <Divider />
+        <Separator />
 
         <Stats pokemon={pokemon.data} />
 
-        <Divider />
+        <Separator />
 
         {types.data && (
           <>
             <Types types={types.data} />
-            <Divider />
+            <Separator />
           </>
         )}
 
         {version && (
           <>
             <Moves pokemon={pokemon.data} version={version} name={name} />
-            <Divider />
+            <Separator />
           </>
         )}
 
         {game && (
           <>
             <Locations location={location.data} game={game} />
-            <Divider />
+            <Separator />
           </>
         )}
 
         {pokemon.data.forms.length > 1 && (
           <>
             <Forms pokemon={pokemon.data} />
-            <Divider />
+            <Separator />
           </>
         )}
 
         {format && (
           <>
             <Competitive format={format} name={name} />
-            <Divider />
+            <Separator />
           </>
         )}
 
         <Sprites pokemon={pokemon.data} />
 
-        <Divider />
+        <Separator />
 
         {cards.data && <Cards cards={cards.data} />}
 

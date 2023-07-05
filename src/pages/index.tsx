@@ -1,5 +1,4 @@
-import Divider from '@/components/Divider/Divider';
-import { Loader } from '@/components/Loader/Loader';
+import { Loader, Separator } from '@/components';
 import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
 import { IPokemon } from '@/types';
@@ -76,7 +75,7 @@ function Pokedex() {
         />
         <p className={styles.verticalText}>ポケモン</p>
         <List filteredPokedex={filteredPokedex} />
-        <Divider />
+        <Separator />
         {scrollBtn()}
         {!form && !generation && (
           <ReactPaginate

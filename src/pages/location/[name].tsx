@@ -1,5 +1,4 @@
-import LinkButton from '@/components/Button/Button';
-import { Loader } from '@/components/Loader/Loader';
+import { LinkButton, Loader, Nav } from '@/components';
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/locations/Locations.module.scss';
 import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
@@ -13,12 +12,9 @@ import {
 import { removeDash } from '@/utils';
 import { ColumnDef } from '@tanstack/react-table';
 import { GetServerSidePropsContext } from 'next';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
-
-const Nav = dynamic(() => import(`@/components/common/ui/GenNav`));
 
 type Props = {
   name: string;

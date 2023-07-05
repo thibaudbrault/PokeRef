@@ -1,6 +1,4 @@
-import LinkButton from '@/components/Button/Button';
-import Divider from '@/components/Divider/Divider';
-import { Loader } from '@/components/Loader/Loader';
+import { LinkButton, Loader, Separator } from '@/components';
 import { Damage, Heading, useToggleTable } from '@/modules/types/type';
 import styles from '@/modules/types/type/Type.module.scss';
 import { GetServerSidePropsContext } from 'next';
@@ -41,7 +39,7 @@ function TypeCard({ name }: Props) {
           <h2 className="pageTitle">{type?.name}</h2>
         </div>
         <Damage type={type} />
-        <Divider />
+        <Separator />
         <nav className="methodNav">
           <button
             className={toggle === 1 ? `button_active` : ``}

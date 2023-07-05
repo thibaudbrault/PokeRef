@@ -4,12 +4,10 @@ type Props = {
   id: string;
 };
 
-const ToolTip = ({ id }: Props) => {
+export const Tooltip = ({ id }: Props) => {
   return (
     <>
       <ReactTooltip style={{ fontSize: `1.3rem` }} id={id} />
     </>
   );
 };
-
-export default ToolTip;

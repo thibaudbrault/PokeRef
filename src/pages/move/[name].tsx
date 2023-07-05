@@ -1,6 +1,4 @@
-import LinkButton from '@/components/Button/Button';
-import Divider from '@/components/Divider/Divider';
-import { Loader } from '@/components/Loader/Loader';
+import { LinkButton, Loader, Separator } from '@/components';
 import { Data, Heading, List, Nav, useFetchMove } from '@/modules/moves/move';
 import styles from '@/modules/moves/move/Move.module.scss';
 import { removeDash } from '@/utils';
@@ -58,7 +56,7 @@ function MoveCard({ name }: Props) {
 
           <Data move={move} machine={machine} version={version} />
 
-          <Divider />
+          <Separator />
 
           <LearnMethod
             toggle={toggle}

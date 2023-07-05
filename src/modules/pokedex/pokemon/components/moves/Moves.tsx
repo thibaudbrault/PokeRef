@@ -8,7 +8,7 @@ import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { IMoveWithDetails, useFetchMachines, useFetchMoves } from '../../hooks';
 import styles from './Moves.module.scss';
-import { SmallLoader } from '@/components/Loader/Loader';
+import { SmallLoader } from '@/components';
 
 type Props = {
   pokemon: IPokemon;

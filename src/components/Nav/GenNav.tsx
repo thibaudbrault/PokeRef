@@ -6,7 +6,7 @@ type Props = {
   setVersion: Dispatch<SetStateAction<string | null>>;
 };
 
-function Nav({ setGame, setVersion }: Props) {
+export function Nav({ setGame, setVersion }: Props) {
   return (
     <nav className="genNav">
       <ul>
@@ -32,5 +32,3 @@ function Nav({ setGame, setVersion }: Props) {
     </nav>
   );
 }
-
-export default Nav;

@@ -3,7 +3,7 @@ import { getMoveTarget, removeDash } from '@/utils';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import styles from '../Data.module.scss';
-import { SmallLoader } from '@/components/Loader/Loader';
+import { SmallLoader } from '@/components';
 
 type Props = {
   move: IMove;

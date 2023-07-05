@@ -7,7 +7,7 @@ import {
   TutorMoveText,
 } from './text/Text';
 import { Content } from './content';
-import { SmallLoader } from '@/components/Loader/Loader';
+import { SmallLoader } from '@/components';
 
 type Props = {
   pokemon?: IPokemon[];

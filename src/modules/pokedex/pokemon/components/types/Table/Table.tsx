@@ -1,4 +1,4 @@
-import ToolTip from '@/components/common/ui/ToolTip';
+import { Tooltip } from '@/components';
 import typesRelationData from '@/data/types.json';
 import { IType } from '@/types';
 import { capitalize } from '@/utils';
@@ -202,7 +202,7 @@ export function Table({ types }: Props) {
           )}
         </tbody>
       </table>
-      <ToolTip id="type-tooltip" />
+      <Tooltip id="type-tooltip" />
     </>
   );
 }

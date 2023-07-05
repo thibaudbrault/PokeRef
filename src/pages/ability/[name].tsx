@@ -1,6 +1,4 @@
-import LinkButton from '@/components/Button/Button';
-import Divider from '@/components/Divider/Divider';
-import { Loader } from '@/components/Loader/Loader';
+import { LinkButton, Loader, Separator } from '@/components';
 import {
   Description,
   Heading,
@@ -68,7 +66,7 @@ function Ability({ name }: Props) {
           )}
         </section>
         <Description filterDesc={filterDesc} />
-        <Divider />
+        <Separator />
         <section className={styles.section}>
           <h3 className="h3">
             Pokemon with{` `}

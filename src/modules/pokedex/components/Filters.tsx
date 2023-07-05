@@ -1,4 +1,4 @@
-import Divider from '@/components/Divider/Divider';
+import { Separator } from '@/components';
 import { IPokemon } from '@/types';
 import { formOptions, generationsOptions, IOptionsOffsetLimit } from '@/utils';
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
@@ -123,7 +123,7 @@ export function Filters({
           />
         </div>
       </section>
-      <Divider />
+      <Separator />
     </>
   );
 }

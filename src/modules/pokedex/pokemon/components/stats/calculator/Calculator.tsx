@@ -1,4 +1,4 @@
-import Divider from '@/components/Divider/Divider';
+import { Separator } from '@/components';
 import { IPokemonStat } from '@/types';
 import { pokemonNatures, removeDash } from '@/utils';
 import { useState } from 'react';
@@ -228,7 +228,7 @@ export function Calculator({ baseStat }: Props) {
       </form>
       {stats && (
         <>
-          <Divider />
+          <Separator />
           <Results stats={stats} baseStat={baseStat} />
         </>
       )}

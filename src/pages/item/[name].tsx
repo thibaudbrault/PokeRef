@@ -1,5 +1,4 @@
-import LinkButton from '@/components/Button/Button';
-import { Loader } from '@/components/Loader/Loader';
+import { LinkButton, Loader } from '@/components';
 import {
   Cost,
   Description,

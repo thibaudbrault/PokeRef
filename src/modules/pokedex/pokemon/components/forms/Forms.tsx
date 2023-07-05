@@ -1,4 +1,4 @@
-import { SmallLoader } from '@/components/Loader/Loader';
+import { SmallLoader } from '@/components';
 import { useTableParams } from '@/hooks';
 import { IPokemon, IPokemonForm } from '@/types';
 import { getPokemonForms, removeDash } from '@/utils';

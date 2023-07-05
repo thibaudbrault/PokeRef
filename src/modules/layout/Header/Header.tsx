@@ -12,7 +12,7 @@ import {
   useState,
 } from 'react';
 import styles from './Header.module.scss';
-import LinkButton from '@/components/Button/Button';
+import { LinkButton } from '@/components';
 
 type Props = {
   navOpen: boolean;

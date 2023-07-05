@@ -1,4 +1,4 @@
-import Divider from '@/components/Divider/Divider';
+import { Separator } from '@/components';
 import header from '@/modules/layout/Header/Header.module.scss';
 import { auth } from '@/firebase-config';
 import { useMediaQuery } from '@/hooks';
@@ -60,7 +60,7 @@ export function Nav({ navOpen, setNavOpen }: Props) {
             </li>
           ))}
         </ul>
-        <Divider />
+        <Separator />
         {user ? (
           <div className={header.connected}>
             <button onClick={logout}>Sign Out</button>

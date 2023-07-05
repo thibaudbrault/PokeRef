@@ -1,4 +1,4 @@
-import ToolTip from '@/components/common/ui/ToolTip';
+import { Tooltip } from '@/components';
 import typesRelationData from '@/data/types.json';
 import moves from '@/modules/moves/move/components/data/Data.module.scss';
 import styles from '@/modules/types/type/Type.module.scss';
@@ -260,7 +260,7 @@ export function Damage({ type }: Props) {
           </tr>
         </table>
       </section>
-      <ToolTip id="type-tooltip" />
+      <Tooltip id="type-tooltip" />
     </>
   );
 }

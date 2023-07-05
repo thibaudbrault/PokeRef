@@ -1,16 +1,13 @@
-import { Loader } from '@/components/Loader/Loader';
+import { Loader, Nav } from '@/components';
 import { useTableParams } from '@/hooks';
 import { Heading } from '@/modules/machines';
 import { IMachine } from '@/types';
 import { getMachines, removeDash, uppercase } from '@/utils';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
-
-const Nav = dynamic(() => import(`@/components/common/ui/GenNav`));
 
 function MachinesPage() {
   const [version, setVersion] = useState<string | null>(`red-blue`);
