@@ -58,6 +58,7 @@
 
 .register {
   @extend %connect;
+
   &:hover {
     background: transparent;
 
