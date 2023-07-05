@@ -1,12 +1,13 @@
 import { FaChevronLeft } from '@meronex/icons/fa';
 import Link, { LinkProps } from 'next/link';
-import { HTMLProps } from 'react';
+import { HTMLProps, Ref } from 'react';
 import styles from './Button.module.scss';
 
 type ILink = {
   title: string;
   icon?: boolean;
   className: string;
+  ref?: Ref<HTMLAnchorElement>;
 } & LinkProps &
   HTMLProps<HTMLAnchorElement>;
 

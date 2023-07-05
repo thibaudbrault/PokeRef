@@ -1,12 +1,12 @@
 // @ts-nocheck
 
+import { SmallLoader } from '@/components';
 import { IFormatAnalysesSets, IFormatsAnalysesSetName } from '@/types';
 import { capitalize, getFormat, removeLongName } from '@/utils';
-import { UseQueryResult, useQueries } from '@tanstack/react-query';
+import { useQueries } from '@tanstack/react-query';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import styles from './Competitive.module.scss';
-import { SmallLoader } from '@/components';
 
 type Props = {
   format: string;
@@ -16,32 +16,31 @@ type Props = {
 export function Competitive({ format, name }: Props) {
   const [toggle, setToggle] = useState<number>(0);
 
-  const [analyses, formats, sets]: UseQueryResult<Record<string, unknown>> =
-    useQueries({
-      queries: [
-        {
-          queryKey: [`analyses`, format],
-          queryFn: () =>
-            getFormat(
-              `https://raw.githubusercontent.com/pkmn/smogon/main/data/analyses/${format}.json`,
-            ),
-        },
-        {
-          queryKey: [`formats`],
-          queryFn: () =>
-            getFormat(
-              `https://raw.githubusercontent.com/pkmn/smogon/main/data/formats/index.json`,
-            ),
-        },
-        {
-          queryKey: [`sets`, format],
-          queryFn: () =>
-            getFormat(
-              `https://raw.githubusercontent.com/pkmn/smogon/main/data/sets/${format}.json`,
-            ),
-        },
-      ],
-    });
+  const [analyses, formats, sets] = useQueries({
+    queries: [
+      {
+        queryKey: [`analyses`, format],
+        queryFn: () =>
+          getFormat(
+            `https://raw.githubusercontent.com/pkmn/smogon/main/data/analyses/${format}.json`,
+          ),
+      },
+      {
+        queryKey: [`formats`],
+        queryFn: () =>
+          getFormat(
+            `https://raw.githubusercontent.com/pkmn/smogon/main/data/formats/index.json`,
+          ),
+      },
+      {
+        queryKey: [`sets`, format],
+        queryFn: () =>
+          getFormat(
+            `https://raw.githubusercontent.com/pkmn/smogon/main/data/sets/${format}.json`,
+          ),
+      },
+    ],
+  });
 
   if (
     analyses.status === `error` ||
@@ -81,11 +80,9 @@ export function Competitive({ format, name }: Props) {
 
   if (pokemonAnalyses && pokemonSets) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { pokemonAnalysesName, ...filteredAnalyses } =
-      pokemonAnalyses as IFormatAnalysesSets;
+    const { pokemonAnalysesName, ...filteredAnalyses } = pokemonAnalyses;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { pokemonSetsName, ...filteredSets } =
-      pokemonSets as IFormatAnalysesSets;
+    const { pokemonSetsName, ...filteredSets } = pokemonSets;
 
     if (
       Object.keys(filteredAnalyses).length > 0 &&
@@ -99,36 +96,28 @@ export function Competitive({ format, name }: Props) {
         );
       };
 
-      const setsEntries = <T extends Record<string, unknown>>(
-        obj: T,
-      ): T[keyof T] => {
+      const setsEntries = (obj) => {
         return Object.entries(obj)[toggle][1];
       };
 
-      const overview: string | undefined = setsEntries(
-        filteredAnalyses as IFormatAnalysesSets,
-      ).overview;
+      const overview: string | undefined =
+        setsEntries(filteredAnalyses).overview;
 
-      const comments: string | undefined = setsEntries(
-        filteredAnalyses as IFormatAnalysesSets,
-      ).comments;
+      const comments: string | undefined =
+        setsEntries(filteredAnalyses).comments;
 
       const textFormatting = (str: string) =>
         str.replaceAll(`-types`, ` types`).replaceAll(`-type`, ` type`);
 
       const setSpecs = (
-        obj: IFormatsAnalysesSetName,
+        obj: Record<string, unknown>,
         i: number,
         value: string,
       ) => {
         return Object.values(Object.entries(obj)[toggle][1])[i][value];
       };
 
-      const wrapMoves = (
-        tag: string,
-        move: string | number,
-        index: number,
-      ): string | null => {
+      const wrapMoves = (tag: string, move: string | number, index: number) => {
         if (tag === `li` && typeof move === `string`) {
           return `<${tag}>Move ${index + 1}: <b>${move}</b></${tag}>`;
         } else if (tag === `span` && typeof move === `string`) {
@@ -176,7 +165,7 @@ export function Competitive({ format, name }: Props) {
               </li>
             )}
             {setsEntries(filteredAnalyses as IFormatAnalysesSets).sets?.map(
-              (s: IFormatsAnalysesSetName, i) => (
+              (s: IFormatsAnalysesSetName, i: number) => (
                 <li key={s.name}>
                   <h4 className="h4">{s.name}</h4>
                   <div className={styles.specs}>
@@ -275,4 +264,6 @@ export function Competitive({ format, name }: Props) {
   if (!pokemonAnalyses || !pokemonSets) {
     return <div className="subtitle">No data available</div>;
   }
+
+  return null;
 }

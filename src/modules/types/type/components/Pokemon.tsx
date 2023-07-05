@@ -6,7 +6,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import Select from 'react-select';
+import Select, { PropsValue } from 'react-select';
 
 type Props = {
   typeName?: string;
@@ -167,7 +167,11 @@ export function Pokemon({ typeName, pokemon }: Props) {
         )}
         <Select
           value={type}
-          defaultValue={typeArray.some((t) => t.isFixed)}
+          defaultValue={
+            typeArray.some((t) => t.isFixed)
+              ? undefined
+              : (typeArray as PropsValue<IOptionsFixed>)
+          }
           isMulti
           isClearable={typeArray.some((t) => !t.isFixed)}
           isSearchable={false}
