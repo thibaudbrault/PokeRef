@@ -11,7 +11,7 @@
 
 </div>
 
-<h3 align="center">PokéRef is a Pokémon encyclopedia built with Next JS, Typescript and Styled-Components and uses data from PokéAPI and Smogon</h3>  
+<h3 align="center">PokéRef is a Pokémon encyclopedia built with Next JS, Typescript and Scss modules and uses data from PokéAPI, Smogon and PokémonTCG</h3>  
 <p align="center">You'll find a ton of information on every pokémon, moves, abilities, items and a lot more</p>  
 <div align="center">
   <a href="https://pokeref.app/">Live version</a>  
@@ -57,8 +57,9 @@
 ✅404 page  
 ✅Responsive
 
-🛠Check how the login with a provider works  
-🛠Second type select in the list of pokémon in a type page
+🛠Implement Radix UI to create reusable components  
+🛠Second type select in the list of pokémon in a type page  
+🛠Change login provider
 
 🔜Contest section in a move's page
 
@@ -82,13 +83,13 @@ git clone https://github.com/thibaudbrault/PokeRef.git
 <h4>Install the dependencies</h4>
 
 ```bash
-npm install
+pnpm install
 ```
 
 <h4>Start the server</h4>
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 <h4>Enjoy 😃</h4>
@@ -102,14 +103,15 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 
 <h4>Story of this project</h4>
 
-- Started by using vanilla JS + Sass to learn how to fetch data from an API in vanilla JS
-- Quickly moved to React JS + Sass to learn React by working on a big project
-- Moved to React JS + Styled-Components to learn a new way to write CSS. It was a good move for me because I really like Styled-Components because it has the advantages of Sass, is easily importable / exportable between files and supports theming.
+- Started by using vanilla JS + Scss to learn how to fetch data from an API in vanilla JS
+- Quickly moved to React JS + Scss to learn React by working on a big project
+- Moved to React JS + Styled-Components to learn a new way to write CSS. It was a good move for me because I really like Styled-Components because it has the advantages of Scss, is easily importable / exportable between files and supports theming.
 - Added React-Query to fetch data. It's a great library that makes it easy to manage caching, fetching, loading and error handling for every data fetch.
 - Finally moved to Next JS (instead of CRA) + Styled-Components to learn to use Next JS. I chose to use Next JS to benefit from the image optimization given by the <Image /> component because the app has a lot of images to render and every optimization is welcome. I also chose it to benefit from the Static-Site generation.
 - Upgraded to Next 13. There were some problems that made the transition to using the app folder instead of the pages one not possible, but I benefited from the changes to the <Image /> component (it no longer creates spans) and the <Link /> component (it no longer need to have an anchor tag inside).
 - Added React-Table and converted all my tables to benefit from virtualization, sorting and filtering for every column making it easier to find the desired information.
 - Added Firebase for authentication and saving a user's caught pokémon with data stored in Firestore.
+- Changed all the structure folder and moved from Styled-Components to Scss modules.
 
 <h4>Problems encountered (ordered from the oldest to the most recent)</h4>
 
@@ -120,6 +122,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - Implementing React-Query. I had to learn how to modify my custom hooks to make it work with React-Query and how to import the data from the hooks. It took me some time to make the transition works, but I don't regret it because my code is more readable (mainly the part where I import my hooks, but also the way I handle the loading state to return an animation while the data is being fetched) and it's an easy way to cache data.
 - Moving from CRA to Next. The main problem I had was learning to use dynamic routing and when I understood it the migration became easier. It still took me some time because I had to move all my files in other folders, change the paths in imports, implement the <Image /> component along with a width and height, correct some problems with the images (the creation of multiple spans wrapping the image that was solved by using next/future/image before moving to Next 13) and a few other problems with the <Link /> component (the fact that it can't have multiple children, that it needs to have a 'href' instead of the 'to' used in react-router to give the path and that you need to put an anchor tag inside the Link and use passHref).
 - Converting all the files to Typescript and declare all the types.
+- Make my components fully reusable.
 
 <h4>Contents</h4>
 
@@ -137,8 +140,10 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
 - <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
 - <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
-- <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
+- <img src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white" />
 - <img src="https://img.shields.io/badge/Firebase-F5830C?style=for-the-badge&logo=Firebase&logoColor=white" />
+- <img src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white" />
+- <img src="https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220" />
 
 <h2 id="acknowledgements">Acknowledgements</h2>
 
@@ -170,4 +175,5 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 
 <h2 id="license">License</h2>
 
-MIT
+<img src="https://img.shields.io/github/license/thibaudbrault/pokeref
+" />
