@@ -10,6 +10,7 @@ import {
   IPokemonEncounter,
 } from '@/types';
 import { removeDash } from '@/utils';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import { ColumnDef } from '@tanstack/react-table';
 import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
@@ -222,12 +223,12 @@ function LocationCard({ name }: Props) {
             </table>
           </div>
         </section>
-        <Button
-          href="/locations"
-          className="back"
-          title="Back to Locations"
-          icon
-        />
+        <Button intent="back" asChild>
+          <Link href="/locations">
+            <FaChevronLeft />
+            Back to Locations
+          </Link>
+        </Button>
       </main>
     </>
   );
