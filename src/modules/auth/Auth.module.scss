@@ -238,7 +238,9 @@
   gap: 1rem;
   font-weight: 400;
   background: none;
-  color: t('bg');
+  @include themed {
+    color: t('bg');
+  }
 
   & span {
     cursor: pointer;
