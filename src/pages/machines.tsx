@@ -1,4 +1,4 @@
-import { Loader, Nav } from '@/components';
+import { GenNav, Loader } from '@/components';
 import { useTableParams } from '@/hooks';
 import { Heading } from '@/modules/machines';
 import { IMachine } from '@/types';
@@ -84,7 +84,7 @@ function MachinesPage() {
         <h4 className="leftSubtitle">
           Game selected: <span className="bold">{game}</span>
         </h4>
-        <Nav setGame={setGame} setVersion={setVersion} />
+        <GenNav setGame={setGame} setVersion={setVersion} />
         <section className="tableContainer" ref={tableContainerRef}>
           <table className="fullWidthTable">
             {tableHeader()}

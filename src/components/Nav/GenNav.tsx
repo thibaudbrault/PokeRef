@@ -1,19 +1,22 @@
 import { genNav, removeDash } from '@/utils';
 import { Dispatch, SetStateAction } from 'react';
+import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 
 type Props = {
   setGame: Dispatch<SetStateAction<string | null>>;
   setVersion: Dispatch<SetStateAction<string | null>>;
 };
 
-export function Nav({ setGame, setVersion }: Props) {
+export function GenNav({ setGame, setVersion }: Props) {
   return (
-    <nav className="genNav">
-      <ul>
+    <NavigationMenu.Root className="NavigationMenuRoot">
+      <NavigationMenu.List className="NavigationMenuList">
         {genNav.map((g) => (
-          <li key={g.gen}>
-            <button>{g.gen}</button>
-            <div>
+          <NavigationMenu.Item key={g.gen}>
+            <NavigationMenu.Trigger className="NavigationMenuTrigger">
+              {g.gen}
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className="NavigationMenuContent">
               {g.details.map((gd) => (
                 <button
                   key={gd.game}
@@ -25,10 +28,13 @@ export function Nav({ setGame, setVersion }: Props) {
                   {removeDash(gd.game)}
                 </button>
               ))}
-            </div>
-          </li>
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
         ))}
-      </ul>
-    </nav>
+      </NavigationMenu.List>
+      <div className="ViewportPosition">
+        <NavigationMenu.Viewport className="NavigationMenuViewport" />
+      </div>
+    </NavigationMenu.Root>
   );
 }

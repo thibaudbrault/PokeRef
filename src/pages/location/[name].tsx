@@ -1,4 +1,4 @@
-import { Button, Loader, Nav } from '@/components';
+import { Button, Loader, GenNav } from '@/components';
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/locations/Locations.module.scss';
 import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
@@ -209,7 +209,7 @@ function LocationCard({ name }: Props) {
           toggleState={toggleState}
           toggleTable={toggleTable}
         />
-        <Nav setGame={setGame} setVersion={setVersion} />
+        <GenNav setGame={setGame} setVersion={setVersion} />
         <section className="section">
           <div className="tableContainer" ref={tableContainerRef}>
             <table className={styles.table}>
