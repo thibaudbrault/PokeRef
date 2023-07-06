@@ -16,10 +16,14 @@ export const ThemeProvider = ({ children }: Props) => {
     if (!!savedThemeLocal) {
       setTheme(savedThemeLocal);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     localStorage.setItem(`globalTheme`, theme);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
   return (

@@ -1,4 +1,4 @@
-import { LinkButton, Loader, Separator } from '@/components';
+import { Button, Loader, Separator } from '@/components';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
 import {
   Cards,
@@ -18,8 +18,10 @@ import {
   useFetchPokemon,
 } from '@/modules/pokedex/pokemon';
 import { pokemonFilters, removeDash, removeLongName } from '@/utils';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
 import { GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -184,7 +186,12 @@ function PokemonCard({ name }: Props) {
 
         {cards.data && <Cards cards={cards.data} />}
 
-        <LinkButton href="/" className="back" title="Back to Pokédex" icon />
+        <Button intent="back" asChild>
+          <Link href="/">
+            <FaChevronLeft />
+            Back to Pokédex
+          </Link>
+        </Button>
       </main>
     </>
   );

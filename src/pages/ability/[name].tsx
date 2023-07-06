@@ -1,4 +1,4 @@
-import { LinkButton, Loader, Separator } from '@/components';
+import { Button, Loader, Separator } from '@/components';
 import {
   Description,
   Heading,
@@ -7,7 +7,9 @@ import {
 } from '@/modules/abilities/ability';
 import styles from '@/modules/abilities/ability/Ability.module.scss';
 import { removeDash } from '@/utils';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import { GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
 import toast from 'react-hot-toast';
 
 type Props = {
@@ -76,12 +78,12 @@ function Ability({ name }: Props) {
           </h3>
           <Table ability={ability} pokemon={pokemon} />
         </section>
-        <LinkButton
-          href="/abilities"
-          className="back"
-          title="Back to Abilities"
-          icon
-        />
+        <Button intent="back" asChild>
+          <Link href="/abilities">
+            <FaChevronLeft />
+            Back to Abilities
+          </Link>
+        </Button>
       </main>
     </>
   );

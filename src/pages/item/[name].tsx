@@ -1,4 +1,4 @@
-import { LinkButton, Loader } from '@/components';
+import { Button, Loader } from '@/components';
 import {
   Cost,
   Description,
@@ -10,8 +10,10 @@ import {
 
 import styles from '@/modules/items/item/Item.module.scss';
 import { removeDash } from '@/utils';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import toast from 'react-hot-toast';
 
 type Props = {
@@ -62,12 +64,12 @@ function ItemCard({ name }: Props) {
             </div>
           </section>
           <Description item={item} />
-          <LinkButton
-            href="/items"
-            className="back"
-            title="Back to Items"
-            icon
-          />
+          <Button intent="back" asChild>
+            <Link href="/items">
+              <FaChevronLeft />
+              Back to Items
+            </Link>
+          </Button>
         </main>
       </>
     );

@@ -1,27 +1,31 @@
-import { FaChevronLeft } from '@meronex/icons/fa';
-import Link, { LinkProps } from 'next/link';
-import { HTMLProps, Ref, forwardRef } from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { forwardRef } from 'react';
 import styles from './Button.module.scss';
 
-type ILink = {
-  title: string;
-  icon?: boolean;
-  className: string;
-  ref?: Ref<HTMLAnchorElement>;
-} & LinkProps &
-  HTMLProps<HTMLAnchorElement>;
+const button = cva(styles.base, {
+  variants: {
+    intent: {
+      back: styles.back,
+      primary: styles.primary,
+      secondary: styles.secondary,
+    },
+  },
+});
 
-export const LinkButton = forwardRef<HTMLAnchorElement, ILink>(
-  ({ title, icon, className, ...rest }, ref) => {
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof button> {
+  asChild?: boolean;
+}
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, intent, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : `button`;
     return (
-      <Link className={styles[className]} ref={ref} {...rest}>
-        {icon && <ButtonIcon />}
-        {title}
-      </Link>
+      <Comp className={button({ intent, className })} ref={ref} {...props} />
     );
   },
 );
 
-const ButtonIcon = () => {
-  return <FaChevronLeft />;
-};
+Button.displayName = `Button`;

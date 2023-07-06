@@ -1,4 +1,4 @@
-import { LinkButton, Loader, Nav } from '@/components';
+import { Button, Loader, Nav } from '@/components';
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/locations/Locations.module.scss';
 import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
@@ -222,7 +222,7 @@ function LocationCard({ name }: Props) {
             </table>
           </div>
         </section>
-        <LinkButton
+        <Button
           href="/locations"
           className="back"
           title="Back to Locations"

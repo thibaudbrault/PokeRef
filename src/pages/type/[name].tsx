@@ -1,8 +1,10 @@
-import { LinkButton, Loader, Separator } from '@/components';
+import { Button, Loader, Separator } from '@/components';
 import { Damage, Heading, useToggleTable } from '@/modules/types/type';
 import styles from '@/modules/types/type/Type.module.scss';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import toast from 'react-hot-toast';
 
 type Props = {
@@ -55,7 +57,12 @@ function TypeCard({ name }: Props) {
           </button>
         </nav>
         {pageShown()}
-        <LinkButton href="/types" className="back" title="Back to Types" icon />
+        <Button intent="back" asChild>
+          <Link href="/types">
+            <FaChevronLeft />
+            Back to Types
+          </Link>
+        </Button>
       </main>
     </>
   );

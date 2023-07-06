@@ -12,7 +12,7 @@ import {
   useState,
 } from 'react';
 import styles from './Header.module.scss';
-import { LinkButton } from '@/components';
+import { Button } from '@/components';
 
 type Props = {
   navOpen: boolean;
@@ -63,17 +63,21 @@ export function Header({ navOpen, setNavOpen }: Props) {
         </button>
         {user ? (
           <div className={styles.connected}>
-            <button onClick={logout}>Sign Out</button>
-            <Link href="/profile">Profile</Link>
+            <Button intent="secondary" onClick={logout}>
+              Sign Out
+            </Button>
+            <Button intent="primary" asChild>
+              <Link href="/profile">Profile</Link>
+            </Button>
           </div>
         ) : (
           <div className={styles.connect}>
-            <LinkButton href="/login" className="login" title="Login" />
-            <LinkButton
-              href="/register"
-              className="register"
-              title="Register"
-            />
+            <Button intent="secondary" asChild>
+              <Link href="/login">Login</Link>
+            </Button>
+            <Button intent="primary" asChild>
+              <Link href="/register">Register</Link>
+            </Button>
           </div>
         )}
         {navOpen ? (

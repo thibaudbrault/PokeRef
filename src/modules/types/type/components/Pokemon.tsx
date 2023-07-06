@@ -153,6 +153,8 @@ export function Pokemon({ typeName, pokemon }: Props) {
     if (typeName) {
       fixCurType(typeName, true);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [typeName]);
 
   return (
