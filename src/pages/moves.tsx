@@ -1,8 +1,5 @@
-import { MethodNav } from '@/components/common/styles/Navbars';
-import { MainBig } from '@/components/common/styles/Sizing';
-import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingMoves from '@/components/pages/Moves/Heading';
-import { useToggleTable } from '@/components/pages/Moves/Hooks/useToggleTable';
+import { Loader } from '@/components';
+import { Heading, useToggleTable } from '@/modules/moves';
 import toast from 'react-hot-toast';
 
 function MovesPage() {
@@ -31,9 +28,9 @@ function MovesPage() {
 
   return (
     <>
-      <HeadingMoves />
-      <MainBig>
-        <MethodNav>
+      <Heading />
+      <main className="mainBig">
+        <nav className="methodNav">
           <button
             className={toggle === 1 ? `button_active` : ``}
             onClick={() => setToggle(1)}
@@ -52,9 +49,9 @@ function MovesPage() {
           >
             <p>Stats</p>
           </button>
-        </MethodNav>
+        </nav>
         {pageShown()}
-      </MainBig>
+      </main>
     </>
   );
 }

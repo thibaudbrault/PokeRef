@@ -1,17 +1,14 @@
-import {
-  NotFoundImg,
-  NotFoundMain,
-  NotFoundText,
-} from '@/components/pages/404/Styled.NotFound';
+import styles from '@/modules/404/NotFound.module.scss';
+import Image from 'next/image';
 
 function NotFound() {
   return (
-    <NotFoundMain>
-      <NotFoundImg src={`/MissingNo.png`} alt="MissingNo" />
-      <NotFoundText>Oops !</NotFoundText>
-      <NotFoundText>The URL entered does not exist</NotFoundText>
-      <NotFoundText>Use the links above to find your way back</NotFoundText>
-    </NotFoundMain>
+    <main className={styles.main}>
+      <Image className={styles.image} src={`/MissingNo.png`} alt="MissingNo" />
+      <p className={styles.text}>Oops !</p>
+      <p className={styles.text}>The URL entered does not exist</p>
+      <p className={styles.text}>Use the links above to find your way back</p>
+    </main>
   );
 }
 

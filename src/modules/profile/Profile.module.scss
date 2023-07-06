@@ -1,0 +1,119 @@
+@use '@/styles/abstracts' as *;
+
+.caught {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 2rem 0;
+  gap: 2rem;
+
+  & li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 4rem 2rem;
+    border-radius: 5px;
+    @include themed {
+      background: t('text');
+      color: t('bg');
+    }
+
+    & a {
+      font-size: 2rem;
+      font-weight: 600;
+      text-transform: capitalize;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        color: $red;
+      }
+    }
+
+    & button {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      padding: 1rem 0;
+      border: none;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      font-size: 1.5rem;
+      transition: 0.3s ease-in-out;
+      @include themed {
+        background: t('bg');
+        color: t('text');
+        border: 1px solid t('text');
+      }
+
+      &:hover {
+        @include themed {
+          background: t('text');
+          color: t('bg');
+          border-top: 1px solid t('bg');
+        }
+      }
+
+      &:active {
+        color: $red;
+      }
+    }
+  }
+}
+
+.details {
+  & summary {
+    width: fit-content;
+    font-size: 3rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+
+.form {
+  width: 90%;
+  margin: 2rem auto 0;
+  display: grid;
+  grid-template-areas:
+    'input input'
+    'button button';
+  justify-items: stretch;
+  align-items: stretch;
+  gap: 2rem;
+
+  & input {
+    width: 100%;
+    grid-area: input;
+  }
+
+  & button {
+    grid-area: button;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0.5rem 1.5rem;
+    font-size: 2rem;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+    @include themed {
+      background: t('text');
+      border: 1px solid t('bg');
+    }
+
+    &:hover {
+      background: transparent;
+      @include themed {
+        color: t('text');
+        border: 1px solid t('text');
+      }
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}

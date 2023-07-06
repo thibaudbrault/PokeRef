@@ -1,29 +1,11 @@
-import {
-  CardTitle,
-  CardTitleWithImage,
-} from '@/components/common/styles/Headings';
-import { Divider } from '@/components/common/ui/Divider';
-import { MethodNav } from '@/components/common/styles/Navbars';
-import { MainBig } from '@/components/common/styles/Sizing';
-import BackBtn from '@/components/common/ui/BackBtn';
-import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingType from '@/components/pages/Types/TypeCard/Heading';
-import { useToggleTable } from '@/components/pages/Types/TypeCard/Hooks/useToggleTable';
-import { IType } from '@/types/Pokemon/Type';
+import { Button, Loader, Separator } from '@/components';
+import { Damage, Heading, useToggleTable } from '@/modules/types/type';
+import styles from '@/modules/types/type/Type.module.scss';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import { GetServerSidePropsContext } from 'next';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
-
-interface IDamageTypeProps {
-  type?: IType;
-}
-
-const DamageType = dynamic<IDamageTypeProps>(
-  () =>
-    import(`@/components/pages/Types/TypeCard/Damage/Damage.TypeCard`) as any,
-);
 
 type Props = {
   name: string;
@@ -47,20 +29,20 @@ function TypeCard({ name }: Props) {
 
   return (
     <>
-      <HeadingType name={name} />
-      <MainBig>
-        <CardTitleWithImage>
+      <Heading name={name} />
+      <main className="mainBig">
+        <div className={styles.title}>
           <Image
             src={`/images/types/${name}.png`}
             alt=""
             width={96}
             height={96}
           />
-          <CardTitle>{type?.name}</CardTitle>
-        </CardTitleWithImage>
-        <DamageType type={type} />
-        <Divider />
-        <MethodNav>
+          <h2 className="pageTitle">{type?.name}</h2>
+        </div>
+        <Damage type={type} />
+        <Separator />
+        <nav className="methodNav">
           <button
             className={toggle === 1 ? `button_active` : ``}
             onClick={() => setToggle(1)}
@@ -73,12 +55,15 @@ function TypeCard({ name }: Props) {
           >
             <p>Moves</p>
           </button>
-        </MethodNav>
+        </nav>
         {pageShown()}
-        <Link href="/types" passHref>
-          <BackBtn name="Types" />
-        </Link>
-      </MainBig>
+        <Button intent="back" asChild>
+          <Link href="/types">
+            <FaChevronLeft />
+            Back to Types
+          </Link>
+        </Button>
+      </main>
     </>
   );
 }

@@ -1,0 +1,56 @@
+@use '@/styles/common/sizing' as *;
+
+.section {
+  @extend %section;
+
+  display: grid;
+  grid-template-columns: 75% 25%;
+}
+
+.effect {
+  margin: 0 0 3rem;
+
+  & h3 {
+    margin: 0 0 1rem;
+    font-size: 3rem;
+    font-weight: 600;
+  }
+
+  & p {
+    font-size: 1.7rem;
+  }
+}
+
+.cost {
+  margin: 0 0 1rem;
+  font-size: 1.7rem;
+
+  & span {
+    font-weight: 600;
+  }
+}
+
+.held {
+  margin: 0 0 1rem;
+  font-size: 1.7rem;
+
+  & span {
+    font-weight: 600;
+  }
+
+  & a {
+    display: inline-block;
+    padding: 0 0.5rem;
+    text-transform: capitalize;
+  }
+}
+
+.fling {
+  font-size: 1.7rem;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

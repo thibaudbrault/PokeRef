@@ -1,22 +1,15 @@
-import { MainBig } from '@/components/common/styles/Sizing';
-import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingLocations from '@/components/pages/Locations/Heading';
-import { LocationSection } from '@/components/pages/Locations/Styled.Locations';
-import { IRegion } from '@/types/Locations/Region';
-import { regions } from '@/utils/DataArrays';
-import { getRegions } from '@/utils/DataFetch';
-import { capitalize } from '@/utils/Typography';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { Loader } from '@/components';
+import styles from '@/modules/locations/Locations.module.scss';
+import { Heading, List } from '@/modules/locations';
+import { IRegion } from '@/types';
+import { capitalize, getRegions, regions } from '@/utils';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
-const ListLocations = dynamic(
-  () => import(`@/components/pages/Locations/Components/List.Locations`),
-);
-
 const RegionsMethod = dynamic(() =>
-  import(`@/utils/ObjectsMap`).then((res) => res.RegionsMethod),
+  import(`@/utils`).then((res) => res.RegionsMethod),
 );
 
 function LocationsPage() {
@@ -50,16 +43,16 @@ function LocationsPage() {
 
   return (
     <>
-      <HeadingLocations />
-      <MainBig>
+      <Heading />
+      <main className="mainBig">
         <RegionsMethod toggle={toggle} setToggle={setToggle} />
-        <ListLocations location={location} locations={locations} />
+        <List location={location} locations={locations} />
         {location === `galar` || location === `hisui` ? (
-          <LocationSection>
+          <section className={styles.section}>
             <p>No data for {capitalize(location)}</p>
-          </LocationSection>
+          </section>
         ) : null}
-      </MainBig>
+      </main>
     </>
   );
 }

@@ -1,0 +1,11 @@
+.separator {
+  width: 90%;
+  height: 1px;
+  margin: 5rem auto;
+  background-image: linear-gradient(
+    0deg,
+    hsl(29deg 92% 70% / 100%) 0%,
+    hsl(0deg 87% 73% / 100%) 100%
+  );
+  border: 0;
+}

@@ -1,27 +1,13 @@
-import {
-  Bold,
-  LeftH2,
-  LeftSubtitle,
-} from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
-import {
-  FullWidthTable,
-  TableContainer,
-  TBold,
-  TLink,
-} from '@/components/common/styles/Table';
-import Loader from '@/components/common/ui/Loader/Loader';
-import { useTableParams } from '@/hooks/useTableParams';
-import { IMachine } from '@/types/Machines/Machine';
-import { getMachines } from '@/utils/DataFetch';
-import { removeDash, uppercase } from '@/utils/Typography';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { Loader, Nav } from '@/components';
+import { useTableParams } from '@/hooks';
+import { Heading } from '@/modules/machines';
+import { IMachine } from '@/types';
+import { getMachines, removeDash, uppercase } from '@/utils';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
-import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
-
-const Nav = dynamic(() => import(`@/components/common/ui/GenNav`));
 
 function MachinesPage() {
   const [version, setVersion] = useState<string | null>(`red-blue`);
@@ -47,7 +33,9 @@ function MachinesPage() {
         accessorKey: `item.name`,
         id: `sort`,
         header: `Name`,
-        cell: (info) => <TBold>{uppercase(info.getValue<string>())}</TBold>,
+        cell: (info) => (
+          <td className="tBold">{uppercase(info.getValue<string>())}</td>
+        ),
       },
       {
         accessorKey: `move.name`,
@@ -55,14 +43,15 @@ function MachinesPage() {
         header: `Move`,
         cell: (info) => (
           <td>
-            <TLink
+            <Link
+              className="tLink"
               href={{
                 pathname: `/move/[name]`,
                 query: { name: info.getValue<string>() },
               }}
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
+            </Link>
           </td>
         ),
       },
@@ -89,14 +78,15 @@ function MachinesPage() {
 
   return (
     <>
-      <MainBig>
-        <LeftH2>Machines</LeftH2>
-        <LeftSubtitle>
-          Game selected: <Bold>{game}</Bold>
-        </LeftSubtitle>
+      <Heading />
+      <main className="mainBig">
+        <h2 className="leftH2">Machines</h2>
+        <h4 className="leftSubtitle">
+          Game selected: <span className="bold">{game}</span>
+        </h4>
         <Nav setGame={setGame} setVersion={setVersion} />
-        <TableContainer ref={tableContainerRef}>
-          <FullWidthTable>
+        <section className="tableContainer" ref={tableContainerRef}>
+          <table className="fullWidthTable">
             {tableHeader()}
             {tableBody()}
             <tfoot>
@@ -104,9 +94,9 @@ function MachinesPage() {
                 <td colSpan={2}>There is no data for this game</td>
               </tr>
             </tfoot>
-          </FullWidthTable>
-        </TableContainer>
-      </MainBig>
+          </table>
+        </section>
+      </main>
     </>
   );
 }

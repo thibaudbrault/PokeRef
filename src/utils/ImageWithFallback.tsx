@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
 import Image, { ImageProps } from 'next/image';
+import { useState } from 'react';
 
 interface ImageWithFallbackProps extends ImageProps {
   fallbackSrc: string;
 }
 
-const ImageWithFallback = (props: ImageWithFallbackProps) => {
+export function ImageWithFallback(props: ImageWithFallbackProps) {
   const { src, fallbackSrc, ...rest } = props;
   const [imgSrc, setImgSrc] = useState(src);
 
@@ -19,6 +19,4 @@ const ImageWithFallback = (props: ImageWithFallbackProps) => {
       }}
     />
   );
-};
-
-export default ImageWithFallback;
+}

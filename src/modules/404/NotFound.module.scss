@@ -1,0 +1,24 @@
+@use '@/styles/common/sizing' as *;
+
+.main {
+  @extend %mainBig;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.image {
+  width: 10%;
+  height: 10%;
+}
+
+.text {
+  font-size: 2rem;
+  font-weight: 600;
+
+  &:first-of-type {
+    padding-top: 3rem;
+  }
+}

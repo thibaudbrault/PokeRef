@@ -1,0 +1,85 @@
+@use '@/styles/abstracts' as *;
+@use '@/styles/common' as *;
+
+.list {
+  min-height: 25vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 5rem;
+
+  & li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 3rem;
+    width: 21rem;
+    height: 32rem;
+    padding: 2rem 3rem;
+    background: rgb(255 255 255 / 40%);
+    border-radius: 5px;
+    font-size: 1.5rem;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      border: 1px solid $red;
+    }
+
+    @include sm {
+      width: 18rem;
+      height: 27rem;
+      margin: 2rem;
+      padding: 1.5rem 2.5rem;
+    }
+  }
+
+  &:empty {
+    margin-bottom: 0;
+  }
+
+  @include sm {
+    justify-content: space-evenly;
+  }
+}
+
+.text {
+  margin: 0 0 3rem;
+  font-size: 1.5rem;
+
+  & span {
+    text-transform: capitalize;
+  }
+}
+
+.link {
+  font-size: 3rem;
+  font-family: Oswald, sans-serif;
+  text-transform: capitalize;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    color: $red;
+  }
+}
+
+.empty {
+  width: 100%;
+  min-height: 25vh;
+  display: none;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.main {
+  @extend %mainBig;
+
+  & .list:empty + .empty {
+    display: block;
+  }
+}

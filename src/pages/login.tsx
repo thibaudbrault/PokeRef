@@ -1,22 +1,7 @@
-import { H2 } from '@/components/common/styles/Headings';
-import { MainForm } from '@/components/common/styles/Sizing';
-import ResetPwd from '@/components/pages/Auth/ResetPwd';
-import {
-  AuthBtn,
-  AuthButtons,
-  AuthChoice,
-  AuthClose,
-  AuthContainer,
-  AuthForm,
-  AuthImage,
-  AuthInput,
-  AuthResetPwd,
-  AuthSecBtn,
-  AuthSwitch,
-  AuthTitle,
-} from '@/components/pages/Auth/Styled.Auth';
 import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
-import { capitalize } from '@/utils/Typography';
+import styles from '@/modules/auth/Auth.module.scss';
+import ResetPwd from '@/modules/auth/ResetPwd';
+import { capitalize } from '@/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
 import { GrGithub, GrGoogle } from '@meronex/icons/gr';
@@ -28,19 +13,13 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import * as yup from 'yup';
 
-type FormInput = {
-  email: string;
-  password: string;
-  resetEmail: string;
-};
+const schema = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().min(6).required(),
+  resetEmail: yup.string().email().required(),
+});
 
-const schema = yup
-  .object({
-    email: yup.string().email().required(),
-    password: yup.string().min(6).required(),
-    resetEmail: yup.string().email().required(),
-  })
-  .required();
+type FormInput = yup.Asserts<typeof schema>;
 
 function Login() {
   const router = useRouter();
@@ -55,7 +34,7 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormInput>({
-    resolver: yupResolver<yup.AnyObjectSchema>(schema),
+    resolver: yupResolver<FormInput>(schema),
   });
 
   const submitForm = async (data: FormInput) => {
@@ -89,20 +68,20 @@ function Login() {
   };
 
   return (
-    <MainForm>
-      <AuthContainer>
-        <AuthClose href={`/`}>
+    <main className="mainForm">
+      <div className={styles.container}>
+        <Link className={styles.close} href={`/`}>
           <FiX />
-        </AuthClose>
-        <AuthImage />
-        <AuthForm onSubmit={handleSubmit(submitForm)}>
-          <AuthTitle>
-            <H2>Login</H2>
+        </Link>
+        <div className={styles.image} />
+        <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
+          <div className={styles.title}>
+            <h2 className="h2">Login</h2>
             <p>
               Go to your profile to create teams and find your favorites pokémon
             </p>
-          </AuthTitle>
-          <AuthInput>
+          </div>
+          <div className={styles.input}>
             <div>
               <input
                 type="email"
@@ -124,37 +103,51 @@ function Login() {
               {typeof errors.password?.message === `string` && (
                 <small>{capitalize(errors.password?.message)}</small>
               )}
-              <AuthResetPwd type="button" onClick={openModal}>
+              <button
+                className={styles.reset}
+                type="button"
+                onClick={openModal}
+              >
                 J'ai oublié mon mot de passe
-              </AuthResetPwd>
+              </button>
             </div>
-            <AuthBtn type="submit">Login</AuthBtn>
-          </AuthInput>
-          <AuthChoice>OR</AuthChoice>
-          <AuthInput>
-            <AuthButtons>
-              <AuthSecBtn type="button" onClick={googleConnect}>
+            <button className={styles.button} type="submit">
+              Login
+            </button>
+          </div>
+          <p className={styles.choice}>OR</p>
+          <div className={styles.input}>
+            <div className={styles.providers}>
+              <button
+                className={styles.secButton}
+                type="button"
+                onClick={googleConnect}
+              >
                 Sign In with Google
                 <span>
                   <GrGoogle />
                 </span>
-              </AuthSecBtn>
-              <AuthSecBtn type="button" onClick={githubConnect}>
+              </button>
+              <button
+                className={styles.secButton}
+                type="button"
+                onClick={githubConnect}
+              >
                 Sign In with Github
                 <span>
                   <GrGithub />
                 </span>
-              </AuthSecBtn>
-            </AuthButtons>
-          </AuthInput>
-          <AuthSwitch>
+              </button>
+            </div>
+          </div>
+          <p className={styles.switch}>
             Don't have an account yet ?{` `}
             <Link href="/register">Register</Link>
-          </AuthSwitch>
-        </AuthForm>
-      </AuthContainer>
+          </p>
+        </form>
+      </div>
       <ResetPwd modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
-    </MainForm>
+    </main>
   );
 }
 

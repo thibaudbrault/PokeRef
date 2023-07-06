@@ -1,16 +1,5 @@
-import { H2 } from '@/components/common/styles/Headings';
-import { MainForm } from '@/components/common/styles/Sizing';
-import {
-  AuthBtn,
-  AuthClose,
-  AuthContainer,
-  AuthForm,
-  AuthImage2,
-  AuthInput,
-  AuthSwitch,
-  AuthTitle,
-} from '@/components/pages/Auth/Styled.Auth';
 import { auth, db } from '@/firebase-config';
+import styles from '@/modules/auth/Auth.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -21,24 +10,17 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import * as yup from 'yup';
 
-type FormInput = {
-  username: string;
-  email: string;
-  password: string;
-  cpassword: string;
-};
+const schema = yup.object({
+  username: yup.string().required(),
+  email: yup.string().email().required(),
+  password: yup.string().min(6).required(),
+  cpassword: yup
+    .string()
+    .oneOf([yup.ref(`password`)])
+    .required(),
+});
 
-const schema = yup
-  .object({
-    username: yup.string().required(),
-    email: yup.string().email().required(),
-    password: yup.string().min(6).required(),
-    cpassword: yup
-      .string()
-      .oneOf([yup.ref(`password`)])
-      .required(),
-  })
-  .required();
+type FormInput = yup.Asserts<typeof schema>;
 
 function Register() {
   const router = useRouter();
@@ -48,7 +30,7 @@ function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormInput>({
-    resolver: yupResolver<yup.AnyObjectSchema>(schema),
+    resolver: yupResolver<FormInput>(schema),
   });
 
   const submitForm = async (data: FormInput) => {
@@ -85,18 +67,18 @@ function Register() {
   };
 
   return (
-    <MainForm>
-      <AuthContainer>
-        <AuthClose href={`/`}>
+    <main className="mainForm">
+      <div className={styles.container}>
+        <Link className={styles.close} href={`/`}>
           <FiX />
-        </AuthClose>
-        <AuthImage2 />
-        <AuthForm onSubmit={handleSubmit(submitForm)}>
-          <AuthTitle>
-            <H2>Register</H2>
+        </Link>
+        <div className={styles.image2} />
+        <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
+          <div className={styles.title}>
+            <h2 className="h2">Register</h2>
             <p>Create teams and save your favorites pokémon</p>
-          </AuthTitle>
-          <AuthInput>
+          </div>
+          <div className={styles.input}>
             <div>
               <input
                 type="text"
@@ -132,14 +114,16 @@ function Register() {
                 {...register(`cpassword`)}
               />
             </div>
-            <AuthBtn type="submit">Register</AuthBtn>
-          </AuthInput>
-          <AuthSwitch>
+            <button className={styles.button} type="submit">
+              Register
+            </button>
+          </div>
+          <p className={styles.switch}>
             Already have an account ? <Link href="/login">Login</Link>
-          </AuthSwitch>
-        </AuthForm>
-      </AuthContainer>
-    </MainForm>
+          </p>
+        </form>
+      </div>
+    </main>
   );
 }
 

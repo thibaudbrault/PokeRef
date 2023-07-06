@@ -1,28 +1,14 @@
-import { LeftH2 } from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
-import {
-  FullWidthTable,
-  TableContainer,
-  TBold,
-  TEffect,
-  TLink,
-} from '@/components/common/styles/Table';
-import Loader from '@/components/common/ui/Loader/Loader';
-import SearchAbilities from '@/components/pages/Abilities/Components/Search.Abilities';
-import { SearchContainer } from '@/components/pages/Moves/Styled.Moves';
-import { usePaginatedTableParams } from '@/hooks/usePaginatedTableParams';
-import { IAbility } from '@/types/Pokemon/Ability';
-import { getAbilities } from '@/utils/DataFetch';
-import { removeDash } from '@/utils/Typography';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { Loader } from '@/components';
+import { usePaginatedTableParams } from '@/hooks';
+import { Heading, Search } from '@/modules/abilities';
+import moves from '@/modules/moves/Moves.module.scss';
+import { IAbility } from '@/types';
+import { getAbilities, removeDash } from '@/utils';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
-import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { useMemo } from 'react';
 import toast from 'react-hot-toast';
-
-const HeadingAbilities = dynamic(
-  () => import(`@/components/pages/Abilities/Heading`),
-);
 
 function AbilitiesPage() {
   const {
@@ -44,16 +30,17 @@ function AbilitiesPage() {
         id: `sort`,
         header: `Name`,
         cell: (info) => (
-          <TBold>
-            <TLink
+          <td className="tBold">
+            <Link
+              className="tLink"
               href={{
                 pathname: `/ability/[name]`,
                 query: { name: info.getValue<string>() },
               }}
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
-          </TBold>
+            </Link>
+          </td>
         ),
       },
       {
@@ -64,9 +51,9 @@ function AbilitiesPage() {
         id: `effect`,
         header: `Effect`,
         cell: (info) => (
-          <TEffect>
+          <td className="tEffect">
             <span>{info.getValue<string>()}</span>
-          </TEffect>
+          </td>
         ),
       },
     ],
@@ -90,20 +77,20 @@ function AbilitiesPage() {
 
   return (
     <>
-      <HeadingAbilities />
-      <MainBig>
-        <SearchContainer>
-          <LeftH2>Abilities</LeftH2>
-          <SearchAbilities abilities={abilities} />
-        </SearchContainer>
-        <TableContainer ref={tableContainerRef}>
-          <FullWidthTable>
+      <Heading />
+      <main className="mainBig">
+        <div className={moves.search}>
+          <h2 className="leftH2">Abilities</h2>
+          <Search abilities={abilities} />
+        </div>
+        <section className="tableContainer" ref={tableContainerRef}>
+          <table className="fullWidthTable">
             {tableHeader()}
             {tableBody()}
-          </FullWidthTable>
+          </table>
           {tablePagination()}
-        </TableContainer>
-      </MainBig>
+        </section>
+      </main>
     </>
   );
 }

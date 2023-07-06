@@ -12,6 +12,7 @@ export const removeLongName = (str: string) =>
     ?.replace(/-?land$/, ``)
     ?.replace(/-?plant$/, ``)
     ?.replace(/-?red striped$/, ``)
+    ?.replace(/-?blue striped$/, ``)
     ?.replace(/-?standard$/, ``)
     ?.replace(/-?incarnate$/, ``)
     ?.replace(/-?ordinary$/, ``)

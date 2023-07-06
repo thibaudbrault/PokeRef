@@ -1,0 +1,199 @@
+@use '@/styles/abstracts' as *;
+@use '@/styles/common' as *;
+
+.section {
+  @extend %section;
+
+  position: relative;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 55% 45%;
+  gap: 3rem;
+
+  @include md {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+  }
+}
+
+.catch {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: 0.3s ease-in-out;
+  @include themed {
+    background: t('text');
+    border: 1px solid t('text');
+  }
+
+  &:hover {
+    background: transparent;
+    @include themed {
+      color: t('text');
+    }
+  }
+}
+
+.caught {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.7rem 1.5rem;
+  background: transparent;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  opacity: 0.7;
+  @include themed {
+    color: t('text');
+    border: 1px solid t('text');
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sprite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.desc {
+  font-size: 2rem;
+
+  & p {
+    padding-top: 0.5rem;
+    font-size: 1.3rem;
+  }
+}
+
+.types {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  & div {
+    margin: 2rem;
+    margin-left: 0;
+    padding: 0 1.5rem;
+    border-radius: 5px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+
+    & a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      & img {
+        cursor: pointer;
+      }
+
+      & span {
+        font-family: Oswald, sans-serif;
+        font-size: 3rem;
+        cursor: pointer;
+        @include themed {
+          color: t('bg');
+          text-shadow: t('text') -1px -1px 0, t('text') 1px -1px 0,
+            t('text') -1px 1px 0, t('text') 1px 1px 0;
+        }
+      }
+    }
+  }
+
+  @include sm {
+    justify-content: center;
+  }
+}
+
+.oldTypes {
+  font-size: 1.7rem;
+
+  & span {
+    text-transform: capitalize;
+
+    &:not(:first-of-type) {
+      font-weight: 600;
+    }
+  }
+}
+
+.table {
+  @extend %table;
+
+  width: 90%;
+
+  & th {
+    background: rgb(130 130 130 / 20%);
+    text-transform: capitalize;
+  }
+
+  & td {
+    font-size: 1.7rem;
+    font-weight: 600;
+    text-align: left;
+    text-transform: capitalize;
+
+    & ul {
+      margin-left: 2rem;
+
+      & li {
+        list-style-type: decimal;
+        text-align: left;
+      }
+    }
+  }
+}
+
+%pill {
+  margin: 1rem 0 0;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  font-size: 2rem;
+  transition: 0.3s ease-in-out;
+}
+
+.pill {
+  @extend %pill;
+}
+
+.special {
+  @extend %pill;
+
+  border: 1px solid $purple;
+  background: $purple;
+  color: #c4c4c4;
+  font-weight: 600;
+}
+
+.imageContainer {
+  position: relative;
+  width: 75%;
+  height: 75%;
+}
+
+.image {
+  @include pulse;
+  @include animate(pulse, 5s, inifnite);
+
+  @include sm {
+    width: 75%;
+    margin-bottom: 1rem;
+  }
+}

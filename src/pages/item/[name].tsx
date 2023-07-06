@@ -1,33 +1,20 @@
-import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
-import BackBtn from '@/components/common/ui/BackBtn';
-import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingItem from '@/components/pages/Items/ItemCard/Heading';
-import { useFilterItem } from '@/components/pages/Items/ItemCard/Hooks/useFilterItem';
+import { Button, Loader } from '@/components';
 import {
-  ItemCardDataEffect,
-  ItemCardDataImage,
-  ItemCardDataSection,
-} from '@/components/pages/Items/ItemCard/Styled.ItemCard';
-import { removeDash } from '@/utils/Typography';
+  Cost,
+  Description,
+  Fling,
+  Heading,
+  Held,
+  useFilterItem,
+} from '@/modules/items/item';
+
+import styles from '@/modules/items/item/Item.module.scss';
+import { removeDash } from '@/utils';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import { GetServerSidePropsContext } from 'next';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
-
-const DescItemcard = dynamic(
-  () => import(`@/components/pages/Items/ItemCard/Components/Desc.Itemcard`),
-);
-const FlingItemCard = dynamic(
-  () => import(`@/components/pages/Items/ItemCard/Components/Fling.ItemCard`),
-);
-const HeldItemcard = dynamic(
-  () => import(`@/components/pages/Items/ItemCard/Components/Held.Itemcard`),
-);
-const CostItemCard = dynamic(
-  () => import(`@/components/pages/Items/ItemCard/Components/Cost.ItemCard`),
-);
 
 type Props = {
   name: string;
@@ -51,21 +38,21 @@ function ItemCard({ name }: Props) {
   if (item) {
     return (
       <>
-        <HeadingItem name={name} />
-        <MainBig>
-          <CardTitle>{removeDash(item?.name)}</CardTitle>
-          <Subtitle>{removeDash(item?.category.name)}</Subtitle>
-          <ItemCardDataSection>
+        <Heading name={name} />
+        <main className="mainBig">
+          <h2 className="pageTitle">{removeDash(item?.name)}</h2>
+          <h4 className="subtitle">{removeDash(item?.category.name)}</h4>
+          <section className={styles.section}>
             <div>
-              <ItemCardDataEffect>
+              <div className={styles.effect}>
                 <h3>Effect</h3>
                 <p>{filterEffect?.effect}</p>
-              </ItemCardDataEffect>
-              <CostItemCard item={item} />
-              <HeldItemcard item={item} />
-              <FlingItemCard item={item} />
+              </div>
+              <Cost item={item} />
+              <Held item={item} />
+              <Fling item={item} />
             </div>
-            <ItemCardDataImage>
+            <div className={styles.image}>
               {item && (
                 <Image
                   src={item?.sprites?.default}
@@ -74,13 +61,16 @@ function ItemCard({ name }: Props) {
                   height={96}
                 />
               )}
-            </ItemCardDataImage>
-          </ItemCardDataSection>
-          <DescItemcard item={item} />
-          <Link href="/items" passHref>
-            <BackBtn name="Items" />
-          </Link>
-        </MainBig>
+            </div>
+          </section>
+          <Description item={item} />
+          <Button intent="back" asChild>
+            <Link href="/items">
+              <FaChevronLeft />
+              Back to Items
+            </Link>
+          </Button>
+        </main>
       </>
     );
   }

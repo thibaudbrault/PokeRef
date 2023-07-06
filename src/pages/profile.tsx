@@ -1,15 +1,12 @@
-import { LeftH2, LeftSubtitle } from '@/components/common/styles/Headings';
-import { Input } from '@/components/common/styles/Inputs';
-import { MainBig, Section } from '@/components/common/styles/Sizing';
-import { ProfileCaught } from '@/components/pages/Profile/Styled.Profile';
 import { auth, db } from '@/firebase-config';
-import { capitalize, removeDash } from '@/utils/Typography';
+import styles from '@/modules/profile/Profile.module.scss';
+import { capitalize, removeDash } from '@/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
+  DocumentData,
   arrayRemove,
   deleteDoc,
   doc,
-  DocumentData,
   getDoc,
   onSnapshot,
   updateDoc,
@@ -21,22 +18,13 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as yup from 'yup';
-import {
-  ProfileDetails,
-  ProfileForm,
-} from '../components/pages/Profile/Styled.Profile';
 
-type FormInput = {
-  username: string;
-  email: string;
-};
+const schema = yup.object({
+  username: yup.string().required(),
+  email: yup.string().email().required(),
+});
 
-const schema = yup
-  .object({
-    username: yup.string(),
-    email: yup.string().email(),
-  })
-  .required();
+type FormInput = yup.Asserts<typeof schema>;
 
 function Profile() {
   const router = useRouter();
@@ -78,7 +66,7 @@ function Profile() {
   };
 
   const { register, handleSubmit, reset, formState } = useForm<FormInput>({
-    resolver: yupResolver<yup.AnyObjectSchema>(schema),
+    resolver: yupResolver<FormInput>(schema),
     defaultValues: {
       username: ``,
       email: ``,
@@ -159,13 +147,13 @@ function Profile() {
 
   return (
     user && (
-      <MainBig>
-        <Section>
-          <LeftH2>{user.name}'s caught pokémon</LeftH2>
-          <LeftSubtitle>
+      <main className="mainBig">
+        <section className="section">
+          <h2 className="leftH2">{user.name}'s caught pokémon</h2>
+          <h4 className="leftSubtitle">
             You caught {user.caught.length} / 1010 Pokémon
-          </LeftSubtitle>
-          <ProfileCaught>
+          </h4>
+          <ul className={styles.caught}>
             {user?.caught.map((p: string[], index: number) => (
               <li key={p[index]}>
                 <Image src={p[1]} alt="" width={96} height={96} />
@@ -182,13 +170,13 @@ function Profile() {
                 </button>
               </li>
             ))}
-          </ProfileCaught>
-        </Section>
-        <Section>
-          <ProfileDetails>
+          </ul>
+        </section>
+        <section className="section">
+          <details className={styles.details}>
             <summary>Modify your profile</summary>
-            <ProfileForm onSubmit={handleSubmit(submitForm)}>
-              <Input>
+            <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
+              <div className="input">
                 <label htmlFor="username">Your trainer name</label>
                 <input
                   type="text"
@@ -196,8 +184,8 @@ function Profile() {
                   placeholder={user.name}
                   {...register(`username`)}
                 />
-              </Input>
-              <Input>
+              </div>
+              <div className="input">
                 <label htmlFor="email">Your email</label>
                 <input
                   type="text"
@@ -205,12 +193,12 @@ function Profile() {
                   placeholder={user.email}
                   {...register(`email`)}
                 />
-              </Input>
+              </div>
               <button type="submit">Update</button>
-            </ProfileForm>
-          </ProfileDetails>
-        </Section>
-      </MainBig>
+            </form>
+          </details>
+        </section>
+      </main>
     )
   );
 }

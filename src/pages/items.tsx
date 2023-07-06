@@ -1,8 +1,5 @@
-import { MethodNav } from '@/components/common/styles/Navbars';
-import { MainBig } from '@/components/common/styles/Sizing';
-import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingItems from '@/components/pages/Items/Heading';
-import { useToggleTable } from '@/components/pages/Items/Hooks/useToggleTable';
+import { Loader } from '@/components';
+import { Heading, useToggleTable } from '@/modules/items';
 import toast from 'react-hot-toast';
 
 function ItemsPage() {
@@ -22,9 +19,9 @@ function ItemsPage() {
 
   return (
     <>
-      <HeadingItems />
-      <MainBig>
-        <MethodNav>
+      <Heading />
+      <main className="mainBig">
+        <nav className="methodNav">
           <button
             className={toggle === 1 ? `button_active` : ``}
             onClick={() => setToggle(1)}
@@ -37,9 +34,9 @@ function ItemsPage() {
           >
             <p>Berries</p>
           </button>
-        </MethodNav>
+        </nav>
         {pageShown()}
-      </MainBig>
+      </main>
     </>
   );
 }

@@ -1,10 +1,9 @@
-import { THead, TRow } from '@/components/common/styles/Table';
 import { BisChevronDown, BisChevronUp } from '@meronex/icons/bi';
 import {
+  SortingState,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  SortingState,
   useReactTable,
 } from '@tanstack/react-table';
 import { useEffect, useRef, useState } from 'react';
@@ -44,7 +43,7 @@ export function useTableParams(data, columns) {
 
   const tableHeader = () => {
     return (
-      <THead>
+      <thead className="tHead">
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => {
@@ -80,7 +79,7 @@ export function useTableParams(data, columns) {
             })}
           </tr>
         ))}
-      </THead>
+      </thead>
     );
   };
 
@@ -90,7 +89,7 @@ export function useTableParams(data, columns) {
         {virtualRows.map((virtualRow) => {
           const row = rows[virtualRow.index];
           return (
-            <TRow key={row.id}>
+            <tr className="tr" key={row.id}>
               {row.getVisibleCells().map((cell) => {
                 return (
                   <>
@@ -98,7 +97,7 @@ export function useTableParams(data, columns) {
                   </>
                 );
               })}
-            </TRow>
+            </tr>
           );
         })}
       </tbody>

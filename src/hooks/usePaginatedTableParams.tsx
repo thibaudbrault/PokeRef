@@ -1,16 +1,15 @@
-import { Pagination } from '@/components/common/styles/Pagination';
-import { THead, TRow } from '@/components/common/styles/Table';
 import { BisChevronDown, BisChevronUp } from '@meronex/icons/bi';
 import {
+  PaginationState,
+  SortingState,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  PaginationState,
-  SortingState,
   useReactTable,
 } from '@tanstack/react-table';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import { useVirtual } from 'react-virtual';
 
 // @ts-ignore
@@ -67,7 +66,7 @@ export function usePaginatedTableParams(data, columns) {
 
   const tableHeader = () => {
     return (
-      <THead>
+      <thead className="tHead">
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => {
@@ -103,7 +102,7 @@ export function usePaginatedTableParams(data, columns) {
             })}
           </tr>
         ))}
-      </THead>
+      </thead>
     );
   };
 
@@ -113,7 +112,7 @@ export function usePaginatedTableParams(data, columns) {
         {virtualRows.map((virtualRow) => {
           const row = rows[virtualRow.index];
           return (
-            <TRow key={row.id}>
+            <tr className="tr" key={row.id}>
               {row.getVisibleCells().map((cell) => {
                 return (
                   <>
@@ -121,7 +120,7 @@ export function usePaginatedTableParams(data, columns) {
                   </>
                 );
               })}
-            </TRow>
+            </tr>
           );
         })}
       </tbody>
@@ -130,7 +129,8 @@ export function usePaginatedTableParams(data, columns) {
 
   const tablePagination = () => {
     return (
-      <Pagination
+      <ReactPaginate
+        containerClassName="pagination"
         breakLabel="..."
         onPageChange={handlePageChange}
         nextLabel=">"

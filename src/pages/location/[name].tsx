@@ -1,33 +1,21 @@
-import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
-import { MainBig, Section } from '@/components/common/styles/Sizing';
-import { TableContainer, TBold, TLink } from '@/components/common/styles/Table';
-import BackBtn from '@/components/common/ui/BackBtn';
-import Loader from '@/components/common/ui/Loader/Loader';
-import { useSwitchGame } from '@/components/pages/Locations/LocationCard/Hooks/useSwitchGame';
-import { LocationTable } from '@/components/pages/Locations/Styled.Locations';
-import { useTableParams } from '@/hooks/useTableParams';
-import { IEncounterConditionValue } from '@/types/Encounters/EncounterConditionValue';
-import { IEncounterMethod } from '@/types/Encounters/EncounterMethod';
-import { IPokemonEncounter } from '@/types/Locations/LocationArea';
-import { IEncounter, IName } from '@/types/Utility/CommonModels';
-import { removeDash } from '@/utils/Typography';
+import { Button, Loader, Nav } from '@/components';
+import { useTableParams } from '@/hooks';
+import styles from '@/modules/locations/Locations.module.scss';
+import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
+import {
+  IEncounter,
+  IEncounterConditionValue,
+  IEncounterMethod,
+  IName,
+  IPokemonEncounter,
+} from '@/types';
+import { removeDash } from '@/utils';
+import { FaChevronLeft } from '@meronex/icons/fa';
 import { ColumnDef } from '@tanstack/react-table';
 import { GetServerSidePropsContext } from 'next';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useEffect, useMemo, useState, useCallback } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
-
-const HeadingLocation = dynamic(
-  () => import(`@/components/pages/Locations/LocationCard/Heading`),
-);
-const Nav = dynamic(() => import(`@/components/common/ui/GenNav`));
-const AreaLocationCard = dynamic(
-  () =>
-    import(
-      `@/components/pages/Locations/LocationCard/Components/Area.LocationCard`
-    ),
-);
 
 type Props = {
   name: string;
@@ -92,16 +80,17 @@ function LocationCard({ name }: Props) {
         id: `name`,
         header: `Pokemon`,
         cell: (info) => (
-          <TBold>
-            <TLink
+          <td className="tBold">
+            <Link
+              className="tLink"
               href={{
                 pathname: `/pokemon/[name]`,
                 query: { name: info.getValue<string>() },
               }}
             >
               {removeDash(info.getValue<string>())}
-            </TLink>
-          </TBold>
+            </Link>
+          </td>
         ),
       },
       {
@@ -203,27 +192,27 @@ function LocationCard({ name }: Props) {
 
   return (
     <>
-      <HeadingLocation name={name} />
-      <MainBig>
-        <CardTitle>
+      <Heading name={name} />
+      <main className="mainBig">
+        <h2 className="pageTitle">
           {location &&
             removeDash(location.data?.name).replace(
               /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea/g,
               ``,
             )}
-        </CardTitle>
-        <Subtitle>
+        </h2>
+        <h4 className="subtitle">
           {game && `${location.data?.region.name} - ${removeDash(game)}`}
-        </Subtitle>
-        <AreaLocationCard
+        </h4>
+        <Area
           location={location.data}
           toggleState={toggleState}
           toggleTable={toggleTable}
         />
         <Nav setGame={setGame} setVersion={setVersion} />
-        <Section>
-          <TableContainer ref={tableContainerRef}>
-            <LocationTable>
+        <section className="section">
+          <div className="tableContainer" ref={tableContainerRef}>
+            <table className={styles.table}>
               {tableHeader()}
               {tableBody()}
               <tfoot>
@@ -231,13 +220,16 @@ function LocationCard({ name }: Props) {
                   <td colSpan={5}>This area is not present in this game</td>
                 </tr>
               </tfoot>
-            </LocationTable>
-          </TableContainer>
-        </Section>
-        <Link href="/locations" passHref>
-          <BackBtn name="Locations" />
-        </Link>
-      </MainBig>
+            </table>
+          </div>
+        </section>
+        <Button intent="back" asChild>
+          <Link href="/locations">
+            <FaChevronLeft />
+            Back to Locations
+          </Link>
+        </Button>
+      </main>
     </>
   );
 }
