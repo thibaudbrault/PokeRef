@@ -1,17 +1,51 @@
 @use 'sass:map';
 
-$red: #c00000;
-$purple: #5e318f;
-$dark: #161616;
-$light: #a0a0a0;
+$red: #f2555a;
+$purple: #7c66dc;
+$dark-bg: #161616;
+$dark-normal-dark: #232323;
+$dark-hover-dark: #282828;
+$dark-active: #2e2e2e;
+$dark-subtle-border: #343434;
+$dark-border: #3e3e3e;
+$dark-hover-border: #505050;
+$dark-normal-bright: #707070;
+$dark-hover-bright: #7e7e7e;
+$dark-text: #a0a0a0;
+$light-bg: #a0a0a0;
+$light-hover-bright: #7e7e7e;
+$light-normal-bright: #707070;
+$light-subtle-border: #505050;
+$light-border: #3e3e3e;
+$light-hover-border: #343434;
+$light-active: #2e2e2e;
+$light-normal-dark: #282828;
+$light-hover-dark: #232323;
+$light-text: #161616;
 $themes: (
   dark: (
-    bg: $dark,
-    text: $light,
+    bg: $dark-bg,
+    normaldark: $dark-normal-dark,
+    hoverdark: $dark-hover-dark,
+    active: $dark-active,
+    subtleborder: $dark-subtle-border,
+    border: $dark-border,
+    hoverborder: $dark-hover-border,
+    normalbright: $dark-normal-bright,
+    hoverbright: $dark-hover-bright,
+    text: $dark-text,
   ),
   light: (
-    bg: $light,
-    text: $dark,
+    bg: $light-bg,
+    normalbright: $light-normal-bright,
+    hoverbright: $light-hover-bright,
+    active: $light-active,
+    subtleborder: $light-subtle-border,
+    border: $light-border,
+    hoverborder: $light-hover-border,
+    normaldark: $light-normal-dark,
+    hoverdark: $light-hover-dark,
+    text: $light-text,
   ),
 );
 
