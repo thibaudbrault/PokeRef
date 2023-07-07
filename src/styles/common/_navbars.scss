@@ -327,19 +327,24 @@
       & .NavigationMenuContent[data-motion='from-start'] {
         animation-name: enterFromLeft;
       }
+
       & .NavigationMenuContent[data-motion='from-end'] {
         animation-name: enterFromRight;
       }
+
       & .NavigationMenuContent[data-motion='to-start'] {
         animation-name: exitToLeft;
       }
+
       & .NavigationMenuContent[data-motion='to-end'] {
         animation-name: exitToRight;
       }
     }
+
     .NavigationMenuViewport[data-state='open'] {
       animation: scaleIn 200ms ease;
     }
+
     .NavigationMenuViewport[data-state='closed'] {
       animation: scaleOut 200ms ease;
     }
@@ -351,6 +356,7 @@
     opacity: 0;
     transform: translateX(200px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -362,6 +368,7 @@
     opacity: 0;
     transform: translateX(-200px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -373,6 +380,7 @@
     opacity: 1;
     transform: translateX(0);
   }
+
   to {
     opacity: 0;
     transform: translateX(200px);
@@ -384,6 +392,7 @@
     opacity: 1;
     transform: translateX(0);
   }
+
   to {
     opacity: 0;
     transform: translateX(-200px);
@@ -395,6 +404,7 @@
     opacity: 0;
     transform: rotateX(-30deg) scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: rotateX(0deg) scale(1);
@@ -406,6 +416,7 @@
     opacity: 1;
     transform: rotateX(0deg) scale(1);
   }
+
   to {
     opacity: 0;
     transform: rotateX(-10deg) scale(0.95);
@@ -416,6 +427,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -425,6 +437,7 @@
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
