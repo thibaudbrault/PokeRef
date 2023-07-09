@@ -1,4 +1,4 @@
-import { Button, Loader, Separator } from '@/components';
+import { Button, ErrorToast, Loader, Separator } from '@/components';
 import {
   Description,
   Heading,
@@ -10,7 +10,6 @@ import { removeDash } from '@/utils';
 import { FaChevronLeft } from '@meronex/icons/fa';
 import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
-import toast from 'react-hot-toast';
 
 type Props = {
   name: string;
@@ -31,11 +30,7 @@ function Ability({ name }: Props) {
   } = useFilterAbility(name);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error?.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

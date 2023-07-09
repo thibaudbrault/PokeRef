@@ -1,7 +1,36 @@
-import React from 'react';
+import { toast } from 'react-hot-toast';
 
-function Toast() {
-  return <div>Toast</div>;
-}
+type Props = {
+  error?: Error | null;
+  text?: string;
+};
 
-export default Toast;
+export const ErrorToast = ({ error }: Props) => {
+  return (
+    <>
+      {toast.error(
+        error
+          ? `Something went wrong: ${error.message}`
+          : `Something went wrong`,
+        {
+          style: {
+            fontSize: `1.7rem`,
+          },
+        },
+      )}
+    </>
+  );
+};
+
+export const SuccessToast = ({ text }: Props) => {
+  const toastText = text ?? `Done`;
+  return (
+    <>
+      {toast.success(toastText, {
+        style: {
+          fontSize: `1.7rem`,
+        },
+      })}
+    </>
+  );
+};

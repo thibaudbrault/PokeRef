@@ -1,4 +1,4 @@
-import { Button, Loader, GenNav } from '@/components';
+import { Button, ErrorToast, GenNav, Loader } from '@/components';
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/locations/Locations.module.scss';
 import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
@@ -15,7 +15,6 @@ import { ColumnDef } from '@tanstack/react-table';
 import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import toast from 'react-hot-toast';
 
 type Props = {
   name: string;
@@ -179,11 +178,7 @@ function LocationCard({ name }: Props) {
   );
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error?.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

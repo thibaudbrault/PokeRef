@@ -1,4 +1,4 @@
-import { Button, Loader } from '@/components';
+import { Button, ErrorToast, Loader } from '@/components';
 import {
   Cost,
   Description,
@@ -7,14 +7,12 @@ import {
   Held,
   useFilterItem,
 } from '@/modules/items/item';
-
 import styles from '@/modules/items/item/Item.module.scss';
 import { removeDash } from '@/utils';
 import { FaChevronLeft } from '@meronex/icons/fa';
 import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import toast from 'react-hot-toast';
 
 type Props = {
   name: string;
@@ -24,11 +22,7 @@ function ItemCard({ name }: Props) {
   const { isLoading, isError, error, item, filterEffect } = useFilterItem(name);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error?.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

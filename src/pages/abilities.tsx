@@ -1,4 +1,4 @@
-import { Loader } from '@/components';
+import { ErrorToast, Loader } from '@/components';
 import { usePaginatedTableParams } from '@/hooks';
 import { Heading, Search } from '@/modules/abilities';
 import moves from '@/modules/moves/Moves.module.scss';
@@ -8,7 +8,6 @@ import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import toast from 'react-hot-toast';
 
 function AbilitiesPage() {
   const {
@@ -64,11 +63,7 @@ function AbilitiesPage() {
     usePaginatedTableParams(data, columns);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

@@ -1,4 +1,4 @@
-import { SmallLoader } from '@/components';
+import { ErrorToast, SmallLoader } from '@/components';
 import { useTableParams } from '@/hooks';
 import { IPokemon, IPokemonForm } from '@/types';
 import { getPokemonForms, removeDash } from '@/utils';
@@ -7,7 +7,6 @@ import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import toast from 'react-hot-toast';
 
 type Props = {
   pokemon: IPokemon;
@@ -144,15 +143,7 @@ export function Forms({ pokemon }: Props) {
   );
 
   if (isError) {
-    return (
-      <>
-        {toast.error(`Something went wrong: ${error.message}`, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        })}
-      </>
-    );
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

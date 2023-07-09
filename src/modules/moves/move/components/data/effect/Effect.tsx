@@ -3,7 +3,7 @@ import { getMoveTarget, removeDash } from '@/utils';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import styles from '../Data.module.scss';
-import { SmallLoader } from '@/components';
+import { ErrorToast, SmallLoader } from '@/components';
 
 type Props = {
   move: IMove;
@@ -26,15 +26,7 @@ export function Effect({ move, version }: Props) {
   };
 
   if (isError) {
-    return (
-      <>
-        {toast.error(`Something went wrong: ${error?.message}`, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        })}
-      </>
-    );
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

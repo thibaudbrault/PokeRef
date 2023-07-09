@@ -8,8 +8,8 @@ export const getPokedexResults = async () => {
     const res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1010`);
     const results = await res.data.results;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -23,8 +23,8 @@ export const getPokedex = async (url: string) => {
     );
     const result = promiseRes.map((res) => res.data);
     return result;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -38,8 +38,8 @@ export const getMoves = async () => {
     );
     const result = promiseRes.map((res) => res.data);
     return result;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -55,8 +55,8 @@ export const getStatus = async () => {
     );
     const result = promiseRes.map((res) => res.data);
     return result;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -70,8 +70,8 @@ export const getStats = async () => {
     );
     const result = promiseRes.map((res) => res.data);
     return result;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -85,8 +85,8 @@ export const getAbilities = async () => {
     );
     const result = promiseRes.map((res) => res.data);
     return result;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -100,8 +100,8 @@ export const getTypes = async () => {
     );
     const result = promiseRes.map((res) => res.data);
     return result;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -115,8 +115,8 @@ export const getMachines = async () => {
     );
     const result = promiseRes.map((res) => res.data);
     return result;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -130,8 +130,8 @@ export const getItems = async () => {
     );
     const result = promiseRes.map((res) => res.data);
     return result;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -145,8 +145,8 @@ export const getBerries = async () => {
     );
     const result = promiseRes.map((res) => res.data);
     return result;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -160,8 +160,8 @@ export const getRegions = async () => {
     );
     const result = promiseRes.map((res) => res.data);
     return result;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -177,8 +177,8 @@ export const getEncounterCondition = async () => {
     );
     const result = promiseRes.map((res) => res.data);
     return result;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -194,8 +194,8 @@ export const getEncounterMethod = async () => {
     );
     const result = promiseRes.map((res) => res.data);
     return result;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -205,8 +205,8 @@ export const getPokemon = async (url: string) => {
     const res = await axios.get(url);
     const results = await res.data;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -217,8 +217,8 @@ export const getPokemonTypes = async (pokemon: IPokemon) => {
     const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
     const results = promiseRes.map((res) => res.data);
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -229,8 +229,8 @@ export const getPokemonForms = async (pokemon: IPokemon) => {
     const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
     const results = promiseRes.map((res) => res.data);
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -240,8 +240,8 @@ export const getMove = async (name: string) => {
     const res = await axios.get(`https://pokeapi.co/api/v2/move/${name}`);
     const results = await res.data;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -252,8 +252,8 @@ export const getMovePokemon = async (move: IMove) => {
     const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
     const results = promiseRes.map((res) => res.data);
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -264,8 +264,8 @@ export const getMoveMachines = async (move: IMove) => {
     const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
     const results = promiseRes.map((res) => res.data);
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -279,8 +279,8 @@ export const getMoveTarget = async () => {
     );
     const result = promiseRes.map((res) => res.data);
     return result;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -290,8 +290,8 @@ export const getAbility = async (name: string) => {
     const res = await axios.get(`https://pokeapi.co/api/v2/ability/${name}`);
     const results = await res.data;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -302,8 +302,8 @@ export const getAbilityPokemon = async (ability: IAbility) => {
     const promiseRes = await Promise.all(res?.map((res) => axios.get(res)));
     const results = promiseRes.map((res) => res.data);
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -313,8 +313,8 @@ export const getSpecies = async (url: string) => {
     const res = await axios.get(url);
     const results = await res.data;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -324,8 +324,8 @@ export const getPokemonLocation = async (url: string) => {
     const res = await axios.get(url);
     const results = await res.data;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -335,8 +335,8 @@ export const getEvolution = async (url: string) => {
     const res = await axios.get(url);
     const results = await res.data;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -366,8 +366,8 @@ export const getAllEvo = async (evolution: IEvolutionChain) => {
       const results = [basePromiseRes.data];
       return results;
     }
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -377,8 +377,8 @@ export const getType = async (url: string) => {
     const res = await axios.get(url);
     const results = await res.data;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -389,8 +389,8 @@ export const getTypePokemon = async (type: IType) => {
     const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
     const results = promiseRes.map((res) => res.data);
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -401,8 +401,8 @@ export const getTypeMoves = async (type: IType) => {
     const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
     const results = promiseRes.map((res) => res.data);
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -412,8 +412,8 @@ export const getItem = async (name: string) => {
     const res = await axios.get(`https://pokeapi.co/api/v2/item/${name}`);
     const results = await res.data;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -423,8 +423,8 @@ export const getLocation = async (name: string) => {
     const res = await axios.get(`https://pokeapi.co/api/v2/location/${name}`);
     const results = await res.data;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -434,8 +434,8 @@ export const getArea = async (url: string) => {
     const res = await axios.get(url);
     const results = await res.data;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -445,8 +445,8 @@ export const getFormat = async (url: string) => {
     const res = await axios.get(url);
     const results = await res.data;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -465,8 +465,8 @@ export const getCards = async (name: string) => {
     );
     const results = await res.data.data;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -481,7 +481,7 @@ export const getTrainers = async (
     );
     const results = await res.data;
     return results;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
   }
 };

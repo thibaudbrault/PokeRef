@@ -1,4 +1,4 @@
-import { Button, Loader, Separator } from '@/components';
+import { Button, ErrorToast, Loader, Separator } from '@/components';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
 import {
   Cards,
@@ -23,7 +23,6 @@ import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
 import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import toast from 'react-hot-toast';
 
 type Props = {
   name: string;
@@ -67,11 +66,7 @@ function PokemonCard({ name }: Props) {
     types.status === `error` ||
     location.status === `error`
   ) {
-    return toast.error(`Something went wrong`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast />;
   }
 
   if (

@@ -1,3 +1,4 @@
+import { ErrorToast, SuccessToast } from '@/components';
 import { auth, db } from '@/firebase-config';
 import styles from '@/modules/auth/Auth.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,7 +8,6 @@ import { doc, setDoc } from 'firebase/firestore';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
 import * as yup from 'yup';
 
 const schema = yup.object({
@@ -48,20 +48,12 @@ function Register() {
             { name: `hyperball`, number: 0 },
           ],
         });
-        toast.success(`Congrats 🎉! Your account is now created`, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        });
         router.push(`/`);
+        return <SuccessToast text="Congrats 🎉! Your account is now created" />;
       }
     } catch (error) {
       if (error instanceof Error) {
-        toast.error(error.message, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        });
+        return <ErrorToast error={error} />;
       }
     }
   };

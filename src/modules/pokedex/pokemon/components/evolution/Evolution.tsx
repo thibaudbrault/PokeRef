@@ -1,12 +1,11 @@
+import { ErrorToast, SmallLoader } from '@/components';
 import { IEvolutionChain, IPokemon } from '@/types';
 import { getAllEvo, removeDash } from '@/utils';
 import { FaChevronRight } from '@meronex/icons/fa';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-import toast from 'react-hot-toast';
 import styles from './Evolution.module.scss';
-import { SmallLoader } from '@/components';
 
 type Props = {
   evolution: IEvolutionChain;
@@ -26,15 +25,7 @@ export function Evolution({ evolution, name }: Props) {
   });
 
   if (isError) {
-    return (
-      <>
-        {toast.error(`Something went wrong: ${error.message}`, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        })}
-      </>
-    );
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

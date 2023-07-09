@@ -1,17 +1,12 @@
-import { Loader } from '@/components';
+import { ErrorToast, Loader } from '@/components';
 import { Berries, Heading, Items, useItemsQuery } from '@/modules/items';
 import * as Tabs from '@radix-ui/react-tabs';
-import toast from 'react-hot-toast';
 
 function ItemsPage() {
   const { items, berries } = useItemsQuery();
 
   if (items.status === `error` || berries.status === `error`) {
-    return toast.error(`Something went wrong`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast />;
   }
 
   if (items.status === `loading` || berries.status === `loading`) {

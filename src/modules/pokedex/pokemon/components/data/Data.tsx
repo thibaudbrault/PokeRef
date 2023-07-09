@@ -1,3 +1,4 @@
+import { SuccessToast } from '@/components';
 import { auth, db } from '@/firebase-config';
 import { IPokemon, IPokemonSpecies } from '@/types';
 import { removeDash } from '@/utils';
@@ -10,7 +11,6 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
 import styles from './Data.module.scss';
 import { Base } from './base';
 import { Description } from './description';
@@ -42,12 +42,11 @@ export function Data({ pokemon, species, game }: Props) {
           1: pokemon.sprites.front_default,
         }),
       });
-      toast.success(`Congrats 🎉 ! You caught ${removeDash(pokemon.name)}`, {
-        style: {
-          fontSize: `1.7rem`,
-          textTransform: `capitalize`,
-        },
-      });
+      return (
+        <SuccessToast
+          text={`Congrats 🎉 ! You caught ${removeDash(pokemon.name)}`}
+        />
+      );
     }
   };
 

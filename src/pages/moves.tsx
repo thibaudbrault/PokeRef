@@ -1,7 +1,6 @@
-import { Loader } from '@/components';
+import { ErrorToast, Loader } from '@/components';
 import { Heading, Moves, Stats, Status, useMovesQuery } from '@/modules/moves';
 import * as Tabs from '@radix-ui/react-tabs';
-import toast from 'react-hot-toast';
 
 function MovesPage() {
   const { moves, status, stats } = useMovesQuery();
@@ -11,11 +10,7 @@ function MovesPage() {
     status.status === `error` ||
     stats.status === `error`
   ) {
-    return toast.error(`Something went wrong`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast />;
   }
 
   if (

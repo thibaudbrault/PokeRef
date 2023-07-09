@@ -1,11 +1,10 @@
-import { Loader, Separator } from '@/components';
+import { ErrorToast, Loader, Separator } from '@/components';
 import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
 import { IPokemon } from '@/types';
 import { IOptionsOffsetLimit, getPokedex } from '@/utils';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { toast } from 'react-hot-toast';
 import ReactPaginate from 'react-paginate';
 
 function Pokedex() {
@@ -45,11 +44,7 @@ function Pokedex() {
   };
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

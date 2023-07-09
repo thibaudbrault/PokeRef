@@ -1,13 +1,12 @@
 // @ts-nocheck
 
-import { SmallLoader } from '@/components';
+import { ErrorToast, SmallLoader } from '@/components';
 import { IFormatAnalysesSets, IFormatsAnalysesSetName } from '@/types';
 import { capitalize, getFormat, removeLongName } from '@/utils';
+import * as Tabs from '@radix-ui/react-tabs';
 import { useQueries } from '@tanstack/react-query';
 import { useState } from 'react';
-import toast from 'react-hot-toast';
 import styles from './Competitive.module.scss';
-import * as Tabs from '@radix-ui/react-tabs';
 
 type Props = {
   format: string;
@@ -48,15 +47,7 @@ export function Competitive({ format, name }: Props) {
     formats.status === `error` ||
     sets.status === `error`
   ) {
-    return (
-      <>
-        {toast.error(`Something went wrong`, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        })}
-      </>
-    );
+    return <ErrorToast />;
   }
 
   if (

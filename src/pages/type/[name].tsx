@@ -1,4 +1,4 @@
-import { Button, Loader, Separator } from '@/components';
+import { Button, ErrorToast, Loader, Separator } from '@/components';
 import { Moves } from '@/modules/moves';
 import { Damage, Heading, Pokemon, useTypeQuery } from '@/modules/types/type';
 import styles from '@/modules/types/type/Type.module.scss';
@@ -7,7 +7,6 @@ import * as Tabs from '@radix-ui/react-tabs';
 import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import toast from 'react-hot-toast';
 
 type Props = {
   name: string;
@@ -18,11 +17,7 @@ function TypeCard({ name }: Props) {
     useTypeQuery(name);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error?.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

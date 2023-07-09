@@ -1,4 +1,4 @@
-import { Loader } from '@/components';
+import { ErrorToast, Loader } from '@/components';
 import { Heading, List } from '@/modules/locations';
 import { IRegion } from '@/types';
 import { getRegions, regions } from '@/utils';
@@ -6,7 +6,6 @@ import * as Tabs from '@radix-ui/react-tabs';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
 
 const RegionsMethod = dynamic(() =>
   import(`@/utils`).then((res) => res.RegionsMethod),
@@ -30,11 +29,7 @@ function LocationsPage() {
   }, [toggle]);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

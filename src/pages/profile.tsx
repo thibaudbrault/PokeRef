@@ -1,3 +1,4 @@
+import { ErrorToast, SuccessToast } from '@/components';
 import { auth, db } from '@/firebase-config';
 import styles from '@/modules/profile/Profile.module.scss';
 import { capitalize, removeDash } from '@/utils';
@@ -16,7 +17,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import * as yup from 'yup';
 
 const schema = yup.object({
@@ -48,18 +48,10 @@ function Profile() {
             1: img,
           }),
         });
-        toast.success(`You released ${capitalize(name)}`, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        });
-      } catch (err) {
-        if (err instanceof Error) {
-          toast.error(err.message, {
-            style: {
-              fontSize: `1.7rem`,
-            },
-          });
+        return <SuccessToast text={`You released ${capitalize(name)}`} />;
+      } catch (error) {
+        if (error instanceof Error) {
+          return <ErrorToast error={error} />;
         }
       }
     }
@@ -81,19 +73,11 @@ function Profile() {
           name: data.username !== `` ? data.username : user?.name,
           email: data.email !== `` ? data.email : user?.email,
         });
-        toast.success(`Your profile is modified`, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        });
+        return <SuccessToast text="Your profile is modified" />;
       }
     } catch (error) {
       if (error instanceof Error) {
-        toast.error(error.message, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        });
+        return <ErrorToast error={error} />;
       }
     }
   };
@@ -104,19 +88,11 @@ function Profile() {
         const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
         await deleteDoc(usersCollectionRef);
         await auth.currentUser.delete();
-        toast.success(`Congrats 🎉! Your account is now created`, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        });
         router.push(`/`);
-      } catch (err) {
-        if (err instanceof Error) {
-          toast.error(err.message, {
-            style: {
-              fontSize: `1.7rem`,
-            },
-          });
+        return <SuccessToast text="Congrats 🎉! Your account is now deleted" />;
+      } catch (error) {
+        if (error instanceof Error) {
+          return <ErrorToast error={error} />;
         }
       }
     }

@@ -1,4 +1,4 @@
-import { GenNav, Loader } from '@/components';
+import { ErrorToast, GenNav, Loader } from '@/components';
 import { useTableParams } from '@/hooks';
 import { Heading } from '@/modules/machines';
 import { IMachine } from '@/types';
@@ -7,7 +7,6 @@ import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import toast from 'react-hot-toast';
 
 function MachinesPage() {
   const [version, setVersion] = useState<string | null>(`red-blue`);
@@ -65,11 +64,7 @@ function MachinesPage() {
   );
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

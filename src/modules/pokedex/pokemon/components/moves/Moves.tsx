@@ -1,4 +1,4 @@
-import { SmallLoader } from '@/components';
+import { ErrorToast, SmallLoader } from '@/components';
 import { useTableParams } from '@/hooks';
 import { IMoveAilment, IPokemon } from '@/types';
 import { LearnMethod, removeDash, uppercase } from '@/utils';
@@ -7,7 +7,6 @@ import { CellContext, ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
-import toast from 'react-hot-toast';
 import { IMoveWithDetails, useFetchMachines, useFetchMoves } from '../../hooks';
 import styles from './Moves.module.scss';
 
@@ -186,15 +185,7 @@ export function Moves({ pokemon, version, name }: Props) {
   );
 
   if (isError) {
-    return (
-      <>
-        {toast.error(`Something went wrong: ${error?.message}`, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        })}
-      </>
-    );
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

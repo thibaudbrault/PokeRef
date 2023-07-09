@@ -1,3 +1,4 @@
+import { ErrorToast, SuccessToast } from '@/components';
 import { auth } from '@/firebase-config';
 import { capitalize } from '@/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -5,7 +6,6 @@ import { FiX } from '@meronex/icons/fi';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import Modal from 'react-modal';
 import * as yup from 'yup';
 import styles from './Auth.module.scss';
@@ -37,18 +37,10 @@ function ResetPwd({ modalIsOpen, setIsOpen }: Props) {
   const resetPwdForm = async (data: FormInput) => {
     try {
       await sendPasswordResetEmail(auth, data.resetEmail);
-      toast.success(`Check your mails ✉`, {
-        style: {
-          fontSize: `1.7rem`,
-        },
-      });
+      return <SuccessToast text="Check your mails ✉" />;
     } catch (error) {
       if (error instanceof Error) {
-        toast.error(error.message, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        });
+        return <ErrorToast error={error} />;
       }
     }
   };
