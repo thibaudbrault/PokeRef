@@ -1,10 +1,11 @@
-import { Separator } from '@/components';
+import { Input, Separator } from '@/components';
 import { IPokemonStat } from '@/types';
 import { pokemonNatures, removeDash } from '@/utils';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from '../Stats.module.scss';
 import { Results } from '../results';
+import * as Label from '@radix-ui/react-label';
 
 type Props = {
   baseStat: IPokemonStat[];
@@ -40,10 +41,10 @@ export function Calculator({ baseStat }: Props) {
           <tbody>
             <tr>
               <th>
-                <label htmlFor="level">Level</label>
+                <Label.Root htmlFor="level">Level</Label.Root>
               </th>
               <td colSpan={2}>
-                <input
+                <Input
                   type="number"
                   min={1}
                   max={100}
@@ -55,10 +56,10 @@ export function Calculator({ baseStat }: Props) {
             </tr>
             <tr>
               <th>
-                <label htmlFor="hp">Hp</label>
+                <Label.Root htmlFor="hp">Hp</Label.Root>
               </th>
               <td>
-                <input
+                <Input
                   type="number"
                   min={0}
                   max={252}
@@ -68,7 +69,7 @@ export function Calculator({ baseStat }: Props) {
                 />
               </td>
               <td>
-                <input
+                <Input
                   type="number"
                   min={0}
                   max={31}
@@ -80,10 +81,10 @@ export function Calculator({ baseStat }: Props) {
             </tr>
             <tr>
               <th>
-                <label htmlFor="attack">Attack</label>
+                <Label.Root htmlFor="attack">Attack</Label.Root>
               </th>
               <td>
-                <input
+                <Input
                   type="number"
                   min={0}
                   max={252}
@@ -93,7 +94,7 @@ export function Calculator({ baseStat }: Props) {
                 />
               </td>
               <td>
-                <input
+                <Input
                   type="number"
                   min={0}
                   max={31}
@@ -105,10 +106,10 @@ export function Calculator({ baseStat }: Props) {
             </tr>
             <tr>
               <th>
-                <label htmlFor="defense">Defense</label>
+                <Label.Root htmlFor="defense">Defense</Label.Root>
               </th>
               <td>
-                <input
+                <Input
                   type="number"
                   min={0}
                   max={252}
@@ -118,7 +119,7 @@ export function Calculator({ baseStat }: Props) {
                 />
               </td>
               <td>
-                <input
+                <Input
                   type="number"
                   min={0}
                   max={31}
@@ -130,10 +131,10 @@ export function Calculator({ baseStat }: Props) {
             </tr>
             <tr>
               <th>
-                <label htmlFor="specialAttack">Special Attack</label>
+                <Label.Root htmlFor="specialAttack">Special Attack</Label.Root>
               </th>
               <td>
-                <input
+                <Input
                   type="number"
                   min={0}
                   max={252}
@@ -143,7 +144,7 @@ export function Calculator({ baseStat }: Props) {
                 />
               </td>
               <td>
-                <input
+                <Input
                   type="number"
                   min={0}
                   max={31}
@@ -155,10 +156,12 @@ export function Calculator({ baseStat }: Props) {
             </tr>
             <tr>
               <th>
-                <label htmlFor="specialDefense">Special Defense</label>
+                <Label.Root htmlFor="specialDefense">
+                  Special Defense
+                </Label.Root>
               </th>
               <td>
-                <input
+                <Input
                   type="number"
                   min={0}
                   max={252}
@@ -168,7 +171,7 @@ export function Calculator({ baseStat }: Props) {
                 />
               </td>
               <td>
-                <input
+                <Input
                   type="number"
                   min={0}
                   max={31}
@@ -180,10 +183,10 @@ export function Calculator({ baseStat }: Props) {
             </tr>
             <tr>
               <th>
-                <label htmlFor="speed">Speed</label>
+                <Label.Root htmlFor="speed">Speed</Label.Root>
               </th>
               <td>
-                <input
+                <Input
                   type="number"
                   min={0}
                   max={252}
@@ -193,7 +196,7 @@ export function Calculator({ baseStat }: Props) {
                 />
               </td>
               <td>
-                <input
+                <Input
                   type="number"
                   min={0}
                   max={31}
@@ -205,7 +208,7 @@ export function Calculator({ baseStat }: Props) {
             </tr>
             <tr>
               <th>
-                <label htmlFor="nature">Nature</label>
+                <Label.Root htmlFor="nature">Nature</Label.Root>
               </th>
               <td colSpan={2}>
                 <select {...register(`nature`)} required>

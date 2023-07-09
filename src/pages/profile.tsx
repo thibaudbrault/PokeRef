@@ -1,4 +1,4 @@
-import { ErrorToast, SuccessToast } from '@/components';
+import { ErrorToast, Input, SuccessToast } from '@/components';
 import { auth, db } from '@/firebase-config';
 import styles from '@/modules/profile/Profile.module.scss';
 import { capitalize, removeDash } from '@/utils';
@@ -18,6 +18,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import * as Label from '@radix-ui/react-label';
 
 const schema = yup.object({
   username: yup.string().required(),
@@ -153,8 +154,8 @@ function Profile() {
             <summary>Modify your profile</summary>
             <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
               <div className="input">
-                <label htmlFor="username">Your trainer name</label>
-                <input
+                <Label.Root htmlFor="username">Your trainer name</Label.Root>
+                <Input
                   type="text"
                   id="username"
                   placeholder={user.name}
@@ -162,8 +163,8 @@ function Profile() {
                 />
               </div>
               <div className="input">
-                <label htmlFor="email">Your email</label>
-                <input
+                <Label.Root htmlFor="email">Your email</Label.Root>
+                <Input
                   type="text"
                   id="email"
                   placeholder={user.email}

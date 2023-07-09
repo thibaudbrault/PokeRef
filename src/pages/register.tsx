@@ -1,4 +1,4 @@
-import { ErrorToast, SuccessToast } from '@/components';
+import { ErrorToast, Input, SuccessToast } from '@/components';
 import { auth, db } from '@/firebase-config';
 import styles from '@/modules/auth/Auth.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -72,7 +72,7 @@ function Register() {
           </div>
           <div className={styles.input}>
             <div>
-              <input
+              <Input
                 type="text"
                 id="username"
                 placeholder="Username"
@@ -80,7 +80,7 @@ function Register() {
               />
             </div>
             <div>
-              <input
+              <Input
                 type="email"
                 id="email"
                 placeholder="Email"
@@ -91,7 +91,7 @@ function Register() {
               )}
             </div>
             <div>
-              <input
+              <Input
                 type="password"
                 id="password"
                 placeholder="Password"
@@ -99,7 +99,7 @@ function Register() {
               />
             </div>
             <div>
-              <input
+              <Input
                 type="password"
                 id="cpassword"
                 placeholder="Confirm Password"

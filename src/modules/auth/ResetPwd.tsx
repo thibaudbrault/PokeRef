@@ -1,4 +1,4 @@
-import { ErrorToast, SuccessToast } from '@/components';
+import { ErrorToast, Input, SuccessToast } from '@/components';
 import { auth } from '@/firebase-config';
 import { capitalize } from '@/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -61,7 +61,7 @@ function ResetPwd({ modalIsOpen, setIsOpen }: Props) {
       <form className={styles.resetForm} onSubmit={handleSubmit(resetPwdForm)}>
         <div className={styles.resetInput}>
           <div>
-            <input
+            <Input
               type="email"
               id="resetEmail"
               placeholder="Email"

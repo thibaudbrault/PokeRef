@@ -1,4 +1,4 @@
-import { ErrorToast, SuccessToast } from '@/components';
+import { ErrorToast, Input, SuccessToast } from '@/components';
 import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
 import styles from '@/modules/auth/Auth.module.scss';
 import ResetPwd from '@/modules/auth/ResetPwd';
@@ -75,7 +75,7 @@ function Login() {
           </div>
           <div className={styles.input}>
             <div>
-              <input
+              <Input
                 type="email"
                 id="email"
                 placeholder="Email"
@@ -86,7 +86,7 @@ function Login() {
               )}
             </div>
             <div>
-              <input
+              <Input
                 type="password"
                 id="password"
                 placeholder="Password"

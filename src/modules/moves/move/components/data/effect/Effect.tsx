@@ -1,9 +1,8 @@
+import { ErrorToast, SmallLoader } from '@/components';
 import { IDescription, IMove, IMoveTarget } from '@/types';
 import { getMoveTarget, removeDash } from '@/utils';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
 import styles from '../Data.module.scss';
-import { ErrorToast, SmallLoader } from '@/components';
 
 type Props = {
   move: IMove;
