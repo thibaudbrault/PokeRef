@@ -153,7 +153,6 @@
   text-transform: capitalize;
   border-bottom: 1px solid transparent;
   cursor: pointer;
-  transition: 0.3s ease-in-out;
 
   &:hover {
     @include gthemed {
@@ -191,6 +190,7 @@
     border-radius: 5px;
     text-transform: uppercase;
     text-align: center;
+    cursor: pointer;
 
     & a {
       display: flex;
@@ -206,6 +206,7 @@
       & span {
         font-family: Oswald, sans-serif;
         font-size: 1.7rem;
+        cursor: pointer;
 
         @include gthemed {
           color: t('text');
@@ -213,7 +214,11 @@
             t('bg') -1px 1px 0, t('bg') 1px 1px 0;
         }
 
-        cursor: pointer;
+        @include themed {
+          color: t('text');
+          text-shadow: t('bg') -1px -1px 0, t('bg') 1px -1px 0,
+            t('bg') -1px 1px 0, t('bg') 1px 1px 0;
+        }
       }
     }
   }

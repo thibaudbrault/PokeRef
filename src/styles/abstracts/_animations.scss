@@ -1,43 +1,49 @@
-@mixin animate($animation, $duration, $times) {
-  animation: $animation $duration $times;
-}
-
-@mixin pulse {
-  @keyframes pulse {
-    0% {
-      transform: scale(1.01);
-    }
-
-    50% {
-      transform: scale(0.99);
-    }
-
-    100% {
-      transform: scale(1.01);
-    }
+@mixin keyframes($animation-name) {
+  @keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
   }
 }
 
-@mixin wiggle {
-  @keyframes wiggle {
-    0% {
-      transform: rotate(0deg);
-    }
+@mixin animation($str) {
+  animation: #{$str};
+  animation: #{$str};
+}
 
-    80% {
-      transform: rotate(0deg);
-    }
+@include keyframes(pulse) {
+  0% {
+    transform: scale(1.01);
+  }
 
-    85% {
-      transform: rotate(5deg);
-    }
+  50% {
+    transform: scale(0.99);
+  }
 
-    95% {
-      transform: rotate(-5deg);
-    }
+  100% {
+    transform: scale(1.01);
+  }
+}
 
-    100% {
-      transform: rotate(0deg);
-    }
+@include keyframes(wiggle) {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  80% {
+    transform: rotate(0deg);
+  }
+
+  85% {
+    transform: rotate(5deg);
+  }
+
+  95% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
   }
 }

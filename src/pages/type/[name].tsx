@@ -1,7 +1,9 @@
 import { Button, Loader, Separator } from '@/components';
-import { Damage, Heading, useToggleTable } from '@/modules/types/type';
+import { Moves } from '@/modules/moves';
+import { Damage, Heading, Pokemon, useTypeQuery } from '@/modules/types/type';
 import styles from '@/modules/types/type/Type.module.scss';
 import { FaChevronLeft } from '@meronex/icons/fa';
+import * as Tabs from '@radix-ui/react-tabs';
 import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,8 +14,8 @@ type Props = {
 };
 
 function TypeCard({ name }: Props) {
-  const { type, isLoading, isError, error, toggle, setToggle, pageShown } =
-    useToggleTable(name);
+  const { type, pokemon, moves, isLoading, isError, error } =
+    useTypeQuery(name);
 
   if (isError) {
     return toast.error(`Something went wrong: ${error?.message}`, {
@@ -42,21 +44,25 @@ function TypeCard({ name }: Props) {
         </div>
         <Damage type={type} />
         <Separator />
-        <nav className="methodNav">
-          <button
-            className={toggle === 1 ? `button_active` : ``}
-            onClick={() => setToggle(1)}
+        <Tabs.Root className="TabsRootSection" defaultValue="tab1">
+          <Tabs.List
+            className="TabsList"
+            aria-label="Switch between pokémon and moves"
           >
-            <p>Pokémon</p>
-          </button>
-          <button
-            className={toggle === 2 ? `button_active` : ``}
-            onClick={() => setToggle(2)}
-          >
-            <p>Moves</p>
-          </button>
-        </nav>
-        {pageShown()}
+            <Tabs.Trigger value="tab1" className="TabsTrigger">
+              Pokémon
+            </Tabs.Trigger>
+            <Tabs.Trigger value="tab2" className="TabsTrigger">
+              Moves
+            </Tabs.Trigger>
+          </Tabs.List>
+          <Tabs.Content value="tab1">
+            <Pokemon typeName={type?.name} pokemon={pokemon} />
+          </Tabs.Content>
+          <Tabs.Content value="tab2">
+            <Moves moves={moves} />
+          </Tabs.Content>
+        </Tabs.Root>
         <Button intent="back" asChild>
           <Link href="/types">
             <FaChevronLeft />

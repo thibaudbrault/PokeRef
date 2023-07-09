@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import * as Tabs from '@radix-ui/react-tabs';
 
 const LearnMethod = dynamic(() =>
   import(`@/utils`).then((res) => res.LearnMethod),
@@ -59,12 +60,9 @@ function MoveCard({ name }: Props) {
           <Data move={move} machine={machine} version={version} />
 
           <Separator />
-
-          <LearnMethod
-            toggle={toggle}
-            setToggle={setToggle}
-            setLearn={setLearn}
-          />
+          <Tabs.Root className="TabsRootSection" defaultValue={String(toggle)}>
+            <LearnMethod setToggle={setToggle} setLearn={setLearn} />
+          </Tabs.Root>
 
           <List
             pokemon={pokemon}

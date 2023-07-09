@@ -26,7 +26,7 @@
   border-radius: 5px;
   font-size: 1.5rem;
   font-weight: 600;
-  transition: 0.3s ease-in-out;
+
   @include themed {
     background: t('text');
     border: 1px solid t('text');
@@ -85,34 +85,16 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  @extend %tType;
 
   & div {
     margin: 2rem;
     margin-left: 0;
     padding: 0 1.5rem;
-    border-radius: 5px;
-    text-transform: uppercase;
-    text-align: center;
-    cursor: pointer;
 
     & a {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      & img {
-        cursor: pointer;
-      }
-
       & span {
-        font-family: Oswald, sans-serif;
         font-size: 3rem;
-        cursor: pointer;
-        @include themed {
-          color: t('bg');
-          text-shadow: t('text') -1px -1px 0, t('text') 1px -1px 0,
-            t('text') -1px 1px 0, t('text') 1px 1px 0;
-        }
       }
     }
   }
@@ -166,7 +148,6 @@
   padding: 1rem 1.5rem;
   border-radius: 50px;
   font-size: 2rem;
-  transition: 0.3s ease-in-out;
 }
 
 .pill {
@@ -189,8 +170,7 @@
 }
 
 .image {
-  @include pulse;
-  @include animate(pulse, 5s, inifnite);
+  @include animation('pulse, 5s, inifnite');
 
   @include sm {
     width: 75%;

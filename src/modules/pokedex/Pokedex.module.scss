@@ -84,7 +84,6 @@
   border: 1px solid transparent;
   border-radius: 25px;
   text-align: center;
-  transition: 0.3s ease-in-out;
 
   & h2 {
     font-size: 3rem;
@@ -93,7 +92,6 @@
 
     & a {
       cursor: pointer;
-      transition: 0.3s ease-in-out;
 
       &:hover {
         color: $red;
@@ -140,7 +138,6 @@
   position: relative;
   top: 0;
   left: 0;
-  transition: 0.3s ease-in-out;
 }
 
 .shiny {
@@ -148,7 +145,6 @@
   top: 0;
   left: 0;
   opacity: 0;
-  transition: 0.3s ease-in-out;
 }
 
 .image {
@@ -223,7 +219,6 @@
   font-size: 5rem;
   border-radius: 50%;
   background-color: rgb(140 140 140 / 20%);
-  transition: 0.3s ease-in-out;
   cursor: pointer;
 
   &:hover {

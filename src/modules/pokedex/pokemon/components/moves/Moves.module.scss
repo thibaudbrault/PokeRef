@@ -2,5 +2,7 @@
 @use '@/styles/common' as *;
 
 .section {
+  @extend %section;
+
   overflow-x: hidden;
 }

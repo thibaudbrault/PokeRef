@@ -1,8 +1,8 @@
 import { Loader } from '@/components';
-import styles from '@/modules/locations/Locations.module.scss';
 import { Heading, List } from '@/modules/locations';
 import { IRegion } from '@/types';
-import { capitalize, getRegions, regions } from '@/utils';
+import { getRegions, regions } from '@/utils';
+import * as Tabs from '@radix-ui/react-tabs';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
@@ -44,15 +44,12 @@ function LocationsPage() {
   return (
     <>
       <Heading />
-      <main className="mainBig">
-        <RegionsMethod toggle={toggle} setToggle={setToggle} />
-        <List location={location} locations={locations} />
-        {location === `galar` || location === `hisui` ? (
-          <section className={styles.section}>
-            <p>No data for {capitalize(location)}</p>
-          </section>
-        ) : null}
-      </main>
+      <Tabs.Root className="TabsRootMain" defaultValue={String(toggle)}>
+        <RegionsMethod setToggle={setToggle} />
+        <Tabs.Content value={String(toggle)}>
+          <List location={location} locations={locations} />
+        </Tabs.Content>
+      </Tabs.Root>
     </>
   );
 }

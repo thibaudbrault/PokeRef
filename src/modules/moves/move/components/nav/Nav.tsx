@@ -1,8 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { IMove } from '@/types';
-import { Dispatch, SetStateAction } from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
-import { generationsOptions } from '@/utils';
+import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
   move: IMove;
@@ -10,23 +9,6 @@ type Props = {
 };
 
 export function Nav({ move, setVersion }: Props) {
-  const checkValidGeneration = (
-    value: string,
-    validGenerations: string | string[],
-  ) => {
-    return validGenerations.includes(value);
-  };
-
-  const moveGeneration = move?.generation?.name;
-
-  if (
-    checkValidGeneration(
-      moveGeneration,
-      generationsOptions.map((gen) => gen.label),
-    )
-  ) {
-    console.log(moveGeneration);
-  }
   return (
     <NavigationMenu.Root className="NavigationMenuRoot">
       <NavigationMenu.List className="NavigationMenuList">
@@ -43,7 +25,7 @@ export function Nav({ move, setVersion }: Props) {
         )}
         {(move?.generation?.name === `generation-i` ||
           move?.generation?.name === `generation-ii`) && (
-          <li>
+          <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen II
             </NavigationMenu.Trigger>
@@ -53,12 +35,12 @@ export function Nav({ move, setVersion }: Props) {
               </button>
               <button onClick={() => setVersion(`crystal`)}>Crystal</button>
             </NavigationMenu.Content>
-          </li>
+          </NavigationMenu.Item>
         )}
         {(move?.generation?.name === `generation-i` ||
           move?.generation?.name === `generation-ii` ||
           move?.generation?.name === `generation-iii`) && (
-          <li>
+          <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen III
             </NavigationMenu.Trigger>
@@ -71,13 +53,13 @@ export function Nav({ move, setVersion }: Props) {
                 Fire Red / Green Leaf
               </button>
             </NavigationMenu.Content>
-          </li>
+          </NavigationMenu.Item>
         )}
         {(move?.generation?.name === `generation-i` ||
           move?.generation?.name === `generation-ii` ||
           move?.generation?.name === `generation-iii` ||
           move?.generation?.name === `generation-iv`) && (
-          <li>
+          <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen IV
             </NavigationMenu.Trigger>
@@ -90,14 +72,14 @@ export function Nav({ move, setVersion }: Props) {
                 Heart Gold / Soul Silver
               </button>
             </NavigationMenu.Content>
-          </li>
+          </NavigationMenu.Item>
         )}
         {(move?.generation?.name === `generation-i` ||
           move?.generation?.name === `generation-ii` ||
           move?.generation?.name === `generation-iii` ||
           move?.generation?.name === `generation-iv` ||
           move?.generation?.name === `generation-v`) && (
-          <li>
+          <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen V
             </NavigationMenu.Trigger>
@@ -109,7 +91,7 @@ export function Nav({ move, setVersion }: Props) {
                 Black 2 / White 2
               </button>
             </NavigationMenu.Content>
-          </li>
+          </NavigationMenu.Item>
         )}
         {(move?.generation?.name === `generation-i` ||
           move?.generation?.name === `generation-ii` ||
@@ -117,7 +99,7 @@ export function Nav({ move, setVersion }: Props) {
           move?.generation?.name === `generation-iv` ||
           move?.generation?.name === `generation-v` ||
           move?.generation?.name === `generation-vi`) && (
-          <li>
+          <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen VI
             </NavigationMenu.Trigger>
@@ -127,7 +109,7 @@ export function Nav({ move, setVersion }: Props) {
                 Omega Ruby / Alpha Sapphire
               </button>
             </NavigationMenu.Content>
-          </li>
+          </NavigationMenu.Item>
         )}
         {(move?.generation?.name === `generation-i` ||
           move?.generation?.name === `generation-ii` ||
@@ -136,7 +118,7 @@ export function Nav({ move, setVersion }: Props) {
           move?.generation?.name === `generation-v` ||
           move?.generation?.name === `generation-vi` ||
           move?.generation?.name === `generation-vii`) && (
-          <li>
+          <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen VII
             </NavigationMenu.Trigger>
@@ -151,7 +133,7 @@ export function Nav({ move, setVersion }: Props) {
                 Let's Go Pikachu / Let's Go Eevee
               </button>
             </NavigationMenu.Content>
-          </li>
+          </NavigationMenu.Item>
         )}
         {(move?.generation?.name === `generation-i` ||
           move?.generation?.name === `generation-ii` ||
@@ -161,7 +143,7 @@ export function Nav({ move, setVersion }: Props) {
           move?.generation?.name === `generation-vi` ||
           move?.generation?.name === `generation-vii` ||
           move?.generation?.name === `generation-viii`) && (
-          <li>
+          <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen VIII
             </NavigationMenu.Trigger>
@@ -170,9 +152,12 @@ export function Nav({ move, setVersion }: Props) {
                 Sword / Shield
               </button>
             </NavigationMenu.Content>
-          </li>
+          </NavigationMenu.Item>
         )}
       </NavigationMenu.List>
+      <div className="ViewportPosition">
+        <NavigationMenu.Viewport className="NavigationMenuViewport" />
+      </div>
     </NavigationMenu.Root>
   );
 }

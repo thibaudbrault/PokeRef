@@ -142,7 +142,7 @@
       padding: 1rem 1.5rem;
       font-size: 1.7rem;
       font-weight: 600;
-      transition: 0.3s ease-in-out;
+
       @include themed {
         background: t('text');
         color: t('bg');

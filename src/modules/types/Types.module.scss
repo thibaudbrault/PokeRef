@@ -8,7 +8,6 @@
 
   & li {
     & div {
-      transition: 0.3s ease-in-out;
       @include themed {
         border: 1px solid t('text');
       }
@@ -45,8 +44,8 @@
       cursor: pointer;
       @include themed {
         color: t('text');
-        text-shadow: t('bg') -1px -1px 0, t('bg') 1px -1px 0,
-          t('bg') -1px 1px 0, t('bg') 1px 1px 0;
+        text-shadow: t('bg') -1px -1px 0, t('bg') 1px -1px 0, t('bg') -1px 1px 0,
+          t('bg') 1px 1px 0;
       }
     }
   }

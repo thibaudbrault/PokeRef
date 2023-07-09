@@ -55,31 +55,6 @@ export function Moves({ moves }: Props) {
         ),
       },
       {
-        accessorKey: `type.name`,
-        id: `type`,
-        header: `Type`,
-        cell: (info) => (
-          <td className="tType">
-            <div className="type" id={info.getValue<string>()}>
-              <Link
-                href={{
-                  pathname: `/type/[name]`,
-                  query: { name: info.getValue<string>() },
-                }}
-              >
-                <Image
-                  alt={info.getValue<string>()}
-                  width={20}
-                  height={20}
-                  src={`/images/types/${info.getValue()}.png`}
-                />
-                <span>{info.getValue<string>()}</span>
-              </Link>
-            </div>
-          </td>
-        ),
-      },
-      {
         accessorFn: (row) =>
           row.flavor_text_entries.find((rf) => {
             return rf.language.name === `en` && rf.flavor_text !== `Dummy Data`;

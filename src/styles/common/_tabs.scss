@@ -1,0 +1,35 @@
+@use '../abstracts/' as *;
+@use '../common/sizing' as *;
+
+.TabsRootMain {
+  @extend %mainBig;
+}
+
+.TabsRootSection {
+  margin-bottom: 2.5rem;
+}
+
+.TabsList {
+  display: flex;
+  width: 100%;
+  padding-bottom: 2.5rem;
+
+  & .TabsTrigger {
+    width: 100%;
+    padding: 1rem 0;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    background-color: transparent;
+    border: none;
+    @include gthemed {
+      color: t('text');
+      border-bottom: 1px solid t('border');
+    }
+
+    &[data-state='active'] {
+      color: $red;
+      border-bottom: 1px solid $red;
+    }
+  }
+}

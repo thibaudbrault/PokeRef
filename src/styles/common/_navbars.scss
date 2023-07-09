@@ -89,7 +89,16 @@
     border: 1px solid transparent;
     font-size: 1.7rem;
     font-weight: 600;
-    transition: 0.3s ease-in-out;
+    text-transform: capitalize;
+    padding: 1rem 1.5rem;
+    z-index: 2;
+    cursor: pointer;
+
+    &:hover {
+      @include gthemed {
+        color: t('bg');
+      }
+    }
 
     @include gthemed {
       color: t('text');
@@ -104,7 +113,6 @@
       height: 100%;
       z-index: 1;
       border-radius: 5px;
-      transition: 0.3s ease-in-out;
     }
 
     &:hover::before {
@@ -121,7 +129,6 @@
       height: 100%;
       z-index: 1;
       opacity: 0;
-      transition: 0.3s ease-in-out;
       border-radius: 5px;
       transform: scale(1.2, 1.2);
 
@@ -135,21 +142,6 @@
       opacity: 1;
       transform: scale(1, 1);
     }
-
-    & p {
-      position: relative;
-      text-transform: capitalize;
-      padding: 1rem 1.5rem;
-      z-index: 2;
-      cursor: pointer;
-      transition: 0.3s ease-in-out;
-
-      &:hover {
-        @include gthemed {
-          color: t('bg');
-        }
-      }
-    }
   }
 
   .button_active {
@@ -158,7 +150,17 @@
     font-weight: 600;
     border: 1px solid transparent;
     border-radius: 5px;
-    transition: 0.3s ease-in-out;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    cursor: pointer;
+
+    &:hover {
+      @include gthemed {
+        color: t('text');
+      }
+    }
 
     @include gthemed {
       background: t('text');
@@ -174,7 +176,6 @@
       height: 100%;
       z-index: 1;
       border-radius: 5px;
-      transition: 0.3s ease-in-out;
     }
 
     &:hover::before {
@@ -191,7 +192,6 @@
       height: 100%;
       z-index: 1;
       opacity: 0;
-      transition: 0.3s ease-in-out;
       border-radius: 5px;
       transform: scale(1.2, 1.2);
 
@@ -204,26 +204,6 @@
     &:hover::after {
       opacity: 1;
       transform: scale(1, 1);
-    }
-
-    & p {
-      position: relative;
-      padding: 1rem 1.5rem;
-      width: 100%;
-      height: 100%;
-      z-index: 3;
-      cursor: pointer;
-      transition: 0.3s ease-in-out;
-
-      @include gthemed {
-        color: t('bg');
-      }
-
-      &:hover {
-        @include gthemed {
-          color: t('text');
-        }
-      }
     }
   }
 }
