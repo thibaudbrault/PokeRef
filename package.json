@@ -26,7 +26,7 @@
     "@hookform/resolvers": "2.9.10",
     "@meronex/icons": "4.0.0",
     "@tanstack/match-sorter-utils": "8.7.6",
-    "@tanstack/react-query": "4.29.7",
+    "@tanstack/react-query": "4.29.14",
     "@tanstack/react-query-devtools": "4.29.7",
     "@tanstack/react-table": "8.7.9",
     "axios": "^1.4.0",
