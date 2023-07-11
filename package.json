@@ -47,7 +47,7 @@
     "react-modal": "3.16.1",
     "react-paginate": "8.1.4",
     "react-select": "5.7.0",
-    "react-tooltip": "5.13.1",
+    "react-tooltip": "5.14.0",
     "react-virtual": "2.10.4",
     "styled-components": "6.0.0-rc.3",
     "yup": "1.2.0"
