@@ -1,15 +1,17 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import type { AppProps } from 'next/app';
-import Head from 'next/head';
 import { useState } from 'react';
-import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import PlausibleProvider from 'next-plausible';
+import Head from 'next/head';
 import NextNProgress from 'nextjs-progressbar';
+import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { Toaster } from 'react-hot-toast';
 
 import { ThemeProvider } from '@/contexts';
 import '@/styles/styles.scss';
 import { Footer, Header, Nav } from '@/modules/layout';
+
+import type { AppProps } from 'next/app';
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (

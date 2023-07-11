@@ -1,12 +1,13 @@
+import { useEffect, useRef, useState } from 'react';
+
 import { BisChevronDown, BisChevronUp } from '@meronex/icons/bi';
 import {
-  SortingState,
+  type SortingState,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { useEffect, useRef, useState } from 'react';
 import { useVirtual } from 'react-virtual';
 
 // @ts-ignore

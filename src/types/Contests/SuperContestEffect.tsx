@@ -1,5 +1,5 @@
-import { IFlavorText } from '../Utility/CommonModels';
-import { INamedApiResource } from '../Utility/NamedApiResourceList';
+import type { IFlavorText } from '../Utility/CommonModels';
+import type { INamedApiResource } from '../Utility/NamedApiResourceList';
 
 export interface ISuperContestEffect {
   id: number;

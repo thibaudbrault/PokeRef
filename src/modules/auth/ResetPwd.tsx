@@ -1,13 +1,16 @@
-import { ErrorToast, Input, SuccessToast } from '@/components';
-import { auth } from '@/firebase-config';
-import { capitalize } from '@/utils';
+import { type Dispatch, type SetStateAction } from 'react';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
 import { sendPasswordResetEmail } from 'firebase/auth';
-import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 import Modal from 'react-modal';
 import * as yup from 'yup';
+
+import { ErrorToast, Input, SuccessToast } from '@/components';
+import { auth } from '@/firebase-config';
+import { capitalize } from '@/utils';
+
 import styles from './Auth.module.scss';
 
 type Props = {

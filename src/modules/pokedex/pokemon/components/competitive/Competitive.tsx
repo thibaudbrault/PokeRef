@@ -1,12 +1,16 @@
 // @ts-nocheck
 
-import { ErrorToast, SmallLoader } from '@/components';
-import { IFormatAnalysesSets, IFormatsAnalysesSetName } from '@/types';
-import { capitalize, getFormat, removeLongName } from '@/utils';
+import { useState } from 'react';
+
 import * as Tabs from '@radix-ui/react-tabs';
 import { useQueries } from '@tanstack/react-query';
-import { useState } from 'react';
+
+import { ErrorToast, SmallLoader } from '@/components';
+import { capitalize, getFormat, removeLongName } from '@/utils';
+
 import styles from './Competitive.module.scss';
+
+import type { IFormatAnalysesSets, IFormatsAnalysesSetName } from '@/types';
 
 type Props = {
   format: string;

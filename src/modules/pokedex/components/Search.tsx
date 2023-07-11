@@ -1,16 +1,19 @@
-import { INamedApiResource } from '@/types';
+import { useState } from 'react';
+
+import * as Label from '@radix-ui/react-label';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import Fuse from 'fuse.js';
+import Link from 'next/link';
+
+import { Input } from '@/components';
 import {
   ImageWithFallback,
   getPokedexResults,
   removeDash,
   removeLongName,
 } from '@/utils';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
-import Fuse from 'fuse.js';
-import Link from 'next/link';
-import { useState } from 'react';
-import * as Label from '@radix-ui/react-label';
-import { Input } from '@/components';
+
+import type { INamedApiResource } from '@/types';
 
 export function Search() {
   const { data: pokedex }: UseQueryResult<INamedApiResource[]> = useQuery({

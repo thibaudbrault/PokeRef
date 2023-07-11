@@ -1,8 +1,8 @@
-import {
+import type {
   IVersionEncounterDetail,
   IVersionGameIndex,
 } from '../Utility/CommonModels';
-import { INamedApiResource } from '../Utility/NamedApiResourceList';
+import type { INamedApiResource } from '../Utility/NamedApiResourceList';
 
 export interface IPokemon {
   id: number;

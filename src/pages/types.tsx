@@ -1,9 +1,11 @@
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+
 import { ErrorToast, Loader } from '@/components';
 import { Heading, List } from '@/modules/types';
 import styles from '@/modules/types/Types.module.scss';
-import { IType } from '@/types';
 import { getTypes } from '@/utils';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
+
+import type { IType } from '@/types';
 
 function TypesPage() {
   const {

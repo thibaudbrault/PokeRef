@@ -1,6 +1,7 @@
-import { IMove, IPokemon, IPokemonMove } from '@/types';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import axios from 'axios';
+
+import type { IMove, IPokemon, IPokemonMove } from '@/types';
 
 export interface IMoveWithDetails extends IPokemonMove {
   details: IMove;

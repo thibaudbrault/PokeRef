@@ -1,12 +1,13 @@
+import { FaChevronLeft } from '@meronex/icons/fa';
+import * as Tabs from '@radix-ui/react-tabs';
+import { type GetServerSidePropsContext } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { Button, ErrorToast, Loader, Separator } from '@/components';
 import { Moves } from '@/modules/moves';
 import { Damage, Heading, Pokemon, useTypeQuery } from '@/modules/types/type';
 import styles from '@/modules/types/type/Type.module.scss';
-import { FaChevronLeft } from '@meronex/icons/fa';
-import * as Tabs from '@radix-ui/react-tabs';
-import { GetServerSidePropsContext } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 
 type Props = {
   name: string;

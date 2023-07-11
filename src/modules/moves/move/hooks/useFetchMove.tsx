@@ -1,7 +1,10 @@
-import { IMachine, IMove, IPokemon } from '@/types';
-import { getMove, getMoveMachines, getMovePokemon } from '@/utils';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { useState } from 'react';
+
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+
+import { getMove, getMoveMachines, getMovePokemon } from '@/utils';
+
+import type { IMachine, IMove, IPokemon } from '@/types';
 
 export const useFetchMove = (name: string) => {
   const {

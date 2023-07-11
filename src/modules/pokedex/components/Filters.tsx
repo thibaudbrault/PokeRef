@@ -1,12 +1,25 @@
-import { Separator } from '@/components';
-import { IPokemon } from '@/types';
-import { formOptions, generationsOptions, IOptionsOffsetLimit } from '@/utils';
-import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
-import Select, { SingleValue } from 'react-select';
+import {
+  type Dispatch,
+  type SetStateAction,
+  useCallback,
+  useEffect,
+} from 'react';
+
+import * as Label from '@radix-ui/react-label';
+import Select, { type SingleValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
+
+import { Separator } from '@/components';
+import {
+  formOptions,
+  generationsOptions,
+  type IOptionsOffsetLimit,
+} from '@/utils';
+
 import styles from '../Pokedex.module.scss';
 import { Search } from './Search';
-import * as Label from '@radix-ui/react-label';
+
+import type { IPokemon } from '@/types';
 
 type Props = {
   pokedex: IPokemon[];

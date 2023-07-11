@@ -1,8 +1,11 @@
-import { IPokemon, IPokemonSpecies } from '@/types';
-import { removeDash } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { removeDash } from '@/utils';
+
 import styles from '../Data.module.scss';
+
+import type { IPokemon, IPokemonSpecies } from '@/types';
 
 type Props = {
   pokemon: IPokemon;

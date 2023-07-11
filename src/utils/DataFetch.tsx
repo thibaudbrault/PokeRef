@@ -1,6 +1,14 @@
-import { IAbility, IEvolutionChain, IMove, IPokemon, IType } from '@/types';
 import axios from 'axios';
+
 import { removeLongName } from '@/utils';
+
+import type {
+  IAbility,
+  IEvolutionChain,
+  IMove,
+  IPokemon,
+  IType,
+} from '@/types';
 
 // Fetch all pokemon names and endpoints
 export const getPokedexResults = async () => {

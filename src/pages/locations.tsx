@@ -1,11 +1,14 @@
+import { useEffect, useState } from 'react';
+
+import * as Tabs from '@radix-ui/react-tabs';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import dynamic from 'next/dynamic';
+
 import { ErrorToast, Loader } from '@/components';
 import { Heading, List } from '@/modules/locations';
-import { IRegion } from '@/types';
 import { getRegions, regions } from '@/utils';
-import * as Tabs from '@radix-ui/react-tabs';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
-import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+
+import type { IRegion } from '@/types';
 
 const RegionsMethod = dynamic(() =>
   import(`@/utils`).then((res) => res.RegionsMethod),

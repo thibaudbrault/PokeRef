@@ -1,6 +1,8 @@
-import { IAbility, IAbilityFlavorText, IEffect } from '@/types';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+
 import { getAbility, getAbilityPokemon } from '@/utils';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+
+import type { IAbility, IAbilityFlavorText, IEffect } from '@/types';
 
 export const useFilterAbility = (name: string) => {
   const {

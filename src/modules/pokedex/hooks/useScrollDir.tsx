@@ -1,6 +1,8 @@
-import styles from '@/modules/pokedex/Pokedex.module.scss';
-import { FaAngleDown, FaAngleUp } from '@meronex/icons/fa';
 import { useEffect, useState } from 'react';
+
+import { FaAngleDown, FaAngleUp } from '@meronex/icons/fa';
+
+import styles from '@/modules/pokedex/Pokedex.module.scss';
 
 export const useScrollDir = () => {
   const [scrollDir, setScrollDir] = useState(`down`);

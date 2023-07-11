@@ -1,11 +1,14 @@
 import { useMemo } from 'react';
 
-import { useTableParams } from '@/hooks';
-import { IMove, IMoveAilment } from '@/types';
-import { removeDash } from '@/utils';
-import { ColumnDef } from '@tanstack/react-table';
+import { type ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
+
+import { useTableParams } from '@/hooks';
+import { removeDash } from '@/utils';
+
 import styles from '../Moves.module.scss';
+
+import type { IMove, IMoveAilment } from '@/types';
 
 type Props = {
   status?: IMoveAilment[];

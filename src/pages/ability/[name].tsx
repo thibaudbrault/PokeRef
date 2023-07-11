@@ -1,3 +1,7 @@
+import { FaChevronLeft } from '@meronex/icons/fa';
+import { type GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
+
 import { Button, ErrorToast, Loader, Separator } from '@/components';
 import {
   Description,
@@ -7,9 +11,6 @@ import {
 } from '@/modules/abilities/ability';
 import styles from '@/modules/abilities/ability/Ability.module.scss';
 import { removeDash } from '@/utils';
-import { FaChevronLeft } from '@meronex/icons/fa';
-import { GetServerSidePropsContext } from 'next';
-import Link from 'next/link';
 
 type Props = {
   name: string;

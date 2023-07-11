@@ -1,4 +1,5 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
+
 import { ThemeContext, initialThemeState } from './ThemeContext';
 
 type Props = {

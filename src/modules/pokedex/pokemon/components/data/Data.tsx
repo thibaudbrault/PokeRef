@@ -1,20 +1,24 @@
-import { SuccessToast } from '@/components';
-import { auth, db } from '@/firebase-config';
-import { IPokemon, IPokemonSpecies } from '@/types';
-import { removeDash } from '@/utils';
+import { useEffect, useState } from 'react';
+
 import {
-  DocumentData,
+  type DocumentData,
   arrayUnion,
   doc,
   getDoc,
   onSnapshot,
   updateDoc,
 } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
-import styles from './Data.module.scss';
+
+import { SuccessToast } from '@/components';
+import { auth, db } from '@/firebase-config';
+import { removeDash } from '@/utils';
+
 import { Base } from './base';
+import styles from './Data.module.scss';
 import { Description } from './description';
 import { Sprite } from './sprite';
+
+import type { IPokemon, IPokemonSpecies } from '@/types';
 
 type Props = {
   pokemon: IPokemon;

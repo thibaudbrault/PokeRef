@@ -1,11 +1,15 @@
-import { Tooltip } from '@/components';
-import { IPokemon } from '@/types';
 import { useState } from 'react';
-import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
-import styles from './Stats.module.scss';
-import { Calculator } from './calculator';
+
 import * as Tabs from '@radix-ui/react-tabs';
+import { CircularProgressbar } from 'react-circular-progressbar';
+
+import { Tooltip } from '@/components';
+
+import 'react-circular-progressbar/dist/styles.css';
+import { Calculator } from './calculator';
+import styles from './Stats.module.scss';
+
+import type { IPokemon } from '@/types';
 
 type Props = {
   pokemon: IPokemon;

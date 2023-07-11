@@ -1,3 +1,8 @@
+import { FaChevronLeft } from '@meronex/icons/fa';
+import { type GetServerSidePropsContext } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { Button, ErrorToast, Loader } from '@/components';
 import {
   Cost,
@@ -9,10 +14,6 @@ import {
 } from '@/modules/items/item';
 import styles from '@/modules/items/item/Item.module.scss';
 import { removeDash } from '@/utils';
-import { FaChevronLeft } from '@meronex/icons/fa';
-import { GetServerSidePropsContext } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 
 type Props = {
   name: string;

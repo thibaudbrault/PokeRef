@@ -1,12 +1,19 @@
-import { ILocation, ILocationArea } from '@/types';
+import { useEffect, useState } from 'react';
+
+import {
+  useQueries,
+  useQuery,
+  type UseQueryResult,
+} from '@tanstack/react-query';
+
 import {
   getArea,
   getEncounterCondition,
   getEncounterMethod,
   getLocation,
 } from '@/utils';
-import { useQueries, useQuery, UseQueryResult } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+
+import type { ILocation, ILocationArea } from '@/types';
 
 export const useSwitchGame = (name: string) => {
   const [game, setGame] = useState<string | null>(null);

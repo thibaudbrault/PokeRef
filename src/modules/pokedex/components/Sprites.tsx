@@ -1,6 +1,8 @@
-import { IPokemon } from '@/types';
 import { ImageWithFallback } from '@/utils';
+
 import styles from '../Pokedex.module.scss';
+
+import type { IPokemon } from '@/types';
 
 type Props = {
   p: IPokemon;

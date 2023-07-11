@@ -1,5 +1,5 @@
-import { IEffect, IName, IVerboseEffect } from '../Utility/CommonModels';
-import { INamedApiResource } from '../Utility/NamedApiResourceList';
+import type { IEffect, IName, IVerboseEffect } from '../Utility/CommonModels';
+import type { INamedApiResource } from '../Utility/NamedApiResourceList';
 
 export interface IAbility {
   id: number;

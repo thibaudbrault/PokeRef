@@ -1,8 +1,11 @@
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+
 import { ErrorToast, SmallLoader } from '@/components';
-import { IDescription, IMove, IMoveTarget } from '@/types';
 import { getMoveTarget, removeDash } from '@/utils';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
+
 import styles from '../Data.module.scss';
+
+import type { IDescription, IMove, IMoveTarget } from '@/types';
 
 type Props = {
   move: IMove;

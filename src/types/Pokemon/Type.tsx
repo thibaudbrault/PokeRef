@@ -1,5 +1,5 @@
-import { IGenerationGameIndex, IName } from '../Utility/CommonModels';
-import { INamedApiResource } from '../Utility/NamedApiResourceList';
+import type { IGenerationGameIndex, IName } from '../Utility/CommonModels';
+import type { INamedApiResource } from '../Utility/NamedApiResourceList';
 
 export interface IType {
   id: number;

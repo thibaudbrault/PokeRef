@@ -1,6 +1,7 @@
-import { IMove, IPokemon } from '@/types';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import axios from 'axios';
+
+import type { IMove, IPokemon } from '@/types';
 
 export const useFetchMachines = (
   pokemon: IPokemon,

@@ -1,5 +1,7 @@
+import { type Dispatch, type SetStateAction } from 'react';
+
 import * as Tabs from '@radix-ui/react-tabs';
-import { Dispatch, SetStateAction } from 'react';
+
 import { learnMethod, regions } from './DataArrays';
 import { removeDash } from './Typography';
 

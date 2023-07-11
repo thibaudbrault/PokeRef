@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction } from 'react';
+import { type Dispatch, type SetStateAction } from 'react';
+
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 
 type Props = {

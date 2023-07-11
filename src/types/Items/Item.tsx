@@ -1,13 +1,13 @@
-import { IApiResource } from '../Utility/ApiResourceList';
-import {
+import type { IApiResource } from '../Utility/ApiResourceList';
+import type {
   IGenerationGameIndex,
   IMachineVersionDetail,
   IName,
   IVerboseEffect,
   IVersionGroupFlavorText,
 } from '../Utility/CommonModels';
-import { INamedApiResource } from '../Utility/NamedApiResourceList';
-import { IItemCategory } from './ItemCategory';
+import type { INamedApiResource } from '../Utility/NamedApiResourceList';
+import type { IItemCategory } from './ItemCategory';
 
 export interface IItem {
   id: number;

@@ -1,5 +1,6 @@
-import { getBerries, getItems } from '@/utils';
 import { useQueries } from '@tanstack/react-query';
+
+import { getBerries, getItems } from '@/utils';
 
 export const useItemsQuery = () => {
   const [items, berries] = useQueries({

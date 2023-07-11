@@ -1,6 +1,8 @@
-import { IMove, IPokemon, IType } from '@/types';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+
 import { getType, getTypeMoves, getTypePokemon } from '@/utils';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
+
+import type { IMove, IPokemon, IType } from '@/types';
 
 export const useTypeQuery = (name: string) => {
   const {

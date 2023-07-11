@@ -1,14 +1,22 @@
-import { ErrorToast, SmallLoader } from '@/components';
-import { useTableParams } from '@/hooks';
-import { IMoveAilment, IPokemon } from '@/types';
-import { LearnMethod, removeDash, uppercase } from '@/utils';
+import { useEffect, useMemo, useState } from 'react';
+
 import * as Tabs from '@radix-ui/react-tabs';
-import { CellContext, ColumnDef } from '@tanstack/react-table';
+import { type CellContext, type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
-import { IMoveWithDetails, useFetchMachines, useFetchMoves } from '../../hooks';
+
+import { ErrorToast, SmallLoader } from '@/components';
+import { useTableParams } from '@/hooks';
+import { LearnMethod, removeDash, uppercase } from '@/utils';
+
+import {
+  type IMoveWithDetails,
+  useFetchMachines,
+  useFetchMoves,
+} from '../../hooks';
 import styles from './Moves.module.scss';
+
+import type { IMoveAilment, IPokemon } from '@/types';
 
 type Props = {
   pokemon: IPokemon;

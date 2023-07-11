@@ -1,11 +1,13 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { Tooltip } from '@/components';
 import typesRelationData from '@/data/types.json';
 import moves from '@/modules/moves/move/components/data/Data.module.scss';
 import styles from '@/modules/types/type/Type.module.scss';
-import { IType } from '@/types';
 import { capitalize, removeDash } from '@/utils';
-import Image from 'next/image';
-import Link from 'next/link';
+
+import type { IType } from '@/types';
 
 type Props = {
   type?: IType;

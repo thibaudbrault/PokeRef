@@ -1,13 +1,15 @@
+import { useState } from 'react';
+
+import { FaChevronLeft } from '@meronex/icons/fa';
+import * as Tabs from '@radix-ui/react-tabs';
+import { type GetServerSidePropsContext } from 'next';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+
 import { Button, ErrorToast, Loader, Separator } from '@/components';
 import { Data, Heading, List, Nav, useFetchMove } from '@/modules/moves/move';
 import styles from '@/modules/moves/move/Move.module.scss';
 import { removeDash } from '@/utils';
-import { FaChevronLeft } from '@meronex/icons/fa';
-import * as Tabs from '@radix-ui/react-tabs';
-import { GetServerSidePropsContext } from 'next';
-import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import { useState } from 'react';
 
 const LearnMethod = dynamic(() =>
   import(`@/utils`).then((res) => res.LearnMethod),

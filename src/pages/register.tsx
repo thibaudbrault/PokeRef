@@ -1,6 +1,3 @@
-import { ErrorToast, Input, SuccessToast } from '@/components';
-import { auth, db } from '@/firebase-config';
-import styles from '@/modules/auth/Auth.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -9,6 +6,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+
+import { ErrorToast, Input, SuccessToast } from '@/components';
+import { auth, db } from '@/firebase-config';
+import styles from '@/modules/auth/Auth.module.scss';
 
 const schema = yup.object({
   username: yup.string().required(),

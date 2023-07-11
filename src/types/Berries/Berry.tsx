@@ -1,4 +1,4 @@
-import { INamedApiResource } from '../Utility/NamedApiResourceList';
+import type { INamedApiResource } from '../Utility/NamedApiResourceList';
 
 export interface IBerry {
   id: number;

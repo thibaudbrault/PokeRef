@@ -1,12 +1,15 @@
+import { useMemo, useState } from 'react';
+
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { type ColumnDef } from '@tanstack/react-table';
+import Link from 'next/link';
+
 import { ErrorToast, GenNav, Loader } from '@/components';
 import { useTableParams } from '@/hooks';
 import { Heading } from '@/modules/machines';
-import { IMachine } from '@/types';
 import { getMachines, removeDash, uppercase } from '@/utils';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
-import { ColumnDef } from '@tanstack/react-table';
-import Link from 'next/link';
-import { useMemo, useState } from 'react';
+
+import type { IMachine } from '@/types';
 
 function MachinesPage() {
   const [version, setVersion] = useState<string | null>(`red-blue`);

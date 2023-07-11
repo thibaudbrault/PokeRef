@@ -1,11 +1,15 @@
-import { Input, Separator } from '@/components';
-import { IPokemonStat } from '@/types';
-import { pokemonNatures, removeDash } from '@/utils';
 import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import styles from '../Stats.module.scss';
-import { Results } from '../results';
+
 import * as Label from '@radix-ui/react-label';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+
+import { Input, Separator } from '@/components';
+import { pokemonNatures, removeDash } from '@/utils';
+
+import { Results } from '../results';
+import styles from '../Stats.module.scss';
+
+import type { IPokemonStat } from '@/types';
 
 type Props = {
   baseStat: IPokemonStat[];

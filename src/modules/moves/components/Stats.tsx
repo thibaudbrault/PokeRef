@@ -1,10 +1,14 @@
-import { useTableParams } from '@/hooks';
-import { IMoveStatAffect, INature, IStat } from '@/types';
-import { removeDash } from '@/utils';
-import { ColumnDef } from '@tanstack/react-table';
-import Link from 'next/link';
 import { useMemo } from 'react';
+
+import { type ColumnDef } from '@tanstack/react-table';
+import Link from 'next/link';
+
+import { useTableParams } from '@/hooks';
+import { removeDash } from '@/utils';
+
 import styles from '../Moves.module.scss';
+
+import type { IMoveStatAffect, INature, IStat } from '@/types';
 
 type Props = {
   stats?: IStat[];

@@ -1,7 +1,9 @@
-import { IMachine, IMove } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import styles from '../Data.module.scss';
+
+import type { IMachine, IMove } from '@/types';
 
 type Props = {
   move: IMove;

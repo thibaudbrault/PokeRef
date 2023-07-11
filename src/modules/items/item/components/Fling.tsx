@@ -1,5 +1,6 @@
-import { IItem } from '@/types';
 import { removeDash } from '@/utils';
+
+import type { IItem } from '@/types';
 
 type Props = {
   item?: IItem;

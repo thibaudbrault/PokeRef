@@ -1,18 +1,21 @@
-import { ThemeContext } from '@/contexts';
-import { auth } from '@/firebase-config';
-import { FiMenu, FiX } from '@meronex/icons/fi';
-import { RiMoonClearLine, RiSunLine } from '@meronex/icons/ri';
-import { User, onAuthStateChanged, signOut } from 'firebase/auth';
-import Link from 'next/link';
 import {
-  Dispatch,
-  SetStateAction,
+  type Dispatch,
+  type SetStateAction,
   useContext,
   useEffect,
   useState,
 } from 'react';
-import styles from './Header.module.scss';
+
+import { FiMenu, FiX } from '@meronex/icons/fi';
+import { RiMoonClearLine, RiSunLine } from '@meronex/icons/ri';
+import { type User, onAuthStateChanged, signOut } from 'firebase/auth';
+import Link from 'next/link';
+
 import { Button } from '@/components';
+import { ThemeContext } from '@/contexts';
+import { auth } from '@/firebase-config';
+
+import styles from './Header.module.scss';
 
 type Props = {
   navOpen: boolean;

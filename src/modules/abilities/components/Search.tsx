@@ -1,10 +1,13 @@
-import { IAbility } from '@/types';
-import { capitalize, removeDash } from '@/utils';
+import { useState } from 'react';
+
+import * as Label from '@radix-ui/react-label';
 import Fuse from 'fuse.js';
 import Link from 'next/link';
-import { useState } from 'react';
-import * as Label from '@radix-ui/react-label';
+
 import { Input } from '@/components';
+import { capitalize, removeDash } from '@/utils';
+
+import type { IAbility } from '@/types';
 
 type Props = {
   abilities?: IAbility[];

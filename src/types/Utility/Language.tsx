@@ -1,4 +1,4 @@
-import { IName } from './CommonModels';
+import type { IName } from './CommonModels';
 
 export interface ILanguage {
   id: number;

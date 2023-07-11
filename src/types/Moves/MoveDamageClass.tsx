@@ -1,5 +1,5 @@
-import { IDescription, IName } from '../Utility/CommonModels';
-import { INamedApiResource } from '../Utility/NamedApiResourceList';
+import type { IDescription, IName } from '../Utility/CommonModels';
+import type { INamedApiResource } from '../Utility/NamedApiResourceList';
 
 export interface IMoveDamageClass {
   id: number;

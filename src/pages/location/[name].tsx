@@ -1,20 +1,23 @@
+import { useCallback, useEffect, useMemo, useState } from 'react';
+
+import { FaChevronLeft } from '@meronex/icons/fa';
+import { type ColumnDef } from '@tanstack/react-table';
+import { type GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
+
 import { Button, ErrorToast, GenNav, Loader } from '@/components';
 import { useTableParams } from '@/hooks';
-import styles from '@/modules/locations/Locations.module.scss';
 import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
-import {
+import styles from '@/modules/locations/Locations.module.scss';
+import { removeDash } from '@/utils';
+
+import type {
   IEncounter,
   IEncounterConditionValue,
   IEncounterMethod,
   IName,
   IPokemonEncounter,
 } from '@/types';
-import { removeDash } from '@/utils';
-import { FaChevronLeft } from '@meronex/icons/fa';
-import { ColumnDef } from '@tanstack/react-table';
-import { GetServerSidePropsContext } from 'next';
-import Link from 'next/link';
-import { useCallback, useEffect, useMemo, useState } from 'react';
 
 type Props = {
   name: string;

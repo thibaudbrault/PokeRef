@@ -1,6 +1,8 @@
-import { IPokemon } from '@/types';
 import Image from 'next/image';
+
 import styles from './Sprites.module.scss';
+
+import type { IPokemon } from '@/types';
 
 type Props = {
   pokemon: IPokemon;

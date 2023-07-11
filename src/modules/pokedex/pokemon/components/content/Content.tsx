@@ -1,5 +1,7 @@
-import { MdAdd, MdRemove } from '@meronex/icons/ios';
 import { useState } from 'react';
+
+import { MdAdd, MdRemove } from '@meronex/icons/ios';
+
 import styles from './Content.module.scss';
 
 export function Content() {

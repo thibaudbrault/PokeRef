@@ -1,10 +1,13 @@
+import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
+
+import { onAuthStateChanged, signOut, type User } from 'firebase/auth';
+import Link from 'next/link';
+
 import { Separator } from '@/components';
-import header from '@/modules/layout/Header/Header.module.scss';
 import { auth } from '@/firebase-config';
 import { useMediaQuery } from '@/hooks';
-import { onAuthStateChanged, signOut, User } from 'firebase/auth';
-import Link from 'next/link';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import header from '@/modules/layout/Header/Header.module.scss';
+
 import styles from './Nav.module.scss';
 
 type Props = {

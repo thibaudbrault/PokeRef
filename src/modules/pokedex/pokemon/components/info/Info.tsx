@@ -1,9 +1,11 @@
 // @ts-nocheck
 
-import { IEvolutionChain, IPokemon, IPokemonSpecies } from '@/types';
 import { capitalize } from '@/utils';
+
 import { InfoTable } from '../../utils';
 import styles from './Info.module.scss';
+
+import type { IEvolutionChain, IPokemon, IPokemonSpecies } from '@/types';
 
 type Props = {
   pokemon: IPokemon;

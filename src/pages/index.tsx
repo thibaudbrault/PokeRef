@@ -1,11 +1,14 @@
+import { useState } from 'react';
+
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import ReactPaginate from 'react-paginate';
+
 import { ErrorToast, Loader, Separator } from '@/components';
 import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
-import { IPokemon } from '@/types';
-import { IOptionsOffsetLimit, getPokedex } from '@/utils';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
-import ReactPaginate from 'react-paginate';
+import { type IOptionsOffsetLimit, getPokedex } from '@/utils';
+
+import type { IPokemon } from '@/types';
 
 function Pokedex() {
   const [filteredPokedex, setFilteredPokedex] = useState<IPokemon[]>([]);

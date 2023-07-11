@@ -1,10 +1,13 @@
-import { IItem } from '@/types';
-import { ImageWithFallback, capitalize, removeDash } from '@/utils';
+import { useState } from 'react';
+
+import * as Label from '@radix-ui/react-label';
 import Fuse from 'fuse.js';
 import Link from 'next/link';
-import { useState } from 'react';
-import * as Label from '@radix-ui/react-label';
+
 import { Input } from '@/components';
+import { ImageWithFallback, capitalize, removeDash } from '@/utils';
+
+import type { IItem } from '@/types';
 
 type Props = {
   items?: IItem[];

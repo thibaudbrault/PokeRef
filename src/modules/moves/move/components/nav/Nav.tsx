@@ -1,7 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
-import { IMove } from '@/types';
+import type { Dispatch, SetStateAction } from 'react';
+
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
-import { Dispatch, SetStateAction } from 'react';
+
+import type { IMove } from '@/types';
 
 type Props = {
   move: IMove;

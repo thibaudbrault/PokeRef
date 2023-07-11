@@ -1,7 +1,9 @@
-import { IPokemonStat } from '@/types';
 import { pokemonNatures } from '@/utils';
+
+import { type IStatsForm } from '../calculator/Calculator';
 import styles from '../Stats.module.scss';
-import { IStatsForm } from '../calculator/Calculator';
+
+import type { IPokemonStat } from '@/types';
 
 type Props = {
   stats: IStatsForm;

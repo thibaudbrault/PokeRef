@@ -1,12 +1,16 @@
-import { usePaginatedTableParams } from '@/hooks';
-import { IMove } from '@/types';
-import { removeDash } from '@/utils';
-import { ColumnDef } from '@tanstack/react-table';
+import { useMemo } from 'react';
+
+import { type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo } from 'react';
+
+import { usePaginatedTableParams } from '@/hooks';
+import { removeDash } from '@/utils';
+
 import styles from '../Moves.module.scss';
 import { Search } from './Search';
+
+import type { IMove } from '@/types';
 
 type Props = {
   moves?: IMove[];

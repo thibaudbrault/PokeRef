@@ -1,10 +1,13 @@
-import { Tooltip } from '@/components';
-import typesRelationData from '@/data/types.json';
-import { IType } from '@/types';
-import { capitalize } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { Tooltip } from '@/components';
+import typesRelationData from '@/data/types.json';
+import { capitalize } from '@/utils';
+
 import styles from '../Types.module.scss';
+
+import type { IType } from '@/types';
 
 type Props = {
   types: IType[];

@@ -1,4 +1,6 @@
-import { IPokemon } from '@/types';
+import { SmallLoader } from '@/components';
+
+import { Content } from './content';
 import {
   BreedingMoveText,
   EvolvingMoveText,
@@ -6,8 +8,8 @@ import {
   MachinesMoveText,
   TutorMoveText,
 } from './text/Text';
-import { Content } from './content';
-import { SmallLoader } from '@/components';
+
+import type { IPokemon } from '@/types';
 
 type Props = {
   pokemon?: IPokemon[];

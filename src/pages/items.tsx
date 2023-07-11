@@ -1,6 +1,7 @@
+import * as Tabs from '@radix-ui/react-tabs';
+
 import { ErrorToast, Loader } from '@/components';
 import { Berries, Heading, Items, useItemsQuery } from '@/modules/items';
-import * as Tabs from '@radix-ui/react-tabs';
 
 function ItemsPage() {
   const { items, berries } = useItemsQuery();

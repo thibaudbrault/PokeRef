@@ -1,3 +1,10 @@
+import { useEffect, useRef, useState } from 'react';
+
+import { FaChevronLeft } from '@meronex/icons/fa';
+import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
+import { type GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
+
 import { Button, ErrorToast, Loader, Separator } from '@/components';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
 import {
@@ -18,11 +25,6 @@ import {
   useFetchPokemon,
 } from '@/modules/pokedex/pokemon';
 import { pokemonFilters, removeDash, removeLongName } from '@/utils';
-import { FaChevronLeft } from '@meronex/icons/fa';
-import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
-import { GetServerSidePropsContext } from 'next';
-import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
 
 type Props = {
   name: string;
@@ -86,7 +88,10 @@ function PokemonCard({ name }: Props) {
         <section className={styles.section}>
           {pokemon.data?.name?.includes(`mega`) ? (
             <h2 className="title">
-              {removeDash(pokemon.data?.name).split(` `).reverse().join(` `)}
+              {removeDash(pokemon.data?.name)
+                .split(` `)
+                .reverse()
+                .join(` `)}
             </h2>
           ) : (
             <h2 className="title">{removeLongName(removeDash(name))}</h2>

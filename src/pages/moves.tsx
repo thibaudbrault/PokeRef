@@ -1,6 +1,7 @@
+import * as Tabs from '@radix-ui/react-tabs';
+
 import { ErrorToast, Loader } from '@/components';
 import { Heading, Moves, Stats, Status, useMovesQuery } from '@/modules/moves';
-import * as Tabs from '@radix-ui/react-tabs';
 
 function MovesPage() {
   const { moves, status, stats } = useMovesQuery();

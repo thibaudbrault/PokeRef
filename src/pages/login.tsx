@@ -1,17 +1,19 @@
-import { ErrorToast, Input, SuccessToast } from '@/components';
-import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
-import styles from '@/modules/auth/Auth.module.scss';
-import ResetPwd from '@/modules/auth/ResetPwd';
-import { capitalize } from '@/utils';
+import { useState } from 'react';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
 import { GrGithub, GrGoogle } from '@meronex/icons/gr';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+
+import { ErrorToast, Input, SuccessToast } from '@/components';
+import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
+import styles from '@/modules/auth/Auth.module.scss';
+import ResetPwd from '@/modules/auth/ResetPwd';
+import { capitalize } from '@/utils';
 
 const schema = yup.object({
   email: yup.string().email().required(),

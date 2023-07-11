@@ -1,8 +1,11 @@
-import { useTableParams } from '@/hooks';
-import { IBerry } from '@/types';
-import { removeDash } from '@/utils';
-import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
+
+import { type ColumnDef } from '@tanstack/react-table';
+
+import { useTableParams } from '@/hooks';
+import { removeDash } from '@/utils';
+
+import type { IBerry } from '@/types';
 
 type Props = {
   berries?: IBerry[];

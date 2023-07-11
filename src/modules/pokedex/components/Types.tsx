@@ -1,6 +1,7 @@
-import { IPokemon } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import type { IPokemon } from '@/types';
 
 type Props = {
   p: IPokemon;

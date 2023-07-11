@@ -1,10 +1,9 @@
-import { ErrorToast, Input, SuccessToast } from '@/components';
-import { auth, db } from '@/firebase-config';
-import styles from '@/modules/profile/Profile.module.scss';
-import { capitalize, removeDash } from '@/utils';
+import { useEffect, useState } from 'react';
+
 import { yupResolver } from '@hookform/resolvers/yup';
+import * as Label from '@radix-ui/react-label';
 import {
-  DocumentData,
+  type DocumentData,
   arrayRemove,
   deleteDoc,
   doc,
@@ -15,10 +14,13 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import * as Label from '@radix-ui/react-label';
+
+import { ErrorToast, Input, SuccessToast } from '@/components';
+import { auth, db } from '@/firebase-config';
+import styles from '@/modules/profile/Profile.module.scss';
+import { capitalize, removeDash } from '@/utils';
 
 const schema = yup.object({
   username: yup.string().required(),

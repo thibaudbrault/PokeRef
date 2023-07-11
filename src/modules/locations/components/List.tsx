@@ -1,7 +1,9 @@
-import styles from '@/modules/locations/Locations.module.scss';
-import { IRegion } from '@/types';
-import { capitalize, removeDash } from '@/utils';
 import Link from 'next/link';
+
+import styles from '@/modules/locations/Locations.module.scss';
+import { capitalize, removeDash } from '@/utils';
+
+import type { IRegion } from '@/types';
 
 type Props = {
   location: string | null;
