@@ -56,7 +56,7 @@ export function useTableParams(data, columns) {
                 >
                   {header.isPlaceholder ? null : (
                     <>
-                      <div
+                      <button
                         {...{
                           className: header.column.getCanSort()
                             ? `cursor-pointer select-none`
@@ -72,7 +72,7 @@ export function useTableParams(data, columns) {
                           asc: <BisChevronUp />,
                           desc: <BisChevronDown />,
                         }[header.column.getIsSorted() as string] ?? null}
-                      </div>
+                      </button>
                     </>
                   )}
                 </th>

@@ -79,7 +79,7 @@ export function usePaginatedTableParams(data, columns) {
                 >
                   {header.isPlaceholder ? null : (
                     <>
-                      <div
+                      <button
                         {...{
                           className: header.column.getCanSort()
                             ? `cursor-pointer select-none`
@@ -95,7 +95,7 @@ export function usePaginatedTableParams(data, columns) {
                           asc: <BisChevronUp />,
                           desc: <BisChevronDown />,
                         }[header.column.getIsSorted() as string] ?? null}
-                      </div>
+                      </button>
                     </>
                   )}
                 </th>
