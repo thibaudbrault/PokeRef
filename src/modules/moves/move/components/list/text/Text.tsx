@@ -1,4 +1,5 @@
 import { removeDash } from '@/utils';
+
 import styles from '../../../Move.module.scss';
 
 type Props = {

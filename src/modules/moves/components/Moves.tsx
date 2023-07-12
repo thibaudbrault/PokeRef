@@ -1,12 +1,16 @@
-import { usePaginatedTableParams } from '@/hooks';
-import { IMove } from '@/types';
-import { removeDash } from '@/utils';
-import { ColumnDef } from '@tanstack/react-table';
+import { useMemo } from 'react';
+
+import { type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo } from 'react';
+
+import { usePaginatedTableParams } from '@/hooks';
+import { removeDash } from '@/utils';
+
 import styles from '../Moves.module.scss';
 import { Search } from './Search';
+
+import type { IMove } from '@/types';
 
 type Props = {
   moves?: IMove[];
@@ -50,31 +54,6 @@ export function Moves({ moves }: Props) {
                 src={`/images/status/move-${info.getValue()}.png`}
               />
               <span>{info.getValue<string>()}</span>
-            </div>
-          </td>
-        ),
-      },
-      {
-        accessorKey: `type.name`,
-        id: `type`,
-        header: `Type`,
-        cell: (info) => (
-          <td className="tType">
-            <div className="type" id={info.getValue<string>()}>
-              <Link
-                href={{
-                  pathname: `/type/[name]`,
-                  query: { name: info.getValue<string>() },
-                }}
-              >
-                <Image
-                  alt={info.getValue<string>()}
-                  width={20}
-                  height={20}
-                  src={`/images/types/${info.getValue()}.png`}
-                />
-                <span>{info.getValue<string>()}</span>
-              </Link>
             </div>
           </td>
         ),

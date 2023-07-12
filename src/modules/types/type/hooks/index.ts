@@ -1,1 +1,1 @@
-export * from './useToggleTable';
+export * from './useTypeQuery';

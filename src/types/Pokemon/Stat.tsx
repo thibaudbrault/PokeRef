@@ -1,6 +1,6 @@
-import { IApiResource } from '../Utility/ApiResourceList';
-import { IName } from '../Utility/CommonModels';
-import { INamedApiResource } from '../Utility/NamedApiResourceList';
+import type { IApiResource } from '../Utility/ApiResourceList';
+import type { IName } from '../Utility/CommonModels';
+import type { INamedApiResource } from '../Utility/NamedApiResourceList';
 
 export interface IStat {
   id: number;

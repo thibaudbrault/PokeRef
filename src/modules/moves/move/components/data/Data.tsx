@@ -1,7 +1,8 @@
-import { IMachine, IMove } from '@/types';
 import styles from './Data.module.scss';
 import { Description } from './description';
 import { Effect } from './effect';
+
+import type { IMachine, IMove } from '@/types';
 
 type Props = {
   move: IMove;

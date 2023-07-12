@@ -1,7 +1,10 @@
-import { IGenus, IPokemon, IPokemonSpecies } from '@/types';
-import { removeDash } from '@/utils';
 import Link from 'next/link';
+
+import { removeDash } from '@/utils';
+
 import styles from '../Data.module.scss';
+
+import type { IGenus, IPokemon, IPokemonSpecies } from '@/types';
 
 type Props = {
   pokemon: IPokemon;

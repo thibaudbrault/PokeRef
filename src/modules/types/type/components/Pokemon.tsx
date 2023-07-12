@@ -1,12 +1,15 @@
-import { useTableParams } from '@/hooks';
-import styles from '@/modules/types/type/Type.module.scss';
-import { IPokemon } from '@/types';
-import { IOptionsFixed, removeDash, typeOptions } from '@/utils';
-import { ColumnDef } from '@tanstack/react-table';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+
+import { type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import Select, { PropsValue } from 'react-select';
+import Select, { type PropsValue } from 'react-select';
+
+import { useTableParams } from '@/hooks';
+import styles from '@/modules/types/type/Type.module.scss';
+import { type IOptionsFixed, removeDash, typeOptions } from '@/utils';
+
+import type { IPokemon } from '@/types';
 
 type Props = {
   typeName?: string;

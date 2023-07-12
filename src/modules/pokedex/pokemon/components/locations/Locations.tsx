@@ -1,9 +1,11 @@
+import { useMemo } from 'react';
+
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/locations/Locations.module.scss';
-import { IEncounter, ILocationAreaEncounter } from '@/types';
 import { removeDash } from '@/utils';
-import { ColumnDef } from '@tanstack/react-table';
-import { useMemo } from 'react';
+
+import type { IEncounter, ILocationAreaEncounter } from '@/types';
+import type { ColumnDef } from '@tanstack/react-table';
 
 type Props = {
   location: ILocationAreaEncounter[];

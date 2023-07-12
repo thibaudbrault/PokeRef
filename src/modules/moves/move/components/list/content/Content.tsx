@@ -1,7 +1,10 @@
-import { IPokemon, IPokemonMoveVersion } from '@/types';
-import { ImageWithFallback, removeDash, removeLongName } from '@/utils';
 import Link from 'next/link';
+
+import { ImageWithFallback, removeDash, removeLongName } from '@/utils';
+
 import styles from '../../../Move.module.scss';
+
+import type { IPokemon, IPokemonMoveVersion } from '@/types';
 
 type Props = {
   pokemon?: IPokemon[];

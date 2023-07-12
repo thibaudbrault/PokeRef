@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import styles from './Loader.module.scss';
 
 export function Loader() {

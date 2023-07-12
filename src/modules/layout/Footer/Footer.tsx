@@ -1,4 +1,5 @@
 import { FaGithub } from '@meronex/icons/fa';
+
 import styles from './Footer.module.scss';
 
 export function Footer() {

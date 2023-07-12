@@ -1,5 +1,5 @@
-import { IApiResource } from './ApiResourceList';
-import { INamedApiResource } from './NamedApiResourceList';
+import type { IApiResource } from './ApiResourceList';
+import type { INamedApiResource } from './NamedApiResourceList';
 
 export interface ICacheableResource {
   id: number;

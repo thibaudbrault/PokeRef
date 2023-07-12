@@ -1,10 +1,13 @@
+import { useMemo } from 'react';
+
+import { type ColumnDef } from '@tanstack/react-table';
+import Link from 'next/link';
+
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/types/type/Type.module.scss';
-import { IMove, IType } from '@/types';
 import { removeDash } from '@/utils';
-import { ColumnDef } from '@tanstack/react-table';
-import Link from 'next/link';
-import { useMemo } from 'react';
+
+import type { IMove, IType } from '@/types';
 
 type Props = {
   type?: IType;

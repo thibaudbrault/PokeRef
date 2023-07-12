@@ -1,9 +1,11 @@
-import { IDescription, IMove, IMoveTarget } from '@/types';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+
+import { ErrorToast, SmallLoader } from '@/components';
 import { getMoveTarget, removeDash } from '@/utils';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
+
 import styles from '../Data.module.scss';
-import { SmallLoader } from '@/components';
+
+import type { IDescription, IMove, IMoveTarget } from '@/types';
 
 type Props = {
   move: IMove;
@@ -26,15 +28,7 @@ export function Effect({ move, version }: Props) {
   };
 
   if (isError) {
-    return (
-      <>
-        {toast.error(`Something went wrong: ${error?.message}`, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        })}
-      </>
-    );
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

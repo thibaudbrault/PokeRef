@@ -1,10 +1,11 @@
-import { Loader } from '@/components';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+
+import { ErrorToast, Loader } from '@/components';
 import { Heading, List } from '@/modules/types';
 import styles from '@/modules/types/Types.module.scss';
-import { IType } from '@/types';
 import { getTypes } from '@/utils';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
+
+import type { IType } from '@/types';
 
 function TypesPage() {
   const {
@@ -18,11 +19,7 @@ function TypesPage() {
   });
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

@@ -1,5 +1,5 @@
-import { IName } from '../Utility/CommonModels';
-import { INamedApiResource } from '../Utility/NamedApiResourceList';
+import type { IName } from '../Utility/CommonModels';
+import type { INamedApiResource } from '../Utility/NamedApiResourceList';
 
 export interface IPokemonShape {
   id: number;

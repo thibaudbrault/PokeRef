@@ -1,4 +1,6 @@
-import { Dispatch, SetStateAction } from 'react';
+import { type Dispatch, type SetStateAction } from 'react';
+
+import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 
 type Props = {
   pokemonId: number;
@@ -9,12 +11,14 @@ type Props = {
 
 export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
   return (
-    <nav className="genNav" id="generations">
-      <ul>
+    <NavigationMenu.Root className="NavigationMenuRoot" id="generations">
+      <NavigationMenu.List className="NavigationMenuList">
         {(pokemonId < 152 || pokemonId > 10000) && (
-          <li>
-            <button className="gen">Gen I</button>
-            <div>
+          <NavigationMenu.Item>
+            <NavigationMenu.Trigger className="NavigationMenuTrigger">
+              Gen I
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className="NavigationMenuContent">
               <button
                 onClick={() => {
                   setGame(`red`);
@@ -42,13 +46,15 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
               >
                 Yellow
               </button>
-            </div>
-          </li>
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
         )}
         {(pokemonId < 252 || pokemonId > 10000) && (
-          <li>
-            <button className="gen">Gen II</button>
-            <div>
+          <NavigationMenu.Item>
+            <NavigationMenu.Trigger className="NavigationMenuTrigger">
+              Gen II
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className="NavigationMenuContent">
               <button
                 onClick={() => {
                   setGame(`gold`);
@@ -76,13 +82,15 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
               >
                 Crystal
               </button>
-            </div>
-          </li>
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
         )}
         {(pokemonId < 387 || pokemonId > 10000) && (
-          <li>
-            <button className="gen">Gen III</button>
-            <div>
+          <NavigationMenu.Item>
+            <NavigationMenu.Trigger className="NavigationMenuTrigger">
+              Gen III
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className="NavigationMenuContent">
               <button
                 onClick={() => {
                   setGame(`ruby`);
@@ -128,13 +136,15 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
               >
                 Leaf Green
               </button>
-            </div>
-          </li>
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
         )}
         {(pokemonId < 494 || pokemonId > 10000) && (
-          <li>
-            <button className="gen">Gen IV</button>
-            <div>
+          <NavigationMenu.Item>
+            <NavigationMenu.Trigger className="NavigationMenuTrigger">
+              Gen IV
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className="NavigationMenuContent">
               <button
                 onClick={() => {
                   setGame(`diamond`);
@@ -180,13 +190,15 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
               >
                 Soul Silver
               </button>
-            </div>
-          </li>
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
         )}
         {(pokemonId < 650 || pokemonId > 10000) && (
-          <li>
-            <button className="gen">Gen V</button>
-            <div>
+          <NavigationMenu.Item>
+            <NavigationMenu.Trigger className="NavigationMenuTrigger">
+              Gen V
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className="NavigationMenuContent">
               <button
                 onClick={() => {
                   setGame(`black`);
@@ -223,13 +235,15 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
               >
                 White 2
               </button>
-            </div>
-          </li>
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
         )}
         {(pokemonId < 722 || pokemonId > 10000) && (
-          <li>
-            <button className="gen">Gen VI</button>
-            <div>
+          <NavigationMenu.Item>
+            <NavigationMenu.Trigger className="NavigationMenuTrigger">
+              Gen VI
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className="NavigationMenuContent">
               <button
                 onClick={() => {
                   setGame(`x`);
@@ -266,13 +280,15 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
               >
                 Alpha Sapphire
               </button>
-            </div>
-          </li>
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
         )}
         {(pokemonId < 810 || pokemonId > 10000) && (
-          <li>
-            <button className="gen">Gen VII</button>
-            <div>
+          <NavigationMenu.Item>
+            <NavigationMenu.Trigger className="NavigationMenuTrigger">
+              Gen VII
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className="NavigationMenuContent">
               <button
                 onClick={() => {
                   setGame(`sun`);
@@ -327,13 +343,15 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
               >
                 Let's Go Eevee
               </button>
-            </div>
-          </li>
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
         )}
         {(pokemonId < 905 || pokemonId > 10000) && (
-          <li>
-            <button className="gen">Gen VIII</button>
-            <div>
+          <NavigationMenu.Item>
+            <NavigationMenu.Trigger className="NavigationMenuTrigger">
+              Gen VIII
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className="NavigationMenuContent">
               {pokemonId < 898 && (
                 <>
                   <button
@@ -365,13 +383,15 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
               >
                 Legends Arceus
               </button>
-            </div>
-          </li>
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
         )}
         {(pokemonId < 1011 || pokemonId > 10000) && (
-          <li>
-            <button className="gen">Gen IX</button>
-            <div>
+          <NavigationMenu.Item>
+            <NavigationMenu.Trigger className="NavigationMenuTrigger">
+              Gen IX
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className="NavigationMenuContent">
               <button
                 onClick={() => {
                   setGame(`scarlet`);
@@ -390,10 +410,13 @@ export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
               >
                 Violet
               </button>
-            </div>
-          </li>
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
         )}
-      </ul>
-    </nav>
+      </NavigationMenu.List>
+      <div className="ViewportPosition">
+        <NavigationMenu.Viewport className="NavigationMenuViewport" />
+      </div>
+    </NavigationMenu.Root>
   );
 }

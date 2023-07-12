@@ -1,10 +1,13 @@
+import { useMemo } from 'react';
+
+import { type ColumnDef } from '@tanstack/react-table';
+import Link from 'next/link';
+
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/abilities/ability/Ability.module.scss';
-import { IAbility, IPokemon } from '@/types';
 import { ImageWithFallback, removeDash } from '@/utils';
-import { ColumnDef } from '@tanstack/react-table';
-import Link from 'next/link';
-import { useMemo } from 'react';
+
+import type { IAbility, IPokemon } from '@/types';
 
 type Props = {
   ability?: IAbility;

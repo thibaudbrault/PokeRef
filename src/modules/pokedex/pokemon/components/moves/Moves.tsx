@@ -1,14 +1,22 @@
-import { useTableParams } from '@/hooks';
-import { IMoveAilment, IPokemon } from '@/types';
-import { LearnMethod, removeDash, uppercase } from '@/utils';
-import { CellContext, ColumnDef } from '@tanstack/react-table';
+import { useEffect, useMemo, useState } from 'react';
+
+import * as Tabs from '@radix-ui/react-tabs';
+import { type CellContext, type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
-import toast from 'react-hot-toast';
-import { IMoveWithDetails, useFetchMachines, useFetchMoves } from '../../hooks';
+
+import { ErrorToast, SmallLoader } from '@/components';
+import { useTableParams } from '@/hooks';
+import { LearnMethod, removeDash, uppercase } from '@/utils';
+
+import {
+  type IMoveWithDetails,
+  useFetchMachines,
+  useFetchMoves,
+} from '../../hooks';
 import styles from './Moves.module.scss';
-import { SmallLoader } from '@/components';
+
+import type { IMoveAilment, IPokemon } from '@/types';
 
 type Props = {
   pokemon: IPokemon;
@@ -185,15 +193,7 @@ export function Moves({ pokemon, version, name }: Props) {
   );
 
   if (isError) {
-    return (
-      <>
-        {toast.error(`Something went wrong: ${error?.message}`, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        })}
-      </>
-    );
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {
@@ -201,20 +201,26 @@ export function Moves({ pokemon, version, name }: Props) {
   }
 
   return (
-    <section className={styles.section} id="moves">
+    <Tabs.Root
+      className={`${styles.section} TabsRootSection`}
+      id="moves"
+      defaultValue={String(toggle)}
+    >
       <h3 className="h3">Moves</h3>
-      <LearnMethod toggle={toggle} setToggle={setToggle} setLearn={setLearn} />
-      <div className="tableContainer" ref={tableContainerRef}>
-        <table className="fullWidthTable">
-          {tableHeader()}
-          {tableBody()}
-          <tfoot>
-            <tr>
-              <td colSpan={9}>There is no move learned this way</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </section>
+      <LearnMethod setToggle={setToggle} setLearn={setLearn} />
+      <Tabs.Content value={String(toggle)}>
+        <div className="tableContainer" ref={tableContainerRef}>
+          <table className="fullWidthTable">
+            {tableHeader()}
+            {tableBody()}
+            <tfoot>
+              <tr>
+                <td colSpan={9}>There is no move learned this way</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </Tabs.Content>
+    </Tabs.Root>
   );
 }

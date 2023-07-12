@@ -9,9 +9,6 @@ const withPWA = require("next-pwa")({
 })
 
 const nextConfig = withPWA({
-  compiler: {
-    styledComponents: true
-  },
   eslint: {
     ignoreDuringBuilds: true
   },

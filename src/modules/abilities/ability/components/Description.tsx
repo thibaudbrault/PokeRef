@@ -1,5 +1,6 @@
-import { IAbilityFlavorText } from '@/types';
 import { removeDash } from '@/utils';
+
+import type { IAbilityFlavorText } from '@/types';
 
 type Props = {
   filterDesc?: IAbilityFlavorText[];

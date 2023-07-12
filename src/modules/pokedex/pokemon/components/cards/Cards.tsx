@@ -1,8 +1,11 @@
-import { ICard } from '@/types';
-import Image from 'next/image';
 import { useState } from 'react';
+
+import Image from 'next/image';
 import Modal from 'react-modal';
+
 import styles from './Cards.module.scss';
+
+import type { ICard } from '@/types';
 
 type Props = {
   cards: ICard[];

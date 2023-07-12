@@ -1,14 +1,6 @@
 @use '@/styles/common' as *;
 @use '@/styles/abstracts' as *;
 
-.section {
-  & p {
-    font-size: 1.7rem;
-    font-weight: 600;
-    text-align: center;
-  }
-}
-
 .navSection {
   width: 100%;
   height: 100%;
@@ -49,7 +41,14 @@
   }
 }
 
-.ul {
+.placeholder {
+  display: none;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.list {
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(4, 1fr);
@@ -63,7 +62,6 @@
 
     & a {
       cursor: pointer;
-      transition: 0.3s ease-in-out;
       border-bottom: 1px solid transparent;
 
       &:hover {
@@ -72,6 +70,10 @@
         }
       }
     }
+  }
+
+  &:empty + .placeholder {
+    display: block;
   }
 
   @include sm {

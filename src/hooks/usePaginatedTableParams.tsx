@@ -1,14 +1,17 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+import { useEffect, useMemo, useRef, useState } from 'react';
+
 import { BisChevronDown, BisChevronUp } from '@meronex/icons/bi';
 import {
-  PaginationState,
-  SortingState,
+  type PaginationState,
+  type SortingState,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { useEffect, useMemo, useRef, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useVirtual } from 'react-virtual';
 

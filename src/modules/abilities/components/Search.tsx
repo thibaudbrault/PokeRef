@@ -1,8 +1,13 @@
-import { IAbility } from '@/types';
-import { capitalize, removeDash } from '@/utils';
+import { useState } from 'react';
+
+import * as Label from '@radix-ui/react-label';
 import Fuse from 'fuse.js';
 import Link from 'next/link';
-import { useState } from 'react';
+
+import { Input } from '@/components';
+import { capitalize, removeDash } from '@/utils';
+
+import type { IAbility } from '@/types';
 
 type Props = {
   abilities?: IAbility[];
@@ -25,8 +30,8 @@ export function Search({ abilities }: Props) {
 
   return (
     <div className="search">
-      <label htmlFor="search">Search</label>
-      <input
+      <Label.Root htmlFor="search">Search</Label.Root>
+      <Input
         type="text"
         placeholder="Ability Name"
         onChange={(e) => searchAbilities(e.target.value)}

@@ -1,12 +1,14 @@
-import { Loader } from '@/components';
-import styles from '@/modules/locations/Locations.module.scss';
-import { Heading, List } from '@/modules/locations';
-import { IRegion } from '@/types';
-import { capitalize, getRegions, regions } from '@/utils';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
-import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
+
+import * as Tabs from '@radix-ui/react-tabs';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import dynamic from 'next/dynamic';
+
+import { ErrorToast, Loader } from '@/components';
+import { Heading, List } from '@/modules/locations';
+import { getRegions, regions } from '@/utils';
+
+import type { IRegion } from '@/types';
 
 const RegionsMethod = dynamic(() =>
   import(`@/utils`).then((res) => res.RegionsMethod),
@@ -30,11 +32,7 @@ function LocationsPage() {
   }, [toggle]);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {
@@ -44,15 +42,12 @@ function LocationsPage() {
   return (
     <>
       <Heading />
-      <main className="mainBig">
-        <RegionsMethod toggle={toggle} setToggle={setToggle} />
-        <List location={location} locations={locations} />
-        {location === `galar` || location === `hisui` ? (
-          <section className={styles.section}>
-            <p>No data for {capitalize(location)}</p>
-          </section>
-        ) : null}
-      </main>
+      <Tabs.Root className="TabsRootMain" defaultValue={String(toggle)}>
+        <RegionsMethod setToggle={setToggle} />
+        <Tabs.Content value={String(toggle)}>
+          <List location={location} locations={locations} />
+        </Tabs.Content>
+      </Tabs.Root>
     </>
   );
 }

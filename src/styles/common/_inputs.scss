@@ -25,7 +25,6 @@
     padding: 0.5rem 1rem;
     background: transparent;
     border-radius: 5px;
-    transition: 0.3s ease-in-out;
 
     @include gthemed {
       color: t('text');
@@ -61,7 +60,6 @@
     border-radius: 5px;
     text-transform: capitalize;
     font-size: 1.5rem;
-    transition: 0.3s ease-in-out;
 
     @include gthemed {
       color: t('text');
@@ -137,7 +135,6 @@
 
     &__remove {
       cursor: pointer;
-      transition: 0.3s ease-in-out;
 
       &:hover {
         background-color: transparent;
@@ -162,7 +159,6 @@
 
   & .select__clear-indicator {
     cursor: pointer;
-    transition: 0.3s ease-in-out;
 
     &:hover {
       background-color: transparent;

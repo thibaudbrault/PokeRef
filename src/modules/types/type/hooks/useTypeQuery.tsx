@@ -1,10 +1,10 @@
-import { IMove, IPokemon, IType } from '@/types';
-import { getType, getTypeMoves, getTypePokemon } from '@/utils';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { useState } from 'react';
-import { Moves, Pokemon } from '../components';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 
-export const useToggleTable = (name: string) => {
+import { getType, getTypeMoves, getTypePokemon } from '@/utils';
+
+import type { IMove, IPokemon, IType } from '@/types';
+
+export const useTypeQuery = (name: string) => {
   const {
     isLoading,
     isError,
@@ -27,14 +27,5 @@ export const useToggleTable = (name: string) => {
     enabled: !!type,
   });
 
-  const [toggle, setToggle] = useState(1);
-  const pageShown = () => {
-    if (toggle === 1) {
-      return <Pokemon typeName={type?.name} pokemon={pokemon} />;
-    } else if (toggle === 2 && type) {
-      return <Moves type={type} moves={moves} />;
-    }
-  };
-
-  return { type, isLoading, isError, error, toggle, setToggle, pageShown };
+  return { type, pokemon, moves, isLoading, isError, error };
 };

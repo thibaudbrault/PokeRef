@@ -1,8 +1,13 @@
-import { IMove } from '@/types';
-import { ImageWithFallback, capitalize, removeDash } from '@/utils';
+import { useState } from 'react';
+
+import * as Label from '@radix-ui/react-label';
 import Fuse from 'fuse.js';
 import Link from 'next/link';
-import { useState } from 'react';
+
+import { Input } from '@/components';
+import { ImageWithFallback, capitalize, removeDash } from '@/utils';
+
+import type { IMove } from '@/types';
 
 type Props = {
   moves?: IMove[];
@@ -25,8 +30,8 @@ export function Search({ moves }: Props) {
 
   return (
     <div className="search">
-      <label htmlFor="search">Search</label>
-      <input
+      <Label.Root htmlFor="search">Search</Label.Root>
+      <Input
         type="text"
         placeholder="Move Name"
         onChange={(e) => searchMoves(e.target.value)}

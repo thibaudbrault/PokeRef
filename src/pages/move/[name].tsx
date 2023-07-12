@@ -1,13 +1,15 @@
-import { Button, Loader, Separator } from '@/components';
+import { useState } from 'react';
+
+import { FaChevronLeft } from '@meronex/icons/fa';
+import * as Tabs from '@radix-ui/react-tabs';
+import { type GetServerSidePropsContext } from 'next';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+
+import { Button, ErrorToast, Loader, Separator } from '@/components';
 import { Data, Heading, List, Nav, useFetchMove } from '@/modules/moves/move';
 import styles from '@/modules/moves/move/Move.module.scss';
 import { removeDash } from '@/utils';
-import { FaChevronLeft } from '@meronex/icons/fa';
-import { GetServerSidePropsContext } from 'next';
-import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import { useState } from 'react';
-import toast from 'react-hot-toast';
 
 const LearnMethod = dynamic(() =>
   import(`@/utils`).then((res) => res.LearnMethod),
@@ -35,11 +37,7 @@ function MoveCard({ name }: Props) {
   } = useFetchMove(name);
 
   if (isError) {
-    toast.error(`Something went wrong: ${error?.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {
@@ -59,12 +57,9 @@ function MoveCard({ name }: Props) {
           <Data move={move} machine={machine} version={version} />
 
           <Separator />
-
-          <LearnMethod
-            toggle={toggle}
-            setToggle={setToggle}
-            setLearn={setLearn}
-          />
+          <Tabs.Root className="TabsRootSection" defaultValue={String(toggle)}>
+            <LearnMethod setToggle={setToggle} setLearn={setLearn} />
+          </Tabs.Root>
 
           <List
             pokemon={pokemon}

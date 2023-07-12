@@ -1,5 +1,5 @@
-import { IDescription } from '../Utility/CommonModels';
-import { INamedApiResource } from '../Utility/NamedApiResourceList';
+import type { IDescription } from '../Utility/CommonModels';
+import type { INamedApiResource } from '../Utility/NamedApiResourceList';
 
 export interface IGrowthRate {
   id: number;

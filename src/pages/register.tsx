@@ -1,5 +1,3 @@
-import { auth, db } from '@/firebase-config';
-import styles from '@/modules/auth/Auth.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -7,8 +5,11 @@ import { doc, setDoc } from 'firebase/firestore';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
 import * as yup from 'yup';
+
+import { ErrorToast, Input, SuccessToast } from '@/components';
+import { auth, db } from '@/firebase-config';
+import styles from '@/modules/auth/Auth.module.scss';
 
 const schema = yup.object({
   username: yup.string().required(),
@@ -48,20 +49,12 @@ function Register() {
             { name: `hyperball`, number: 0 },
           ],
         });
-        toast.success(`Congrats 🎉! Your account is now created`, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        });
         router.push(`/`);
+        return <SuccessToast text="Congrats 🎉! Your account is now created" />;
       }
     } catch (error) {
       if (error instanceof Error) {
-        toast.error(error.message, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        });
+        return <ErrorToast error={error} />;
       }
     }
   };
@@ -80,7 +73,7 @@ function Register() {
           </div>
           <div className={styles.input}>
             <div>
-              <input
+              <Input
                 type="text"
                 id="username"
                 placeholder="Username"
@@ -88,7 +81,7 @@ function Register() {
               />
             </div>
             <div>
-              <input
+              <Input
                 type="email"
                 id="email"
                 placeholder="Email"
@@ -99,7 +92,7 @@ function Register() {
               )}
             </div>
             <div>
-              <input
+              <Input
                 type="password"
                 id="password"
                 placeholder="Password"
@@ -107,7 +100,7 @@ function Register() {
               />
             </div>
             <div>
-              <input
+              <Input
                 type="password"
                 id="cpassword"
                 placeholder="Confirm Password"

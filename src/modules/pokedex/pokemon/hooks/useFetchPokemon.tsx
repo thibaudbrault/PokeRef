@@ -1,4 +1,7 @@
-import { IPokemon } from '@/types';
+import { useState } from 'react';
+
+import { useQueries, useQuery } from '@tanstack/react-query';
+
 import {
   getCards,
   getEvolution,
@@ -7,8 +10,8 @@ import {
   getPokemonTypes,
   getSpecies,
 } from '@/utils';
-import { useQueries, useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+
+import type { IPokemon } from '@/types';
 
 export const useFetchPokemon = (name: string) => {
   const [pokemonId, setPokemonId] = useState<number | null>(null);

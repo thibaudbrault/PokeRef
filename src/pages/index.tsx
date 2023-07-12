@@ -1,12 +1,14 @@
-import { Loader, Separator } from '@/components';
+import { useState } from 'react';
+
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import ReactPaginate from 'react-paginate';
+
+import { ErrorToast, Loader, Separator } from '@/components';
 import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
-import { IPokemon } from '@/types';
-import { IOptionsOffsetLimit, getPokedex } from '@/utils';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
-import { toast } from 'react-hot-toast';
-import ReactPaginate from 'react-paginate';
+import { type IOptionsOffsetLimit, getPokedex } from '@/utils';
+
+import type { IPokemon } from '@/types';
 
 function Pokedex() {
   const [filteredPokedex, setFilteredPokedex] = useState<IPokemon[]>([]);
@@ -45,11 +47,7 @@ function Pokedex() {
   };
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {

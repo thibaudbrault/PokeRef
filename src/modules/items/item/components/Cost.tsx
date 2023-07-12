@@ -1,5 +1,6 @@
 import styles from '@/modules/items/item/Item.module.scss';
-import { IItem } from '@/types';
+
+import type { IItem } from '@/types';
 
 type Props = {
   item?: IItem;

@@ -1,10 +1,12 @@
-import styles from '@/modules/locations/Locations.module.scss';
-import { Dispatch, SetStateAction } from 'react';
+import { type Dispatch, type SetStateAction } from 'react';
+
+import * as Tabs from '@radix-ui/react-tabs';
+
 import { learnMethod, regions } from './DataArrays';
 import { removeDash } from './Typography';
 
 interface IProps {
-  toggle: number;
+  toggle?: number;
   setToggle: Dispatch<SetStateAction<number>>;
 }
 
@@ -12,37 +14,45 @@ interface ILearnProps extends IProps {
   setLearn: Dispatch<SetStateAction<any>>;
 }
 
-export const LearnMethod = ({ toggle, setToggle, setLearn }: ILearnProps) => {
+export const LearnMethod = ({ setToggle, setLearn }: ILearnProps) => {
   return (
-    <nav className="methodNav">
+    <Tabs.List
+      className="TabsList"
+      aria-label="Switch between the different method for a Pokémon to learn a new move"
+    >
       {Object.keys(learnMethod)?.map((l, i) => (
-        <button
-          className={toggle === i ? `button_active` : ``}
+        <Tabs.Trigger
+          className="TabsTrigger"
+          value={String(i)}
           onClick={() => {
             setToggle(i);
             setLearn(learnMethod[l]);
           }}
           key={learnMethod[l]}
         >
-          <p>{removeDash(learnMethod[l])}</p>
-        </button>
+          {removeDash(learnMethod[l])}
+        </Tabs.Trigger>
       ))}
-    </nav>
+    </Tabs.List>
   );
 };
 
-export const RegionsMethod = ({ toggle, setToggle }: IProps) => {
+export const RegionsMethod = ({ setToggle }: IProps) => {
   return (
-    <nav className={styles.nav}>
+    <Tabs.List
+      className="TabsList"
+      aria-label="Switch between the different regions"
+    >
       {Object.keys(regions)?.map((r, i) => (
-        <button
-          className={toggle === i ? `button_active` : ``}
+        <Tabs.Trigger
+          className="TabsTrigger"
+          value={String(i)}
           onClick={() => setToggle(i)}
           key={regions[r]}
         >
-          <p>{regions[r]}</p>
-        </button>
+          {regions[r]}
+        </Tabs.Trigger>
       ))}
-    </nav>
+    </Tabs.List>
   );
 };

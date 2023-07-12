@@ -1,13 +1,15 @@
-import { Loader, Nav } from '@/components';
+import { useMemo, useState } from 'react';
+
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { type ColumnDef } from '@tanstack/react-table';
+import Link from 'next/link';
+
+import { ErrorToast, GenNav, Loader } from '@/components';
 import { useTableParams } from '@/hooks';
 import { Heading } from '@/modules/machines';
-import { IMachine } from '@/types';
 import { getMachines, removeDash, uppercase } from '@/utils';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
-import { ColumnDef } from '@tanstack/react-table';
-import Link from 'next/link';
-import { useMemo, useState } from 'react';
-import toast from 'react-hot-toast';
+
+import type { IMachine } from '@/types';
 
 function MachinesPage() {
   const [version, setVersion] = useState<string | null>(`red-blue`);
@@ -65,11 +67,7 @@ function MachinesPage() {
   );
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {
@@ -84,7 +82,7 @@ function MachinesPage() {
         <h4 className="leftSubtitle">
           Game selected: <span className="bold">{game}</span>
         </h4>
-        <Nav setGame={setGame} setVersion={setVersion} />
+        <GenNav setGame={setGame} setVersion={setVersion} />
         <section className="tableContainer" ref={tableContainerRef}>
           <table className="fullWidthTable">
             {tableHeader()}

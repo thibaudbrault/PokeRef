@@ -18,40 +18,6 @@ export const regions: Record<string, string> = {
   10: `paldea`,
 };
 
-type Generations = {
-  [key: string]: {
-    name: string;
-    value: string;
-  };
-};
-
-export const generations: Generations = {
-  1: { name: `generation I`, value: `gen1` },
-  2: { name: `generation II`, value: `gen2` },
-  3: { name: `generation III`, value: `gen3` },
-  4: { name: `generation IV`, value: `gen4` },
-  5: { name: `generation V`, value: `gen5` },
-  6: { name: `generation VI`, value: `gen6` },
-  7: { name: `generation VII`, value: `gen7` },
-  8: { name: `generation VIII`, value: `gen8` },
-  9: { name: `generation IX`, value: `gen9` },
-};
-
-type ObjectFilters = {
-  [key: string]: {
-    offset: number;
-    limit: number;
-  };
-};
-
-export const formFilters: ObjectFilters = {
-  alola: { offset: 995, limit: 30 },
-  galar: { offset: 1065, limit: 25 },
-  hisui: { offset: 1133, limit: 20 },
-  mega: { offset: 937, limit: 70 },
-  gmax: { offset: 1099, limit: 40 },
-};
-
 export interface IOptions {
   value: string;
   label: string;

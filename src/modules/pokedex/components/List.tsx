@@ -1,9 +1,12 @@
-import { IPokemon } from '@/types';
-import { removeDash, removeLongName } from '@/utils';
 import Link from 'next/link';
+
+import { removeDash, removeLongName } from '@/utils';
+
 import styles from '../Pokedex.module.scss';
 import { Sprites } from './Sprites';
 import { Types } from './Types';
+
+import type { IPokemon } from '@/types';
 
 type Props = {
   filteredPokedex: IPokemon[];

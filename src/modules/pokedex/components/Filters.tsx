@@ -1,11 +1,25 @@
-import { Separator } from '@/components';
-import { IPokemon } from '@/types';
-import { formOptions, generationsOptions, IOptionsOffsetLimit } from '@/utils';
-import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
-import Select, { SingleValue } from 'react-select';
+import {
+  type Dispatch,
+  type SetStateAction,
+  useCallback,
+  useEffect,
+} from 'react';
+
+import * as Label from '@radix-ui/react-label';
+import Select, { type SingleValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
+
+import { Separator } from '@/components';
+import {
+  formOptions,
+  generationsOptions,
+  type IOptionsOffsetLimit,
+} from '@/utils';
+
 import styles from '../Pokedex.module.scss';
 import { Search } from './Search';
+
+import type { IPokemon } from '@/types';
 
 type Props = {
   pokedex: IPokemon[];
@@ -84,7 +98,7 @@ export function Filters({
       <section className={styles.search}>
         <Search />
         <div className={styles.dropdown}>
-          <label htmlFor="form">Form</label>
+          <Label.Root htmlFor="form">Form</Label.Root>
           <Select
             key={form?.value}
             name="form"
@@ -104,7 +118,7 @@ export function Filters({
         </div>
 
         <div className={styles.dropdown}>
-          <label htmlFor="generation">Generation</label>
+          <Label.Root htmlFor="generation">Generation</Label.Root>
           <Select
             key={generation?.value}
             name="generation"

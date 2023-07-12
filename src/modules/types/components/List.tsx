@@ -1,7 +1,9 @@
-import { IType } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import styles from '../Types.module.scss';
+
+import type { IType } from '@/types';
 
 type Props = {
   types?: IType[];

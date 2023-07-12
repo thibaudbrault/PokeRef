@@ -1,17 +1,19 @@
-import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
-import styles from '@/modules/auth/Auth.module.scss';
-import ResetPwd from '@/modules/auth/ResetPwd';
-import { capitalize } from '@/utils';
+import { useState } from 'react';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
 import { GrGithub, GrGoogle } from '@meronex/icons/gr';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
 import * as yup from 'yup';
+
+import { ErrorToast, Input, SuccessToast } from '@/components';
+import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
+import styles from '@/modules/auth/Auth.module.scss';
+import ResetPwd from '@/modules/auth/ResetPwd';
+import { capitalize } from '@/utils';
 
 const schema = yup.object({
   email: yup.string().email().required(),
@@ -40,19 +42,11 @@ function Login() {
   const submitForm = async (data: FormInput) => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
-      toast.success(`Welcome back 👋`, {
-        style: {
-          fontSize: `1.7rem`,
-        },
-      });
       router.push(`/`);
+      return <SuccessToast text="Welcome back 👋" />;
     } catch (error) {
       if (error instanceof Error) {
-        toast.error(error.message, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        });
+        return <ErrorToast error={error} />;
       }
     }
   };
@@ -83,7 +77,7 @@ function Login() {
           </div>
           <div className={styles.input}>
             <div>
-              <input
+              <Input
                 type="email"
                 id="email"
                 placeholder="Email"
@@ -94,7 +88,7 @@ function Login() {
               )}
             </div>
             <div>
-              <input
+              <Input
                 type="password"
                 id="password"
                 placeholder="Password"

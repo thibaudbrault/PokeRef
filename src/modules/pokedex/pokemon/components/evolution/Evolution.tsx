@@ -1,12 +1,14 @@
-import { IEvolutionChain, IPokemon } from '@/types';
-import { getAllEvo, removeDash } from '@/utils';
 import { FaChevronRight } from '@meronex/icons/fa';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-import toast from 'react-hot-toast';
+
+import { ErrorToast, SmallLoader } from '@/components';
+import { getAllEvo, removeDash } from '@/utils';
+
 import styles from './Evolution.module.scss';
-import { SmallLoader } from '@/components';
+
+import type { IEvolutionChain, IPokemon } from '@/types';
 
 type Props = {
   evolution: IEvolutionChain;
@@ -26,15 +28,7 @@ export function Evolution({ evolution, name }: Props) {
   });
 
   if (isError) {
-    return (
-      <>
-        {toast.error(`Something went wrong: ${error.message}`, {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        })}
-      </>
-    );
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {
@@ -414,27 +408,29 @@ export function Evolution({ evolution, name }: Props) {
                                     <span> {eeed.min_beauty}+ beauty</span>
                                   </p>
                                 )}
-                                {eeed.min_happiness && eeed.time_of_day !== `` && (
-                                  <p className={styles.text}>
-                                    Level up with{` `}
-                                    <span>
+                                {eeed.min_happiness &&
+                                  eeed.time_of_day !== `` && (
+                                    <p className={styles.text}>
+                                      Level up with{` `}
+                                      <span>
+                                        {` `}
+                                        {eeed.min_happiness}+ happiness
+                                      </span>
                                       {` `}
-                                      {eeed.min_happiness}+ happiness
-                                    </span>
-                                    {` `}
-                                    during the{` `}
-                                    <span> {eeed.time_of_day}</span>
-                                  </p>
-                                )}
-                                {eeed.min_happiness && eeed.time_of_day === `` && (
-                                  <p className={styles.text}>
-                                    Level up with{` `}
-                                    <span>
-                                      {` `}
-                                      {eeed.min_happiness}+ happiness
-                                    </span>
-                                  </p>
-                                )}
+                                      during the{` `}
+                                      <span> {eeed.time_of_day}</span>
+                                    </p>
+                                  )}
+                                {eeed.min_happiness &&
+                                  eeed.time_of_day === `` && (
+                                    <p className={styles.text}>
+                                      Level up with{` `}
+                                      <span>
+                                        {` `}
+                                        {eeed.min_happiness}+ happiness
+                                      </span>
+                                    </p>
+                                  )}
                                 {eeed.min_level &&
                                   eeed.time_of_day === `` &&
                                   !eeed.party_type &&

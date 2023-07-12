@@ -1,6 +1,8 @@
-import { IPokemon, IPokemonSpecies } from '@/types';
-import styles from '../Data.module.scss';
 import Image from 'next/image';
+
+import styles from '../Data.module.scss';
+
+import type { IPokemon, IPokemonSpecies } from '@/types';
 
 type Props = {
   pokemon: IPokemon;

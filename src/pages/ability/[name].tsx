@@ -1,4 +1,8 @@
-import { Button, Loader, Separator } from '@/components';
+import { FaChevronLeft } from '@meronex/icons/fa';
+import { type GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
+
+import { Button, ErrorToast, Loader, Separator } from '@/components';
 import {
   Description,
   Heading,
@@ -7,10 +11,6 @@ import {
 } from '@/modules/abilities/ability';
 import styles from '@/modules/abilities/ability/Ability.module.scss';
 import { removeDash } from '@/utils';
-import { FaChevronLeft } from '@meronex/icons/fa';
-import { GetServerSidePropsContext } from 'next';
-import Link from 'next/link';
-import toast from 'react-hot-toast';
 
 type Props = {
   name: string;
@@ -31,11 +31,7 @@ function Ability({ name }: Props) {
   } = useFilterAbility(name);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error?.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {
