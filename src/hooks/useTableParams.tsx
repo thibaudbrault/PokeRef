@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
 import { useEffect, useRef, useState } from 'react';
 
 import { BisChevronDown, BisChevronUp } from '@meronex/icons/bi';
@@ -56,7 +58,7 @@ export function useTableParams(data, columns) {
                 >
                   {header.isPlaceholder ? null : (
                     <>
-                      <button
+                      <div
                         {...{
                           className: header.column.getCanSort()
                             ? `cursor-pointer select-none`
@@ -72,7 +74,7 @@ export function useTableParams(data, columns) {
                           asc: <BisChevronUp />,
                           desc: <BisChevronDown />,
                         }[header.column.getIsSorted() as string] ?? null}
-                      </button>
+                      </div>
                     </>
                   )}
                 </th>
