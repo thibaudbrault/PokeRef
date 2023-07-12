@@ -7,7 +7,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "verbatimModuleSyntax": true,
+    // "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -17,6 +17,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
+      "~/*": ["./*"],
       "@/*": ["./src/*"],
       "@/public/*": ["./public/*"]
     },
@@ -25,6 +26,11 @@
         "name": "next"
       }
     ]
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
