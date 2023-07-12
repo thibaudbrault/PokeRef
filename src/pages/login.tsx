@@ -3,14 +3,12 @@ import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
 import { GrGithub, GrGoogle } from '@meronex/icons/gr';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { ErrorToast, Input, SuccessToast } from '@/components';
-import { auth, signInWithGithub, signInWithGoogle } from '@/firebase-config';
 import styles from '@/modules/auth/Auth.module.scss';
 import ResetPwd from '@/modules/auth/ResetPwd';
 import { capitalize } from '@/utils';
@@ -41,7 +39,7 @@ function Login() {
 
   const submitForm = async (data: FormInput) => {
     try {
-      await signInWithEmailAndPassword(auth, data.email, data.password);
+      // will have the sign-in call
       router.push(`/`);
       return <SuccessToast text="Welcome back 👋" />;
     } catch (error) {
@@ -52,12 +50,12 @@ function Login() {
   };
 
   const googleConnect = () => {
-    signInWithGoogle();
+    // will have the sign-in with google call
     router.push(`/`);
   };
 
   const githubConnect = () => {
-    signInWithGithub();
+    // will have the sign-in with github call
     router.push(`/`);
   };
 
