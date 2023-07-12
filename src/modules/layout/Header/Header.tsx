@@ -8,12 +8,10 @@ import {
 
 import { FiMenu, FiX } from '@meronex/icons/fi';
 import { RiMoonClearLine, RiSunLine } from '@meronex/icons/ri';
-import { type User, onAuthStateChanged, signOut } from 'firebase/auth';
 import Link from 'next/link';
 
 import { Button } from '@/components';
 import { ThemeContext } from '@/contexts';
-import { auth } from '@/firebase-config';
 
 import styles from './Header.module.scss';
 
@@ -23,13 +21,13 @@ type Props = {
 };
 
 export function Header({ navOpen, setNavOpen }: Props) {
-  const [user, setUser] = useState<User | null>();
-  // const usersCollectionRef = collection(db, `users`);
+  // will have the user's info
+  const [user, setUser] = useState();
 
   const { theme, setTheme } = useContext(ThemeContext);
 
   const logout = async () => {
-    await signOut(auth);
+    // will be used to logout
   };
 
   const themeHandler = () => {
@@ -39,12 +37,6 @@ export function Header({ navOpen, setNavOpen }: Props) {
       setTheme(`light`);
     }
   };
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      return setUser(currentUser);
-    });
-  }, []);
 
   return (
     <header className={styles.header} id="header">

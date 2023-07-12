@@ -1,16 +1,6 @@
-import { useEffect, useState } from 'react';
-
-import {
-  type DocumentData,
-  arrayUnion,
-  doc,
-  getDoc,
-  onSnapshot,
-  updateDoc,
-} from 'firebase/firestore';
+import { useState } from 'react';
 
 import { SuccessToast } from '@/components';
-import { auth, db } from '@/firebase-config';
 import { removeDash } from '@/utils';
 
 import { Base } from './base';
@@ -27,25 +17,12 @@ type Props = {
 };
 
 export function Data({ pokemon, species, game }: Props) {
-  const [user, setUser] = useState<DocumentData | undefined>();
-
-  const getUserDoc = async () => {
-    if (auth.currentUser) {
-      const usersCollectionRef = doc(db, `users`, auth.currentUser.uid);
-      const docSnap = await getDoc(usersCollectionRef);
-      setUser(docSnap.data());
-    }
-  };
+  // will have the user's info
+  const [user, setUser] = useState();
 
   const catchHandler = async () => {
-    if (Math.random() < species.capture_rate / 765 && auth.currentUser) {
-      const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
-      await updateDoc(usersCollectionRef, {
-        caught: arrayUnion({
-          0: pokemon.name,
-          1: pokemon.sprites.front_default,
-        }),
-      });
+    if (Math.random() < species.capture_rate / 765) {
+      // will have the catch function
       return (
         <SuccessToast
           text={`Congrats 🎉 ! You caught ${removeDash(pokemon.name)}`}
@@ -54,22 +31,9 @@ export function Data({ pokemon, species, game }: Props) {
     }
   };
 
-  useEffect(() => {
-    if (auth.currentUser) {
-      getUserDoc();
-      const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
-      const unsubscribe = onSnapshot(usersCollectionRef, (doc) => {
-        setUser(doc.data());
-      });
-      return () => {
-        unsubscribe();
-      };
-    }
-  }, []);
-
   return (
     <section className={styles.section} id="presentation">
-      {user &&
+      {/* {user &&
         pokemon.id < 10000 &&
         (user.caught.every(
           (n: Record<string, string>) => n[0] !== pokemon.name,
@@ -79,7 +43,7 @@ export function Data({ pokemon, species, game }: Props) {
           </button>
         ) : (
           <p className={styles.caught}>Caught</p>
-        ))}
+        ))} */}
       <div className={styles.container}>
         <Description species={species} pokemon={pokemon} game={game} />
         <Base species={species} pokemon={pokemon} />

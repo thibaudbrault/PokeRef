@@ -1,14 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { ErrorToast, Input, SuccessToast } from '@/components';
-import { auth, db } from '@/firebase-config';
 import styles from '@/modules/auth/Auth.module.scss';
 
 const schema = yup.object({
@@ -36,22 +33,9 @@ function Register() {
 
   const submitForm = async (data: FormInput) => {
     try {
-      await createUserWithEmailAndPassword(auth, data.email, data.password);
-      if (auth.currentUser) {
-        const usersCollectionRef = doc(db, `users`, auth.currentUser?.uid);
-        await setDoc(usersCollectionRef, {
-          name: data.username,
-          email: data.email,
-          caught: [],
-          balls: [
-            { name: `pokeball`, number: 20 },
-            { name: `superball`, number: 5 },
-            { name: `hyperball`, number: 0 },
-          ],
-        });
-        router.push(`/`);
-        return <SuccessToast text="Congrats 🎉! Your account is now created" />;
-      }
+      // will create the user and put the info in the db
+      router.push(`/`);
+      return <SuccessToast text="Congrats 🎉! Your account is now created" />;
     } catch (error) {
       if (error instanceof Error) {
         return <ErrorToast error={error} />;

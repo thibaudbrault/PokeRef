@@ -1,10 +1,8 @@
 import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
 
-import { onAuthStateChanged, signOut, type User } from 'firebase/auth';
 import Link from 'next/link';
 
 import { Separator } from '@/components';
-import { auth } from '@/firebase-config';
 import { useMediaQuery } from '@/hooks';
 import header from '@/modules/layout/Header/Header.module.scss';
 
@@ -20,18 +18,16 @@ type NavArray = {
 }[];
 
 export function Nav({ navOpen, setNavOpen }: Props) {
-  const [user, setUser] = useState<User | null>();
+  // will have the user's info
+  const [user, setUser] = useState();
   const isBreakpoint = useMediaQuery(890);
 
   const logout = async () => {
-    await signOut(auth);
+    // will be used to logout
     setNavOpen(false);
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      return setUser(currentUser);
-    });
     if (!isBreakpoint) {
       setNavOpen(false);
     }

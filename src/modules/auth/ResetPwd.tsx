@@ -2,13 +2,11 @@ import { type Dispatch, type SetStateAction } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FiX } from '@meronex/icons/fi';
-import { sendPasswordResetEmail } from 'firebase/auth';
 import { useForm } from 'react-hook-form';
 import Modal from 'react-modal';
 import * as yup from 'yup';
 
 import { ErrorToast, Input, SuccessToast } from '@/components';
-import { auth } from '@/firebase-config';
 import { capitalize } from '@/utils';
 
 import styles from './Auth.module.scss';
@@ -39,7 +37,6 @@ function ResetPwd({ modalIsOpen, setIsOpen }: Props) {
 
   const resetPwdForm = async (data: FormInput) => {
     try {
-      await sendPasswordResetEmail(auth, data.resetEmail);
       return <SuccessToast text="Check your mails ✉" />;
     } catch (error) {
       if (error instanceof Error) {
