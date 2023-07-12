@@ -2,13 +2,9 @@
   @keyframes #{$animation-name} {
     @content;
   }
-  @keyframes #{$animation-name} {
-    @content;
-  }
 }
 
 @mixin animation($str) {
-  animation: #{$str};
   animation: #{$str};
 }
 

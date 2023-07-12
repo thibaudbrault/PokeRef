@@ -24,7 +24,7 @@
 
   & .selected {
     border-radius: 50%;
-    @include themed {
+    @include gthemed {
       background: t('text');
       color: t('bg');
     }
