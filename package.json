@@ -43,7 +43,7 @@
     "react-dom": "18.2.0",
     "react-error-boundary": "4.0.10",
     "react-hook-form": "7.43.9",
-    "react-hot-toast": "2.4.0",
+    "react-hot-toast": "2.4.1",
     "react-modal": "3.16.1",
     "react-paginate": "8.1.4",
     "react-select": "5.7.0",
