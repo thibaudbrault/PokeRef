@@ -1,17 +1,7 @@
-import { NextApiRequest, NextApiResponse } from 'next/types';
 import bcrypt from 'bcrypt';
-import { prisma } from '~/lib/prisma';
+import { NextApiRequest, NextApiResponse } from 'next/types';
 
-export default async function handle(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
-  if (req.method === 'POST') {
-    await handlePost(res, req);
-  } else {
-    throw new Error(`The HTTP ${req.method} is not supported on this route`);
-  }
-}
+import { prisma } from '~/lib/prisma';
 
 const hashPassword = async (password: string) => {
   const saltRounds = 10;
@@ -33,6 +23,17 @@ async function handlePost(res: NextApiResponse, req: NextApiRequest) {
   if (user && user.password === password) {
     res.json(user);
   } else {
-    res.status(400).end('Invalid credentials');
+    res.status(400).end(`Invalid credentials`);
+  }
+}
+
+export default async function handle(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  if (req.method === `POST`) {
+    await handlePost(res, req);
+  } else {
+    throw new Error(`The HTTP ${req.method} is not supported on this route`);
   }
 }

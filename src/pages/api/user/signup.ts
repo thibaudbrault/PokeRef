@@ -1,17 +1,7 @@
-import { NextApiRequest, NextApiResponse } from 'next/types';
 import bcrypt from 'bcrypt';
-import { prisma } from '~/lib/prisma';
+import { NextApiRequest, NextApiResponse } from 'next/types';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
-  if (req.method === 'POST') {
-    await handlePost(res, req);
-  } else {
-    res.status(400).json({ success: false, message: 'Invalid method' });
-  }
-}
+import { prisma } from '~/lib/prisma';
 
 const hashPassword = async (password: string) => {
   const saltRounds = 10;
@@ -26,7 +16,7 @@ const handlePost = async (res: NextApiResponse, req: NextApiRequest) => {
   if (userExists) {
     return res.status(422).json({
       success: false,
-      message: 'A user with the same email already exists',
+      message: `A user with the same email already exists`,
     });
   }
   await prisma.user.create({
@@ -37,5 +27,16 @@ const handlePost = async (res: NextApiResponse, req: NextApiRequest) => {
   });
   return res
     .status(201)
-    .json({ success: true, message: 'Account created successfuly' });
+    .json({ success: true, message: `Account created successfuly` });
 };
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  if (req.method === `POST`) {
+    await handlePost(res, req);
+  } else {
+    res.status(400).json({ success: false, message: `Invalid method` });
+  }
+}

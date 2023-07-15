@@ -1,9 +1,8 @@
 import {
+  useContext,
+  useState,
   type Dispatch,
   type SetStateAction,
-  useContext,
-  useEffect,
-  useState,
 } from 'react';
 
 import { FiMenu, FiX } from '@meronex/icons/fi';
