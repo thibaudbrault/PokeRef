@@ -5,7 +5,7 @@ import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
 import { type GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 
-import { Button, ErrorToast, Loader, Separator } from '@/components';
+import { Button, Loader, Separator, errorToast } from '@/components';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
 import {
   Cards,
@@ -68,7 +68,7 @@ function PokemonCard({ name }: Props) {
     types.status === `error` ||
     location.status === `error`
   ) {
-    return <ErrorToast />;
+    errorToast();
   }
 
   if (

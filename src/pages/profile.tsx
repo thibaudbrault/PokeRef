@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as Label from '@radix-ui/react-label';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { ErrorToast, Input, SuccessToast } from '@/components';
+import { SuccessToast, errorToast } from '@/components';
 import styles from '@/modules/profile/Profile.module.scss';
-import { capitalize, removeDash } from '@/utils';
+import { capitalize } from '@/utils';
 
 const schema = yup.object({
   username: yup.string().required(),
@@ -30,7 +27,7 @@ function Profile() {
         return <SuccessToast text={`You released ${capitalize(name)}`} />;
       } catch (error) {
         if (error instanceof Error) {
-          return <ErrorToast error={error} />;
+          errorToast(error.message);
         }
       }
     }
@@ -52,7 +49,7 @@ function Profile() {
       }
     } catch (error) {
       if (error instanceof Error) {
-        return <ErrorToast error={error} />;
+        errorToast(error.message);
       }
     }
   };

@@ -5,14 +5,14 @@ import { type CellContext, type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { ErrorToast, SmallLoader } from '@/components';
+import { SmallLoader, errorToast } from '@/components';
 import { useTableParams } from '@/hooks';
 import { LearnMethod, removeDash, uppercase } from '@/utils';
 
 import {
-  type IMoveWithDetails,
   useFetchMachines,
   useFetchMoves,
+  type IMoveWithDetails,
 } from '../../hooks';
 import styles from './Moves.module.scss';
 
@@ -192,8 +192,8 @@ export function Moves({ pokemon, version, name }: Props) {
     columns,
   );
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {

@@ -3,7 +3,7 @@ import { type GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Button, ErrorToast, Loader } from '@/components';
+import { Button, Loader, errorToast } from '@/components';
 import {
   Cost,
   Description,
@@ -22,8 +22,8 @@ type Props = {
 function ItemCard({ name }: Props) {
   const { isLoading, isError, error, item, filterEffect } = useFilterItem(name);
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {

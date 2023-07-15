@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 
-import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { type ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 
-import { ErrorToast, Loader } from '@/components';
+import { Loader, errorToast } from '@/components';
 import { usePaginatedTableParams } from '@/hooks';
 import { Heading, Search } from '@/modules/abilities';
 import moves from '@/modules/moves/Moves.module.scss';
@@ -65,8 +65,8 @@ function AbilitiesPage() {
   const { tableContainerRef, tableHeader, tableBody, tablePagination } =
     usePaginatedTableParams(data, columns);
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {

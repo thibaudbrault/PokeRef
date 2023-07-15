@@ -4,7 +4,7 @@ import { type GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Button, ErrorToast, Loader, Separator } from '@/components';
+import { Button, Loader, Separator, errorToast } from '@/components';
 import { Moves } from '@/modules/moves';
 import { Damage, Heading, Pokemon, useTypeQuery } from '@/modules/types/type';
 import styles from '@/modules/types/type/Type.module.scss';
@@ -17,8 +17,8 @@ function TypeCard({ name }: Props) {
   const { type, pokemon, moves, isLoading, isError, error } =
     useTypeQuery(name);
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {

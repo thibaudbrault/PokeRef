@@ -5,7 +5,7 @@ import { type ColumnDef } from '@tanstack/react-table';
 import { type GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 
-import { Button, ErrorToast, GenNav, Loader } from '@/components';
+import { Button, errorToast, GenNav, Loader } from '@/components';
 import { useTableParams } from '@/hooks';
 import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
 import styles from '@/modules/locations/Locations.module.scss';
@@ -180,8 +180,8 @@ function LocationCard({ name }: Props) {
     columns,
   );
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {

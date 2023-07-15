@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import * as Tabs from '@radix-ui/react-tabs';
-import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 
-import { ErrorToast, Loader } from '@/components';
+import { Loader, errorToast } from '@/components';
 import { Heading, List } from '@/modules/locations';
 import { getRegions, regions } from '@/utils';
 
@@ -31,8 +31,8 @@ function LocationsPage() {
     setLocation(regions[toggle + 1]);
   }, [toggle]);
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {

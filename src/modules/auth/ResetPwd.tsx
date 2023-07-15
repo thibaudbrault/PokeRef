@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import Modal from 'react-modal';
 import * as yup from 'yup';
 
-import { ErrorToast, Input, SuccessToast } from '@/components';
+import { ErrorToast, Input, SuccessToast, errorToast } from '@/components';
 import { capitalize } from '@/utils';
 
 import styles from './Auth.module.scss';
@@ -40,7 +40,7 @@ function ResetPwd({ modalIsOpen, setIsOpen }: Props) {
       return <SuccessToast text="Check your mails ✉" />;
     } catch (error) {
       if (error instanceof Error) {
-        return <ErrorToast error={error} />;
+        errorToast(error.message);
       }
     }
   };

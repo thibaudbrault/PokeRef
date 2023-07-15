@@ -1,6 +1,6 @@
 import * as Tabs from '@radix-ui/react-tabs';
 
-import { ErrorToast, Loader } from '@/components';
+import { Loader, errorToast } from '@/components';
 import { Heading, Moves, Stats, Status, useMovesQuery } from '@/modules/moves';
 
 function MovesPage() {
@@ -11,7 +11,7 @@ function MovesPage() {
     status.status === `error` ||
     stats.status === `error`
   ) {
-    return <ErrorToast />;
+    errorToast();
   }
 
   if (

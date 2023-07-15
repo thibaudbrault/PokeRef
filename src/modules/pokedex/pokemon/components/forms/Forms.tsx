@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 
-import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { ErrorToast, SmallLoader } from '@/components';
+import { SmallLoader, errorToast } from '@/components';
 import { useTableParams } from '@/hooks';
 import { getPokemonForms, removeDash } from '@/utils';
 
@@ -145,8 +145,8 @@ export function Forms({ pokemon }: Props) {
     columns,
   );
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {

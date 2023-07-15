@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { ErrorToast, Input, SuccessToast } from '@/components';
+import { Input, SuccessToast, errorToast } from '@/components';
 import styles from '@/modules/auth/Auth.module.scss';
 import ResetPwd from '@/modules/auth/ResetPwd';
 import { capitalize } from '@/utils';
@@ -44,7 +44,7 @@ function Login() {
       return <SuccessToast text="Welcome back 👋" />;
     } catch (error) {
       if (error instanceof Error) {
-        return <ErrorToast error={error} />;
+        errorToast(error.message);
       }
     }
   };
