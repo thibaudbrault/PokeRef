@@ -1,24 +1,18 @@
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FiX } from '@meronex/icons/fi';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 
-import { ErrorToast, Input, SuccessToast } from '@/components';
+import { Input, errorToast, successToast } from '@/components';
 import styles from '@/modules/auth/Auth.module.scss';
+import { RegisterValidator } from '@/utils';
+import { useMutation } from '@tanstack/react-query';
+import axios, { AxiosError } from 'axios';
+import { z } from 'zod';
+import { TailSpin } from 'react-loader-spinner';
 
-const schema = yup.object({
-  username: yup.string().required(),
-  email: yup.string().email().required(),
-  password: yup.string().min(6).required(),
-  cpassword: yup
-    .string()
-    .oneOf([yup.ref(`password`)])
-    .required(),
-});
-
-type FormInput = yup.Asserts<typeof schema>;
+type RegisterCredentials = z.infer<typeof RegisterValidator>;
 
 function Register() {
   const router = useRouter();
@@ -27,21 +21,24 @@ function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormInput>({
-    resolver: yupResolver<FormInput>(schema),
+  } = useForm<RegisterCredentials>({
+    resolver: zodResolver(RegisterValidator),
   });
 
-  const submitForm = async (data: FormInput) => {
-    try {
-      // will create the user and put the info in the db
-      router.push(`/`);
-      return <SuccessToast text="Congrats 🎉! Your account is now created" />;
-    } catch (error) {
-      if (error instanceof Error) {
-        return <ErrorToast error={error} />;
+  const { mutate: registerHandler, isLoading } = useMutation({
+    mutationFn: async (values: RegisterCredentials) => {
+      try {
+        const { confirmPassword, ...body } = values;
+        const { data } = await axios.post('/api/user/signup', body);
+        router.push(`/`);
+        successToast(data.message);
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          errorToast(error.response?.data.message);
+        }
       }
-    }
-  };
+    },
+  });
 
   return (
     <main className="mainForm">
@@ -50,7 +47,10 @@ function Register() {
           <FiX />
         </Link>
         <div className={styles.image2} />
-        <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit((values) => registerHandler(values))}
+        >
           <div className={styles.title}>
             <h2 className="h2">Register</h2>
             <p>Create teams and save your favorites pokémon</p>
@@ -61,7 +61,7 @@ function Register() {
                 type="text"
                 id="username"
                 placeholder="Username"
-                {...register(`username`)}
+                {...register(`name`)}
               />
             </div>
             <div>
@@ -72,7 +72,7 @@ function Register() {
                 {...register(`email`)}
               />
               {typeof errors.email?.message === `string` && (
-                <p>{errors.email?.message}</p>
+                <small>{errors.email?.message}</small>
               )}
             </div>
             <div>
@@ -82,17 +82,32 @@ function Register() {
                 placeholder="Password"
                 {...register(`password`)}
               />
+              {typeof errors.password?.message === `string` && (
+                <small>{errors.password?.message}</small>
+              )}
             </div>
             <div>
               <Input
                 type="password"
-                id="cpassword"
+                id="confirmPassword"
                 placeholder="Confirm Password"
-                {...register(`cpassword`)}
+                {...register(`confirmPassword`)}
               />
+              {typeof errors.confirmPassword?.message === `string` && (
+                <small>{errors.confirmPassword?.message}</small>
+              )}
             </div>
             <button className={styles.button} type="submit">
-              Register
+              {isLoading ? (
+                <TailSpin
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  wrapperClass={styles.loader}
+                  visible={true}
+                />
+              ) : (
+                'Register'
+              )}
             </button>
           </div>
           <p className={styles.switch}>
