@@ -3,10 +3,9 @@ import { NextApiRequest, NextApiResponse } from 'next/types';
 
 import { prisma } from '~/lib/prisma';
 
-const hashPassword = async (password: string) => {
-  const saltRounds = 10;
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
-  return hashedPassword;
+const comparePasswords = async (password: string, hashedPassword: string) => {
+  const passwordsMatch = await bcrypt.compare(password, hashedPassword);
+  return passwordsMatch;
 };
 
 async function handlePost(res: NextApiResponse, req: NextApiRequest) {
@@ -19,9 +18,22 @@ async function handlePost(res: NextApiResponse, req: NextApiRequest) {
       password: true,
     },
   });
-  const password = await hashPassword(req.body.password);
-  if (user && user.password === password) {
-    res.json(user);
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: `No user found with this email. Try with a different email`,
+    });
+  }
+  const passwordsMatch = await comparePasswords(
+    req.body.password,
+    user.password,
+  );
+  if (passwordsMatch) {
+    return res.status(200).json({
+      success: true,
+      message: `Welcome back ${user.name}`,
+      user: user,
+    });
   } else {
     res.status(400).end(`Invalid credentials`);
   }
@@ -34,6 +46,6 @@ export default async function handle(
   if (req.method === `POST`) {
     await handlePost(res, req);
   } else {
-    throw new Error(`The HTTP ${req.method} is not supported on this route`);
+    res.status(400).json({ success: false, message: `Invalid method` });
   }
 }

@@ -5,8 +5,12 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 
 import { prisma } from '~/lib/prisma';
+import bcrypt from 'bcrypt';
+import { LoginValidator } from '~/src/utils';
+import { User } from '@prisma/client';
 
 const options: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma),
   providers: [
     // GoogleProvider({
     //   clientId: process.env.GOOGLE_CLIENT_ID,
@@ -20,28 +24,56 @@ const options: NextAuthOptions = {
       },
       authorize: async (credentials) => {
         try {
-          const res = await fetch(
-            `${process.env.NEXTAUTH_URL}/api/user/signin`,
-            {
-              method: `POST`,
-              headers: { 'Content-Type': `application/json` },
-              body: JSON.stringify(credentials),
+          const { email, password } = LoginValidator.parse(credentials);
+          const user = await prisma.user.findUnique({
+            where: { email },
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              password: true,
             },
-          );
-          const user = await res.json();
+          });
+          console.log(user);
+          if (!user) {
+            throw new Error(
+              `No user found with this email. Try with a different email`,
+            );
+          }
+          const isPasswordValid = bcrypt.compare(password, user.password);
+          if (!isPasswordValid) {
+            throw new Error(`Invalid credentials`);
+          }
           return user;
         } catch (error) {
           console.error(`An error occured: `, error);
-          return null;
+          throw error;
         }
       },
     }),
   ],
-  adapter: PrismaAdapter(prisma),
-  secret: process.env.SECRET,
+  callbacks: {
+    session({ session, token }) {
+      session.user.id = token.id;
+      session.user.name = token.username;
+      return session;
+    },
+    jwt({ token, account, user }) {
+      if (account) {
+        token.accessToken = account.access_token;
+        token.id = user.id;
+        token.username = (user as User).name;
+      }
+      return token;
+    },
+  },
   pages: {
     signIn: `/login`,
   },
+  session: {
+    strategy: 'jwt',
+  },
+  secret: process.env.SECRET,
 };
 
 const authHandler: NextApiHandler = (req, res) => {
