@@ -3,18 +3,10 @@ import { useEffect, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 
-import { SuccessToast, errorToast } from '@/components';
+import { errorToast } from '@/components';
 import styles from '@/modules/profile/Profile.module.scss';
 import { capitalize } from '@/utils';
-
-const schema = yup.object({
-  username: yup.string().required(),
-  email: yup.string().email().required(),
-});
-
-type FormInput = yup.Asserts<typeof schema>;
 
 function Profile() {
   const router = useRouter();
@@ -24,7 +16,7 @@ function Profile() {
     if (true /* change to check if auth */) {
       try {
         // will have the release pokemon function
-        return <SuccessToast text={`You released ${capitalize(name)}`} />;
+        // return <SuccessToast text={`You released ${capitalize(name)}`} />;
       } catch (error) {
         if (error instanceof Error) {
           errorToast(error.message);
@@ -33,19 +25,18 @@ function Profile() {
     }
   };
 
-  const { register, handleSubmit, reset, formState } = useForm<FormInput>({
-    resolver: yupResolver<FormInput>(schema),
+  const { register, handleSubmit, reset, formState } = useForm({
     defaultValues: {
       username: ``,
       email: ``,
     },
   });
 
-  const submitForm = async (data: FormInput) => {
+  const submitForm = async (data) => {
     try {
       if (true /* change to check if auth */) {
         // will put the new info in the db
-        return <SuccessToast text="Your profile is modified" />;
+        // return <SuccessToast text="Your profile is modified" />;
       }
     } catch (error) {
       if (error instanceof Error) {
