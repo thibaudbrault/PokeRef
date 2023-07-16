@@ -1,9 +1,4 @@
-import {
-  useContext,
-  useState,
-  type Dispatch,
-  type SetStateAction,
-} from 'react';
+import { useContext, type Dispatch, type SetStateAction } from 'react';
 
 import { FiMenu, FiX } from '@meronex/icons/fi';
 import { RiMoonClearLine, RiSunLine } from '@meronex/icons/ri';
@@ -12,7 +7,9 @@ import Link from 'next/link';
 import { Button } from '@/components';
 import { ThemeContext } from '@/contexts';
 
+import { signOut, useSession } from 'next-auth/react';
 import styles from './Header.module.scss';
+import Login from '@/pages/login';
 
 type Props = {
   navOpen: boolean;
@@ -20,13 +17,12 @@ type Props = {
 };
 
 export function Header({ navOpen, setNavOpen }: Props) {
-  // will have the user's info
-  const [user, setUser] = useState();
+  const { status } = useSession();
 
   const { theme, setTheme } = useContext(ThemeContext);
 
   const logout = async () => {
-    // will be used to logout
+    await signOut();
   };
 
   const themeHandler = () => {
@@ -55,8 +51,8 @@ export function Header({ navOpen, setNavOpen }: Props) {
             <RiMoonClearLine data-testid="moon" />
           )}
         </button>
-        {user ? (
-          <div className={styles.connected}>
+        {status === 'authenticated' ? (
+          <div className={styles.auth}>
             <Button intent="secondary" onClick={logout}>
               Sign Out
             </Button>
@@ -65,10 +61,8 @@ export function Header({ navOpen, setNavOpen }: Props) {
             </Button>
           </div>
         ) : (
-          <div className={styles.connect}>
-            <Button intent="secondary" asChild>
-              <Link href="/login">Login</Link>
-            </Button>
+          <div className={styles.auth}>
+            <Login />
             <Button intent="primary" asChild>
               <Link href="/register">Register</Link>
             </Button>
