@@ -1,0 +1,215 @@
+@use '../abstracts/' as *;
+
+.NavigationMenuRoot {
+  position: relative;
+  padding: 5rem 0;
+  z-index: 5;
+
+  & .NavigationMenuList {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    & .NavigationMenuTrigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2px;
+      padding: 8px 12px;
+      outline: none;
+      user-select: none;
+      background: none;
+      border: none;
+      font-size: 2rem;
+
+      @include gthemed {
+        color: t('text');
+      }
+
+      @include sm {
+        font-size: 1.7rem;
+      }
+
+      &:focus {
+        border-radius: 5px;
+        @include gthemed {
+          box-shadow: 0 0 0 2px t('text');
+        }
+      }
+
+      &:hover {
+        color: $red;
+      }
+    }
+  }
+
+  & .ViewportPosition {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    left: 0;
+    perspective: 2000px;
+
+    & .NavigationMenuViewport {
+      position: relative;
+      transform-origin: top center;
+      width: 100%;
+      border-radius: 5px;
+      overflow: hidden;
+      height: var(--radix-navigation-menu-viewport-height);
+      transition:
+        width,
+        height,
+        300ms ease;
+
+      & .NavigationMenuContent {
+        position: absolute;
+        width: 100%;
+        white-space: nowrap;
+        background-color: $light;
+        border-radius: 5px;
+        box-shadow: 2px 2px 15px 2px $dark;
+        animation-duration: 250ms;
+        animation-timing-function: ease-in-out;
+
+        & button {
+          display: block;
+          background: none;
+          font-size: 1.5rem;
+          border: none;
+          margin: 1rem;
+          text-align: left;
+          font-weight: 400;
+          text-transform: capitalize;
+          cursor: pointer;
+          color: $dark;
+
+          &:hover {
+            color: $red;
+          }
+
+          @include sm {
+            white-space: break-spaces;
+          }
+        }
+      }
+
+      & .NavigationMenuContent[data-motion='from-start'] {
+        animation-name: enterFromLeft;
+      }
+
+      & .NavigationMenuContent[data-motion='from-end'] {
+        animation-name: enterFromRight;
+      }
+
+      & .NavigationMenuContent[data-motion='to-start'] {
+        animation-name: exitToLeft;
+      }
+
+      & .NavigationMenuContent[data-motion='to-end'] {
+        animation-name: exitToRight;
+      }
+    }
+
+    .NavigationMenuViewport[data-state='open'] {
+      animation: scaleIn 250ms ease-in-out;
+    }
+
+    .NavigationMenuViewport[data-state='closed'] {
+      animation: scaleOut 250ms ease-in-out;
+    }
+  }
+}
+
+@keyframes enterFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes enterFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes exitToRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+}
+
+@keyframes exitToLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: rotateX(-30deg) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: rotateX(-10deg) scale(0.95);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
