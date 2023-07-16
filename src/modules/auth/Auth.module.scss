@@ -1,110 +1,46 @@
 @use '@/styles/common' as *;
 @use '@/styles/abstracts' as *;
 
-.container {
+.main {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   align-items: center;
-  width: 100vw;
+  justify-content: center;
+  width: 90vw;
   height: 100vh;
   margin: 0 auto;
-
-  @include themed {
-    background-color: t('text');
-    color: t('bg');
-  }
 
   @include sm {
     grid-template-columns: 1fr;
   }
 }
 
-.close {
-  position: absolute;
-  top: 3rem;
-  right: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  border: 1px solid transparent;
-  border-radius: 50px;
-  font-size: 3rem;
-  cursor: pointer;
-
-  @include themed {
-    background-color: t('bg');
-    color: t('text');
-  }
-
-  &:hover {
-    @include themed {
-      border: 1px solid t('bg');
-      background-color: t('text');
-      color: t('bg');
-    }
-  }
-}
-
-%image {
-  width: 100%;
-  height: 100%;
-  background-image: url('https://www.pokepedia.fr/images/2/26/Frimapic.png'),
-    linear-gradient(to right, rgb(0 0 0 / 30%) 0%, rgb(0 0 0 / 30%) 100%);
-  background-blend-mode: multiply;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  @include themed {
-    border-right: 1px solid t('bg');
-  }
-
-  @include sm {
-    display: none;
-  }
-}
-
-.image {
-  @extend %image;
-}
-
-.image2 {
-  @extend %image;
-
-  background-image: url('https://www.pokepedia.fr/images/0/0e/Rosalia_HGSS.png'),
-    linear-gradient(to right, rgb(0 0 0 / 30%) 0%, rgb(0 0 0 / 30%) 100%);
-}
-
-%form {
+%container {
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
   gap: 3rem;
+  border-radius: 5px;
+  padding: 3rem 4rem;
+  background-color: $light;
+}
+
+.container {
+  @extend %container;
+}
+
+.titleContainer {
+  color: $dark;
 }
 
 .form {
-  @extend %form;
-}
-
-.title {
-  & h2 {
-    margin-bottom: 0;
-  }
-
-  & p {
-    width: 90%;
-    margin: 0 auto;
-    font-size: 1.5rem;
-    text-align: center;
-    font-weight: 400;
-  }
-
-  @include themed {
-    color: t('bg');
-  }
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .choice {
@@ -132,10 +68,7 @@
       padding: 1rem;
       background: rgb(255 255 255 / 30%);
       border-radius: 5px;
-
-      @include themed {
-        border: 1px solid t('bg');
-      }
+      border: 1px solid $dark;
 
       &:focus {
         border: 1px solid $red;
@@ -165,9 +98,7 @@
   border-bottom: 1px solid transparent;
 
   &:hover {
-    @include themed {
-      border-bottom: 1px solid t('bg');
-    }
+    border-bottom: 1px solid $dark;
   }
 }
 
@@ -198,18 +129,14 @@
   text-align: center;
   border-radius: 5px;
 
-  @include themed {
-    background: t('bg');
-    border: 1px solid t('bg');
-    color: t('text');
-  }
+  background: $dark;
+  border: 1px solid$dark;
+  color: $light;
 
   &:hover {
     background: none;
 
-    @include themed {
-      color: t('bg');
-    }
+    color: $dark;
   }
 
   &:active {
@@ -284,7 +211,7 @@
 }
 
 .resetForm {
-  @extend %form;
+  @extend %container;
 
   width: 100%;
   margin-top: 5rem;
@@ -294,29 +221,4 @@
   @extend %input;
 
   width: 100%;
-}
-
-.loader {
-  position: relative;
-  height: 3rem;
-  width: 3rem;
-  text-align: center;
-  & svg {
-    position: absolute;
-    height: 3rem;
-    width: 3rem;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    & path {
-      @include themed {
-        stroke: t('bg');
-      }
-    }
-    & circle {
-      @include themed {
-        fill: t('bg');
-      }
-    }
-  }
 }
