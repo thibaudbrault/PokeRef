@@ -5,10 +5,9 @@ import axios, { AxiosError } from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { TailSpin } from 'react-loader-spinner';
 import { z } from 'zod';
 
-import { Input, errorToast, successToast } from '@/components';
+import { Input, Spinner, errorToast, successToast } from '@/components';
 import styles from '@/modules/auth/Auth.module.scss';
 import { RegisterValidator } from '@/utils';
 
@@ -98,16 +97,7 @@ function Register() {
               )}
             </div>
             <button className={styles.button} type="submit">
-              {isLoading ? (
-                <TailSpin
-                  ariaLabel="tail-spin-loading"
-                  radius="1"
-                  wrapperClass={styles.loader}
-                  visible={true}
-                />
-              ) : (
-                `Register`
-              )}
+              {isLoading ? <Spinner /> : `Register`}
             </button>
           </div>
           <p className={styles.switch}>
