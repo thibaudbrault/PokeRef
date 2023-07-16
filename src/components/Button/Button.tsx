@@ -9,9 +9,33 @@ const button = cva(styles.base, {
   variants: {
     intent: {
       back: styles.back,
+      close: styles.close,
       primary: styles.primary,
       secondary: styles.secondary,
     },
+    size: {
+      medium: styles.medium,
+      large: styles.large,
+    },
+    logo: {
+      withLogo: styles.logo,
+    },
+  },
+  compoundVariants: [
+    {
+      intent: 'primary',
+      size: 'large',
+      className: styles.authPrimary,
+    },
+    {
+      intent: 'secondary',
+      size: 'large',
+      logo: 'withLogo',
+      className: styles.authSecondary,
+    },
+  ],
+  defaultVariants: {
+    size: 'medium',
   },
 });
 
@@ -22,10 +46,14 @@ interface ButtonProps
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, intent, asChild = false, ...props }, ref) => {
+  ({ className, intent, size, logo, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : `button`;
     return (
-      <Comp className={button({ intent, className })} ref={ref} {...props} />
+      <Comp
+        className={button({ intent, size, logo, className })}
+        ref={ref}
+        {...props}
+      />
     );
   },
 );

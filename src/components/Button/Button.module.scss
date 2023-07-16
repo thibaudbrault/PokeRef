@@ -29,6 +29,25 @@
   }
 }
 
+.close {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  padding: 1rem;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  font-size: 3rem;
+  cursor: pointer;
+  background-color: $light;
+  color: $dark;
+
+  &:hover {
+    border: 1px solid $light;
+    background-color: transparent;
+    color: $light;
+  }
+}
+
 .primary {
   border: 1px solid transparent;
   @include themed {
@@ -51,13 +70,52 @@
 }
 
 .secondary {
+  border-width: 1px;
+  border-style: solid;
   @include themed {
     background-color: t('bg');
-    border: 1px solid t('text');
+    border-color: t('text');
     color: t('text');
   }
 
   @include md {
     font-size: 3rem;
   }
+}
+
+.medium {
+  width: auto;
+}
+
+.large {
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  & span {
+    font-size: 1.7rem;
+    cursor: pointer;
+  }
+}
+
+.authPrimary {
+  background-color: $dark;
+  color: $light;
+
+  &:hover {
+    border-color: $dark;
+    background-color: transparent;
+    color: $dark;
+  }
+}
+
+.authSecondary {
+  background-color: transparent;
+  border-color: $dark;
+  color: $dark;
 }
