@@ -14,7 +14,7 @@ const handlePost = async (res: NextApiResponse, req: NextApiRequest) => {
     where: { email: req.body.email },
   });
   if (userExists) {
-    return res.status(422).json({
+    return res.status(409).json({
       success: false,
       message: `A user with the same email already exists`,
     });
