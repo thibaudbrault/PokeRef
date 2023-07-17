@@ -9,7 +9,7 @@ import bcrypt from 'bcrypt';
 import { LoginValidator } from '~/src/utils';
 import { User } from '@prisma/client';
 
-const options: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     // GoogleProvider({
@@ -34,7 +34,6 @@ const options: NextAuthOptions = {
               password: true,
             },
           });
-          console.log(user);
           if (!user) {
             throw new Error(
               `No user found with this email. Try with a different email`,
@@ -69,6 +68,7 @@ const options: NextAuthOptions = {
   },
   pages: {
     signIn: `/login`,
+    newUser: '/profile',
   },
   session: {
     strategy: 'jwt',
@@ -77,7 +77,7 @@ const options: NextAuthOptions = {
 };
 
 const authHandler: NextApiHandler = (req, res) => {
-  NextAuth(req, res, options);
+  NextAuth(req, res, authOptions);
 };
 
 export default authHandler;
