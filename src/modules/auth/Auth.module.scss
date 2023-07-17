@@ -1,46 +1,103 @@
 @use '@/styles/common' as *;
 @use '@/styles/abstracts' as *;
 
-.main {
+.container {
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  justify-content: center;
-  width: 90vw;
+  width: 100vw;
   height: 100vh;
   margin: 0 auto;
+
+  @include themed {
+    background-color: t('text');
+    color: t('bg');
+  }
 
   @include sm {
     grid-template-columns: 1fr;
   }
 }
 
-%container {
+.close {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  font-size: 3rem;
+  cursor: pointer;
+
+  @include themed {
+    background-color: t('bg');
+    color: t('text');
+  }
+
+  &:hover {
+    @include themed {
+      border: 1px solid t('bg');
+      background-color: t('text');
+      color: t('bg');
+    }
+  }
+}
+
+%image {
+  width: 100%;
+  height: 100%;
+  background-image: url('https://www.pokepedia.fr/images/2/26/Frimapic.png'),
+    linear-gradient(to right, rgb(0 0 0 / 30%) 0%, rgb(0 0 0 / 30%) 100%);
+  background-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  clip-path: ellipse(85% 100% at 10% 50%);
+
+  @include sm {
+    display: none;
+  }
+}
+
+.image {
+  @extend %image;
+}
+
+.image2 {
+  @extend %image;
+
+  background-image: url('https://www.pokepedia.fr/images/0/0e/Rosalia_HGSS.png'),
+    linear-gradient(to right, rgb(0 0 0 / 30%) 0%, rgb(0 0 0 / 30%) 100%);
+}
+
+%form {
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
   gap: 3rem;
-  border-radius: 5px;
-  padding: 3rem 4rem;
-  background-color: $light;
-}
-
-.container {
-  @extend %container;
-}
-
-.titleContainer {
-  color: $dark;
 }
 
 .form {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 3rem;
+  @extend %form;
+}
+
+.titleContainer {
+  & h2 {
+    margin-bottom: 0;
+  }
+
+  & p {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 400;
+  }
 }
 
 .choice {
@@ -67,11 +124,16 @@
       width: 100%;
       padding: 1rem;
       background: rgb(255 255 255 / 30%);
-      border-radius: 5px;
-      border: 1px solid $dark;
+      background: transparent;
+      border-radius: 0px;
+
+      @include themed {
+        border: none;
+        border-bottom: 1px solid t('bg');
+      }
 
       &:focus {
-        border: 1px solid $red;
+        border-bottom: 1px solid $red;
         outline: none;
       }
     }
@@ -98,7 +160,9 @@
   border-bottom: 1px solid transparent;
 
   &:hover {
-    border-bottom: 1px solid $dark;
+    @include themed {
+      border-bottom: 1px solid t('bg');
+    }
   }
 }
 
@@ -120,34 +184,6 @@
   }
 }
 
-%button {
-  width: 100%;
-  height: 5rem;
-  padding: 1rem 0;
-  font-size: 1.7rem;
-  font-weight: 600;
-  text-align: center;
-  border-radius: 5px;
-
-  background: $dark;
-  border: 1px solid$dark;
-  color: $light;
-
-  &:hover {
-    background: none;
-
-    color: $dark;
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-}
-
-.button {
-  @extend %button;
-}
-
 .providers {
   width: 100%;
   display: flex;
@@ -155,70 +191,4 @@
   justify-content: center;
   flex-direction: column;
   gap: 2rem;
-}
-
-.secButton {
-  @extend %button;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  font-weight: 400;
-  background: none;
-  @include themed {
-    color: t('text');
-  }
-
-  & span {
-    cursor: pointer;
-  }
-}
-
-.modal {
-  width: fit-content;
-  height: fit-content;
-  padding: 5rem 8rem;
-  max-width: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  position: absolute;
-  inset: 50% auto auto 50%;
-  margin-right: -50%;
-  border-radius: 5px;
-  transform: translate(-50%, -50%);
-  overflow-y: hidden !important;
-
-  @include themed {
-    color: t('bg');
-    border: 1px solid t('bg');
-  }
-}
-
-.closeReset {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  font-size: 2.5rem;
-
-  &:hover {
-    color: $red;
-  }
-}
-
-.resetForm {
-  @extend %container;
-
-  width: 100%;
-  margin-top: 5rem;
-}
-
-.resetInput {
-  @extend %input;
-
-  width: 100%;
 }

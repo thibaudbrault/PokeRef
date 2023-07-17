@@ -9,7 +9,6 @@ import { ThemeContext } from '@/contexts';
 
 import { signOut, useSession } from 'next-auth/react';
 import styles from './Header.module.scss';
-import Login from '@/pages/login';
 
 type Props = {
   navOpen: boolean;
@@ -62,7 +61,9 @@ export function Header({ navOpen, setNavOpen }: Props) {
           </div>
         ) : (
           <div className={styles.auth}>
-            <Login />
+            <Button intent="secondary" asChild>
+              <Link href="/login">Login</Link>
+            </Button>
             <Button intent="primary" asChild>
               <Link href="/register">Register</Link>
             </Button>

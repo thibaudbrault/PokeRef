@@ -12,6 +12,8 @@ const button = cva(styles.base, {
       close: styles.close,
       primary: styles.primary,
       secondary: styles.secondary,
+      authSecondary: styles.authSecondary,
+      authPrimary: styles.authPrimary,
     },
     size: {
       medium: styles.medium,
@@ -21,19 +23,6 @@ const button = cva(styles.base, {
       withLogo: styles.logo,
     },
   },
-  compoundVariants: [
-    {
-      intent: 'primary',
-      size: 'large',
-      className: styles.authPrimary,
-    },
-    {
-      intent: 'secondary',
-      size: 'large',
-      logo: 'withLogo',
-      className: styles.authSecondary,
-    },
-  ],
   defaultVariants: {
     size: 'medium',
   },

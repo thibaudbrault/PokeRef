@@ -4,13 +4,36 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
-import { errorToast } from '@/components';
+import { Loader, errorToast } from '@/components';
 import styles from '@/modules/profile/Profile.module.scss';
 import { capitalize } from '@/utils';
+import { type GetServerSidePropsContext } from 'next';
+import { getSession, useSession } from 'next-auth/react';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { User } from '@prisma/client';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from './api/auth/[...nextauth]';
 
 function Profile() {
   const router = useRouter();
-  const [user, setUser] = useState();
+  const { status, data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push('/', '/', {});
+    },
+  });
+
+  console.log(session);
+
+  // const {
+  //   isLoading,
+  //   isError,
+  //   error,
+  //   data: user,
+  // }: UseQueryResult<User, Error> = useQuery({
+  //   queryKey: [`user`, name],
+  //   queryFn: () => getMove(name),
+  // });
 
   const releaseHandler = async (name: string, img: string) => {
     if (true /* change to check if auth */) {
@@ -51,11 +74,14 @@ function Profile() {
     }
   }, [formState, reset]);
 
+  if (status === 'loading' && isLoading) {
+    return <Loader />;
+  }
+
   return (
-    user && (
-      <main className="mainBig">
-        <section className="section">
-          {/* <h2 className="leftH2">{user.name}'s caught pokémon</h2>
+    <main className="mainBig">
+      <section className="section">
+        {/* <h2 className="leftH2">{user.name}'s caught pokémon</h2>
           <h4 className="leftSubtitle">
             You caught {user.caught.length} / 1010 Pokémon
           </h4>
@@ -77,11 +103,11 @@ function Profile() {
               </li>
             ))}
           </ul> */}
-        </section>
-        <section className="section">
-          <details className={styles.details}>
-            <summary>Modify your profile</summary>
-            {/* <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
+      </section>
+      <section className="section">
+        <details className={styles.details}>
+          <summary>Modify your profile</summary>
+          {/* <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
               <div className="input">
                 <Label.Root htmlFor="username">Your trainer name</Label.Root>
                 <Input
@@ -102,11 +128,29 @@ function Profile() {
               </div>
               <button type="submit">Update</button>
             </form> */}
-          </details>
-        </section>
-      </main>
-    )
+        </details>
+      </section>
+    </main>
   );
 }
 
 export default Profile;
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
+}

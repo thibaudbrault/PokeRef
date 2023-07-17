@@ -7,9 +7,10 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Input, Spinner, errorToast, successToast } from '@/components';
+import { Input, Spinner, errorToast, successToast, Button } from '@/components';
 import styles from '@/modules/auth/Auth.module.scss';
 import { RegisterValidator } from '@/utils';
+import { signIn } from 'next-auth/react';
 
 type RegisterCredentials = z.infer<typeof RegisterValidator>;
 
@@ -29,6 +30,7 @@ function Register() {
       try {
         const { confirmPassword, ...body } = values;
         const { data } = await axios.post(`/api/user/signup`, body);
+        await signIn('credentials', { ...values, callbackUrl: '/' });
         router.push(`/`);
         successToast(data.message);
       } catch (error) {
@@ -50,11 +52,11 @@ function Register() {
           className={styles.form}
           onSubmit={handleSubmit((values) => registerHandler(values))}
         >
-          <div className={styles.title}>
+          <div className={styles.titleContainer}>
             <h2 className="h2">Register</h2>
             <p>Create teams and save your favorites pokémon</p>
           </div>
-          <div className={styles.input}>
+          <fieldset className={styles.input}>
             <div>
               <Input
                 type="text"
@@ -62,6 +64,9 @@ function Register() {
                 placeholder="Username"
                 {...register(`name`)}
               />
+              {typeof errors.name?.message === `string` && (
+                <small>{errors.name?.message}</small>
+              )}
             </div>
             <div>
               <Input
@@ -96,10 +101,10 @@ function Register() {
                 <small>{errors.confirmPassword?.message}</small>
               )}
             </div>
-            <button className={styles.button} type="submit">
+            <Button intent="authPrimary" size="large" type="submit">
               {isLoading ? <Spinner /> : `Register`}
-            </button>
-          </div>
+            </Button>
+          </fieldset>
           <p className={styles.switch}>
             Already have an account ? <Link href="/login">Login</Link>
           </p>

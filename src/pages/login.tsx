@@ -12,7 +12,6 @@ import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { signIn } from 'next-auth/react';
 import { z } from 'zod';
-import * as Dialog from '@radix-ui/react-dialog';
 
 type LoginCredentials = z.infer<typeof LoginValidator>;
 
@@ -30,9 +29,8 @@ function Login() {
   const { mutate: loginHandler, isLoading } = useMutation({
     mutationFn: async (values: LoginCredentials) => {
       try {
-        // const { data } = await axios.post('/api/user/signin', values);
         await signIn('credentials', { ...values, callbackUrl: '/' });
-        // router.push('/profile');
+        await router.push('/profile');
         successToast('You are logged in');
       } catch (error) {
         if (error instanceof AxiosError) {
@@ -53,98 +51,86 @@ function Login() {
   };
 
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
-        <Button intent="secondary">Login</Button>
-      </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Overlay className="DialogOverlay" />
-        <Dialog.Content className="DialogContent">
-          <main className={styles.main}>
-            <div className={styles.container}>
-              <div className={styles.titleContainer}>
-                <Dialog.Title className="DialogTitle">Login</Dialog.Title>
-                <Dialog.Description className="DialogDescription">
-                  Go to your profile to create teams and find your favorites
-                  pokémon
-                </Dialog.Description>
-              </div>
-              <form
-                className={styles.form}
-                onSubmit={handleSubmit((values) => loginHandler(values))}
-              >
-                <fieldset className={styles.input}>
-                  <div>
-                    <Input
-                      type="email"
-                      id="email"
-                      placeholder="Email"
-                      {...register(`email`)}
-                    />
-                    {typeof errors.email?.message === `string` && (
-                      <small>{capitalize(errors.email?.message)}</small>
-                    )}
-                  </div>
-                  <div>
-                    <Input
-                      type="password"
-                      id="password"
-                      placeholder="Password"
-                      {...register(`password`)}
-                    />
-                    {typeof errors.password?.message === `string` && (
-                      <small>{capitalize(errors.password?.message)}</small>
-                    )}
-                    <button className={styles.reset} type="button">
-                      I forgot my password
-                    </button>
-                  </div>
-                  <Button intent="primary" size="large" type="submit">
-                    {isLoading ? <Spinner /> : `Login`}
-                  </Button>
-                </fieldset>
-                <p className={styles.choice}>OR</p>
-                <fieldset className={styles.input}>
-                  <div className={styles.providers}>
-                    <Button
-                      intent="secondary"
-                      size="large"
-                      logo="withLogo"
-                      onClick={googleConnect}
-                    >
-                      Sign In with Google
-                      <span>
-                        <GrGoogle />
-                      </span>
-                    </Button>
-                    <Button
-                      intent="secondary"
-                      size="large"
-                      logo="withLogo"
-                      onClick={githubConnect}
-                    >
-                      Sign In with Github
-                      <span>
-                        <GrGithub />
-                      </span>
-                    </Button>
-                  </div>
-                </fieldset>
-                <p className={styles.switch}>
-                  Don't have an account yet ?{` `}
-                  <Link href="/register">Register</Link>
-                </p>
-              </form>
+    <main className="mainForm">
+      <div className={styles.container}>
+        <Link className={styles.close} href={`/`}>
+          <FiX />
+        </Link>
+        <div className={styles.image} />
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit((values) => loginHandler(values))}
+        >
+          <div className={styles.titleContainer}>
+            <h2 className="h2">Login</h2>
+            <p>
+              Go to your profile to create teams and find your favorites pokémon
+            </p>
+          </div>
+          <fieldset className={styles.input}>
+            <div>
+              <Input
+                type="email"
+                id="email"
+                placeholder="Email"
+                {...register(`email`)}
+              />
+              {typeof errors.email?.message === `string` && (
+                <small>{capitalize(errors.email?.message)}</small>
+              )}
             </div>
-          </main>
-          <Dialog.Close asChild>
-            <Button intent="close">
-              <FiX />
+            <div>
+              <Input
+                type="password"
+                id="password"
+                placeholder="Password"
+                {...register(`password`)}
+              />
+              {typeof errors.password?.message === `string` && (
+                <small>{capitalize(errors.password?.message)}</small>
+              )}
+              <button className={styles.reset} type="button">
+                J'ai oublié mon mot de passe
+              </button>
+            </div>
+            <Button intent="authPrimary" size="large" type="submit">
+              {isLoading ? <Spinner /> : `Login`}
             </Button>
-          </Dialog.Close>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+          </fieldset>
+          <p className={styles.choice}>OR</p>
+          <div className={styles.input}>
+            <div className={styles.providers}>
+              <Button
+                intent="authSecondary"
+                size="large"
+                logo="withLogo"
+                onClick={googleConnect}
+              >
+                Sign In with Google
+                <span>
+                  <GrGoogle />
+                </span>
+              </Button>
+              <Button
+                intent="authSecondary"
+                size="large"
+                logo="withLogo"
+                onClick={githubConnect}
+              >
+                Sign In with Github
+                <span>
+                  <GrGithub />
+                </span>
+              </Button>
+            </div>
+          </div>
+          <p className={styles.switch}>
+            Don't have an account yet ?{` `}
+            <Link href="/register">Register</Link>
+          </p>
+        </form>
+      </div>
+    </main>
   );
 }
 
