@@ -20,6 +20,9 @@ const nextConfig = withPWA({
   images: {
     domains: ['raw.githubusercontent.com', 'images.pokemontcg.io']
   },
+  sassOptions: {
+    includePaths: [path.jsoin(__dirname, 'styles')]
+  }
 });
 
 module.exports = nextConfig;
