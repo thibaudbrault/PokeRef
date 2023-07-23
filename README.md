@@ -12,7 +12,7 @@
 </div>
 
 <h3 align="center">PokéRef is a Pokémon encyclopedia built with Next JS, Typescript and Scss modules and uses data from PokéAPI, Smogon and PokémonTCG</h3>  
-<p align="center">You'll find a ton of information on every pokémon, moves, abilities, items and a lot more</p>  
+<p align="center">You'll find a ton of information on every Pokémon, moves, abilities, items and a lot more</p>  
 <div align="center">
   <a href="https://pokeref.app/">Live version</a>  
 </div>  
@@ -43,30 +43,42 @@
 
 <h2 id="roadmap">Roadmap</h2>
 
-<h4>Features</h4>
+<h4>Features - Front</h4>
 
-✅A page for every pokémon / move / ability / type / item and more  
-✅Filter pokémon by name / form / generation  
+✅A page for every Pokémon / move / ability / type / item and more  
+✅Filter Pokémon by name / form / generation  
 ✅Filter moves / abilities / machines by name  
-✅Fuzzy search for pokémon / moves / abilities and items pages  
+✅Fuzzy search for Pokémon / moves / abilities and items pages  
 ✅Change certain data according to the game selected  
-✅Pokémon cries (up to pokémon n° 721)  
-✅Competitive information for every pokémon with data from Smogon  
-✅List of every pokémon cards for every pokémon  
+✅Pokémon cries (up to Pokémon n° 721)  
+✅Competitive information for every Pokémon with data from Smogon  
+✅List of every Pokémon cards for every Pokémon  
 ✅Dark and light mode  
 ✅404 page  
 ✅Responsive
 
-🛠Implement Radix UI to create reusable components  
-🛠Second type select in the list of pokémon in a type page  
-🛠Change login provider
+🛠Second type select in the list of Pokémon in a type page
 
 🔜Contest section in a move's page
+
+<h4>Features - Back</h4>
+
+✅Use of Next-Auth to handle login / log out with credentials  
+✅Zod validators for the register and login  
+✅Session context with the `useSession` hook from Next-Auth  
+✅Protected profile page with server redirection for unauthenticated users  
+✅User data saved in a Planetscale database  
+✅Use of Prisma and Tanstack-Query to handle queries and mutations  
+✅Possibility to save / remove favorites Pokémon
+
+🛠Add Goggle and Github providers
+
+🔜Add possibility to modify a profile
 
 <h4>Performance improvements</h4>
 
 ✅Use of Next SSR for dynamic pages  
-✅Use of React-Query to fetch data only once by using `cacheTime: Infinity` and `staleTime: Infinity`. The data will very rarely change so there is no use in re-fetching it every x minutes / hours  
+✅Use of Tanstack-Query to fetch data only once by using `cacheTime: Infinity` and `staleTime: Infinity`. The data will very rarely change so there is no use in re-fetching it every x minutes / hours  
 ✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important  
 ✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded  
 ✅Turned into a PWA with the next-pwa package  
@@ -110,8 +122,9 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - Finally moved to Next JS (instead of CRA) + Styled-Components to learn to use Next JS. I chose to use Next JS to benefit from the image optimization given by the <Image /> component because the app has a lot of images to render and every optimization is welcome. I also chose it to benefit from the Static-Site generation.
 - Upgraded to Next 13. There were some problems that made the transition to using the app folder instead of the pages one not possible, but I benefited from the changes to the <Image /> component (it no longer creates spans) and the <Link /> component (it no longer need to have an anchor tag inside).
 - Added React-Table and converted all my tables to benefit from virtualization, sorting and filtering for every column making it easier to find the desired information.
-- Added Firebase for authentication and saving a user's caught pokémon with data stored in Firestore.
+- Added Firebase for authentication and saving a user's caught Pokémon with data stored in Firestore.
 - Changed all the structure folder and moved from Styled-Components to Scss modules.
+- Removed Firebase in favor of Prisma + Planetscale.
 
 <h4>Problems encountered (ordered from the oldest to the most recent)</h4>
 
@@ -127,12 +140,12 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 <h4>Contents</h4>
 
 - Pokémon : basic data, evolution line, moves that he can learn, ...
-- Moves : basic data, effect, pokémon that can learn it, ...
-- Abilities : effect, pokémon with this ability (normal or hidden), ...
-- Types : effectiveness against other types, pokémon with this type, ...
+- Moves : basic data, effect, Pokémon that can learn it, ...
+- Abilities : effect, Pokémon with this ability (normal or hidden), ...
+- Types : effectiveness against other types, Pokémon with this type, ...
 - Items : effect, flinch power, ...
 - Machines : list of TM and HM for every game
-- Locations : every place and the pokémon that can be encountered
+- Locations : every place and the Pokémon that can be encountered
 - And much more
 
 <h2 id="technologies">Technologies</h2>
@@ -141,7 +154,8 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
 - <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
 - <img src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white" />
-- <img src="https://img.shields.io/badge/Firebase-F5830C?style=for-the-badge&logo=Firebase&logoColor=white" />
+- <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" />
+- <img src="https://img.shields.io/badge/planetscale-%23000000.svg?style=for-the-badge&logo=planetscale&logoColor=white" />
 - <img src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white" />
 - <img src="https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220" />
 
