@@ -1,7 +1,7 @@
 import { type InputHTMLAttributes, forwardRef } from 'react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  type: 'text' | 'email' | 'password';
+  type: 'text' | 'email' | 'password' | 'number';
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
