@@ -1,7 +1,7 @@
 import Image from 'next/image';
+import { TailSpin } from 'react-loader-spinner';
 
 import styles from './Loader.module.scss';
-import { TailSpin } from 'react-loader-spinner';
 
 export function Loader() {
   return (

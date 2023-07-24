@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FiX } from '@meronex/icons/fi';
 import { useMutation } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
@@ -10,7 +11,6 @@ import { z } from 'zod';
 import { Input, Spinner, errorToast, successToast, Button } from '@/components';
 import styles from '@/modules/auth/Auth.module.scss';
 import { RegisterValidator } from '@/utils';
-import { signIn } from 'next-auth/react';
 
 type RegisterCredentials = z.infer<typeof RegisterValidator>;
 
@@ -30,7 +30,7 @@ function Register() {
       try {
         const { confirmPassword, ...body } = values;
         const { data } = await axios.post(`/api/user/signup`, body);
-        await signIn('credentials', { ...values, callbackUrl: '/' });
+        await signIn(`credentials`, { ...values, callbackUrl: `/` });
         router.push(`/`);
         successToast(data.message);
       } catch (error) {

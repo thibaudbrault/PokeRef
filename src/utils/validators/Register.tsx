@@ -8,7 +8,7 @@ export const RegisterValidator = z
       .nonempty(),
     email: z
       .string()
-      .email({ message: 'You need to enter a valid email address' })
+      .email({ message: `You need to enter a valid email address` })
       .nonempty(),
     password: z
       .string()

@@ -2,12 +2,12 @@ import { useContext, type Dispatch, type SetStateAction } from 'react';
 
 import { FiMenu, FiX } from '@meronex/icons/fi';
 import { RiMoonClearLine, RiSunLine } from '@meronex/icons/ri';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 
 import { Button } from '@/components';
 import { ThemeContext } from '@/contexts';
 
-import { signOut, useSession } from 'next-auth/react';
 import styles from './Header.module.scss';
 
 type Props = {
@@ -50,7 +50,7 @@ export function Header({ navOpen, setNavOpen }: Props) {
             <RiMoonClearLine data-testid="moon" />
           )}
         </button>
-        {status === 'authenticated' ? (
+        {status === `authenticated` ? (
           <div className={styles.auth}>
             <Button intent="secondary" onClick={logout}>
               Sign Out

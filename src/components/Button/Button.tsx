@@ -24,7 +24,7 @@ const button = cva(styles.base, {
     },
   },
   defaultVariants: {
-    size: 'medium',
+    size: `medium`,
   },
 });
 

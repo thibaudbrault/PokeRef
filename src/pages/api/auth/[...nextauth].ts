@@ -1,13 +1,13 @@
 import { PrismaAdapter } from '@auth/prisma-adapter';
+import { User } from '@prisma/client';
+import bcrypt from 'bcrypt';
 import { type NextApiHandler } from 'next';
 import NextAuth, { type NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 
 import { prisma } from '~/lib/prisma';
-import bcrypt from 'bcrypt';
 import { LoginValidator } from '~/src/utils';
-import { User } from '@prisma/client';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -68,10 +68,10 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: `/login`,
-    newUser: '/profile',
+    newUser: `/profile`,
   },
   session: {
-    strategy: 'jwt',
+    strategy: `jwt`,
   },
   secret: process.env.SECRET,
 };
