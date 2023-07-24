@@ -1,17 +1,17 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FiX } from '@meronex/icons/fi';
 import { GrGithub, GrGoogle } from '@meronex/icons/gr';
+import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 import { Button, Input, Spinner, errorToast, successToast } from '@/components';
 import styles from '@/modules/auth/Auth.module.scss';
 import { LoginValidator, capitalize } from '@/utils';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
-import { signIn } from 'next-auth/react';
-import { z } from 'zod';
 
 type LoginCredentials = z.infer<typeof LoginValidator>;
 
@@ -29,9 +29,9 @@ function Login() {
   const { mutate: loginHandler, isLoading } = useMutation({
     mutationFn: async (values: LoginCredentials) => {
       try {
-        await signIn('credentials', { ...values, callbackUrl: '/' });
-        await router.push('/profile');
-        successToast('You are logged in');
+        await signIn(`credentials`, { ...values, callbackUrl: `/` });
+        await router.push(`/`);
+        successToast(`You are logged in`);
       } catch (error) {
         if (error instanceof AxiosError) {
           errorToast(error.response?.data.message);
