@@ -14,10 +14,12 @@ import {
 } from '@/utils';
 
 import type { ILocation, ILocationArea } from '@/types';
+import { useAtom } from 'jotai';
+import { gameAtom } from '@/stores/store';
 
 export const useSwitchGame = (name: string) => {
-  const [game, setGame] = useState<string | null>(null);
-  const [_version, setVersion] = useState<string | null>(null);
+  const [game, setGame] = useAtom(gameAtom);
+  const [, setVersion] = useState<string | null>(null);
   const [toggleState, setToggleState] = useState<number>(0);
   const [areaUrl, setAreaUrl] = useState<string | null>(null);
 
