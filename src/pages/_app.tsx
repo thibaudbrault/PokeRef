@@ -35,8 +35,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     },
   });
 
-  const [navOpen, setNavOpen] = useState(false);
-
   return (
     <>
       <Head>
@@ -48,8 +46,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
             <ThemeProvider>
               <Toaster />
               <NextNProgress />
-              <Header navOpen={navOpen} setNavOpen={setNavOpen} />
-              <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
+              <Header />
+              <Nav />
               <Component {...pageProps} />
               <Footer />
             </ThemeProvider>

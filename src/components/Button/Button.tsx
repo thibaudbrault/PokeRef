@@ -16,6 +16,7 @@ const button = cva(styles.base, {
       authPrimary: styles.authPrimary,
     },
     size: {
+      fit: styles.fit,
       medium: styles.medium,
       large: styles.large,
     },

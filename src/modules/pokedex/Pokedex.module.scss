@@ -120,8 +120,6 @@
   }
 
   @include sm {
-    width: 20rem;
-    height: 29rem;
     padding: 1.5rem 2.5rem;
   }
 }
@@ -183,7 +181,10 @@
 
     @include themed {
       color: t('text');
-      text-shadow: t('bg') -1px -1px 0, t('bg') 1px -1px 0, t('bg') -1px 1px 0,
+      text-shadow:
+        t('bg') -1px -1px 0,
+        t('bg') 1px -1px 0,
+        t('bg') -1px 1px 0,
         t('bg') 1px 1px 0;
     }
 

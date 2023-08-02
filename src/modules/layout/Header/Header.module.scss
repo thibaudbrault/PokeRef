@@ -7,8 +7,7 @@
   margin: 0 auto;
 
   @include md {
-    width: 80%;
-    justify-content: space-evenly;
+    display: none;
   }
 }
 
@@ -38,8 +37,6 @@
 }
 
 .theme {
-  width: 48px;
-  height: 48px;
   background: none;
   border: none;
   font-size: 48px;
@@ -47,50 +44,8 @@
   @include themed {
     color: t('text');
   }
-}
-
-.open {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 5vh;
-  right: 5vw;
-  z-index: 99;
-  padding: 1rem;
-  border: 1px solid transparent;
-  border-radius: 50px;
-  font-size: 48px;
-
-  @include themed {
-    background-color: t('text');
-    color: t('bg');
-  }
-
-  &:hover {
-    @include themed {
-      border: 1px solid t('text');
-      background-color: t('bg');
-      color: t('text');
-    }
-  }
 
   @include md {
-    display: flex;
-  }
-}
-
-.close {
-  display: none;
-  font-size: 48px;
-  background: transparent;
-  border: none;
-
-  @include themed {
-    color: t('text');
-  }
-
-  @include md {
-    display: flex;
+    font-size: 32px;
   }
 }

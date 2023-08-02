@@ -14,7 +14,6 @@
 }
 
 .back {
-  width: fit-content;
   gap: 1rem;
   background: none;
   @include themed {
@@ -85,6 +84,10 @@
 
 .medium {
   width: auto;
+}
+
+.fit {
+  width: fit-content;
 }
 
 .large {

@@ -1,4 +1,10 @@
-import { useContext, type Dispatch, type SetStateAction } from 'react';
+import {
+  useContext,
+  type Dispatch,
+  type SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 
 import { FiMenu, FiX } from '@meronex/icons/fi';
 import { RiMoonClearLine, RiSunLine } from '@meronex/icons/ri';
@@ -9,16 +15,23 @@ import { Button } from '@/components';
 import { ThemeContext } from '@/contexts';
 
 import styles from './Header.module.scss';
+import { useMediaQuery } from '@/hooks';
+import { MobileNav } from '../Nav';
 
-type Props = {
-  navOpen: boolean;
-  setNavOpen: Dispatch<SetStateAction<boolean>>;
-};
-
-export function Header({ navOpen, setNavOpen }: Props) {
+export function Header() {
   const { status } = useSession();
 
   const { theme, setTheme } = useContext(ThemeContext);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const isBreakpoint = useMediaQuery(890);
+
+  useEffect(() => {
+    if (!isBreakpoint) {
+      setIsNavOpen(false);
+    }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isBreakpoint]);
 
   const logout = async () => {
     await signOut();
@@ -69,23 +82,24 @@ export function Header({ navOpen, setNavOpen }: Props) {
             </Button>
           </div>
         )}
-        {navOpen ? (
+        <MobileNav />
+        {/* {isNavOpen ? (
           <button
-            className={styles.open}
-            aria-label="Open menu"
-            onClick={() => setNavOpen(!navOpen)}
+            className={styles.close}
+            aria-label="Close menu"
+            onClick={() => setIsNavOpen(false)}
           >
             <FiX />
           </button>
         ) : (
           <button
-            className={styles.close}
-            aria-label="Close menu"
-            onClick={() => setNavOpen(!navOpen)}
+            className={styles.open}
+            aria-label="Open menu"
+            onClick={() => setIsNavOpen(true)}
           >
             <FiMenu />
           </button>
-        )}
+        )} */}
       </div>
     </header>
   );
