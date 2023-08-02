@@ -1,12 +1,5 @@
-import {
-  useContext,
-  type Dispatch,
-  type SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
+import { useContext } from 'react';
 
-import { FiMenu, FiX } from '@meronex/icons/fi';
 import { RiMoonClearLine, RiSunLine } from '@meronex/icons/ri';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -14,24 +7,13 @@ import Link from 'next/link';
 import { Button } from '@/components';
 import { ThemeContext } from '@/contexts';
 
-import styles from './Header.module.scss';
-import { useMediaQuery } from '@/hooks';
 import { MobileNav } from '../Nav';
+import styles from './Header.module.scss';
 
 export function Header() {
   const { status } = useSession();
 
   const { theme, setTheme } = useContext(ThemeContext);
-  const [isNavOpen, setIsNavOpen] = useState(false);
-
-  const isBreakpoint = useMediaQuery(890);
-
-  useEffect(() => {
-    if (!isBreakpoint) {
-      setIsNavOpen(false);
-    }
-    //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isBreakpoint]);
 
   const logout = async () => {
     await signOut();
@@ -83,23 +65,6 @@ export function Header() {
           </div>
         )}
         <MobileNav />
-        {/* {isNavOpen ? (
-          <button
-            className={styles.close}
-            aria-label="Close menu"
-            onClick={() => setIsNavOpen(false)}
-          >
-            <FiX />
-          </button>
-        ) : (
-          <button
-            className={styles.open}
-            aria-label="Open menu"
-            onClick={() => setIsNavOpen(true)}
-          >
-            <FiMenu />
-          </button>
-        )} */}
       </div>
     </header>
   );

@@ -1,24 +1,16 @@
-import { useEffect, useState } from 'react';
-
 import { User } from '@prisma/client';
-import * as Label from '@radix-ui/react-label';
-import {
-  type UseQueryResult,
-  useQuery,
-  useMutation,
-} from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import { type GetServerSidePropsContext } from 'next';
 import { getServerSession } from 'next-auth/next';
-import { getSession, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
 
-import { Input, Loader, errorToast, successToast } from '@/components';
+import { Loader, errorToast, successToast } from '@/components';
 import styles from '@/modules/profile/Profile.module.scss';
-import { capitalize, removeDash } from '@/utils';
+import { removeDash } from '@/utils';
 import { prisma } from '~/lib/prisma';
 
 import { authOptions } from './api/auth/[...nextauth]';
