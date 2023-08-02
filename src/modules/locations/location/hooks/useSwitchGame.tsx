@@ -5,7 +5,9 @@ import {
   useQuery,
   type UseQueryResult,
 } from '@tanstack/react-query';
+import { useAtom } from 'jotai';
 
+import { gameAtom } from '@/stores/store';
 import {
   getArea,
   getEncounterCondition,
@@ -14,8 +16,6 @@ import {
 } from '@/utils';
 
 import type { ILocation, ILocationArea } from '@/types';
-import { useAtom } from 'jotai';
-import { gameAtom } from '@/stores/store';
 
 export const useSwitchGame = (name: string) => {
   const [game, setGame] = useAtom(gameAtom);

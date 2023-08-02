@@ -2,16 +2,16 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { type ColumnDef } from '@tanstack/react-table';
+import { useAtom } from 'jotai';
 import Link from 'next/link';
 
 import { GenNav, Loader, errorToast } from '@/components';
 import { useTableParams } from '@/hooks';
 import { Heading } from '@/modules/machines';
+import { gameAtom } from '@/stores/store';
 import { getMachines, removeDash, uppercase } from '@/utils';
 
 import type { IMachine } from '@/types';
-import { useAtom } from 'jotai';
-import { gameAtom } from '@/stores/store';
 
 function MachinesPage() {
   const [version, setVersion] = useState<string | null>(`red-blue`);
@@ -27,7 +27,7 @@ function MachinesPage() {
   });
 
   useEffect(() => {
-    setGame('red');
+    setGame(`red`);
   }, []);
 
   const data = useMemo(

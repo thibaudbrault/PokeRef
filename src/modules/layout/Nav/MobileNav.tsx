@@ -19,8 +19,8 @@ export const MobileNav = () => {
           <div className="DrawerHandle" />
           <nav className={styles.mobileNav}>
             <ul className={styles.mobileList}>
-              {navArray.map((nav) => (
-                <li>
+              {navArray.map((nav, i) => (
+                <li key={i}>
                   <Link href={nav.name === `pokémon` ? `/` : `/${nav.name}`}>
                     {nav.name}
                   </Link>

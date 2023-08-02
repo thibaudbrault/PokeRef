@@ -28,7 +28,7 @@ function Register() {
   const { mutate: registerHandler, isLoading } = useMutation({
     mutationFn: async (values: RegisterCredentials) => {
       try {
-        const { confirmPassword, ...body } = values;
+        const { confirmPassword: _confirmPassword, ...body } = values;
         const { data } = await axios.post(`/api/user/signup`, body);
         await signIn(`credentials`, { ...values, callbackUrl: `/` });
         router.push(`/`);

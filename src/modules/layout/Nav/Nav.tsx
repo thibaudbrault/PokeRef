@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-import styles from './Nav.module.scss';
 import { navArray } from './helpers';
+import styles from './Nav.module.scss';
 
 export function Nav() {
   return (
