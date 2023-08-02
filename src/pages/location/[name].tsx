@@ -221,7 +221,7 @@ function LocationCard({ name }: Props) {
             </table>
           </div>
         </section>
-        <Button intent="back" asChild>
+        <Button intent="back" size="fit" asChild>
           <Link href="/locations">
             <FaChevronLeft />
             Back to Locations

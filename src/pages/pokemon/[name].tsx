@@ -186,7 +186,7 @@ function PokemonCard({ name }: Props) {
 
         {cards.data && <Cards cards={cards.data} />}
 
-        <Button intent="back" asChild>
+        <Button intent="back" size="fit" asChild>
           <Link href="/">
             <FaChevronLeft />
             Back to Pokédex

@@ -69,7 +69,7 @@ function MoveCard({ name }: Props) {
             version={version}
           />
 
-          <Button intent="back" asChild>
+          <Button intent="back" size="fit" asChild>
             <Link href="/moves">
               <FaChevronLeft />
               Back to Moves

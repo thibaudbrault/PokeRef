@@ -59,7 +59,7 @@ function ItemCard({ name }: Props) {
             </div>
           </section>
           <Description item={item} />
-          <Button intent="back" asChild>
+          <Button intent="back" size="fit" asChild>
             <Link href="/items">
               <FaChevronLeft />
               Back to Items

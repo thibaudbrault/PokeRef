@@ -74,7 +74,7 @@ function Ability({ name }: Props) {
           </h3>
           <Table ability={ability} pokemon={pokemon} />
         </section>
-        <Button intent="back" asChild>
+        <Button intent="back" size="fit" asChild>
           <Link href="/abilities">
             <FaChevronLeft />
             Back to Abilities

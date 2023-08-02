@@ -59,7 +59,7 @@ function TypeCard({ name }: Props) {
             <Moves moves={moves} />
           </Tabs.Content>
         </Tabs.Root>
-        <Button intent="back" asChild>
+        <Button intent="back" size="fit" asChild>
           <Link href="/types">
             <FaChevronLeft />
             Back to Types
