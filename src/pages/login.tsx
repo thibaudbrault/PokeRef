@@ -40,16 +40,6 @@ function Login() {
     },
   });
 
-  const googleConnect = () => {
-    // will have the sign-in with google call
-    router.push(`/`);
-  };
-
-  const githubConnect = () => {
-    // will have the sign-in with github call
-    router.push(`/`);
-  };
-
   return (
     <main className="mainForm">
       <div className={styles.container}>
@@ -104,7 +94,7 @@ function Login() {
                 intent="authSecondary"
                 size="large"
                 logo="withLogo"
-                onClick={googleConnect}
+                // onClick={googleConnect}
               >
                 Sign In with Google
                 <span>
@@ -115,7 +105,11 @@ function Login() {
                 intent="authSecondary"
                 size="large"
                 logo="withLogo"
-                onClick={githubConnect}
+                onClick={() =>
+                  signIn(`github`, {
+                    callbackUrl: `${process.env.NEXTAUTH_URL}`,
+                  })
+                }
               >
                 Sign In with Github
                 <span>
