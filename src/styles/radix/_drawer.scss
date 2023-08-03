@@ -3,16 +3,13 @@
 .DrawerOverlay {
   position: fixed;
   inset: 0;
-  background-color: rgba($color: #161616, $alpha: 0.4);
+  background-color: rgba($color: #161616, $alpha: 40%);
 }
 
 .DrawerContent {
   padding: 1rem;
   position: fixed;
-  top: 20%;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: 20% 0 0;
   background-color: $light;
   color: $dark;
   border-top-left-radius: 10px;
