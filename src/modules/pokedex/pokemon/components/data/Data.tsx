@@ -26,7 +26,7 @@ export function Data({ pokemon, species, game }: Props) {
     queryFn: async () => {
       try {
         const email = session?.user?.email;
-        if (!email) return;
+        if (!email) return {};
         const { data } = await axios.get(
           `/api/user/data?email=${encodeURIComponent(email)}`,
           {
@@ -64,7 +64,7 @@ export function Data({ pokemon, species, game }: Props) {
     <section className={styles.section} id="presentation">
       {user &&
         pokemon.id < 10000 &&
-        (user.caught.every(
+        (user.caught?.every(
           (p: Record<string, string>) => p.name !== pokemon.name,
         ) ? (
           <button className={styles.catch} onClick={() => catchHandler()}>

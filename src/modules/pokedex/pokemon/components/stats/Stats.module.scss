@@ -27,6 +27,15 @@
       @include themed {
         fill: t('text') !important;
       }
+      @include md {
+        font-size: 1.5rem !important;
+      }
+      @include sm {
+        font-size: 1.7rem !important;
+      }
+      @include xs {
+        font-size: 2rem !important;
+      }
     }
   }
 

@@ -98,9 +98,15 @@
       @include gthemed {
         color: t('bg');
       }
+      @include themed {
+        color: t('bg');
+      }
     }
 
     @include gthemed {
+      color: t('text');
+    }
+    @include themed {
       color: t('text');
     }
 
@@ -136,6 +142,10 @@
         background-color: t('text');
         border: 1px solid t('text');
       }
+      @include themed {
+        background-color: t('text');
+        border: 1px solid t('text');
+      }
     }
 
     &:hover::after {
@@ -160,9 +170,16 @@
       @include gthemed {
         color: t('text');
       }
+      @include themed {
+        color: t('text');
+      }
     }
 
     @include gthemed {
+      background: t('text');
+      color: t('bg');
+    }
+    @include themed {
       background: t('text');
       color: t('bg');
     }
@@ -196,6 +213,10 @@
       transform: scale(1.2, 1.2);
 
       @include gthemed {
+        border: 1px solid t('text');
+        background-color: t('bg');
+      }
+      @include themed {
         border: 1px solid t('text');
         background-color: t('bg');
       }

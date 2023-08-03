@@ -59,7 +59,7 @@
     background: transparent;
     border-radius: 5px;
     text-transform: capitalize;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
 
     @include gthemed {
       color: t('text');
@@ -87,7 +87,7 @@
     }
 
     & .select__placeholder {
-      font-size: 1.5rem;
+      font-size: 1.7rem;
 
       @include gthemed {
         color: t('text');
@@ -109,7 +109,7 @@
 
   & .select__menu {
     text-transform: capitalize;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
 
     @include gthemed {
       color: t('text');
@@ -123,6 +123,12 @@
       &--is-focused {
         background-color: transparent;
         color: $red;
+      }
+
+      &--is-selected {
+        @include gthemed {
+          color: t('text');
+        }
       }
     }
   }
@@ -148,8 +154,8 @@
   }
 
   & .select__single-value {
-    padding: 3px;
-    border-radius: 2px;
+    padding: 3px 5px;
+    border-radius: 5px;
 
     @include gthemed {
       background-color: t('text');

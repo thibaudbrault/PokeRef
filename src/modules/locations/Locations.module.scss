@@ -13,7 +13,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%, -50%);
     display: none;
     font-size: 5rem;
     font-weight: 600;
@@ -27,11 +27,13 @@
 
 .nav {
   @extend %methodNav;
+
   & button {
     text-transform: capitalize;
-    @include themed {
-      color: t('text');
-    }
+
+    // @include themed {
+    //   color: t('text');
+    // }
   }
 }
 
@@ -51,7 +53,7 @@
 
   & li {
     align-self: center;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     text-transform: capitalize;
 
     & a {
@@ -71,7 +73,11 @@
   }
 
   @include sm {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+
+    & li {
+      font-size: 2rem;
+    }
   }
 }
 

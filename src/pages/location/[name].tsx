@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { FaChevronLeft } from '@meronex/icons/fa';
 import { type ColumnDef } from '@tanstack/react-table';
 import { type GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Button, errorToast, GenNav, Loader } from '@/components';
 import { useTableParams } from '@/hooks';
@@ -66,20 +67,13 @@ function LocationCard({ name }: Props) {
     },
     [method.data],
   );
-
-  const [data, setData] = useState<IPokemonEncounter[]>([]);
-
-  useEffect(() => {
-    if (filteredArea) {
-      setData(filteredArea);
-    }
-  }, [filteredArea, game]);
+  const data = useMemo(() => filteredArea, [filteredArea]);
 
   const columns = useMemo<ColumnDef<IPokemonEncounter>[]>(
     () => [
       {
         accessorKey: `pokemon.name`,
-        id: `name`,
+        id: `sort`,
         header: `Pokemon`,
         cell: (info) => (
           <td className="tBold">
@@ -102,7 +96,7 @@ function LocationCard({ name }: Props) {
         cell: (info) => (
           <td>
             {info.getValue<IEncounter[]>().map((i) => (
-              <p key={i.max_level}>{i.max_level}</p>
+              <p key={uuidv4()}>{i.max_level}</p>
             ))}
           </td>
         ),
@@ -114,7 +108,7 @@ function LocationCard({ name }: Props) {
         cell: (info) => (
           <td>
             {info.getValue<IEncounter[]>().map((i) => (
-              <p key={i.chance}>{i.chance} %</p>
+              <p key={uuidv4()}>{i.chance} %</p>
             ))}
           </td>
         ),
@@ -126,7 +120,7 @@ function LocationCard({ name }: Props) {
         cell: (info) => (
           <td>
             {info.getValue<IEncounter[]>().map((i) => (
-              <p key={i.method.name}>
+              <p key={uuidv4()}>
                 {
                   filteredMethod(i.method.name).names.find(
                     (en: IName) => en.language.name === `en`,
@@ -145,9 +139,9 @@ function LocationCard({ name }: Props) {
           <td>
             {info.getValue<IEncounter[]>().map((i) =>
               i.condition_values.length > 1 ? (
-                <p key={i.chance + i.max_level}>
+                <p key={uuidv4()}>
                   {i.condition_values.map((icv) => (
-                    <span key={icv.name}>
+                    <span key={uuidv4()}>
                       {
                         filteredEncounter(icv.name).names.find(
                           (en: IName) => en.language.name === `en`,
@@ -165,7 +159,7 @@ function LocationCard({ name }: Props) {
                   }
                 </p>
               ) : (
-                <p key={i.min_level + i.max_level}>-</p>
+                <p key={uuidv4()}>-</p>
               ),
             )}
           </td>

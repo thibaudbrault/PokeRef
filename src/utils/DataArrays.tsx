@@ -164,7 +164,7 @@ type GenNav = {
 
 export const genNav: GenNav = [
   {
-    gen: `Gen I`,
+    gen: `gen1`,
     details: [
       {
         game: `red`,
@@ -181,7 +181,7 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen II`,
+    gen: `gen2`,
     details: [
       {
         game: `gold`,
@@ -198,7 +198,7 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen III`,
+    gen: `gen3`,
     details: [
       {
         game: `ruby`,
@@ -223,7 +223,7 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen IV`,
+    gen: `gen4`,
     details: [
       {
         game: `diamond`,
@@ -248,7 +248,7 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen V`,
+    gen: `gen5`,
     details: [
       {
         game: `black`,
@@ -270,7 +270,7 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen VI`,
+    gen: `gen6`,
     details: [
       {
         game: `x`,
@@ -291,7 +291,7 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen VII`,
+    gen: `gen7`,
     details: [
       {
         game: `sun`,
@@ -321,7 +321,7 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen VIII`,
+    gen: `gen8`,
     details: [
       {
         game: `sword`,
@@ -346,7 +346,7 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen IX`,
+    gen: `gen9`,
     details: [
       {
         game: `scarlet`,

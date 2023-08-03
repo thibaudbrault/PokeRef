@@ -16,7 +16,7 @@
 
   & .TabsTrigger {
     width: 100%;
-    padding: 1rem 0;
+    padding: 1rem 1.5rem;
     font-size: 2rem;
     font-weight: 600;
     text-transform: capitalize;
@@ -32,4 +32,10 @@
       border-bottom: 1px solid $red;
     }
   }
+}
+
+.TabsListOverflow {
+  overflow-x: scroll;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
 }

@@ -97,6 +97,10 @@
         color: $red;
       }
     }
+
+    @include sm {
+      font-size: 3.5rem;
+    }
   }
 
   &:nth-child(even) {
@@ -120,6 +124,8 @@
   }
 
   @include sm {
+    width: 26rem;
+    height: 37rem;
     padding: 1.5rem 2.5rem;
   }
 }
@@ -130,6 +136,11 @@
   color: #c4c4c4;
   background-color: #161616;
   border-radius: 50px;
+
+  @include sm {
+    padding: 0.1rem 1rem;
+    font-size: 1.7rem;
+  }
 }
 
 .sprite {
@@ -152,13 +163,6 @@
   &:hover .shiny {
     opacity: 1;
     z-index: 3;
-  }
-
-  & img {
-    @include sm {
-      width: 72px;
-      height: 72px;
-    }
   }
 }
 
@@ -204,6 +208,10 @@
         cursor: pointer;
       }
     }
+
+    @include sm {
+      font-size: 2rem;
+    }
   }
 }
 
@@ -232,7 +240,7 @@
   @include sm {
     right: 3rem;
     bottom: 3rem;
-    font-size: 3rem;
+    font-size: 4rem;
   }
 }
 
