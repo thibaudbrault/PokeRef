@@ -40,17 +40,19 @@ function LocationCard({ name }: Props) {
     method,
   } = useSwitchGame(name);
 
-  const filteredArea = area?.pokemon_encounters
-    .map((a) => {
-      const version_details = a.version_details.filter(
-        (av) => av.version.name === game,
-      );
-      return {
-        ...a,
-        version_details,
-      };
-    })
-    .filter((a) => a.version_details.length);
+  const filteredArea = useMemo(() => {
+    return area?.pokemon_encounters
+      .map((a) => {
+        const version_details = a.version_details.filter(
+          (av) => av.version.name === game,
+        );
+        return {
+          ...a,
+          version_details,
+        };
+      })
+      .filter((a) => a.version_details.length);
+  }, [area, game]);
 
   const filteredEncounter = useCallback(
     (condition: string) => {
@@ -61,12 +63,23 @@ function LocationCard({ name }: Props) {
     [encounter.data],
   );
 
+  const filteredEncounterMemoized = useMemo(
+    () => filteredEncounter,
+    [filteredEncounter],
+  );
+
   const filteredMethod = useCallback(
     (condition: string) => {
       return method.data?.find((m: IEncounterMethod) => m.name === condition);
     },
     [method.data],
   );
+
+  const filteredMethodMemoized = useMemo(
+    () => filteredMethod,
+    [filteredMethod],
+  );
+
   const data = useMemo(() => filteredArea, [filteredArea]);
 
   const columns = useMemo<ColumnDef<IPokemonEncounter>[]>(
@@ -122,7 +135,7 @@ function LocationCard({ name }: Props) {
             {info.getValue<IEncounter[]>().map((i) => (
               <p key={uuidv4()}>
                 {
-                  filteredMethod(i.method.name).names.find(
+                  filteredMethodMemoized(i.method.name).names.find(
                     (en: IName) => en.language.name === `en`,
                   ).name
                 }
@@ -143,7 +156,7 @@ function LocationCard({ name }: Props) {
                   {i.condition_values.map((icv) => (
                     <span key={uuidv4()}>
                       {
-                        filteredEncounter(icv.name).names.find(
+                        filteredEncounterMemoized(icv.name).names.find(
                           (en: IName) => en.language.name === `en`,
                         ).name
                       }
@@ -153,9 +166,9 @@ function LocationCard({ name }: Props) {
               ) : i.condition_values.length === 1 ? (
                 <p>
                   {
-                    filteredEncounter(i.condition_values[0].name).names.find(
-                      (en: IName) => en.language.name === `en`,
-                    ).name
+                    filteredEncounterMemoized(
+                      i.condition_values[0].name,
+                    ).names.find((en: IName) => en.language.name === `en`).name
                   }
                 </p>
               ) : (
@@ -166,7 +179,7 @@ function LocationCard({ name }: Props) {
         ),
       },
     ],
-    [filteredEncounter, filteredMethod],
+    [filteredEncounterMemoized, filteredMethodMemoized],
   );
 
   const { tableContainerRef, tableHeader, tableBody } = useTableParams(
