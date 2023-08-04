@@ -35,14 +35,14 @@ export function GenNav({ setGame, setVersion }: Props) {
   const animatedComponents = makeAnimated();
 
   const getVersionAndGame = () => {
-    const details = genNav.filter((g) => g.gen === generation.value)[0].details;
+    const details = genNav.filter((g) => g.value === generation.value)[0]
+      .details;
     const detailsOptions = details.map((gd) => gd);
     return detailsOptions;
   };
 
   const handleGenSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
     setGeneration(option);
-    console.log(option);
   };
 
   const handleGameSelect = (option: SingleValue<GenDetails>) => {
@@ -101,7 +101,9 @@ export function GenNav({ setGame, setVersion }: Props) {
     <Menubar.Root className="MenubarRoot">
       {genNav.map((g) => (
         <Menubar.Menu key={uuidv4()}>
-          <Menubar.Trigger className="MenubarTrigger">{g.gen}</Menubar.Trigger>
+          <Menubar.Trigger className="MenubarTrigger">
+            {g.label}
+          </Menubar.Trigger>
           <Menubar.Content className="MenubarContent">
             {g.details.map((gd) => (
               <Menubar.Item key={uuidv4()} className="MenubarItem">
