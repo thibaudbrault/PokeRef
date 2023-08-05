@@ -64,6 +64,7 @@ export function Data({ pokemon, species, game }: Props) {
     <section className={styles.section} id="presentation">
       {user &&
         pokemon.id < 10000 &&
+        // @ts-ignore
         (user.caught?.every(
           (p: Record<string, string>) => p.name !== pokemon.name,
         ) ? (

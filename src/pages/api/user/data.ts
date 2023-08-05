@@ -4,8 +4,12 @@ import { prisma } from '~/lib/prisma';
 
 const handleGet = async (res: NextApiResponse, req: NextApiRequest) => {
   const { email } = req.query;
+  const singleEmail = Array.isArray(email) ? email[0] : email;
+  if (typeof singleEmail !== `string`) {
+    return res.status(400).json({ error: `Invalid email` });
+  }
   const user = await prisma.user.findUnique({
-    where: { email },
+    where: { email: singleEmail },
     include: { caught: true },
   });
   if (!user) {

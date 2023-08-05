@@ -42,7 +42,9 @@ export function GenNav({ setGame, setVersion }: Props) {
   };
 
   const handleGenSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
-    setGeneration(option);
+    if (option) {
+      setGeneration(option);
+    }
   };
 
   const handleGameSelect = (option: SingleValue<GenDetails>) => {

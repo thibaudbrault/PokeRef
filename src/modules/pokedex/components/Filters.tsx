@@ -22,7 +22,7 @@ import { Search } from './Search';
 import type { IPokemon } from '@/types';
 
 type Props = {
-  pokedex: IPokemon[];
+  pokedex?: IPokemon[];
   setFilteredPokedex: Dispatch<SetStateAction<IPokemon[]>>;
   offset: number;
   setOffset: Dispatch<SetStateAction<number>>;

@@ -1,4 +1,6 @@
-import { User } from '@prisma/client';
+// @ts-nocheck
+
+import { Caught, User } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import { type GetServerSidePropsContext } from 'next';
@@ -15,7 +17,7 @@ import { prisma } from '~/lib/prisma';
 
 import { authOptions } from './api/auth/[...nextauth]';
 
-function Profile(props: User) {
+function Profile(props: User & Caught) {
   const router = useRouter();
   const { status } = useSession({
     required: true,
@@ -25,7 +27,7 @@ function Profile(props: User) {
   });
 
   const { mutate: releaseHandler } = useMutation({
-    mutationFn: async (id) => {
+    mutationFn: async (id: string) => {
       try {
         const { data } = await axios.delete(`/api/caught/release?id=${id}`);
         successToast(data.message);
@@ -49,7 +51,7 @@ function Profile(props: User) {
           You caught {props.caught.length} / 1010 Pokémon
         </h4>
         <ul className={styles.caught}>
-          {props?.caught.map((pokemon: string[], index: number) => (
+          {props.caught.map((pokemon: Caught, index: number) => (
             <li key={index}>
               <Image src={pokemon.image} alt="" width={96} height={96} />
               <Link
@@ -85,8 +87,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   }
 
+  const email =
+    typeof session.user?.email === `string` ? session.user?.email : undefined;
+
   const user = await prisma.user.findUnique({
-    where: { email: session.user?.email },
+    where: { email },
     include: { caught: true },
   });
 

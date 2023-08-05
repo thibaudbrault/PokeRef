@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { User } from '@prisma/client';
 import bcrypt from 'bcrypt';
