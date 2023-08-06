@@ -10,6 +10,8 @@ import { Footer, Header, Nav } from '@/modules/layout';
 
 import '@/styles/styles.scss';
 
+import { useNextCssRemovalPrevention } from '../hooks';
+
 import type { AppProps } from 'next/app';
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
@@ -32,6 +34,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       },
     },
   });
+
+  useNextCssRemovalPrevention();
 
   return (
     <>
