@@ -50,7 +50,6 @@
     "class-variance-authority": "0.6.1",
     "fuse.js": "6.6.2",
     "hamburger-react": "2.5.0",
-    "jotai": "2.2.3",
     "next": "13.4.3",
     "next-auth": "4.22.1",
     "next-pwa": "5.6.0",
