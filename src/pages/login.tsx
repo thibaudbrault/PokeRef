@@ -94,7 +94,11 @@ function Login() {
                 intent="authSecondary"
                 size="large"
                 logo="withLogo"
-                // onClick={googleConnect}
+                onClick={() =>
+                  signIn(`google`, {
+                    callbackUrl: `${process.env.NEXTAUTH_URL}`,
+                  })
+                }
               >
                 Sign In with Google
                 <span>
