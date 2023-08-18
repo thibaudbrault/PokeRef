@@ -1,13 +1,13 @@
 import * as Tabs from '@radix-ui/react-tabs';
 
-import { ErrorToast, Loader } from '@/components';
+import { Loader, errorToast } from '@/components';
 import { Berries, Heading, Items, useItemsQuery } from '@/modules/items';
 
 function ItemsPage() {
   const { items, berries } = useItemsQuery();
 
   if (items.status === `error` || berries.status === `error`) {
-    return <ErrorToast />;
+    errorToast();
   }
 
   if (items.status === `loading` || berries.status === `loading`) {

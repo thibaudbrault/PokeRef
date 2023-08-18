@@ -17,7 +17,7 @@ import type { ILocation, ILocationArea } from '@/types';
 
 export const useSwitchGame = (name: string) => {
   const [game, setGame] = useState<string | null>(null);
-  const [_version, setVersion] = useState<string | null>(null);
+  const [, setVersion] = useState<string | null>(null);
   const [toggleState, setToggleState] = useState<number>(0);
   const [areaUrl, setAreaUrl] = useState<string | null>(null);
 
@@ -49,31 +49,33 @@ export const useSwitchGame = (name: string) => {
     switch (location.data?.region.name) {
       case `kanto`:
         setGame(`yellow`);
-        break;
+        return;
       case `johto`:
         setGame(`crystal`);
-        break;
+        return;
       case `hoenn`:
         setGame(`emerald`);
-        break;
+        return;
       case `sinnoh`:
         setGame(`platinum`);
-        break;
+        return;
       case `unova`:
         setGame(`black-2`);
-        break;
+        return;
       case `kalos`:
         setGame(`x`);
-        break;
+        return;
       case `alola`:
         setGame(`ultra-sun`);
-        break;
+        return;
+      default:
+        setGame(``);
+        return;
     }
   };
 
   useEffect(() => {
     gameUsed();
-
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.data?.region.name]);
 

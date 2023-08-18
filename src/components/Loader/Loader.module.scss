@@ -1,22 +1,19 @@
 @use '@/styles/abstracts' as *;
 
 %loading {
-  position: relative;
   width: 100%;
   height: 100vh;
   margin: 1rem 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   & img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -96px;
-    margin-left: -96px;
-    transform: translateX(-50%);
-    text-align: center;
     font-size: 1.7rem;
     font-weight: 700;
-    @include animation('wiggle, 2s, infinite');
+    animation-name: wiggle;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
   }
 }
 
@@ -29,9 +26,54 @@
 
   margin: 3rem 0;
   height: 48px;
+}
 
-  & img {
-    margin-top: -24px;
-    margin-left: -24px;
+.spinner {
+  position: relative;
+  height: 3rem;
+  width: 3rem;
+  text-align: center;
+
+  & svg {
+    position: absolute;
+    height: 3rem;
+    width: 3rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    & path {
+      @include themed {
+        stroke: t('bg');
+      }
+    }
+
+    & circle {
+      @include themed {
+        fill: t('bg');
+      }
+    }
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  80% {
+    transform: rotate(0deg);
+  }
+
+  85% {
+    transform: rotate(5deg);
+  }
+
+  95% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
   }
 }

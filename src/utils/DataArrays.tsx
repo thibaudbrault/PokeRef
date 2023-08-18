@@ -154,17 +154,17 @@ export const pokemonFilters: PokemonFilters = [
   },
 ];
 
-type GenNav = {
-  gen: string;
+interface IGenNav extends IOptions {
   details: {
     game: string;
     version: string;
   }[];
-}[];
+}
 
-export const genNav: GenNav = [
+export const genNav: IGenNav[] = [
   {
-    gen: `Gen I`,
+    value: `gen1`,
+    label: `Gen I`,
     details: [
       {
         game: `red`,
@@ -181,7 +181,8 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen II`,
+    value: `gen2`,
+    label: `Gen II`,
     details: [
       {
         game: `gold`,
@@ -198,7 +199,8 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen III`,
+    value: `gen3`,
+    label: `Gen III`,
     details: [
       {
         game: `ruby`,
@@ -223,7 +225,8 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen IV`,
+    value: `gen4`,
+    label: `Gen IV`,
     details: [
       {
         game: `diamond`,
@@ -248,7 +251,8 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen V`,
+    value: `gen5`,
+    label: `Gen V`,
     details: [
       {
         game: `black`,
@@ -270,7 +274,8 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen VI`,
+    value: `gen6`,
+    label: `Gen VI`,
     details: [
       {
         game: `x`,
@@ -291,7 +296,8 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen VII`,
+    value: `gen7`,
+    label: `Gen VII`,
     details: [
       {
         game: `sun`,
@@ -321,7 +327,8 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen VIII`,
+    value: `gen8`,
+    label: `Gen VIII`,
     details: [
       {
         game: `sword`,
@@ -346,7 +353,8 @@ export const genNav: GenNav = [
     ],
   },
   {
-    gen: `Gen IX`,
+    value: `gen9`,
+    label: `Gen IX`,
     details: [
       {
         game: `scarlet`,

@@ -213,26 +213,6 @@ nav {
 
 @include xs {
   html {
-    font-size: 7px;
-  }
-}
-
-.ReactModal__Overlay {
-  width: 100vw;
-  height: 100vh;
-  z-index: 1000;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-
-  @include themed {
-    background-color: t('text') !important;
-  }
-
-  &--after-open {
-    opacity: 1;
-  }
-
-  &--before-close {
-    opacity: 0;
+    font-size: 7.5px;
   }
 }

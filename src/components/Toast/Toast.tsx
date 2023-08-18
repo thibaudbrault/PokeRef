@@ -1,36 +1,18 @@
 import { toast } from 'react-hot-toast';
 
-type Props = {
-  error?: Error | null;
-  text?: string;
+export const errorToast = (error?: string) => {
+  return toast.error(error ? error : `Something went wrong`, {
+    style: {
+      fontSize: `1.7rem`,
+    },
+  });
 };
 
-export const ErrorToast = ({ error }: Props) => {
-  return (
-    <>
-      {toast.error(
-        error
-          ? `Something went wrong: ${error.message}`
-          : `Something went wrong`,
-        {
-          style: {
-            fontSize: `1.7rem`,
-          },
-        },
-      )}
-    </>
-  );
-};
-
-export const SuccessToast = ({ text }: Props) => {
+export const successToast = (text: string) => {
   const toastText = text ?? `Done`;
-  return (
-    <>
-      {toast.success(toastText, {
-        style: {
-          fontSize: `1.7rem`,
-        },
-      })}
-    </>
-  );
+  return toast.success(toastText, {
+    style: {
+      fontSize: `1.7rem`,
+    },
+  });
 };

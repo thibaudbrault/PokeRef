@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { FaChevronLeft } from '@meronex/icons/fa';
 import { type ColumnDef } from '@tanstack/react-table';
 import { type GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
+import { v4 as uuidv4 } from 'uuid';
 
-import { Button, ErrorToast, GenNav, Loader } from '@/components';
+import { Button, errorToast, GenNav, Loader } from '@/components';
 import { useTableParams } from '@/hooks';
 import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
 import styles from '@/modules/locations/Locations.module.scss';
@@ -39,17 +40,19 @@ function LocationCard({ name }: Props) {
     method,
   } = useSwitchGame(name);
 
-  const filteredArea = area?.pokemon_encounters
-    .map((a) => {
-      const version_details = a.version_details.filter(
-        (av) => av.version.name === game,
-      );
-      return {
-        ...a,
-        version_details,
-      };
-    })
-    .filter((a) => a.version_details.length);
+  const filteredArea = useMemo(() => {
+    return area?.pokemon_encounters
+      .map((a) => {
+        const version_details = a.version_details.filter(
+          (av) => av.version.name === game,
+        );
+        return {
+          ...a,
+          version_details,
+        };
+      })
+      .filter((a) => a.version_details.length);
+  }, [area, game]);
 
   const filteredEncounter = useCallback(
     (condition: string) => {
@@ -60,6 +63,11 @@ function LocationCard({ name }: Props) {
     [encounter.data],
   );
 
+  const filteredEncounterMemoized = useMemo(
+    () => filteredEncounter,
+    [filteredEncounter],
+  );
+
   const filteredMethod = useCallback(
     (condition: string) => {
       return method.data?.find((m: IEncounterMethod) => m.name === condition);
@@ -67,19 +75,18 @@ function LocationCard({ name }: Props) {
     [method.data],
   );
 
-  const [data, setData] = useState<IPokemonEncounter[]>([]);
+  const filteredMethodMemoized = useMemo(
+    () => filteredMethod,
+    [filteredMethod],
+  );
 
-  useEffect(() => {
-    if (filteredArea) {
-      setData(filteredArea);
-    }
-  }, [filteredArea, game]);
+  const data = useMemo(() => filteredArea, [filteredArea]);
 
   const columns = useMemo<ColumnDef<IPokemonEncounter>[]>(
     () => [
       {
         accessorKey: `pokemon.name`,
-        id: `name`,
+        id: `sort`,
         header: `Pokemon`,
         cell: (info) => (
           <td className="tBold">
@@ -102,7 +109,7 @@ function LocationCard({ name }: Props) {
         cell: (info) => (
           <td>
             {info.getValue<IEncounter[]>().map((i) => (
-              <p key={i.max_level}>{i.max_level}</p>
+              <p key={uuidv4()}>{i.max_level}</p>
             ))}
           </td>
         ),
@@ -114,7 +121,7 @@ function LocationCard({ name }: Props) {
         cell: (info) => (
           <td>
             {info.getValue<IEncounter[]>().map((i) => (
-              <p key={i.chance}>{i.chance} %</p>
+              <p key={uuidv4()}>{i.chance} %</p>
             ))}
           </td>
         ),
@@ -126,9 +133,9 @@ function LocationCard({ name }: Props) {
         cell: (info) => (
           <td>
             {info.getValue<IEncounter[]>().map((i) => (
-              <p key={i.method.name}>
+              <p key={uuidv4()}>
                 {
-                  filteredMethod(i.method.name).names.find(
+                  filteredMethodMemoized(i.method.name).names.find(
                     (en: IName) => en.language.name === `en`,
                   ).name
                 }
@@ -145,11 +152,11 @@ function LocationCard({ name }: Props) {
           <td>
             {info.getValue<IEncounter[]>().map((i) =>
               i.condition_values.length > 1 ? (
-                <p key={i.chance + i.max_level}>
+                <p key={uuidv4()}>
                   {i.condition_values.map((icv) => (
-                    <span key={icv.name}>
+                    <span key={uuidv4()}>
                       {
-                        filteredEncounter(icv.name).names.find(
+                        filteredEncounterMemoized(icv.name).names.find(
                           (en: IName) => en.language.name === `en`,
                         ).name
                       }
@@ -159,20 +166,20 @@ function LocationCard({ name }: Props) {
               ) : i.condition_values.length === 1 ? (
                 <p>
                   {
-                    filteredEncounter(i.condition_values[0].name).names.find(
-                      (en: IName) => en.language.name === `en`,
-                    ).name
+                    filteredEncounterMemoized(
+                      i.condition_values[0].name,
+                    ).names.find((en: IName) => en.language.name === `en`).name
                   }
                 </p>
               ) : (
-                <p key={i.min_level + i.max_level}>-</p>
+                <p key={uuidv4()}>-</p>
               ),
             )}
           </td>
         ),
       },
     ],
-    [filteredEncounter, filteredMethod],
+    [filteredEncounterMemoized, filteredMethodMemoized],
   );
 
   const { tableContainerRef, tableHeader, tableBody } = useTableParams(
@@ -180,8 +187,8 @@ function LocationCard({ name }: Props) {
     columns,
   );
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {
@@ -221,7 +228,7 @@ function LocationCard({ name }: Props) {
             </table>
           </div>
         </section>
-        <Button intent="back" asChild>
+        <Button intent="back" size="fit" asChild>
           <Link href="/locations">
             <FaChevronLeft />
             Back to Locations

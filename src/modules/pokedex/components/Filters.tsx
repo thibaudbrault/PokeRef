@@ -1,15 +1,14 @@
 import {
-  type Dispatch,
-  type SetStateAction,
   useCallback,
   useEffect,
+  type Dispatch,
+  type SetStateAction,
 } from 'react';
 
 import * as Label from '@radix-ui/react-label';
 import Select, { type SingleValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
 
-import { Separator } from '@/components';
 import {
   formOptions,
   generationsOptions,
@@ -22,7 +21,7 @@ import { Search } from './Search';
 import type { IPokemon } from '@/types';
 
 type Props = {
-  pokedex: IPokemon[];
+  pokedex?: IPokemon[];
   setFilteredPokedex: Dispatch<SetStateAction<IPokemon[]>>;
   offset: number;
   setOffset: Dispatch<SetStateAction<number>>;
@@ -94,50 +93,47 @@ export function Filters({
   }, [getFilterPokemon]);
 
   return (
-    <>
-      <section className={styles.search}>
-        <Search />
-        <div className={styles.dropdown}>
-          <Label.Root htmlFor="form">Form</Label.Root>
-          <Select
-            key={form?.value}
-            name="form"
-            id="form"
-            value={form}
-            className="dropdown selectOptions"
-            classNamePrefix="select"
-            components={animatedComponents}
-            isClearable
-            options={formOptions}
-            placeholder="Select"
-            onChange={(option, { action }) => {
-              handleFormSelect(option as IOptionsOffsetLimit);
-              action === `clear` && setForm(null);
-            }}
-          />
-        </div>
+    <section className={styles.search}>
+      <Search />
+      <div className={styles.dropdown}>
+        <Label.Root htmlFor="form">Form</Label.Root>
+        <Select
+          key={form?.value}
+          name="form"
+          id="form"
+          value={form}
+          className="dropdown selectOptions"
+          classNamePrefix="select"
+          components={animatedComponents}
+          isClearable
+          options={formOptions}
+          placeholder="Select"
+          onChange={(option, { action }) => {
+            handleFormSelect(option as IOptionsOffsetLimit);
+            action === `clear` && setForm(null);
+          }}
+        />
+      </div>
 
-        <div className={styles.dropdown}>
-          <Label.Root htmlFor="generation">Generation</Label.Root>
-          <Select
-            key={generation?.value}
-            name="generation"
-            id="generation"
-            value={generation}
-            className="dropdown selectOptions"
-            classNamePrefix="select"
-            components={animatedComponents}
-            isClearable
-            options={generationsOptions}
-            placeholder="Select"
-            onChange={(option, { action }) => {
-              handleGenSelect(option as IOptionsOffsetLimit);
-              action === `clear` && setGeneration(null);
-            }}
-          />
-        </div>
-      </section>
-      <Separator />
-    </>
+      <div className={styles.dropdown}>
+        <Label.Root htmlFor="generation">Generation</Label.Root>
+        <Select
+          key={generation?.value}
+          name="generation"
+          id="generation"
+          value={generation}
+          className="dropdown selectOptions"
+          classNamePrefix="select"
+          components={animatedComponents}
+          isClearable
+          options={generationsOptions}
+          placeholder="Select"
+          onChange={(option, { action }) => {
+            handleGenSelect(option as IOptionsOffsetLimit);
+            action === `clear` && setGeneration(null);
+          }}
+        />
+      </div>
+    </section>
   );
 }

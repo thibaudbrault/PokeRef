@@ -1,0 +1,26 @@
+@use '../abstracts/' as *;
+
+.DrawerOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba($color: #161616, $alpha: 40%);
+}
+
+.DrawerContent {
+  padding: 1rem;
+  position: fixed;
+  inset: 20% 0 0;
+  background-color: $light;
+  color: $dark;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  .DrawerHandle {
+    height: 0.5rem;
+    width: 4rem;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    border-radius: 9999px;
+    background-color: $dark;
+  }
+}

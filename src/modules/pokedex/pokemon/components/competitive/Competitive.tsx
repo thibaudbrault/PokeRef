@@ -5,7 +5,7 @@ import { useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import { useQueries } from '@tanstack/react-query';
 
-import { ErrorToast, SmallLoader } from '@/components';
+import { SmallLoader, errorToast } from '@/components';
 import { capitalize, getFormat, removeLongName } from '@/utils';
 
 import styles from './Competitive.module.scss';
@@ -51,7 +51,7 @@ export function Competitive({ format, name }: Props) {
     formats.status === `error` ||
     sets.status === `error`
   ) {
-    return <ErrorToast />;
+    errorToast();
   }
 
   if (

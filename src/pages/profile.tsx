@@ -1,124 +1,101 @@
-import { useEffect, useState } from 'react';
+// @ts-nocheck
 
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Label from '@radix-ui/react-label';
+import { Caught, User } from '@prisma/client';
+import { useMutation } from '@tanstack/react-query';
+import axios, { AxiosError } from 'axios';
+import { type GetServerSidePropsContext } from 'next';
+import { getServerSession } from 'next-auth/next';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 
-import { ErrorToast, Input, SuccessToast } from '@/components';
+import { Loader, errorToast, successToast } from '@/components';
 import styles from '@/modules/profile/Profile.module.scss';
-import { capitalize, removeDash } from '@/utils';
+import { removeDash } from '@/utils';
+import { prisma } from '~/lib/prisma';
 
-const schema = yup.object({
-  username: yup.string().required(),
-  email: yup.string().email().required(),
-});
+import { authOptions } from './api/auth/[...nextauth]';
 
-type FormInput = yup.Asserts<typeof schema>;
-
-function Profile() {
+function Profile(props: User & Caught) {
   const router = useRouter();
-  const [user, setUser] = useState();
-
-  const releaseHandler = async (name: string, img: string) => {
-    if (true /* change to check if auth */) {
-      try {
-        // will have the release pokemon function
-        return <SuccessToast text={`You released ${capitalize(name)}`} />;
-      } catch (error) {
-        if (error instanceof Error) {
-          return <ErrorToast error={error} />;
-        }
-      }
-    }
-  };
-
-  const { register, handleSubmit, reset, formState } = useForm<FormInput>({
-    resolver: yupResolver<FormInput>(schema),
-    defaultValues: {
-      username: ``,
-      email: ``,
+  const { status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push(`/`, `/`, {});
     },
   });
 
-  const submitForm = async (data: FormInput) => {
-    try {
-      if (true /* change to check if auth */) {
-        // will put the new info in the db
-        return <SuccessToast text="Your profile is modified" />;
+  const { mutate: releaseHandler } = useMutation({
+    mutationFn: async (id: string) => {
+      try {
+        const { data } = await axios.delete(`/api/caught/release?id=${id}`);
+        successToast(data.message);
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          errorToast(error.response?.data.message);
+        }
       }
-    } catch (error) {
-      if (error instanceof Error) {
-        return <ErrorToast error={error} />;
-      }
-    }
-  };
+    },
+  });
 
-  useEffect(() => {
-    if (formState.isSubmitSuccessful) {
-      reset();
-    }
-  }, [formState, reset]);
+  if (status === `loading`) {
+    return <Loader />;
+  }
 
   return (
-    user && (
-      <main className="mainBig">
-        <section className="section">
-          {/* <h2 className="leftH2">{user.name}'s caught pokémon</h2>
-          <h4 className="leftSubtitle">
-            You caught {user.caught.length} / 1010 Pokémon
-          </h4>
-          <ul className={styles.caught}>
-            {user?.caught.map((p: string[], index: number) => (
-              <li key={p[index]}>
-                <Image src={p[1]} alt="" width={96} height={96} />
-                <Link
-                  href={{
-                    pathname: `/pokemon/[name]`,
-                    query: { name: p[0] },
-                  }}
-                >
-                  {removeDash(p[0])}
-                </Link>
-                <button onClick={() => releaseHandler(p[0], p[1])}>
-                  Release
-                </button>
-              </li>
-            ))}
-          </ul> */}
-        </section>
-        <section className="section">
-          <details className={styles.details}>
-            <summary>Modify your profile</summary>
-            {/* <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
-              <div className="input">
-                <Label.Root htmlFor="username">Your trainer name</Label.Root>
-                <Input
-                  type="text"
-                  id="username"
-                  placeholder={user.name}
-                  {...register(`username`)}
-                />
-              </div>
-              <div className="input">
-                <Label.Root htmlFor="email">Your email</Label.Root>
-                <Input
-                  type="text"
-                  id="email"
-                  placeholder={user.email}
-                  {...register(`email`)}
-                />
-              </div>
-              <button type="submit">Update</button>
-            </form> */}
-          </details>
-        </section>
-      </main>
-    )
+    <main className="mainBig">
+      <section className="section">
+        <h2 className="leftH2">{props.name}'s caught pokémon</h2>
+        <h4 className="leftSubtitle">
+          You caught {props.caught.length} / 1010 Pokémon
+        </h4>
+        <ul className={styles.caught}>
+          {props.caught.map((pokemon: Caught, index: number) => (
+            <li key={index}>
+              <Image src={pokemon.image} alt="" width={96} height={96} />
+              <Link
+                href={{
+                  pathname: `/pokemon/[name]`,
+                  query: { name: pokemon.name },
+                }}
+              >
+                {removeDash(pokemon.name)}
+              </Link>
+              <button onClick={() => releaseHandler(pokemon.id)}>
+                Release
+              </button>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </main>
   );
 }
 
 export default Profile;
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: `/`,
+        permanent: false,
+      },
+    };
+  }
+
+  const email =
+    typeof session.user?.email === `string` ? session.user?.email : undefined;
+
+  const user = await prisma.user.findUnique({
+    where: { email },
+    include: { caught: true },
+  });
+
+  return {
+    props: JSON.parse(JSON.stringify(user)),
+  };
+}

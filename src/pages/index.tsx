@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import ReactPaginate from 'react-paginate';
 
-import { ErrorToast, Loader, Separator } from '@/components';
+import { Loader, Separator, errorToast } from '@/components';
 import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
-import { type IOptionsOffsetLimit, getPokedex } from '@/utils';
+import { getPokedex, type IOptionsOffsetLimit } from '@/utils';
 
 import type { IPokemon } from '@/types';
 
@@ -46,8 +46,8 @@ function Pokedex() {
     setOffset((50 * data.selected) % 1010);
   };
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {
@@ -71,6 +71,11 @@ function Pokedex() {
           generation={generation}
           setGeneration={setGeneration}
         />
+        <Separator />
+        <p className={styles.explanation}>
+          Click on a Pokémon's name to get the Pokémon info / Click on a type to
+          get the type info
+        </p>
         <p className={styles.verticalText}>ポケモン</p>
         <List filteredPokedex={filteredPokedex} />
         <Separator />
