@@ -33,11 +33,12 @@
   <summary>Table of contents</summary>
 
 1.  [Roadmap](#roadmap)
-2.  [Setup](#setup)
-3.  [Description](#description)
-4.  [Technologies](#technologies)
-5.  [Acknowledgements](#acknowledgements)
-6.  [License](#license)
+2.  [Recent Activity](#activity)
+3.  [Setup](#setup)
+4.  [Description](#description)
+5.  [Technologies](#technologies)
+6.  [Acknowledgements](#acknowledgements)
+7.  [License](#license)
 
 </details>
 
@@ -84,7 +85,17 @@
 ✅Turned into a PWA with the next-pwa package  
 ✅Paginated pokedex, moves, abilities and items pages
 
+<h2 id="activity">Recent activity</h2>
+
+<!--START_SECTION:activity-->
+
+<!--END_SECTION:activity-->
+
 <h2 id="setup">Setup</h2>
+
+<h4>Prequisites</h4>
+
+- Have PNPM installed (optional)
 
 <h4>Clone the repo</h4>
 
