@@ -1,44 +1,22 @@
-import {
-  Capitalize,
-  CardTitle,
-  H3,
-  H4,
-  Subtitle,
-} from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
-import BackBtn from '@/components/common/ui/BackBtn';
-import { Divider } from '@/components/common/ui/Divider';
-import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingAbility from '@/components/pages/Abilities/AbilityCard/Heading';
-import { useFilterAbility } from '@/components/pages/Abilities/AbilityCard/Hooks/useFilterAbility';
-import {
-  AbilityCardEffect,
-  AbilityCardSection,
-} from '@/components/pages/Abilities/AbilityCard/Styled.AbilityCard';
-import { removeDash } from '@/utils/Typography';
-import { GetServerSidePropsContext } from 'next';
-import dynamic from 'next/dynamic';
+import { FaChevronLeft } from '@meronex/icons/fa';
+import { type GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
-import toast from 'react-hot-toast';
 
-const DescAbilityCard = dynamic(
-  () =>
-    import(
-      `@/components/pages/Abilities/AbilityCard/Components/Desc.AbilityCard`
-    ),
-);
-const TableAbilityCard = dynamic(
-  () =>
-    import(
-      `@/components/pages/Abilities/AbilityCard/Components/Table.AbilityCard`
-    ),
-);
+import { Button, ErrorToast, Loader, Separator } from '@/components';
+import {
+  Description,
+  Heading,
+  Table,
+  useFilterAbility,
+} from '@/modules/abilities/ability';
+import styles from '@/modules/abilities/ability/Ability.module.scss';
+import { removeDash } from '@/utils';
 
 type Props = {
   name: string;
 };
 
-function AbilityCard({ name }: Props) {
+function Ability({ name }: Props) {
   const overworld = `Overworld`;
 
   const {
@@ -53,11 +31,7 @@ function AbilityCard({ name }: Props) {
   } = useFilterAbility(name);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error?.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {
@@ -66,45 +40,52 @@ function AbilityCard({ name }: Props) {
 
   return (
     <>
-      <HeadingAbility name={name} />
-      <MainBig>
-        <CardTitle>{ability && removeDash(ability?.name)}</CardTitle>
-        <Subtitle>{ability && removeDash(ability?.generation?.name)}</Subtitle>
+      <Heading name={name} />
+      <main className="mainBig">
+        <h2 className="pageTitle">{ability && removeDash(ability?.name)}</h2>
+        <h4 className="subtitle">
+          {ability && removeDash(ability?.generation?.name)}
+        </h4>
 
-        <AbilityCardSection>
-          <AbilityCardEffect>
-            <H3>Effect</H3>
+        <section className={styles.section}>
+          <div className={styles.effect}>
+            <h3 className="h3">Effect</h3>
             <p>{filterEffect?.effect}</p>
-          </AbilityCardEffect>
+          </div>
           {filterOverworld && (
-            <AbilityCardEffect>
-              <H4>Overworld</H4>
+            <div className={styles.effect}>
+              <h4 className="h4">Overworld</h4>
               <p>
                 {filterOverworld?.effect
                   .slice(filterOverworld.effect.indexOf(overworld))
                   .replace(`Overworld:`, ``)}
               </p>
-            </AbilityCardEffect>
+            </div>
           )}
-        </AbilityCardSection>
-        <DescAbilityCard filterDesc={filterDesc} />
-        <Divider />
-        <AbilityCardSection>
-          <H3>
+        </section>
+        <Description filterDesc={filterDesc} />
+        <Separator />
+        <section className={styles.section}>
+          <h3 className="h3">
             Pokemon with{` `}
-            <Capitalize>{ability && removeDash(ability?.name)}</Capitalize>
-          </H3>
-          <TableAbilityCard ability={ability} pokemon={pokemon} />
-        </AbilityCardSection>
-        <Link href="/abilities" passHref>
-          <BackBtn name="Abilities" />
-        </Link>
-      </MainBig>
+            <span className="capitalize">
+              {ability && removeDash(ability?.name)}
+            </span>
+          </h3>
+          <Table ability={ability} pokemon={pokemon} />
+        </section>
+        <Button intent="back" asChild>
+          <Link href="/abilities">
+            <FaChevronLeft />
+            Back to Abilities
+          </Link>
+        </Button>
+      </main>
     </>
   );
 }
 
-export default AbilityCard;
+export default Ability;
 
 export function getServerSideProps(context: GetServerSidePropsContext) {
   const { name } = context.query;

@@ -1,0 +1,120 @@
+@use '@/styles/abstracts' as *;
+
+.nav {
+  min-height: 4vh;
+  max-width: 1700px;
+  margin: 0 auto;
+
+  @include md {
+    display: none;
+  }
+}
+
+.list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  & li {
+    padding: 0 2rem;
+    align-self: center;
+
+    & a {
+      padding-bottom: 0.2rem;
+      position: relative;
+      white-space: nowrap;
+      font-size: 2rem;
+      font-weight: 600;
+      text-transform: capitalize;
+      cursor: pointer;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        top: 100%;
+        left: 0;
+        pointer-events: none;
+        opacity: 0;
+        transform-origin: 50% 0%;
+        transform: translate3d(0, 3px, 0);
+        transition-property: transform, opacity;
+        transition-duration: 0.3s;
+        transition-timing-function: cubic-bezier(0.2, 1, 0.8, 1);
+
+        @include themed {
+          background-color: t('text');
+        }
+      }
+
+      &::after {
+        top: calc(100% + 4px);
+        width: 70%;
+        left: 15%;
+      }
+
+      &:hover::before {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition-timing-function: cubic-bezier(0.2, 0, 0.3, 1);
+        transition-delay: 0s;
+      }
+
+      &:hover::after {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition-timing-function: cubic-bezier(0.2, 0, 0.3, 1);
+      }
+
+      &::before,
+      &:hover::after {
+        transition-delay: 0.1s;
+      }
+    }
+
+    @include lg {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.mobileNav {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 98;
+
+  @include themed {
+    background: t('bg');
+  }
+}
+
+.mobileInner {
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.mobileList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3rem;
+
+  & li {
+    & a {
+      font-size: 4rem;
+      text-transform: capitalize;
+      cursor: pointer;
+    }
+  }
+}

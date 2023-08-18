@@ -1,100 +1,30 @@
-import { Subtitle, Title } from '@/components/common/styles/Headings';
-import { MainBig } from '@/components/common/styles/Sizing';
-import BackBtn from '@/components/common/ui/BackBtn';
-import { Divider } from '@/components/common/ui/Divider';
-import Loader from '@/components/common/ui/Loader/Loader';
-import Contents from '@/components/pages/Pokemon/PokemonCard/Contents/Contents.PokemonCard';
-import HeadingPokemon from '@/components/pages/Pokemon/PokemonCard/Heading';
-import { useFetchPokemon } from '@/components/pages/Pokemon/PokemonCard/Hooks/useFetchPokemon';
-import { PokemonTitle } from '@/components/pages/Pokemon/Styled.Pokemon';
-import { IEvolutionChain } from '@/types/Evolution/EvolutionChain';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { pokemonFilters } from '@/utils/DataArrays';
-import { removeDash, removeLongName } from '@/utils/Typography';
-import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
-import { GetServerSidePropsContext } from 'next';
-import dynamic from 'next/dynamic';
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import toast from 'react-hot-toast';
 
-interface IEvolutionProps {
-  evolution: IEvolutionChain;
-  name: string;
-}
+import { FaChevronLeft } from '@meronex/icons/fa';
+import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
+import { type GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
 
-interface IMovesProps {
-  pokemon: IPokemon;
-  version: string;
-  name: string;
-}
-
-interface ICompetitiveProps {
-  format: string;
-  name: string;
-}
-
-interface IFormsProps {
-  pokemon: IPokemon;
-}
-
-const Nav = dynamic(
-  () => import(`@/components/pages/Pokemon/PokemonCard/Nav/Nav.PokemonCard`),
-);
-const Data = dynamic(
-  () => import(`@/components/pages/Pokemon/PokemonCard/Data/Data.PokemonCard`),
-);
-const Evolution = dynamic<IEvolutionProps>(
-  () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Evolution/Evolution.PokemonCard`
-    ) as any,
-);
-const Info = dynamic(
-  () => import(`@/components/pages/Pokemon/PokemonCard/Info/Info.PokemonCard`),
-);
-const Stats = dynamic(
-  () =>
-    import(`@/components/pages/Pokemon/PokemonCard/Stats/Stats.PokemonCard`),
-);
-const Typing = dynamic(
-  () =>
-    import(`@/components/pages/Pokemon/PokemonCard/Types/Types.PokemonCard`),
-);
-const Moves = dynamic<IMovesProps>(
-  () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Moves/Moves.PokemonCard`
-    ) as any,
-);
-const Locations = dynamic(
-  () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Locations/Locations.PokemonCard`
-    ),
-);
-const Competitive = dynamic<ICompetitiveProps>(
-  () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Competitive/Competitive.PokemonCard`
-    ) as any,
-);
-const Forms = dynamic<IFormsProps>(
-  () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Forms/Forms.PokemonCard`
-    ) as any,
-);
-const Sprites = dynamic(
-  () =>
-    import(
-      `@/components/pages/Pokemon/PokemonCard/Sprites/Sprites.PokemonCard`
-    ),
-);
-const Cards = dynamic(
-  () =>
-    import(`@/components/pages/Pokemon/PokemonCard/Cards/Cards.PokemonCard`),
-);
+import { Button, ErrorToast, Loader, Separator } from '@/components';
+import styles from '@/modules/pokedex/Pokedex.module.scss';
+import {
+  Cards,
+  Competitive,
+  Content,
+  Data,
+  Evolution,
+  Forms,
+  Heading,
+  Info,
+  Locations,
+  Moves,
+  Nav,
+  Sprites,
+  Stats,
+  Types,
+  useFetchPokemon,
+} from '@/modules/pokedex/pokemon';
+import { pokemonFilters, removeDash, removeLongName } from '@/utils';
 
 type Props = {
   name: string;
@@ -138,11 +68,7 @@ function PokemonCard({ name }: Props) {
     types.status === `error` ||
     location.status === `error`
   ) {
-    return toast.error(`Something went wrong`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast />;
   }
 
   if (
@@ -157,15 +83,18 @@ function PokemonCard({ name }: Props) {
 
   return (
     <>
-      <HeadingPokemon name={name} />
-      <MainBig>
-        <PokemonTitle>
+      <Heading name={name} />
+      <main className="mainBig">
+        <section className={styles.section}>
           {pokemon.data?.name?.includes(`mega`) ? (
-            <Title>
-              {removeDash(pokemon.data?.name).split(` `).reverse().join(` `)}
-            </Title>
+            <h2 className="title">
+              {removeDash(pokemon.data?.name)
+                .split(` `)
+                .reverse()
+                .join(` `)}
+            </h2>
           ) : (
-            <Title>{removeLongName(removeDash(name))}</Title>
+            <h2 className="title">{removeLongName(removeDash(name))}</h2>
           )}
           {pokemon.data?.id < 722 && (
             <div>
@@ -178,9 +107,11 @@ function PokemonCard({ name }: Props) {
               />
             </div>
           )}
-        </PokemonTitle>
+        </section>
         {species.data && (
-          <Subtitle>{removeDash(species.data?.generation?.name)}</Subtitle>
+          <h4 className="subtitle">
+            {removeDash(species.data?.generation?.name)}
+          </h4>
         )}
 
         <Nav
@@ -190,15 +121,15 @@ function PokemonCard({ name }: Props) {
           setFormat={setFormat}
         />
 
-        <Contents />
+        <Content />
 
         <Data pokemon={pokemon.data} species={species.data} game={game} />
 
-        <Divider />
+        <Separator />
 
         {evolution.data && <Evolution evolution={evolution.data} name={name} />}
 
-        <Divider />
+        <Separator />
 
         {pokemonId && pokemonId < 10000 && (
           <Info
@@ -208,57 +139,60 @@ function PokemonCard({ name }: Props) {
           />
         )}
 
-        <Divider />
+        <Separator />
 
         <Stats pokemon={pokemon.data} />
 
-        <Divider />
+        <Separator />
 
         {types.data && (
           <>
-            <Typing types={types.data} />
-            <Divider />
+            <Types types={types.data} />
+            <Separator />
           </>
         )}
 
         {version && (
           <>
             <Moves pokemon={pokemon.data} version={version} name={name} />
-            <Divider />
+            <Separator />
           </>
         )}
 
         {game && (
           <>
             <Locations location={location.data} game={game} />
-            <Divider />
+            <Separator />
           </>
         )}
 
         {pokemon.data.forms.length > 1 && (
           <>
             <Forms pokemon={pokemon.data} />
-            <Divider />
+            <Separator />
           </>
         )}
 
         {format && (
           <>
             <Competitive format={format} name={name} />
-            <Divider />
+            <Separator />
           </>
         )}
 
         <Sprites pokemon={pokemon.data} />
 
-        <Divider />
+        <Separator />
 
         {cards.data && <Cards cards={cards.data} />}
 
-        <Link href="/" passHref>
-          <BackBtn name="Pokedex" />
-        </Link>
-      </MainBig>
+        <Button intent="back" asChild>
+          <Link href="/">
+            <FaChevronLeft />
+            Back to Pokédex
+          </Link>
+        </Button>
+      </main>
     </>
   );
 }

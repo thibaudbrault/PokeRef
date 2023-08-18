@@ -1,0 +1,173 @@
+@use '@/styles/abstracts' as *;
+@use '@/styles/common' as *;
+
+.circles {
+  margin: 3rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  height: 15rem;
+
+  svg {
+    height: 100%;
+
+    path:first-of-type {
+      @include themed {
+        stroke: t('text') !important;
+      }
+    }
+
+    path:last-of-type {
+      stroke: $red !important;
+    }
+
+    text {
+      font-size: 1.3rem !important;
+      font-weight: 600 !important;
+      @include themed {
+        fill: t('text') !important;
+      }
+    }
+  }
+
+  @include lg {
+    height: 30rem;
+    row-gap: 3rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include sm {
+    height: 45rem;
+    row-gap: 4rem;
+    grid-template-columns: 1fr 1fr;
+
+    .circle {
+      &-text {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+.total {
+  margin: 2rem 0;
+  font-size: 1.7rem;
+}
+
+.details {
+  margin-top: 1rem;
+
+  & summary {
+    width: fit-content;
+    margin-bottom: 2rem;
+    font-size: 2.3rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    cursor: pointer;
+  }
+}
+
+.table {
+  @extend %fullWidthTable;
+
+  border-bottom: none;
+
+  & th {
+    font-size: 1.7rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    background: rgb(130 130 130 / 20%);
+    @include themed {
+      color: t('text');
+    }
+  }
+
+  & tr:last-of-type {
+    & td {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  & td {
+    & input,
+    select {
+      width: 100%;
+      padding: 0.7rem;
+      background: transparent;
+      border-radius: 5px;
+      outline: none;
+      @include themed {
+        color: t('text');
+        border: 1px solid t('text');
+      }
+
+      &::placeholder {
+        opacity: 1;
+        @include themed {
+          color: t('text');
+        }
+      }
+
+      &:focus {
+        border: 1px solid $red;
+      }
+    }
+
+    & input[type='number'] {
+      appearance: textfield;
+
+      &::-webkit-inner-spin-button,
+      ::-webkit-outer-spin-button {
+        appearance: textfield;
+      }
+    }
+
+    & select {
+      width: 80%;
+      margin: 0 auto;
+
+      & option {
+        text-transform: capitalize;
+        @include themed {
+          background: t('bg');
+          color: t('text');
+        }
+      }
+    }
+
+    & button {
+      border: 1px solid transparent;
+      border-radius: 5px;
+      padding: 1rem 1.5rem;
+      font-size: 1.7rem;
+      font-weight: 600;
+
+      @include themed {
+        background: t('text');
+        color: t('bg');
+      }
+
+      &:hover {
+        @include themed {
+          border: 1px solid t('text');
+          color: t('text');
+          background: t('bg');
+        }
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+  }
+}
+
+.results {
+  @extend %fullWidthTable;
+
+  & td {
+    border-left: 1px solid rgb(130 130 130 / 20%);
+    border-right: 1px solid rgb(130 130 130 / 20%);
+  }
+}

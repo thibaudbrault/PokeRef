@@ -1,28 +1,18 @@
-import { CardTitle, Subtitle } from '@/components/common/styles/Headings';
-import BackBtn from '@/components/common/ui/BackBtn';
-import { Divider } from '@/components/common/ui/Divider';
-import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingMove from '@/components/pages/Moves/MoveCard/Heading';
-import { useFetchMove } from '@/components/pages/Moves/MoveCard/Hooks/useFetchMove';
-import { MoveMainBig } from '@/components/pages/Moves/MoveCard/Styled.MoveCard';
-import { removeDash } from '@/utils/Typography';
-import { GetServerSidePropsContext } from 'next';
+import { useState } from 'react';
+
+import { FaChevronLeft } from '@meronex/icons/fa';
+import * as Tabs from '@radix-ui/react-tabs';
+import { type GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useState } from 'react';
-import toast from 'react-hot-toast';
 
-const Nav = dynamic(
-  () => import(`@/components/pages/Moves/MoveCard/Nav/Nav.MoveCard`),
-);
-const Data = dynamic(
-  () => import(`@/components/pages/Moves/MoveCard/Data/Data.MoveCard`),
-);
-const List = dynamic(
-  () => import(`@/components/pages/Moves/MoveCard/List/List.MoveCard`),
-);
+import { Button, ErrorToast, Loader, Separator } from '@/components';
+import { Data, Heading, List, Nav, useFetchMove } from '@/modules/moves/move';
+import styles from '@/modules/moves/move/Move.module.scss';
+import { removeDash } from '@/utils';
+
 const LearnMethod = dynamic(() =>
-  import(`@/utils/ObjectsMap`).then((res) => res.LearnMethod),
+  import(`@/utils`).then((res) => res.LearnMethod),
 );
 
 type Props = {
@@ -47,11 +37,7 @@ function MoveCard({ name }: Props) {
   } = useFetchMove(name);
 
   if (isError) {
-    toast.error(`Something went wrong: ${error?.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {
@@ -60,23 +46,20 @@ function MoveCard({ name }: Props) {
 
   return (
     <>
-      <HeadingMove name={name} />
+      <Heading name={name} />
       {move && (
-        <MoveMainBig>
-          <CardTitle>{removeDash(move.name)}</CardTitle>
-          <Subtitle>{removeDash(move.generation.name)}</Subtitle>
+        <main className={styles.main}>
+          <h2 className="pageTitle">{removeDash(move.name)}</h2>
+          <h4 className="subtitle">{removeDash(move.generation.name)}</h4>
 
           <Nav move={move} setVersion={setVersion} />
 
           <Data move={move} machine={machine} version={version} />
 
-          <Divider />
-
-          <LearnMethod
-            toggle={toggle}
-            setToggle={setToggle}
-            setLearn={setLearn}
-          />
+          <Separator />
+          <Tabs.Root className="TabsRootSection" defaultValue={String(toggle)}>
+            <LearnMethod setToggle={setToggle} setLearn={setLearn} />
+          </Tabs.Root>
 
           <List
             pokemon={pokemon}
@@ -86,10 +69,13 @@ function MoveCard({ name }: Props) {
             version={version}
           />
 
-          <Link href="/moves" passHref>
-            <BackBtn name="Moves" />
-          </Link>
-        </MoveMainBig>
+          <Button intent="back" asChild>
+            <Link href="/moves">
+              <FaChevronLeft />
+              Back to Moves
+            </Link>
+          </Button>
+        </main>
       )}
     </>
   );

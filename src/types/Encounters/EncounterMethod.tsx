@@ -1,4 +1,4 @@
-import { IName } from '../Utility/CommonModels';
+import type { IName } from '../Utility/CommonModels';
 
 export interface IEncounterMethod {
   id: number;

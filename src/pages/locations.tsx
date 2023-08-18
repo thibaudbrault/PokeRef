@@ -1,22 +1,17 @@
-import { MainBig } from '@/components/common/styles/Sizing';
-import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingLocations from '@/components/pages/Locations/Heading';
-import { LocationSection } from '@/components/pages/Locations/Styled.Locations';
-import { IRegion } from '@/types/Locations/Region';
-import { regions } from '@/utils/DataArrays';
-import { getRegions } from '@/utils/DataFetch';
-import { capitalize } from '@/utils/Typography';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
 
-const ListLocations = dynamic(
-  () => import(`@/components/pages/Locations/Components/List.Locations`),
-);
+import * as Tabs from '@radix-ui/react-tabs';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import dynamic from 'next/dynamic';
+
+import { ErrorToast, Loader } from '@/components';
+import { Heading, List } from '@/modules/locations';
+import { getRegions, regions } from '@/utils';
+
+import type { IRegion } from '@/types';
 
 const RegionsMethod = dynamic(() =>
-  import(`@/utils/ObjectsMap`).then((res) => res.RegionsMethod),
+  import(`@/utils`).then((res) => res.RegionsMethod),
 );
 
 function LocationsPage() {
@@ -37,11 +32,7 @@ function LocationsPage() {
   }, [toggle]);
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {
@@ -50,16 +41,13 @@ function LocationsPage() {
 
   return (
     <>
-      <HeadingLocations />
-      <MainBig>
-        <RegionsMethod toggle={toggle} setToggle={setToggle} />
-        <ListLocations location={location} locations={locations} />
-        {location === `galar` || location === `hisui` ? (
-          <LocationSection>
-            <p>No data for {capitalize(location)}</p>
-          </LocationSection>
-        ) : null}
-      </MainBig>
+      <Heading />
+      <Tabs.Root className="TabsRootMain" defaultValue={String(toggle)}>
+        <RegionsMethod setToggle={setToggle} />
+        <Tabs.Content value={String(toggle)}>
+          <List location={location} locations={locations} />
+        </Tabs.Content>
+      </Tabs.Root>
     </>
   );
 }

@@ -1,0 +1,168 @@
+@use '../abstracts' as *;
+
+.searchSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 5rem;
+}
+
+%input {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+
+  & label {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  & input {
+    width: 15vw;
+    min-width: 15rem;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border-radius: 5px;
+
+    @include gthemed {
+      color: t('text');
+      border: 1px solid t('text');
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid $red;
+    }
+
+    &::placeholder {
+      opacity: 0.8;
+
+      @include gthemed {
+        color: t('text');
+      }
+    }
+  }
+}
+
+.input {
+  @extend %input;
+}
+
+.dropdown {
+  width: 100%;
+
+  & .select__control {
+    min-width: 15rem;
+    padding: 0 0.5rem;
+    background: transparent;
+    border-radius: 5px;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+
+    @include gthemed {
+      color: t('text');
+      border: 1px solid t('text');
+    }
+
+    &--is-focused {
+      outline: none;
+      border: 1px solid $red;
+      box-shadow: none;
+
+      &:hover {
+        border-color: $red;
+      }
+    }
+
+    & .select__input-container {
+      @include gthemed {
+        color: t('text') !important;
+      }
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+
+    & .select__placeholder {
+      font-size: 1.5rem;
+
+      @include gthemed {
+        color: t('text');
+      }
+    }
+
+    & .select__indicator-separator {
+      @include gthemed {
+        background-color: t('text');
+      }
+    }
+
+    & .select__dropdown-indicator {
+      @include gthemed {
+        color: t('text');
+      }
+    }
+  }
+
+  & .select__menu {
+    text-transform: capitalize;
+    font-size: 1.5rem;
+
+    @include gthemed {
+      color: t('text');
+      background: t('bg');
+    }
+
+    & .select__option {
+      cursor: pointer;
+      background-color: transparent;
+
+      &--is-focused {
+        background-color: transparent;
+        color: $red;
+      }
+    }
+  }
+
+  & .select__multi-value {
+    @include gthemed {
+      background-color: t('text');
+      color: t('bg');
+    }
+
+    &__remove {
+      cursor: pointer;
+
+      &:hover {
+        background-color: transparent;
+        color: $red;
+      }
+    }
+
+    & .select__input {
+      color: white !important;
+    }
+  }
+
+  & .select__single-value {
+    padding: 3px;
+    border-radius: 2px;
+
+    @include gthemed {
+      background-color: t('text');
+      color: t('bg');
+    }
+  }
+
+  & .select__clear-indicator {
+    cursor: pointer;
+
+    &:hover {
+      background-color: transparent;
+      color: $red;
+    }
+  }
+}

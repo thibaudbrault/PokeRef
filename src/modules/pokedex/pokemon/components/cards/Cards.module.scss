@@ -1,0 +1,55 @@
+@use '@/styles/abstracts' as *;
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 4rem;
+  padding-top: 2rem;
+
+  & li {
+    text-align: center;
+    font-size: 1.7rem;
+
+    & button {
+      background: none;
+      border: none;
+
+      & img {
+        cursor: zoom-in;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+  }
+
+  @include md {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include sm {
+    & img {
+      width: 150px;
+      height: 210px;
+    }
+  }
+}
+
+.modal {
+  width: 60%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 50% auto auto 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  overflow-y: hidden !important;
+
+  @include sm {
+    width: 80%;
+  }
+}

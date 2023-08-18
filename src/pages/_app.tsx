@@ -1,18 +1,17 @@
-import { darkTheme, lightTheme } from '@/components/common/styles/Themes';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import type { AppProps } from 'next/app';
-import Head from 'next/head';
 import { useState } from 'react';
-import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
-import { ThemeProvider } from 'styled-components';
 
-import { Reset } from '@/components/common/styles/Reset';
-import Footer from '@/components/layout/Footer/Footer';
-import Header from '@/components/layout/Header/Header';
-import Nav from '@/components/layout/Nav/Nav';
-import NextNProgress from 'nextjs-progressbar';
-import { Toaster } from 'react-hot-toast';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import PlausibleProvider from 'next-plausible';
+import Head from 'next/head';
+import NextNProgress from 'nextjs-progressbar';
+import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
+import { Toaster } from 'react-hot-toast';
+
+import { ThemeProvider } from '@/contexts';
+import '@/styles/styles.scss';
+import { Footer, Header, Nav } from '@/modules/layout';
+
+import type { AppProps } from 'next/app';
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
@@ -37,22 +36,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const [navOpen, setNavOpen] = useState(false);
 
-  const loadTheme: () => string = () => {
-    const localTheme = globalThis.window?.localStorage.getItem(`theme`);
-    return localTheme ?? `dark`;
-  };
-
-  const [theme, setTheme] = useState(loadTheme());
-
-  const setMode = (mode: string) => {
-    globalThis.window?.localStorage.setItem(`theme`, mode);
-    setTheme(mode);
-  };
-
-  const themeToggler = () => {
-    theme === `dark` ? setMode(`light`) : setMode(`dark`);
-  };
-
   return (
     <>
       <Head>
@@ -60,21 +43,15 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <QueryClientProvider client={queryClient}>
-          <ThemeProvider theme={theme === `dark` ? darkTheme : lightTheme}>
+          <ThemeProvider>
             <PlausibleProvider
               domain="pokeref.app"
               enabled={process.env.NODE_ENV === `production`}
             >
               <Toaster />
               <NextNProgress />
-              <Header
-                navOpen={navOpen}
-                setNavOpen={setNavOpen}
-                themeToggler={themeToggler}
-                theme={theme}
-              />
+              <Header navOpen={navOpen} setNavOpen={setNavOpen} />
               <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
-              <Reset />
               <Component {...pageProps} />
               <Footer />
             </PlausibleProvider>

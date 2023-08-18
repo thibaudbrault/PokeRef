@@ -1,0 +1,238 @@
+@use '../abstracts' as *;
+@use 'sass:map';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  transition: 0.3s ease-in-out;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+center,
+dl,
+dt,
+dd,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  cursor: default;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html {
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Quicksand, serif;
+  font-weight: 400;
+
+  .theme--dark {
+    color: map.get(map.get($themes, 'dark'), 'text');
+    background-color: map.get(map.get($themes, 'dark'), 'bg');
+  }
+
+  .theme--light {
+    color: map.get(map.get($themes, 'light'), 'text');
+    background-color: map.get(map.get($themes, 'light'), 'bg');
+  }
+
+  & #nprogress {
+    & .bar {
+      background: hsl(29deg 92% 70% / 100%);
+      background: linear-gradient(
+        0deg,
+        hsl(29deg 92% 70% / 100%) 0%,
+        hsl(0deg 87% 73% / 100%) 100%
+      );
+      background: linear-gradient(
+        0deg,
+        hsl(29deg 92% 70% / 100%) 0%,
+        hsl(0deg 87% 73% / 100%) 100%
+      );
+      background: linear-gradient(
+        0deg,
+        hsl(29deg 92% 70% / 100%) 0%,
+        hsl(0deg 87% 73% / 100%) 100%
+      );
+    }
+
+    & .spinner-icon {
+      display: none;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+nav {
+  font-family: Oswald, sans-serif;
+}
+
+@include md {
+  html {
+    font-size: 9px;
+  }
+}
+
+@include sm {
+  html {
+    font-size: 8px;
+  }
+}
+
+@include xs {
+  html {
+    font-size: 7px;
+  }
+}
+
+.ReactModal__Overlay {
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+
+  @include themed {
+    background-color: t('text') !important;
+  }
+
+  &--after-open {
+    opacity: 1;
+  }
+
+  &--before-close {
+    opacity: 0;
+  }
+}

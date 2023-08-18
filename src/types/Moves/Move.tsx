@@ -1,11 +1,11 @@
-import { IAbilityEffectChange } from '../Pokemon/Ability';
-import { IApiResource } from '../Utility/ApiResourceList';
-import {
+import type { IAbilityEffectChange } from '../Pokemon/Ability';
+import type { IApiResource } from '../Utility/ApiResourceList';
+import type {
   IMachineVersionDetail,
   IName,
   IVerboseEffect,
 } from '../Utility/CommonModels';
-import { INamedApiResource } from '../Utility/NamedApiResourceList';
+import type { INamedApiResource } from '../Utility/NamedApiResourceList';
 
 export interface IMove {
   id: number;

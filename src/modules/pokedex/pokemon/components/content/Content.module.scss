@@ -1,0 +1,65 @@
+@use '@/styles/abstracts' as *;
+
+.section {
+  position: sticky;
+  padding: 1rem 1.5rem;
+  margin-bottom: 5rem;
+  top: 0;
+  font-size: 2rem;
+  border-radius: 5px;
+  z-index: 3;
+
+  @include themed {
+    background: t('bg');
+    border: 1px solid t('text');
+  }
+
+  & div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & p {
+      font-size: 2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    & button {
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      border-radius: 50%;
+      font-size: 2.5rem;
+      font-weight: 600;
+
+      @include themed {
+        color: t('text');
+      }
+
+      &:hover {
+        background: rgb(130 130 130 / 20%);
+      }
+    }
+  }
+
+  & ol {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+
+    & li {
+      font-size: 1.5rem;
+
+      & a {
+        cursor: pointer;
+      }
+    }
+  }
+}

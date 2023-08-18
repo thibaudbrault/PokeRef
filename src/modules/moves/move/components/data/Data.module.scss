@@ -1,0 +1,100 @@
+@use '@/styles/abstracts' as *;
+@use '@/styles/common' as *;
+
+.section {
+  @extend %section;
+
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  column-gap: 3rem;
+
+  @include sm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+  }
+}
+
+.table {
+  @extend %table;
+
+  & th {
+    background: rgb(130 130 130 / 20%);
+  }
+
+  & td {
+    font-size: 1.7rem;
+    font-weight: 600;
+    text-align: left;
+    text-transform: capitalize;
+  }
+
+  @include sm {
+    width: 100%;
+  }
+}
+
+.type {
+  @extend %tType;
+
+  & div {
+    margin: 0;
+  }
+}
+
+.category {
+  & div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    & img {
+      vertical-align: middle;
+
+      @include sm {
+        width: 25px;
+        height: 25px;
+      }
+    }
+
+    & span {
+      text-transform: capitalize;
+      padding-left: 0.5rem;
+      vertical-align: middle;
+    }
+  }
+}
+
+.list {
+  margin-top: 2rem;
+
+  & li {
+    margin: 0 0 2rem;
+  }
+
+  @include sm {
+    width: 100%;
+    margin: 0 0 2rem;
+  }
+}
+
+.text {
+  font-size: 1.7rem;
+}
+
+.meta {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+
+.stat {
+  margin-left: 2rem;
+  font-size: 1.5rem;
+}
+
+.target {
+  text-transform: capitalize;
+  margin-left: 2rem;
+  font-size: 1.5rem;
+}

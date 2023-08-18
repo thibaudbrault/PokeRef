@@ -1,4 +1,4 @@
-import { IEffect, IFlavorText } from '../Utility/CommonModels';
+import type { IEffect, IFlavorText } from '../Utility/CommonModels';
 
 export interface IContestEffect {
   id: number;

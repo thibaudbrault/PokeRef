@@ -1,0 +1,176 @@
+@use 'sass:map';
+
+$red: #aa2429;
+$purple: #7c66dc;
+$dark: #161616;
+$light: #a0a0a0;
+$dark-bg: #161616;
+$dark-normal-dark: #232323;
+$dark-hover-dark: #282828;
+$dark-active: #2e2e2e;
+$dark-subtle-border: #343434;
+$dark-border: #3e3e3e;
+$dark-hover-border: #505050;
+$dark-normal-bright: #707070;
+$dark-hover-bright: #7e7e7e;
+$dark-text: #a0a0a0;
+$light-bg: #a0a0a0;
+$light-hover-bright: #7e7e7e;
+$light-normal-bright: #707070;
+$light-subtle-border: #505050;
+$light-border: #3e3e3e;
+$light-hover-border: #343434;
+$light-active: #2e2e2e;
+$light-normal-dark: #282828;
+$light-hover-dark: #232323;
+$light-text: #161616;
+$themes: (
+  dark: (
+    bg: $dark-bg,
+    normaldark: $dark-normal-dark,
+    hoverdark: $dark-hover-dark,
+    active: $dark-active,
+    subtleborder: $dark-subtle-border,
+    border: $dark-border,
+    hoverborder: $dark-hover-border,
+    normalbright: $dark-normal-bright,
+    hoverbright: $dark-hover-bright,
+    text: $dark-text,
+  ),
+  light: (
+    bg: $light-bg,
+    normalbright: $light-normal-bright,
+    hoverbright: $light-hover-bright,
+    active: $light-active,
+    subtleborder: $light-subtle-border,
+    border: $light-border,
+    hoverborder: $light-hover-border,
+    normaldark: $light-normal-dark,
+    hoverdark: $light-hover-dark,
+    text: $light-text,
+  ),
+);
+
+@mixin themed {
+  @each $theme, $map in $themes {
+    :global(.theme--#{$theme}) & {
+      $theme-map: () !global;
+
+      @each $key, $submap in $map {
+        $value: map.get($map, $key);
+        $theme-map: map.merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+
+      $theme-map: null !global;
+    }
+  }
+}
+
+@mixin gthemed {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      $theme-map: () !global;
+
+      @each $key, $submap in $map {
+        $value: map.get($map, $key);
+        $theme-map: map.merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function t($key) {
+  @return map-get($theme-map, $key);
+}
+
+%type {
+  &#normal {
+    background-color: #969592;
+  }
+
+  &#fire {
+    background-color: #db4249;
+  }
+
+  &#water {
+    background-color: #55b8e2;
+  }
+
+  &#grass {
+    background-color: #459f4d;
+  }
+
+  &#electric {
+    background-color: #dbb508;
+  }
+
+  &#ice {
+    background-color: #6db5ba;
+  }
+
+  &#fighting {
+    background-color: #d77a49;
+  }
+
+  &#poison {
+    background-color: #82549a;
+  }
+
+  &#ground {
+    background-color: #9a5e41;
+  }
+
+  &#flying {
+    background-color: #5983ef;
+  }
+
+  &#psychic {
+    background-color: #e76e9a;
+  }
+
+  &#bug {
+    background-color: #9eb559;
+  }
+
+  &#rock {
+    background-color: #a28d79;
+  }
+
+  &#ghost {
+    background-color: #a2729a;
+  }
+
+  &#dark {
+    background-color: #555461;
+  }
+
+  &#dragon {
+    background-color: #1085a2;
+  }
+
+  &#steel {
+    background-color: #7d879a;
+  }
+
+  &#fairy {
+    background-color: #ef9bb6;
+  }
+}
+
+.type {
+  @extend %type;
+}

@@ -1,24 +1,14 @@
-import { Pagination } from '@/components/common/styles/Pagination';
-import { MainBig } from '@/components/common/styles/Sizing';
-import { Divider } from '@/components/common/ui/Divider';
-import Loader from '@/components/common/ui/Loader/Loader';
-import HeadingPokedex from '@/components/pages/Pokemon/Heading';
-import { useScrollDir } from '@/components/pages/Pokemon/Hooks/useScrollDir';
-import { PokedexVerticalText } from '@/components/pages/Pokemon/Styled.Pokemon';
-import { IPokemon } from '@/types/Pokemon/Pokemon';
-import { IOptionsOffsetLimit } from '@/utils/DataArrays';
-import { getPokedex } from '@/utils/DataFetch';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import { toast } from 'react-hot-toast';
 
-const Filters = dynamic(
-  () => import(`@/components/pages/Pokemon/Components/Filters.Pokemon`),
-);
-const ListPokemon = dynamic(
-  () => import(`@/components/pages/Pokemon/Components/List.Pokemon`),
-);
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import ReactPaginate from 'react-paginate';
+
+import { ErrorToast, Loader, Separator } from '@/components';
+import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
+import styles from '@/modules/pokedex/Pokedex.module.scss';
+import { type IOptionsOffsetLimit, getPokedex } from '@/utils';
+
+import type { IPokemon } from '@/types';
 
 function Pokedex() {
   const [filteredPokedex, setFilteredPokedex] = useState<IPokemon[]>([]);
@@ -57,11 +47,7 @@ function Pokedex() {
   };
 
   if (isError) {
-    return toast.error(`Something went wrong: ${error.message}`, {
-      style: {
-        fontSize: `1.7rem`,
-      },
-    });
+    return <ErrorToast error={error} />;
   }
 
   if (isLoading) {
@@ -70,8 +56,8 @@ function Pokedex() {
 
   return (
     <>
-      <HeadingPokedex />
-      <MainBig>
+      <Heading />
+      <main className="mainBig">
         <Filters
           pokedex={pokedex}
           setFilteredPokedex={setFilteredPokedex}
@@ -85,12 +71,13 @@ function Pokedex() {
           generation={generation}
           setGeneration={setGeneration}
         />
-        <PokedexVerticalText>ポケモン</PokedexVerticalText>
-        <ListPokemon filteredPokedex={filteredPokedex} />
-        <Divider />
+        <p className={styles.verticalText}>ポケモン</p>
+        <List filteredPokedex={filteredPokedex} />
+        <Separator />
         {scrollBtn()}
         {!form && !generation && (
-          <Pagination
+          <ReactPaginate
+            className="pagination"
             breakLabel="..."
             onPageChange={handlePageChange}
             nextLabel=">"
@@ -101,7 +88,7 @@ function Pokedex() {
             renderOnZeroPageCount={() => null}
           />
         )}
-      </MainBig>
+      </main>
     </>
   );
 }

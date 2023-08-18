@@ -1,12 +1,23 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["prettier", "@typescript-eslint/eslint-plugin"],
+  "plugins": ["prettier", "@typescript-eslint/eslint-plugin", "import"],
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "plugin:@tanstack/eslint-plugin-query/recommended",
+    "plugin:jsx-a11y/strict",
     "prettier"
   ],
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint-parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  },
   "rules": {
     "prettier/prettier": "error",
     "camelcase": "off",
@@ -34,6 +45,34 @@
         "components": ["Link"],
         "specialLink": ["hrefLeft", "hrefRight"],
         "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "jsx-a11y/media-has-caption": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "object",
+          "type",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "{react,react-dom/**}",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
       }
     ]
   },
