@@ -38,6 +38,14 @@
   }
 }
 
+.explanation {
+  width: 100%;
+  text-align: center;
+  margin-top: -4rem;
+  margin-bottom: 5rem;
+  font-size: 1.3rem;
+}
+
 .verticalText {
   @supports (writing-mode: sideways-rl) {
     display: block;
@@ -80,7 +88,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 1rem;
-  background: rgb(255 255 255 / 40%);
+  background: rgb(255 255 255 / 25%);
   border: 1px solid transparent;
   border-radius: 25px;
   text-align: center;
@@ -96,6 +104,10 @@
       &:hover {
         color: $red;
       }
+    }
+
+    @include sm {
+      font-size: 3.5rem;
     }
   }
 
@@ -120,8 +132,8 @@
   }
 
   @include sm {
-    width: 20rem;
-    height: 29rem;
+    width: 26rem;
+    height: 37rem;
     padding: 1.5rem 2.5rem;
   }
 }
@@ -132,6 +144,11 @@
   color: #c4c4c4;
   background-color: #161616;
   border-radius: 50px;
+
+  @include sm {
+    padding: 0.1rem 1rem;
+    font-size: 1.7rem;
+  }
 }
 
 .sprite {
@@ -155,13 +172,6 @@
     opacity: 1;
     z-index: 3;
   }
-
-  & img {
-    @include sm {
-      width: 72px;
-      height: 72px;
-    }
-  }
 }
 
 %types {
@@ -183,7 +193,10 @@
 
     @include themed {
       color: t('text');
-      text-shadow: t('bg') -1px -1px 0, t('bg') 1px -1px 0, t('bg') -1px 1px 0,
+      text-shadow:
+        t('bg') -1px -1px 0,
+        t('bg') 1px -1px 0,
+        t('bg') -1px 1px 0,
         t('bg') 1px 1px 0;
     }
 
@@ -202,6 +215,10 @@
         font-family: Oswald, sans-serif;
         cursor: pointer;
       }
+    }
+
+    @include sm {
+      font-size: 2rem;
     }
   }
 }
@@ -231,7 +248,7 @@
   @include sm {
     right: 3rem;
     bottom: 3rem;
-    font-size: 3rem;
+    font-size: 4rem;
   }
 }
 

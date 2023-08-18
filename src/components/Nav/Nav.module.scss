@@ -1,0 +1,26 @@
+@use '@/styles/abstracts' as *;
+
+.genNav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 5rem 0;
+  overflow-x: hidden;
+
+  .dropdown {
+    display: flex;
+    align-items: flex-start;
+    justify-content: stretch;
+    flex-direction: column;
+
+    & label {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      justify-self: flex-start;
+    }
+  }
+
+  @include lg {
+    gap: 0.5rem;
+  }
+}

@@ -4,11 +4,6 @@ test.beforeEach(async ({ page }) => {
   await page.goto(`http://localhost:3005/`);
 });
 
-// test("Should have 50 pokemon in a page", async ({ page }) => {
-//     const count = await page.getByTestId('pokemonElement').count()
-//     console.log(count)
-// })
-
 test(`Should be able to change the generation`, async ({ page }) => {
   await page.locator(`#generation`, { hasText: `Select` }).click();
   await page.getByText(`Generation IV`, { exact: true }).click();

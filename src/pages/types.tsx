@@ -1,6 +1,6 @@
-import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
-import { ErrorToast, Loader } from '@/components';
+import { Loader, errorToast } from '@/components';
 import { Heading, List } from '@/modules/types';
 import styles from '@/modules/types/Types.module.scss';
 import { getTypes } from '@/utils';
@@ -18,8 +18,8 @@ function TypesPage() {
     queryFn: getTypes,
   });
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {

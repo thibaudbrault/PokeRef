@@ -40,7 +40,7 @@ export const LearnMethod = ({ setToggle, setLearn }: ILearnProps) => {
 export const RegionsMethod = ({ setToggle }: IProps) => {
   return (
     <Tabs.List
-      className="TabsList"
+      className="TabsList TabsListOverflow"
       aria-label="Switch between the different regions"
     >
       {Object.keys(regions)?.map((r, i) => (

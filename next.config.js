@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const path = require('path')
 const isProduction = process.env.NODE_ENV === 'production';
 
 const withPWA = require("next-pwa")({
@@ -13,13 +14,13 @@ const nextConfig = withPWA({
     ignoreDuringBuilds: true
   },
   reactStrictMode: true,
-  experimental: {
-    appDir: false,
-  },
   swcMinify: true,
   images: {
     domains: ['raw.githubusercontent.com', 'images.pokemontcg.io']
   },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')]
+  }
 });
 
 module.exports = nextConfig;

@@ -210,14 +210,20 @@
 
         @include gthemed {
           color: t('text');
-          text-shadow: t('bg') -1px -1px 0, t('bg') 1px -1px 0,
-            t('bg') -1px 1px 0, t('bg') 1px 1px 0;
+          text-shadow:
+            t('bg') -1px -1px 0,
+            t('bg') 1px -1px 0,
+            t('bg') -1px 1px 0,
+            t('bg') 1px 1px 0;
         }
 
         @include themed {
           color: t('text');
-          text-shadow: t('bg') -1px -1px 0, t('bg') 1px -1px 0,
-            t('bg') -1px 1px 0, t('bg') 1px 1px 0;
+          text-shadow:
+            t('bg') -1px -1px 0,
+            t('bg') 1px -1px 0,
+            t('bg') -1px 1px 0,
+            t('bg') 1px 1px 0;
         }
       }
     }

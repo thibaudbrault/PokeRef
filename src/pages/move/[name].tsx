@@ -6,7 +6,7 @@ import { type GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import { Button, ErrorToast, Loader, Separator } from '@/components';
+import { Button, Loader, Separator, errorToast } from '@/components';
 import { Data, Heading, List, Nav, useFetchMove } from '@/modules/moves/move';
 import styles from '@/modules/moves/move/Move.module.scss';
 import { removeDash } from '@/utils';
@@ -36,8 +36,8 @@ function MoveCard({ name }: Props) {
     setToggle,
   } = useFetchMove(name);
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {
@@ -69,7 +69,7 @@ function MoveCard({ name }: Props) {
             version={version}
           />
 
-          <Button intent="back" asChild>
+          <Button intent="back" size="fit" asChild>
             <Link href="/moves">
               <FaChevronLeft />
               Back to Moves

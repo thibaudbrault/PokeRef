@@ -56,10 +56,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-
-  @include themed {
-    border-right: 1px solid t('bg');
-  }
+  clip-path: ellipse(85% 100% at 10% 50%);
 
   @include sm {
     display: none;
@@ -89,7 +86,7 @@
   @extend %form;
 }
 
-.title {
+.titleContainer {
   & h2 {
     margin-bottom: 0;
   }
@@ -100,10 +97,6 @@
     font-size: 1.5rem;
     text-align: center;
     font-weight: 400;
-  }
-
-  @include themed {
-    color: t('bg');
   }
 }
 
@@ -131,14 +124,16 @@
       width: 100%;
       padding: 1rem;
       background: rgb(255 255 255 / 30%);
-      border-radius: 5px;
+      background: transparent;
+      border-radius: 0;
 
       @include themed {
-        border: 1px solid t('bg');
+        border: none;
+        border-bottom: 1px solid t('bg');
       }
 
       &:focus {
-        border: 1px solid $red;
+        border-bottom: 1px solid $red;
         outline: none;
       }
     }
@@ -189,37 +184,6 @@
   }
 }
 
-%button {
-  width: 100%;
-  padding: 1rem 0;
-  font-size: 1.7rem;
-  font-weight: 600;
-  text-align: center;
-  border-radius: 5px;
-
-  @include themed {
-    background: t('bg');
-    border: 1px solid t('bg');
-    color: t('text');
-  }
-
-  &:hover {
-    background: none;
-
-    @include themed {
-      color: t('bg');
-    }
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-}
-
-.button {
-  @extend %button;
-}
-
 .providers {
   width: 100%;
   display: flex;
@@ -227,70 +191,4 @@
   justify-content: center;
   flex-direction: column;
   gap: 2rem;
-}
-
-.secButton {
-  @extend %button;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  font-weight: 400;
-  background: none;
-  @include themed {
-    color: t('text');
-  }
-
-  & span {
-    cursor: pointer;
-  }
-}
-
-.modal {
-  width: fit-content;
-  height: fit-content;
-  padding: 5rem 8rem;
-  max-width: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  position: absolute;
-  inset: 50% auto auto 50%;
-  margin-right: -50%;
-  border-radius: 5px;
-  transform: translate(-50%, -50%);
-  overflow-y: hidden !important;
-
-  @include themed {
-    color: t('bg');
-    border: 1px solid t('bg');
-  }
-}
-
-.closeReset {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  font-size: 2.5rem;
-
-  &:hover {
-    color: $red;
-  }
-}
-
-.resetForm {
-  @extend %form;
-
-  width: 100%;
-  margin-top: 5rem;
-}
-
-.resetInput {
-  @extend %input;
-
-  width: 100%;
 }

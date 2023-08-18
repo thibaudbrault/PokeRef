@@ -28,7 +28,7 @@ export function Info({ pokemon, species, evolution }: Props) {
                 .fill(true)
                 .map((_, i) => (
                   <tr key={i}>
-                    <th>{data[`desc_` + i++]?.title}</th>
+                    <th>{data[`desc_` + i]?.title}</th>
                     <td>
                       {data[`desc_` + i++]?.value({
                         pokemon: pokemon,

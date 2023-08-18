@@ -1,6 +1,6 @@
-import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
-import { ErrorToast, SmallLoader } from '@/components';
+import { SmallLoader, errorToast } from '@/components';
 import { getMoveTarget, removeDash } from '@/utils';
 
 import styles from '../Data.module.scss';
@@ -27,8 +27,8 @@ export function Effect({ move, version }: Props) {
     return target?.find((t: IMoveTarget) => t.name === condition);
   };
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {

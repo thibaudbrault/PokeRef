@@ -14,10 +14,11 @@ import { useVirtual } from 'react-virtual';
 
 // @ts-ignore
 export function useTableParams(data, columns) {
+  const emptyArray: never[] = [];
   const [sorting, setSorting] = useState<SortingState>([]);
 
   const table = useReactTable({
-    data: data ?? [],
+    data: data || emptyArray,
     columns,
     state: {
       sorting,

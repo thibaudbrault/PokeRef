@@ -1,33 +1,22 @@
-import {
-  type Dispatch,
-  type SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { useContext } from 'react';
 
-import { FiMenu, FiX } from '@meronex/icons/fi';
 import { RiMoonClearLine, RiSunLine } from '@meronex/icons/ri';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 
 import { Button } from '@/components';
 import { ThemeContext } from '@/contexts';
 
+import { MobileNav } from '../Nav';
 import styles from './Header.module.scss';
 
-type Props = {
-  navOpen: boolean;
-  setNavOpen: Dispatch<SetStateAction<boolean>>;
-};
-
-export function Header({ navOpen, setNavOpen }: Props) {
-  // will have the user's info
-  const [user, setUser] = useState();
+export function Header() {
+  const { status } = useSession();
 
   const { theme, setTheme } = useContext(ThemeContext);
 
   const logout = async () => {
-    // will be used to logout
+    await signOut();
   };
 
   const themeHandler = () => {
@@ -56,8 +45,8 @@ export function Header({ navOpen, setNavOpen }: Props) {
             <RiMoonClearLine data-testid="moon" />
           )}
         </button>
-        {user ? (
-          <div className={styles.connected}>
+        {status === `authenticated` ? (
+          <div className={styles.auth}>
             <Button intent="secondary" onClick={logout}>
               Sign Out
             </Button>
@@ -66,7 +55,7 @@ export function Header({ navOpen, setNavOpen }: Props) {
             </Button>
           </div>
         ) : (
-          <div className={styles.connect}>
+          <div className={styles.auth}>
             <Button intent="secondary" asChild>
               <Link href="/login">Login</Link>
             </Button>
@@ -75,23 +64,7 @@ export function Header({ navOpen, setNavOpen }: Props) {
             </Button>
           </div>
         )}
-        {navOpen ? (
-          <button
-            className={styles.open}
-            aria-label="Open menu"
-            onClick={() => setNavOpen(!navOpen)}
-          >
-            <FiX />
-          </button>
-        ) : (
-          <button
-            className={styles.close}
-            aria-label="Close menu"
-            onClick={() => setNavOpen(!navOpen)}
-          >
-            <FiMenu />
-          </button>
-        )}
+        <MobileNav />
       </div>
     </header>
   );

@@ -2,7 +2,7 @@ import { FaChevronLeft } from '@meronex/icons/fa';
 import { type GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 
-import { Button, ErrorToast, Loader, Separator } from '@/components';
+import { Button, Loader, Separator, errorToast } from '@/components';
 import {
   Description,
   Heading,
@@ -30,8 +30,8 @@ function Ability({ name }: Props) {
     filterDesc,
   } = useFilterAbility(name);
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {
@@ -74,7 +74,7 @@ function Ability({ name }: Props) {
           </h3>
           <Table ability={ability} pokemon={pokemon} />
         </section>
-        <Button intent="back" asChild>
+        <Button intent="back" size="fit" asChild>
           <Link href="/abilities">
             <FaChevronLeft />
             Back to Abilities

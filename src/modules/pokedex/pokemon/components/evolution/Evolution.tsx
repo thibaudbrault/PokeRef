@@ -1,9 +1,9 @@
 import { FaChevronRight } from '@meronex/icons/fa';
-import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { ErrorToast, SmallLoader } from '@/components';
+import { SmallLoader, errorToast } from '@/components';
 import { getAllEvo, removeDash } from '@/utils';
 
 import styles from './Evolution.module.scss';
@@ -27,8 +27,8 @@ export function Evolution({ evolution, name }: Props) {
     enabled: !!evolution,
   });
 
-  if (isError) {
-    return <ErrorToast error={error} />;
+  if (isError && error instanceof Error) {
+    errorToast(error.message);
   }
 
   if (isLoading) {

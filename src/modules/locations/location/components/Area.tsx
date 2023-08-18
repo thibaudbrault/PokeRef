@@ -19,11 +19,9 @@ export function Area({ location, toggleState, toggleTable }: Props) {
             className={toggleState === i ? `button_active` : ``}
             onClick={() => toggleTable(i)}
           >
-            <p>
-              {removeDash(la.name)
-                .replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/, ``)
-                .replace(/area/, ``)}
-            </p>
+            {removeDash(la.name)
+              .replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/, ``)
+              .replace(/area/, ``)}
           </button>
         ))}
       </nav>

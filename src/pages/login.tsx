@@ -1,63 +1,44 @@
-import { useState } from 'react';
-
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FiX } from '@meronex/icons/fi';
 import { GrGithub, GrGoogle } from '@meronex/icons/gr';
+import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
+import { z } from 'zod';
 
-import { ErrorToast, Input, SuccessToast } from '@/components';
+import { Button, Input, Spinner, errorToast, successToast } from '@/components';
 import styles from '@/modules/auth/Auth.module.scss';
-import ResetPwd from '@/modules/auth/ResetPwd';
-import { capitalize } from '@/utils';
+import { LoginValidator, capitalize } from '@/utils';
 
-const schema = yup.object({
-  email: yup.string().email().required(),
-  password: yup.string().min(6).required(),
-  resetEmail: yup.string().email().required(),
-});
-
-type FormInput = yup.Asserts<typeof schema>;
+type LoginCredentials = z.infer<typeof LoginValidator>;
 
 function Login() {
   const router = useRouter();
-  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormInput>({
-    resolver: yupResolver<FormInput>(schema),
+  } = useForm<LoginCredentials>({
+    resolver: zodResolver(LoginValidator),
   });
 
-  const submitForm = async (data: FormInput) => {
-    try {
-      // will have the sign-in call
-      router.push(`/`);
-      return <SuccessToast text="Welcome back 👋" />;
-    } catch (error) {
-      if (error instanceof Error) {
-        return <ErrorToast error={error} />;
+  const { mutate: loginHandler, isLoading } = useMutation({
+    mutationFn: async (values: LoginCredentials) => {
+      try {
+        await signIn(`credentials`, { ...values, callbackUrl: `/` });
+        await router.push(`/`);
+        successToast(`You are logged in`);
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          errorToast(error.response?.data.message);
+        }
       }
-    }
-  };
-
-  const googleConnect = () => {
-    // will have the sign-in with google call
-    router.push(`/`);
-  };
-
-  const githubConnect = () => {
-    // will have the sign-in with github call
-    router.push(`/`);
-  };
+    },
+  });
 
   return (
     <main className="mainForm">
@@ -66,14 +47,17 @@ function Login() {
           <FiX />
         </Link>
         <div className={styles.image} />
-        <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
-          <div className={styles.title}>
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit((values) => loginHandler(values))}
+        >
+          <div className={styles.titleContainer}>
             <h2 className="h2">Login</h2>
             <p>
               Go to your profile to create teams and find your favorites pokémon
             </p>
           </div>
-          <div className={styles.input}>
+          <fieldset className={styles.input}>
             <div>
               <Input
                 type="email"
@@ -95,41 +79,47 @@ function Login() {
               {typeof errors.password?.message === `string` && (
                 <small>{capitalize(errors.password?.message)}</small>
               )}
-              <button
-                className={styles.reset}
-                type="button"
-                onClick={openModal}
-              >
+              <button className={styles.reset} type="button">
                 J'ai oublié mon mot de passe
               </button>
             </div>
-            <button className={styles.button} type="submit">
-              Login
-            </button>
-          </div>
+            <Button intent="authPrimary" size="large" type="submit">
+              {isLoading ? <Spinner /> : `Login`}
+            </Button>
+          </fieldset>
           <p className={styles.choice}>OR</p>
           <div className={styles.input}>
             <div className={styles.providers}>
-              <button
-                className={styles.secButton}
-                type="button"
-                onClick={googleConnect}
+              <Button
+                intent="authSecondary"
+                size="large"
+                logo="withLogo"
+                onClick={() =>
+                  signIn(`google`, {
+                    callbackUrl: `${process.env.NEXTAUTH_URL}`,
+                  })
+                }
               >
                 Sign In with Google
                 <span>
                   <GrGoogle />
                 </span>
-              </button>
-              <button
-                className={styles.secButton}
-                type="button"
-                onClick={githubConnect}
+              </Button>
+              <Button
+                intent="authSecondary"
+                size="large"
+                logo="withLogo"
+                onClick={() =>
+                  signIn(`github`, {
+                    callbackUrl: `${process.env.NEXTAUTH_URL}`,
+                  })
+                }
               >
                 Sign In with Github
                 <span>
                   <GrGithub />
                 </span>
-              </button>
+              </Button>
             </div>
           </div>
           <p className={styles.switch}>
@@ -138,7 +128,6 @@ function Login() {
           </p>
         </form>
       </div>
-      <ResetPwd modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
     </main>
   );
 }

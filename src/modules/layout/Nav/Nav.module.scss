@@ -81,40 +81,38 @@
 }
 
 .mobileNav {
-  height: 100vh;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 98;
-
-  @include themed {
-    background: t('bg');
-  }
-}
-
-.mobileInner {
   height: 100%;
-  width: 100%;
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 }
 
 .mobileList {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
 
   & li {
     & a {
-      font-size: 4rem;
+      font-size: 4.5rem;
       text-transform: capitalize;
       cursor: pointer;
     }
+  }
+}
+
+.burger {
+  display: none;
+  font-size: 48px;
+  background: transparent;
+  border: none;
+
+  @include themed {
+    color: t('text');
+  }
+
+  @include md {
+    font-size: 32px;
+    display: flex;
   }
 }
