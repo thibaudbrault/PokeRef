@@ -38,6 +38,14 @@
   }
 }
 
+.explanation {
+  width: 100%;
+  text-align: center;
+  margin-top: -4rem;
+  margin-bottom: 5rem;
+  font-size: 1.3rem;
+}
+
 .verticalText {
   @supports (writing-mode: sideways-rl) {
     display: block;
@@ -80,7 +88,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 1rem;
-  background: rgb(255 255 255 / 40%);
+  background: rgb(255 255 255 / 25%);
   border: 1px solid transparent;
   border-radius: 25px;
   text-align: center;
