@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { type ColumnDef } from '@tanstack/react-table';
@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { errorToast, GenNav, Loader } from '@/components';
 import { useTableParams } from '@/hooks';
 import { Heading } from '@/modules/machines';
-import { getMachines, removeDash, uppercase } from '@/utils';
+import { getMultiple, removeDash, uppercase } from '@/utils';
 
 import type { IMachine } from '@/types';
 
@@ -21,7 +21,7 @@ function MachinesPage() {
     data: machines,
   }: UseQueryResult<IMachine[], Error> = useQuery({
     queryKey: [`machines`],
-    queryFn: getMachines,
+    queryFn: () => getMultiple(`https://pokeapi.co/api/v2/machine?limit=1700`),
   });
 
   const data = useMemo(

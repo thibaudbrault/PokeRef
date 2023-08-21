@@ -4,9 +4,9 @@ import * as Tabs from '@radix-ui/react-tabs';
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 
-import { Loader, errorToast } from '@/components';
+import { errorToast, Loader } from '@/components';
 import { Heading, List } from '@/modules/locations';
-import { getRegions, regions } from '@/utils';
+import { getMultiple, regions } from '@/utils';
 
 import type { IRegion } from '@/types';
 
@@ -24,7 +24,7 @@ function LocationsPage() {
     data: locations,
   }: UseQueryResult<IRegion[], Error> = useQuery({
     queryKey: [`regions`],
-    queryFn: getRegions,
+    queryFn: () => getMultiple(`https://pokeapi.co/api/v2/region?limit=10`),
   });
 
   useEffect(() => {

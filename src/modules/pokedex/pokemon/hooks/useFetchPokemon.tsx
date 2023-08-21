@@ -2,14 +2,7 @@ import { useState } from 'react';
 
 import { useQueries, useQuery } from '@tanstack/react-query';
 
-import {
-  getCards,
-  getEvolution,
-  getPokemon,
-  getPokemonLocation,
-  getPokemonTypes,
-  getSpecies,
-} from '@/utils';
+import { getCards, getPokemonTypes, getSingle } from '@/utils';
 
 import type { IPokemon } from '@/types';
 
@@ -20,7 +13,7 @@ export const useFetchPokemon = (name: string) => {
     queries: [
       {
         queryKey: [`pokemon`, name],
-        queryFn: () => getPokemon(`https://pokeapi.co/api/v2/pokemon/${name}`),
+        queryFn: () => getSingle(`https://pokeapi.co/api/v2/pokemon/${name}`),
         onSuccess: (data: IPokemon) => {
           setPokemonId(data.id);
         },
@@ -28,9 +21,7 @@ export const useFetchPokemon = (name: string) => {
       {
         queryKey: [`encounter`, name],
         queryFn: () =>
-          getPokemonLocation(
-            `https://pokeapi.co/api/v2/pokemon/${name}/encounters`,
-          ),
+          getSingle(`https://pokeapi.co/api/v2/pokemon/${name}/encounters`),
       },
       {
         queryKey: [`cards`, name],
@@ -49,9 +40,7 @@ export const useFetchPokemon = (name: string) => {
     //eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: [`species`, name, pokemon.data],
     queryFn: () =>
-      getSpecies(
-        `https://pokeapi.co/api/v2/pokemon-species/${pokemon.data.id}`,
-      ),
+      getSingle(`https://pokeapi.co/api/v2/pokemon-species/${pokemon.data.id}`),
     enabled: !!pokemon.data && pokemon.data.id < 10000,
   });
 
@@ -59,7 +48,7 @@ export const useFetchPokemon = (name: string) => {
 
   const evolution = useQuery({
     queryKey: [`evolution`, name, evolutionChainUrl],
-    queryFn: () => getEvolution(evolutionChainUrl),
+    queryFn: () => getSingle(evolutionChainUrl),
     enabled: !!evolutionChainUrl,
   });
 
