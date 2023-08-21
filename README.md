@@ -5,7 +5,7 @@
 <div align="center">
 
 ![GitHub branch checks state](https://img.shields.io/github/checks-status/thibaudbrault/pokeref/dev)
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/thibaudbrault/pokeref/ci.yml)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/thibaudbrault/pokeref/main.yml)
 ![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
 
