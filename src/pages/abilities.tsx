@@ -4,11 +4,11 @@ import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { type ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 
-import { Loader, errorToast } from '@/components';
+import { errorToast, Loader } from '@/components';
 import { usePaginatedTableParams } from '@/hooks';
 import { Heading, Search } from '@/modules/abilities';
 import moves from '@/modules/moves/Moves.module.scss';
-import { getAbilities, removeDash } from '@/utils';
+import { getMultiple, removeDash } from '@/utils';
 
 import type { IAbility } from '@/types';
 
@@ -20,7 +20,7 @@ function AbilitiesPage() {
     data: abilities,
   }: UseQueryResult<IAbility[], Error> = useQuery({
     queryKey: [`abilities`],
-    queryFn: getAbilities,
+    queryFn: () => getMultiple(`https://pokeapi.co/api/v2/ability?limit=359`),
   });
 
   const data = useMemo(() => abilities, [abilities]);

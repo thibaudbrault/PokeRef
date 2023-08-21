@@ -1,9 +1,9 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
-import { Loader, errorToast } from '@/components';
+import { errorToast, Loader } from '@/components';
 import { Heading, List } from '@/modules/types';
 import styles from '@/modules/types/Types.module.scss';
-import { getTypes } from '@/utils';
+import { getMultiple } from '@/utils';
 
 import type { IType } from '@/types';
 
@@ -15,7 +15,7 @@ function TypesPage() {
     data: types,
   }: UseQueryResult<IType[], Error> = useQuery({
     queryKey: [`types`],
-    queryFn: getTypes,
+    queryFn: () => getMultiple(`https://pokeapi.co/api/v2/type?limit=18`),
   });
 
   if (isError && error instanceof Error) {

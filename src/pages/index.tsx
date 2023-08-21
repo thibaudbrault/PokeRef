@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import ReactPaginate from 'react-paginate';
 
-import { Loader, Separator, errorToast } from '@/components';
+import { errorToast, Loader, Separator } from '@/components';
 import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
-import { getPokedex, type IOptionsOffsetLimit } from '@/utils';
+import { getMultiple, type IOptionsOffsetLimit } from '@/utils';
 
 import type { IPokemon } from '@/types';
 
@@ -34,7 +34,7 @@ function Pokedex() {
   }: UseQueryResult<IPokemon[], Error> = useQuery({
     queryKey: [`pokedex`, limit, offset],
     queryFn: () =>
-      getPokedex(
+      getMultiple(
         `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,
       ),
     keepPreviousData: true,
