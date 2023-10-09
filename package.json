@@ -73,7 +73,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.31.2",
-    "@tanstack/eslint-plugin-query": "4.29.4",
+    "@tanstack/eslint-plugin-query": "4.36.1",
     "@types/bcrypt": "5.0.0",
     "@types/node": "20.3.1",
     "@types/react": "18.0.25",
