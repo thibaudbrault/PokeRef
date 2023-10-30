@@ -68,7 +68,7 @@
     "react-tooltip": "5.13.1",
     "react-virtual": "2.10.4",
     "uuid": "9.0.0",
-    "vaul": "0.1.1",
+    "vaul": "0.7.7",
     "zod": "3.22.2"
   },
   "devDependencies": {

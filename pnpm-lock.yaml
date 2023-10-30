@@ -117,8 +117,8 @@ dependencies:
     specifier: 9.0.0
     version: 9.0.0
   vaul:
-    specifier: 0.1.1
-    version: 0.1.1(@types/react-dom@18.0.9)(@types/react@18.0.25)(react-dom@18.2.0)(react@18.2.0)
+    specifier: 0.7.7
+    version: 0.7.7(@types/react-dom@18.0.9)(@types/react@18.0.25)(react-dom@18.2.0)(react@18.2.0)
   zod:
     specifier: 3.22.2
     version: 3.22.2
@@ -7808,11 +7808,11 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vaul@0.1.1(@types/react-dom@18.0.9)(@types/react@18.0.25)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-cXh5GOAxSE4yJUahdlwkzexCfJMEbAzs1HPS43tmmwuRMLXG1Z+4HQMu/xF31hX72Yj8P22HAW71jBXtV5CQyQ==}
+  /vaul@0.7.7(@types/react-dom@18.0.9)(@types/react@18.0.25)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-NAQTE8836Daxq+VC74srRfGqiOLQft4yc0x8YsO6Vowti0RC7LWzSpIxKd7RGegzgMMZOho+9ysH+uI6o+tUVw==}
     peerDependencies:
-      react: ^18.0.0
-      react-dom: ^18.0.0
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
       '@radix-ui/react-dialog': 1.0.4(@types/react-dom@18.0.9)(@types/react@18.0.25)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
