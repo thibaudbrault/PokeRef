@@ -102,8 +102,8 @@ dependencies:
     specifier: 3.16.1
     version: 3.16.1(react-dom@18.2.0)(react@18.2.0)
   react-paginate:
-    specifier: 8.1.4
-    version: 8.1.4(react@18.2.0)
+    specifier: 8.2.0
+    version: 8.2.0(react@18.2.0)
   react-select:
     specifier: 5.7.0
     version: 5.7.0(@types/react@18.0.25)(react-dom@18.2.0)(react@18.2.0)
@@ -6531,8 +6531,8 @@ packages:
       warning: 4.0.3
     dev: false
 
-  /react-paginate@8.1.4(react@18.2.0):
-    resolution: {integrity: sha512-c3rxjcTEqeDQa6LqXifxLeFguY2qy2CHGRphVjHLFFMGfIHyaJ+v3bOvIlLYEeohwQ1q+cQpknjsqBVrkc/SNA==}
+  /react-paginate@8.2.0(react@18.2.0):
+    resolution: {integrity: sha512-sJCz1PW+9PNIjUSn919nlcRVuleN2YPoFBOvL+6TPgrH/3lwphqiSOgdrLafLdyLDxsgK+oSgviqacF4hxsDIw==}
     peerDependencies:
       react: ^16 || ^17 || ^18
     dependencies:
