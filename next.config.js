@@ -16,7 +16,16 @@ const nextConfig = withPWA({
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['raw.githubusercontent.com', 'images.pokemontcg.io']
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.pokemontcg.io'
+      }
+    ]
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
