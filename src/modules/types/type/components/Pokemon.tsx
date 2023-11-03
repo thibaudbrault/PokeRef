@@ -3,11 +3,10 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
-import Select, { type PropsValue } from 'react-select';
 
 import { useTableParams } from '@/hooks';
 import styles from '@/modules/types/type/Type.module.scss';
-import { type IOptionsFixed, removeDash, typeOptions } from '@/utils';
+import { removeDash, typeOptions, type IOptionsFixed } from '@/utils';
 
 import type { IPokemon } from '@/types';
 
@@ -145,13 +144,6 @@ export function Pokemon({ typeName, pokemon }: Props) {
     columns,
   );
 
-  const dropdownStyles = {
-    // @ts-ignore
-    multiValueRemove: (base, state) => {
-      return state.data.isFixed ? { ...base, display: `none` } : base;
-    },
-  };
-
   useEffect(() => {
     if (typeName) {
       fixCurType(typeName, true);
@@ -163,43 +155,12 @@ export function Pokemon({ typeName, pokemon }: Props) {
   return (
     <section className="section">
       <h3 className="h3">Pokémon</h3>
-      <div className={styles.container}>
-        {data && (
-          <h4 className={styles.subtitle}>
-            {data.length} Pokémon are{` `}
-            <span className="capitalize">{typeName}</span> type
-          </h4>
-        )}
-        <Select
-          value={type}
-          defaultValue={
-            typeArray.some((t) => t.isFixed)
-              ? undefined
-              : (typeArray as PropsValue<IOptionsFixed>)
-          }
-          isMulti
-          isClearable={typeArray.some((t) => !t.isFixed)}
-          isSearchable={false}
-          styles={dropdownStyles}
-          name="type"
-          id="type"
-          className="dropdown selectOptions"
-          classNamePrefix="select"
-          options={typeArray}
-          placeholder="Select"
-          // @ts-ignore
-          components={
-            type &&
-            type?.length >= 2 && {
-              Menu: () => null,
-              MenuList: () => null,
-              DropdownIndicator: () => null,
-              IndicatorSeparator: () => null,
-            }
-          }
-          onChange={(option) => option && setType(option as IOptionsFixed[])}
-        />
-      </div>
+      {data && (
+        <h4 className={styles.subtitle}>
+          {data.length} Pokémon are{` `}
+          <span className="capitalize">{typeName}</span> type
+        </h4>
+      )}
       <div className="tableContainer" ref={tableContainerRef}>
         {data && data.length > 0 && (
           <table className="fullWidthTable">
