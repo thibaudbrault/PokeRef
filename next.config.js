@@ -10,14 +10,6 @@ const withPWA = require("next-pwa")({
 })
 
 const nextConfig = withPWA({
-  webpack5: true,
-  webpack: (config) => {
-    config.resolve.fallback = {
-      fs: false,
-      path: false
-    }
-    return config
-  },
   eslint: {
     ignoreDuringBuilds: true
   },
