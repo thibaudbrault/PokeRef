@@ -76,7 +76,7 @@ function Profile(props: User & Caught) {
 export default Profile;
 
 export const config = {
-  runtime: `edge`,
+  runtime: `experimental-edge`,
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
