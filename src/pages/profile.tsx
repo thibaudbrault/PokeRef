@@ -75,6 +75,10 @@ function Profile(props: User & Caught) {
 
 export default Profile;
 
+export const config = {
+  runtime: `edge`,
+};
+
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getServerSession(context.req, context.res, authOptions);
 

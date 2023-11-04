@@ -3,6 +3,10 @@ import { NextApiRequest, NextApiResponse } from 'next/types';
 
 import { prisma } from '~/lib/prisma';
 
+export const config = {
+  runtime: `edge`,
+};
+
 const hashPassword = async (password: string) => {
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);

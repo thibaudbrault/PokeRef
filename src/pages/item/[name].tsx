@@ -73,6 +73,10 @@ function ItemCard({ name }: Props) {
 
 export default ItemCard;
 
+export const config = {
+  runtime: `edge`,
+};
+
 export function getServerSideProps(context: GetServerSidePropsContext) {
   const { name } = context.query;
   return {

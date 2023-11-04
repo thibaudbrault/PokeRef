@@ -87,6 +87,10 @@ function Ability({ name }: Props) {
 
 export default Ability;
 
+export const config = {
+  runtime: `edge`,
+};
+
 export function getServerSideProps(context: GetServerSidePropsContext) {
   const { name } = context.query;
   return {

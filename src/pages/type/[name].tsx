@@ -72,6 +72,10 @@ function TypeCard({ name }: Props) {
 
 export default TypeCard;
 
+export const config = {
+  runtime: `edge`,
+};
+
 export function getServerSideProps(context: GetServerSidePropsContext) {
   const { name } = context.query;
   return {
