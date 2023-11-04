@@ -90,18 +90,11 @@
   @extend %typeTable;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 3rem;
-}
-
 .subtitle {
   @extend %leftSubtitle;
 
   text-transform: none;
+  margin-bottom: 3rem;
 }
 
 .name {

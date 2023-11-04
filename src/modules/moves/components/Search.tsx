@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import * as Label from '@radix-ui/react-label';
-import Fuse from 'fuse.js';
+import Fuse, { FuseResult } from 'fuse.js';
 import Link from 'next/link';
 
 import { Input } from '@/components';
@@ -14,7 +14,7 @@ type Props = {
 };
 
 export function Search({ moves }: Props) {
-  const [searchRes, setSearchRes] = useState<Fuse.FuseResult<IMove>[]>([]);
+  const [searchRes, setSearchRes] = useState<FuseResult<IMove>[]>([]);
   const [searchText, setSearchText] = useState(``);
 
   const searchMoves = (text: string) => {

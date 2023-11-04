@@ -4,8 +4,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 3rem;
-  align-items: center;
-  justify-items: center;
+  place-items: center center;
 
   & div {
     display: flex;

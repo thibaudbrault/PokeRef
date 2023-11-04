@@ -81,8 +81,7 @@
   grid-template-areas:
     'input input'
     'button button';
-  justify-items: stretch;
-  align-items: stretch;
+  place-items: stretch stretch;
   gap: 2rem;
 
   & input {

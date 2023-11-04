@@ -3,18 +3,21 @@
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { User } from '@prisma/client';
 import bcrypt from 'bcrypt';
-import { type NextApiHandler } from 'next';
 import NextAuth, { type NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
+import { LoginValidator } from '@/utils';
 import { prisma } from '~/lib/prisma';
-import { LoginValidator } from '~/src/utils';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
+    }),
     GitHubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
@@ -79,8 +82,4 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.SECRET,
 };
 
-const authHandler: NextApiHandler = (req, res) => {
-  NextAuth(req, res, authOptions);
-};
-
-export default authHandler;
+export default NextAuth(authOptions);

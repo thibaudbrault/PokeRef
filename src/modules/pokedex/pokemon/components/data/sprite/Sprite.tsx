@@ -17,7 +17,8 @@ export function Sprite({ pokemon, species }: Props) {
           className={styles.image}
           src={pokemon.sprites.other[`official-artwork`].front_default}
           alt={pokemon.name}
-          fill={true}
+          width={256}
+          height={256}
         />
       </div>
       {pokemon.id < 10000 && (

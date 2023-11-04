@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import * as Label from '@radix-ui/react-label';
-import { type UseQueryResult, useQuery } from '@tanstack/react-query';
-import Fuse from 'fuse.js';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import Fuse, { FuseResult } from 'fuse.js';
 import Link from 'next/link';
 
 import { Input } from '@/components';
@@ -21,9 +21,9 @@ export function Search() {
     queryFn: getPokedexResults,
   });
 
-  const [searchRes, setSearchRes] = useState<
-    Fuse.FuseResult<INamedApiResource>[]
-  >([]);
+  const [searchRes, setSearchRes] = useState<FuseResult<INamedApiResource>[]>(
+    [],
+  );
   const [searchText, setSearchText] = useState(``);
 
   const searchPokedex = (text: string) => {
