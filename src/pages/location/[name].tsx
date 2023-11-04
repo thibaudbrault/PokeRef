@@ -242,7 +242,7 @@ function LocationCard({ name }: Props) {
 export default LocationCard;
 
 export const config = {
-  runtime: `edge`,
+  runtime: `experimental-edge`,
 };
 
 export function getServerSideProps(context: GetServerSidePropsContext) {

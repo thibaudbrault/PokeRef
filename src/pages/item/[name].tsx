@@ -74,7 +74,7 @@ function ItemCard({ name }: Props) {
 export default ItemCard;
 
 export const config = {
-  runtime: `edge`,
+  runtime: `experimental-edge`,
 };
 
 export function getServerSideProps(context: GetServerSidePropsContext) {
