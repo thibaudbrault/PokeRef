@@ -88,7 +88,7 @@ function Ability({ name }: Props) {
 export default Ability;
 
 export const config = {
-  runtime: `experimental-edge`,
+  runtime: `edge`,
 };
 
 export function getServerSideProps(context: GetServerSidePropsContext) {

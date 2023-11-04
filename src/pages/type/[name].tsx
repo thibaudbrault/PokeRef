@@ -73,7 +73,7 @@ function TypeCard({ name }: Props) {
 export default TypeCard;
 
 export const config = {
-  runtime: `experimental-edge`,
+  runtime: `edge`,
 };
 
 export function getServerSideProps(context: GetServerSidePropsContext) {

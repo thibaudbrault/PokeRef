@@ -200,7 +200,7 @@ function PokemonCard({ name }: Props) {
 export default PokemonCard;
 
 export const config = {
-  runtime: `experimental-edge`,
+  runtime: `edge`,
 };
 
 export function getServerSideProps(context: GetServerSidePropsContext) {
