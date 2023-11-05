@@ -199,10 +199,6 @@ function PokemonCard({ name }: Props) {
 
 export default PokemonCard;
 
-export const config = {
-  runtime: `experimental-edge`,
-};
-
 export function getServerSideProps(context: GetServerSidePropsContext) {
   const { name } = context.query;
   return {

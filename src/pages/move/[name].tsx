@@ -83,10 +83,6 @@ function MoveCard({ name }: Props) {
 
 export default MoveCard;
 
-export const config = {
-  runtime: `experimental-edge`,
-};
-
 export function getServerSideProps(context: GetServerSidePropsContext) {
   const { name } = context.query;
   return {
