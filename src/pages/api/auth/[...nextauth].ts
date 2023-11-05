@@ -2,13 +2,12 @@
 
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { User } from '@prisma/client';
-import bcrypt from 'bcrypt';
 import NextAuth, { type NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
-import { LoginValidator } from '@/utils';
+import { LoginValidator, matchPassword } from '@/utils';
 import { prisma } from '~/lib/prisma';
 
 export const authOptions: NextAuthOptions = {
@@ -45,7 +44,7 @@ export const authOptions: NextAuthOptions = {
               `No user found with this email. Try with a different email`,
             );
           }
-          const isPasswordValid = bcrypt.compare(password, user.password);
+          const isPasswordValid = matchPassword(password, user.password);
           if (!isPasswordValid) {
             throw new Error(`Invalid credentials`);
           }

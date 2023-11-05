@@ -1,16 +1,10 @@
-import bcrypt from 'bcrypt';
 import { NextApiRequest, NextApiResponse } from 'next/types';
 
+import { hashPassword } from '@/utils';
 import { prisma } from '~/lib/prisma';
 
 export const config = {
   runtime: `edge`,
-};
-
-const hashPassword = async (password: string) => {
-  const saltRounds = 10;
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
-  return hashedPassword;
 };
 
 const handlePost = async (res: NextApiResponse, req: NextApiRequest) => {
@@ -26,7 +20,7 @@ const handlePost = async (res: NextApiResponse, req: NextApiRequest) => {
   await prisma.user.create({
     data: {
       ...req.body,
-      password: await hashPassword(req.body.password),
+      password: hashPassword(req.body.password),
     },
   });
   return res
