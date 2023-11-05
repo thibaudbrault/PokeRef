@@ -3,10 +3,6 @@ import { NextApiRequest, NextApiResponse } from 'next/types';
 import { hashPassword } from '@/utils';
 import { prisma } from '~/lib/prisma';
 
-export const config = {
-  runtime: `edge`,
-};
-
 const handlePost = async (res: NextApiResponse, req: NextApiRequest) => {
   const userExists = await prisma.user.findUnique({
     where: { email: req.body.email },

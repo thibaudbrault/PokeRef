@@ -1,4 +1,4 @@
-import { randomBytes, scryptSync } from 'node:crypto';
+import { randomBytes, scryptSync } from 'crypto';
 
 const encryptPassword = (password: string, salt: string) => {
   return scryptSync(password, salt, 32).toString(`hex`);

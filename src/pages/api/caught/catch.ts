@@ -2,10 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next/types';
 
 import { prisma } from '~/lib/prisma';
 
-export const config = {
-  runtime: `edge`,
-};
-
 const handlePost = async (res: NextApiResponse, req: NextApiRequest) => {
   const { name, image, userEmail } = req.body;
   await prisma.caught.create({

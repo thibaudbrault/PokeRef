@@ -2,10 +2,6 @@ import { NextApiResponse, NextApiRequest } from 'next';
 
 import { prisma } from '~/lib/prisma';
 
-export const config = {
-  runtime: `edge`,
-};
-
 const handleGet = async (res: NextApiResponse, req: NextApiRequest) => {
   const { email } = req.query;
   const singleEmail = Array.isArray(email) ? email[0] : email;

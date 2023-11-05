@@ -2,10 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next/types';
 
 import { prisma } from '~/lib/prisma';
 
-export const config = {
-  runtime: `edge`,
-};
-
 const handleDelete = async (res: NextApiResponse, req: NextApiRequest) => {
   const { id } = req.query;
   const singleId = Array.isArray(id) ? id[0] : id;
