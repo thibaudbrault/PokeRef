@@ -1,5 +1,10 @@
 import { Caught, User } from '@prisma/client';
-import { useMutation, useQuery, UseQueryResult } from '@tanstack/react-query';
+import {
+  QueryClient,
+  useMutation,
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import { useSession } from 'next-auth/react';
 
@@ -20,6 +25,7 @@ type Props = {
 
 export function Data({ pokemon, species, game }: Props) {
   const { data: session } = useSession();
+  const queryClient = new QueryClient();
 
   const { data: user }: UseQueryResult<User & Caught> = useQuery({
     queryKey: [`user`, session?.user?.email],
@@ -58,11 +64,17 @@ export function Data({ pokemon, species, game }: Props) {
         }
       }
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [`user`, session?.user?.email],
+      });
+    },
   });
 
   return (
     <section className={styles.section} id="presentation">
-      {session &&
+      {user &&
+        Object.keys(user).length > 0 &&
         pokemon.id < 10000 &&
         // @ts-ignore
         (user.caught?.every(
