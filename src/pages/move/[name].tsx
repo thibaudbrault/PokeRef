@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import { FaChevronLeft } from '@meronex/icons/fa';
 import * as Tabs from '@radix-ui/react-tabs';
-import { type GetServerSidePropsContext } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { Button, Loader, Separator, errorToast } from '@/components';
 import { Data, Heading, List, Nav, useFetchMove } from '@/modules/moves/move';
@@ -15,11 +15,10 @@ const LearnMethod = dynamic(() =>
   import(`@/utils`).then((res) => res.LearnMethod),
 );
 
-type Props = {
-  name: string;
-};
+function MoveCard() {
+  const router = useRouter();
+  const name = router.query.name as string;
 
-function MoveCard({ name }: Props) {
   const [_learn, setLearn] = useState<string>(`level-up`);
 
   const {
@@ -82,12 +81,3 @@ function MoveCard({ name }: Props) {
 }
 
 export default MoveCard;
-
-export function getServerSideProps(context: GetServerSidePropsContext) {
-  const { name } = context.query;
-  return {
-    props: {
-      name,
-    },
-  };
-}

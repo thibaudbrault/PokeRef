@@ -1,7 +1,7 @@
 import { FaChevronLeft } from '@meronex/icons/fa';
-import { type GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { Button, Loader, errorToast } from '@/components';
 import {
@@ -15,11 +15,10 @@ import {
 import styles from '@/modules/items/item/Item.module.scss';
 import { removeDash } from '@/utils';
 
-type Props = {
-  name: string;
-};
+function ItemCard() {
+  const router = useRouter();
+  const name = router.query.name as string;
 
-function ItemCard({ name }: Props) {
   const { isLoading, isError, error, item, filterEffect } = useFilterItem(name);
 
   if (isError && error instanceof Error) {
@@ -72,12 +71,3 @@ function ItemCard({ name }: Props) {
 }
 
 export default ItemCard;
-
-export function getServerSideProps(context: GetServerSidePropsContext) {
-  const { name } = context.query;
-  return {
-    props: {
-      name,
-    },
-  };
-}

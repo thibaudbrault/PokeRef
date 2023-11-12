@@ -16,7 +16,6 @@ type Props = {
 };
 
 export function Pokemon({ typeName, pokemon }: Props) {
-  const [type, setType] = useState<IOptionsFixed[]>([]);
   const [typeArray, setTypeArray] = useState<IOptionsFixed[]>(typeOptions);
 
   const fixCurType = useCallback(
