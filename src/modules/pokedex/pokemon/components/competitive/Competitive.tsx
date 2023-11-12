@@ -166,90 +166,90 @@ export function Competitive({ format, name }: Props) {
                   />
                 </li>
               )}
-              {setsEntries(filteredAnalyses as IFormatAnalysesSets).sets?.map(
-                (s: IFormatsAnalysesSetName, i: number) => (
-                  <li key={s.name}>
-                    <h4 className="h4">{s.name}</h4>
-                    <div className={styles.specs}>
-                      <ul
-                        dangerouslySetInnerHTML={{
-                          __html: setSpecs(filteredSets, i, `moves`).map(
-                            (move: string | string[], index: number) =>
-                              wrapMoves(
-                                `li`,
-                                Array.isArray(move)
-                                  ? move
-                                      .map((j) => wrapMoves(`span`, j, index))
-                                      .join(` / `)
-                                  : move,
-                                index,
-                              ),
-                          ),
-                        }}
-                      />
-                      {detailedSets.length > 1 &&
-                        detailedSets.find(
-                          (d: string) => d !== `level` && d !== `moves`,
-                        ) && (
-                          <ul>
-                            <li>
-                              {typeof setSpecs(filteredSets, i, `item`) ===
-                              `string` ? (
-                                <>
-                                  Item:{` `}
-                                  <b>{setSpecs(filteredSets, i, `item`)}</b>
-                                </>
-                              ) : (
-                                <>
-                                  Items:{` `}
-                                  <b>
-                                    {setSpecs(filteredSets, i, `item`).join(
-                                      ` / `,
-                                    )}
-                                  </b>
-                                </>
-                              )}
-                            </li>
-                            <li>
-                              Nature:{` `}
-                              <b>
-                                {typeof setSpecs(filteredSets, i, `nature`) ===
-                                `string`
-                                  ? setSpecs(filteredSets, i, `nature`)
-                                  : `-`}
-                              </b>
-                            </li>
-                            <li>
-                              EVs:{` `}
-                              <b>
-                                {typeof setSpecs(filteredSets, i, `evs`) ===
-                                `object`
-                                  ? Object.entries(
-                                      setSpecs(filteredSets, i, `evs`),
+              {Object.values(
+                setsEntries(filteredAnalyses as IFormatAnalysesSets).sets,
+              )?.map((s: IFormatsAnalysesSetName, i: number) => (
+                <li key={s.name}>
+                  <h4 className="h4">{s.name}</h4>
+                  <div className={styles.specs}>
+                    <ul
+                      dangerouslySetInnerHTML={{
+                        __html: setSpecs(filteredSets, i, `moves`).map(
+                          (move: string | string[], index: number) =>
+                            wrapMoves(
+                              `li`,
+                              Array.isArray(move)
+                                ? move
+                                    .map((j) => wrapMoves(`span`, j, index))
+                                    .join(` / `)
+                                : move,
+                              index,
+                            ),
+                        ),
+                      }}
+                    />
+                    {detailedSets.length > 1 &&
+                      detailedSets.find(
+                        (d: string) => d !== `level` && d !== `moves`,
+                      ) && (
+                        <ul>
+                          <li>
+                            {typeof setSpecs(filteredSets, i, `item`) ===
+                            `string` ? (
+                              <>
+                                Item:{` `}
+                                <b>{setSpecs(filteredSets, i, `item`)}</b>
+                              </>
+                            ) : (
+                              <>
+                                Items:{` `}
+                                <b>
+                                  {setSpecs(filteredSets, i, `item`).join(
+                                    ` / `,
+                                  )}
+                                </b>
+                              </>
+                            )}
+                          </li>
+                          <li>
+                            Nature:{` `}
+                            <b>
+                              {typeof setSpecs(filteredSets, i, `nature`) ===
+                              `string`
+                                ? setSpecs(filteredSets, i, `nature`)
+                                : `-`}
+                            </b>
+                          </li>
+                          <li>
+                            EVs:{` `}
+                            <b>
+                              {typeof setSpecs(filteredSets, i, `evs`) ===
+                              `object`
+                                ? Object.entries(
+                                    setSpecs(filteredSets, i, `evs`),
+                                  )
+                                    .join(` / `)
+                                    .replaceAll(`,`, ` `)
+                                    .replace(
+                                      /\b(?:hp|atk|def|spa|spd|spe)\b/gi,
+                                      (matched) => majEv[matched],
                                     )
-                                      .join(` / `)
-                                      .replaceAll(`,`, ` `)
-                                      .replace(
-                                        /\b(?:hp|atk|def|spa|spd|spe)\b/gi,
-                                        (matched) => majEv[matched],
-                                      )
-                                  : `-`}
-                              </b>
-                            </li>
-                          </ul>
-                        )}
-                    </div>
-                    {s.description && (
-                      <div
-                        className={styles.desc}
-                        dangerouslySetInnerHTML={{
-                          __html: textFormatting(s.description),
-                        }}
-                      />
-                    )}
-                  </li>
-                ),
-              )}
+                                : `-`}
+                            </b>
+                          </li>
+                        </ul>
+                      )}
+                  </div>
+                  {s.description && (
+                    <div
+                      className={styles.desc}
+                      dangerouslySetInnerHTML={{
+                        __html: textFormatting(s.description),
+                      }}
+                    />
+                  )}
+                </li>
+              ))}
               {comments && (
                 <li>
                   <div
