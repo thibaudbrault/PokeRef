@@ -25,15 +25,19 @@ import {
   useFetchPokemon,
 } from '@/modules/pokedex/pokemon';
 import { pokemonFilters, removeDash, removeLongName } from '@/utils';
+import { useRouter } from 'next/router';
 
 type Props = {
   name: string;
 };
 
-function PokemonCard({ name }: Props) {
+function PokemonCard() {
   const [game, setGame] = useState<string | null>(null);
   const [version, setVersion] = useState<string | null>(null);
   const [format, setFormat] = useState<string | null>(null);
+
+  const router = useRouter();
+  const name = router.query.name as string;
 
   const { pokemonId, pokemon, species, types, location, evolution, cards } =
     useFetchPokemon(name);
@@ -199,11 +203,11 @@ function PokemonCard({ name }: Props) {
 
 export default PokemonCard;
 
-export function getServerSideProps(context: GetServerSidePropsContext) {
-  const { name } = context.query;
-  return {
-    props: {
-      name,
-    },
-  };
-}
+// export function getServerSideProps(context: GetServerSidePropsContext) {
+//   const { name } = context.query;
+//   return {
+//     props: {
+//       name,
+//     },
+//   };
+// }
