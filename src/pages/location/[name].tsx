@@ -2,8 +2,8 @@ import { useCallback, useMemo } from 'react';
 
 import { FaChevronLeft } from '@meronex/icons/fa';
 import { type ColumnDef } from '@tanstack/react-table';
-import { type GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Button, errorToast, GenNav, Loader } from '@/components';
@@ -20,11 +20,10 @@ import type {
   IPokemonEncounter,
 } from '@/types';
 
-type Props = {
-  name: string;
-};
+function LocationCard() {
+  const router = useRouter();
+  const name = router.query.name as string;
 
-function LocationCard({ name }: Props) {
   const {
     game,
     setGame,
@@ -240,12 +239,3 @@ function LocationCard({ name }: Props) {
 }
 
 export default LocationCard;
-
-export function getServerSideProps(context: GetServerSidePropsContext) {
-  const { name } = context.query;
-  return {
-    props: {
-      name,
-    },
-  };
-}

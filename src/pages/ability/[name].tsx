@@ -1,6 +1,6 @@
 import { FaChevronLeft } from '@meronex/icons/fa';
-import { type GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { Button, Loader, Separator, errorToast } from '@/components';
 import {
@@ -12,12 +12,11 @@ import {
 import styles from '@/modules/abilities/ability/Ability.module.scss';
 import { removeDash } from '@/utils';
 
-type Props = {
-  name: string;
-};
-
-function Ability({ name }: Props) {
+function Ability() {
   const overworld = `Overworld`;
+
+  const router = useRouter();
+  const name = router.query.name as string;
 
   const {
     isLoading,
@@ -86,12 +85,3 @@ function Ability({ name }: Props) {
 }
 
 export default Ability;
-
-export function getServerSideProps(context: GetServerSidePropsContext) {
-  const { name } = context.query;
-  return {
-    props: {
-      name,
-    },
-  };
-}

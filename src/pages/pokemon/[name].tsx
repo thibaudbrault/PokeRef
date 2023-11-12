@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 
 import { FaChevronLeft } from '@meronex/icons/fa';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
-import { type GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { Button, Loader, Separator, errorToast } from '@/components';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
@@ -25,11 +25,6 @@ import {
   useFetchPokemon,
 } from '@/modules/pokedex/pokemon';
 import { pokemonFilters, removeDash, removeLongName } from '@/utils';
-import { useRouter } from 'next/router';
-
-type Props = {
-  name: string;
-};
 
 function PokemonCard() {
   const [game, setGame] = useState<string | null>(null);
@@ -202,12 +197,3 @@ function PokemonCard() {
 }
 
 export default PokemonCard;
-
-// export function getServerSideProps(context: GetServerSidePropsContext) {
-//   const { name } = context.query;
-//   return {
-//     props: {
-//       name,
-//     },
-//   };
-// }

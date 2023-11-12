@@ -1,19 +1,18 @@
 import { FaChevronLeft } from '@meronex/icons/fa';
 import * as Tabs from '@radix-ui/react-tabs';
-import { type GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { Button, Loader, Separator, errorToast } from '@/components';
 import { Moves } from '@/modules/moves';
 import { Damage, Heading, Pokemon, useTypeQuery } from '@/modules/types/type';
 import styles from '@/modules/types/type/Type.module.scss';
 
-type Props = {
-  name: string;
-};
+function TypeCard() {
+  const router = useRouter();
+  const name = router.query.name as string;
 
-function TypeCard({ name }: Props) {
   const { type, pokemon, moves, isLoading, isError, error } =
     useTypeQuery(name);
 
@@ -71,12 +70,3 @@ function TypeCard({ name }: Props) {
 }
 
 export default TypeCard;
-
-export function getServerSideProps(context: GetServerSidePropsContext) {
-  const { name } = context.query;
-  return {
-    props: {
-      name,
-    },
-  };
-}
