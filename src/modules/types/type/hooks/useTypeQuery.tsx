@@ -1,6 +1,12 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
-import { getSingle, getTypeMoves, getTypePokemon, QueryKeys } from '@/utils';
+import {
+  BASE_URL,
+  getSingle,
+  getTypeMoves,
+  getTypePokemon,
+  QueryKeys,
+} from '@/utils';
 
 import type { IMove, IPokemon, IType } from '@/types';
 
@@ -12,7 +18,7 @@ export const useTypeQuery = (name: string) => {
     data: type,
   }: UseQueryResult<IType, Error> = useQuery({
     queryKey: [QueryKeys.TYPE.INDEX, name],
-    queryFn: () => getSingle(`https://pokeapi.co/api/v2/type/${name}`),
+    queryFn: () => getSingle(`${BASE_URL}/type/${name}`),
   });
 
   const { data: pokemon }: UseQueryResult<IPokemon[]> = useQuery({

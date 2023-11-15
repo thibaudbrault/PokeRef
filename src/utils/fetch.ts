@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { removeLongName } from '@/utils';
+import { BASE_URL, removeLongName } from '@/utils';
 
 import type {
   IAbility,
@@ -13,7 +13,7 @@ import type {
 // Fetch all pokemon names and endpoints
 export const getPokedexResults = async () => {
   try {
-    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1010`);
+    const res = await axios.get(`${BASE_URL}/pokemon?limit=1010`);
     const results = await res.data.results;
     return results;
   } catch (error) {
@@ -96,7 +96,7 @@ export const getMoveMachines = async (move: IMove) => {
 // Fetch move's target
 export const getMoveTarget = async () => {
   try {
-    const res = await axios.get(`https://pokeapi.co/api/v2/move-target`);
+    const res = await axios.get(`${BASE_URL}/move-target`);
     const results = await res.data.results;
     const promiseRes = await Promise.all(
       results.map((res: { url: string }) => axios.get(res.url)),

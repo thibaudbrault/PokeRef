@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 
 import { errorToast, Loader } from '@/components';
 import { Heading, List } from '@/modules/locations';
-import { getMultiple, QueryKeys, regions } from '@/utils';
+import { BASE_URL, getMultiple, QueryKeys, regions } from '@/utils';
 
 import type { IRegion } from '@/types';
 
@@ -24,7 +24,7 @@ function LocationsPage() {
     data: locations,
   }: UseQueryResult<IRegion[], Error> = useQuery({
     queryKey: [QueryKeys.REGIONS],
-    queryFn: () => getMultiple(`https://pokeapi.co/api/v2/region?limit=10`),
+    queryFn: () => getMultiple(`${BASE_URL}/region?limit=10`),
   });
 
   useEffect(() => {

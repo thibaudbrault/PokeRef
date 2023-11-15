@@ -6,3 +6,4 @@ export * from './navTabs';
 export * from './typography';
 export * from './validators';
 export * from './keys';
+export * from './urls';

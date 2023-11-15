@@ -2,7 +2,13 @@ import { useState } from 'react';
 
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
-import { getMoveMachines, getMovePokemon, getSingle, QueryKeys } from '@/utils';
+import {
+  BASE_URL,
+  getMoveMachines,
+  getMovePokemon,
+  getSingle,
+  QueryKeys,
+} from '@/utils';
 
 import type { IMachine, IMove, IPokemon } from '@/types';
 
@@ -14,7 +20,7 @@ export const useFetchMove = (name: string) => {
     data: move,
   }: UseQueryResult<IMove, Error> = useQuery({
     queryKey: [QueryKeys.MOVE.INDEX, name],
-    queryFn: () => getSingle(`https://pokeapi.co/api/v2/move/${name}`),
+    queryFn: () => getSingle(`${BASE_URL}/move/${name}`),
   });
 
   const { status, data: pokemon }: UseQueryResult<IPokemon[]> = useQuery({

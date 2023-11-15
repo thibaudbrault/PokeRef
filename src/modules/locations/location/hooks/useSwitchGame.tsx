@@ -6,7 +6,7 @@ import {
   type UseQueryResult,
 } from '@tanstack/react-query';
 
-import { getMultiple, getSingle, QueryKeys } from '@/utils';
+import { BASE_URL, getMultiple, getSingle, QueryKeys } from '@/utils';
 
 import type { ILocation, ILocationArea } from '@/types';
 
@@ -24,7 +24,7 @@ export const useSwitchGame = (name: string) => {
     queries: [
       {
         queryKey: [QueryKeys.LOCATION, toggleState, name],
-        queryFn: () => getSingle(`https://pokeapi.co/api/v2/location/${name}`),
+        queryFn: () => getSingle(`${BASE_URL}/location/${name}`),
         onSuccess: (data: ILocation) => {
           setAreaUrl(data.areas[toggleState]?.url);
         },
@@ -32,14 +32,11 @@ export const useSwitchGame = (name: string) => {
       {
         queryKey: [QueryKeys.ENCOUNTER.CONDITION, name],
         queryFn: () =>
-          getMultiple(
-            `https://pokeapi.co/api/v2/encounter-condition-value?limit=67`,
-          ),
+          getMultiple(`${BASE_URL}/encounter-condition-value?limit=67`),
       },
       {
         queryKey: [QueryKeys.ENCOUNTER.METHOD, name],
-        queryFn: () =>
-          getMultiple(`https://pokeapi.co/api/v2/encounter-method?limit=31`),
+        queryFn: () => getMultiple(`${BASE_URL}/encounter-method?limit=31`),
       },
     ],
   });

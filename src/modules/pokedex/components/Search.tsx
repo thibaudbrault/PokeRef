@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 import { Input } from '@/components';
 import {
+  BASE_URL,
   ImageWithFallback,
   QueryKeys,
   getPokedexResults,
@@ -56,7 +57,7 @@ export function Search() {
                   <ImageWithFallback
                     src={
                       `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${res.item.url
-                        .replace(`https://pokeapi.co/api/v2/pokemon/`, ``)
+                        .replace(`${BASE_URL}/pokemon/`, ``)
                         .slice(0, -1)}.png` || ``
                     }
                     alt=""
@@ -76,7 +77,7 @@ export function Search() {
                   <span className="searchId">
                     #
                     {res.item.url
-                      .replace(`https://pokeapi.co/api/v2/pokemon/`, ``)
+                      .replace(`${BASE_URL}/pokemon/`, ``)
                       .slice(0, -1)
                       .padStart(3, `0`)}
                   </span>
