@@ -6,7 +6,7 @@ import * as Tabs from '@radix-ui/react-tabs';
 import { useQueries } from '@tanstack/react-query';
 
 import { SmallLoader, errorToast } from '@/components';
-import { capitalize, getSingle, removeLongName } from '@/utils';
+import { QueryKeys, capitalize, getSingle, removeLongName } from '@/utils';
 
 import styles from './Competitive.module.scss';
 
@@ -23,21 +23,21 @@ export function Competitive({ format, name }: Props) {
   const [analyses, formats, sets] = useQueries({
     queries: [
       {
-        queryKey: [`analyses`, format],
+        queryKey: [QueryKeys.ANALYSES, format],
         queryFn: () =>
           getSingle(
             `https://raw.githubusercontent.com/pkmn/smogon/main/data/analyses/${format}.json`,
           ),
       },
       {
-        queryKey: [`formats`],
+        queryKey: [QueryKeys.FORMATS],
         queryFn: () =>
           getSingle(
             `https://raw.githubusercontent.com/pkmn/smogon/main/data/formats/index.json`,
           ),
       },
       {
-        queryKey: [`sets`, format],
+        queryKey: [QueryKeys.SETS, format],
         queryFn: () =>
           getSingle(
             `https://raw.githubusercontent.com/pkmn/smogon/main/data/sets/${format}.json`,

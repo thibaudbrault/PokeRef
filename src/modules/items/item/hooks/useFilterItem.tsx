@@ -1,6 +1,6 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
-import { getSingle } from '@/utils';
+import { getSingle, QueryKeys } from '@/utils';
 
 import type { IItem } from '@/types';
 
@@ -11,7 +11,7 @@ export const useFilterItem = (name: string) => {
     error,
     data: item,
   }: UseQueryResult<IItem, Error> = useQuery({
-    queryKey: [`item`, name],
+    queryKey: [QueryKeys.ITEM, name],
     queryFn: () => getSingle(`https://pokeapi.co/api/v2/item/${name}`),
   });
 

@@ -1,6 +1,8 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import axios from 'axios';
 
+import { QueryKeys } from '~/src/utils';
+
 import type { IMove, IPokemon } from '@/types';
 
 export const useFetchMachines = (
@@ -36,7 +38,7 @@ export const useFetchMachines = (
 
   // Temporary data that will be used to do a second fetching because the part needed (the machine name like TM01) is contained in another object
   const { data: tmpMachines }: UseQueryResult<IMove[]> = useQuery({
-    queryKey: [`tmpMachines`, version, name],
+    queryKey: [QueryKeys.POKEMON.MACHINES.TEMP, version, name],
     queryFn: getFilteredMachines,
     enabled: !!filteredMachines,
   });
@@ -64,7 +66,7 @@ export const useFetchMachines = (
 
   // Finally, the data returned contains the machine's name
   const { data: machines } = useQuery({
-    queryKey: [`pokemonMachines`, version, name],
+    queryKey: [QueryKeys.POKEMON.MACHINES.INDEX, version, name],
     queryFn: getMachinesDetails,
     enabled: !!machinesByVersion && !!machinesByVersion.length,
   });

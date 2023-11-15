@@ -1,7 +1,7 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
 import { SmallLoader, errorToast } from '@/components';
-import { getMoveTarget, removeDash } from '@/utils';
+import { getMoveTarget, QueryKeys, removeDash } from '@/utils';
 
 import styles from '../Data.module.scss';
 
@@ -19,7 +19,7 @@ export function Effect({ move, version }: Props) {
     error,
     data: target,
   }: UseQueryResult<IMoveTarget[], Error> = useQuery({
-    queryKey: [`target`],
+    queryKey: [QueryKeys.MOVE.TARGET],
     queryFn: getMoveTarget,
   });
 

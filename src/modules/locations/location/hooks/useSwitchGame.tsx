@@ -6,7 +6,7 @@ import {
   type UseQueryResult,
 } from '@tanstack/react-query';
 
-import { getMultiple, getSingle } from '@/utils';
+import { getMultiple, getSingle, QueryKeys } from '@/utils';
 
 import type { ILocation, ILocationArea } from '@/types';
 
@@ -23,21 +23,21 @@ export const useSwitchGame = (name: string) => {
   const [location, encounter, method] = useQueries({
     queries: [
       {
-        queryKey: [`location`, toggleState, name],
+        queryKey: [QueryKeys.LOCATION, toggleState, name],
         queryFn: () => getSingle(`https://pokeapi.co/api/v2/location/${name}`),
         onSuccess: (data: ILocation) => {
           setAreaUrl(data.areas[toggleState]?.url);
         },
       },
       {
-        queryKey: [`encounterCondition`, name],
+        queryKey: [QueryKeys.ENCOUNTER.CONDITION, name],
         queryFn: () =>
           getMultiple(
             `https://pokeapi.co/api/v2/encounter-condition-value?limit=67`,
           ),
       },
       {
-        queryKey: [`encounterMethod`, name],
+        queryKey: [QueryKeys.ENCOUNTER.METHOD, name],
         queryFn: () =>
           getMultiple(`https://pokeapi.co/api/v2/encounter-method?limit=31`),
       },
@@ -84,7 +84,7 @@ export const useSwitchGame = (name: string) => {
     error,
     data: area,
   }: UseQueryResult<ILocationArea, Error> = useQuery({
-    queryKey: [`area`, toggleState, game, name, areaUrl],
+    queryKey: [QueryKeys.AREA, toggleState, game, name, areaUrl],
     queryFn: () => areaUrl && getSingle(areaUrl),
     enabled: !!areaUrl && !!game && !!encounter.data,
   });

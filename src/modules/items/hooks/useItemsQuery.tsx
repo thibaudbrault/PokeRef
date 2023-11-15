@@ -1,16 +1,16 @@
 import { useQueries } from '@tanstack/react-query';
 
-import { getMultiple } from '@/utils';
+import { QueryKeys, getMultiple } from '@/utils';
 
 export const useItemsQuery = () => {
   const [items, berries] = useQueries({
     queries: [
       {
-        queryKey: [`items`],
+        queryKey: [QueryKeys.ITEMS],
         queryFn: () => getMultiple(`https://pokeapi.co/api/v2/item?limit=2051`),
       },
       {
-        queryKey: [`berries`],
+        queryKey: [QueryKeys.ITEMS],
         queryFn: () => getMultiple(`https://pokeapi.co/api/v2/berry?limit=66`),
       },
     ],

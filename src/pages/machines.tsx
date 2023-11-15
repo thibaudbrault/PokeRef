@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { errorToast, GenNav, Loader } from '@/components';
 import { useTableParams } from '@/hooks';
 import { Heading } from '@/modules/machines';
-import { getMultiple, removeDash, uppercase } from '@/utils';
+import { getMultiple, QueryKeys, removeDash, uppercase } from '@/utils';
 
 import type { IMachine } from '@/types';
 
@@ -20,7 +20,7 @@ function MachinesPage() {
     error,
     data: machines,
   }: UseQueryResult<IMachine[], Error> = useQuery({
-    queryKey: [`machines`],
+    queryKey: [QueryKeys.MACHINES],
     queryFn: () => getMultiple(`https://pokeapi.co/api/v2/machine?limit=1700`),
   });
 

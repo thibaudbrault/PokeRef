@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { Input } from '@/components';
 import {
   ImageWithFallback,
+  QueryKeys,
   getPokedexResults,
   removeDash,
   removeLongName,
@@ -17,7 +18,7 @@ import type { INamedApiResource } from '@/types';
 
 export function Search() {
   const { data: pokedex }: UseQueryResult<INamedApiResource[]> = useQuery({
-    queryKey: [`pokedex`],
+    queryKey: [QueryKeys.POKEDEX],
     queryFn: getPokedexResults,
   });
 

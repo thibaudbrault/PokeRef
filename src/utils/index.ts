@@ -3,6 +3,6 @@ export * from './fetch';
 export * from './hashPassword';
 export * from './imageWithFallback';
 export * from './navTabs';
-export * from './Typography';
+export * from './typography';
 export * from './validators';
 export * from './keys';

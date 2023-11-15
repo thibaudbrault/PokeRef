@@ -1,6 +1,6 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
-import { getAbilityPokemon, getSingle } from '@/utils';
+import { getAbilityPokemon, getSingle, QueryKeys } from '@/utils';
 
 import type { IAbility, IAbilityFlavorText, IEffect } from '@/types';
 
@@ -11,12 +11,12 @@ export const useFilterAbility = (name: string) => {
     error,
     data: ability,
   }: UseQueryResult<IAbility, Error> = useQuery({
-    queryKey: [`ability`, name],
+    queryKey: [QueryKeys.ABILITY.INDEX, name],
     queryFn: () => getSingle(`https://pokeapi.co/api/v2/ability/${name}`),
   });
 
   const { data: pokemon } = useQuery({
-    queryKey: [`abilityPokemon`, name, ability],
+    queryKey: [QueryKeys.ABILITY.POKEMON, name, ability],
     queryFn: () => ability && getAbilityPokemon(ability),
     enabled: !!ability,
   });
