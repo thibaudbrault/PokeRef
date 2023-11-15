@@ -1,4 +1,8 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
 import NextNProgress from 'nextjs-progressbar';
@@ -45,14 +49,16 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <SessionProvider session={session}>
           <QueryClientProvider client={queryClient}>
-            <ThemeProvider>
-              <Toaster />
-              <NextNProgress />
-              <Header />
-              <Nav />
-              <Component {...pageProps} />
-              <Footer />
-            </ThemeProvider>
+            <Hydrate state={pageProps.dehydratedState}>
+              <ThemeProvider>
+                <Toaster />
+                <NextNProgress />
+                <Header />
+                <Nav />
+                <Component {...pageProps} />
+                <Footer />
+              </ThemeProvider>
+            </Hydrate>
           </QueryClientProvider>
         </SessionProvider>
       </ErrorBoundary>
