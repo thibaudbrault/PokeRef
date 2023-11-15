@@ -2,7 +2,7 @@ import { type Dispatch, type SetStateAction } from 'react';
 
 import * as Tabs from '@radix-ui/react-tabs';
 
-import { learnMethod, regions } from './DataArrays';
+import { learnMethod, regions } from './dataArrays';
 import { removeDash } from './Typography';
 
 interface IProps {
