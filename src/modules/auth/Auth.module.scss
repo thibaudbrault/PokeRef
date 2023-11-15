@@ -74,7 +74,7 @@
     linear-gradient(to right, rgb(0 0 0 / 30%) 0%, rgb(0 0 0 / 30%) 100%);
 }
 
-%form {
+%formContainer {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -82,8 +82,8 @@
   gap: 3rem;
 }
 
-.form {
-  @extend %form;
+.formContainer {
+  @extend %formContainer;
 }
 
 .titleContainer {
@@ -105,7 +105,7 @@
   font-weight: 600;
 }
 
-%input {
+%form {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -147,8 +147,8 @@
   }
 }
 
-.input {
-  @extend %input;
+.form {
+  @extend %form;
 }
 
 .reset {
