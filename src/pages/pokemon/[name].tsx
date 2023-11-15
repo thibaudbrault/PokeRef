@@ -24,6 +24,7 @@ import {
   Types,
   useFetchPokemon,
 } from '@/modules/pokedex/pokemon';
+import { IFlavorText } from '@/types';
 import { pokemonFilters, removeDash, removeLongName } from '@/utils';
 
 function PokemonCard() {
@@ -80,9 +81,21 @@ function PokemonCard() {
     return <Loader />;
   }
 
+  const getSeoDesc = () => {
+    if (species.data) {
+      const flavorText = species?.data.flavor_text_entries.find(
+        (sf: IFlavorText) => sf.language.name === `en`,
+      );
+      const desc = flavorText.flavor_text;
+      return desc;
+    } else {
+      return `Find every details about ${name}`;
+    }
+  };
+
   return (
     <>
-      <Heading name={name} />
+      <Heading name={name} description={getSeoDesc()} />
       <main className="mainBig">
         <section className={styles.section}>
           {pokemon.data?.name?.includes(`mega`) ? (
