@@ -6,25 +6,24 @@ import {
   useQuery,
   type UseQueryResult,
 } from '@tanstack/react-query';
-import { useRouter } from 'next/router';
+import { useSetAtom } from 'jotai';
 import ReactPaginate from 'react-paginate';
 
+import { pageAtom } from '@/atoms';
 import { errorToast, Loader, Separator } from '@/components';
 import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
 import {
+  BASE_URL,
   getMultiple,
+  Limit,
   QueryKeys,
   type IOptionsOffsetLimit,
-  BASE_URL,
-  Limit,
 } from '@/utils';
 
 import type { IPokemon } from '@/types';
 
 function Pokedex() {
-  const router = useRouter();
-
   const [filteredPokedex, setFilteredPokedex] = useState<IPokemon[]>([]);
   // Modify the first pokemon displayed
   const [offset, setOffset] = useState<number>(0);
@@ -36,7 +35,7 @@ function Pokedex() {
   const [generation, setGeneration] = useState<IOptionsOffsetLimit | null>(
     null,
   );
-  const [page, setPage] = useState<number>(0);
+  const setPage = useSetAtom(pageAtom);
 
   const { scrollBtn } = useScrollDir();
 
@@ -53,11 +52,6 @@ function Pokedex() {
   });
 
   const handlePageChange = (data: { selected: number }) => {
-    if (data.selected > 0) {
-      router.push(`?page=${data.selected + 1}`);
-    } else {
-      router.push(``);
-    }
     window.scrollTo(0, 0);
     setPage(data.selected);
     setOffset((50 * data.selected) % Limit.POKEMON);
@@ -80,8 +74,6 @@ function Pokedex() {
           setFilteredPokedex={setFilteredPokedex}
           offset={offset}
           setOffset={setOffset}
-          page={page}
-          setPage={setPage}
           setLimit={setLimit}
           form={form}
           setForm={setForm}
@@ -122,7 +114,7 @@ export const getStaticProps = async () => {
 
   await queryClient.prefetchQuery({
     queryKey: [QueryKeys.POKEDEX, 50, 0],
-    queryFn: () => getMultiple(`${BASE_URL}/pokemon?offset=0&limit=50`),
+    queryFn: () => getMultiple(`${BASE_URL}/pokemon`),
   });
 
   return {
