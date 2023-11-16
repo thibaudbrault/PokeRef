@@ -25,7 +25,11 @@ export const removeLongName = (str: string) =>
     ?.replace(/-?solo$/, ``)
     ?.replace(/-?red meteor$/, ``)
     ?.replace(/-?disguised$/, ``)
-    ?.replace(/-?amped$/, ``)
+    ?.replace(/-?amped/, ``)
+    ?.replace(/-?low key/, ``)
     ?.replace(/-?full belly$/, ``)
-    ?.replace(/-?single strike$/, ``)
-    ?.replace(/-?rapid strike$/, ``);
+    ?.replace(/-?single strike/, ``)
+    ?.replace(/-?rapid strike/, ``)
+    ?.replace(/-?combat breed/, ``)
+    ?.replace(/-?blaze breed/, ``)
+    ?.replace(/-?aqua breed/, ``);
