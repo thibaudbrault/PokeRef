@@ -28,6 +28,7 @@
     "react/no-unused-prop-types": "off",
     "react/no-unescaped-entities": "off",
     "react/require-default-props": "off",
+    "@tanstack/query/exhaustive-deps": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
