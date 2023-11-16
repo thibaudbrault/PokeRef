@@ -12,7 +12,7 @@ export const Limit = {
     AILMENT: 22,
   },
   ABILITIES: 359,
-  POKEMON: 1010,
+  POKEMON: 1015,
   REGIONS: 10,
   TYPES: 18,
 } as const;

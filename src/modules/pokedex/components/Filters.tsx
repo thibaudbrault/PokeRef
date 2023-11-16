@@ -6,12 +6,15 @@ import {
 } from 'react';
 
 import * as Label from '@radix-ui/react-label';
+import { useAtom } from 'jotai';
 import Select, { type SingleValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
 
+import { pageAtom } from '@/atoms';
 import {
   formOptions,
   generationsOptions,
+  Limit,
   type IOptionsOffsetLimit,
 } from '@/utils';
 
@@ -25,8 +28,6 @@ type Props = {
   setFilteredPokedex: Dispatch<SetStateAction<IPokemon[]>>;
   offset: number;
   setOffset: Dispatch<SetStateAction<number>>;
-  page: number;
-  setPage: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;
   form: IOptionsOffsetLimit | null;
   setForm: Dispatch<SetStateAction<IOptionsOffsetLimit | null>>;
@@ -39,14 +40,17 @@ export function Filters({
   setFilteredPokedex,
   offset,
   setOffset,
-  page,
-  setPage,
   setLimit,
   form,
   setForm,
   generation,
   setGeneration,
 }: Props) {
+  const [page, setPage] = useAtom(pageAtom);
+
+  const resultsLastPage = Limit.POKEMON % 50;
+  const limitLastPage = Limit.POKEMON - resultsLastPage;
+
   const getFilterPokemon = useCallback(() => {
     if (pokedex) {
       setFilteredPokedex(
@@ -55,8 +59,8 @@ export function Filters({
           .flat()
           .filter((pokedex) => {
             if (!form && !generation) {
-              setOffset((50 * page) % 1010);
-              setLimit(offset === 1000 ? 10 : 50);
+              setOffset((50 * page) % Limit.POKEMON);
+              setLimit(offset === limitLastPage ? resultsLastPage : 50);
               return pokedex;
             } else if (form) {
               setOffset(form.offset);
