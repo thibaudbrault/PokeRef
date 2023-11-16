@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FiX } from '@meronex/icons/fi';
 import { GrGithub, GrGoogle } from '@meronex/icons/gr';
@@ -16,12 +18,13 @@ import { LoginValidator, capitalize } from '@/utils';
 type LoginCredentials = z.infer<typeof LoginValidator>;
 
 function Login() {
+  const [disabled, setDisabled] = useState<boolean>(true);
   const router = useRouter();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<LoginCredentials>({
     resolver: zodResolver(LoginValidator),
   });
@@ -40,6 +43,10 @@ function Login() {
     },
   });
 
+  useEffect(() => {
+    setDisabled(!isValid);
+  }, [isValid]);
+
   return (
     <main className="mainForm">
       <div className={styles.container}>
@@ -47,17 +54,17 @@ function Login() {
           <FiX />
         </Link>
         <div className={styles.image} />
-        <form
-          className={styles.form}
-          onSubmit={handleSubmit((values) => loginHandler(values))}
-        >
+        <div className={styles.formContainer}>
           <div className={styles.titleContainer}>
             <h2 className="h2">Login</h2>
             <p>
               Go to your profile to create teams and find your favorites pokémon
             </p>
           </div>
-          <fieldset className={styles.input}>
+          <form
+            className={styles.form}
+            onSubmit={handleSubmit((values) => loginHandler(values))}
+          >
             <div>
               <Input
                 type="email"
@@ -83,20 +90,21 @@ function Login() {
                 J'ai oublié mon mot de passe
               </button>
             </div>
-            <Button intent="authPrimary" size="large" type="submit">
+            <Button intent="authPrimary" size="large" disabled={disabled}>
               {isLoading ? <Spinner /> : `Login`}
             </Button>
-          </fieldset>
+          </form>
           <p className={styles.choice}>OR</p>
-          <div className={styles.input}>
+          <div className={styles.form}>
             <div className={styles.providers}>
               <Button
                 intent="authSecondary"
                 size="large"
                 logo="withLogo"
+                type="button"
                 onClick={() =>
                   signIn(`google`, {
-                    callbackUrl: `${process.env.NEXTAUTH_URL}`,
+                    callbackUrl: `${process.env.NEXT_PUBLIC_SITE_URL}`,
                   })
                 }
               >
@@ -109,9 +117,10 @@ function Login() {
                 intent="authSecondary"
                 size="large"
                 logo="withLogo"
+                type="button"
                 onClick={() =>
                   signIn(`github`, {
-                    callbackUrl: `${process.env.NEXTAUTH_URL}`,
+                    callbackUrl: process.env.NEXT_PUBLIC_SITE_URL,
                   })
                 }
               >
@@ -126,7 +135,7 @@ function Login() {
             Don't have an account yet ?{` `}
             <Link href="/register">Register</Link>
           </p>
-        </form>
+        </div>
       </div>
     </main>
   );
