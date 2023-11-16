@@ -1,16 +1,30 @@
 import { useState } from 'react';
 
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import {
+  dehydrate,
+  QueryClient,
+  useQuery,
+  type UseQueryResult,
+} from '@tanstack/react-query';
+import { useRouter } from 'next/router';
 import ReactPaginate from 'react-paginate';
 
 import { errorToast, Loader, Separator } from '@/components';
 import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
-import { getMultiple, type IOptionsOffsetLimit } from '@/utils';
+import {
+  getMultiple,
+  QueryKeys,
+  type IOptionsOffsetLimit,
+  BASE_URL,
+  Limit,
+} from '@/utils';
 
 import type { IPokemon } from '@/types';
 
 function Pokedex() {
+  const router = useRouter();
+
   const [filteredPokedex, setFilteredPokedex] = useState<IPokemon[]>([]);
   // Modify the first pokemon displayed
   const [offset, setOffset] = useState<number>(0);
@@ -32,18 +46,21 @@ function Pokedex() {
     error,
     data: pokedex,
   }: UseQueryResult<IPokemon[], Error> = useQuery({
-    queryKey: [`pokedex`, limit, offset],
+    queryKey: [QueryKeys.POKEDEX, limit, offset],
     queryFn: () =>
-      getMultiple(
-        `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,
-      ),
+      getMultiple(`${BASE_URL}/pokemon?offset=${offset}&limit=${limit}`),
     keepPreviousData: true,
   });
 
   const handlePageChange = (data: { selected: number }) => {
+    if (data.selected > 0) {
+      router.push(`?page=${data.selected + 1}`);
+    } else {
+      router.push(``);
+    }
     window.scrollTo(0, 0);
     setPage(data.selected);
-    setOffset((50 * data.selected) % 1010);
+    setOffset((50 * data.selected) % Limit.POKEMON);
   };
 
   if (isError && error instanceof Error) {
@@ -88,7 +105,7 @@ function Pokedex() {
             nextLabel=">"
             pageRangeDisplayed={3}
             marginPagesDisplayed={2}
-            pageCount={Math.ceil(1010 / 50)}
+            pageCount={Math.ceil(Limit.POKEMON / 50)}
             previousLabel="<"
             renderOnZeroPageCount={() => null}
           />
@@ -99,3 +116,18 @@ function Pokedex() {
 }
 
 export default Pokedex;
+
+export const getStaticProps = async () => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: [QueryKeys.POKEDEX, 50, 0],
+    queryFn: () => getMultiple(`${BASE_URL}/pokemon?offset=0&limit=50`),
+  });
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};
