@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { PrismaAdapter } from '@auth/prisma-adapter';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { User } from '@prisma/client';
 import NextAuth, { type NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -14,8 +14,8 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
     GitHubProvider({
       clientId: process.env.GITHUB_ID,
@@ -57,12 +57,57 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    session({ session, token }) {
+    async signIn({ profile, account }) {
+      // const maybeUser = await prisma.user.findUnique({
+      //   where: { email: profile.email },
+      // });
+      // if (!maybeUser) {
+      //   const domain = profile.email.split('@')[1];
+      //   const tenant = await prisma.tenant.findUnique({ where: { domain } });
+      //   if (!tenant) return false;
+      //   const usersCount = await prisma.user.count({
+      //     where: { tenantId: tenant.id },
+      //   });
+      //   if (
+      //     (tenant.plan === 'free' && usersCount >= 5) ||
+      //     (tenant.plan === 'business' && usersCount >= 100)
+      //   ) {
+      //     return false;
+      //   }
+      //   const newUser = await prisma.user.create({
+      //     data: {
+      //       name: profile.name,
+      //       email: profile.email,
+      //       image: profile.picture,
+      //       role: 'user',
+      //       tenant: { connect: { id: tenant.id } },
+      //     },
+      //   });
+      //   if (!newUser) {
+      //     return false;
+      //   }
+      //   return true;
+      // }
+      // if (
+      //   account.provider === 'google' &&
+      //   (!maybeUser.name || !maybeUser.image)
+      // ) {
+      //   await prisma.user.update({
+      //     where: { id: maybeUser.id },
+      //     data: {
+      //       name: profile.name,
+      //       image: profile.picture,
+      //     },
+      //   });
+      // }
+      // return true;
+    },
+    async session({ session, token }) {
       session.user.id = token.id;
       session.user.name = token.username;
       return session;
     },
-    jwt({ token, account, user }) {
+    async jwt({ token, account, user }) {
       if (account) {
         token.accessToken = account.access_token;
         token.id = user.id;
