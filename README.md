@@ -57,8 +57,6 @@
 ✅404 page  
 ✅Responsive
 
-🛠Second type select in the list of Pokémon in a type page
-
 🔜Contest section in a move's page
 
 <h4>Features - Back</h4>
@@ -71,16 +69,14 @@
 ✅Use of Prisma and Tanstack-Query to handle queries and mutations  
 ✅Possibility to save / remove favorites Pokémon
 
-🛠Add Goggle and Github providers
+🛠Fix auth problems
 
 🔜Add possibility to modify a profile
 
 <h4>Performance improvements</h4>
 
-✅Use of Next SSR for dynamic pages  
 ✅Use of Tanstack-Query to fetch data only once by using `cacheTime: Infinity` and `staleTime: Infinity`. The data will very rarely change so there is no use in re-fetching it every x minutes / hours  
 ✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important  
-✅Use of dynamic import (the Next JS equivalent of lazy loading component from ES2020) to load components when they are needed by the users. This means that if a user never interacts with a component that is dynamically imported, it will never be loaded  
 ✅Turned into a PWA with the next-pwa package  
 ✅Paginated pokedex, moves, abilities and items pages
 
@@ -129,6 +125,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - Added Firebase for authentication and saving a user's caught Pokémon with data stored in Firestore.
 - Changed all the structure folder and moved from Styled-Components to Scss modules.
 - Removed Firebase in favor of Prisma + Planetscale.
+- Migrate to Railway to use a more familiar tool.
 
 <h4>Problems encountered (ordered from the oldest to the most recent)</h4>
 
@@ -159,7 +156,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
 - <img src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white" />
 - <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" />
-- <img src="https://img.shields.io/badge/planetscale-%23000000.svg?style=for-the-badge&logo=planetscale&logoColor=white" />
+- <img src="https://img.shields.io/badge/railway-%23000000.svg?style=for-the-badge&logo=planetscale&logoColor=white" />
 - <img src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white" />
 - <img src="https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220" />
 
@@ -182,7 +179,7 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 <a href="https://www.npmjs.com/package/react-select" target="_blank">React Select</a>  
 <a href="https://www.npmjs.com/package/react-paginate" target="_blank">React Paginate</a>  
 <a href="https://www.npmjs.com/package/fuse.js" target="_blank">Fuse.js</a>  
-<a href="https://www.npmjs.com/package/yup" target="_blank">Yup</a>  
+<a href="https://www.npmjs.com/package/zod" target="_blank">Zod</a>  
 <a href="https://www.npmjs.com/package/eslint" target="_blank">ESLint</a>  
 <a href="https://www.npmjs.com/package/prettier" target="_blank">Prettier</a>  
 <a href="https://www.npmjs.com/package/next-pwa" target="_blank">Next PWA</a>
