@@ -7,6 +7,7 @@ import {
 
 import * as Label from '@radix-ui/react-label';
 import { useAtom } from 'jotai';
+import { useRouter } from 'next/router';
 import Select, { type SingleValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
 
@@ -47,6 +48,7 @@ export function Filters({
   setGeneration,
 }: Props) {
   const [page, setPage] = useAtom(pageAtom);
+  const router = useRouter();
 
   const resultsLastPage = Limit.POKEMON % 50;
   const limitLastPage = Limit.POKEMON - resultsLastPage;
@@ -79,12 +81,14 @@ export function Filters({
   }, [form, generation, page, pokedex, offset]);
 
   const handleFormSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
+    router.push(`?form=${option?.value}`);
     setForm(option);
     setPage(0);
     setGeneration(null);
   };
 
   const handleGenSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
+    router.push(`?generation=${option?.value}`);
     setGeneration(option);
     setPage(0);
     setForm(null);
