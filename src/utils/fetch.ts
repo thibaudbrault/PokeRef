@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { BASE_URL, removeLongName } from '@/utils';
+import { BASE_URL, Limit, removeLongName } from '@/utils';
 
 import type {
   IAbility,
@@ -13,7 +13,7 @@ import type {
 // Fetch all pokemon names and endpoints
 export const getPokedexResults = async () => {
   try {
-    const res = await axios.get(`${BASE_URL}/pokemon?limit=1010`);
+    const res = await axios.get(`${BASE_URL}/pokemon?limit=${Limit.POKEMON}`);
     const results = await res.data.results;
     return results;
   } catch (error) {

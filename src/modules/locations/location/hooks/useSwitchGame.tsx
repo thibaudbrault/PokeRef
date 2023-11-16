@@ -6,7 +6,7 @@ import {
   type UseQueryResult,
 } from '@tanstack/react-query';
 
-import { BASE_URL, getMultiple, getSingle, QueryKeys } from '@/utils';
+import { BASE_URL, getMultiple, getSingle, Limit, QueryKeys } from '@/utils';
 
 import type { ILocation, ILocationArea } from '@/types';
 
@@ -32,11 +32,16 @@ export const useSwitchGame = (name: string) => {
       {
         queryKey: [QueryKeys.ENCOUNTER.CONDITION, name],
         queryFn: () =>
-          getMultiple(`${BASE_URL}/encounter-condition-value?limit=67`),
+          getMultiple(
+            `${BASE_URL}/encounter-condition-value?limit=${Limit.ENCOUNTER.CONDITION}`,
+          ),
       },
       {
         queryKey: [QueryKeys.ENCOUNTER.METHOD, name],
-        queryFn: () => getMultiple(`${BASE_URL}/encounter-method?limit=31`),
+        queryFn: () =>
+          getMultiple(
+            `${BASE_URL}/encounter-method?limit=${Limit.ENCOUNTER.METHOD}`,
+          ),
       },
     ],
   });

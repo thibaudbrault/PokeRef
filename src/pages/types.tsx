@@ -3,7 +3,7 @@ import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { errorToast, Loader } from '@/components';
 import { Heading, List } from '@/modules/types';
 import styles from '@/modules/types/Types.module.scss';
-import { BASE_URL, getMultiple, QueryKeys } from '@/utils';
+import { BASE_URL, getMultiple, Limit, QueryKeys } from '@/utils';
 
 import type { IType } from '@/types';
 
@@ -15,7 +15,7 @@ function TypesPage() {
     data: types,
   }: UseQueryResult<IType[], Error> = useQuery({
     queryKey: [QueryKeys.TYPES],
-    queryFn: () => getMultiple(`${BASE_URL}/type?limit=18`),
+    queryFn: () => getMultiple(`${BASE_URL}/type?limit=${Limit.TYPES}`),
   });
 
   if (isError && error instanceof Error) {
