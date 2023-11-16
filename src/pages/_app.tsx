@@ -10,11 +10,9 @@ import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { Toaster } from 'react-hot-toast';
 
 import { ThemeProvider } from '@/contexts';
-import { Footer, Header, Nav } from '@/modules/layout';
-
 import '@/styles/styles.scss';
-
-import { useNextCssRemovalPrevention } from '../hooks';
+import { useNextCssRemovalPrevention } from '@/hooks';
+import { PageLayout } from '@/layouts';
 
 import type { AppProps } from 'next/app';
 
@@ -53,10 +51,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
               <ThemeProvider>
                 <Toaster />
                 <NextNProgress />
-                <Header />
-                <Nav />
-                <Component {...pageProps} />
-                <Footer />
+                <PageLayout>
+                  <Component {...pageProps} />
+                </PageLayout>
               </ThemeProvider>
             </Hydrate>
           </QueryClientProvider>
