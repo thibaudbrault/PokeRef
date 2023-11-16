@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 
 import { Loader, errorToast, successToast } from '@/components';
 import styles from '@/modules/profile/Profile.module.scss';
-import { removeDash } from '@/utils';
+import { Limit, removeDash } from '@/utils';
 import { prisma } from '~/lib/prisma';
 
 import { authOptions } from './api/auth/[...nextauth]';
@@ -48,7 +48,7 @@ function Profile(props: User & Caught) {
       <section className="section">
         <h2 className="leftH2">{props.name}'s caught pokémon</h2>
         <h4 className="leftSubtitle">
-          You caught {props.caught.length} / 1010 Pokémon
+          You caught {props.caught.length} / {Limit.POKEMON} Pokémon
         </h4>
         <ul className={styles.caught}>
           {props.caught.map((pokemon: Caught, index: number) => (
