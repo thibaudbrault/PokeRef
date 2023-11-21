@@ -13,8 +13,7 @@ model User {
   updatedAt DateTime  @updatedAt
   name      String
   email     String    @unique
-  password  String
-  role      Role      @default(USER)
+  image     String?
   accounts  Account[]
   sessions  Session[]
   caught    Caught[]
@@ -70,9 +69,4 @@ model VerificationRequest {
   updatedAt  DateTime @updatedAt
 
   @@unique([identifier, token])
-}
-
-enum Role {
-  USER
-  ADMIN
 }
