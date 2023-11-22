@@ -6,9 +6,11 @@
   @extend %input;
 
   min-width: 25rem;
+  grid-area: search;
 
   & label {
     font-size: 1.7rem;
+    font-weight: 600;
   }
 
   & input {
@@ -17,18 +19,18 @@
     padding: 1rem;
     text-transform: capitalize;
 
+    @include gthemed {
+      background-color: t('elementBackground');
+    }
+
     &::placeholder {
       font-size: 1.5rem;
       font-family: Quicksand, serif;
 
       @include gthemed {
-        color: t('text');
+        color: t('lowContrastText');
       }
     }
-  }
-
-  @include md {
-    grid-area: search;
   }
 
   @include xs {

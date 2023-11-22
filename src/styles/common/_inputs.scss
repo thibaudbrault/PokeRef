@@ -27,20 +27,22 @@
     border-radius: 5px;
 
     @include gthemed {
-      color: t('text');
-      border: 1px solid t('text');
+      color: t('highContrastText');
+      border: 1px solid t('border');
     }
 
     &:focus {
       outline: none;
-      border: 1px solid $red;
+      @include gthemed {
+        border: 1px solid t('hoverBorder');
+      }
     }
 
     &::placeholder {
       opacity: 0.8;
 
       @include gthemed {
-        color: t('text');
+        color: t('lowContrastText');
       }
     }
   }
@@ -56,29 +58,24 @@
   & .select__control {
     min-width: 15rem;
     padding: 0 0.5rem;
-    background: transparent;
     border-radius: 5px;
     text-transform: capitalize;
     font-size: 1.7rem;
 
     @include gthemed {
-      color: t('text');
-      border: 1px solid t('text');
+      background: t('elementBackground');
+      color: t('lowContrastText');
+      border: 1px solid t('border');
     }
 
     &--is-focused {
       outline: none;
-      border: 1px solid $red;
       box-shadow: none;
-
-      &:hover {
-        border-color: $red;
-      }
     }
 
     & .select__input-container {
       @include gthemed {
-        color: t('text') !important;
+        color: t('lowContrastText') !important;
       }
 
       &::first-letter {
@@ -90,19 +87,19 @@
       font-size: 1.7rem;
 
       @include gthemed {
-        color: t('text');
+        color: t('lowContrastText');
       }
     }
 
     & .select__indicator-separator {
       @include gthemed {
-        background-color: t('text');
+        background-color: t('lowContrastText');
       }
     }
 
     & .select__dropdown-indicator {
       @include gthemed {
-        color: t('text');
+        color: t('lowContrastText');
       }
     }
   }
@@ -112,8 +109,8 @@
     font-size: 1.7rem;
 
     @include gthemed {
-      color: t('text');
-      background: t('bg');
+      color: t('highContrastText');
+      background: t('elementBackground');
     }
 
     & .select__option {
@@ -121,13 +118,14 @@
       background-color: transparent;
 
       &--is-focused {
-        background-color: transparent;
-        color: $red;
+        @include gthemed {
+          background-color: t('elementHoverBackground');
+        }
       }
 
       &--is-selected {
         @include gthemed {
-          color: t('text');
+          color: t('highContrastText');
         }
       }
     }
@@ -158,8 +156,8 @@
     border-radius: 5px;
 
     @include gthemed {
-      background-color: t('text');
-      color: t('bg');
+      background-color: t('elementActiveBackground');
+      color: t('highContrastText');
     }
   }
 

@@ -2,15 +2,13 @@
 
 .search {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-areas: 'search form generation';
+  grid-template:
+    'search search'
+    'form generation';
   gap: 2rem;
 
   @include md {
     display: grid;
-    grid-template:
-      'search search'
-      'form generation';
     gap: 2rem 4rem;
   }
 }
@@ -25,7 +23,7 @@
   & label {
     font-size: 1.7rem;
     margin-bottom: 0.5rem;
-    justify-self: flex-start;
+    font-weight: 600;
   }
 
   &:first-of-type {
@@ -41,8 +39,11 @@
   width: 100%;
   text-align: center;
   margin-top: -4rem;
-  margin-bottom: 5rem;
   font-size: 1.3rem;
+  font-weight: 600;
+  @include themed {
+    color: t('lowContrastText');
+  }
 }
 
 .verticalText {
@@ -59,7 +60,7 @@
   transform: translate(-50%, -50%);
 
   @include themed {
-    color: t('text');
+    color: t('lowContrastText');
   }
 
   @include xl {
@@ -71,31 +72,36 @@
   max-width: 1300px;
   min-height: 80vh;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: stretch;
   gap: 2rem;
+
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include xs {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .element {
-  width: 21rem;
-  height: 32rem;
   padding: 2rem 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 1rem;
-  background: rgb(255 255 255 / 25%);
-  border: 1px solid transparent;
+  gap: 0.5rem;
   border-radius: 25px;
   text-align: center;
+  margin-top: 72px;
 
   & h2 {
     font-size: 3rem;
     font-family: Oswald, sans-serif;
-    text-transform: capitalize;
+    text-transform: lowercase;
+    font-variant: small-caps;
 
     & a {
       cursor: pointer;
@@ -110,50 +116,37 @@
     }
   }
 
-  &:nth-child(even) {
-    &:hover {
-      border-radius: 10px 50px;
+  @include themed {
+    background-color: t('elementBackground');
 
-      @include sm {
-        border-radius: 7px 35px;
-      }
-    }
+    // border: 1px solid t('border');
   }
 
-  &:nth-child(odd) {
-    &:hover {
-      border-radius: 50px 10px;
+  &:hover {
+    @include themed {
+      background-color: t('elementHoverBackground');
 
-      @include sm {
-        border-radius: 35px 7px;
-      }
+      // border: 1px solid t('hoverBorder');
     }
-  }
-
-  @include sm {
-    width: 26rem;
-    height: 37rem;
-    padding: 1.5rem 2.5rem;
   }
 }
 
 .number {
-  padding: 0.1rem 0.7rem;
   font-size: 1.3rem;
-  color: #c4c4c4;
-  background-color: #161616;
+  font-weight: 600;
   border-radius: 50px;
 
+  @include themed {
+    color: t('lowContrastText');
+  }
+
   @include sm {
-    padding: 0.1rem 1rem;
     font-size: 1.7rem;
   }
 }
 
 .sprite {
   position: relative;
-  top: 0;
-  left: 0;
 }
 
 .shiny {
@@ -165,7 +158,7 @@
 
 .image {
   position: relative;
-  margin: 0 auto;
+  margin: -72px auto 0;
 
   &:hover .shiny {
     opacity: 1;
@@ -178,25 +171,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   gap: 1rem;
 
   & div {
-    width: 100%;
+    width: fit-content;
     padding: 0.5rem;
     border-radius: 5px;
     text-transform: uppercase;
     text-align: center;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     border: 1px solid rgb(22 22 22 / 20%);
 
     @include themed {
-      color: t('text');
+      color: t('highContrastText');
       text-shadow:
-        t('bg') -1px -1px 0,
-        t('bg') 1px -1px 0,
-        t('bg') -1px 1px 0,
-        t('bg') 1px 1px 0;
+        t('appBackground') -1px -1px 0,
+        t('appBackground') 1px -1px 0,
+        t('appBackground') -1px 1px 0,
+        t('appBackground') 1px 1px 0;
     }
 
     & a {
@@ -234,13 +226,15 @@
   bottom: 5rem;
   font-size: 5rem;
   border-radius: 50%;
-  background-color: rgb(140 140 140 / 20%);
   cursor: pointer;
+
+  @include themed {
+    background-color: t('subtleBackground');
+  }
 
   &:hover {
     @include themed {
-      color: t('bg');
-      background: t('text');
+      background: t('elementActiveBackground');
     }
   }
 
@@ -248,35 +242,5 @@
     right: 3rem;
     bottom: 3rem;
     font-size: 4rem;
-  }
-}
-
-.section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 1.5rem;
-
-  & h2 {
-    margin-bottom: 0;
-  }
-
-  & button {
-    background: none;
-    border: none;
-
-    & svg {
-      font-size: 4rem;
-
-      & path {
-        stroke-width: 1;
-
-        @include themed {
-          fill: t('bg');
-          stroke: t('text');
-        }
-      }
-    }
   }
 }

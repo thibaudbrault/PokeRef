@@ -25,7 +25,7 @@ export function List({ filteredPokedex }: Props) {
             <Sprites p={p} />
             {p.id < 1011 && (
               <p className={styles.number}>
-                #{p.id.toString().padStart(3, `0`)}
+                {p.id.toString().padStart(3, `0`)}
               </p>
             )}
             <h2>
