@@ -118,15 +118,11 @@
 
   @include themed {
     background-color: t('elementBackground');
-
-    // border: 1px solid t('border');
   }
 
   &:hover {
     @include themed {
       background-color: t('elementHoverBackground');
-
-      // border: 1px solid t('hoverBorder');
     }
   }
 }
