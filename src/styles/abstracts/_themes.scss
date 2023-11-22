@@ -31,42 +31,47 @@ $light9: #8d8d8d;
 $light10: #838383;
 $light11: #646464;
 $light12: #202020;
+
+// Old colors
 $light: #e5e5e5;
 $dark: #171717;
+
+/* stylelint-disable */
 $themes: (
   dark: (
     bg: $dark,
     text: $light,
-    appbackground: $dark1,
-    subtlebackground: $dark2,
-    elementbackground: $dark3,
-    elementhoverbackground: $dark4,
-    elementactivebackground: $dark5,
-    subtleborder: $dark6,
+    appBackground: $dark1,
+    subtleBackground: $dark2,
+    elementBackground: $dark3,
+    elementHoverBackground: $dark4,
+    elementActiveBackground: $dark5,
+    subtleBorder: $dark6,
     border: $dark7,
-    hoverborder: $dark8,
-    solidbackground: $dark9,
-    solidhoverbackground: $dark10,
-    lowcontrasttext: $dark11,
-    highcontrasttext: $dark12,
+    hoverBorder: $dark8,
+    solidBackground: $dark9,
+    solidHoverBackground: $dark10,
+    lowContrastText: $dark11,
+    highContrastText: $dark12,
   ),
   light: (
     bg: $light,
     text: $dark,
-    appbackground: $light1,
-    subtlebackground: $light2,
-    elementbackground: $light3,
-    elementhoverbackground: $light4,
-    elementactivebackground: $light5,
-    subtleborder: $light6,
+    appBackground: $light1,
+    subtleBackground: $light2,
+    elementBackground: $light3,
+    elementHoverBackground: $light4,
+    elementActiveBackground: $light5,
+    subtleBorder: $light6,
     border: $light7,
-    hoverborder: $light8,
-    solidbackground: $light9,
-    solidhoverbackground: $light10,
-    lowcontrasttext: $light11,
-    highcontrasttext: $light12,
+    hoverBorder: $light8,
+    solidBackground: $light9,
+    solidHoverBackground: $light10,
+    lowContrastText: $light11,
+    highContrastT ext: $light12,
   ),
 );
+/* stylelint-enable */
 
 @mixin themed {
   @each $theme, $map in $themes {
