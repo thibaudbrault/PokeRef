@@ -14,7 +14,6 @@ import styles from './Header.module.scss';
 
 export function Header() {
   const { status, data: session } = useSession();
-  console.log(`🚀 ~ file: Header.tsx:17 ~ Header ~ session:`, session);
 
   const { theme, setTheme } = useContext(ThemeContext);
 
