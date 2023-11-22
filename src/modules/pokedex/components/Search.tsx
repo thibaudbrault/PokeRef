@@ -19,7 +19,7 @@ import type { INamedApiResource } from '@/types';
 
 export function Search() {
   const { data: pokedex }: UseQueryResult<INamedApiResource[]> = useQuery({
-    queryKey: [QueryKeys.POKEDEX],
+    queryKey: [QueryKeys.SEARCH],
     queryFn: getPokedexResults,
   });
 
