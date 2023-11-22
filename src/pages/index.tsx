@@ -43,7 +43,7 @@ function Pokedex() {
     error,
     data: pokedex,
   }: UseQueryResult<IPokemon[], Error> = useQuery({
-    queryKey: [QueryKeys.POKEDEX],
+    queryKey: [QueryKeys.POKEDEX, limit, offset],
     queryFn: () =>
       getMultiple(`${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`),
     keepPreviousData: true,
@@ -108,18 +108,3 @@ function Pokedex() {
 }
 
 export default Pokedex;
-
-export const getStaticProps = async () => {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: [QueryKeys.POKEDEX, 50, 0],
-    queryFn: () => getMultiple(`${BASE_URL}/pokemon`),
-  });
-
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-};
