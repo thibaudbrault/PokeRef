@@ -25,30 +25,6 @@ export const authOptions: NextAuthOptions = {
     newUser: `/`,
   },
   callbacks: {
-    async signIn({ profile }) {
-      try {
-        const maybeUser = await prisma.user.findUnique({
-          where: { email: profile.email },
-        });
-        if (!maybeUser) {
-          const newUser = await prisma.user.create({
-            data: {
-              name: profile.name,
-              email: profile.email,
-              image: profile.picture || profile.avatar_url,
-            },
-          });
-          if (!newUser) {
-            return false;
-          }
-          return true;
-        }
-        return true;
-      } catch (error) {
-        console.error(error);
-        return false;
-      }
-    },
     async jwt({ token, account, user }) {
       if (account) {
         token.accessToken = account.access_token;
