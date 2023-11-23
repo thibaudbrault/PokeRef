@@ -6,16 +6,13 @@ import {
 } from 'react';
 
 import * as Label from '@radix-ui/react-label';
-import { useAtom } from 'jotai';
-import { useRouter } from 'next/router';
 import Select, { type SingleValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
 
-import { pageAtom } from '@/atoms';
 import {
+  Limit,
   formOptions,
   generationsOptions,
-  Limit,
   type IOptionsOffsetLimit,
 } from '@/utils';
 
@@ -27,6 +24,8 @@ import type { IPokemon } from '@/types';
 type Props = {
   pokedex?: IPokemon[];
   setFilteredPokedex: Dispatch<SetStateAction<IPokemon[]>>;
+  page: number;
+  setPage: Dispatch<SetStateAction<number>>;
   offset: number;
   setOffset: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;
@@ -39,6 +38,8 @@ type Props = {
 export function Filters({
   pokedex,
   setFilteredPokedex,
+  page,
+  setPage,
   offset,
   setOffset,
   setLimit,
@@ -47,9 +48,6 @@ export function Filters({
   generation,
   setGeneration,
 }: Props) {
-  const [page, setPage] = useAtom(pageAtom);
-  const router = useRouter();
-
   const resultsLastPage = Limit.POKEMON % 50;
   const limitLastPage = Limit.POKEMON - resultsLastPage;
 
@@ -81,14 +79,12 @@ export function Filters({
   }, [form, generation, page, pokedex, offset]);
 
   const handleFormSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
-    router.push(`?form=${option?.value}`);
     setForm(option);
     setPage(0);
     setGeneration(null);
   };
 
   const handleGenSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
-    router.push(`?generation=${option?.value}`);
     setGeneration(option);
     setPage(0);
     setForm(null);
@@ -101,16 +97,16 @@ export function Filters({
   }, [getFilterPokemon]);
 
   return (
-    <section className={styles.search}>
-      <Search />
-      <div className={styles.dropdown}>
+    <section className={styles.filters}>
+      <Search onGrid={true} />
+      <div className={styles.form}>
         <Label.Root htmlFor="form">Form</Label.Root>
         <Select
           key={form?.value}
           name="form"
           id="form"
           value={form}
-          className="dropdown selectOptions"
+          className="dropdown"
           classNamePrefix="select"
           components={animatedComponents}
           isClearable
@@ -123,14 +119,14 @@ export function Filters({
         />
       </div>
 
-      <div className={styles.dropdown}>
+      <div className={styles.generation}>
         <Label.Root htmlFor="generation">Generation</Label.Root>
         <Select
           key={generation?.value}
           name="generation"
           id="generation"
           value={generation}
-          className="dropdown selectOptions"
+          className="dropdown"
           classNamePrefix="select"
           components={animatedComponents}
           isClearable

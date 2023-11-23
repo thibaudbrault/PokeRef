@@ -17,15 +17,15 @@
   gap: 1rem;
   background: none;
   @include themed {
-    color: t('text');
-    border: 1px solid t('text');
+    color: t('highContrastText');
+    background-color: t('elementBackground');
+    border: 1px solid t('border');
   }
 
   &:hover {
     @include themed {
-      background: t('text');
-      color: t('bg');
-      border: 1px solid t('bg');
+      background: t('elementHoverBackground');
+      border: 1px solid t('hoverBorder');
     }
   }
 }

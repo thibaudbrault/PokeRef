@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { Button, Loader, Separator, errorToast } from '@/components';
-import styles from '@/modules/pokedex/Pokedex.module.scss';
 import {
   Cards,
   Competitive,
@@ -24,6 +23,7 @@ import {
   Types,
   useFetchPokemon,
 } from '@/modules/pokedex/pokemon';
+import styles from '@/modules/pokedex/pokemon/Pokemon.module.scss';
 import { IFlavorText } from '@/types';
 import { pokemonFilters, removeDash, removeLongName } from '@/utils';
 

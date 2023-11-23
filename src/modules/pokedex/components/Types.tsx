@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import type { IPokemon } from '@/types';
@@ -18,12 +17,6 @@ export function Types({ p }: Props) {
               query: { name: pt.type.name },
             }}
           >
-            <Image
-              src={`/images/types/${pt.type.name}.png`}
-              alt={pt.type.name}
-              width={20}
-              height={20}
-            />
             <span>{pt.type.name}</span>
           </Link>
         </div>

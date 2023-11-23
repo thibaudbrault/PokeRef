@@ -6,6 +6,6 @@
   margin: 5rem auto;
   border: 0;
   @include themed {
-    background-color: t('text');
+    background-color: t('subtleBorder');
   }
 }

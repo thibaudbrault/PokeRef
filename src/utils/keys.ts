@@ -50,4 +50,5 @@ export const QueryKeys = {
     },
   },
   USER: `user`,
+  SEARCH: `search`,
 } as const;

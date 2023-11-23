@@ -25,12 +25,11 @@
   & a {
     display: inline-block;
     text-transform: capitalize;
-    border-bottom: 1px solid transparent;
     cursor: pointer;
 
     &:hover {
       @include themed {
-        border-bottom: 1px solid t('text');
+        text-decoration: underline;
       }
     }
   }
@@ -46,12 +45,11 @@
     & p {
       width: fit-content;
       text-transform: capitalize;
-      border-bottom: 1px solid transparent;
       cursor: pointer;
 
       &:hover {
         @include themed {
-          border-bottom: 1px solid t('text');
+          text-decoration: underline;
         }
       }
     }

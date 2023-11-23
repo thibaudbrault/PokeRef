@@ -9,6 +9,7 @@
 
   & label {
     font-size: 1.7rem;
+    font-weight: 600;
   }
 
   & input {
@@ -17,18 +18,18 @@
     padding: 1rem;
     text-transform: capitalize;
 
+    @include gthemed {
+      background-color: t('elementBackground');
+    }
+
     &::placeholder {
       font-size: 1.5rem;
       font-family: Quicksand, serif;
 
       @include gthemed {
-        color: t('text');
+        color: t('lowContrastText');
       }
     }
-  }
-
-  @include md {
-    grid-area: search;
   }
 
   @include xs {
@@ -49,8 +50,9 @@
     border-radius: 5px;
 
     @include gthemed {
-      background: t('text');
-      color: t('bg');
+      background: t('elementBackground');
+      color: t('highContrastText');
+      border: 1px solid t('border');
     }
 
     & li {
@@ -74,4 +76,9 @@
 
 .searchId {
   font-size: 1.7rem;
+  font-weight: 600;
+
+  @include gthemed {
+    color: t('lowContrastText');
+  }
 }

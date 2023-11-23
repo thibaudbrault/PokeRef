@@ -1,15 +1,8 @@
 import { useState } from 'react';
 
-import {
-  dehydrate,
-  QueryClient,
-  useQuery,
-  type UseQueryResult,
-} from '@tanstack/react-query';
-import { useSetAtom } from 'jotai';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import ReactPaginate from 'react-paginate';
 
-import { pageAtom } from '@/atoms';
 import { errorToast, Loader, Separator } from '@/components';
 import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
@@ -35,7 +28,7 @@ function Pokedex() {
   const [generation, setGeneration] = useState<IOptionsOffsetLimit | null>(
     null,
   );
-  const setPage = useSetAtom(pageAtom);
+  const [page, setPage] = useState<number>(0);
 
   const { scrollBtn } = useScrollDir();
 
@@ -47,7 +40,7 @@ function Pokedex() {
   }: UseQueryResult<IPokemon[], Error> = useQuery({
     queryKey: [QueryKeys.POKEDEX, limit, offset],
     queryFn: () =>
-      getMultiple(`${BASE_URL}/pokemon?offset=${offset}&limit=${limit}`),
+      getMultiple(`${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`),
     keepPreviousData: true,
   });
 
@@ -72,6 +65,8 @@ function Pokedex() {
         <Filters
           pokedex={pokedex}
           setFilteredPokedex={setFilteredPokedex}
+          page={page}
+          setPage={setPage}
           offset={offset}
           setOffset={setOffset}
           setLimit={setLimit}
@@ -108,18 +103,3 @@ function Pokedex() {
 }
 
 export default Pokedex;
-
-export const getStaticProps = async () => {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: [QueryKeys.POKEDEX, 50, 0],
-    queryFn: () => getMultiple(`${BASE_URL}/pokemon`),
-  });
-
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-};

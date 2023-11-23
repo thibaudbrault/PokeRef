@@ -134,24 +134,34 @@
 
   width: 90%;
 
-  & th {
-    background: rgb(130 130 130 / 20%);
-    text-transform: capitalize;
-  }
-
-  & td {
-    font-size: 1.7rem;
-    font-weight: 600;
-    text-align: left;
-    text-transform: capitalize;
-
-    & ul {
-      margin-left: 2rem;
-
-      & li {
-        list-style-type: decimal;
-        text-align: left;
+  & tr {
+    & th {
+      text-transform: capitalize;
+      @include themed {
+        background-color: t('elementBackground');
       }
+    }
+
+    & td {
+      font-size: 1.7rem;
+      font-weight: 600;
+      text-align: left;
+      text-transform: capitalize;
+
+      & ul {
+        margin-left: 2rem;
+
+        & li {
+          list-style-type: decimal;
+          text-align: left;
+        }
+      }
+    }
+
+    @include themed {
+      border: 1px solid t('subtleBorder');
+      border-left: none;
+      border-right: none;
     }
   }
 }
