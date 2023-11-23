@@ -7,9 +7,12 @@
   cursor: pointer;
 
   @include gthemed {
-    color: t('bg');
-    text-shadow: t('text') -1px -1px 0, t('text') 1px -1px 0,
-      t('text') -1px 1px 0, t('text') 1px 1px 0;
+    color: t('appBackground');
+    text-shadow:
+      t('highContrastText') -1px -1px 0,
+      t('highContrastText') 1px -1px 0,
+      t('highContrastText') -1px 1px 0,
+      t('highContrastText') 1px 1px 0;
   }
 
   @include lg {
@@ -44,9 +47,12 @@
   text-align: center;
 
   @include gthemed {
-    color: t('bg');
-    text-shadow: t('text') -1px -1px 0, t('text') 1px -1px 0,
-      t('text') -1px 1px 0, t('text') 1px 1px 0;
+    color: t('appBackground');
+    text-shadow:
+      t('highContrastText') -1px -1px 0,
+      t('highContrastText') 1px -1px 0,
+      t('highContrastText') -1px 1px 0,
+      t('highContrastText') 1px 1px 0;
   }
 }
 

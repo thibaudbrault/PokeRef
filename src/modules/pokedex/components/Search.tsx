@@ -15,9 +15,15 @@ import {
   removeLongName,
 } from '@/utils';
 
+import styles from '../Pokedex.module.scss';
+
 import type { INamedApiResource } from '@/types';
 
-export function Search() {
+type Props = {
+  onGrid?: boolean;
+};
+
+export function Search({ onGrid }: Props) {
   const { data: pokedex }: UseQueryResult<INamedApiResource[]> = useQuery({
     queryKey: [QueryKeys.SEARCH],
     queryFn: getPokedexResults,
@@ -26,7 +32,6 @@ export function Search() {
   const [searchRes, setSearchRes] = useState<FuseResult<INamedApiResource>[]>(
     [],
   );
-  const [searchText, setSearchText] = useState(``);
 
   const searchPokedex = (text: string) => {
     if (pokedex) {
@@ -34,13 +39,12 @@ export function Search() {
         keys: [`name`],
         includeMatches: true,
       });
-      setSearchText(text);
       setSearchRes(fuse.search(text).slice(0, 5));
     }
   };
 
   return (
-    <div className="search">
+    <div className={onGrid ? `${styles.search} search` : `search`}>
       <Label.Root htmlFor="search">Search</Label.Root>
       <Input
         type="text"
@@ -48,41 +52,39 @@ export function Search() {
         placeholder="Pokémon Name"
         onChange={(e) => searchPokedex(e.target.value)}
       />
-      {searchText && (
+      {searchRes.length > 0 && (
         <div className="searchContainer">
           <ul>
-            {searchRes &&
-              searchRes?.map((res) => (
-                <li key={res.item.name}>
-                  <ImageWithFallback
-                    src={
-                      `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${res.item.url
-                        .replace(`${BASE_URL}/pokemon/`, ``)
-                        .slice(0, -1)}.png` || ``
-                    }
-                    alt=""
-                    width={48}
-                    height={48}
-                    fallbackSrc={`/images/other/unknown.png`}
-                  />
-                  <Link
-                    href={{
-                      pathname: `/pokemon/[name]`,
-                      query: { name: res.item.name },
-                    }}
-                    className="searchLink bold"
-                  >
-                    {removeLongName(removeDash(res.item.name))}
-                  </Link>
-                  <span className="searchId">
-                    #
-                    {res.item.url
+            {searchRes?.map((res) => (
+              <li key={res.item.name}>
+                <ImageWithFallback
+                  src={
+                    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${res.item.url
                       .replace(`${BASE_URL}/pokemon/`, ``)
-                      .slice(0, -1)
-                      .padStart(3, `0`)}
-                  </span>
-                </li>
-              ))}
+                      .slice(0, -1)}.png` || ``
+                  }
+                  alt=""
+                  width={48}
+                  height={48}
+                  fallbackSrc={`/images/other/unknown.png`}
+                />
+                <Link
+                  href={{
+                    pathname: `/pokemon/[name]`,
+                    query: { name: res.item.name },
+                  }}
+                  className="searchLink bold"
+                >
+                  {removeLongName(removeDash(res.item.name))}
+                </Link>
+                <span className="searchId">
+                  {res.item.url
+                    .replace(`${BASE_URL}/pokemon/`, ``)
+                    .slice(0, -1)
+                    .padStart(3, `0`)}
+                </span>
+              </li>
+            ))}
           </ul>
         </div>
       )}

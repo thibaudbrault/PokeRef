@@ -58,11 +58,10 @@
 
     & a {
       cursor: pointer;
-      border-bottom: 1px solid transparent;
 
       &:hover {
         @include themed {
-          border-bottom: 1px solid t('text');
+          text-decoration: underline;
         }
       }
     }

@@ -23,7 +23,7 @@
       font-size: 2rem;
 
       @include gthemed {
-        color: t('text');
+        color: t('highContrastText');
       }
 
       @include sm {
@@ -33,7 +33,7 @@
       &:focus {
         border-radius: 5px;
         @include gthemed {
-          box-shadow: 0 0 0 2px t('text');
+          box-shadow: 0 0 0 2px t('highContrastText');
         }
       }
 
@@ -67,25 +67,37 @@
         position: absolute;
         width: 100%;
         white-space: nowrap;
-        background-color: $light;
         border-radius: 5px;
-        box-shadow: 2px 2px 15px 2px $dark;
         animation-duration: 250ms;
         animation-timing-function: ease-in-out;
 
+        @include gthemed {
+          background-color: t('elementBackground');
+          box-shadow: 2px 2px 15px 2px t('elementBackground');
+          border: 1px solid t('border');
+        }
+
         & button {
           display: block;
+          width: 100%;
           background: none;
-          font-size: 1.5rem;
+          padding: 1rem;
+          font-size: 1.7rem;
           border: none;
-          margin: 1rem;
           text-align: left;
-          font-weight: 400;
+          font-weight: 600;
           text-transform: capitalize;
           cursor: pointer;
-          color: $dark;
+
+          @include gthemed {
+            color: t('highContrastText');
+          }
 
           &:hover {
+            @include gthemed {
+              background-color: t('elementHoverBackground');
+            }
+
             color: $red;
           }
 

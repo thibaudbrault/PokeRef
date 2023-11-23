@@ -97,16 +97,16 @@ export function Filters({
   }, [getFilterPokemon]);
 
   return (
-    <section className={styles.search}>
-      <Search />
-      <div className={styles.dropdown}>
+    <section className={styles.filters}>
+      <Search onGrid={true} />
+      <div className={styles.form}>
         <Label.Root htmlFor="form">Form</Label.Root>
         <Select
           key={form?.value}
           name="form"
           id="form"
           value={form}
-          className="dropdown selectOptions"
+          className="dropdown"
           classNamePrefix="select"
           components={animatedComponents}
           isClearable
@@ -119,14 +119,14 @@ export function Filters({
         />
       </div>
 
-      <div className={styles.dropdown}>
+      <div className={styles.generation}>
         <Label.Root htmlFor="generation">Generation</Label.Root>
         <Select
           key={generation?.value}
           name="generation"
           id="generation"
           value={generation}
-          className="dropdown selectOptions"
+          className="dropdown"
           classNamePrefix="select"
           components={animatedComponents}
           isClearable

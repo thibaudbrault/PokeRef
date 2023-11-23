@@ -6,7 +6,6 @@
   @extend %input;
 
   min-width: 25rem;
-  grid-area: search;
 
   & label {
     font-size: 1.7rem;
@@ -51,8 +50,9 @@
     border-radius: 5px;
 
     @include gthemed {
-      background: t('text');
-      color: t('bg');
+      background: t('elementBackground');
+      color: t('highContrastText');
+      border: 1px solid t('border');
     }
 
     & li {
@@ -76,4 +76,9 @@
 
 .searchId {
   font-size: 1.7rem;
+  font-weight: 600;
+
+  @include gthemed {
+    color: t('lowContrastText');
+  }
 }

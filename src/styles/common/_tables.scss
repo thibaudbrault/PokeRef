@@ -36,18 +36,26 @@
 %table {
   display: table;
   text-align: center;
-  border: 1px solid rgb(130 130 130 / 20%);
   border-collapse: collapse;
-  border-left: none;
-  border-right: none;
   table-layout: fixed;
+
+  @include gthemed {
+    border: 1px solid t('border');
+    border-left: none;
+    border-right: none;
+  }
 
   & th {
     padding: 1.5rem;
     font-size: 1.5rem;
-    border: 1px solid rgb(130 130 130 / 20%);
     border-collapse: collapse;
     vertical-align: middle;
+
+    @include gthemed {
+      border: 1px solid t('border');
+      border-left: none;
+      border-right: none;
+    }
 
     & .cursor-pointer {
       display: flex;
@@ -61,11 +69,13 @@
   & td {
     padding: 1.5rem;
     font-size: 1.5rem;
-    border-top: 1px solid rgb(130 130 130 / 20%);
-    border-bottom: 1px solid rgb(130 130 130 / 20%);
-    border-left: none;
-    border-right: none;
     vertical-align: middle;
+
+    @include gthemed {
+      border: 1px solid t('border');
+      border-left: none;
+      border-right: none;
+    }
   }
 
   & tfoot {
@@ -101,10 +111,13 @@
   width: 100%;
 
   & th {
-    background: rgb(130 130 130 / 20%);
     font-size: 1.5rem;
     font-weight: 600;
     text-transform: capitalize;
+
+    @include gthemed {
+      background-color: t('elementBackground');
+    }
   }
 
   & td {
@@ -117,17 +130,19 @@
     font-size: 1.7rem;
     font-weight: 600;
     text-transform: capitalize;
-    background: rgb(130 130 130 / 20%);
 
     @include gthemed {
-      color: t('text');
+      color: t('highContrastText');
+      background-color: t('elementBackground');
     }
   }
 }
 
 .tr {
   &:hover {
-    background: rgb(130 130 130 / 20%);
+    @include gthemed {
+      background-color: t('elementHoverBackground');
+    }
   }
 }
 
@@ -151,12 +166,11 @@
 
 %tLink {
   text-transform: capitalize;
-  border-bottom: 1px solid transparent;
   cursor: pointer;
 
   &:hover {
     @include gthemed {
-      border-bottom: 1px solid t('text');
+      text-decoration: underline;
     }
   }
 
@@ -209,21 +223,21 @@
         cursor: pointer;
 
         @include gthemed {
-          color: t('text');
+          color: t('highContrastText');
           text-shadow:
-            t('bg') -1px -1px 0,
-            t('bg') 1px -1px 0,
-            t('bg') -1px 1px 0,
-            t('bg') 1px 1px 0;
+            t('appBackground') -1px -1px 0,
+            t('appBackground') 1px -1px 0,
+            t('appBackground') -1px 1px 0,
+            t('appBackground') 1px 1px 0;
         }
 
         @include themed {
-          color: t('text');
+          color: t('highContrastText');
           text-shadow:
-            t('bg') -1px -1px 0,
-            t('bg') 1px -1px 0,
-            t('bg') -1px 1px 0,
-            t('bg') 1px 1px 0;
+            t('appBackground') -1px -1px 0,
+            t('appBackground') 1px -1px 0,
+            t('appBackground') -1px 1px 0,
+            t('appBackground') 1px 1px 0;
         }
       }
     }

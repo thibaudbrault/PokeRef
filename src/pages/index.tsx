@@ -1,11 +1,6 @@
 import { useState } from 'react';
 
-import {
-  dehydrate,
-  QueryClient,
-  useQuery,
-  type UseQueryResult,
-} from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import ReactPaginate from 'react-paginate';
 
 import { errorToast, Loader, Separator } from '@/components';

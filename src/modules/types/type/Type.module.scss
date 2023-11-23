@@ -101,12 +101,11 @@
   @extend %tBold;
 
   & a {
-    border-bottom: 1px solid transparent;
     cursor: pointer;
 
     &:hover {
       @include themed {
-        border-bottom: 1px solid t('text');
+        text-decoration: underline;
       }
     }
   }

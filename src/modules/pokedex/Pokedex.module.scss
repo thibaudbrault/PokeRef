@@ -1,6 +1,6 @@
 @use '@/styles/abstracts' as *;
 
-.search {
+.filters {
   display: grid;
   grid-template:
     'search search'
@@ -8,12 +8,15 @@
   gap: 2rem;
 
   @include md {
-    display: grid;
     gap: 2rem 4rem;
+
+    & .search {
+      grid-area: search;
+    }
   }
 }
 
-.dropdown {
+%dropdown {
   width: 100%;
   display: flex;
   align-items: flex-start;
@@ -25,14 +28,22 @@
     margin-bottom: 0.5rem;
     font-weight: 600;
   }
+}
 
-  &:first-of-type {
-    grid-area: form;
-  }
+.search {
+  grid-area: search;
+}
 
-  &:last-of-type {
-    grid-area: generation;
-  }
+.form {
+  @extend %dropdown;
+
+  grid-area: form;
+}
+
+.generation {
+  @extend %dropdown;
+
+  grid-area: generation;
 }
 
 .explanation {

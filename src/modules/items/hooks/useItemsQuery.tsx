@@ -10,7 +10,7 @@ export const useItemsQuery = () => {
         queryFn: () => getMultiple(`${BASE_URL}/item?limit=${Limit.ITEMS}`),
       },
       {
-        queryKey: [QueryKeys.ITEMS],
+        queryKey: [QueryKeys.BERRIES],
         queryFn: () => getMultiple(`${BASE_URL}/berry?limit=${Limit.BERRIES}`),
       },
     ],
