@@ -62,7 +62,6 @@
 <h4>Features - Back</h4>
 
 ✅Use of Next-Auth to handle login / log out with credentials  
-✅Zod validators for the register and login  
 ✅Session context with the `useSession` hook from Next-Auth  
 ✅Protected profile page with server redirection for unauthenticated users  
 ✅User data saved in a Planetscale database  
