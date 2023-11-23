@@ -155,7 +155,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
 - <img src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white" />
 - <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" />
-- <img src="https://img.shields.io/badge/railway-%23000000.svg?style=for-the-badge&logo=planetscale&logoColor=white" />
+- <img src="https://img.shields.io/badge/railway-%23000000.svg?style=for-the-badge&logo=railway&logoColor=white" />
 - <img src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white" />
 - <img src="https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220" />
 
@@ -178,7 +178,6 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 <a href="https://www.npmjs.com/package/react-select" target="_blank">React Select</a>  
 <a href="https://www.npmjs.com/package/react-paginate" target="_blank">React Paginate</a>  
 <a href="https://www.npmjs.com/package/fuse.js" target="_blank">Fuse.js</a>  
-<a href="https://www.npmjs.com/package/zod" target="_blank">Zod</a>  
 <a href="https://www.npmjs.com/package/eslint" target="_blank">ESLint</a>  
 <a href="https://www.npmjs.com/package/prettier" target="_blank">Prettier</a>  
 <a href="https://www.npmjs.com/package/next-pwa" target="_blank">Next PWA</a>
