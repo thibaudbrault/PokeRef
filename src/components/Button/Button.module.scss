@@ -50,18 +50,17 @@
 }
 
 .primary {
-  border-color: transparent;
   @include themed {
-    background-color: t('text');
-    color: t('bg');
+    border-color: t('border');
+    background-color: t('highContrastText');
+    color: t('appBackground');
   }
 
   &:hover {
-    background: transparent;
-
     @include themed {
-      border-color: t('text');
-      color: t('text');
+      background: t('appBackground');
+      border-color: t('hoverBorder');
+      color: t('highContrastText');
     }
   }
 
@@ -72,9 +71,9 @@
 
 .secondary {
   @include themed {
-    background-color: t('bg');
-    border-color: t('text');
-    color: t('text');
+    background-color: t('appBackground');
+    border-color: t('bodrer');
+    color: t('highContrastText');
   }
 
   @include md {
@@ -103,29 +102,5 @@
   & span {
     font-size: 1.7rem;
     cursor: pointer;
-  }
-}
-
-.authPrimary {
-  background-color: $dark;
-  color: $light;
-  border-color: transparent;
-
-  &:hover {
-    border-color: $dark;
-    background-color: transparent;
-    color: $dark;
-  }
-}
-
-.authSecondary {
-  background-color: transparent;
-  border-color: $dark;
-  color: $dark;
-
-  &:hover {
-    border-color: $dark;
-    background-color: transparent;
-    color: $dark;
   }
 }

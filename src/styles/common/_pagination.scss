@@ -25,8 +25,9 @@
   & .selected {
     border-radius: 50%;
     @include gthemed {
-      background: t('text');
-      color: t('bg');
+      background-color: t('elementActiveBackground');
+      color: t('highContrastText');
+      border: 1px solid t('border');
     }
   }
 

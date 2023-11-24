@@ -13,13 +13,13 @@
 
   & .DropdownMenuArrow {
     @include gthemed {
-      fill: t('text');
+      fill: t('elementBackground');
     }
   }
 
   @include gthemed {
-    background-color: t('text');
-    color: t('bg');
+    background-color: t('elementBackground');
+    color: t('highContrastText');
   }
 }
 

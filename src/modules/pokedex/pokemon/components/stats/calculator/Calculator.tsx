@@ -3,7 +3,7 @@ import { useState } from 'react';
 import * as Label from '@radix-ui/react-label';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
-import { Input, Separator } from '@/components';
+import { Button, Input, Separator } from '@/components';
 import { pokemonNatures, removeDash } from '@/utils';
 
 import { Results } from '../results';
@@ -227,7 +227,9 @@ export function Calculator({ baseStat }: Props) {
             </tr>
             <tr>
               <td colSpan={3}>
-                <button>Calculate</button>
+                <Button size="fit" intent={`primary`}>
+                  Calculate
+                </Button>
               </td>
             </tr>
           </tbody>

@@ -26,6 +26,6 @@
   font-size: 32px;
 
   @include themed {
-    color: t('text');
+    color: t('highContrastText');
   }
 }

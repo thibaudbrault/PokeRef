@@ -45,7 +45,7 @@
         transition-timing-function: cubic-bezier(0.2, 1, 0.8, 1);
 
         @include themed {
-          background-color: t('text');
+          background-color: t('highContrastText');
         }
       }
 
@@ -108,7 +108,7 @@
   border: none;
 
   @include themed {
-    color: t('text');
+    color: t('highContrastText');
   }
 
   @include md {

@@ -12,7 +12,7 @@
     border-radius: 5px;
 
     @include gthemed {
-      background-color: t('bg');
+      background-color: t('appBackground');
     }
   }
 
@@ -20,12 +20,14 @@
     border-radius: 5px;
 
     @include gthemed {
-      background-color: t('text');
+      background-color: t('lowContrastText');
     }
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: rgb(130 130 130 / 20%);
+    @include gthemed {
+      background-color: t('highContrastText');
+    }
   }
 
   & td {

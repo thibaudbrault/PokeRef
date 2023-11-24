@@ -22,38 +22,7 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  padding: 0.7rem 1.5rem;
-  border-radius: 5px;
-  font-size: 1.5rem;
   font-weight: 600;
-
-  @include themed {
-    background: t('text');
-    border: 1px solid t('text');
-  }
-
-  &:hover {
-    background: transparent;
-    @include themed {
-      color: t('text');
-    }
-  }
-}
-
-.caught {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.7rem 1.5rem;
-  background: transparent;
-  border-radius: 5px;
-  font-size: 1.5rem;
-  font-weight: 600;
-  opacity: 0.7;
-  @include themed {
-    color: t('text');
-    border: 1px solid t('text');
-  }
 }
 
 .container {

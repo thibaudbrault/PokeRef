@@ -11,8 +11,8 @@
   margin: 0 auto;
 
   @include themed {
-    background-color: t('text');
-    color: t('bg');
+    background-color: t('appBackground');
+    color: t('highContrastText');
   }
 
   @include sm {
@@ -28,21 +28,20 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  border: 1px solid transparent;
   border-radius: 50px;
   font-size: 3rem;
   cursor: pointer;
 
   @include themed {
-    background-color: t('bg');
-    color: t('text');
+    border: 1px solid t('border');
+    background-color: t('elementBackground');
+    color: t('lowContrastText');
   }
 
   &:hover {
     @include themed {
-      border: 1px solid t('bg');
-      background-color: t('text');
-      color: t('bg');
+      border: 1px solid t('hoverBorder');
+      background-color: t('elementHoverBackground');
     }
   }
 }
@@ -72,17 +71,13 @@
 }
 
 .title {
-  @include themed {
-    color: t('bg');
-  }
+  width: 100%;
 
   & h2 {
     margin-bottom: 0;
   }
 
   & p {
-    width: 90%;
-    margin: 0 auto;
     font-size: 1.5rem;
     text-align: center;
     font-weight: 400;

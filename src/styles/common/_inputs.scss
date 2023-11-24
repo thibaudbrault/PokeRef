@@ -134,8 +134,8 @@
 
   & .select__multi-value {
     @include gthemed {
-      background-color: t('text');
-      color: t('bg');
+      background-color: t('elementActiveBackground');
+      color: t('highContrastText');
     }
 
     &__remove {

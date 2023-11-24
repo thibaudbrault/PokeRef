@@ -29,13 +29,11 @@ function Login() {
         <div className={styles.container}>
           <section className={styles.title}>
             <h2 className="h2">Login</h2>
-            <p>
-              Go to your profile to create teams and find your favorites pokémon
-            </p>
+            <p>Save your favorites</p>
           </section>
           <section className={styles.providers}>
             <Button
-              intent="authSecondary"
+              intent="secondary"
               size="large"
               logo="withLogo"
               type="button"
@@ -51,7 +49,7 @@ function Login() {
               </span>
             </Button>
             <Button
-              intent="authSecondary"
+              intent="secondary"
               size="large"
               logo="withLogo"
               type="button"

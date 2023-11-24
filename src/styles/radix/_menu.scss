@@ -23,54 +23,57 @@
     font-size: 2rem;
 
     @include gthemed {
-      color: t('text');
+      color: t('highContrastText');
     }
 
     &:focus {
       @include gthemed {
-        box-shadow: 0 0 0 2px t('text');
+        box-shadow: 0 0 0 2px t('highContrastText');
       }
-    }
-
-    &:hover {
-      color: $red;
     }
   }
 
   .MenubarTrigger[data-highlighted],
   .MenubarTrigger[data-state='open'] {
     @include gthemed {
-      background-color: t('text');
-      color: t('bg');
+      background-color: t('elementActiveBackground');
     }
   }
 
   .MenubarContent {
     width: 95vw;
     margin: 1rem 2.5vw 0;
-    padding: 0.5rem 0;
     white-space: nowrap;
-    background-color: $light;
     border-radius: 5px;
     box-shadow: 2px 2px 15px 2px $dark;
     animation-duration: 250ms;
     animation-timing-function: ease-in-out;
     transform-origin: top center;
 
+    @include gthemed {
+      background-color: t('elementBackground');
+      border: 1px solid t('bodrer');
+    }
+
     & button {
-      display: block;
-      background: none;
+      width: 100%;
       font-size: 1.7rem;
       border: none;
-      margin: 1rem;
+      padding: 1rem;
       text-align: left;
-      font-weight: 400;
+      font-weight: 600;
       text-transform: capitalize;
       cursor: pointer;
-      color: $dark;
+
+      @include gthemed {
+        color: t('highContrastText');
+        background-color: t('elementBackground');
+      }
 
       &:hover {
-        color: $red;
+        @include gthemed {
+          background-color: t('elementHoverBackground');
+        }
       }
 
       @include sm {
