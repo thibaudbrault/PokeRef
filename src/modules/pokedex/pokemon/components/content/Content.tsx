@@ -4,7 +4,11 @@ import { MdAdd, MdRemove } from '@meronex/icons/ios';
 
 import styles from './Content.module.scss';
 
-export function Content() {
+type Props = {
+  hasForm: boolean;
+};
+
+export function Content({ hasForm }: Props) {
   const [contentsOpen, setContentsOpen] = useState<boolean>(false);
 
   return (
@@ -41,9 +45,11 @@ export function Content() {
           <li>
             <a href="#locations">Locations</a>
           </li>
-          <li>
-            <a href="#forms">Forms</a>
-          </li>
+          {hasForm && (
+            <li>
+              <a href="#forms">Forms</a>
+            </li>
+          )}
           <li>
             <a href="#competitive">Competitive</a>
           </li>

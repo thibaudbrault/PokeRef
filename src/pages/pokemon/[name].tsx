@@ -133,7 +133,7 @@ function PokemonCard() {
           setFormat={setFormat}
         />
 
-        <Content />
+        <Content hasForm={pokemon.data.forms.length > 1} />
 
         <Data pokemon={pokemon.data} species={species.data} game={game} />
 
