@@ -46,6 +46,7 @@ export function Cards({ cards }: Props) {
         {modalData && (
           <Modal
             className={styles.modal}
+            overlayClassName={styles.overlay}
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
             preventScroll={true}
@@ -57,7 +58,6 @@ export function Cards({ cards }: Props) {
               width={0}
               height={0}
               sizes="100vw"
-              style={{ width: `100%`, height: `auto` }}
             />
           </Modal>
         )}

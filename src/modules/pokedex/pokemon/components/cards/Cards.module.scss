@@ -42,17 +42,26 @@
   }
 }
 
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgb(33 33 33 / 85%);
+  z-index: 999;
+}
+
 .modal {
-  width: 60%;
+  width: 40%;
   height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
-  inset: 50% auto auto 50%;
-  margin-right: -50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  overflow-y: hidden !important;
+
+  & img {
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
+  }
 
   @include sm {
     width: 80%;
