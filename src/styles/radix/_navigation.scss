@@ -21,6 +21,7 @@
       background: none;
       border: none;
       font-size: 2rem;
+      border-radius: 5px;
 
       @include gthemed {
         color: t('highContrastText');
@@ -31,14 +32,15 @@
       }
 
       &:focus {
-        border-radius: 5px;
         @include gthemed {
           box-shadow: 0 0 0 2px t('highContrastText');
         }
       }
 
       &:hover {
-        color: $red;
+        @include gthemed {
+          background-color: t('elementHoverBackground');
+        }
       }
     }
   }
@@ -67,6 +69,7 @@
         position: absolute;
         width: 100%;
         white-space: nowrap;
+        padding: 1rem;
         border-radius: 5px;
         animation-duration: 250ms;
         animation-timing-function: ease-in-out;
@@ -81,6 +84,7 @@
           display: block;
           width: 100%;
           background: none;
+          border-radius: 5px;
           padding: 1rem;
           font-size: 1.7rem;
           border: none;
@@ -97,8 +101,6 @@
             @include gthemed {
               background-color: t('elementHoverBackground');
             }
-
-            color: $red;
           }
 
           @include sm {
