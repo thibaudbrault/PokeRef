@@ -1,7 +1,7 @@
-import { useState, type Dispatch, type SetStateAction, useEffect } from 'react';
+import { useEffect, useState, type Dispatch, type SetStateAction } from 'react';
 
 import * as Label from '@radix-ui/react-label';
-import * as Menubar from '@radix-ui/react-menubar';
+import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import Select, { type SingleValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { v4 as uuidv4 } from 'uuid';
@@ -100,15 +100,15 @@ export function GenNav({ setGame, setVersion }: Props) {
       </div>
     </section>
   ) : (
-    <Menubar.Root className="MenubarRoot">
-      {genNav.map((g) => (
-        <Menubar.Menu key={uuidv4()}>
-          <Menubar.Trigger className="MenubarTrigger">
-            {g.label}
-          </Menubar.Trigger>
-          <Menubar.Content className="MenubarContent">
-            {g.details.map((gd) => (
-              <Menubar.Item key={uuidv4()} className="MenubarItem">
+    <NavigationMenu.Root className="NavigationMenuRoot">
+      <NavigationMenu.List className="NavigationMenuList">
+        {genNav.map((g) => (
+          <NavigationMenu.Item key={uuidv4()}>
+            <NavigationMenu.Trigger className="NavigationMenuTrigger">
+              {g.label}
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className="NavigationMenuContent">
+              {g.details.map((gd) => (
                 <button
                   key={gd.game}
                   onClick={() => {
@@ -118,11 +118,14 @@ export function GenNav({ setGame, setVersion }: Props) {
                 >
                   {removeDash(gd.game)}
                 </button>
-              </Menubar.Item>
-            ))}
-          </Menubar.Content>
-        </Menubar.Menu>
-      ))}
-    </Menubar.Root>
+              ))}
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
+        ))}
+      </NavigationMenu.List>
+      <div className="ViewportPosition">
+        <NavigationMenu.Viewport className="NavigationMenuViewport" />
+      </div>
+    </NavigationMenu.Root>
   );
 }
