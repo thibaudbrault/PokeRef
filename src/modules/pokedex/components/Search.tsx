@@ -57,32 +57,34 @@ export function Search({ onGrid }: Props) {
           <ul>
             {searchRes?.map((res) => (
               <li key={res.item.name}>
-                <ImageWithFallback
-                  src={
-                    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${res.item.url
-                      .replace(`${BASE_URL}/pokemon/`, ``)
-                      .slice(0, -1)}.png` || ``
-                  }
-                  alt=""
-                  width={48}
-                  height={48}
-                  fallbackSrc={`/images/other/unknown.png`}
-                />
                 <Link
                   href={{
                     pathname: `/pokemon/[name]`,
                     query: { name: res.item.name },
                   }}
-                  className="searchLink bold"
+                  className="searchLink"
                 >
-                  {removeLongName(removeDash(res.item.name))}
+                  <ImageWithFallback
+                    src={
+                      `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${res.item.url
+                        .replace(`${BASE_URL}/pokemon/`, ``)
+                        .slice(0, -1)}.png` || ``
+                    }
+                    alt=""
+                    width={48}
+                    height={48}
+                    fallbackSrc={`/images/other/unknown.png`}
+                  />
+                  <p className="capitalize">
+                    {removeLongName(removeDash(res.item.name))}
+                  </p>
+                  <span className="searchId">
+                    {res.item.url
+                      .replace(`${BASE_URL}/pokemon/`, ``)
+                      .slice(0, -1)
+                      .padStart(3, `0`)}
+                  </span>
                 </Link>
-                <span className="searchId">
-                  {res.item.url
-                    .replace(`${BASE_URL}/pokemon/`, ``)
-                    .slice(0, -1)
-                    .padStart(3, `0`)}
-                </span>
               </li>
             ))}
           </ul>

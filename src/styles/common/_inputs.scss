@@ -107,6 +107,7 @@
   & .select__menu {
     text-transform: capitalize;
     font-size: 1.7rem;
+    padding: 1rem;
 
     @include gthemed {
       color: t('highContrastText');
@@ -117,6 +118,7 @@
     & .select__option {
       cursor: pointer;
       background-color: transparent;
+      border-radius: 5px;
 
       &--is-focused {
         @include gthemed {
