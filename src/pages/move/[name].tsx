@@ -20,20 +20,11 @@ function MoveCard() {
   const name = router.query.name as string;
 
   const [_learn, setLearn] = useState<string>(`level-up`);
+  const [toggle, setToggle] = useState(0);
+  const [version, setVersion] = useState(`sword-shield`);
 
-  const {
-    move,
-    isLoading,
-    isError,
-    error,
-    pokemon,
-    status,
-    machine,
-    version,
-    setVersion,
-    toggle,
-    setToggle,
-  } = useFetchMove(name);
+  const { move, isLoading, isError, error, pokemon, status, machine } =
+    useFetchMove(name);
 
   if (isError && error instanceof Error) {
     errorToast(error.message);
@@ -48,7 +39,7 @@ function MoveCard() {
       <Heading name={name} />
       {move && (
         <main className={styles.main}>
-          <h2 className="pageTitle">{removeDash(move.name)}</h2>
+          <h2 className="title">{removeDash(move.name)}</h2>
           <h4 className="subtitle">{removeDash(move.generation.name)}</h4>
 
           <Nav move={move} setVersion={setVersion} />

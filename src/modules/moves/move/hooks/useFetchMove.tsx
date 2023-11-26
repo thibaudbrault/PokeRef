@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
 import {
@@ -35,12 +33,6 @@ export const useFetchMove = (name: string) => {
     enabled: !!move,
   });
 
-  // Version of the returned data is from the latest available from PokéAPI
-  const [version, setVersion] = useState(`sword-shield`);
-
-  // Switch between the different tables for the method to learn the move
-  const [toggle, setToggle] = useState(0);
-
   return {
     move,
     isLoading,
@@ -49,9 +41,5 @@ export const useFetchMove = (name: string) => {
     pokemon,
     status,
     machine,
-    version,
-    setVersion,
-    toggle,
-    setToggle,
   };
 };
