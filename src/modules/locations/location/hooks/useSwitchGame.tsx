@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import {
+  useQueries,
   useQuery,
-  useQueryClient,
   type UseQueryResult,
 } from '@tanstack/react-query';
 
@@ -11,23 +11,12 @@ import { BASE_URL, getMultiple, getSingle, Limit, QueryKeys } from '@/utils';
 import type { ILocation, ILocationArea } from '@/types';
 
 export const useSwitchGame = (name: string) => {
-  const queryClient = useQueryClient();
-
   const [game, setGame] = useState<string | null>(null);
   const [toggle, setToggle] = useState<number>(0);
 
   const locationQuery = useQuery<ILocation, Error>({
     queryKey: [QueryKeys.LOCATION, toggle, name],
     queryFn: () => getSingle(`${BASE_URL}/location/${name}`),
-    onSuccess: (data: ILocation) => {
-      const areaUrl = data.areas[toggle]?.url;
-      if (areaUrl) {
-        queryClient.prefetchQuery(
-          [QueryKeys.AREA, toggle, game, name, areaUrl],
-          () => getSingle(areaUrl),
-        );
-      }
-    },
   });
 
   const encounterQuery = useQuery({
