@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { useMediaQuery } from '@/hooks';
 import {
+  IGenNav,
   IOptionsOffsetLimit,
   genNav,
   generationsOptions,
@@ -18,7 +19,7 @@ import styles from './Nav.module.scss';
 
 type Props = {
   setGame: Dispatch<SetStateAction<string | null>>;
-  setVersion: Dispatch<SetStateAction<string | null>>;
+  setVersion?: Dispatch<SetStateAction<string | null>>;
 };
 
 type GenDetails = {
@@ -51,7 +52,16 @@ export function GenNav({ setGame, setVersion }: Props) {
     if (option) {
       setDetails(option);
       setGame(option.game);
-      setVersion(option.version);
+      if (setVersion) {
+        setVersion(option.version);
+      }
+    }
+  };
+
+  const handleClick = (gd: IGenNav['details'][0]) => {
+    setGame(gd.game);
+    if (setVersion) {
+      setVersion(gd.version);
     }
   };
 
@@ -68,7 +78,7 @@ export function GenNav({ setGame, setVersion }: Props) {
           name="generation"
           id="generation"
           value={generation}
-          className="dropdown selectOptions"
+          className="dropdown"
           classNamePrefix="select"
           components={animatedComponents}
           options={generationsOptions}
@@ -85,7 +95,7 @@ export function GenNav({ setGame, setVersion }: Props) {
           name="game"
           id="game"
           value={details}
-          className="dropdown selectOptions"
+          className="dropdown"
           classNamePrefix="select"
           components={animatedComponents}
           options={getVersionAndGame()}
@@ -109,13 +119,7 @@ export function GenNav({ setGame, setVersion }: Props) {
             </NavigationMenu.Trigger>
             <NavigationMenu.Content className="NavigationMenuContent">
               {g.details.map((gd) => (
-                <button
-                  key={gd.game}
-                  onClick={() => {
-                    setGame(gd.game);
-                    setVersion(gd.version);
-                  }}
-                >
+                <button key={gd.game} onClick={() => handleClick(gd)}>
                   {removeDash(gd.game)}
                 </button>
               ))}

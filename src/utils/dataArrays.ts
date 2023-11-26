@@ -155,7 +155,7 @@ export const pokemonFilters: PokemonFilters = [
   },
 ];
 
-interface IGenNav extends IOptions {
+export interface IGenNav extends IOptions {
   details: {
     game: string;
     version: string;
