@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from 'react';
 
 import { FaChevronLeft } from '@meronex/icons/fa';
+import * as Tabs from '@radix-ui/react-tabs';
 import { type ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -8,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { Button, errorToast, GenNav, Loader } from '@/components';
 import { useTableParams } from '@/hooks';
-import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
+import { Heading, useSwitchGame } from '@/modules/locations/location';
 import styles from '@/modules/locations/Locations.module.scss';
 import { removeDash } from '@/utils';
 
@@ -17,6 +18,7 @@ import type {
   IEncounterConditionValue,
   IEncounterMethod,
   IName,
+  INamedApiResource,
   IPokemonEncounter,
 } from '@/types';
 
@@ -27,9 +29,8 @@ function LocationCard() {
   const {
     game,
     setGame,
-    setVersion,
-    toggleState,
-    toggleTable,
+    toggle,
+    setToggle,
     isLoading,
     isError,
     error,
@@ -55,11 +56,11 @@ function LocationCard() {
 
   const filteredEncounter = useCallback(
     (condition: string) => {
-      return encounter.data?.find(
+      return encounter?.find(
         (e: IEncounterConditionValue) => e.name === condition,
       );
     },
-    [encounter.data],
+    [encounter],
   );
 
   const filteredEncounterMemoized = useMemo(
@@ -69,9 +70,9 @@ function LocationCard() {
 
   const filteredMethod = useCallback(
     (condition: string) => {
-      return method.data?.find((m: IEncounterMethod) => m.name === condition);
+      return method?.find((m: IEncounterMethod) => m.name === condition);
     },
-    [method.data],
+    [method],
   );
 
   const filteredMethodMemoized = useMemo(
@@ -197,43 +198,56 @@ function LocationCard() {
   return (
     <>
       <Heading name={name} />
-      <main className="mainBig">
-        <h2 className="pageTitle">
-          {location &&
-            removeDash(location.data?.name).replace(
-              /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea/g,
-              ``,
-            )}
-        </h2>
-        <h4 className="subtitle">
-          {game && `${location.data?.region.name} - ${removeDash(game)}`}
-        </h4>
-        <Area
-          location={location.data}
-          toggleState={toggleState}
-          toggleTable={toggleTable}
-        />
-        <GenNav setGame={setGame} setVersion={setVersion} />
-        <section className="section">
-          <div className="tableContainer" ref={tableContainerRef}>
-            <table className={styles.table}>
-              {tableHeader()}
-              {tableBody()}
-              <tfoot>
-                <tr>
-                  <td colSpan={5}>This area is not present in this game</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
+      <Tabs.Root className="TabsRootMain" defaultValue={String(toggle)}>
+        <section className={styles.title}>
+          <h2 className="title">
+            {location &&
+              removeDash(location?.name).replace(
+                /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea/g,
+                ``,
+              )}
+          </h2>
+          <h4 className="subtitle">
+            {game && `${location?.region.name} - ${removeDash(game)}`}
+          </h4>
         </section>
+        <Tabs.List className="TabsList">
+          {location?.areas.map((la: INamedApiResource, i: number) => (
+            <Tabs.Trigger
+              key={i}
+              className="TabsTrigger"
+              value={String(i)}
+              onClick={() => setToggle(i)}
+            >
+              {removeDash(la.name)
+                .replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/, ``)
+                .replace(/area/, ``)}
+            </Tabs.Trigger>
+          ))}
+        </Tabs.List>
+        <GenNav setGame={setGame} />
+        <Tabs.Content value={String(toggle)}>
+          <section className="section">
+            <div className="tableContainer" ref={tableContainerRef}>
+              <table className={styles.table}>
+                {tableHeader()}
+                {tableBody()}
+                <tfoot>
+                  <tr>
+                    <td colSpan={5}>This area is not present in this game</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </section>
+        </Tabs.Content>
         <Button intent="back" size="fit" asChild>
           <Link href="/locations">
             <FaChevronLeft />
             Back to Locations
           </Link>
         </Button>
-      </main>
+      </Tabs.Root>
     </>
   );
 }

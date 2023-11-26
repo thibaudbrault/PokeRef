@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import {
-  useQueries,
   useQuery,
+  useQueryClient,
   type UseQueryResult,
 } from '@tanstack/react-query';
 
@@ -11,43 +11,61 @@ import { BASE_URL, getMultiple, getSingle, Limit, QueryKeys } from '@/utils';
 import type { ILocation, ILocationArea } from '@/types';
 
 export const useSwitchGame = (name: string) => {
+  const queryClient = useQueryClient();
+
   const [game, setGame] = useState<string | null>(null);
-  const [, setVersion] = useState<string | null>(null);
-  const [toggleState, setToggleState] = useState<number>(0);
-  const [areaUrl, setAreaUrl] = useState<string | null>(null);
+  const [toggle, setToggle] = useState<number>(0);
 
-  const toggleTable = (index: number) => {
-    setToggleState(index);
-  };
+  const locationQuery = useQuery<ILocation, Error>({
+    queryKey: [QueryKeys.LOCATION, toggle, name],
+    queryFn: () => getSingle(`${BASE_URL}/location/${name}`),
+    onSuccess: (data: ILocation) => {
+      const areaUrl = data.areas[toggle]?.url;
+      if (areaUrl) {
+        queryClient.prefetchQuery(
+          [QueryKeys.AREA, toggle, game, name, areaUrl],
+          () => getSingle(areaUrl),
+        );
+      }
+    },
+  });
 
-  const [location, encounter, method] = useQueries({
-    queries: [
-      {
-        queryKey: [QueryKeys.LOCATION, toggleState, name],
-        queryFn: () => getSingle(`${BASE_URL}/location/${name}`),
-        onSuccess: (data: ILocation) => {
-          setAreaUrl(data.areas[toggleState]?.url);
-        },
-      },
-      {
-        queryKey: [QueryKeys.ENCOUNTER.CONDITION, name],
-        queryFn: () =>
-          getMultiple(
-            `${BASE_URL}/encounter-condition-value?limit=${Limit.ENCOUNTER.CONDITION}`,
-          ),
-      },
-      {
-        queryKey: [QueryKeys.ENCOUNTER.METHOD, name],
-        queryFn: () =>
-          getMultiple(
-            `${BASE_URL}/encounter-method?limit=${Limit.ENCOUNTER.METHOD}`,
-          ),
-      },
+  const encounterQuery = useQuery({
+    queryKey: [QueryKeys.ENCOUNTER.CONDITION, name],
+    queryFn: () =>
+      getMultiple(
+        `${BASE_URL}/encounter-condition-value?limit=${Limit.ENCOUNTER.CONDITION}`,
+      ),
+  });
+
+  const methodQuery = useQuery({
+    queryKey: [QueryKeys.ENCOUNTER.METHOD, name],
+    queryFn: () =>
+      getMultiple(
+        `${BASE_URL}/encounter-method?limit=${Limit.ENCOUNTER.METHOD}`,
+      ),
+  });
+
+  const areaQuery: UseQueryResult<ILocationArea, Error> = useQuery({
+    queryKey: [
+      QueryKeys.AREA,
+      toggle,
+      game,
+      name,
+      locationQuery.data?.areas[toggle]?.url,
     ],
+    queryFn: () =>
+      locationQuery.data?.areas[toggle]?.url &&
+      getSingle(locationQuery.data?.areas[toggle]?.url),
+    enabled:
+      !!locationQuery.data?.areas[toggle]?.url &&
+      !!game &&
+      !!encounterQuery.data,
   });
 
   const gameUsed = () => {
-    switch (location.data?.region.name) {
+    const regionName = locationQuery.data?.region.name || ``;
+    switch (regionName) {
       case `kanto`:
         setGame(`yellow`);
         return;
@@ -78,31 +96,31 @@ export const useSwitchGame = (name: string) => {
   useEffect(() => {
     gameUsed();
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.data?.region.name]);
-
-  const {
-    isLoading,
-    isError,
-    error,
-    data: area,
-  }: UseQueryResult<ILocationArea, Error> = useQuery({
-    queryKey: [QueryKeys.AREA, toggleState, game, name, areaUrl],
-    queryFn: () => areaUrl && getSingle(areaUrl),
-    enabled: !!areaUrl && !!game && !!encounter.data,
-  });
+  }, [locationQuery.data?.region.name]);
 
   return {
     game,
     setGame,
-    setVersion,
-    isLoading,
-    isError,
-    error,
-    toggleState,
-    toggleTable,
-    location,
-    area,
-    encounter,
-    method,
+    isLoading:
+      locationQuery.isLoading ||
+      encounterQuery.isLoading ||
+      methodQuery.isLoading ||
+      areaQuery.isLoading,
+    isError:
+      locationQuery.isError ||
+      encounterQuery.isError ||
+      methodQuery.isError ||
+      areaQuery.isError,
+    error:
+      locationQuery.error ||
+      encounterQuery.error ||
+      methodQuery.error ||
+      areaQuery.error,
+    toggle,
+    setToggle,
+    location: locationQuery.data,
+    area: areaQuery.data,
+    encounter: encounterQuery.data,
+    method: methodQuery.data,
   };
 };
