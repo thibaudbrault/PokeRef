@@ -41,7 +41,7 @@ function Ability() {
     <>
       <Heading name={name} />
       <main className="mainBig">
-        <h2 className="pageTitle">{ability && removeDash(ability?.name)}</h2>
+        <h2 className="title">{ability && removeDash(ability?.name)}</h2>
         <h4 className="subtitle">
           {ability && removeDash(ability?.generation?.name)}
         </h4>

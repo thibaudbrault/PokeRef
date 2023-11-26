@@ -35,7 +35,7 @@ function TypeCard() {
             width={96}
             height={96}
           />
-          <h2 className="pageTitle">{type?.name}</h2>
+          <h2 className="title">{type?.name}</h2>
         </div>
         <Damage type={type} />
         <Separator />
