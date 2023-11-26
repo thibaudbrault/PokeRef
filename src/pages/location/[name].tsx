@@ -211,7 +211,7 @@ function LocationCard() {
             {game && `${location?.region.name} - ${removeDash(game)}`}
           </h4>
         </section>
-        <Tabs.List className="TabsList">
+        {/* <Tabs.List className="TabsList">
           {location?.areas.map((la: INamedApiResource, i: number) => (
             <Tabs.Trigger
               key={i}
@@ -224,7 +224,7 @@ function LocationCard() {
                 .replace(/area/, ``)}
             </Tabs.Trigger>
           ))}
-        </Tabs.List>
+        </Tabs.List> */}
         <GenNav setGame={setGame} />
         <Tabs.Content value={String(toggle)}>
           <section className="section">
