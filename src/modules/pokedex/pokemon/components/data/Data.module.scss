@@ -150,9 +150,11 @@
   @extend %pill;
 
   border: 1px solid $purple;
-  background: $purple;
-  color: #c4c4c4;
+  background-color: $purple;
   font-weight: 600;
+  @include themed {
+    color: t('highContrastText');
+  }
 }
 
 @keyframes pulse {

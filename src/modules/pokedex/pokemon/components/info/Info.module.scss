@@ -37,10 +37,6 @@
   & tr {
     & th {
       text-transform: capitalize;
-
-      @include themed {
-        background-color: t('elementBackground');
-      }
     }
 
     & td {
@@ -58,12 +54,6 @@
           text-decoration: underline;
         }
       }
-    }
-
-    @include themed {
-      border: 1px solid t('subtleBorder');
-      border-left: none;
-      border-right: none;
     }
   }
 

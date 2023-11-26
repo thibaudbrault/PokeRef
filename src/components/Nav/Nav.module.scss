@@ -5,7 +5,6 @@
   flex-direction: column;
   gap: 1rem;
   margin: 5rem 0;
-  overflow-x: hidden;
 
   .dropdown {
     display: flex;
@@ -17,10 +16,7 @@
       font-size: 2rem;
       margin-bottom: 0.5rem;
       justify-self: flex-start;
+      font-weight: 600;
     }
-  }
-
-  @include lg {
-    gap: 0.5rem;
   }
 }

@@ -46,7 +46,15 @@
       }
 
       &:hover {
-        background: rgb(130 130 130 / 20%);
+        @include themed {
+          background-color: t('elementHoverBackground');
+        }
+      }
+
+      &:active {
+        @include themed {
+          background-color: t('elementActiveBackground');
+        }
       }
     }
   }

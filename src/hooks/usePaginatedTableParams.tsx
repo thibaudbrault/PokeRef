@@ -84,7 +84,7 @@ export function usePaginatedTableParams(data, columns) {
                       <div
                         {...{
                           className: header.column.getCanSort()
-                            ? `cursor-pointer select-none`
+                            ? `sortable select-none`
                             : ``,
                           onClick: header.column.getToggleSortingHandler(),
                         }}

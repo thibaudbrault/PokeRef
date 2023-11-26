@@ -41,10 +41,14 @@
   border-collapse: collapse;
   table-layout: fixed;
 
-  @include gthemed {
-    border: 1px solid t('border');
-    border-left: none;
-    border-right: none;
+  & tr {
+    @include gthemed {
+      border: 1px solid t('subtleBorder');
+    }
+
+    @include themed {
+      border: 1px solid t('subtleBorder');
+    }
   }
 
   & th {
@@ -54,12 +58,16 @@
     vertical-align: middle;
 
     @include gthemed {
-      border: 1px solid t('border');
-      border-left: none;
-      border-right: none;
+      background-color: t('elementBackground');
+      border: 1px solid t('subtleBorder');
     }
 
-    & .cursor-pointer {
+    @include themed {
+      background-color: t('elementBackground');
+      border: 1px solid t('subtleBorder');
+    }
+
+    & .sortable {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -74,9 +82,11 @@
     vertical-align: middle;
 
     @include gthemed {
-      border: 1px solid t('border');
-      border-left: none;
-      border-right: none;
+      border: 1px solid t('subtleBorder');
+    }
+
+    @include themed {
+      border: 1px solid t('subtleBorder');
     }
   }
 
@@ -116,10 +126,6 @@
     font-size: 1.5rem;
     font-weight: 600;
     text-transform: capitalize;
-
-    @include gthemed {
-      background-color: t('elementBackground');
-    }
   }
 
   & td {
@@ -132,11 +138,6 @@
     font-size: 1.7rem;
     font-weight: 600;
     text-transform: capitalize;
-
-    @include gthemed {
-      color: t('highContrastText');
-      background-color: t('elementBackground');
-    }
   }
 }
 

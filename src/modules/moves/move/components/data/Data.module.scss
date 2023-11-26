@@ -20,7 +20,9 @@
   @extend %table;
 
   & th {
-    background: rgb(130 130 130 / 20%);
+    @include themed {
+      background-color: t('elementBackground');
+    }
   }
 
   & td {
