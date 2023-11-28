@@ -1,84 +1,51 @@
-// @ts-nocheck
-
-import { PrismaAdapter } from '@auth/prisma-adapter';
-import { User } from '@prisma/client';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import NextAuth, { type NextAuthOptions } from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
+import { NextApiHandler } from 'next/types';
 
-import { LoginValidator, matchPassword } from '@/utils';
-import { prisma } from '~/lib/prisma';
+import { prisma } from 'lib/prisma';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      name: `Google`,
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     GitHubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    }),
-    CredentialsProvider({
-      name: `credentials`,
-      credentials: {
-        email: { label: `email`, type: `email` },
-        password: { label: `Password`, type: `password` },
-      },
-      authorize: async (credentials) => {
-        try {
-          const { email, password } = LoginValidator.parse(credentials);
-          const user = await prisma.user.findUnique({
-            where: { email },
-            select: {
-              id: true,
-              name: true,
-              email: true,
-              password: true,
-            },
-          });
-          if (!user) {
-            throw new Error(
-              `No user found with this email. Try with a different email`,
-            );
-          }
-          const isPasswordValid = matchPassword(password, user.password);
-          if (!isPasswordValid) {
-            throw new Error(`Invalid credentials`);
-          }
-          return user;
-        } catch (error) {
-          console.error(`An error occured: `, error);
-          throw error;
-        }
-      },
+      name: `GitHub`,
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!,
     }),
   ],
+  pages: {
+    signIn: `/login`,
+    newUser: `/`,
+  },
   callbacks: {
-    session({ session, token }) {
-      session.user.id = token.id;
-      session.user.name = token.username;
-      return session;
-    },
-    jwt({ token, account, user }) {
+    async jwt({ token, account, user }) {
       if (account) {
         token.accessToken = account.access_token;
         token.id = user.id;
-        token.username = (user as User).name;
       }
       return token;
     },
-  },
-  pages: {
-    signIn: `/login`,
-    newUser: `/profile`,
+    async session({ session, token }) {
+      session.user.id = token.id as string;
+      return session;
+    },
   },
   session: {
     strategy: `jwt`,
+    maxAge: 60 * 60,
   },
-  secret: process.env.SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
-export default NextAuth(authOptions);
+const authHandler: NextApiHandler = (req, res) => {
+  NextAuth(req, res, authOptions);
+};
+
+export default authHandler;

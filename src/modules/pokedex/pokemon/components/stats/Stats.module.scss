@@ -13,7 +13,7 @@
 
     path:first-of-type {
       @include themed {
-        stroke: t('text') !important;
+        stroke: t('highContrastText') !important;
       }
     }
 
@@ -25,7 +25,7 @@
       font-size: 1.3rem !important;
       font-weight: 600 !important;
       @include themed {
-        fill: t('text') !important;
+        fill: t('lowContrastText') !important;
       }
       @include md {
         font-size: 1.5rem !important;
@@ -81,93 +81,88 @@
 
   border-bottom: none;
 
-  & th {
-    font-size: 1.7rem;
-    font-weight: 600;
-    text-transform: capitalize;
-    background: rgb(130 130 130 / 20%);
+  & tr {
     @include themed {
-      color: t('text');
+      border: 1px solid t('border');
+      border-left: none;
+      border-right: none;
+    }
+
+    & th {
+      font-size: 1.7rem;
+      text-transform: capitalize;
+      @include themed {
+        background: t('elementBackground');
+        color: t('highContrastText');
+      }
+    }
+
+    & td {
+      & input,
+      select {
+        width: 100%;
+        padding: 0.7rem;
+        border-radius: 5px;
+        outline: none;
+        @include themed {
+          background: t('elementBackground');
+          color: t('highContrastText');
+          border: 1px solid t('border');
+        }
+
+        &::placeholder {
+          opacity: 1;
+          @include themed {
+            color: t('lowContrastText');
+          }
+        }
+
+        &:focus {
+          @include themed {
+            border: 1px solid t('hoverBorder');
+          }
+        }
+      }
+
+      & input[type='number'] {
+        appearance: textfield;
+
+        &::-webkit-inner-spin-button,
+        ::-webkit-outer-spin-button {
+          appearance: textfield;
+        }
+      }
+
+      & select {
+        width: 80%;
+        margin: 0 auto;
+
+        & option {
+          text-transform: capitalize;
+          @include themed {
+            background-color: t('elementBackground');
+            color: t('highContrastText');
+          }
+
+          &:hover {
+            @include themed {
+              background-color: t('elementHoverBackground');
+            }
+          }
+        }
+      }
+
+      & button {
+        display: inline;
+      }
     }
   }
 
   & tr:last-of-type {
+    border-bottom: none;
+
     & td {
-      border-bottom: none;
       padding-bottom: 0;
-    }
-  }
-
-  & td {
-    & input,
-    select {
-      width: 100%;
-      padding: 0.7rem;
-      background: transparent;
-      border-radius: 5px;
-      outline: none;
-      @include themed {
-        color: t('text');
-        border: 1px solid t('text');
-      }
-
-      &::placeholder {
-        opacity: 1;
-        @include themed {
-          color: t('text');
-        }
-      }
-
-      &:focus {
-        border: 1px solid $red;
-      }
-    }
-
-    & input[type='number'] {
-      appearance: textfield;
-
-      &::-webkit-inner-spin-button,
-      ::-webkit-outer-spin-button {
-        appearance: textfield;
-      }
-    }
-
-    & select {
-      width: 80%;
-      margin: 0 auto;
-
-      & option {
-        text-transform: capitalize;
-        @include themed {
-          background: t('bg');
-          color: t('text');
-        }
-      }
-    }
-
-    & button {
-      border: 1px solid transparent;
-      border-radius: 5px;
-      padding: 1rem 1.5rem;
-      font-size: 1.7rem;
-      font-weight: 600;
-
-      @include themed {
-        background: t('text');
-        color: t('bg');
-      }
-
-      &:hover {
-        @include themed {
-          border: 1px solid t('text');
-          color: t('text');
-          background: t('bg');
-        }
-      }
-
-      &:active {
-        transform: scale(0.98);
-      }
     }
   }
 }
@@ -176,7 +171,9 @@
   @extend %fullWidthTable;
 
   & td {
-    border-left: 1px solid rgb(130 130 130 / 20%);
-    border-right: 1px solid rgb(130 130 130 / 20%);
+    @include themed {
+      border-left: 1px solid t('border');
+      border-right: 1px solid t('border');
+    }
   }
 }

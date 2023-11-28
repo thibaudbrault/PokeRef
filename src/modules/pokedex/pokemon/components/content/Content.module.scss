@@ -4,14 +4,14 @@
   position: sticky;
   padding: 1rem 1.5rem;
   margin-bottom: 5rem;
-  top: 0;
+  top: 1rem;
   font-size: 2rem;
   border-radius: 5px;
   z-index: 3;
 
   @include themed {
-    background: t('bg');
-    border: 1px solid t('text');
+    background-color: t('elementBackground');
+    border: 1px solid t('border');
   }
 
   & div {
@@ -23,6 +23,10 @@
       font-size: 2rem;
       font-weight: 600;
       text-transform: uppercase;
+
+      @include themed {
+        color: t('lowContrastText');
+      }
     }
 
     & button {
@@ -38,11 +42,19 @@
       font-weight: 600;
 
       @include themed {
-        color: t('text');
+        color: t('highContrastText');
       }
 
       &:hover {
-        background: rgb(130 130 130 / 20%);
+        @include themed {
+          background-color: t('elementHoverBackground');
+        }
+      }
+
+      &:active {
+        @include themed {
+          background-color: t('elementActiveBackground');
+        }
       }
     }
   }

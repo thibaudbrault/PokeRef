@@ -2,7 +2,13 @@ import { useState } from 'react';
 
 import { useQueries, useQuery } from '@tanstack/react-query';
 
-import { getCards, getPokemonTypes, getSingle } from '@/utils';
+import {
+  BASE_URL,
+  QueryKeys,
+  getCards,
+  getPokemonTypes,
+  getSingle,
+} from '@/utils';
 
 import type { IPokemon } from '@/types';
 
@@ -12,42 +18,40 @@ export const useFetchPokemon = (name: string) => {
   const [pokemon, location, cards] = useQueries({
     queries: [
       {
-        queryKey: [`pokemon`, name],
-        queryFn: () => getSingle(`https://pokeapi.co/api/v2/pokemon/${name}`),
+        queryKey: [QueryKeys.POKEMON.INDEX, name],
+        queryFn: () => getSingle(`${BASE_URL}/pokemon/${name}`),
         onSuccess: (data: IPokemon) => {
           setPokemonId(data.id);
         },
       },
       {
-        queryKey: [`encounter`, name],
-        queryFn: () =>
-          getSingle(`https://pokeapi.co/api/v2/pokemon/${name}/encounters`),
+        queryKey: [QueryKeys.ENCOUNTER.INDEX, name],
+        queryFn: () => getSingle(`${BASE_URL}/pokemon/${name}/encounters`),
       },
       {
-        queryKey: [`cards`, name],
+        queryKey: [QueryKeys.CARDS, name],
         queryFn: () => getCards(name),
       },
     ],
   });
 
   const types = useQuery({
-    queryKey: [`types`, name, pokemon.data],
+    queryKey: [QueryKeys.TYPES, name, pokemon.data],
     queryFn: () => getPokemonTypes(pokemon.data),
     enabled: !!pokemon.data && pokemon.data.id < 10000,
   });
 
   const species = useQuery({
     //eslint-disable-next-line @tanstack/query/exhaustive-deps
-    queryKey: [`species`, name, pokemon.data],
-    queryFn: () =>
-      getSingle(`https://pokeapi.co/api/v2/pokemon-species/${pokemon.data.id}`),
+    queryKey: [QueryKeys.SPECIES, name, pokemon.data],
+    queryFn: () => getSingle(`${BASE_URL}/pokemon-species/${pokemon.data.id}`),
     enabled: !!pokemon.data && pokemon.data.id < 10000,
   });
 
   const evolutionChainUrl = species.data?.evolution_chain?.url;
 
   const evolution = useQuery({
-    queryKey: [`evolution`, name, evolutionChainUrl],
+    queryKey: [QueryKeys.EVOLUTION, name, evolutionChainUrl],
     queryFn: () => getSingle(evolutionChainUrl),
     enabled: !!evolutionChainUrl,
   });

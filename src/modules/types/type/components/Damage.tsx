@@ -2,10 +2,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Tooltip } from '@/components';
-import typesRelationData from '@/data/types.json';
 import moves from '@/modules/moves/move/components/data/Data.module.scss';
 import styles from '@/modules/types/type/Type.module.scss';
 import { capitalize, removeDash } from '@/utils';
+import typesRelationData from '@/utils/types.json';
 
 import type { IType } from '@/types';
 

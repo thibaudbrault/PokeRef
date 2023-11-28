@@ -1,4 +1,8 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
 import NextNProgress from 'nextjs-progressbar';
@@ -6,11 +10,9 @@ import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { Toaster } from 'react-hot-toast';
 
 import { ThemeProvider } from '@/contexts';
-import { Footer, Header, Nav } from '@/modules/layout';
-
 import '@/styles/styles.scss';
-
-import { useNextCssRemovalPrevention } from '../hooks';
+import { useNextCssRemovalPrevention } from '@/hooks';
+import { PageLayout } from '@/layouts';
 
 import type { AppProps } from 'next/app';
 
@@ -45,14 +47,15 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <SessionProvider session={session}>
           <QueryClientProvider client={queryClient}>
-            <ThemeProvider>
-              <Toaster />
-              <NextNProgress />
-              <Header />
-              <Nav />
-              <Component {...pageProps} />
-              <Footer />
-            </ThemeProvider>
+            <Hydrate state={pageProps.dehydratedState}>
+              <ThemeProvider>
+                <Toaster />
+                <NextNProgress />
+                <PageLayout>
+                  <Component {...pageProps} />
+                </PageLayout>
+              </ThemeProvider>
+            </Hydrate>
           </QueryClientProvider>
         </SessionProvider>
       </ErrorBoundary>

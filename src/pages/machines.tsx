@@ -7,21 +7,27 @@ import Link from 'next/link';
 import { errorToast, GenNav, Loader } from '@/components';
 import { useTableParams } from '@/hooks';
 import { Heading } from '@/modules/machines';
-import { getMultiple, removeDash, uppercase } from '@/utils';
+import {
+  BASE_URL,
+  getMultiple,
+  QueryKeys,
+  removeDash,
+  uppercase,
+} from '@/utils';
 
 import type { IMachine } from '@/types';
 
 function MachinesPage() {
   const [version, setVersion] = useState<string | null>(`red-blue`);
-  const [game, setGame] = useState<string | null>(`red`);
+  const [game, setGame] = useState<string>(`red`);
   const {
     isLoading,
     isError,
     error,
     data: machines,
   }: UseQueryResult<IMachine[], Error> = useQuery({
-    queryKey: [`machines`],
-    queryFn: () => getMultiple(`https://pokeapi.co/api/v2/machine?limit=1700`),
+    queryKey: [QueryKeys.MACHINES],
+    queryFn: () => getMultiple(`${BASE_URL}/machine?limit=1700`),
   });
 
   const data = useMemo(

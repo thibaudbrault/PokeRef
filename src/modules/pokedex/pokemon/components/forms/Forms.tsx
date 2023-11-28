@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 import { SmallLoader, errorToast } from '@/components';
 import { useTableParams } from '@/hooks';
-import { getPokemonForms, removeDash } from '@/utils';
+import { getPokemonForms, QueryKeys, removeDash } from '@/utils';
 
 import type { IPokemon, IPokemonForm } from '@/types';
 
@@ -22,7 +22,7 @@ export function Forms({ pokemon }: Props) {
     error,
     data: forms,
   }: UseQueryResult<IPokemonForm[], Error> = useQuery({
-    queryKey: [`forms`, pokemon],
+    queryKey: [QueryKeys.FORMS, pokemon],
     queryFn: () => getPokemonForms(pokemon),
   });
 

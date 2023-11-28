@@ -2,8 +2,8 @@ import { type Dispatch, type SetStateAction } from 'react';
 
 import * as Tabs from '@radix-ui/react-tabs';
 
-import { learnMethod, regions } from './DataArrays';
-import { removeDash } from './Typography';
+import { learnMethod, regions } from './dataArrays';
+import { removeDash } from './typography';
 
 interface IProps {
   toggle?: number;

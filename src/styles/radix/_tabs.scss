@@ -22,14 +22,17 @@
     text-transform: capitalize;
     background-color: transparent;
     border: none;
+
     @include gthemed {
-      color: t('text');
+      color: t('lowContrastText');
       border-bottom: 1px solid t('border');
     }
 
     &[data-state='active'] {
-      color: $red;
-      border-bottom: 1px solid $red;
+      @include gthemed {
+        color: t('highContrastText');
+        border-bottom: 1px solid t('hoverBorder');
+      }
     }
   }
 }

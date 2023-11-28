@@ -33,11 +33,12 @@ export interface IOptionsFixed extends IOptions {
 }
 
 export const formOptions: IOptionsOffsetLimit[] = [
-  { label: `Alola`, value: `alola`, offset: 1097, limit: 30 },
-  { label: `Galar`, value: `galar`, offset: 1167, limit: 25 },
-  { label: `Hisui`, value: `hisui`, offset: 1235, limit: 20 },
-  { label: `Mega`, value: `mega`, offset: 1039, limit: 60 },
-  { label: `Gmax`, value: `gmax`, offset: 1201, limit: 40 },
+  { label: `Alola`, value: `alola`, offset: 1107, limit: 30 },
+  { label: `Galar`, value: `galar`, offset: 1177, limit: 25 },
+  { label: `Hisui`, value: `hisui`, offset: 1245, limit: 20 },
+  { label: `Paldea`, value: `paldea`, offset: 1266, limit: 10 },
+  { label: `Mega`, value: `mega`, offset: 1049, limit: 60 },
+  { label: `Gmax`, value: `gmax`, offset: 1211, limit: 40 },
 ];
 
 export const generationsOptions: IOptionsOffsetLimit[] = [
@@ -49,7 +50,7 @@ export const generationsOptions: IOptionsOffsetLimit[] = [
   { label: `Generation VI`, value: `gen6`, offset: 649, limit: 72 },
   { label: `Generation VII`, value: `gen7`, offset: 721, limit: 88 },
   { label: `Generation VIII`, value: `gen8`, offset: 809, limit: 96 },
-  { label: `Generation IX`, value: `gen9`, offset: 905, limit: 105 },
+  { label: `Generation IX`, value: `gen9`, offset: 905, limit: 112 },
 ];
 
 export const typeOptions: IOptionsFixed[] = [
@@ -154,7 +155,7 @@ export const pokemonFilters: PokemonFilters = [
   },
 ];
 
-interface IGenNav extends IOptions {
+export interface IGenNav extends IOptions {
   details: {
     game: string;
     version: string;

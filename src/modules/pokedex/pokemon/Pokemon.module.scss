@@ -1,0 +1,31 @@
+@use '@/styles/abstracts' as *;
+
+.section {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+
+  & h2 {
+    margin-bottom: 0;
+  }
+
+  & button {
+    background: none;
+    border: none;
+
+    & svg {
+      font-size: 4rem;
+
+      & path {
+        stroke-width: 1;
+
+        @include themed {
+          fill: t('appBackground');
+          stroke: t('highContrastText');
+        }
+      }
+    }
+  }
+}

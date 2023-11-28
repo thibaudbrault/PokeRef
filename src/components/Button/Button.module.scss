@@ -17,51 +17,31 @@
   gap: 1rem;
   background: none;
   @include themed {
-    color: t('text');
-    border: 1px solid t('text');
+    color: t('highContrastText');
+    background-color: t('elementBackground');
+    border: 1px solid t('border');
   }
 
   &:hover {
     @include themed {
-      background: t('text');
-      color: t('bg');
-      border: 1px solid t('bg');
+      background: t('elementHoverBackground');
+      border: 1px solid t('hoverBorder');
     }
   }
 }
 
-.close {
-  position: absolute;
-  top: 3rem;
-  right: 3rem;
-  padding: 1rem;
-  border-color: transparent;
-  border-radius: 50px;
-  font-size: 3rem;
-  cursor: pointer;
-  background-color: $light;
-  color: $dark;
-
-  &:hover {
-    border-color: $light;
-    background-color: transparent;
-    color: $light;
-  }
-}
-
 .primary {
-  border-color: transparent;
   @include themed {
-    background-color: t('text');
-    color: t('bg');
+    border-color: t('border');
+    background-color: t('highContrastText');
+    color: t('appBackground');
   }
 
   &:hover {
-    background: transparent;
-
     @include themed {
-      border-color: t('text');
-      color: t('text');
+      background: t('appBackground');
+      border-color: t('hoverBorder');
+      color: t('highContrastText');
     }
   }
 
@@ -72,9 +52,9 @@
 
 .secondary {
   @include themed {
-    background-color: t('bg');
-    border-color: t('text');
-    color: t('text');
+    background-color: t('appBackground');
+    border-color: t('bodrer');
+    color: t('highContrastText');
   }
 
   @include md {
@@ -103,29 +83,5 @@
   & span {
     font-size: 1.7rem;
     cursor: pointer;
-  }
-}
-
-.authPrimary {
-  background-color: $dark;
-  color: $light;
-  border-color: transparent;
-
-  &:hover {
-    border-color: $dark;
-    background-color: transparent;
-    color: $dark;
-  }
-}
-
-.authSecondary {
-  background-color: transparent;
-  border-color: $dark;
-  color: $dark;
-
-  &:hover {
-    border-color: $dark;
-    background-color: transparent;
-    color: $dark;
   }
 }

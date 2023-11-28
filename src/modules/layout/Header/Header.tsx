@@ -1,17 +1,19 @@
 import { useContext } from 'react';
 
+import { FiMenu } from '@meronex/icons/fi';
 import { RiMoonClearLine, RiSunLine } from '@meronex/icons/ri';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 
-import { Button } from '@/components';
+import { Button, Avatar, AvatarImage, AvatarFallback } from '@/components';
 import { ThemeContext } from '@/contexts';
 
 import { MobileNav } from '../Nav';
 import styles from './Header.module.scss';
 
 export function Header() {
-  const { status } = useSession();
+  const { status, data: session } = useSession();
 
   const { theme, setTheme } = useContext(ThemeContext);
 
@@ -46,21 +48,32 @@ export function Header() {
           )}
         </button>
         {status === `authenticated` ? (
-          <div className={styles.auth}>
-            <Button intent="secondary" onClick={logout}>
-              Sign Out
-            </Button>
-            <Button intent="primary" asChild>
-              <Link href="/profile">Profile</Link>
-            </Button>
-          </div>
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger asChild>
+              <Avatar>
+                <AvatarImage src={session.user?.image || ``} />
+                <AvatarFallback>
+                  <FiMenu />
+                </AvatarFallback>
+              </Avatar>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content
+              className="DropdownMenuContent"
+              sideOffset={10}
+            >
+              <DropdownMenu.Item className="DropdownMenuItem">
+                <Link href="/profile">Profile</Link>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item className="DropdownMenuItem" onClick={logout}>
+                Sign Out
+              </DropdownMenu.Item>
+              <DropdownMenu.Arrow className="DropdownMenuArrow" />
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
         ) : (
           <div className={styles.auth}>
-            <Button intent="secondary" asChild>
-              <Link href="/login">Login</Link>
-            </Button>
             <Button intent="primary" asChild>
-              <Link href="/register">Register</Link>
+              <Link href="/login">Login</Link>
             </Button>
           </div>
         )}

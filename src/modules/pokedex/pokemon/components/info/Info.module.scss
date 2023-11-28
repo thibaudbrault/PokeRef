@@ -34,24 +34,25 @@
 
   width: 90%;
 
-  & th {
-    background: rgb(130 130 130 / 20%);
-    text-transform: capitalize;
-  }
+  & tr {
+    & th {
+      text-transform: capitalize;
+    }
 
-  & td {
-    font-size: 1.7rem;
-    font-weight: 600;
-    text-transform: capitalize;
-    text-align: start;
+    & td {
+      font-size: 1.7rem;
+      font-weight: 600;
+      text-transform: capitalize;
+      text-align: start;
 
-    & a {
-      width: fit-content;
-      display: block;
-      cursor: pointer;
+      & a {
+        width: fit-content;
+        display: block;
+        cursor: pointer;
 
-      &:hover {
-        text-decoration: underline;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

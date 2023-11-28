@@ -8,7 +8,8 @@ import {
 import axios, { AxiosError } from 'axios';
 import { useSession } from 'next-auth/react';
 
-import { errorToast, successToast } from '@/components';
+import { Button, errorToast, successToast } from '@/components';
+import { QueryKeys } from '~/src/utils';
 
 import { Base } from './base';
 import styles from './Data.module.scss';
@@ -28,7 +29,7 @@ export function Data({ pokemon, species, game }: Props) {
   const queryClient = new QueryClient();
 
   const { data: user }: UseQueryResult<User & Caught> = useQuery({
-    queryKey: [`user`, session?.user?.email],
+    queryKey: [QueryKeys.USER, session?.user?.email],
     queryFn: async () => {
       try {
         const email = session?.user?.email;
@@ -66,7 +67,7 @@ export function Data({ pokemon, species, game }: Props) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [`user`, session?.user?.email],
+        queryKey: [QueryKeys.USER, session?.user?.email],
       });
     },
   });
@@ -80,11 +81,18 @@ export function Data({ pokemon, species, game }: Props) {
         (user.caught?.every(
           (p: Record<string, string>) => p.name !== pokemon.name,
         ) ? (
-          <button className={styles.catch} onClick={() => catchHandler()}>
+          <Button
+            intent="primary"
+            size="fit"
+            className={styles.catch}
+            onClick={() => catchHandler()}
+          >
             Catch
-          </button>
+          </Button>
         ) : (
-          <p className={styles.caught}>Caught</p>
+          <Button intent="secondary" size="fit" className={styles.catch}>
+            Caught
+          </Button>
         ))}
       <div className={styles.container}>
         <Description species={species} pokemon={pokemon} game={game} />

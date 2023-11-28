@@ -8,7 +8,7 @@ import { errorToast, Loader } from '@/components';
 import { usePaginatedTableParams } from '@/hooks';
 import { Heading, Search } from '@/modules/abilities';
 import moves from '@/modules/moves/Moves.module.scss';
-import { getMultiple, removeDash } from '@/utils';
+import { BASE_URL, getMultiple, Limit, QueryKeys, removeDash } from '@/utils';
 
 import type { IAbility } from '@/types';
 
@@ -19,8 +19,8 @@ function AbilitiesPage() {
     error,
     data: abilities,
   }: UseQueryResult<IAbility[], Error> = useQuery({
-    queryKey: [`abilities`],
-    queryFn: () => getMultiple(`https://pokeapi.co/api/v2/ability?limit=359`),
+    queryKey: [QueryKeys.ABILITIES],
+    queryFn: () => getMultiple(`${BASE_URL}/ability?limit=${Limit.ABILITIES}`),
   });
 
   const data = useMemo(() => abilities, [abilities]);

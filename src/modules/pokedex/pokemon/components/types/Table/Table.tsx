@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Tooltip } from '@/components';
-import typesRelationData from '@/data/types.json';
 import { capitalize } from '@/utils';
+import typesRelationData from '@/utils/types.json';
 
 import styles from '../Types.module.scss';
 

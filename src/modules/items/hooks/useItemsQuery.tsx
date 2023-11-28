@@ -1,17 +1,17 @@
 import { useQueries } from '@tanstack/react-query';
 
-import { getMultiple } from '@/utils';
+import { BASE_URL, Limit, QueryKeys, getMultiple } from '@/utils';
 
 export const useItemsQuery = () => {
   const [items, berries] = useQueries({
     queries: [
       {
-        queryKey: [`items`],
-        queryFn: () => getMultiple(`https://pokeapi.co/api/v2/item?limit=2051`),
+        queryKey: [QueryKeys.ITEMS],
+        queryFn: () => getMultiple(`${BASE_URL}/item?limit=${Limit.ITEMS}`),
       },
       {
-        queryKey: [`berries`],
-        queryFn: () => getMultiple(`https://pokeapi.co/api/v2/berry?limit=66`),
+        queryKey: [QueryKeys.BERRIES],
+        queryFn: () => getMultiple(`${BASE_URL}/berry?limit=${Limit.BERRIES}`),
       },
     ],
   });

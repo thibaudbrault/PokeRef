@@ -28,8 +28,8 @@
   border-radius: 5px;
 
   @include themed {
-    background-color: t('text');
-    color: t('bg');
+    background-color: t('elementBackground');
+    color: t('highContrastText');
   }
 
   & ul {

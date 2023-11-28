@@ -34,18 +34,20 @@ export function Status({ status }: Props) {
         accessorFn: (row) => row.moves,
         header: `Moves`,
         cell: (info) => (
-          <td className={styles.status}>
-            {info.getValue<IMove[]>().map((i) => (
-              <Link
-                key={i.id}
-                href={{
-                  pathname: `/move/[name]`,
-                  query: { name: i.name },
-                }}
-              >
-                {removeDash(i.name)}
-              </Link>
-            ))}
+          <td>
+            <div className={styles.status}>
+              {info.getValue<IMove[]>().map((i) => (
+                <Link
+                  key={i.id}
+                  href={{
+                    pathname: `/move/[name]`,
+                    query: { name: i.name },
+                  }}
+                >
+                  {removeDash(i.name)}
+                </Link>
+              ))}
+            </div>
           </td>
         ),
       },

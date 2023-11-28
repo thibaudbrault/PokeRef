@@ -153,14 +153,14 @@ body {
   font-family: Quicksand, serif;
   font-weight: 400;
 
-  .theme--dark {
-    color: map.get(map.get($themes, 'dark'), 'text');
-    background-color: map.get(map.get($themes, 'dark'), 'bg');
+  .dark-theme {
+    color: map.get(map.get($themes, 'dark'), 'highContrastText');
+    background-color: map.get(map.get($themes, 'dark'), 'appBackground');
   }
 
-  .theme--light {
-    color: map.get(map.get($themes, 'light'), 'text');
-    background-color: map.get(map.get($themes, 'light'), 'bg');
+  .light-theme {
+    color: map.get(map.get($themes, 'light'), 'highContrastText');
+    background-color: map.get(map.get($themes, 'light'), 'appBackground');
   }
 
   & #nprogress {
@@ -187,6 +187,10 @@ body {
       display: none;
     }
   }
+}
+
+.body {
+  margin: 0 !important;
 }
 
 h1,

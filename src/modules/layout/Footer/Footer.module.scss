@@ -27,7 +27,7 @@
   display: grid;
   grid-template-columns: 30% 40% 30%;
   align-items: center;
-  color: $dark;
+  color: $dark1;
 }
 
 .left {
@@ -43,9 +43,12 @@
   text-align: center;
 
   @include themed {
-    color: t('text');
-    text-shadow: t('bg') -1px -1px 0, t('bg') 1px -1px 0, t('bg') -1px 1px 0,
-      t('bg') 1px 1px 0;
+    color: t('highContrastText');
+    text-shadow:
+      t('appBackground') -1px -1px 0,
+      t('appBackground') 1px -1px 0,
+      t('appBackground') -1px 1px 0,
+      t('appBackground') 1px 1px 0;
   }
 }
 

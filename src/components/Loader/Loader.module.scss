@@ -28,34 +28,6 @@
   height: 48px;
 }
 
-.spinner {
-  position: relative;
-  height: 3rem;
-  width: 3rem;
-  text-align: center;
-
-  & svg {
-    position: absolute;
-    height: 3rem;
-    width: 3rem;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-    & path {
-      @include themed {
-        stroke: t('bg');
-      }
-    }
-
-    & circle {
-      @include themed {
-        fill: t('bg');
-      }
-    }
-  }
-}
-
 @keyframes wiggle {
   0% {
     transform: rotate(0deg);

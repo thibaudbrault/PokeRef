@@ -1,13 +1,14 @@
-import { useState, type Dispatch, type SetStateAction, useEffect } from 'react';
+import { useEffect, useState, type Dispatch, type SetStateAction } from 'react';
 
 import * as Label from '@radix-ui/react-label';
-import * as Menubar from '@radix-ui/react-menubar';
+import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import Select, { type SingleValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useMediaQuery } from '@/hooks';
 import {
+  IGenNav,
   IOptionsOffsetLimit,
   genNav,
   generationsOptions,
@@ -17,8 +18,8 @@ import {
 import styles from './Nav.module.scss';
 
 type Props = {
-  setGame: Dispatch<SetStateAction<string | null>>;
-  setVersion: Dispatch<SetStateAction<string | null>>;
+  setGame: Dispatch<SetStateAction<string>>;
+  setVersion?: Dispatch<SetStateAction<string | null>>;
 };
 
 type GenDetails = {
@@ -51,7 +52,16 @@ export function GenNav({ setGame, setVersion }: Props) {
     if (option) {
       setDetails(option);
       setGame(option.game);
-      setVersion(option.version);
+      if (setVersion) {
+        setVersion(option.version);
+      }
+    }
+  };
+
+  const handleClick = (gd: IGenNav['details'][0]) => {
+    setGame(gd.game);
+    if (setVersion) {
+      setVersion(gd.version);
     }
   };
 
@@ -68,7 +78,7 @@ export function GenNav({ setGame, setVersion }: Props) {
           name="generation"
           id="generation"
           value={generation}
-          className="dropdown selectOptions"
+          className="dropdown"
           classNamePrefix="select"
           components={animatedComponents}
           options={generationsOptions}
@@ -85,7 +95,7 @@ export function GenNav({ setGame, setVersion }: Props) {
           name="game"
           id="game"
           value={details}
-          className="dropdown selectOptions"
+          className="dropdown"
           classNamePrefix="select"
           components={animatedComponents}
           options={getVersionAndGame()}
@@ -100,29 +110,26 @@ export function GenNav({ setGame, setVersion }: Props) {
       </div>
     </section>
   ) : (
-    <Menubar.Root className="MenubarRoot">
-      {genNav.map((g) => (
-        <Menubar.Menu key={uuidv4()}>
-          <Menubar.Trigger className="MenubarTrigger">
-            {g.label}
-          </Menubar.Trigger>
-          <Menubar.Content className="MenubarContent">
-            {g.details.map((gd) => (
-              <Menubar.Item key={uuidv4()} className="MenubarItem">
-                <button
-                  key={gd.game}
-                  onClick={() => {
-                    setGame(gd.game);
-                    setVersion(gd.version);
-                  }}
-                >
+    <NavigationMenu.Root className="NavigationMenuRoot">
+      <NavigationMenu.List className="NavigationMenuList">
+        {genNav.map((g) => (
+          <NavigationMenu.Item key={uuidv4()}>
+            <NavigationMenu.Trigger className="NavigationMenuTrigger">
+              {g.label}
+            </NavigationMenu.Trigger>
+            <NavigationMenu.Content className="NavigationMenuContent">
+              {g.details.map((gd) => (
+                <button key={gd.game} onClick={() => handleClick(gd)}>
                   {removeDash(gd.game)}
                 </button>
-              </Menubar.Item>
-            ))}
-          </Menubar.Content>
-        </Menubar.Menu>
-      ))}
-    </Menubar.Root>
+              ))}
+            </NavigationMenu.Content>
+          </NavigationMenu.Item>
+        ))}
+      </NavigationMenu.List>
+      <div className="ViewportPosition">
+        <NavigationMenu.Viewport className="NavigationMenuViewport" />
+      </div>
+    </NavigationMenu.Root>
   );
 }

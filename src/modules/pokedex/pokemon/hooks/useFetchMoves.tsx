@@ -1,6 +1,8 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import axios from 'axios';
 
+import { QueryKeys } from '~/src/utils';
+
 import type { IMove, IPokemon, IPokemonMove } from '@/types';
 
 export interface IMoveWithDetails extends IPokemonMove {
@@ -50,7 +52,7 @@ export const useFetchMoves = (
     error,
     data: pokemonMoves,
   }: UseQueryResult<IMoveWithDetails[], Error> = useQuery({
-    queryKey: [`pokemonMoves`, version, learn, name],
+    queryKey: [QueryKeys.POKEMON.MOVES, version, learn, name],
     queryFn: getFilteredMovesWithDetails,
   });
 

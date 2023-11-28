@@ -1,23 +1,73 @@
 @use 'sass:map';
 
+// Common colors
 $red: #aa2429;
 $purple: #7c66dc;
-$dark: #171717;
-$light: #e5e5e5;
+
+// Dark theme
+$dark1: #111;
+$dark2: #191919;
+$dark3: #222;
+$dark4: #2a2a2a;
+$dark5: #313131;
+$dark6: #3a3a3a;
+$dark7: #484848;
+$dark8: #606060;
+$dark9: #6e6e6e;
+$dark10: #7b7b7b;
+$dark11: #b4b4b4;
+$dark12: #eee;
+
+// Light theme
+$light1: #fcfcfc;
+$light2: #f9f9f9;
+$light3: #f0f0f0;
+$light4: #e8e8e8;
+$light5: #e0e0e0;
+$light6: #d9d9d9;
+$light7: #cecece;
+$light8: #bbb;
+$light9: #8d8d8d;
+$light10: #838383;
+$light11: #646464;
+$light12: #202020;
+
+/* stylelint-disable */
 $themes: (
   dark: (
-    bg: $dark,
-    text: $light,
+    appBackground: $dark1,
+    subtleBackground: $dark2,
+    elementBackground: $dark3,
+    elementHoverBackground: $dark4,
+    elementActiveBackground: $dark5,
+    subtleBorder: $dark6,
+    border: $dark7,
+    hoverBorder: $dark8,
+    solidBackground: $dark9,
+    solidHoverBackground: $dark10,
+    lowContrastText: $dark11,
+    highContrastText: $dark12,
   ),
   light: (
-    bg: $light,
-    text: $dark,
+    appBackground: $light1,
+    subtleBackground: $light2,
+    elementBackground: $light3,
+    elementHoverBackground: $light4,
+    elementActiveBackground: $light5,
+    subtleBorder: $light6,
+    border: $light7,
+    hoverBorder: $light8,
+    solidBackground: $light9,
+    solidHoverBackground: $light10,
+    lowContrastText: $light11,
+    highContrastText: $light12,
   ),
 );
+/* stylelint-enable */
 
 @mixin themed {
   @each $theme, $map in $themes {
-    :global(.theme--#{$theme}) & {
+    :global(.#{$theme}-theme) & {
       $theme-map: () !global;
 
       @each $key, $submap in $map {
@@ -38,7 +88,7 @@ $themes: (
 
 @mixin gthemed {
   @each $theme, $map in $themes {
-    .theme--#{$theme} & {
+    .#{$theme}-theme & {
       $theme-map: () !global;
 
       @each $key, $submap in $map {

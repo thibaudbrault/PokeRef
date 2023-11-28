@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { Button, Loader, Separator, errorToast } from '@/components';
-import styles from '@/modules/pokedex/Pokedex.module.scss';
 import {
   Cards,
   Competitive,
@@ -24,6 +23,8 @@ import {
   Types,
   useFetchPokemon,
 } from '@/modules/pokedex/pokemon';
+import styles from '@/modules/pokedex/pokemon/Pokemon.module.scss';
+import { IFlavorText } from '@/types';
 import { pokemonFilters, removeDash, removeLongName } from '@/utils';
 
 function PokemonCard() {
@@ -80,9 +81,21 @@ function PokemonCard() {
     return <Loader />;
   }
 
+  const getSeoDesc = () => {
+    if (species.data) {
+      const flavorText = species?.data.flavor_text_entries.find(
+        (sf: IFlavorText) => sf.language.name === `en`,
+      );
+      const desc = flavorText.flavor_text;
+      return desc;
+    } else {
+      return `Find every details about ${name}`;
+    }
+  };
+
   return (
     <>
-      <Heading name={name} />
+      <Heading name={name} description={getSeoDesc()} />
       <main className="mainBig">
         <section className={styles.section}>
           {pokemon.data?.name?.includes(`mega`) ? (
@@ -120,7 +133,7 @@ function PokemonCard() {
           setFormat={setFormat}
         />
 
-        <Content />
+        <Content hasForm={pokemon.data.forms.length > 1} />
 
         <Data pokemon={pokemon.data} species={species.data} game={game} />
 

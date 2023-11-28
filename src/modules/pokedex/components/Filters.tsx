@@ -10,6 +10,7 @@ import Select, { type SingleValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
 
 import {
+  Limit,
   formOptions,
   generationsOptions,
   type IOptionsOffsetLimit,
@@ -23,10 +24,10 @@ import type { IPokemon } from '@/types';
 type Props = {
   pokedex?: IPokemon[];
   setFilteredPokedex: Dispatch<SetStateAction<IPokemon[]>>;
-  offset: number;
-  setOffset: Dispatch<SetStateAction<number>>;
   page: number;
   setPage: Dispatch<SetStateAction<number>>;
+  offset: number;
+  setOffset: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;
   form: IOptionsOffsetLimit | null;
   setForm: Dispatch<SetStateAction<IOptionsOffsetLimit | null>>;
@@ -37,16 +38,19 @@ type Props = {
 export function Filters({
   pokedex,
   setFilteredPokedex,
-  offset,
-  setOffset,
   page,
   setPage,
+  offset,
+  setOffset,
   setLimit,
   form,
   setForm,
   generation,
   setGeneration,
 }: Props) {
+  const resultsLastPage = Limit.POKEMON % 50;
+  const limitLastPage = Limit.POKEMON - resultsLastPage;
+
   const getFilterPokemon = useCallback(() => {
     if (pokedex) {
       setFilteredPokedex(
@@ -55,8 +59,8 @@ export function Filters({
           .flat()
           .filter((pokedex) => {
             if (!form && !generation) {
-              setOffset((50 * page) % 1010);
-              setLimit(offset === 1000 ? 10 : 50);
+              setOffset((50 * page) % Limit.POKEMON);
+              setLimit(offset === limitLastPage ? resultsLastPage : 50);
               return pokedex;
             } else if (form) {
               setOffset(form.offset);
@@ -93,16 +97,16 @@ export function Filters({
   }, [getFilterPokemon]);
 
   return (
-    <section className={styles.search}>
-      <Search />
-      <div className={styles.dropdown}>
+    <section className={styles.filters}>
+      <Search onGrid={true} />
+      <div className={styles.form}>
         <Label.Root htmlFor="form">Form</Label.Root>
         <Select
           key={form?.value}
           name="form"
           id="form"
           value={form}
-          className="dropdown selectOptions"
+          className="dropdown"
           classNamePrefix="select"
           components={animatedComponents}
           isClearable
@@ -115,14 +119,14 @@ export function Filters({
         />
       </div>
 
-      <div className={styles.dropdown}>
+      <div className={styles.generation}>
         <Label.Root htmlFor="generation">Generation</Label.Root>
         <Select
           key={generation?.value}
           name="generation"
           id="generation"
           value={generation}
-          className="dropdown selectOptions"
+          className="dropdown"
           classNamePrefix="select"
           components={animatedComponents}
           isClearable

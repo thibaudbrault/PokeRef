@@ -8,7 +8,8 @@
   min-width: 25rem;
 
   & label {
-    font-size: 1.7rem;
+    font-size: 2rem;
+    font-weight: 600;
   }
 
   & input {
@@ -17,18 +18,18 @@
     padding: 1rem;
     text-transform: capitalize;
 
+    @include gthemed {
+      background-color: t('elementBackground');
+    }
+
     &::placeholder {
       font-size: 1.5rem;
       font-family: Quicksand, serif;
 
       @include gthemed {
-        color: t('text');
+        color: t('lowContrastText');
       }
     }
-  }
-
-  @include md {
-    grid-area: search;
   }
 
   @include xs {
@@ -42,36 +43,50 @@
   z-index: 2;
 
   & ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
     width: 100%;
     position: absolute;
     top: 0.5rem;
     left: 0;
     border-radius: 5px;
+    padding: 1rem;
 
     @include gthemed {
-      background: t('text');
-      color: t('bg');
+      background: t('elementBackground');
+      color: t('highContrastText');
+      border: 1px solid t('border');
     }
 
     & li {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.5rem 10%;
+      width: 100%;
+
+      & .searchLink {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.7rem;
+        border-radius: 5px;
+        font-weight: 600;
+        padding: 0.5rem;
+        cursor: pointer;
+
+        &:hover {
+          @include gthemed {
+            background-color: t('elementHoverBackground');
+          }
+        }
+
+        & .searchId {
+          @include gthemed {
+            color: t('lowContrastText');
+          }
+        }
+      }
     }
   }
-}
-
-.searchLink {
-  @extend %tLink;
-
-  font-size: 1.7rem;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.searchId {
-  font-size: 1.7rem;
 }

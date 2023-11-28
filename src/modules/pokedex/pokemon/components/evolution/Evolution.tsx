@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { SmallLoader, errorToast } from '@/components';
-import { getAllEvo, removeDash } from '@/utils';
+import { getAllEvo, QueryKeys, removeDash } from '@/utils';
 
 import styles from './Evolution.module.scss';
 
@@ -22,7 +22,7 @@ export function Evolution({ evolution, name }: Props) {
     error,
     data: evo,
   }: UseQueryResult<IPokemon[], Error> = useQuery({
-    queryKey: [`evos`, name, evolution],
+    queryKey: [QueryKeys.EVOLUTIONS, name, evolution],
     queryFn: () => getAllEvo(evolution),
     enabled: !!evolution,
   });

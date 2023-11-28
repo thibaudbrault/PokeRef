@@ -1,11 +1,6 @@
 @use '@/styles/abstracts' as *;
 
 .auth {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin: 0 auto;
-
   @include md {
     display: none;
   }
@@ -42,13 +37,9 @@
   justify-content: center;
   background: none;
   border: none;
-  font-size: 48px;
+  font-size: 32px;
 
   @include themed {
-    color: t('text');
-  }
-
-  @include md {
-    font-size: 32px;
+    color: t('highContrastText');
   }
 }

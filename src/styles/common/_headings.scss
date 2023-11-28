@@ -7,9 +7,12 @@
   cursor: pointer;
 
   @include gthemed {
-    color: t('bg');
-    text-shadow: t('text') -1px -1px 0, t('text') 1px -1px 0,
-      t('text') -1px 1px 0, t('text') 1px 1px 0;
+    color: t('appBackground');
+    text-shadow:
+      t('highContrastText') -1px -1px 0,
+      t('highContrastText') 1px -1px 0,
+      t('highContrastText') -1px 1px 0,
+      t('highContrastText') 1px 1px 0;
   }
 
   @include lg {
@@ -37,27 +40,23 @@
 }
 
 %title {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   font-size: 6rem;
-  color: #c4c4c4;
   text-transform: capitalize;
   text-align: center;
 
   @include gthemed {
-    color: t('bg');
-    text-shadow: t('text') -1px -1px 0, t('text') 1px -1px 0,
-      t('text') -1px 1px 0, t('text') 1px 1px 0;
+    color: t('appBackground');
+    text-shadow:
+      t('highContrastText') -1px -1px 0,
+      t('highContrastText') 1px -1px 0,
+      t('highContrastText') -1px 1px 0,
+      t('highContrastText') 1px 1px 0;
   }
 }
 
 .title {
   @extend %title;
-}
-
-.pageTitle {
-  @extend %title;
-
-  margin-bottom: 0.5rem;
 }
 
 %subtitle {

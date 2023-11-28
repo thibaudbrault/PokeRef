@@ -1,22 +1,23 @@
 import { useQueries } from '@tanstack/react-query';
 
-import { getMultiple } from '@/utils';
+import { BASE_URL, Limit, QueryKeys, getMultiple } from '@/utils';
 
 export const useMovesQuery = () => {
   const [moves, status, stats] = useQueries({
     queries: [
       {
-        queryKey: [`moves`],
-        queryFn: () => getMultiple(`https://pokeapi.co/api/v2/move?limit=919`),
-      },
-      {
-        queryKey: [`status`],
+        queryKey: [QueryKeys.MOVES],
         queryFn: () =>
-          getMultiple(`https://pokeapi.co/api/v2/move-ailment?limit=22`),
+          getMultiple(`${BASE_URL}/move?limit=${Limit.MOVES.INDEX}`),
       },
       {
-        queryKey: [`stats`],
-        queryFn: () => getMultiple(`https://pokeapi.co/api/v2/stat`),
+        queryKey: [QueryKeys.STATUS],
+        queryFn: () =>
+          getMultiple(`${BASE_URL}/move-ailment?limit=${Limit.MOVES.AILMENT}`),
+      },
+      {
+        queryKey: [QueryKeys.STATS],
+        queryFn: () => getMultiple(`${BASE_URL}/stat`),
       },
     ],
   });

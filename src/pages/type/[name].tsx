@@ -5,8 +5,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { Button, Loader, Separator, errorToast } from '@/components';
-import { Moves } from '@/modules/moves';
-import { Damage, Heading, Pokemon, useTypeQuery } from '@/modules/types/type';
+import {
+  Damage,
+  Heading,
+  Pokemon,
+  Moves,
+  useTypeQuery,
+} from '@/modules/types/type';
 import styles from '@/modules/types/type/Type.module.scss';
 
 function TypeCard() {
@@ -35,7 +40,7 @@ function TypeCard() {
             width={96}
             height={96}
           />
-          <h2 className="pageTitle">{type?.name}</h2>
+          <h2 className="title">{type?.name}</h2>
         </div>
         <Damage type={type} />
         <Separator />
@@ -55,7 +60,7 @@ function TypeCard() {
             <Pokemon typeName={type?.name} pokemon={pokemon} />
           </Tabs.Content>
           <Tabs.Content value="tab2">
-            <Moves moves={moves} />
+            <Moves type={type} moves={moves} />
           </Tabs.Content>
         </Tabs.Root>
         <Button intent="back" size="fit" asChild>

@@ -34,7 +34,7 @@ function ItemCard() {
       <>
         <Heading name={name} />
         <main className="mainBig">
-          <h2 className="pageTitle">{removeDash(item?.name)}</h2>
+          <h2 className="title">{removeDash(item?.name)}</h2>
           <h4 className="subtitle">{removeDash(item?.category.name)}</h4>
           <section className={styles.section}>
             <div>
