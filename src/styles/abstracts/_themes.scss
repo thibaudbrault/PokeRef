@@ -32,15 +32,9 @@ $light10: #838383;
 $light11: #646464;
 $light12: #202020;
 
-// Old colors
-$light: #e5e5e5;
-$dark: #171717;
-
 /* stylelint-disable */
 $themes: (
   dark: (
-    bg: $dark,
-    text: $light,
     appBackground: $dark1,
     subtleBackground: $dark2,
     elementBackground: $dark3,
@@ -55,8 +49,6 @@ $themes: (
     highContrastText: $dark12,
   ),
   light: (
-    bg: $light,
-    text: $dark,
     appBackground: $light1,
     subtleBackground: $light2,
     elementBackground: $light3,

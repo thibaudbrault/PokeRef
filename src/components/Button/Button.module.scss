@@ -30,25 +30,6 @@
   }
 }
 
-.close {
-  position: absolute;
-  top: 3rem;
-  right: 3rem;
-  padding: 1rem;
-  border-color: transparent;
-  border-radius: 50px;
-  font-size: 3rem;
-  cursor: pointer;
-  background-color: $light;
-  color: $dark;
-
-  &:hover {
-    border-color: $light;
-    background-color: transparent;
-    color: $light;
-  }
-}
-
 .primary {
   @include themed {
     border-color: t('border');

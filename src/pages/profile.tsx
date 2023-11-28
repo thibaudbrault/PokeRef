@@ -10,7 +10,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { Loader, errorToast, successToast } from '@/components';
+import { Button, Loader, errorToast, successToast } from '@/components';
 import styles from '@/modules/profile/Profile.module.scss';
 import { Limit, removeDash } from '@/utils';
 import { prisma } from '~/lib/prisma';
@@ -62,9 +62,12 @@ function Profile(props: User & Caught) {
               >
                 {removeDash(pokemon.name)}
               </Link>
-              <button onClick={() => releaseHandler(pokemon.id)}>
+              <Button
+                intent="primary"
+                onClick={() => releaseHandler(pokemon.id)}
+              >
                 Release
-              </button>
+              </Button>
             </li>
           ))}
         </ul>
