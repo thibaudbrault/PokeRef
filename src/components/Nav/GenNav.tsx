@@ -18,7 +18,7 @@ import {
 import styles from './Nav.module.scss';
 
 type Props = {
-  setGame: Dispatch<SetStateAction<string | null>>;
+  setGame: Dispatch<SetStateAction<string>>;
   setVersion?: Dispatch<SetStateAction<string | null>>;
 };
 

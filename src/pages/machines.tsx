@@ -19,7 +19,7 @@ import type { IMachine } from '@/types';
 
 function MachinesPage() {
   const [version, setVersion] = useState<string | null>(`red-blue`);
-  const [game, setGame] = useState<string | null>(`red`);
+  const [game, setGame] = useState<string>(`red`);
   const {
     isLoading,
     isError,
