@@ -15,16 +15,7 @@ type Props = {
 };
 
 export function Moves({ type, moves }: Props) {
-  const data = useMemo(
-    () => [
-      ...new Set(
-        type?.moves
-          .map((tm) => moves?.filter((m) => m.name === tm.name))
-          .flat(),
-      ),
-    ],
-    [type?.moves, moves],
-  );
+  const data = useMemo(() => (moves ? moves : []), [moves]);
 
   const columns = useMemo<ColumnDef<IMove>[]>(
     () => [
