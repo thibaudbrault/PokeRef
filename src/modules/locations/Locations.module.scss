@@ -55,10 +55,6 @@
   & td {
     padding: 0;
     text-transform: capitalize;
-    @include themed {
-      border-top: 2px solid t('border');
-      border-bottom: 2px solid t('border');
-    }
 
     & p {
       height: 9rem;

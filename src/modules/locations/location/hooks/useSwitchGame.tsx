@@ -1,33 +1,32 @@
 import { useEffect, useState } from 'react';
 
-import {
-  useQueries,
-  useQuery,
-  type UseQueryResult,
-} from '@tanstack/react-query';
+import { useQueries, useQuery, UseQueryResult } from '@tanstack/react-query';
 
 import { BASE_URL, getMultiple, getSingle, Limit, QueryKeys } from '@/utils';
 
-import type { ILocation, ILocationArea } from '@/types';
+import type {
+  IEncounterConditionValue,
+  IEncounterMethod,
+  ILocation,
+} from '@/types';
 
 export const useSwitchGame = (name: string) => {
-  const [game, setGame] = useState<string | null>(null);
-  const [toggle, setToggle] = useState<number>(0);
+  const [game, setGame] = useState<string>(``);
 
-  const locationQuery = useQuery<ILocation, Error>({
-    queryKey: [QueryKeys.LOCATION, toggle, name],
+  const locationQuery: UseQueryResult<ILocation, Error> = useQuery({
+    queryKey: [QueryKeys.LOCATION, name],
     queryFn: () => getSingle(`${BASE_URL}/location/${name}`),
   });
+  const encounterQuery: UseQueryResult<IEncounterConditionValue[], Error> =
+    useQuery({
+      queryKey: [QueryKeys.ENCOUNTER.CONDITION, name],
+      queryFn: () =>
+        getMultiple(
+          `${BASE_URL}/encounter-condition-value?limit=${Limit.ENCOUNTER.CONDITION}`,
+        ),
+    });
 
-  const encounterQuery = useQuery({
-    queryKey: [QueryKeys.ENCOUNTER.CONDITION, name],
-    queryFn: () =>
-      getMultiple(
-        `${BASE_URL}/encounter-condition-value?limit=${Limit.ENCOUNTER.CONDITION}`,
-      ),
-  });
-
-  const methodQuery = useQuery({
+  const methodQuery: UseQueryResult<IEncounterMethod[], Error> = useQuery({
     queryKey: [QueryKeys.ENCOUNTER.METHOD, name],
     queryFn: () =>
       getMultiple(
@@ -35,21 +34,16 @@ export const useSwitchGame = (name: string) => {
       ),
   });
 
-  const areaQuery: UseQueryResult<ILocationArea, Error> = useQuery({
-    queryKey: [
-      QueryKeys.AREA,
-      toggle,
-      game,
-      name,
-      locationQuery.data?.areas[toggle]?.url,
-    ],
-    queryFn: () =>
-      locationQuery.data?.areas[toggle]?.url &&
-      getSingle(locationQuery.data?.areas[toggle]?.url),
-    enabled:
-      !!locationQuery.data?.areas[toggle]?.url &&
-      !!game &&
-      !!encounterQuery.data,
+  const areaQuery = useQueries({
+    queries: locationQuery.data
+      ? locationQuery.data?.areas.map((area) => {
+          return {
+            queryKey: [QueryKeys.AREA, area.url],
+            queryFn: () => getSingle(area.url),
+            enabled: !!locationQuery.data.areas,
+          };
+        })
+      : [],
   });
 
   const gameUsed = () => {
@@ -94,21 +88,19 @@ export const useSwitchGame = (name: string) => {
       locationQuery.isLoading ||
       encounterQuery.isLoading ||
       methodQuery.isLoading ||
-      areaQuery.isLoading,
+      areaQuery.some((area) => area.isLoading),
     isError:
       locationQuery.isError ||
       encounterQuery.isError ||
       methodQuery.isError ||
-      areaQuery.isError,
+      areaQuery.some((area) => area.isError),
     error:
       locationQuery.error ||
       encounterQuery.error ||
       methodQuery.error ||
-      areaQuery.error,
-    toggle,
-    setToggle,
+      areaQuery.some((area) => area.error),
     location: locationQuery.data,
-    area: areaQuery.data,
+    areas: areaQuery.map((area) => area.data),
     encounter: encounterQuery.data,
     method: methodQuery.data,
   };
