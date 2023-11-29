@@ -131,7 +131,17 @@ export function Moves({ pokemon, version, name }: Props) {
         id: `category`,
         header: `Category`,
         cell: (info) => (
-          <td className="tCapitalize">{info.getValue<string>()}</td>
+          <td className="tCategory" id={info.getValue<string>()}>
+            <div>
+              <Image
+                alt={info.getValue<string>()}
+                width={20}
+                height={20}
+                src={`/images/status/move-${info.getValue()}.png`}
+              />
+              <span>{info.getValue<string>()}</span>
+            </div>
+          </td>
         ),
       },
       {
