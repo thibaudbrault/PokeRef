@@ -156,9 +156,9 @@ export const pokemonFilters: PokemonFilters = [
 ];
 
 export interface IGenNav extends IOptions {
-  details: {
-    game: string;
-    version: string;
+  options: {
+    label: string;
+    value: string;
   }[];
 }
 
@@ -166,204 +166,204 @@ export const genNav: IGenNav[] = [
   {
     value: `gen1`,
     label: `Gen I`,
-    details: [
+    options: [
       {
-        game: `red`,
-        version: `red-blue`,
+        label: `red`,
+        value: `red-blue`,
       },
       {
-        game: `blue`,
-        version: `red-blue`,
+        label: `blue`,
+        value: `red-blue`,
       },
       {
-        game: `yellow`,
-        version: `yellow`,
+        label: `yellow`,
+        value: `yellow`,
       },
     ],
   },
   {
     value: `gen2`,
     label: `Gen II`,
-    details: [
+    options: [
       {
-        game: `gold`,
-        version: `gold-silver`,
+        label: `gold`,
+        value: `gold-silver`,
       },
       {
-        game: `silver`,
-        version: `gold-silver`,
+        label: `silver`,
+        value: `gold-silver`,
       },
       {
-        game: `crystal`,
-        version: `crystal`,
+        label: `crystal`,
+        value: `crystal`,
       },
     ],
   },
   {
     value: `gen3`,
     label: `Gen III`,
-    details: [
+    options: [
       {
-        game: `ruby`,
-        version: `ruby-sapphire`,
+        label: `ruby`,
+        value: `ruby-sapphire`,
       },
       {
-        game: `sapphire`,
-        version: `ruby-sapphire`,
+        label: `sapphire`,
+        value: `ruby-sapphire`,
       },
       {
-        game: `emerald`,
-        version: `emerald`,
+        label: `emerald`,
+        value: `emerald`,
       },
       {
-        game: `firered`,
-        version: `firered-leafgreen`,
+        label: `firered`,
+        value: `firered-leafgreen`,
       },
       {
-        game: `leafgreen`,
-        version: `firered-leafgreen`,
+        label: `leafgreen`,
+        value: `firered-leafgreen`,
       },
     ],
   },
   {
     value: `gen4`,
     label: `Gen IV`,
-    details: [
+    options: [
       {
-        game: `diamond`,
-        version: `diamond-pearl`,
+        label: `diamond`,
+        value: `diamond-pearl`,
       },
       {
-        game: `pearl`,
-        version: `diamond-pearl`,
+        label: `pearl`,
+        value: `diamond-pearl`,
       },
       {
-        game: `platinum`,
-        version: `platinum`,
+        label: `platinum`,
+        value: `platinum`,
       },
       {
-        game: `heartgold`,
-        version: `heartgold-soulsilver`,
+        label: `heartgold`,
+        value: `heartgold-soulsilver`,
       },
       {
-        game: `soulsilver`,
-        version: `heartgold-soulsilver`,
+        label: `soulsilver`,
+        value: `heartgold-soulsilver`,
       },
     ],
   },
   {
     value: `gen5`,
     label: `Gen V`,
-    details: [
+    options: [
       {
-        game: `black`,
-        version: `black-white`,
+        label: `black`,
+        value: `black-white`,
       },
       {
-        game: `white`,
-        version: `black-white`,
+        label: `white`,
+        value: `black-white`,
       },
       {
-        game: `black-2`,
-        version: `black-2-white-2`,
+        label: `black-2`,
+        value: `black-2-white-2`,
       },
 
       {
-        game: `white-2`,
-        version: `black-2-white-2`,
+        label: `white-2`,
+        value: `black-2-white-2`,
       },
     ],
   },
   {
     value: `gen6`,
     label: `Gen VI`,
-    details: [
+    options: [
       {
-        game: `x`,
-        version: `x-y`,
+        label: `x`,
+        value: `x-y`,
       },
       {
-        game: `y`,
-        version: `x-y`,
+        label: `y`,
+        value: `x-y`,
       },
       {
-        game: `omega-ruby`,
-        version: `omega-ruby-alpha-sapphire`,
+        label: `omega-ruby`,
+        value: `omega-ruby-alpha-sapphire`,
       },
       {
-        game: `alpha-sapphire`,
-        version: `omega-ruby-alpha-sapphire`,
+        label: `alpha-sapphire`,
+        value: `omega-ruby-alpha-sapphire`,
       },
     ],
   },
   {
     value: `gen7`,
     label: `Gen VII`,
-    details: [
+    options: [
       {
-        game: `sun`,
-        version: `sun-moon`,
+        label: `sun`,
+        value: `sun-moon`,
       },
       {
-        game: `moon`,
-        version: `sun-moon`,
+        label: `moon`,
+        value: `sun-moon`,
       },
       {
-        game: `ultra-sun`,
-        version: `ultra-sun-ultra-moon`,
+        label: `ultra-sun`,
+        value: `ultra-sun-ultra-moon`,
       },
       {
-        game: `ultra-moon`,
-        version: `ultra-sun-ultra-moon`,
+        label: `ultra-moon`,
+        value: `ultra-sun-ultra-moon`,
       },
       {
-        game: `lets-go-pikachu`,
-        version: `lets-go-pikachu-lets-go-eevee`,
+        label: `lets-go-pikachu`,
+        value: `lets-go-pikachu-lets-go-eevee`,
       },
 
       {
-        game: `lets-go-eevee`,
-        version: `lets-go-pikachu-lets-go-eevee`,
+        label: `lets-go-eevee`,
+        value: `lets-go-pikachu-lets-go-eevee`,
       },
     ],
   },
   {
     value: `gen8`,
     label: `Gen VIII`,
-    details: [
+    options: [
       {
-        game: `sword`,
-        version: `sword-shield`,
+        label: `sword`,
+        value: `sword-shield`,
       },
       {
-        game: `shield`,
-        version: `sword-shield`,
+        label: `shield`,
+        value: `sword-shield`,
       },
       {
-        game: `brilliant-diamond`,
-        version: `brilliant-diamond-and-shining-pearl`,
+        label: `brilliant-diamond`,
+        value: `brilliant-diamond-and-shining-pearl`,
       },
       {
-        game: `shining-pearl`,
-        version: `brilliant-diamond-and-shining-pearl`,
+        label: `shining-pearl`,
+        value: `brilliant-diamond-and-shining-pearl`,
       },
       {
-        game: `legends-arceus`,
-        version: `legends-arceus`,
+        label: `legends-arceus`,
+        value: `legends-arceus`,
       },
     ],
   },
   {
     value: `gen9`,
     label: `Gen IX`,
-    details: [
+    options: [
       {
-        game: `scarlet`,
-        version: `scarlet-violet`,
+        label: `scarlet`,
+        value: `scarlet-violet`,
       },
       {
-        game: `violet`,
-        version: `scarlet-violet`,
+        label: `violet`,
+        value: `scarlet-violet`,
       },
     ],
   },

@@ -88,7 +88,7 @@ function MachinesPage() {
         <h4 className="leftSubtitle">
           Game selected: <span className="bold">{game}</span>
         </h4>
-        <GenNav setGame={setGame} setVersion={setVersion} />
+        <GenNav game={game} setGame={setGame} setVersion={setVersion} />
         <section className="tableContainer" ref={tableContainerRef}>
           <table className="fullWidthTable">
             {tableHeader()}

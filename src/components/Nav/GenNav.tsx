@@ -1,110 +1,73 @@
-import { useEffect, useState, type Dispatch, type SetStateAction } from 'react';
+import { useState, type Dispatch, type SetStateAction, useEffect } from 'react';
 
 import * as Label from '@radix-ui/react-label';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import Select, { type SingleValue } from 'react-select';
-import makeAnimated from 'react-select/animated';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useMediaQuery } from '@/hooks';
-import {
-  IGenNav,
-  IOptionsOffsetLimit,
-  genNav,
-  generationsOptions,
-  removeDash,
-} from '@/utils';
+import { IGenNav, IOptions, genNav, removeDash } from '@/utils';
 
 import styles from './Nav.module.scss';
 
 type Props = {
+  game: string;
   setGame: Dispatch<SetStateAction<string>>;
   setVersion?: Dispatch<SetStateAction<string | null>>;
 };
 
-type GenDetails = {
-  game: string;
-  version: string;
-};
-
-export function GenNav({ setGame, setVersion }: Props) {
+export function GenNav({ game, setGame, setVersion }: Props) {
   const isBreakpoint = useMediaQuery(890);
-  const [generation, setGeneration] = useState<IOptionsOffsetLimit>(
-    generationsOptions[0],
-  );
-  const [details, setDetails] = useState<GenDetails | null>(null);
-  const animatedComponents = makeAnimated();
+  const [selected, setSelected] = useState<IOptions | null>(null);
 
-  const getVersionAndGame = () => {
-    const details = genNav.filter((g) => g.value === generation.value)[0]
-      .details;
-    const detailsOptions = details.map((gd) => gd);
-    return detailsOptions;
-  };
-
-  const handleGenSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
-    if (option) {
-      setGeneration(option);
+  const getOptionsForGame = (game: string) => {
+    for (const gen of genNav) {
+      for (const option of gen.options) {
+        if (option.label === game) {
+          return option;
+        }
+      }
     }
+    return null;
   };
 
-  const handleGameSelect = (option: SingleValue<GenDetails>) => {
+  const handleSelect = (option: SingleValue<IOptions>) => {
     if (option) {
-      setDetails(option);
-      setGame(option.game);
+      setSelected(option);
+      setGame(option.label);
       if (setVersion) {
-        setVersion(option.version);
+        setVersion(option.value);
       }
     }
   };
 
-  const handleClick = (gd: IGenNav['details'][0]) => {
-    setGame(gd.game);
+  const handleClick = (gd: IGenNav['options'][0]) => {
+    setGame(gd.label);
     if (setVersion) {
-      setVersion(gd.version);
+      setVersion(gd.value);
     }
   };
 
   useEffect(() => {
-    setDetails(getVersionAndGame()[0]);
-  }, [generation]);
+    const options = getOptionsForGame(game);
+    setSelected(options);
+  }, []);
 
   return isBreakpoint ? (
     <section className={styles.genNav}>
       <div className={styles.dropdown}>
-        <Label.Root htmlFor="generation">Generation</Label.Root>
+        <Label.Root htmlFor="generation">Game</Label.Root>
         <Select
-          key={generation?.value}
+          key={selected?.value}
           name="generation"
           id="generation"
-          value={generation}
+          value={selected}
           className="dropdown"
           classNamePrefix="select"
-          components={animatedComponents}
-          options={generationsOptions}
+          options={genNav}
           placeholder="Select"
           onChange={(option) => {
-            handleGenSelect(option as IOptionsOffsetLimit);
-          }}
-        />
-      </div>
-      <div className={styles.dropdown}>
-        <Label.Root>Game</Label.Root>
-        <Select
-          key={details?.game}
-          name="game"
-          id="game"
-          value={details}
-          className="dropdown"
-          classNamePrefix="select"
-          components={animatedComponents}
-          options={getVersionAndGame()}
-          defaultValue={getVersionAndGame()[0]}
-          getOptionLabel={(option) => option.game}
-          getOptionValue={(option) => option.version}
-          placeholder="Select"
-          onChange={(option) => {
-            handleGameSelect(option as GenDetails);
+            handleSelect(option as IOptions);
           }}
         />
       </div>
@@ -118,9 +81,9 @@ export function GenNav({ setGame, setVersion }: Props) {
               {g.label}
             </NavigationMenu.Trigger>
             <NavigationMenu.Content className="NavigationMenuContent">
-              {g.details.map((gd) => (
-                <button key={gd.game} onClick={() => handleClick(gd)}>
-                  {removeDash(gd.game)}
+              {g.options.map((gd) => (
+                <button key={gd.label} onClick={() => handleClick(gd)}>
+                  {removeDash(gd.label)}
                 </button>
               ))}
             </NavigationMenu.Content>
