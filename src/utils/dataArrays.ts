@@ -156,6 +156,7 @@ export const pokemonFilters: PokemonFilters = [
 ];
 
 export interface IGenNav extends IOptions {
+  limit: number;
   options: {
     label: string;
     value: string;
@@ -166,6 +167,7 @@ export const genNav: IGenNav[] = [
   {
     value: `gen1`,
     label: `Gen I`,
+    limit: 152,
     options: [
       {
         label: `red`,
@@ -184,6 +186,7 @@ export const genNav: IGenNav[] = [
   {
     value: `gen2`,
     label: `Gen II`,
+    limit: 252,
     options: [
       {
         label: `gold`,
@@ -202,6 +205,7 @@ export const genNav: IGenNav[] = [
   {
     value: `gen3`,
     label: `Gen III`,
+    limit: 387,
     options: [
       {
         label: `ruby`,
@@ -228,6 +232,7 @@ export const genNav: IGenNav[] = [
   {
     value: `gen4`,
     label: `Gen IV`,
+    limit: 494,
     options: [
       {
         label: `diamond`,
@@ -254,6 +259,7 @@ export const genNav: IGenNav[] = [
   {
     value: `gen5`,
     label: `Gen V`,
+    limit: 650,
     options: [
       {
         label: `black`,
@@ -277,6 +283,7 @@ export const genNav: IGenNav[] = [
   {
     value: `gen6`,
     label: `Gen VI`,
+    limit: 722,
     options: [
       {
         label: `x`,
@@ -299,6 +306,7 @@ export const genNav: IGenNav[] = [
   {
     value: `gen7`,
     label: `Gen VII`,
+    limit: 810,
     options: [
       {
         label: `sun`,
@@ -330,6 +338,7 @@ export const genNav: IGenNav[] = [
   {
     value: `gen8`,
     label: `Gen VIII`,
+    limit: 905,
     options: [
       {
         label: `sword`,
@@ -356,6 +365,7 @@ export const genNav: IGenNav[] = [
   {
     value: `gen9`,
     label: `Gen IX`,
+    limit: 1011,
     options: [
       {
         label: `scarlet`,

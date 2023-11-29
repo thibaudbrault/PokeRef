@@ -1,16 +1,78 @@
-import { type Dispatch, type SetStateAction } from 'react';
+import { useState, type Dispatch, type SetStateAction, useEffect } from 'react';
 
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
+import Select, { type SingleValue } from 'react-select';
+
+import { useMediaQuery } from '@/hooks';
+import { IOptions, genNav } from '@/utils';
+
+import styles from '../../Pokemon.module.scss';
 
 type Props = {
   pokemonId: number;
-  setGame: Dispatch<SetStateAction<string | null>>;
-  setVersion: Dispatch<SetStateAction<string | null>>;
-  setFormat: Dispatch<SetStateAction<string | null>>;
+  game: string;
+  setGame: Dispatch<SetStateAction<string>>;
+  setVersion: Dispatch<SetStateAction<string>>;
+  setFormat: Dispatch<SetStateAction<string>>;
 };
 
-export function Nav({ pokemonId, setGame, setVersion, setFormat }: Props) {
-  return (
+export function Nav({
+  game,
+  pokemonId,
+  setGame,
+  setVersion,
+  setFormat,
+}: Props) {
+  const [selected, setSelected] = useState<IOptions | null>(null);
+  const isBreakpoint = useMediaQuery(890);
+
+  const getOptionsForGame = (game: string) => {
+    for (const gen of genNav) {
+      for (const option of gen.options) {
+        if (option.label === game) {
+          return option;
+        }
+      }
+    }
+    return null;
+  };
+
+  const handleSelect = (option: SingleValue<IOptions>) => {
+    if (option) {
+      const format = genNav.find((gen) =>
+        gen.options.some((opt) => opt === option),
+      );
+      setSelected(option);
+      setGame(option.label);
+      setVersion(option.value);
+      if (format) {
+        setFormat(format?.value);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const options = getOptionsForGame(game);
+    setSelected(options);
+  }, []);
+
+  return isBreakpoint ? (
+    <section className={styles.section}>
+      <Select
+        key={selected?.value}
+        name="generation"
+        id="generation"
+        value={selected}
+        className="dropdown"
+        classNamePrefix="select"
+        options={genNav.filter((gen) => gen.limit > pokemonId)}
+        placeholder="Select"
+        onChange={(option) => {
+          handleSelect(option);
+        }}
+      />
+    </section>
+  ) : (
     <NavigationMenu.Root className="NavigationMenuRoot" id="generations">
       <NavigationMenu.List className="NavigationMenuList">
         {(pokemonId < 152 || pokemonId > 10000) && (

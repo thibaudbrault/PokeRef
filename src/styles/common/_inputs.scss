@@ -108,6 +108,7 @@
     text-transform: capitalize;
     font-size: 1.7rem;
     padding: 1rem;
+    z-index: 999;
 
     @include gthemed {
       color: t('highContrastText');
