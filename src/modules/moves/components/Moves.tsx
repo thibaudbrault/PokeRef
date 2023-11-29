@@ -41,6 +41,29 @@ export function Moves({ moves }: Props) {
         ),
       },
       {
+        accessorKey: `type.name`,
+        id: `type`,
+        header: `Type`,
+        cell: (info) => (
+          <td className="tType">
+            <Link
+              href={{
+                pathname: `/type/[name]`,
+                query: { name: info.getValue<string>() },
+              }}
+            >
+              <Image
+                src={`/images/types/${info.getValue<string>()}.png`}
+                alt={info.getValue<string>()}
+                width={32}
+                height={32}
+                style={{ cursor: `pointer` }}
+              />
+            </Link>
+          </td>
+        ),
+      },
+      {
         accessorKey: `damage_class.name`,
         id: `category`,
         header: `Category`,
