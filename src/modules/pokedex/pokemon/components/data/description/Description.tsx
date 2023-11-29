@@ -10,7 +10,7 @@ import type { IPokemon, IPokemonSpecies } from '@/types';
 type Props = {
   pokemon: IPokemon;
   species: IPokemonSpecies;
-  game: string | null;
+  game: string;
 };
 
 export function Description({ pokemon, species, game }: Props) {
