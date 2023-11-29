@@ -93,12 +93,21 @@
   gap: 2rem;
 
   & li {
-    & a {
+    & a,
+    & button {
+      background-color: transparent;
+      border: none;
       font-size: 4.5rem;
       text-transform: capitalize;
       cursor: pointer;
+      font-family: Oswald, sans-serif;
     }
   }
+}
+
+.hr {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .burger {
