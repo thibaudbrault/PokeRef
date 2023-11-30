@@ -4,7 +4,7 @@ import { type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { usePaginatedTableParams } from '@/hooks';
+import { usePaginatedTableParams, useScrollDir, useTableParams } from '@/hooks';
 import moves from '@/modules/moves/Moves.module.scss';
 import { removeDash } from '@/utils';
 
@@ -18,6 +18,7 @@ type Props = {
 
 export function Items({ items }: Props) {
   const data = useMemo(() => items, [items]);
+  const { scrollBtn } = useScrollDir();
 
   const columns = useMemo<ColumnDef<IItem>[]>(
     () => [
@@ -38,7 +39,7 @@ export function Items({ items }: Props) {
       },
       {
         accessorKey: `name`,
-        id: `sort`,
+        id: `name`,
         header: `Name`,
         cell: (info) => (
           <td className="tBold">
@@ -49,7 +50,7 @@ export function Items({ items }: Props) {
                 query: { name: info.getValue<string>() },
               }}
             >
-              {removeDash(info.getValue<string>())}
+              {removeDash(info.getValue<string>()).replaceAll(`--`, `-`)}
             </Link>
           </td>
         ),
@@ -79,8 +80,10 @@ export function Items({ items }: Props) {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody, tablePagination } =
-    usePaginatedTableParams(data, columns);
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
+    data,
+    columns,
+  );
 
   return (
     <section>
@@ -93,8 +96,8 @@ export function Items({ items }: Props) {
           {tableHeader()}
           {tableBody()}
         </table>
-        {tablePagination()}
       </div>
+      {scrollBtn()}
     </section>
   );
 }

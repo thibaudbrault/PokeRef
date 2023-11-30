@@ -5,10 +5,11 @@ import { type ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 
 import { errorToast, Loader } from '@/components';
-import { usePaginatedTableParams } from '@/hooks';
+import abilitiesJson from '@/data/abilities.json';
+import { useScrollDir, useTableParams } from '@/hooks';
 import { Heading, Search } from '@/modules/abilities';
 import moves from '@/modules/moves/Moves.module.scss';
-import { BASE_URL, getMultiple, Limit, QueryKeys, removeDash } from '@/utils';
+import { getLocalMultiple, QueryKeys, removeDash } from '@/utils';
 
 import type { IAbility } from '@/types';
 
@@ -20,16 +21,17 @@ function AbilitiesPage() {
     data: abilities,
   }: UseQueryResult<IAbility[], Error> = useQuery({
     queryKey: [QueryKeys.ABILITIES],
-    queryFn: () => getMultiple(`${BASE_URL}/ability?limit=${Limit.ABILITIES}`),
+    queryFn: () => getLocalMultiple(abilitiesJson),
   });
 
   const data = useMemo(() => abilities, [abilities]);
+  const { scrollBtn } = useScrollDir();
 
   const columns = useMemo<ColumnDef<IAbility>[]>(
     () => [
       {
         accessorKey: `name`,
-        id: `sort`,
+        id: `name`,
         header: `Name`,
         cell: (info) => (
           <td className="tBold">
@@ -62,8 +64,10 @@ function AbilitiesPage() {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody, tablePagination } =
-    usePaginatedTableParams(data, columns);
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
+    data,
+    columns,
+  );
 
   if (isError && error instanceof Error) {
     errorToast(error.message);
@@ -86,8 +90,8 @@ function AbilitiesPage() {
             {tableHeader()}
             {tableBody()}
           </table>
-          {tablePagination()}
         </section>
+        {scrollBtn()}
       </main>
     </>
   );

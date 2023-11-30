@@ -4,7 +4,7 @@ import { type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { usePaginatedTableParams } from '@/hooks';
+import { useScrollDir, useTableParams } from '@/hooks';
 import { removeDash } from '@/utils';
 
 import styles from '../Moves.module.scss';
@@ -18,12 +18,13 @@ type Props = {
 
 export function Moves({ moves }: Props) {
   const data = useMemo(() => moves, [moves]);
+  const { scrollBtn } = useScrollDir();
 
   const columns = useMemo<ColumnDef<IMove>[]>(
     () => [
       {
         accessorKey: `name`,
-        id: `sort`,
+        id: `name`,
         header: `Name`,
         cell: (info) => (
           <td className="tBold">
@@ -35,7 +36,7 @@ export function Moves({ moves }: Props) {
                 query: { name: info.getValue<string>() },
               }}
             >
-              {removeDash(info.getValue<string>())}
+              {removeDash(info.getValue<string>()).replaceAll(`--`, `-`)}
             </Link>
           </td>
         ),
@@ -82,6 +83,24 @@ export function Moves({ moves }: Props) {
         ),
       },
       {
+        accessorKey: `power`,
+        id: `power`,
+        header: `Power`,
+        cell: (info) => <td>{info.getValue<number>() ?? `-`}</td>,
+      },
+      {
+        accessorKey: `pp`,
+        id: `pp`,
+        header: `PP`,
+        cell: (info) => <td>{info.getValue<number>() ?? `-`}</td>,
+      },
+      {
+        accessorKey: `accuracy`,
+        id: `accuracy`,
+        header: `Accuracy`,
+        cell: (info) => <td>{info.getValue<number>() ?? `-`}</td>,
+      },
+      {
         accessorFn: (row) =>
           row.flavor_text_entries.find((rf) => {
             return rf.language.name === `en` && rf.flavor_text !== `Dummy Data`;
@@ -94,8 +113,10 @@ export function Moves({ moves }: Props) {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody, tablePagination } =
-    usePaginatedTableParams(data, columns);
+  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
+    data,
+    columns,
+  );
 
   return (
     <section>
@@ -108,8 +129,8 @@ export function Moves({ moves }: Props) {
           {tableHeader()}
           {tableBody()}
         </table>
-        {tablePagination()}
       </div>
+      {scrollBtn()}
     </section>
   );
 }

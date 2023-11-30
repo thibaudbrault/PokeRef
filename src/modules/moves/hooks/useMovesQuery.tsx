@@ -1,14 +1,20 @@
 import { useQueries } from '@tanstack/react-query';
 
-import { BASE_URL, Limit, QueryKeys, getMultiple } from '@/utils';
+import movesJson from '@/data/moves.json';
+import {
+  BASE_URL,
+  Limit,
+  QueryKeys,
+  getLocalMultiple,
+  getMultiple,
+} from '@/utils';
 
 export const useMovesQuery = () => {
   const [moves, status, stats] = useQueries({
     queries: [
       {
         queryKey: [QueryKeys.MOVES],
-        queryFn: () =>
-          getMultiple(`${BASE_URL}/move?limit=${Limit.MOVES.INDEX}`),
+        queryFn: () => getLocalMultiple(movesJson),
       },
       {
         queryKey: [QueryKeys.STATUS],

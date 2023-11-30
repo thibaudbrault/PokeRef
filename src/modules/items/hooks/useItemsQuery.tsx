@@ -1,13 +1,20 @@
 import { useQueries } from '@tanstack/react-query';
 
-import { BASE_URL, Limit, QueryKeys, getMultiple } from '@/utils';
+import itemsJson from '@/data/items.json';
+import {
+  BASE_URL,
+  Limit,
+  QueryKeys,
+  getLocalMultiple,
+  getMultiple,
+} from '@/utils';
 
 export const useItemsQuery = () => {
   const [items, berries] = useQueries({
     queries: [
       {
         queryKey: [QueryKeys.ITEMS],
-        queryFn: () => getMultiple(`${BASE_URL}/item?limit=${Limit.ITEMS}`),
+        queryFn: () => getLocalMultiple(itemsJson),
       },
       {
         queryKey: [QueryKeys.BERRIES],
