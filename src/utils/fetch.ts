@@ -4,7 +4,6 @@ import { BASE_URL, Limit, removeLongName } from '@/utils';
 
 import type {
   IAbility,
-  IApiResourceList,
   IEvolutionChain,
   IMove,
   IPokemon,
@@ -26,19 +25,6 @@ export const getMultiple = async (url: string) => {
   try {
     const res = await axios.get(url);
     const results = await res.data.results;
-    const promiseRes = await Promise.all(
-      results.map((res: { url: string }) => axios.get(res.url)),
-    );
-    const result = promiseRes.map((res) => res.data);
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const getLocalMultiple = async (json: IApiResourceList) => {
-  try {
-    const results = json.results;
     const promiseRes = await Promise.all(
       results.map((res: { url: string }) => axios.get(res.url)),
     );

@@ -4,19 +4,17 @@ import { type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { usePaginatedTableParams, useScrollDir, useTableParams } from '@/hooks';
+import { usePaginatedTableParams, useScrollDir } from '@/hooks';
 import moves from '@/modules/moves/Moves.module.scss';
-import { removeDash } from '@/utils';
+import { Limit, removeDash } from '@/utils';
 
+import { useItemsQuery } from '../hooks';
 import { Search } from './Search';
 
 import type { IItem } from '@/types';
 
-type Props = {
-  items?: IItem[];
-};
-
-export function Items({ items }: Props) {
+export function Items() {
+  const { items, setOffset } = useItemsQuery();
   const data = useMemo(() => items, [items]);
   const { scrollBtn } = useScrollDir();
 
@@ -80,10 +78,8 @@ export function Items({ items }: Props) {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
+  const { tableContainerRef, tableHeader, tableBody, tablePagination } =
+    usePaginatedTableParams(data, columns, setOffset, Limit.ITEMS);
 
   return (
     <section>
@@ -96,6 +92,7 @@ export function Items({ items }: Props) {
           {tableHeader()}
           {tableBody()}
         </table>
+        {tablePagination()}
       </div>
       {scrollBtn()}
     </section>

@@ -4,10 +4,10 @@ import { Loader, errorToast } from '@/components';
 import { Heading, Moves, Stats, Status, useMovesQuery } from '@/modules/moves';
 
 function MovesPage() {
-  const { moves, status, stats } = useMovesQuery();
+  const { movesStatus, status, stats } = useMovesQuery();
 
   if (
-    moves.status === `error` ||
+    movesStatus === `error` ||
     status.status === `error` ||
     stats.status === `error`
   ) {
@@ -15,7 +15,7 @@ function MovesPage() {
   }
 
   if (
-    moves.status === `loading` ||
+    movesStatus === `loading` ||
     status.status === `loading` ||
     stats.status === `loading`
   ) {
@@ -41,7 +41,7 @@ function MovesPage() {
           </Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content className="TabsContent" value="tab1">
-          <Moves moves={moves.data} />
+          <Moves />
         </Tabs.Content>
         <Tabs.Content className="TabsContent" value="tab2">
           <Status status={status.data} />
