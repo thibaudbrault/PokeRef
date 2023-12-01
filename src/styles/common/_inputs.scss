@@ -108,11 +108,19 @@
     text-transform: capitalize;
     font-size: 1.7rem;
     padding: 1rem;
+    z-index: 999;
 
     @include gthemed {
       color: t('highContrastText');
       background: t('elementBackground');
       border: 1px solid t('border');
+    }
+
+    & .select__group-heading {
+      font-weight: 600;
+      @include gthemed {
+        color: t('lowContrastText');
+      }
     }
 
     & .select__option {

@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 
 import { BisChevronDown, BisChevronUp } from '@meronex/icons/bi';
 import {
-  type SortingState,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
   useReactTable,
+  type SortingState,
 } from '@tanstack/react-table';
 import { useVirtual } from 'react-virtual';
 
@@ -58,25 +58,23 @@ export function useTableParams(data, columns) {
                   style={{ width: header.getSize() }}
                 >
                   {header.isPlaceholder ? null : (
-                    <>
-                      <div
-                        {...{
-                          className: header.column.getCanSort()
-                            ? `sortable select-none`
-                            : ``,
-                          onClick: header.column.getToggleSortingHandler(),
-                        }}
-                      >
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                        {{
-                          asc: <BisChevronUp />,
-                          desc: <BisChevronDown />,
-                        }[header.column.getIsSorted() as string] ?? null}
-                      </div>
-                    </>
+                    <div
+                      {...{
+                        className: header.column.getCanSort()
+                          ? `sortable select-none`
+                          : ``,
+                        onClick: header.column.getToggleSortingHandler(),
+                      }}
+                    >
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
+                      {{
+                        asc: <BisChevronUp />,
+                        desc: <BisChevronDown />,
+                      }[header.column.getIsSorted() as string] ?? null}
+                    </div>
                   )}
                 </th>
               );

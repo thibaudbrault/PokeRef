@@ -143,7 +143,10 @@ export function Competitive({ format, name }: Props) {
           defaultValue={String(toggle)}
         >
           <h3 className="h3">Competitive</h3>
-          <Tabs.List className="TabsList" aria-label="Switch between formats">
+          <Tabs.List
+            className="TabsList overflowX"
+            aria-label="Switch between formats"
+          >
             {Object.keys(filteredAnalyses).map((fa, i) => (
               <Tabs.Trigger
                 key={fa}

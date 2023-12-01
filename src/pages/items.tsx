@@ -4,13 +4,13 @@ import { Loader, errorToast } from '@/components';
 import { Berries, Heading, Items, useItemsQuery } from '@/modules/items';
 
 function ItemsPage() {
-  const { items, berries } = useItemsQuery();
+  const { itemsStatus, berries, berriesStatus } = useItemsQuery();
 
-  if (items.status === `error` || berries.status === `error`) {
+  if (itemsStatus === `error` || berriesStatus === `error`) {
     errorToast();
   }
 
-  if (items.status === `loading` || berries.status === `loading`) {
+  if (itemsStatus === `loading` || berriesStatus === `loading`) {
     return <Loader />;
   }
 
@@ -30,10 +30,10 @@ function ItemsPage() {
           </Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content className="TabsContent" value="tab1">
-          <Items items={items.data} />
+          <Items />
         </Tabs.Content>
         <Tabs.Content className="TabsContent" value="tab2">
-          <Berries berries={berries.data} />
+          <Berries berries={berries} />
         </Tabs.Content>
       </Tabs.Root>
     </>

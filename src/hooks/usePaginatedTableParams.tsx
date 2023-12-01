@@ -16,7 +16,7 @@ import ReactPaginate from 'react-paginate';
 import { useVirtual } from 'react-virtual';
 
 // @ts-ignore
-export function usePaginatedTableParams(data, columns) {
+export function usePaginatedTableParams(data, columns, setOffset, limit) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -34,6 +34,7 @@ export function usePaginatedTableParams(data, columns) {
   const table = useReactTable({
     data: data ?? [],
     columns,
+    pageCount: Math.ceil(limit / 50),
     state: {
       sorting,
       pagination,
@@ -59,6 +60,7 @@ export function usePaginatedTableParams(data, columns) {
   const handlePageChange = (data: { selected: number }) => {
     window.scrollTo(0, 0);
     table.setPageIndex(data.selected);
+    setOffset((50 * data.selected) % limit);
   };
 
   useEffect(() => {
@@ -139,7 +141,7 @@ export function usePaginatedTableParams(data, columns) {
         nextLabel=">"
         pageRangeDisplayed={3}
         marginPagesDisplayed={2}
-        pageCount={table.getPageCount()}
+        pageCount={Math.ceil(limit / 50)}
         previousLabel="<"
         renderOnZeroPageCount={() => null}
       />

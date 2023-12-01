@@ -49,7 +49,7 @@ function LocationCard() {
             {game && `${location?.region.name} - ${removeDash(game)}`}
           </h4>
         </section>
-        <GenNav setGame={setGame} />
+        <GenNav game={game} setGame={setGame} />
         {areas.map((area: ILocationArea) => (
           <>
             <h3 className="h3">

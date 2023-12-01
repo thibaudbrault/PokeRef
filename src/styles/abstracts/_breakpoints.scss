@@ -16,8 +16,20 @@
   }
 }
 
+@mixin min-md {
+  @media screen and (width >= 890px) {
+    @content;
+  }
+}
+
 @mixin lg {
   @media screen and (width <= 1150px) {
+    @content;
+  }
+}
+
+@mixin min-lg {
+  @media screen and (width >= 1150px) {
     @content;
   }
 }

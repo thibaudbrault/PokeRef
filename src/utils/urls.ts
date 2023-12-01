@@ -8,10 +8,10 @@ export const Limit = {
     METHOD: 31,
   },
   MOVES: {
-    INDEX: 919,
+    INDEX: 922,
     AILMENT: 22,
   },
-  ABILITIES: 359,
+  ABILITIES: 363,
   POKEMON: 1017,
   REGIONS: 10,
   TYPES: 18,

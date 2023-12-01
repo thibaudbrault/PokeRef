@@ -4,7 +4,8 @@ import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import ReactPaginate from 'react-paginate';
 
 import { errorToast, Loader, Separator } from '@/components';
-import { Filters, Heading, List, useScrollDir } from '@/modules/pokedex';
+import { useScrollDir } from '@/hooks';
+import { Filters, Heading, List } from '@/modules/pokedex';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
 import {
   BASE_URL,

@@ -4,26 +4,25 @@ import { type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { usePaginatedTableParams } from '@/hooks';
-import { removeDash } from '@/utils';
+import { usePaginatedTableParams, useScrollDir } from '@/hooks';
+import { Limit, removeDash } from '@/utils';
 
+import { useMovesQuery } from '../hooks';
 import styles from '../Moves.module.scss';
 import { Search } from './Search';
 
 import type { IMove } from '@/types';
 
-type Props = {
-  moves?: IMove[];
-};
-
-export function Moves({ moves }: Props) {
+export function Moves() {
+  const { moves, setOffset } = useMovesQuery();
   const data = useMemo(() => moves, [moves]);
+  const { scrollBtn } = useScrollDir();
 
   const columns = useMemo<ColumnDef<IMove>[]>(
     () => [
       {
         accessorKey: `name`,
-        id: `sort`,
+        id: `name`,
         header: `Name`,
         cell: (info) => (
           <td className="tBold">
@@ -35,7 +34,30 @@ export function Moves({ moves }: Props) {
                 query: { name: info.getValue<string>() },
               }}
             >
-              {removeDash(info.getValue<string>())}
+              {removeDash(info.getValue<string>()).replaceAll(`--`, `-`)}
+            </Link>
+          </td>
+        ),
+      },
+      {
+        accessorKey: `type.name`,
+        id: `type`,
+        header: `Type`,
+        cell: (info) => (
+          <td className="tType">
+            <Link
+              href={{
+                pathname: `/type/[name]`,
+                query: { name: info.getValue<string>() },
+              }}
+            >
+              <Image
+                src={`/images/types/${info.getValue<string>()}.png`}
+                alt={info.getValue<string>()}
+                width={32}
+                height={32}
+                style={{ cursor: `pointer` }}
+              />
             </Link>
           </td>
         ),
@@ -59,6 +81,24 @@ export function Moves({ moves }: Props) {
         ),
       },
       {
+        accessorKey: `power`,
+        id: `power`,
+        header: `Power`,
+        cell: (info) => <td>{info.getValue<number>() ?? `-`}</td>,
+      },
+      {
+        accessorKey: `pp`,
+        id: `pp`,
+        header: `PP`,
+        cell: (info) => <td>{info.getValue<number>() ?? `-`}</td>,
+      },
+      {
+        accessorKey: `accuracy`,
+        id: `accuracy`,
+        header: `Accuracy`,
+        cell: (info) => <td>{info.getValue<number>() ?? `-`}</td>,
+      },
+      {
         accessorFn: (row) =>
           row.flavor_text_entries.find((rf) => {
             return rf.language.name === `en` && rf.flavor_text !== `Dummy Data`;
@@ -72,7 +112,7 @@ export function Moves({ moves }: Props) {
   );
 
   const { tableContainerRef, tableHeader, tableBody, tablePagination } =
-    usePaginatedTableParams(data, columns);
+    usePaginatedTableParams(data, columns, setOffset, Limit.MOVES.INDEX);
 
   return (
     <section>
@@ -87,6 +127,7 @@ export function Moves({ moves }: Props) {
         </table>
         {tablePagination()}
       </div>
+      {scrollBtn()}
     </section>
   );
 }

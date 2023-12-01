@@ -28,9 +28,9 @@ import { IFlavorText } from '@/types';
 import { pokemonFilters, removeDash, removeLongName } from '@/utils';
 
 function PokemonCard() {
-  const [game, setGame] = useState<string | null>(null);
-  const [version, setVersion] = useState<string | null>(null);
-  const [format, setFormat] = useState<string | null>(null);
+  const [game, setGame] = useState<string>(``);
+  const [version, setVersion] = useState<string>(``);
+  const [format, setFormat] = useState<string>(``);
 
   const router = useRouter();
   const name = router.query.name as string;
@@ -98,36 +98,39 @@ function PokemonCard() {
       <Heading name={name} description={getSeoDesc()} />
       <main className="mainBig">
         <section className={styles.section}>
-          {pokemon.data?.name?.includes(`mega`) ? (
-            <h2 className="title">
-              {removeDash(pokemon.data?.name)
-                .split(` `)
-                .reverse()
-                .join(` `)}
-            </h2>
-          ) : (
-            <h2 className="title">{removeLongName(removeDash(name))}</h2>
-          )}
-          {pokemon.data?.id < 722 && (
-            <div>
-              <button onClick={play}>
-                <HiOutlineSpeakerphone />
-              </button>
-              <audio
-                ref={audioRef}
-                src={`https://raw.githubusercontent.com/thibaudbrault/pokeref_medias/main/cries/${pokemon.data?.id}.ogg`}
-              />
-            </div>
+          <div className={styles.name}>
+            {pokemon.data?.name?.includes(`mega`) ? (
+              <h2 className="title">
+                {removeDash(pokemon.data?.name)
+                  .split(` `)
+                  .reverse()
+                  .join(` `)}
+              </h2>
+            ) : (
+              <h2 className="title">{removeLongName(removeDash(name))}</h2>
+            )}
+            {pokemon.data?.id < 722 && (
+              <div>
+                <button onClick={play}>
+                  <HiOutlineSpeakerphone />
+                </button>
+                <audio
+                  ref={audioRef}
+                  src={`https://raw.githubusercontent.com/thibaudbrault/pokeref_medias/main/cries/${pokemon.data?.id}.ogg`}
+                />
+              </div>
+            )}
+          </div>
+          {species.data && (
+            <h4 className="subtitle">
+              {removeDash(species.data?.generation?.name)}
+            </h4>
           )}
         </section>
-        {species.data && (
-          <h4 className="subtitle">
-            {removeDash(species.data?.generation?.name)}
-          </h4>
-        )}
 
         <Nav
           pokemonId={pokemon.data?.id}
+          game={game}
           setGame={setGame}
           setVersion={setVersion}
           setFormat={setFormat}
