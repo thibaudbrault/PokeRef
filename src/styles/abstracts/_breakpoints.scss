@@ -28,6 +28,12 @@
   }
 }
 
+@mixin min-lg {
+  @media screen and (width >= 1150px) {
+    @content;
+  }
+}
+
 @mixin xl {
   @media screen and (width <= 1700px) {
     @content;

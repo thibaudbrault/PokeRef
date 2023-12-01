@@ -61,3 +61,10 @@
   padding: 0;
   z-index: 100;
 }
+
+.overflowX {
+  overflow-x: scroll;
+  @include min-lg {
+    overflow-x: hidden;
+  }
+}
