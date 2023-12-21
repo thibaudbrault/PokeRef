@@ -92,8 +92,8 @@ export function Items() {
           {tableHeader()}
           {tableBody()}
         </table>
-        {tablePagination()}
       </div>
+      {tablePagination()}
       {scrollBtn()}
     </section>
   );

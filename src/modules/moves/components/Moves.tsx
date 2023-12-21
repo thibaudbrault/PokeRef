@@ -125,8 +125,8 @@ export function Moves() {
           {tableHeader()}
           {tableBody()}
         </table>
-        {tablePagination()}
       </div>
+      {tablePagination()}
       {scrollBtn()}
     </section>
   );
