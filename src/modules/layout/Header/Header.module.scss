@@ -1,11 +1,5 @@
 @use '@/styles/abstracts' as *;
 
-.auth {
-  @include md {
-    display: none;
-  }
-}
-
 .header {
   width: 90%;
   margin: 0 auto 2rem;

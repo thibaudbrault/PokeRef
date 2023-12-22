@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { FiMenu } from '@meronex/icons/fi';
-import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { Drawer } from 'vaul';
 
@@ -9,11 +8,6 @@ import { navArray } from './helpers';
 import styles from './Nav.module.scss';
 
 export const MobileNav = () => {
-  const { status } = useSession();
-  const logout = async () => {
-    await signOut();
-  };
-
   const [open, setOpen] = useState<boolean>(false);
 
   return (
@@ -39,25 +33,6 @@ export const MobileNav = () => {
                   </Link>
                 </li>
               ))}
-              <hr className={styles.hr} />
-              {status === `authenticated` ? (
-                <>
-                  <li>
-                    <Link href="/profile" onClick={() => setOpen(false)}>
-                      Profile
-                    </Link>
-                  </li>
-                  <li>
-                    <button onClick={logout}>Sign Out</button>
-                  </li>
-                </>
-              ) : (
-                <li>
-                  <Link href="/login" onClick={() => setOpen(false)}>
-                    Login
-                  </Link>
-                </li>
-              )}
             </ul>
           </nav>
         </Drawer.Content>

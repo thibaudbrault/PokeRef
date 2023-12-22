@@ -3,7 +3,6 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
 import NextNProgress from 'nextjs-progressbar';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
@@ -45,19 +44,17 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
       </Head>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <SessionProvider session={session}>
-          <QueryClientProvider client={queryClient}>
-            <Hydrate state={pageProps.dehydratedState}>
-              <ThemeProvider>
-                <Toaster />
-                <NextNProgress />
-                <PageLayout>
-                  <Component {...pageProps} />
-                </PageLayout>
-              </ThemeProvider>
-            </Hydrate>
-          </QueryClientProvider>
-        </SessionProvider>
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <ThemeProvider>
+              <Toaster />
+              <NextNProgress />
+              <PageLayout>
+                <Component {...pageProps} />
+              </PageLayout>
+            </ThemeProvider>
+          </Hydrate>
+        </QueryClientProvider>
       </ErrorBoundary>
     </>
   );
