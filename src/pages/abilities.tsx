@@ -92,8 +92,8 @@ function AbilitiesPage() {
             {tableHeader()}
             {tableBody()}
           </table>
-          {tablePagination()}
         </section>
+        {tablePagination()}
         {scrollBtn()}
       </main>
     </>
