@@ -92,10 +92,6 @@
     ],
     "./src/**/*.scss": [
       "pnpm style:fix"
-    ],
-    "./prisma/schema.prisma": [
-      "pnpm dlx prisma validate",
-      "pnpm dlx prisma format"
     ]
   }
 }
