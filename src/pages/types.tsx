@@ -19,7 +19,7 @@ function TypesPage() {
   });
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `types`);
   }
 
   if (isLoading) {

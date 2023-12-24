@@ -22,7 +22,7 @@ function ItemCard() {
   const { isLoading, isError, error, item, filterEffect } = useFilterItem(name);
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `item`);
   }
 
   if (isLoading) {

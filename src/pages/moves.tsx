@@ -11,7 +11,7 @@ function MovesPage() {
     status.status === `error` ||
     stats.status === `error`
   ) {
-    errorToast();
+    errorToast(undefined, `move`);
   }
 
   if (

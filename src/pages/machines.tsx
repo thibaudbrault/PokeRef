@@ -73,7 +73,7 @@ function MachinesPage() {
   );
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `machines`);
   }
 
   if (isLoading) {

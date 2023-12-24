@@ -32,7 +32,7 @@ function LocationsPage() {
   }, [toggle]);
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `regions`);
   }
 
   if (isLoading) {

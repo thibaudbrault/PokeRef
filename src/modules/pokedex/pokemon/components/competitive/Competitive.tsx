@@ -51,7 +51,7 @@ export function Competitive({ format, name }: Props) {
     formats.status === `error` ||
     sets.status === `error`
   ) {
-    errorToast();
+    errorToast(undefined, `competitive`);
   }
 
   if (

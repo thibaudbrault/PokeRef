@@ -22,7 +22,7 @@ function TypeCard() {
     useTypeQuery(name);
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `type`);
   }
 
   if (isLoading) {

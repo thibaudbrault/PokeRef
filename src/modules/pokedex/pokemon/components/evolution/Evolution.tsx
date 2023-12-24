@@ -28,7 +28,7 @@ export function Evolution({ evolution, name }: Props) {
   });
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `evolution`);
   }
 
   if (isLoading) {

@@ -52,7 +52,7 @@ function Pokedex() {
   };
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `pokedex`);
   }
 
   if (isLoading) {
