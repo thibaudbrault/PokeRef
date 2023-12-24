@@ -109,7 +109,8 @@
     background-color: t('elementBackground');
   }
 
-  &:hover {
+  &:hover,
+  &:hover .image {
     @include themed {
       background-color: t('elementHoverBackground');
     }
@@ -144,6 +145,10 @@
 .image {
   position: relative;
   margin: -72px auto 0;
+  border-radius: 50%;
+  @include themed {
+    background-color: t('elementBackground');
+  }
 
   &:hover .shiny {
     opacity: 1;
