@@ -8,12 +8,3 @@ export const errorToast = (error?: string, id?: string) => {
     id: id,
   });
 };
-
-export const successToast = (text: string) => {
-  const toastText = text ?? `Done`;
-  return toast.success(toastText, {
-    style: {
-      fontSize: `1.7rem`,
-    },
-  });
-};
