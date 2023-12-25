@@ -15,9 +15,6 @@ const nextConfig = withPWA({
   },
   reactStrictMode: true,
   swcMinify: true,
-  experimental: {
-    appDir: false
-  },
   images: {
     domains: ['raw.githubusercontent.com', 'images.pokemontcg.io']
   },
