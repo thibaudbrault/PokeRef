@@ -6,6 +6,7 @@
 
 ![GitHub branch checks state](https://img.shields.io/github/checks-status/thibaudbrault/pokeref/dev)
 ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/thibaudbrault/pokeref/main.yml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c046a4cf-f603-40f7-9dac-1efcd734baab/deploy-status)](https://app.netlify.com/sites/pokeref/deploys)
 ![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
 
