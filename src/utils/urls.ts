@@ -11,6 +11,7 @@ export const Limit = {
     INDEX: 922,
     AILMENT: 22,
   },
+  LOCATIONS: 850,
   ABILITIES: 363,
   POKEMON: 1017,
   REGIONS: 10,
