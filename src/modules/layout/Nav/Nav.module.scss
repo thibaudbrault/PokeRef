@@ -93,8 +93,7 @@
   gap: 2rem;
 
   & li {
-    & a,
-    & button {
+    & a {
       background-color: transparent;
       border: none;
       font-size: 4.5rem;
@@ -103,11 +102,6 @@
       font-family: Oswald, sans-serif;
     }
   }
-}
-
-.hr {
-  width: 80%;
-  margin: 0 auto;
 }
 
 .burger {

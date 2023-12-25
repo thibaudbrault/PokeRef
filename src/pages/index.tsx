@@ -52,7 +52,7 @@ function Pokedex() {
   };
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `pokedex`);
   }
 
   if (isLoading) {
@@ -81,7 +81,6 @@ function Pokedex() {
           Click on a Pokémon's name to get the Pokémon info / Click on a type to
           get the type info
         </p>
-        <p className={styles.verticalText}>ポケモン</p>
         <List filteredPokedex={filteredPokedex} />
         <Separator />
         {scrollBtn()}

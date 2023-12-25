@@ -203,7 +203,7 @@ export function Moves({ pokemon, version, name }: Props) {
   );
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `pokemon_moves`);
   }
 
   if (isLoading) {

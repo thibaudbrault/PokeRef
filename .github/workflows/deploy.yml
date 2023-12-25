@@ -26,8 +26,3 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Apply database changes
-        run: pnpm migrate:deploy
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}

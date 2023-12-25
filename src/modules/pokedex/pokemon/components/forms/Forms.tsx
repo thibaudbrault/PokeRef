@@ -146,7 +146,7 @@ export function Forms({ pokemon }: Props) {
   );
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `forms`);
   }
 
   if (isLoading) {

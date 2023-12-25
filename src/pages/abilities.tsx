@@ -72,7 +72,7 @@ function AbilitiesPage() {
     usePaginatedTableParams(data, columns, setOffset, Limit.ABILITIES);
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `abilities`);
   }
 
   if (isLoading) {

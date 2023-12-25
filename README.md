@@ -59,19 +59,6 @@
 
 🔜Contest section in a move's page
 
-<h4>Features - Back</h4>
-
-✅Use of Next-Auth to handle login / log out with credentials  
-✅Session context with the `useSession` hook from Next-Auth  
-✅Protected profile page with server redirection for unauthenticated users  
-✅User data saved in a Planetscale database  
-✅Use of Prisma and Tanstack-Query to handle queries and mutations  
-✅Possibility to save / remove favorites Pokémon
-
-🛠Fix auth problems
-
-🔜Add possibility to modify a profile
-
 <h4>Performance improvements</h4>
 
 ✅Use of Tanstack-Query to fetch data only once by using `cacheTime: Infinity` and `staleTime: Infinity`. The data will very rarely change so there is no use in re-fetching it every x minutes / hours  
@@ -121,10 +108,7 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - Finally moved to Next JS (instead of CRA) + Styled-Components to learn to use Next JS. I chose to use Next JS to benefit from the image optimization given by the <Image /> component because the app has a lot of images to render and every optimization is welcome. I also chose it to benefit from the Static-Site generation.
 - Upgraded to Next 13. There were some problems that made the transition to using the app folder instead of the pages one not possible, but I benefited from the changes to the <Image /> component (it no longer creates spans) and the <Link /> component (it no longer need to have an anchor tag inside).
 - Added React-Table and converted all my tables to benefit from virtualization, sorting and filtering for every column making it easier to find the desired information.
-- Added Firebase for authentication and saving a user's caught Pokémon with data stored in Firestore.
 - Changed all the structure folder and moved from Styled-Components to Scss modules.
-- Removed Firebase in favor of Prisma + Planetscale.
-- Migrate to Railway to use a more familiar tool.
 
 <h4>Problems encountered (ordered from the oldest to the most recent)</h4>
 
@@ -154,8 +138,6 @@ I chose to use PokéAPI because there are a lot of tutorials to start from, the 
 - <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
 - <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" />
 - <img src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white" />
-- <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" />
-- <img src="https://img.shields.io/badge/railway-%23000000.svg?style=for-the-badge&logo=railway&logoColor=white" />
 - <img src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white" />
 - <img src="https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220" />
 

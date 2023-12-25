@@ -26,7 +26,7 @@ function LocationCard() {
   } = useSwitchGame(name);
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `location`);
   }
 
   if (isLoading) {

@@ -68,7 +68,7 @@ function PokemonCard() {
     types.status === `error` ||
     location.status === `error`
   ) {
-    errorToast();
+    errorToast(undefined, `pokemon`);
   }
 
   if (

@@ -28,7 +28,7 @@ export function Effect({ move, version }: Props) {
   };
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `target`);
   }
 
   if (isLoading) {

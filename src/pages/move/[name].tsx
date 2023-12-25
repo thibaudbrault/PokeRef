@@ -27,7 +27,7 @@ function MoveCard() {
     useFetchMove(name);
 
   if (isError && error instanceof Error) {
-    errorToast(error.message);
+    errorToast(error.message, `move`);
   }
 
   if (isLoading) {

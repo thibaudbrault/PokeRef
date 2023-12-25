@@ -57,28 +57,6 @@
   }
 }
 
-.verticalText {
-  @supports (writing-mode: sideways-rl) {
-    display: block;
-    writing-mode: sideways-rl;
-  }
-
-  display: none;
-  font-size: 7rem;
-  position: fixed;
-  top: 50%;
-  right: 5%;
-  transform: translate(-50%, -50%);
-
-  @include themed {
-    color: t('lowContrastText');
-  }
-
-  @include xl {
-    display: none;
-  }
-}
-
 .list {
   max-width: 1300px;
   min-height: 80vh;
@@ -131,7 +109,8 @@
     background-color: t('elementBackground');
   }
 
-  &:hover {
+  &:hover,
+  &:hover .image {
     @include themed {
       background-color: t('elementHoverBackground');
     }
@@ -166,6 +145,10 @@
 .image {
   position: relative;
   margin: -72px auto 0;
+  border-radius: 50%;
+  @include themed {
+    background-color: t('elementBackground');
+  }
 
   &:hover .shiny {
     opacity: 1;

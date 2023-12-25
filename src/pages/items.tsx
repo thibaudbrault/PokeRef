@@ -7,7 +7,7 @@ function ItemsPage() {
   const { itemsStatus, berries, berriesStatus } = useItemsQuery();
 
   if (itemsStatus === `error` || berriesStatus === `error`) {
-    errorToast();
+    errorToast(undefined, `item`);
   }
 
   if (itemsStatus === `loading` || berriesStatus === `loading`) {
