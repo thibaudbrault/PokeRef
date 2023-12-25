@@ -3,15 +3,18 @@
 .filters {
   display: grid;
   grid-template:
-    'search search'
-    'form generation';
+    'search search search'
+    'form generation type';
   gap: 2rem;
 
   @include md {
-    gap: 2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
     & .search {
-      grid-area: search;
+      width: 100%;
     }
   }
 }
@@ -44,6 +47,12 @@
   @extend %dropdown;
 
   grid-area: generation;
+}
+
+.type {
+  @extend %dropdown;
+
+  grid-area: type;
 }
 
 .explanation {

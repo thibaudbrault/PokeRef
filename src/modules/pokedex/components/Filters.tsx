@@ -10,9 +10,11 @@ import Select, { type SingleValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
 
 import {
+  IOptions,
   Limit,
   formOptions,
-  generationsOptions,
+  generationOptions,
+  typeOptions,
   type IOptionsOffsetLimit,
 } from '@/utils';
 
@@ -23,6 +25,7 @@ import type { IPokemon } from '@/types';
 
 type Props = {
   pokedex?: IPokemon[];
+  pokedexWithType?: IPokemon[];
   setFilteredPokedex: Dispatch<SetStateAction<IPokemon[]>>;
   page: number;
   setPage: Dispatch<SetStateAction<number>>;
@@ -33,10 +36,13 @@ type Props = {
   setForm: Dispatch<SetStateAction<IOptionsOffsetLimit | null>>;
   generation: IOptionsOffsetLimit | null;
   setGeneration: Dispatch<SetStateAction<IOptionsOffsetLimit | null>>;
+  type: IOptions | null;
+  setType: Dispatch<SetStateAction<IOptions | null>>;
 };
 
 export function Filters({
   pokedex,
+  pokedexWithType,
   setFilteredPokedex,
   page,
   setPage,
@@ -47,18 +53,20 @@ export function Filters({
   setForm,
   generation,
   setGeneration,
+  type,
+  setType,
 }: Props) {
   const resultsLastPage = Limit.POKEMON % 50;
   const limitLastPage = Limit.POKEMON - resultsLastPage;
 
   const getFilterPokemon = useCallback(() => {
-    if (pokedex) {
+    if (pokedex && !pokedexWithType) {
       setFilteredPokedex(
         pokedex
           .map((pokedex) => pokedex)
           .flat()
           .filter((pokedex) => {
-            if (!form && !generation) {
+            if (!form && !generation && !type) {
               setOffset((50 * page) % Limit.POKEMON);
               setLimit(offset === limitLastPage ? resultsLastPage : 50);
               return pokedex;
@@ -74,20 +82,32 @@ export function Filters({
           }),
       );
     }
+    if (pokedexWithType) {
+      setFilteredPokedex(pokedexWithType.map((pokedex) => pokedex));
+    }
 
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [form, generation, page, pokedex, offset]);
+  }, [form, generation, type, page, offset, pokedex, pokedexWithType]);
 
   const handleFormSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
     setForm(option);
     setPage(0);
     setGeneration(null);
+    setType(null);
   };
 
   const handleGenSelect = (option: SingleValue<IOptionsOffsetLimit>) => {
     setGeneration(option);
     setPage(0);
     setForm(null);
+    setType(null);
+  };
+
+  const handleTypeSelect = (option: SingleValue<IOptions>) => {
+    setGeneration(null);
+    setPage(0);
+    setForm(null);
+    setType(option);
   };
 
   const animatedComponents = makeAnimated();
@@ -130,11 +150,31 @@ export function Filters({
           classNamePrefix="select"
           components={animatedComponents}
           isClearable
-          options={generationsOptions}
+          options={generationOptions}
           placeholder="Select"
           onChange={(option, { action }) => {
             handleGenSelect(option as IOptionsOffsetLimit);
             action === `clear` && setGeneration(null);
+          }}
+        />
+      </div>
+
+      <div className={styles.type}>
+        <Label.Root htmlFor="type">Type</Label.Root>
+        <Select
+          key={type?.value}
+          name="type"
+          id="type"
+          value={type}
+          className="dropdown"
+          classNamePrefix="select"
+          components={animatedComponents}
+          isClearable
+          options={typeOptions}
+          placeholder="Select"
+          onChange={(option, { action }) => {
+            handleTypeSelect(option as IOptions);
+            action === `clear` && setType(null);
           }}
         />
       </div>
