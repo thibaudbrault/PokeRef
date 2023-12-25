@@ -194,19 +194,3 @@ export const getCards = async (name: string) => {
     console.error(error);
   }
 };
-
-// export const getTrainers = async (
-//   owner: string,
-//   repo: string,
-//   folder: string,
-// ) => {
-//   try {
-//     const res = await axios.get(
-//       `https://api.github.com/repos/${owner}/${repo}/contents/${folder}/trainers?ref=main`,
-//     );
-//     const results = await res.data;
-//     return results;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
