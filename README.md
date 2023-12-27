@@ -6,6 +6,7 @@
 
 ![GitHub branch checks state](https://img.shields.io/github/checks-status/thibaudbrault/pokeref/dev)
 ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/thibaudbrault/pokeref/main.yml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c046a4cf-f603-40f7-9dac-1efcd734baab/deploy-status)](https://app.netlify.com/sites/pokeref/deploys)
 ![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
 
@@ -37,16 +38,15 @@
 3.  [Description](#description)
 4.  [Technologies](#technologies)
 5.  [Acknowledgements](#acknowledgements)
-6.  [License](#license)
 
 </details>
 
 <h2 id="roadmap">Roadmap</h2>
 
-<h4>Features - Front</h4>
+<h4>Features</h4>
 
 ✅A page for every Pokémon / move / ability / type / item and more  
-✅Filter Pokémon by name / form / generation  
+✅Filter Pokémon by name / form / generation and type  
 ✅Filter moves / abilities / machines by name  
 ✅Fuzzy search for Pokémon / moves / abilities and items pages  
 ✅Change certain data according to the game selected  
@@ -55,7 +55,7 @@
 ✅List of every Pokémon cards for every Pokémon  
 ✅Dark and light mode  
 ✅404 page  
-✅Responsive
+✅Fully responsive
 
 🔜Contest section in a move's page
 
@@ -65,6 +65,11 @@
 ✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important  
 ✅Turned into a PWA with the next-pwa package  
 ✅Paginated pokedex, moves, abilities and items pages
+
+<h4>SEO</h4>
+
+✅Head with fitting title, description and keywords for every page (static and dynamic)  
+✅Sitemap with every static and dynamic pages
 
 <h2 id="setup">Setup</h2>
 
@@ -167,8 +172,3 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 <h4> TS Types</h4>
 
 <a href="https://github.com/monbrey/pokeapi-typescript" target="_blank">Pokeapi-Typescript</a>
-
-<h2 id="license">License</h2>
-
-<img src="https://img.shields.io/github/license/thibaudbrault/pokeref
-" />

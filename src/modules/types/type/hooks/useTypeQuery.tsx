@@ -13,12 +13,14 @@ import type { IMove, IPokemon, IType } from '@/types';
 export const useTypeQuery = (name: string) => {
   const {
     isLoading,
+    isInitialLoading,
     isError,
     error,
     data: type,
   }: UseQueryResult<IType, Error> = useQuery({
     queryKey: [QueryKeys.TYPE.INDEX, name],
     queryFn: () => getSingle(`${BASE_URL}/type/${name}`),
+    enabled: !!name,
   });
 
   const { data: pokemon }: UseQueryResult<IPokemon[]> = useQuery({
@@ -33,5 +35,5 @@ export const useTypeQuery = (name: string) => {
     enabled: !!type,
   });
 
-  return { type, pokemon, moves, isLoading, isError, error };
+  return { type, pokemon, moves, isLoading, isInitialLoading, isError, error };
 };

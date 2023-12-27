@@ -41,7 +41,7 @@ export const formOptions: IOptionsOffsetLimit[] = [
   { label: `Gmax`, value: `gmax`, offset: 1211, limit: 40 },
 ];
 
-export const generationsOptions: IOptionsOffsetLimit[] = [
+export const generationOptions: IOptionsOffsetLimit[] = [
   { label: `Generation I`, value: `gen1`, offset: 0, limit: 151 },
   { label: `Generation II`, value: `gen2`, offset: 151, limit: 100 },
   { label: `Generation III`, value: `gen3`, offset: 251, limit: 135 },
@@ -54,24 +54,24 @@ export const generationsOptions: IOptionsOffsetLimit[] = [
 ];
 
 export const typeOptions: IOptionsFixed[] = [
-  { value: `bug`, label: `Bug`, isFixed: false },
-  { value: `dark`, label: `Dark`, isFixed: false },
-  { value: `dragon`, label: `Dragon`, isFixed: false },
-  { value: `electric`, label: `Electric`, isFixed: false },
-  { value: `fairy`, label: `Fairy`, isFixed: false },
-  { value: `fighting`, label: `Fighting`, isFixed: false },
-  { value: `fire`, label: `Fire`, isFixed: false },
-  { value: `flying`, label: `Flying`, isFixed: false },
-  { value: `ghost`, label: `Ghost`, isFixed: false },
-  { value: `grass`, label: `Grass`, isFixed: false },
-  { value: `ground`, label: `Ground`, isFixed: false },
-  { value: `ice`, label: `Ice`, isFixed: false },
-  { value: `normal`, label: `Normal`, isFixed: false },
-  { value: `poison`, label: `Poison`, isFixed: false },
-  { value: `psychic`, label: `Psychic`, isFixed: false },
-  { value: `rock`, label: `Rock`, isFixed: false },
-  { value: `steel`, label: `Steel`, isFixed: false },
-  { value: `water`, label: `Water`, isFixed: false },
+  { value: `bug`, label: `Bug` },
+  { value: `dark`, label: `Dark` },
+  { value: `dragon`, label: `Dragon` },
+  { value: `electric`, label: `Electric` },
+  { value: `fairy`, label: `Fairy` },
+  { value: `fighting`, label: `Fighting` },
+  { value: `fire`, label: `Fire` },
+  { value: `flying`, label: `Flying` },
+  { value: `ghost`, label: `Ghost` },
+  { value: `grass`, label: `Grass` },
+  { value: `ground`, label: `Ground` },
+  { value: `ice`, label: `Ice` },
+  { value: `normal`, label: `Normal` },
+  { value: `poison`, label: `Poison` },
+  { value: `psychic`, label: `Psychic` },
+  { value: `rock`, label: `Rock` },
+  { value: `steel`, label: `Steel` },
+  { value: `water`, label: `Water` },
 ];
 
 type PokemonFilters = {

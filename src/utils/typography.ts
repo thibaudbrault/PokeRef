@@ -33,3 +33,12 @@ export const removeLongName = (str: string) =>
     ?.replace(/-?combat breed/, ``)
     ?.replace(/-?blaze breed/, ``)
     ?.replace(/-?aqua breed/, ``);
+
+export const sanitizeForXML = (str: string) => {
+  return str
+    .replaceAll(/&/g, `&amp;`)
+    .replaceAll(/</g, `&lt;`)
+    .replaceAll(/>/g, `&gt;`)
+    .replaceAll(/"/g, `&quot;`)
+    .replaceAll(/'/g, `&apos;`);
+};

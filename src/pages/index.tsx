@@ -7,9 +7,11 @@ import { errorToast, Loader, Separator } from '@/components';
 import { useScrollDir } from '@/hooks';
 import { Filters, Heading, List } from '@/modules/pokedex';
 import styles from '@/modules/pokedex/Pokedex.module.scss';
+import { useTypeQuery } from '@/modules/types/type';
 import {
   BASE_URL,
   getMultiple,
+  IOptions,
   Limit,
   QueryKeys,
   type IOptionsOffsetLimit,
@@ -19,16 +21,13 @@ import type { IPokemon } from '@/types';
 
 function Pokedex() {
   const [filteredPokedex, setFilteredPokedex] = useState<IPokemon[]>([]);
-  // Modify the first pokemon displayed
   const [offset, setOffset] = useState<number>(0);
-  //Modify the max number of pokemon displayed
   const [limit, setLimit] = useState<number>(50);
-  // Form of the pokemon (changed with a dropdown)
   const [form, setForm] = useState<IOptionsOffsetLimit | null>(null);
-  // Generation of the pokemon (changed with a dropdown)
   const [generation, setGeneration] = useState<IOptionsOffsetLimit | null>(
     null,
   );
+  const [type, setType] = useState<IOptions | null>(null);
   const [page, setPage] = useState<number>(0);
 
   const { scrollBtn } = useScrollDir();
@@ -44,6 +43,12 @@ function Pokedex() {
       getMultiple(`${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`),
     keepPreviousData: true,
   });
+  const {
+    pokemon: pokedexWithType,
+    isInitialLoading: typeIsLoading,
+    isError: typeIsError,
+    error: typeError,
+  } = useTypeQuery(type?.value as string);
 
   const handlePageChange = (data: { selected: number }) => {
     window.scrollTo(0, 0);
@@ -52,10 +57,14 @@ function Pokedex() {
   };
 
   if (isError && error instanceof Error) {
-    errorToast(error.message, `pokedex`);
+    errorToast(error?.message, `pokedex`);
   }
 
-  if (isLoading) {
+  if (typeIsError && typeError instanceof Error) {
+    errorToast(typeError?.message, `type`);
+  }
+
+  if (isLoading || typeIsLoading) {
     return <Loader />;
   }
 
@@ -65,6 +74,7 @@ function Pokedex() {
       <main className="mainBig">
         <Filters
           pokedex={pokedex}
+          pokedexWithType={pokedexWithType}
           setFilteredPokedex={setFilteredPokedex}
           page={page}
           setPage={setPage}
@@ -75,6 +85,8 @@ function Pokedex() {
           setForm={setForm}
           generation={generation}
           setGeneration={setGeneration}
+          type={type}
+          setType={setType}
         />
         <Separator />
         <p className={styles.explanation}>
@@ -84,7 +96,7 @@ function Pokedex() {
         <List filteredPokedex={filteredPokedex} />
         <Separator />
         {scrollBtn()}
-        {!form && !generation && (
+        {!form && !generation && !type && (
           <ReactPaginate
             className="pagination"
             breakLabel="..."
