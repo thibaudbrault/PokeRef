@@ -57,8 +57,6 @@
 ✅404 page  
 ✅Fully responsive
 
-🔜Contest section in a move's page
-
 <h4>Performance improvements</h4>
 
 ✅Use of Tanstack-Query to fetch data only once by using `cacheTime: Infinity` and `staleTime: Infinity`. The data will very rarely change so there is no use in re-fetching it every x minutes / hours  
