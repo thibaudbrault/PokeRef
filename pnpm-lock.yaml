@@ -46,7 +46,7 @@ dependencies:
     version: 7.0.0
   next:
     specifier: 14.0.4
-    version: 14.0.4(@babel/core@7.22.10)(react-dom@18.2.0)(react@18.2.0)(sass@1.68.0)
+    version: 14.0.4(@babel/core@7.22.10)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
   next-pwa:
     specifier: 5.6.0
     version: 5.6.0(@babel/core@7.22.10)(esbuild@0.14.54)(next@14.0.4)(webpack@5.88.2)
@@ -152,8 +152,8 @@ devDependencies:
     specifier: 3.0.0
     version: 3.0.0
   sass:
-    specifier: 1.68.0
-    version: 1.68.0
+    specifier: 1.70.0
+    version: 1.70.0
   stylelint:
     specifier: 16.1.0
     version: 16.1.0(typescript@5.1.3)
@@ -168,7 +168,7 @@ devDependencies:
     version: 10.9.2(@types/node@20.3.1)(typescript@5.1.3)
   typed-scss-modules:
     specifier: 8.0.0
-    version: 8.0.0(sass@1.68.0)
+    version: 8.0.0(sass@1.70.0)
   typescript:
     specifier: 5.1.3
     version: 5.1.3
@@ -5767,7 +5767,7 @@ packages:
       babel-loader: 8.3.0(@babel/core@7.22.10)(webpack@5.88.2)
       clean-webpack-plugin: 4.0.0(webpack@5.88.2)
       globby: 11.1.0
-      next: 14.0.4(@babel/core@7.22.10)(react-dom@18.2.0)(react@18.2.0)(sass@1.68.0)
+      next: 14.0.4(@babel/core@7.22.10)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
       terser-webpack-plugin: 5.3.9(esbuild@0.14.54)(webpack@5.88.2)
       workbox-webpack-plugin: 6.6.0(webpack@5.88.2)
       workbox-window: 6.6.0
@@ -5781,7 +5781,7 @@ packages:
       - webpack
     dev: false
 
-  /next@14.0.4(@babel/core@7.22.10)(react-dom@18.2.0)(react@18.2.0)(sass@1.68.0):
+  /next@14.0.4(@babel/core@7.22.10)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0):
     resolution: {integrity: sha512-qbwypnM7327SadwFtxXnQdGiKpkuhaRLE2uq62/nRul9cj9KhQ5LhHmlziTNqUidZotw/Q1I9OjirBROdUJNgA==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -5804,7 +5804,7 @@ packages:
       postcss: 8.4.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      sass: 1.68.0
+      sass: 1.70.0
       styled-jsx: 5.1.1(@babel/core@7.22.10)(react@18.2.0)
       watchpack: 2.4.0
     optionalDependencies:
@@ -5829,7 +5829,7 @@ packages:
       react: '>= 16.0.0'
     dependencies:
       '@types/nprogress': 0.2.0
-      next: 14.0.4(@babel/core@7.22.10)(react-dom@18.2.0)(react@18.2.0)(sass@1.68.0)
+      next: 14.0.4(@babel/core@7.22.10)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
       nprogress: 0.2.0
       prop-types: 15.8.1
       react: 18.2.0
@@ -6712,8 +6712,8 @@ packages:
       get-intrinsic: 1.2.1
       is-regex: 1.1.4
 
-  /sass@1.68.0:
-    resolution: {integrity: sha512-Lmj9lM/fef0nQswm1J2HJcEsBUba4wgNx2fea6yJHODREoMFnwRpZydBnX/RjyXw2REIwdkbqE4hrTo4qfDBUA==}
+  /sass@1.70.0:
+    resolution: {integrity: sha512-uUxNQ3zAHeAx5nRFskBnrWzDUJrrvpCPD5FNAoRvTi0WwremlheES3tg+56PaVtCs5QDRX5CBLxxKMDJMEa1WQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -7395,7 +7395,7 @@ packages:
       for-each: 0.3.3
       is-typed-array: 1.1.12
 
-  /typed-scss-modules@8.0.0(sass@1.68.0):
+  /typed-scss-modules@8.0.0(sass@1.70.0):
     resolution: {integrity: sha512-wOVwQbAJBe9C1wcMhsy4NufYbegd35cKtA1Tn/DOyUK0BOInk4xg2fUN/3GzBe13+CdxwsAB8NQJKWqd7R2yaA==}
     engines: {node: '>=16'}
     hasBin: true
@@ -7418,7 +7418,7 @@ packages:
       postcss: 8.4.31
       postcss-modules: 6.0.0(postcss@8.4.31)
       reserved-words: 0.1.2
-      sass: 1.68.0
+      sass: 1.70.0
       slash: 3.0.0
       yargs: 17.7.2
     dev: true
