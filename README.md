@@ -2,16 +2,6 @@
 
 ---
 
-<div align="center">
-
-![GitHub branch checks state](https://img.shields.io/github/checks-status/thibaudbrault/pokeref/dev)
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/thibaudbrault/pokeref/main.yml)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c046a4cf-f603-40f7-9dac-1efcd734baab/deploy-status)](https://app.netlify.com/sites/pokeref/deploys)
-![GitHub issues](https://img.shields.io/github/issues/thibaudbrault/pokeref)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/thibaudbrault/pokeref)
-
-</div>
-
 <h3 align="center">PokéRef is a Pokémon encyclopedia built with Next JS, Typescript and Scss modules and uses data from PokéAPI, Smogon and PokémonTCG</h3>  
 <p align="center">You'll find a ton of information on every Pokémon, moves, abilities, items and a lot more</p>  
 <div align="center">
@@ -34,10 +24,9 @@
   <summary>Table of contents</summary>
 
 1.  [Roadmap](#roadmap)
-2.  [Setup](#setup)
-3.  [Description](#description)
-4.  [Technologies](#technologies)
-5.  [Acknowledgements](#acknowledgements)
+2.  [Description](#description)
+3.  [Technologies](#technologies)
+4.  [Acknowledgements](#acknowledgements)
 
 </details>
 
@@ -59,7 +48,7 @@
 
 <h4>Performance improvements</h4>
 
-✅Use of Tanstack-Query to fetch data only once by using `cacheTime: Infinity` and `staleTime: Infinity`. The data will very rarely change so there is no use in re-fetching it every x minutes / hours  
+✅Use of Tanstack-Query to fetch data  
 ✅Use of Next JS next/image to optimize images. Very important for this app because some pages (like the index.js or the items.js) have a lot of images and they are one of the main problems regarding my performances so optimizing them to make the loading faster is very important  
 ✅Turned into a PWA with the next-pwa package  
 ✅Paginated pokedex, moves, abilities and items pages
@@ -68,32 +57,6 @@
 
 ✅Head with fitting title, description and keywords for every page (static and dynamic)  
 ✅Sitemap with every static and dynamic pages
-
-<h2 id="setup">Setup</h2>
-
-<h4>Prequisites</h4>
-
-- Have PNPM installed (optional)
-
-<h4>Clone the repo</h4>
-
-```bash
-git clone https://github.com/thibaudbrault/PokeRef.git
-```
-
-<h4>Install the dependencies</h4>
-
-```bash
-pnpm install
-```
-
-<h4>Start the server</h4>
-
-```bash
-pnpm dev
-```
-
-<h4>Enjoy 😃</h4>
 
 <h2 id="description">Description</h2>
 
@@ -157,8 +120,8 @@ A big thanks also to the PokeAPI team for creating such a huge, detailed and ver
 
 <h4>Dependencies</h4>
 
-<a href="https://www.npmjs.com/package/@tanstack/react-query" target="_blank">Tanstack React-Query</a>  
-<a href="https://www.npmjs.com/package/@tanstack/react-table" target="_blank">Tanstack React-Table</a>  
+<a href="https://www.npmjs.com/package/@tanstack/react-query" target="_blank">Tanstack Query</a>  
+<a href="https://www.npmjs.com/package/@tanstack/react-table" target="_blank">Tanstack Table</a>  
 <a href="https://www.npmjs.com/package/react-hook-form" target="_blank">React Hook Form</a>  
 <a href="https://www.npmjs.com/package/react-select" target="_blank">React Select</a>  
 <a href="https://www.npmjs.com/package/react-paginate" target="_blank">React Paginate</a>  
