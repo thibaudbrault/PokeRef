@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import type { Dispatch, SetStateAction } from 'react';
 
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';

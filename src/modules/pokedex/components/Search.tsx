@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import * as Label from '@radix-ui/react-label';
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import Fuse, { FuseResult } from 'fuse.js';
 import Link from 'next/link';
 
@@ -24,7 +24,7 @@ type Props = {
 };
 
 export function Search({ onGrid }: Props) {
-  const { data: pokedex }: UseQueryResult<INamedApiResource[]> = useQuery({
+  const { data: pokedex } = useQuery<INamedApiResource[], Error>({
     queryKey: [QueryKeys.SEARCH],
     queryFn: getPokedexResults,
   });
@@ -57,10 +57,7 @@ export function Search({ onGrid }: Props) {
           <ul>
             {searchRes?.map((res) => (
               <li key={res.item.name}>
-                <Link
-                  href={`/pokemon/${res.item.name}`}
-                  className="searchLink"
-                >
+                <Link href={`/pokemon/${res.item.name}`} className="searchLink">
                   <ImageWithFallback
                     src={
                       `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${res.item.url

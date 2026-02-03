@@ -1,4 +1,4 @@
-@use '@/styles/abstracts' as *;
+@use 'styles/abstracts' as *;
 
 .base {
   display: flex;
@@ -16,33 +16,26 @@
 .back {
   gap: 1rem;
   background: none;
-  @include themed {
-    color: t('highContrastText');
-    background-color: t('elementBackground');
-    border: 1px solid t('border');
-  }
+  color: var(--highContrastText);
+  background-color: var(--elementBackground);
+  color: var(--highContrastText);
+  border: 1px solid var(--border);
 
   &:hover {
-    @include themed {
-      background: t('elementHoverBackground');
-      border: 1px solid t('hoverBorder');
-    }
+    background: var(--elementHoverBackground);
+    border: 1px solid var(--hoverBorder);
   }
 }
 
 .primary {
-  @include themed {
-    border-color: t('border');
-    background-color: t('highContrastText');
-    color: t('appBackground');
-  }
+  border-color: var(--border);
+  background-color: var(--highContrastText);
+  color: var(--appBackground);
 
   &:hover {
-    @include themed {
-      background: t('appBackground');
-      border-color: t('hoverBorder');
-      color: t('highContrastText');
-    }
+    background: var(--appBackground);
+    border-color: var(--hoverBorder);
+    color: var(--highContrastText);
   }
 
   @include md {
@@ -51,11 +44,9 @@
 }
 
 .secondary {
-  @include themed {
-    background-color: t('appBackground');
-    border-color: t('bodrer');
-    color: t('highContrastText');
-  }
+  background-color: var(--appBackground);
+  border-color: var(--border);
+  color: var(--highContrastText);
 
   @include md {
     font-size: 3rem;

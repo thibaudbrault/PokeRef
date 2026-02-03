@@ -10,24 +10,16 @@
 
   &::-webkit-scrollbar-track {
     border-radius: 5px;
-
-    @include gthemed {
-      background-color: t('appBackground');
-    }
+    background-color: var(--appBackground);
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 5px;
-
-    @include gthemed {
-      background-color: t('lowContrastText');
-    }
+    background-color: var(--lowContrastText);
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    @include gthemed {
-      background-color: t('highContrastText');
-    }
+    background-color: var(--highContrastText);
   }
 
   & td {
@@ -42,13 +34,7 @@
   table-layout: fixed;
 
   & tr {
-    @include gthemed {
-      border: 1px solid t('subtleBorder');
-    }
-
-    @include themed {
-      border: 1px solid t('subtleBorder');
-    }
+    border: 1px solid var(--subtleBorder);
   }
 
   & th {
@@ -56,16 +42,8 @@
     font-size: 1.5rem;
     border-collapse: collapse;
     vertical-align: middle;
-
-    @include gthemed {
-      background-color: t('elementBackground');
-      border: 1px solid t('subtleBorder');
-    }
-
-    @include themed {
-      background-color: t('elementBackground');
-      border: 1px solid t('subtleBorder');
-    }
+    background-color: var(--elementBackground);
+    border: 1px solid var(--subtleBorder);
 
     & .sortable {
       display: flex;
@@ -80,14 +58,7 @@
     padding: 1.5rem;
     font-size: 1.5rem;
     vertical-align: middle;
-
-    @include gthemed {
-      border: 1px solid t('subtleBorder');
-    }
-
-    @include themed {
-      border: 1px solid t('subtleBorder');
-    }
+    border: 1px solid var(--subtleBorder);
   }
 
   & tfoot {
@@ -143,9 +114,7 @@
 
 .tr {
   &:hover {
-    @include gthemed {
-      background-color: t('elementHoverBackground');
-    }
+    background-color: var(--elementHoverBackground);
   }
 }
 
@@ -172,9 +141,8 @@
   cursor: pointer;
 
   &:hover {
-    @include gthemed {
-      text-decoration: underline;
-    }
+    text-decoration: underline;
+    color: var(--highContrastText);
   }
 
   .bold {
@@ -224,24 +192,12 @@
         font-family: Oswald, sans-serif;
         font-size: 1.7rem;
         cursor: pointer;
-
-        @include gthemed {
-          color: t('highContrastText');
-          text-shadow:
-            t('appBackground') -1px -1px 0,
-            t('appBackground') 1px -1px 0,
-            t('appBackground') -1px 1px 0,
-            t('appBackground') 1px 1px 0;
-        }
-
-        @include themed {
-          color: t('highContrastText');
-          text-shadow:
-            t('appBackground') -1px -1px 0,
-            t('appBackground') 1px -1px 0,
-            t('appBackground') -1px 1px 0,
-            t('appBackground') 1px 1px 0;
-        }
+        color: var(--highContrastText);
+        text-shadow:
+          var(--appBackground) -1px -1px 0,
+          var(--appBackground) 1px -1px 0,
+          var(--appBackground) -1px 1px 0,
+          var(--appBackground) 1px 1px 0;
       }
     }
   }

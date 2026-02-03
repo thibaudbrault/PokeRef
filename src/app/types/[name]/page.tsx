@@ -4,6 +4,7 @@ import { FaChevronLeft } from '@meronex/icons/fa';
 import * as Tabs from '@radix-ui/react-tabs';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 import { Button, Loader, Separator, errorToast } from '@/components';
 import {
@@ -14,7 +15,6 @@ import {
   useTypeQuery,
 } from '@/modules/types/type';
 import styles from '@/modules/types/type/Type.module.scss';
-import { useParams } from 'next/navigation';
 
 function TypeCard() {
   const params = useParams();

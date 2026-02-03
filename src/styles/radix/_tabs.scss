@@ -22,17 +22,12 @@
     text-transform: capitalize;
     background-color: transparent;
     border: none;
-
-    @include gthemed {
-      color: t('lowContrastText');
-      border-bottom: 1px solid t('border');
-    }
+    color: var(--lowContrastText);
+    border-bottom: 1px solid var(--border);
 
     &[data-state='active'] {
-      @include gthemed {
-        color: t('highContrastText');
-        border-bottom: 1px solid t('hoverBorder');
-      }
+      color: var(--highContrastText);
+      border-bottom: 1px solid var(--hoverBorder);
     }
   }
 }

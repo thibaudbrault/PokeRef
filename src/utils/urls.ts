@@ -13,7 +13,7 @@ export const Limit = {
   },
   LOCATIONS: 850,
   ABILITIES: 363,
-  POKEMON: 1017,
+  POKEMON: 1025,
   REGIONS: 10,
   TYPES: 18,
 } as const;

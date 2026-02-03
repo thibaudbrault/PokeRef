@@ -18,30 +18,33 @@ export const getPokedexResults = async () => {
     return results;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
 export const getMultiple = async (url: string) => {
   try {
     const res = await axios.get(url);
-    const results = await res.data.results;
+    const results = res.data.results;
     const promiseRes = await Promise.all(
-      results.map((res: { url: string }) => axios.get(res.url)),
+      results.map((item: { url: string }) => axios.get(item.url)),
     );
     const result = promiseRes.map((res) => res.data);
     return result;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
 export const getSingle = async (url: string) => {
   try {
     const res = await axios.get(url);
-    const results = await res.data;
+    const results = res.data;
     return results;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -54,6 +57,7 @@ export const getPokemonTypes = async (pokemon: IPokemon) => {
     return results;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -66,6 +70,7 @@ export const getPokemonForms = async (pokemon: IPokemon) => {
     return results;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -78,6 +83,7 @@ export const getMovePokemon = async (move: IMove) => {
     return results;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -85,11 +91,12 @@ export const getMovePokemon = async (move: IMove) => {
 export const getMoveMachines = async (move: IMove) => {
   try {
     const res = move.machines.map((m) => m.machine.url);
-    const promiseRes = await Promise.all(res.map((res) => axios.get(res)));
-    const results = promiseRes.map((res) => res.data);
+    const promiseRes = await Promise.all(res.map((item) => axios.get(item)));
+    const results = promiseRes.map((item) => item.data);
     return results;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -97,14 +104,15 @@ export const getMoveMachines = async (move: IMove) => {
 export const getMoveTarget = async () => {
   try {
     const res = await axios.get(`${BASE_URL}/move-target`);
-    const results = await res.data.results;
+    const results = res.data.results;
     const promiseRes = await Promise.all(
-      results.map((res: { url: string }) => axios.get(res.url)),
+      results.map((item: { url: string }) => axios.get(item.url)),
     );
-    const result = promiseRes.map((res) => res.data);
+    const result = promiseRes.map((item) => item.data);
     return result;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -117,6 +125,7 @@ export const getAbilityPokemon = async (ability: IAbility) => {
     return results;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -148,6 +157,7 @@ export const getAllEvo = async (evolution: IEvolutionChain) => {
     }
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -160,6 +170,7 @@ export const getTypePokemon = async (type: IType) => {
     return results;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -172,6 +183,7 @@ export const getTypeMoves = async (type: IType) => {
     return results;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -192,5 +204,6 @@ export const getCards = async (name: string) => {
     return results;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };

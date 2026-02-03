@@ -1,4 +1,5 @@
-import type { NextConfig } from 'next'
+import type { NextConfig } from 'next';
+
 const path = require('path');
 
 const nextConfig: NextConfig = {
@@ -56,7 +57,7 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-    ]
+    ];
   },
 };
 

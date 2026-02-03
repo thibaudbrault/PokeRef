@@ -1,8 +1,8 @@
-"use client"
+'use client';
 
 import { useMemo, useState } from 'react';
 
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { type ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 
@@ -27,7 +27,7 @@ function MachinesPage() {
     isError,
     error,
     data: machines,
-  }: UseQueryResult<IMachine[], Error> = useQuery({
+  } = useQuery<IMachine[], Error>({
     queryKey: [QueryKeys.MACHINES],
     queryFn: () => getMultiple(`${BASE_URL}/machine?limit=1700`),
   });
@@ -53,10 +53,7 @@ function MachinesPage() {
         header: `Move`,
         cell: (info) => (
           <td>
-            <Link
-              className="tLink"
-              href={`/moves/${info.getValue()}`}
-            >
+            <Link className="tLink" href={`/moves/${info.getValue()}`}>
               {removeDash(info.getValue<string>())}
             </Link>
           </td>

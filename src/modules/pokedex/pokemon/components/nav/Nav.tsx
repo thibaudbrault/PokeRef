@@ -4,7 +4,7 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import Select, { type SingleValue } from 'react-select';
 
 import { useMediaQuery } from '@/hooks';
-import { IOptions, genNav } from '@/utils';
+import { IOptions, genNav, pokemonFilters } from '@/utils';
 
 import styles from '../../Pokemon.module.scss';
 
@@ -75,7 +75,7 @@ export function Nav({
   ) : (
     <NavigationMenu.Root className="NavigationMenuRoot" id="generations">
       <NavigationMenu.List className="NavigationMenuList">
-        {(pokemonId < 152 || pokemonId > 10000) && (
+        {(pokemonId < pokemonFilters[1].max || pokemonId > 10000) && (
           <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen I
@@ -111,7 +111,7 @@ export function Nav({
             </NavigationMenu.Content>
           </NavigationMenu.Item>
         )}
-        {(pokemonId < 252 || pokemonId > 10000) && (
+        {(pokemonId < pokemonFilters[2].max || pokemonId > 10000) && (
           <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen II
@@ -147,7 +147,7 @@ export function Nav({
             </NavigationMenu.Content>
           </NavigationMenu.Item>
         )}
-        {(pokemonId < 387 || pokemonId > 10000) && (
+        {(pokemonId < pokemonFilters[3].max || pokemonId > 10000) && (
           <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen III
@@ -201,7 +201,7 @@ export function Nav({
             </NavigationMenu.Content>
           </NavigationMenu.Item>
         )}
-        {(pokemonId < 494 || pokemonId > 10000) && (
+        {(pokemonId < pokemonFilters[4].max || pokemonId > 10000) && (
           <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen IV
@@ -255,7 +255,7 @@ export function Nav({
             </NavigationMenu.Content>
           </NavigationMenu.Item>
         )}
-        {(pokemonId < 650 || pokemonId > 10000) && (
+        {(pokemonId < pokemonFilters[5].max || pokemonId > 10000) && (
           <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen V
@@ -300,7 +300,7 @@ export function Nav({
             </NavigationMenu.Content>
           </NavigationMenu.Item>
         )}
-        {(pokemonId < 722 || pokemonId > 10000) && (
+        {(pokemonId < pokemonFilters[6].max || pokemonId > 10000) && (
           <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen VI
@@ -345,7 +345,7 @@ export function Nav({
             </NavigationMenu.Content>
           </NavigationMenu.Item>
         )}
-        {(pokemonId < 810 || pokemonId > 10000) && (
+        {(pokemonId < pokemonFilters[7].max || pokemonId > 10000) && (
           <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen VII
@@ -408,7 +408,7 @@ export function Nav({
             </NavigationMenu.Content>
           </NavigationMenu.Item>
         )}
-        {(pokemonId < 905 || pokemonId > 10000) && (
+        {(pokemonId < pokemonFilters[8].max || pokemonId > 10000) && (
           <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen VIII
@@ -448,7 +448,7 @@ export function Nav({
             </NavigationMenu.Content>
           </NavigationMenu.Item>
         )}
-        {(pokemonId < 1018 || pokemonId > 10000) && (
+        {(pokemonId < pokemonFilters[9].max || pokemonId > 10000) && (
           <NavigationMenu.Item>
             <NavigationMenu.Trigger className="NavigationMenuTrigger">
               Gen IX

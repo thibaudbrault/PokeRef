@@ -24,11 +24,9 @@
 
   & .selected {
     border-radius: 50%;
-    @include gthemed {
-      background-color: t('elementActiveBackground');
-      color: t('highContrastText');
-      border: 1px solid t('border');
-    }
+    background-color: var(--elementActiveBackground);
+    color: var(--highContrastText);
+    border: 1px solid var(--border);
   }
 
   & .disabled {

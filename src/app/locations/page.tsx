@@ -1,9 +1,9 @@
-"use client"
+'use client';
 
 import { useEffect, useState } from 'react';
 
 import * as Tabs from '@radix-ui/react-tabs';
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 
 import { errorToast, Loader } from '@/components';
@@ -24,7 +24,7 @@ function LocationsPage() {
     isError,
     error,
     data: locations,
-  }: UseQueryResult<IRegion[], Error> = useQuery({
+  } = useQuery<IRegion[], Error>({
     queryKey: [QueryKeys.REGIONS],
     queryFn: () => getMultiple(`${BASE_URL}/region?limit=${Limit.REGIONS}`),
   });

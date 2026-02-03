@@ -2,8 +2,8 @@
 
 import { capitalize } from '@/utils';
 
-import { InfoTable } from '../../utils';
 import styles from './Info.module.scss';
+import { InfoTable } from '../../utils';
 
 import type { IEvolutionChain, IPokemon, IPokemonSpecies } from '@/types';
 

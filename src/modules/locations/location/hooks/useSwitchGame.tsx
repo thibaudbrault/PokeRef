@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { useQueries, useQuery, UseQueryResult } from '@tanstack/react-query';
+import { useQueries, useQuery } from '@tanstack/react-query';
 
 import { BASE_URL, getMultiple, getSingle, Limit, QueryKeys } from '@/utils';
 
@@ -13,20 +13,20 @@ import type {
 export const useSwitchGame = (name: string) => {
   const [game, setGame] = useState<string>(``);
 
-  const locationQuery: UseQueryResult<ILocation, Error> = useQuery({
+  const locationQuery = useQuery<ILocation, Error>({
     queryKey: [QueryKeys.LOCATION, name],
     queryFn: () => getSingle(`${BASE_URL}/location/${name}`),
   });
-  const encounterQuery: UseQueryResult<IEncounterConditionValue[], Error> =
-    useQuery({
-      queryKey: [QueryKeys.ENCOUNTER.CONDITION, name],
-      queryFn: () =>
-        getMultiple(
-          `${BASE_URL}/encounter-condition-value?limit=${Limit.ENCOUNTER.CONDITION}`,
-        ),
-    });
 
-  const methodQuery: UseQueryResult<IEncounterMethod[], Error> = useQuery({
+  const encounterQuery = useQuery<IEncounterConditionValue[], Error>({
+    queryKey: [QueryKeys.ENCOUNTER.CONDITION, name],
+    queryFn: () =>
+      getMultiple(
+        `${BASE_URL}/encounter-condition-value?limit=${Limit.ENCOUNTER.CONDITION}`,
+      ),
+  });
+
+  const methodQuery = useQuery<IEncounterMethod[], Error>({
     queryKey: [QueryKeys.ENCOUNTER.METHOD, name],
     queryFn: () =>
       getMultiple(
@@ -78,7 +78,6 @@ export const useSwitchGame = (name: string) => {
 
   useEffect(() => {
     gameUsed();
-    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locationQuery.data?.region.name]);
 
   return {

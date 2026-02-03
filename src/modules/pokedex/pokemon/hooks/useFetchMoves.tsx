@@ -1,4 +1,4 @@
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 import { QueryKeys } from '~/src/utils';
@@ -51,7 +51,7 @@ export const useFetchMoves = (
     isError,
     error,
     data: pokemonMoves,
-  }: UseQueryResult<IMoveWithDetails[], Error> = useQuery({
+  } = useQuery<IMoveWithDetails[], Error>({
     queryKey: [QueryKeys.POKEMON.MOVES, version, learn, name],
     queryFn: getFilteredMovesWithDetails,
   });

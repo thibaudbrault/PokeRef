@@ -1,3 +1,4 @@
+import type { IItemCategory } from './ItemCategory';
 import type { IApiResource } from '../Utility/ApiResourceList';
 import type {
   IGenerationGameIndex,
@@ -7,7 +8,6 @@ import type {
   IVersionGroupFlavorText,
 } from '../Utility/CommonModels';
 import type { INamedApiResource } from '../Utility/NamedApiResourceList';
-import type { IItemCategory } from './ItemCategory';
 
 export interface IItem {
   id: number;

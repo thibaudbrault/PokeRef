@@ -3,6 +3,7 @@
 import { FaChevronLeft } from '@meronex/icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 import { Button, Loader, errorToast } from '@/components';
 import {
@@ -15,7 +16,6 @@ import {
 } from '@/modules/items/item';
 import styles from '@/modules/items/item/Item.module.scss';
 import { removeDash } from '@/utils';
-import { useParams } from 'next/navigation';
 
 function ItemCard() {
   const params = useParams();

@@ -25,7 +25,6 @@ export function Locations({ location, game }: Props) {
     })
     .filter((l) => l.version_details.length);
 
-  //eslint-disable-next-line react-hooks/exhaustive-deps
   const data = useMemo(() => filteredLocation, [location, game]);
 
   const columns = useMemo<ColumnDef<ILocationAreaEncounter>[]>(

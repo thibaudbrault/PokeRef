@@ -1,4 +1,4 @@
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { BASE_URL, getAbilityPokemon, getSingle, QueryKeys } from '@/utils';
 
@@ -10,7 +10,7 @@ export const useFilterAbility = (name: string) => {
     isError,
     error,
     data: ability,
-  }: UseQueryResult<IAbility, Error> = useQuery({
+  } = useQuery<IAbility, Error>({
     queryKey: [QueryKeys.ABILITY.INDEX, name],
     queryFn: () => getSingle(`${BASE_URL}/ability/${name}`),
   });

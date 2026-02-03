@@ -6,12 +6,12 @@ import { FaChevronLeft } from '@meronex/icons/fa';
 import * as Tabs from '@radix-ui/react-tabs';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 import { Button, Loader, Separator, errorToast } from '@/components';
 import { Data, Heading, List, Nav, useFetchMove } from '@/modules/moves/move';
 import styles from '@/modules/moves/move/Move.module.scss';
 import { removeDash } from '@/utils';
-import { useParams } from 'next/navigation';
 
 const LearnMethod = dynamic(() =>
   import(`@/utils`).then((res) => res.LearnMethod),

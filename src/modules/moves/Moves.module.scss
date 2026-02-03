@@ -1,4 +1,4 @@
-@use '@/styles/abstracts' as *;
+@use 'styles/abstracts' as *;
 
 .search {
   display: grid;
@@ -28,8 +28,9 @@
     cursor: pointer;
 
     &:hover {
-      @include themed {
+      @include themed using ($theme) {
         text-decoration: underline;
+        color: t($theme, 'highContrastText');
       }
     }
   }
@@ -48,8 +49,9 @@
       cursor: pointer;
 
       &:hover {
-        @include themed {
+        @include themed using ($theme) {
           text-decoration: underline;
+          color: t($theme, 'highContrastText');
         }
       }
     }

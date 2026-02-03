@@ -1,5 +1,5 @@
-@use '@/styles/abstracts' as *;
-@use '@/styles/common' as *;
+@use 'styles/abstracts' as *;
+@use 'styles/common' as *;
 
 .section {
   @extend %sectionTop;
@@ -68,9 +68,7 @@
     }
 
     &:nth-of-type(4) {
-      @include themed {
-        border-bottom: 5px solid t('border');
-      }
+      border-bottom: 5px solid var(--border);
     }
   }
 
@@ -97,9 +95,7 @@
     cursor: pointer;
 
     &:hover {
-      @include themed {
-        text-decoration: underline;
-      }
+      text-decoration: underline;
     }
   }
 }

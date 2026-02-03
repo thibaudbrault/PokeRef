@@ -12,24 +12,27 @@ export const ThemeProvider = ({ children }: Props) => {
   const localStorage = globalThis.window?.localStorage;
 
   useEffect(() => {
-    const savedThemeLocal = localStorage.getItem(`globalTheme`);
+    const savedTheme = window.localStorage.getItem('globalTheme');
 
-    if (!!savedThemeLocal) {
-      setTheme(savedThemeLocal);
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      const prefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
+      setTheme(prefersDark ? 'dark' : 'light');
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     localStorage.setItem(`globalTheme`, theme);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    document.body.classList.remove('dark-theme', 'light-theme');
+    document.body.classList.add(`${theme}-theme`);
   }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <div className={`${theme}-theme`}>{children}</div>
+      {children}
     </ThemeContext.Provider>
   );
 };

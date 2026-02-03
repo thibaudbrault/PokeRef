@@ -1,4 +1,4 @@
-@use '@/styles/abstracts' as *;
+@use 'styles/abstracts' as *;
 
 .footer {
   display: flex;
@@ -41,15 +41,12 @@
   letter-spacing: 1px;
   font-family: Oswald, sans-serif;
   text-align: center;
-
-  @include themed {
-    color: t('highContrastText');
-    text-shadow:
-      t('appBackground') -1px -1px 0,
-      t('appBackground') 1px -1px 0,
-      t('appBackground') -1px 1px 0,
-      t('appBackground') 1px 1px 0;
-  }
+  color: var(--highContrastText);
+  text-shadow:
+    var(--appBackground) -1px -1px 0,
+    var(--appBackground) 1px -1px 0,
+    var(--appBackground) -1px 1px 0,
+    var(--appBackground) 1px 1px 0;
 }
 
 .right {

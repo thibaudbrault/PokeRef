@@ -22,25 +22,18 @@
       border: none;
       font-size: 2rem;
       border-radius: 5px;
-
-      @include gthemed {
-        color: t('highContrastText');
-      }
+      color: var(--highContrastText);
 
       @include sm {
         font-size: 1.7rem;
       }
 
       &:focus {
-        @include gthemed {
-          box-shadow: 0 0 0 2px t('highContrastText');
-        }
+        box-shadow: 0 0 0 2px var(--highContrastText);
       }
 
       &:hover {
-        @include gthemed {
-          background-color: t('elementHoverBackground');
-        }
+        background-color: var(--elementHoverBackground);
       }
     }
   }
@@ -73,12 +66,9 @@
         border-radius: 5px;
         animation-duration: 250ms;
         animation-timing-function: ease-in-out;
-
-        @include gthemed {
-          background-color: t('elementBackground');
-          box-shadow: 2px 2px 15px 2px t('elementBackground');
-          border: 1px solid t('border');
-        }
+        background-color: var(--elementBackground);
+        box-shadow: 2px 2px 15px 2px var(--elementBackground);
+        border: 1px solid var(--border);
 
         & button {
           display: block;
@@ -93,14 +83,10 @@
           text-transform: capitalize;
           cursor: pointer;
 
-          @include gthemed {
-            color: t('highContrastText');
-          }
+          color: var(--highContrastText);
 
           &:hover {
-            @include gthemed {
-              background-color: t('elementHoverBackground');
-            }
+            background-color: var(--elementHoverBackground);
           }
 
           @include sm {

@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { SmallLoader, errorToast } from '@/components';
+import { errorToast, SmallLoader } from '@/components';
 import { useTableParams } from '@/hooks';
 import { getPokemonForms, QueryKeys, removeDash } from '@/utils';
 
@@ -21,7 +21,7 @@ export function Forms({ pokemon }: Props) {
     isError,
     error,
     data: forms,
-  }: UseQueryResult<IPokemonForm[], Error> = useQuery({
+  } = useQuery<IPokemonForm[], Error>({
     queryKey: [QueryKeys.FORMS, pokemon],
     queryFn: () => getPokemonForms(pokemon),
   });
@@ -89,9 +89,7 @@ export function Forms({ pokemon }: Props) {
         cell: (info) => (
           <td className="tType">
             <div className="type" id={info.getValue<string>()}>
-              <Link
-                href={`/types/${info.getValue()}`}
-              >
+              <Link href={`/types/${info.getValue()}`}>
                 <Image
                   src={`/images/types/${info.getValue()}.png` || ``}
                   alt={`-`}
@@ -115,9 +113,7 @@ export function Forms({ pokemon }: Props) {
         cell: (info) => (
           <td className="tType">
             <div className="type" id={info.getValue<string>()}>
-              <Link
-                href={`/types/${info.getValue()}`}
-              >
+              <Link href={`/types/${info.getValue()}`}>
                 <Image
                   src={`/images/types/${info.getValue()}.png` || ``}
                   alt={`-`}

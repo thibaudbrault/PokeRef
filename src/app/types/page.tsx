@@ -1,6 +1,6 @@
-"use client"
+'use client';
 
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { errorToast, Loader } from '@/components';
 import { Heading, List } from '@/modules/types';
@@ -15,7 +15,7 @@ function TypesPage() {
     isError,
     error,
     data: types,
-  }: UseQueryResult<IType[], Error> = useQuery({
+  } = useQuery<IType[], Error>({
     queryKey: [QueryKeys.TYPES],
     queryFn: () => getMultiple(`${BASE_URL}/type?limit=${Limit.TYPES}`),
   });

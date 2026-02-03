@@ -152,16 +152,8 @@ body {
   min-height: 100vh;
   font-family: Quicksand, serif;
   font-weight: 400;
-
-  .dark-theme {
-    color: map.get(map.get($themes, 'dark'), 'highContrastText');
-    background-color: map.get(map.get($themes, 'dark'), 'appBackground');
-  }
-
-  .light-theme {
-    color: map.get(map.get($themes, 'light'), 'highContrastText');
-    background-color: map.get(map.get($themes, 'light'), 'appBackground');
-  }
+  color: var(--highContrastText);
+  background-color: var(--appBackground);
 
   & #nprogress {
     & .bar {

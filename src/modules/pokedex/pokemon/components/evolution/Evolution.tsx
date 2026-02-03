@@ -1,9 +1,9 @@
 import { FaChevronRight } from '@meronex/icons/fa';
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { SmallLoader, errorToast } from '@/components';
+import { errorToast, SmallLoader } from '@/components';
 import { getAllEvo, QueryKeys, removeDash } from '@/utils';
 
 import styles from './Evolution.module.scss';
@@ -21,7 +21,7 @@ export function Evolution({ evolution, name }: Props) {
     isError,
     error,
     data: evo,
-  }: UseQueryResult<IPokemon[], Error> = useQuery({
+  } = useQuery<IPokemon[], Error>({
     queryKey: [QueryKeys.EVOLUTIONS, name, evolution],
     queryFn: () => getAllEvo(evolution),
     enabled: !!evolution,
@@ -54,9 +54,7 @@ export function Evolution({ evolution, name }: Props) {
                     />
                   ),
               )}
-              <Link
-                href={`/pokemon/${evolution?.chain?.species?.name}`}
-              >
+              <Link href={`/pokemon/${evolution?.chain?.species?.name}`}>
                 {removeDash(evolution?.chain?.species?.name)}
               </Link>
             </>
@@ -223,8 +221,8 @@ export function Evolution({ evolution, name }: Props) {
                               {eed.relative_physical_stats === 1
                                 ? ` Attack > Defense`
                                 : eed.relative_physical_stats === 0
-                                ? ` Attack = Defense`
-                                : ` Defense > Attack`}
+                                  ? ` Attack = Defense`
+                                  : ` Defense > Attack`}
                             </span>
                           </p>
                         )}
@@ -273,9 +271,7 @@ export function Evolution({ evolution, name }: Props) {
                           />
                         ),
                     )}
-                    <Link
-                      href={`/pokemon/${ee.species.name}`}
-                    >
+                    <Link href={`/pokemon/${ee.species.name}`}>
                       {removeDash(ee.species.name)}
                     </Link>
                   </div>
@@ -476,8 +472,8 @@ export function Evolution({ evolution, name }: Props) {
                                       {eeed.relative_physical_stats === 1
                                         ? ` Attack > Defense`
                                         : eeed.relative_physical_stats === 0
-                                        ? ` Attack = Defense`
-                                        : ` Defense > Attack`}
+                                          ? ` Attack = Defense`
+                                          : ` Defense > Attack`}
                                     </span>
                                   </p>
                                 )}
@@ -531,9 +527,7 @@ export function Evolution({ evolution, name }: Props) {
                                   />
                                 ),
                             )}
-                            <Link
-                              href={`/pokemon/${eee.species.name}`}
-                            >
+                            <Link href={`/pokemon/${eee.species.name}`}>
                               {removeDash(eee.species.name)}
                             </Link>
                           </div>

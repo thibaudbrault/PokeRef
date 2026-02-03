@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-
 import { useEffect, useRef, useState } from 'react';
 
 import { BisChevronDown, BisChevronUp } from '@meronex/icons/bi';
@@ -41,8 +39,6 @@ export function useTableParams(data, columns) {
 
   useEffect(() => {
     table.setSorting([{ id: `sort`, desc: false }]);
-
-    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const tableHeader = () => {

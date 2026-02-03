@@ -1,8 +1,8 @@
-"use client"
+'use client';
 
 import { useMemo, useState } from 'react';
 
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { type ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 
@@ -23,11 +23,11 @@ function AbilitiesPage() {
     isError,
     error,
     data: abilities,
-  }: UseQueryResult<IAbility[], Error> = useQuery({
+  } = useQuery<IAbility[], Error>({
     queryKey: [QueryKeys.ABILITIES, limit, offset],
     queryFn: () =>
       getMultiple(`${BASE_URL}/ability?limit=${limit}&offset=${offset}`),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   });
 
   const data = useMemo(() => abilities, [abilities]);
@@ -41,10 +41,7 @@ function AbilitiesPage() {
         header: `Name`,
         cell: (info) => (
           <td className="tBold">
-            <Link
-              className="tLink"
-              href={`/abilities/${info.getValue()}`}
-            >
+            <Link className="tLink" href={`/abilities/${info.getValue()}`}>
               {removeDash(info.getValue<string>())}
             </Link>
           </td>

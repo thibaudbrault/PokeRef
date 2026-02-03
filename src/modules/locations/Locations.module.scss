@@ -1,5 +1,5 @@
-@use '@/styles/common/tables' as *;
-@use '@/styles/abstracts' as *;
+@use 'styles/common/tables' as *;
+@use 'styles/abstracts' as *;
 
 .list {
   display: grid;
@@ -60,8 +60,8 @@
       align-items: center;
       gap: 1rem;
       padding: 1.5rem;
-      @include themed {
-        border-top: 1px solid t('border');
+      @include themed using ($theme) {
+        border-top: 1px solid t($theme, 'border');
       }
 
       &:first-of-type {

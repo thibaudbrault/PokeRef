@@ -1,4 +1,4 @@
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import {
   BASE_URL,
@@ -12,28 +12,48 @@ import type { IMove, IPokemon, IType } from '@/types';
 
 export const useTypeQuery = (name: string) => {
   const {
-    isLoading,
-    isInitialLoading,
-    isError,
-    error,
+    isLoading: isTypeLoading,
+    isError: isTypeError,
+    error: typeError,
     data: type,
-  }: UseQueryResult<IType, Error> = useQuery({
+  } = useQuery<IType, Error>({
     queryKey: [QueryKeys.TYPE.INDEX, name],
     queryFn: () => getSingle(`${BASE_URL}/type/${name}`),
     enabled: !!name,
   });
 
-  const { data: pokemon }: UseQueryResult<IPokemon[]> = useQuery({
-    queryKey: [QueryKeys.TYPE.POKEMON, name, type],
-    queryFn: () => type && getTypePokemon(type),
+  const {
+    data: pokemon,
+    isError: isPokemonError,
+    error: pokemonError,
+  } = useQuery<IPokemon[], Error>({
+    queryKey: [QueryKeys.TYPE.POKEMON, name, type?.id],
+    queryFn: () => {
+      if (!type) return Promise.reject(new Error('Type is not available'));
+      return getTypePokemon(type);
+    },
     enabled: !!type,
   });
 
-  const { data: moves }: UseQueryResult<IMove[]> = useQuery({
-    queryKey: [QueryKeys.TYPE.MOVES, name, type],
-    queryFn: () => type && getTypeMoves(type),
+  const {
+    data: moves,
+    isError: isMovesError,
+    error: movesError,
+  } = useQuery<IMove[], Error>({
+    queryKey: [QueryKeys.TYPE.MOVES, name, type?.id],
+    queryFn: () => {
+      if (!type) return Promise.reject(new Error('Type is not available'));
+      return getTypeMoves(type);
+    },
     enabled: !!type,
   });
 
-  return { type, pokemon, moves, isLoading, isInitialLoading, isError, error };
+  return {
+    type,
+    pokemon,
+    moves,
+    isLoading: isTypeLoading,
+    isError: isTypeError || isPokemonError || isMovesError,
+    error: typeError || pokemonError || movesError,
+  };
 };

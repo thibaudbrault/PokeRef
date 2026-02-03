@@ -17,18 +17,12 @@
     height: 100%;
     padding: 1rem;
     text-transform: capitalize;
-
-    @include gthemed {
-      background-color: t('elementBackground');
-    }
+    background-color: var(--elementBackground);
 
     &::placeholder {
       font-size: 1.5rem;
       font-family: Quicksand, serif;
-
-      @include gthemed {
-        color: t('lowContrastText');
-      }
+      color: var(--lowContrastText);
     }
   }
 
@@ -54,12 +48,9 @@
     left: 0;
     border-radius: 5px;
     padding: 1rem;
-
-    @include gthemed {
-      background: t('elementBackground');
-      color: t('highContrastText');
-      border: 1px solid t('border');
-    }
+    background: var(--elementBackground);
+    color: var(--highContrastText);
+    border: 1px solid var(--border);
 
     & li {
       width: 100%;
@@ -76,15 +67,11 @@
         cursor: pointer;
 
         &:hover {
-          @include gthemed {
-            background-color: t('elementHoverBackground');
-          }
+          background-color: var(--elementHoverBackground);
         }
 
         & .searchId {
-          @include gthemed {
-            color: t('lowContrastText');
-          }
+          color: var(--lowContrastText);
         }
       }
     }

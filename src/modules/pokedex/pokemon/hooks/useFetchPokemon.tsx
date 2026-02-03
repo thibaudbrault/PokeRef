@@ -42,7 +42,7 @@ export const useFetchPokemon = (name: string) => {
   });
 
   const species = useQuery({
-    //eslint-disable-next-line @tanstack/query/exhaustive-deps
+     
     queryKey: [QueryKeys.SPECIES, name, pokemon.data],
     queryFn: () => getSingle(`${BASE_URL}/pokemon-species/${pokemon.data.id}`),
     enabled: !!pokemon.data && pokemon.data.id < 10000,

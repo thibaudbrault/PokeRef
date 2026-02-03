@@ -1,10 +1,11 @@
-"use client"
+'use client';
 
 import { useEffect, useRef, useState } from 'react';
 
 import { FaChevronLeft } from '@meronex/icons/fa';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 import { Button, Loader, Separator, errorToast } from '@/components';
 import {
@@ -27,7 +28,6 @@ import {
 import styles from '@/modules/pokedex/pokemon/Pokemon.module.scss';
 import { IFlavorText } from '@/types';
 import { pokemonFilters, removeDash, removeLongName } from '@/utils';
-import { useParams } from 'next/navigation';
 
 function PokemonCard() {
   const [game, setGame] = useState<string>(``);
@@ -61,8 +61,6 @@ function PokemonCard() {
 
   useEffect(() => {
     pokemonFiltersFn();
-
-    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemonId]);
 
   if (
@@ -74,11 +72,11 @@ function PokemonCard() {
   }
 
   if (
-    pokemon.status === `loading` ||
-    types.status === `loading` ||
-    location.status === `loading` ||
-    (species.status === `loading` && species.isInitialLoading) ||
-    (evolution.status === `loading` && evolution.isInitialLoading)
+    pokemon.status === `pending` ||
+    types.status === `pending` ||
+    location.status === `pending` ||
+    (species.status === `pending` && species.isLoading) ||
+    (evolution.status === `pending` && evolution.isLoading)
   ) {
     return <Loader />;
   }
@@ -103,10 +101,7 @@ function PokemonCard() {
           <div className={styles.name}>
             {pokemon.data?.name?.includes(`mega`) ? (
               <h2 className="title">
-                {removeDash(pokemon.data?.name)
-                  .split(` `)
-                  .reverse()
-                  .join(` `)}
+                {removeDash(pokemon.data?.name).split(` `).reverse().join(` `)}
               </h2>
             ) : (
               <h2 className="title">{removeLongName(removeDash(name))}</h2>

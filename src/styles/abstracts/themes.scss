@@ -65,44 +65,31 @@ $themes: (
 );
 /* stylelint-enable */
 
-@mixin themed {
+@mixin generate-themes {
   @each $theme, $map in $themes {
-    :global(.#{$theme}-theme) & {
-      $theme-map: () !global;
+    .#{$theme}-theme {
       @each $key, $value in $map {
-        $theme-map: map.merge($theme-map, ($key: $value)) !global;
+        --#{$key}: #{$value};
       }
-      @content;
-      $theme-map: null !global;
     }
   }
 }
 
+// @mixin themed {
+//   @each $theme, $map in $themes {
+//     .#{$theme}-theme & {
+//       @content ($map);
+//     }
+//   }
+// }
 
-@mixin gthemed {
-  @each $theme, $map in $themes {
-    .#{$theme}-theme & {
-      $theme-map: () !global;
+// @function t($map, $key) {
+//   @if not map.has-key($map, $key) {
+//     @error "Key `#{$key}` not found in theme map.";
+//   }
 
-      @each $key, $submap in $map {
-        $value: map.get($map, $key);
-        $theme-map: map.merge(
-          $theme-map,
-          (
-            $key: $value,
-          )
-        ) !global;
-      }
-      @content;
-
-      $theme-map: null !global;
-    }
-  }
-}
-
-@function t($key) {
-  @return map-get($theme-map, $key);
-}
+//   @return map.get($map, $key);
+// }
 
 %type {
   &#normal {
@@ -154,7 +141,7 @@ $themes: (
   }
 
   &#rock {
-    background-color: #a28d79;
+    background-color: #a2879a;
   }
 
   &#ghost {

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { removeDash, removeLongName } from '@/utils';
+import { pokemonFilters, removeDash, removeLongName } from '@/utils';
 
 import styles from '../Pokedex.module.scss';
 import { Sprites } from './Sprites';
@@ -23,7 +23,7 @@ export function List({ filteredPokedex }: Props) {
             data-test-id="pokemonElement"
           >
             <Sprites p={p} />
-            {p.id < 1018 && (
+            {p.id < pokemonFilters[9].max && (
               <p className={styles.number}>
                 {p.id.toString().padStart(3, `0`)}
               </p>

@@ -1,4 +1,4 @@
-@use '@/styles/abstracts' as *;
+@use 'styles/abstracts' as *;
 
 .nav {
   min-height: 4vh;
@@ -43,10 +43,7 @@
         transition-property: transform, opacity;
         transition-duration: 0.3s;
         transition-timing-function: cubic-bezier(0.2, 1, 0.8, 1);
-
-        @include themed {
-          background-color: t('highContrastText');
-        }
+        background-color: var(--highContrastText);
       }
 
       &::after {
@@ -109,10 +106,7 @@
   font-size: 48px;
   background: transparent;
   border: none;
-
-  @include themed {
-    color: t('highContrastText');
-  }
+  color: var(--highContrastText);
 
   @include md {
     font-size: 32px;

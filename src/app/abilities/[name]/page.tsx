@@ -2,6 +2,7 @@
 
 import { FaChevronLeft } from '@meronex/icons/fa';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 import { Button, Loader, Separator, errorToast } from '@/components';
 import {
@@ -12,7 +13,6 @@ import {
 } from '@/modules/abilities/ability';
 import styles from '@/modules/abilities/ability/Ability.module.scss';
 import { removeDash } from '@/utils';
-import { useParams } from 'next/navigation';
 
 function Ability() {
   const overworld = `Overworld`;

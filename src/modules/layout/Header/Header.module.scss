@@ -1,4 +1,4 @@
-@use '@/styles/abstracts' as *;
+@use 'styles/abstracts' as *;
 
 .header {
   width: 90%;
@@ -32,8 +32,5 @@
   background: none;
   border: none;
   font-size: 32px;
-
-  @include themed {
-    color: t('highContrastText');
-  }
+  color: var(--highContrastText);
 }

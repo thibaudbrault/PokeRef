@@ -1,6 +1,6 @@
 @use '@/modules/pokedex/Pokedex.module.scss' as *;
 @use '@/modules/types/type/Type.module.scss' as *;
-@use '@/styles/abstracts' as *;
+@use 'styles/abstracts' as *;
 
 .typesList {
   @extend %types;

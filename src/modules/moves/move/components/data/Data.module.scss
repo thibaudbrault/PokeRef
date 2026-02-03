@@ -1,5 +1,5 @@
-@use '@/styles/abstracts' as *;
-@use '@/styles/common' as *;
+@use 'styles/abstracts' as *;
+@use 'styles/common' as *;
 
 .section {
   @extend %section;
@@ -20,9 +20,7 @@
   @extend %table;
 
   & th {
-    @include themed {
-      background-color: t('elementBackground');
-    }
+    background-color: var(--elementBackground);
   }
 
   & td {

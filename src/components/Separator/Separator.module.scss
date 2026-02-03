@@ -1,11 +1,9 @@
-@use '@/styles/abstracts' as *;
+@use 'styles/abstracts' as *;
 
 .separator {
   width: 90%;
   height: 1px;
   margin: 5rem auto;
   border: 0;
-  @include themed {
-    background-color: t('subtleBorder');
-  }
+  background-color: var(--subtleBorder);
 }

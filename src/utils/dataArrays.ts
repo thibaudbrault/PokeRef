@@ -50,7 +50,7 @@ export const generationOptions: IOptionsOffsetLimit[] = [
   { label: `Generation VI`, value: `gen6`, offset: 649, limit: 72 },
   { label: `Generation VII`, value: `gen7`, offset: 721, limit: 88 },
   { label: `Generation VIII`, value: `gen8`, offset: 809, limit: 96 },
-  { label: `Generation IX`, value: `gen9`, offset: 905, limit: 112 },
+  { label: `Generation IX`, value: `gen9`, offset: 905, limit: 120 },
 ];
 
 export const typeOptions: IOptionsFixed[] = [
@@ -151,7 +151,7 @@ export const pokemonFilters: PokemonFilters = [
     version: `scarlet-violet`,
     format: `gen9`,
     min: 904,
-    max: 1018,
+    max: 1026,
   },
 ];
 
@@ -365,7 +365,7 @@ export const genNav: IGenNav[] = [
   {
     value: `gen9`,
     label: `Gen IX`,
-    limit: 1018,
+    limit: 1026,
     options: [
       {
         label: `scarlet`,

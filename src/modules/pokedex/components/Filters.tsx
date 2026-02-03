@@ -85,8 +85,6 @@ export function Filters({
     if (pokedexWithType) {
       setFilteredPokedex(pokedexWithType.map((pokedex) => pokedex));
     }
-
-    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form, generation, type, page, offset, pokedex, pokedexWithType]);
 
   const handleFormSelect = (option: SingleValue<IOptionsOffsetLimit>) => {

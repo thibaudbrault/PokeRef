@@ -9,12 +9,12 @@ import { SmallLoader, errorToast } from '@/components';
 import { useTableParams } from '@/hooks';
 import { LearnMethod, removeDash, uppercase } from '@/utils';
 
+import styles from './Moves.module.scss';
 import {
   useFetchMachines,
   useFetchMoves,
   type IMoveWithDetails,
 } from '../../hooks';
-import styles from './Moves.module.scss';
 
 import type { IMoveAilment, IPokemon } from '@/types';
 
@@ -91,10 +91,7 @@ export function Moves({ pokemon, version, name }: Props) {
         header: `Name`,
         cell: (info) => (
           <td className="tBold">
-            <Link
-              className="tLink"
-              href={`/moves/${info.getValue()}`}
-            >
+            <Link className="tLink" href={`/moves/${info.getValue()}`}>
               {removeDash(info.getValue<string>())}
             </Link>
           </td>
@@ -106,9 +103,7 @@ export function Moves({ pokemon, version, name }: Props) {
         header: `Type`,
         cell: (info) => (
           <td>
-            <Link
-              href={`/types/${info.getValue()}`}
-            >
+            <Link href={`/types/${info.getValue()}`}>
               <Image
                 src={`/images/types/${info.getValue<string>()}.png`}
                 alt={info.getValue<string>()}
@@ -186,8 +181,6 @@ export function Moves({ pokemon, version, name }: Props) {
         ),
       },
     ],
-
-    //eslint-disable-next-line react-hooks/exhaustive-deps
     [learn, version],
   );
 

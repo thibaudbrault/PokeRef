@@ -5,15 +5,12 @@
   font-size: 10rem;
   letter-spacing: 3px;
   cursor: pointer;
-
-  @include gthemed {
-    color: t('appBackground');
-    text-shadow:
-      t('highContrastText') -1px -1px 0,
-      t('highContrastText') 1px -1px 0,
-      t('highContrastText') -1px 1px 0,
-      t('highContrastText') 1px 1px 0;
-  }
+  color: var(--appBackground);
+  text-shadow:
+    var(--highContrastText) -1px -1px 0,
+    var(--highContrastText) 1px -1px 0,
+    var(--highContrastText) -1px 1px 0,
+    var(--highContrastText) 1px 1px 0;
 
   @include lg {
     font-size: 9rem;
@@ -44,15 +41,12 @@
   font-size: 6rem;
   text-transform: capitalize;
   text-align: center;
-
-  @include gthemed {
-    color: t('appBackground');
-    text-shadow:
-      t('highContrastText') -1px -1px 0,
-      t('highContrastText') 1px -1px 0,
-      t('highContrastText') -1px 1px 0,
-      t('highContrastText') 1px 1px 0;
-  }
+  color: var(--appBackground);
+  text-shadow:
+    var(--highContrastText) -1px -1px 0,
+    var(--highContrastText) 1px -1px 0,
+    var(--highContrastText) -1px 1px 0,
+    var(--highContrastText) 1px 1px 0;
 }
 
 .title {

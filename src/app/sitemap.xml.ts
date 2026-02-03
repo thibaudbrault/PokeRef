@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next';
+import { NextResponse } from 'next/server';
 
 import { IAbility, IItem, ILocation, IMove, IPokemon, IType } from '@/types';
 import { BASE_URL, Limit, sanitizeForXML } from '@/utils';
-import { NextResponse } from 'next/server';
 
 const URL = `https://pokeref.app`;
 

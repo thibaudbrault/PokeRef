@@ -1,4 +1,4 @@
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import {
   BASE_URL,
@@ -16,18 +16,18 @@ export const useFetchMove = (name: string) => {
     isError,
     error,
     data: move,
-  }: UseQueryResult<IMove, Error> = useQuery({
+  } = useQuery<IMove, Error>({
     queryKey: [QueryKeys.MOVE.INDEX, name],
     queryFn: () => getSingle(`${BASE_URL}/move/${name}`),
   });
 
-  const { status, data: pokemon }: UseQueryResult<IPokemon[]> = useQuery({
+  const { status, data: pokemon } = useQuery<IPokemon[], Error>({
     queryKey: [QueryKeys.MOVE.POKEMON, name, move],
     queryFn: () => move && getMovePokemon(move),
     enabled: !!move,
   });
 
-  const { data: machine }: UseQueryResult<IMachine[]> = useQuery({
+  const { data: machine } = useQuery<IMachine[], Error>({
     queryKey: [QueryKeys.MACHINE, name, move],
     queryFn: () => move && getMoveMachines(move),
     enabled: !!move,

@@ -1,8 +1,8 @@
-"use client"
+'use client';
 
 import { useState } from 'react';
 
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import ReactPaginate from 'react-paginate';
 
 import { errorToast, Loader, Separator } from '@/components';
@@ -20,7 +20,6 @@ import {
 } from '@/utils';
 
 import type { IPokemon } from '@/types';
-import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 
 function Pokedex() {
   const [filteredPokedex, setFilteredPokedex] = useState<IPokemon[]>([]);
@@ -35,21 +34,21 @@ function Pokedex() {
 
   const { scrollBtn } = useScrollDir();
 
-
   const {
     isLoading,
     isError,
     error,
     data: pokedex,
-  }: UseQueryResult<IPokemon[], Error> = useQuery({
+  } = useQuery<IPokemon[], Error>({
     queryKey: [QueryKeys.POKEDEX, limit, offset],
     queryFn: () =>
       getMultiple(`${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   });
+
   const {
     pokemon: pokedexWithType,
-    isInitialLoading: typeIsLoading,
+    isLoading: typeIsLoading,
     isError: typeIsError,
     error: typeError,
   } = useTypeQuery(type?.value as string);

@@ -1,4 +1,4 @@
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { BASE_URL, getSingle, QueryKeys } from '@/utils';
 
@@ -10,7 +10,7 @@ export const useFilterItem = (name: string) => {
     isError,
     error,
     data: item,
-  }: UseQueryResult<IItem, Error> = useQuery({
+  } = useQuery<IItem, Error>({
     queryKey: [QueryKeys.ITEM, name],
     queryFn: () => getSingle(`${BASE_URL}/item/${name}`),
   });
