@@ -5,6 +5,7 @@ import { useMemo, useState } from 'react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { type ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
 import { errorToast, Loader } from '@/components';
 import { usePaginatedTableParams, useScrollDir } from '@/hooks';
@@ -16,12 +17,19 @@ import type { IAbility } from '@/types';
 
 function AbilitiesPage() {
   const limit = 50;
-  const [offset, setOffset] = useState(0);
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const pageParam = searchParams.get('page');
+  const initialPage = pageParam ? parseInt(pageParam, 10) - 1 : 0;
+  const [offset, setOffset] = useState(initialPage * limit);
 
   const {
-    isLoading,
+    isFetching,
     isError,
     error,
+    status: abilitiesStatus,
     data: abilities,
   } = useQuery<IAbility[], Error>({
     queryKey: [QueryKeys.ABILITIES, limit, offset],
@@ -65,13 +73,13 @@ function AbilitiesPage() {
   );
 
   const { tableContainerRef, tableHeader, tableBody, tablePagination } =
-    usePaginatedTableParams(data, columns, setOffset, Limit.ABILITIES);
+    usePaginatedTableParams(data, columns, setOffset, Limit.ABILITIES, pathname, router, searchParams);
 
   if (isError && error instanceof Error) {
     errorToast(error.message, `abilities`);
   }
 
-  if (isLoading) {
+  if (abilitiesStatus === `pending`) {
     return <Loader />;
   }
 
@@ -84,10 +92,14 @@ function AbilitiesPage() {
           <Search abilities={abilities} />
         </div>
         <section className="tableContainer" ref={tableContainerRef}>
-          <table className="fullWidthTable">
-            {tableHeader()}
-            {tableBody()}
-          </table>
+          {isFetching ? (
+            <Loader />
+          ) : (
+            <table className="fullWidthTable">
+              {tableHeader()}
+              {tableBody()}
+            </table>
+          )}
         </section>
         {tablePagination()}
         {scrollBtn()}

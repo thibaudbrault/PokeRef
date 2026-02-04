@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 
 import { BisChevronDown, BisChevronUp } from '@meronex/icons/bi';
 import {
@@ -12,9 +12,14 @@ import {
 } from '@tanstack/react-table';
 import ReactPaginate from 'react-paginate';
 import { useVirtual } from 'react-virtual';
+import {
+  useVirtualizer,
+  VirtualItem,
+  Virtualizer,
+} from '@tanstack/react-virtual'
 
 // @ts-ignore
-export function usePaginatedTableParams(data, columns, setOffset, limit) {
+export function usePaginatedTableParams(data, columns, setOffset, limit, pathname, router, searchParams) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -58,12 +63,11 @@ export function usePaginatedTableParams(data, columns, setOffset, limit) {
   const handlePageChange = (data: { selected: number }) => {
     window.scrollTo(0, 0);
     table.setPageIndex(data.selected);
-    setOffset((50 * data.selected) % limit);
+    setOffset((data.selected * 50) % limit);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('page', (data.selected + 1).toString());
+    router.push(`${pathname}?${params.toString()}`);
   };
-
-  useEffect(() => {
-    table.setSorting([{ id: `sort`, desc: false }]);
-  }, []);
 
   const tableHeader = () => {
     return (
@@ -116,9 +120,9 @@ export function usePaginatedTableParams(data, columns, setOffset, limit) {
             <tr className="tr" key={row.id}>
               {row.getVisibleCells().map((cell) => {
                 return (
-                  <>
+                  <Fragment key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </>
+                  </Fragment>
                 );
               })}
             </tr>

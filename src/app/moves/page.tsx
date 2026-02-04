@@ -17,9 +17,9 @@ function MovesPage() {
   }
 
   if (
-    movesStatus === `loading` ||
-    status.status === `loading` ||
-    stats.status === `loading`
+    movesStatus === `pending` ||
+    status.status === `pending` ||
+    stats.status === `pending`
   ) {
     return <Loader />;
   }

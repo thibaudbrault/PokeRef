@@ -12,9 +12,7 @@
     height: 100%;
 
     path:first-of-type {
-      @include themed {
-        stroke: t('highContrastText') !important;
-      }
+        stroke: var(--highContrastText) !important;
     }
 
     path:last-of-type {
@@ -24,9 +22,7 @@
     text {
       font-size: 1.3rem !important;
       font-weight: 600 !important;
-      @include themed {
-        fill: t('lowContrastText') !important;
-      }
+        fill: var(--lowContrastText) !important;
       @include md {
         font-size: 1.5rem !important;
       }
@@ -82,19 +78,15 @@
   border-bottom: none;
 
   & tr {
-    @include themed {
-      border: 1px solid t('border');
+      border: 1px solid var(--border);
       border-left: none;
       border-right: none;
-    }
 
     & th {
       font-size: 1.7rem;
       text-transform: capitalize;
-      @include themed {
-        background: t('elementBackground');
-        color: t('highContrastText');
-      }
+        background: var(--elementBackground);
+        color: var(--highContrastText);
     }
 
     & td {
@@ -104,23 +96,17 @@
         padding: 0.7rem;
         border-radius: 5px;
         outline: none;
-        @include themed {
-          background: t('elementBackground');
-          color: t('highContrastText');
-          border: 1px solid t('border');
-        }
+          background: var(--elementBackground);
+          color: var(--highContrastText);
+          border: 1px solid var(--border);
 
         &::placeholder {
           opacity: 1;
-          @include themed {
-            color: t('lowContrastText');
-          }
+            color: var(--lowContrastText);
         }
 
         &:focus {
-          @include themed {
-            border: 1px solid t('hoverBorder');
-          }
+            border: 1px solid var(--hoverBorder);
         }
       }
 
@@ -139,15 +125,11 @@
 
         & option {
           text-transform: capitalize;
-          @include themed {
-            background-color: t('elementBackground');
-            color: t('highContrastText');
-          }
+            background-color: var(--elementBackground);
+            color: var(--highContrastText);
 
           &:hover {
-            @include themed {
-              background-color: t('elementHoverBackground');
-            }
+              background-color: var(--elementHoverBackground);
           }
         }
       }
@@ -171,9 +153,7 @@
   @extend %fullWidthTable;
 
   & td {
-    @include themed {
-      border-left: 1px solid t('border');
-      border-right: 1px solid t('border');
-    }
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
   }
 }

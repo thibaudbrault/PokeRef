@@ -97,11 +97,13 @@
   width: 90%;
 
   & tr {
+    border: 1px solid var(--subtleBorder);
+    border-left: none;
+    border-right: none;
+    
     & th {
       text-transform: capitalize;
-      @include themed {
-        background-color: t('elementBackground');
-      }
+        background-color: var(--elementBackground);
     }
 
     & td {
@@ -118,12 +120,6 @@
           text-align: left;
         }
       }
-    }
-
-    @include themed {
-      border: 1px solid t('subtleBorder');
-      border-left: none;
-      border-right: none;
     }
   }
 }
@@ -145,9 +141,7 @@
   border: 1px solid $purple;
   background-color: $purple;
   font-weight: 600;
-  @include themed {
-    color: t('highContrastText');
-  }
+    color: var(--highContrastText);
 }
 
 @keyframes pulse {

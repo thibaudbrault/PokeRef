@@ -60,9 +60,7 @@
       align-items: center;
       gap: 1rem;
       padding: 1.5rem;
-      @include themed using ($theme) {
-        border-top: 1px solid t($theme, 'border');
-      }
+      border-top: 1px solid var(--border);
 
       &:first-of-type {
         border-top: none;

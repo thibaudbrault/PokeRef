@@ -27,11 +27,8 @@
 
         & path {
           stroke-width: 1;
-
-          @include themed {
-            fill: t('appBackground');
-            stroke: t('highContrastText');
-          }
+            fill: var(--appBackground);
+            stroke: var(--highContrastText);
         }
       }
     }

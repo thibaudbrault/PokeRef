@@ -55,9 +55,9 @@ export function Competitive({ format, name }: Props) {
   }
 
   if (
-    analyses.status === `loading` ||
-    formats.status === `loading` ||
-    sets.status === `loading`
+    analyses.status === `pending` ||
+    formats.status === `pending` ||
+    sets.status === `pending`
   ) {
     return <SmallLoader />;
   }

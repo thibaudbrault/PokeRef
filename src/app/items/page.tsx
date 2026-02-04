@@ -12,7 +12,7 @@ function ItemsPage() {
     errorToast(undefined, `item`);
   }
 
-  if (itemsStatus === `loading` || berriesStatus === `loading`) {
+  if (itemsStatus === `pending` || berriesStatus === `pending`) {
     return <Loader />;
   }
 

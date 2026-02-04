@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { type ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
 import { usePaginatedTableParams, useScrollDir } from '@/hooks';
 import moves from '@/modules/moves/Moves.module.scss';
@@ -14,7 +15,14 @@ import { Search } from './Search';
 import type { IItem } from '@/types';
 
 export function Items() {
-  const { items, setOffset } = useItemsQuery();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const pageParam = searchParams.get('page');
+  const initialPage = pageParam ? parseInt(pageParam, 10) - 1 : 0;
+
+  const { items, setOffset } = useItemsQuery(initialPage);
   const data = useMemo(() => items, [items]);
   const { scrollBtn } = useScrollDir();
 
@@ -76,7 +84,7 @@ export function Items() {
   );
 
   const { tableContainerRef, tableHeader, tableBody, tablePagination } =
-    usePaginatedTableParams(data, columns, setOffset, Limit.ITEMS);
+    usePaginatedTableParams(data, columns, setOffset, Limit.ITEMS, pathname, router, searchParams);
 
   return (
     <section>

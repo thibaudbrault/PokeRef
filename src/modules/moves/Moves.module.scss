@@ -28,10 +28,8 @@
     cursor: pointer;
 
     &:hover {
-      @include themed using ($theme) {
         text-decoration: underline;
-        color: t($theme, 'highContrastText');
-      }
+        color: var(--highContrastText);
     }
   }
 }
@@ -49,10 +47,8 @@
       cursor: pointer;
 
       &:hover {
-        @include themed using ($theme) {
           text-decoration: underline;
-          color: t($theme, 'highContrastText');
-        }
+          color: var(--highContrastText);
       }
     }
   }

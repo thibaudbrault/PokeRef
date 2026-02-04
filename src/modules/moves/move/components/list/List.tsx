@@ -34,7 +34,7 @@ export function List({ pokemon, status, moveName, version, toggle }: Props) {
     }
   };
 
-  if (status === `loading`) {
+  if (status === `pending`) {
     return <SmallLoader />;
   }
 

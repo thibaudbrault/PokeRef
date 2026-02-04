@@ -26,11 +26,8 @@
   margin-bottom: 1rem;
   padding: 1.5rem;
   border-radius: 5px;
-
-  @include themed {
-    background-color: t('elementBackground');
-    color: t('highContrastText');
-  }
+    background-color: var(--elementBackground);
+    color: var(--highContrastText);
 
   & ul {
     display: flex;

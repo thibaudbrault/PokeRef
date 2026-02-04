@@ -8,11 +8,8 @@
   font-size: 2rem;
   border-radius: 5px;
   z-index: 3;
-
-  @include themed {
-    background-color: t('elementBackground');
+    background-color: var(--elementBackground--);
     border: 1px solid t('border');
-  }
 
   & div {
     display: flex;
@@ -23,10 +20,7 @@
       font-size: 2rem;
       font-weight: 600;
       text-transform: uppercase;
-
-      @include themed {
-        color: t('lowContrastText');
-      }
+        color: var(--lowContrastText);
     }
 
     & button {
@@ -40,21 +34,14 @@
       border-radius: 50%;
       font-size: 2.5rem;
       font-weight: 600;
-
-      @include themed {
-        color: t('highContrastText');
-      }
+        color: var(--highContrastText);
 
       &:hover {
-        @include themed {
-          background-color: t('elementHoverBackground');
-        }
+          background-color: var(--elementHoverBackground);
       }
 
       &:active {
-        @include themed {
-          background-color: t('elementActiveBackground');
-        }
+          background-color: var(--elementActiveBackground);
       }
     }
   }
