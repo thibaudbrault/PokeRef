@@ -102,15 +102,12 @@ export function Locations({ location, game }: Props) {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
+  const { parentRef, tableHeader, tableBody } = useTableParams(data, columns);
 
   return (
     <section className="section" id="locations">
       <h3 className="h3">Locations</h3>
-      <div className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={parentRef}>
         <table className={styles.table}>
           {tableHeader()}
           {tableBody()}

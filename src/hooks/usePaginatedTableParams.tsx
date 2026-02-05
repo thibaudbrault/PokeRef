@@ -1,7 +1,8 @@
-import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
+import { Fragment, useMemo, useRef, useState } from 'react';
 
 import { BisChevronDown, BisChevronUp } from '@meronex/icons/bi';
 import {
+  ColumnDef,
   type PaginationState,
   type SortingState,
   flexRender,
@@ -10,23 +11,21 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import {
-  useVirtualizer,
-  VirtualItem,
-  Virtualizer,
-} from '@tanstack/react-virtual';
+import { useVirtualizer } from '@tanstack/react-virtual';
+import { type AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import ReactPaginate from 'react-paginate';
-import { useVirtual } from 'react-virtual';
+
+import { IAbility, IItem, IMove } from '@/types';
 
 // @ts-ignore
 export function usePaginatedTableParams(
-  data,
-  columns,
-  setOffset,
-  limit,
-  pathname,
-  router,
-  searchParams,
+  data: any[] | undefined,
+  columns: ColumnDef<any>[],
+  setOffset: (offset: number) => void,
+  limit: number,
+  pathname: string,
+  router: AppRouterInstance,
+  searchParams: URLSearchParams,
 ) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
@@ -58,15 +57,15 @@ export function usePaginatedTableParams(
     debugTable: true,
   });
 
-  const tableContainerRef = useRef<HTMLDivElement>(null);
+  const parentRef = useRef<HTMLDivElement>(null);
 
   const { rows } = table.getRowModel();
-  const rowVirtualizer = useVirtual({
-    parentRef: tableContainerRef,
-    size: rows.length,
+  const virtualizer = useVirtualizer({
+    getScrollElement: () => parentRef.current,
+    count: rows.length,
+    estimateSize: () => 70,
     overscan: 10,
   });
-  const { virtualItems: virtualRows } = rowVirtualizer;
 
   const handlePageChange = (data: { selected: number }) => {
     window.scrollTo(0, 0);
@@ -122,10 +121,19 @@ export function usePaginatedTableParams(
   const tableBody = () => {
     return (
       <tbody>
-        {virtualRows.map((virtualRow) => {
+        {virtualizer.getVirtualItems().map((virtualRow) => {
           const row = rows[virtualRow.index];
           return (
-            <tr className="tr" key={row.id}>
+            <tr
+              className="tr"
+              key={row.id}
+              style={{
+                height: `${virtualRow.size}px`,
+                transform: `translateY(${
+                  virtualRow.start - virtualRow.index * virtualRow.size
+                }px)`,
+              }}
+            >
               {row.getVisibleCells().map((cell) => {
                 return (
                   <Fragment key={cell.id}>
@@ -158,7 +166,7 @@ export function usePaginatedTableParams(
 
   return {
     sorting,
-    tableContainerRef,
+    parentRef,
     tableHeader,
     tableBody,
     tablePagination,

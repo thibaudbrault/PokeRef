@@ -72,7 +72,7 @@ function AbilitiesPage() {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody, tablePagination } =
+  const { parentRef, tableHeader, tableBody, tablePagination } =
     usePaginatedTableParams(
       data,
       columns,
@@ -99,7 +99,7 @@ function AbilitiesPage() {
           <h2 className="leftH2">Abilities</h2>
           <Search abilities={abilities} />
         </div>
-        <section className="tableContainer" ref={tableContainerRef}>
+        <section className="tableContainer" ref={parentRef}>
           {isFetching ? (
             <Loader />
           ) : (

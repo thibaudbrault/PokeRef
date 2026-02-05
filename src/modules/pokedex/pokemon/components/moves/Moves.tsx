@@ -184,10 +184,7 @@ export function Moves({ pokemon, version, name }: Props) {
     [learn, version],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
+  const { parentRef, tableHeader, tableBody } = useTableParams(data, columns);
 
   if (isError && error instanceof Error) {
     errorToast(error.message, `pokemon_moves`);
@@ -206,7 +203,7 @@ export function Moves({ pokemon, version, name }: Props) {
       <h3 className="h3">Moves</h3>
       <LearnMethod setToggle={setToggle} setLearn={setLearn} />
       <Tabs.Content value={String(toggle)}>
-        <div className="tableContainer" ref={tableContainerRef}>
+        <div className="tableContainer" ref={parentRef}>
           <table className="fullWidthTable">
             {tableHeader()}
             {tableBody()}

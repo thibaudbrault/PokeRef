@@ -23,12 +23,15 @@
       font-size: 1.3rem !important;
       font-weight: 600 !important;
         fill: var(--lowContrastText) !important;
+
       @include md {
         font-size: 1.5rem !important;
       }
+
       @include sm {
         font-size: 1.7rem !important;
       }
+
       @include xs {
         font-size: 2rem !important;
       }

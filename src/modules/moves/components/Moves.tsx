@@ -112,7 +112,7 @@ export function Moves() {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody, tablePagination } =
+  const { parentRef, tableHeader, tableBody, tablePagination } =
     usePaginatedTableParams(
       data,
       columns,
@@ -129,7 +129,7 @@ export function Moves() {
         <h2 className="leftH2">Moves</h2>
         <Search moves={moves} />
       </div>
-      <div className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={parentRef}>
         {isFetching ? (
           <Loader />
         ) : (

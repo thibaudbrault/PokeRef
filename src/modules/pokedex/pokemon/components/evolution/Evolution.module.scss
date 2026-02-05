@@ -3,6 +3,7 @@
 
 .section {
   @extend %section;
+
   @include sm {
     padding-bottom: 0;
   }

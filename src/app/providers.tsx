@@ -1,6 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import NextNProgress from 'nextjs-progressbar';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
@@ -17,10 +18,11 @@ type Props = {
 };
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+  const errorMessage = error instanceof Error ? error.message : 'Unknown error';
   return (
     <div role="alert">
       <p>Something went wrong:</p>
-      <pre>{error.message}</pre>
+      <pre>{errorMessage}</pre>
       <button onClick={resetErrorBoundary}>Try again</button>
     </div>
   );
@@ -30,10 +32,9 @@ function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
       queries: {
-        // cacheTime: 60 * 1000,
         staleTime: 60 * 1000,
         retry: false,
-        //   throwOnError: true,
+        throwOnError: true,
       },
     },
   });

@@ -97,15 +97,12 @@ export function Stats({ stats }: Props) {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
+  const { parentRef, tableHeader, tableBody } = useTableParams(data, columns);
 
   return (
     <section>
       <h2 className="leftH2">Stats</h2>
-      <div className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={parentRef}>
         <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}

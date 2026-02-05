@@ -63,10 +63,7 @@ function MachinesPage() {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
+  const { parentRef, tableHeader, tableBody } = useTableParams(data, columns);
 
   if (isError && error instanceof Error) {
     errorToast(error.message, `machines`);
@@ -85,7 +82,7 @@ function MachinesPage() {
           Game selected: <span className="bold">{game}</span>
         </h4>
         <GenNav game={game} setGame={setGame} setVersion={setVersion} />
-        <section className="tableContainer" ref={tableContainerRef}>
+        <section className="tableContainer" ref={parentRef}>
           <table className="fullWidthTable">
             {tableHeader()}
             {tableBody()}

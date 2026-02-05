@@ -79,10 +79,7 @@ export function Moves({ type, moves }: Props) {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
+  const { parentRef, tableHeader, tableBody } = useTableParams(data, columns);
 
   return (
     <section className="section">
@@ -93,7 +90,7 @@ export function Moves({ type, moves }: Props) {
           <span className="capitalize">{type?.name}</span> type
         </h4>
       </div>
-      <div className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={parentRef}>
         {data.length > 0 && (
           <table className="fullWidthTable">
             {tableHeader()}

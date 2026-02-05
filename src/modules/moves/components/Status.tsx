@@ -49,15 +49,12 @@ export function Status({ status }: Props) {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
+  const { parentRef, tableHeader, tableBody } = useTableParams(data, columns);
 
   return (
     <>
       <h2 className="leftH2">Status</h2>
-      <section className="tableContainer" ref={tableContainerRef}>
+      <section className="tableContainer" ref={parentRef}>
         <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}

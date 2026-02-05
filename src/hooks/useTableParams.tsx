@@ -8,7 +8,7 @@ import {
   useReactTable,
   type SortingState,
 } from '@tanstack/react-table';
-import { useVirtual } from 'react-virtual';
+import { useVirtualizer } from '@tanstack/react-virtual';
 
 // @ts-ignore
 export function useTableParams(data, columns) {
@@ -27,15 +27,16 @@ export function useTableParams(data, columns) {
     debugTable: true,
   });
 
-  const tableContainerRef = useRef<HTMLDivElement>(null);
+  const parentRef = useRef<HTMLDivElement>(null);
 
   const { rows } = table.getRowModel();
-  const rowVirtualizer = useVirtual({
-    parentRef: tableContainerRef,
-    size: rows.length,
-    overscan: 10,
+  const virtualizer = useVirtualizer({
+    getScrollElement: () => parentRef.current,
+    count: rows.length,
+    estimateSize: () => 70,
+    overscan: 5,
   });
-  const { virtualItems: virtualRows } = rowVirtualizer;
+  // const { virtualItems: virtualRows } = virtualizer;
 
   useEffect(() => {
     table.setSorting([{ id: `sort`, desc: false }]);
@@ -84,10 +85,19 @@ export function useTableParams(data, columns) {
   const tableBody = () => {
     return (
       <tbody>
-        {virtualRows.map((virtualRow) => {
+        {virtualizer.getVirtualItems().map((virtualRow, index) => {
           const row = rows[virtualRow.index];
           return (
-            <tr className="tr" key={row.id}>
+            <tr
+              className="tr"
+              key={row.id}
+              style={{
+                height: `${virtualRow.size}px`,
+                transform: `translateY(${
+                  virtualRow.start - index * virtualRow.size
+                }px)`,
+              }}
+            >
               {row.getVisibleCells().map((cell) => {
                 return (
                   <>
@@ -102,5 +112,5 @@ export function useTableParams(data, columns) {
     );
   };
 
-  return { sorting, tableContainerRef, tableHeader, tableBody };
+  return { sorting, parentRef, tableHeader, tableBody };
 }

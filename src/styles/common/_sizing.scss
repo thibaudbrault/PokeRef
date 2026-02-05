@@ -64,6 +64,7 @@
 
 .overflowX {
   overflow-x: scroll;
+
   @include min-lg {
     overflow-x: hidden;
   }

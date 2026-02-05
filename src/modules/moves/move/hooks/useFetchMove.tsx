@@ -23,13 +23,19 @@ export const useFetchMove = (name: string) => {
 
   const { status, data: pokemon } = useQuery<IPokemon[], Error>({
     queryKey: [QueryKeys.MOVE.POKEMON, name, move],
-    queryFn: () => move && getMovePokemon(move),
+    queryFn: () => {
+      if (!move) return Promise.reject(new Error('Move is not available'));
+      return getMovePokemon(move);
+    },
     enabled: !!move,
   });
 
   const { data: machine } = useQuery<IMachine[], Error>({
     queryKey: [QueryKeys.MACHINE, name, move],
-    queryFn: () => move && getMoveMachines(move),
+    queryFn: () => {
+      if (!move) return Promise.reject(new Error('Move is not available'));
+      return getMoveMachines(move);
+    },
     enabled: !!move,
   });
 

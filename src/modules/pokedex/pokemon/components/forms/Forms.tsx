@@ -130,10 +130,7 @@ export function Forms({ pokemon }: Props) {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
+  const { parentRef, tableHeader, tableBody } = useTableParams(data, columns);
 
   if (isError && error instanceof Error) {
     errorToast(error.message, `forms`);
@@ -146,7 +143,7 @@ export function Forms({ pokemon }: Props) {
   return (
     <section className="section" id="forms">
       <h3 className="h3">Forms</h3>
-      <div className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={parentRef}>
         <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}

@@ -64,15 +64,12 @@ export function Berries({ berries }: Props) {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
+  const { parentRef, tableHeader, tableBody } = useTableParams(data, columns);
 
   return (
     <section>
       <h2 className="leftH2">Berries</h2>
-      <div className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={parentRef}>
         <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}

@@ -122,10 +122,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody } = useTableParams(
-    data,
-    columns,
-  );
+  const { parentRef, tableHeader, tableBody } = useTableParams(data, columns);
 
   useEffect(() => {
     if (typeName) {
@@ -142,7 +139,7 @@ export function Pokemon({ typeName, pokemon }: Props) {
           <span className="capitalize">{typeName}</span> type
         </h4>
       )}
-      <div className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={parentRef}>
         {data && data.length > 0 && (
           <table className="fullWidthTable">
             {tableHeader()}

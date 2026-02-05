@@ -80,7 +80,7 @@ export function Items() {
     [],
   );
 
-  const { tableContainerRef, tableHeader, tableBody, tablePagination } =
+  const { parentRef, tableHeader, tableBody, tablePagination } =
     usePaginatedTableParams(
       data,
       columns,
@@ -97,7 +97,7 @@ export function Items() {
         <h2 className="leftH2">Items</h2>
         <Search items={items} />
       </div>
-      <div className="tableContainer" ref={tableContainerRef}>
+      <div className="tableContainer" ref={parentRef}>
         <table className="fullWidthTable">
           {tableHeader()}
           {tableBody()}
