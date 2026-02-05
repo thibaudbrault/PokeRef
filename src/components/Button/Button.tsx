@@ -27,8 +27,7 @@ const button = cva(styles.base, {
 });
 
 interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof button> {
+  extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof button> {
   asChild?: boolean;
 }
 

@@ -20,7 +20,10 @@ export function Heading({ name }: Props) {
         property="og:description"
         content={`Find every details about ${name}`}
       />
-      <meta property="og:url" content={`https://pokeref.app/abilities/${name}`} />
+      <meta
+        property="og:url"
+        content={`https://pokeref.app/abilities/${name}`}
+      />
       <meta property="og:type" content="website" />
     </Head>
   );

@@ -65,10 +65,7 @@ export function Area({ area, encounter, method, game }: Props) {
         header: `Pokemon`,
         cell: (info) => (
           <td className="tBold">
-            <Link
-              className="tLink"
-              href={`/pokemon/${info.getValue()}`}
-            >
+            <Link className="tLink" href={`/pokemon/${info.getValue()}`}>
               {removeDash(info.getValue<string>())}
             </Link>
           </td>

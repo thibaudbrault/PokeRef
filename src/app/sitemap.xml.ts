@@ -131,7 +131,7 @@ export async function GET() {
  `;
   return new NextResponse(sitemap, {
     headers: {
-      'Content-Type': 'application/xml'
-    }
-  })
+      'Content-Type': 'application/xml',
+    },
+  });
 }

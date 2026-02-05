@@ -25,9 +25,7 @@ export function Moves({ type, moves }: Props) {
         header: `Name`,
         cell: (info) => (
           <td className={styles.name}>
-            <Link
-              href={`/moves/${info.getValue()}`}
-            >
+            <Link href={`/moves/${info.getValue()}`}>
               {removeDash(info.getValue<string>())}
             </Link>
           </td>

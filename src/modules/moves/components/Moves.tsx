@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
+import { Loader } from '@/components';
 import { usePaginatedTableParams, useScrollDir } from '@/hooks';
 import { Limit, removeDash } from '@/utils';
 
@@ -13,16 +14,15 @@ import styles from '../Moves.module.scss';
 import { Search } from './Search';
 
 import type { IMove } from '@/types';
-import { Loader } from '@/components';
 
 export function Moves() {
-    const searchParams = useSearchParams();
-    const pathname = usePathname();
-    const router = useRouter();
-  
-    const pageParam = searchParams.get('page');
-    const initialPage = pageParam ? parseInt(pageParam, 10) - 1 : 0;
-  
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const pageParam = searchParams.get('page');
+  const initialPage = pageParam ? parseInt(pageParam, 10) - 1 : 0;
+
   const { moves, isFetching, setOffset } = useMovesQuery(initialPage);
   const data = useMemo(() => moves, [moves]);
   const { scrollBtn } = useScrollDir();
@@ -51,9 +51,7 @@ export function Moves() {
         header: `Type`,
         cell: (info) => (
           <td className="tType">
-            <Link
-              href={`/types/${info.getValue()}`}
-            >
+            <Link href={`/types/${info.getValue()}`}>
               <Image
                 src={`/images/types/${info.getValue<string>()}.png`}
                 alt={info.getValue<string>()}
@@ -115,7 +113,15 @@ export function Moves() {
   );
 
   const { tableContainerRef, tableHeader, tableBody, tablePagination } =
-    usePaginatedTableParams(data, columns, setOffset, Limit.MOVES.INDEX, pathname, router, searchParams);
+    usePaginatedTableParams(
+      data,
+      columns,
+      setOffset,
+      Limit.MOVES.INDEX,
+      pathname,
+      router,
+      searchParams,
+    );
 
   return (
     <section>
@@ -123,16 +129,16 @@ export function Moves() {
         <h2 className="leftH2">Moves</h2>
         <Search moves={moves} />
       </div>
-        <div className="tableContainer" ref={tableContainerRef}>
-            {isFetching ? (
-              <Loader />
-            ) : (
+      <div className="tableContainer" ref={tableContainerRef}>
+        {isFetching ? (
+          <Loader />
+        ) : (
           <table className="fullWidthTable">
             {tableHeader()}
-              {tableBody()}
-              </table>
-              )}
-        </div>
+            {tableBody()}
+          </table>
+        )}
+      </div>
       {tablePagination()}
       {scrollBtn()}
     </section>

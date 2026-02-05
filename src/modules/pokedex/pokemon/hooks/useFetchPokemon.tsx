@@ -42,7 +42,6 @@ export const useFetchPokemon = (name: string) => {
   });
 
   const species = useQuery({
-     
     queryKey: [QueryKeys.SPECIES, name, pokemon.data],
     queryFn: () => getSingle(`${BASE_URL}/pokemon-species/${pokemon.data.id}`),
     enabled: !!pokemon.data && pokemon.data.id < 10000,

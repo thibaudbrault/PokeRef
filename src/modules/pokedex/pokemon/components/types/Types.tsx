@@ -17,9 +17,7 @@ export function Types({ types }: Props) {
       <div className={styles.typesList}>
         {types.map((t) => (
           <div className="type" id={t.name} key={t.name}>
-            <Link
-              href={`/types/${t.name}`}
-            >
+            <Link href={`/types/${t.name}`}>
               <Image
                 src={`/images/types/${t.name}.png`}
                 alt={t.name}

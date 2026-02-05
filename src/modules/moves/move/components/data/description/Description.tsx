@@ -22,10 +22,7 @@ export function Description({ move, version, machine }: Props) {
           <th>Type</th>
           <td className={styles.type}>
             <div className="type" id={move?.type?.name}>
-              <Link
-                href={`/types/${move.type.name}`}
-                key={move?.type?.name}
-              >
+              <Link href={`/types/${move.type.name}`} key={move?.type?.name}>
                 <Image
                   src={`/images/types/${move?.type?.name}.png`}
                   alt={move?.type?.name}

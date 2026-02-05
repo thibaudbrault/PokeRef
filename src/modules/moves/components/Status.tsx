@@ -37,10 +37,7 @@ export function Status({ status }: Props) {
           <td>
             <div className={styles.status}>
               {info.getValue<IMove[]>().map((i) => (
-                <Link
-                  key={i.id}
-                  href={`/moves/${i.name}`}
-                >
+                <Link key={i.id} href={`/moves/${i.name}`}>
                   {removeDash(i.name)}
                 </Link>
               ))}

@@ -43,10 +43,10 @@ export const useNextCssRemovalPrevention = () => {
 
   const getActiveCssHashes = useCallback(() => {
     const currentHashes = currentUrl.current
-      ? cssHashMap.current.get(currentUrl.current) ?? new Set()
+      ? (cssHashMap.current.get(currentUrl.current) ?? new Set())
       : new Set();
     const previousHashes = previousUrl.current
-      ? cssHashMap.current.get(previousUrl.current) ?? new Set()
+      ? (cssHashMap.current.get(previousUrl.current) ?? new Set())
       : new Set();
     return [...currentHashes, ...previousHashes];
   }, []);

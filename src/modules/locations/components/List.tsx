@@ -22,10 +22,7 @@ export function List({ location, locations }: Props) {
                   .sort((a, b) => a.name.localeCompare(b.name))
                   ?.map((ll) => (
                     <li key={ll.name}>
-                      <Link
-                        href={`/locations/${ll.name}`}
-                        key={ll.name}
-                      >
+                      <Link href={`/locations/${ll.name}`} key={ll.name}>
                         {removeDash(ll.name).replace(
                           /kanto|johto|hoenn|sinnoh|unova|kalos|alola|galar|hisui|paldea/g,
                           ``,

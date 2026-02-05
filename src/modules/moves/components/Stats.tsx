@@ -40,10 +40,7 @@ export function Stats({ stats }: Props) {
             cell: (info) => (
               <td className={styles.stats}>
                 {info.getValue<IMoveStatAffect[]>().map((i) => (
-                  <Link
-                    key={i.move.name}
-                    href={`/moves/${i.move.name}`}
-                  >
+                  <Link key={i.move.name} href={`/moves/${i.move.name}`}>
                     <p>
                       {removeDash(i.move.name)} +{i.change}
                     </p>
@@ -58,10 +55,7 @@ export function Stats({ stats }: Props) {
             cell: (info) => (
               <td className={styles.stats}>
                 {info.getValue<IMoveStatAffect[]>().map((i) => (
-                  <Link
-                    key={i.move.name}
-                    href={`/moves/${i.move.name}`}
-                  >
+                  <Link key={i.move.name} href={`/moves/${i.move.name}`}>
                     <p>
                       {removeDash(i.move.name)} {i.change}
                     </p>

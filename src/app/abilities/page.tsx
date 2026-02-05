@@ -73,7 +73,15 @@ function AbilitiesPage() {
   );
 
   const { tableContainerRef, tableHeader, tableBody, tablePagination } =
-    usePaginatedTableParams(data, columns, setOffset, Limit.ABILITIES, pathname, router, searchParams);
+    usePaginatedTableParams(
+      data,
+      columns,
+      setOffset,
+      Limit.ABILITIES,
+      pathname,
+      router,
+      searchParams,
+    );
 
   if (isError && error instanceof Error) {
     errorToast(error.message, `abilities`);

@@ -130,10 +130,7 @@ export const InfoTable = [
       value: ({ pokemon }: Pokemon) => {
         return pokemon?.held_items?.length > 0
           ? pokemon?.held_items?.map((ph) => (
-              <Link
-                href={`/items/${ph.item.name}`}
-                key={ph.item.name}
-              >
+              <Link href={`/items/${ph.item.name}`} key={ph.item.name}>
                 {removeDash(ph.item.name)}
               </Link>
             ))

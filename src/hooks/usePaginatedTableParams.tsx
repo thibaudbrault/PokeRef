@@ -10,16 +10,24 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import ReactPaginate from 'react-paginate';
-import { useVirtual } from 'react-virtual';
 import {
   useVirtualizer,
   VirtualItem,
   Virtualizer,
-} from '@tanstack/react-virtual'
+} from '@tanstack/react-virtual';
+import ReactPaginate from 'react-paginate';
+import { useVirtual } from 'react-virtual';
 
 // @ts-ignore
-export function usePaginatedTableParams(data, columns, setOffset, limit, pathname, router, searchParams) {
+export function usePaginatedTableParams(
+  data,
+  columns,
+  setOffset,
+  limit,
+  pathname,
+  router,
+  searchParams,
+) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 0,

@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { FaChevronLeft } from '@meronex/icons/fa';
 import * as Tabs from '@radix-ui/react-tabs';

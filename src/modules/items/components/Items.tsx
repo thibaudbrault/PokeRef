@@ -49,10 +49,7 @@ export function Items() {
         header: `Name`,
         cell: (info) => (
           <td className="tBold">
-            <Link
-              className="tLink"
-              href={`/items/${info.getValue()}`}
-            >
+            <Link className="tLink" href={`/items/${info.getValue()}`}>
               {removeDash(info.getValue<string>()).replaceAll(`--`, `-`)}
             </Link>
           </td>
@@ -84,7 +81,15 @@ export function Items() {
   );
 
   const { tableContainerRef, tableHeader, tableBody, tablePagination } =
-    usePaginatedTableParams(data, columns, setOffset, Limit.ITEMS, pathname, router, searchParams);
+    usePaginatedTableParams(
+      data,
+      columns,
+      setOffset,
+      Limit.ITEMS,
+      pathname,
+      router,
+      searchParams,
+    );
 
   return (
     <section>

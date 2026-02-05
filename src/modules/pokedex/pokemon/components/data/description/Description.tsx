@@ -48,9 +48,7 @@ export function Description({ pokemon, species, game }: Props) {
         <li className={styles.types}>
           {pokemon?.types?.map((pt) => (
             <div className="type" id={pt.type.name} key={pt.type.name}>
-              <Link
-                href={`/types/${pt.type.name}`}
-              >
+              <Link href={`/types/${pt.type.name}`}>
                 <Image
                   src={`/images/types/${pt.type.name}.png`}
                   alt={pt.type.name}

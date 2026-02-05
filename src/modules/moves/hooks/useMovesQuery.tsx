@@ -9,7 +9,11 @@ export const useMovesQuery = (initialPage?: number) => {
   const limit = 50;
   const [offset, setOffset] = useState(initialPage ? initialPage * limit : 0);
 
-  const { data: moves, status: movesStatus, isFetching } = useQuery<IMove[], Error>({
+  const {
+    data: moves,
+    status: movesStatus,
+    isFetching,
+  } = useQuery<IMove[], Error>({
     queryKey: [QueryKeys.MOVES, limit, offset],
     queryFn: () =>
       getMultiple(`${BASE_URL}/move?limit=${limit}&offset=${offset}`),

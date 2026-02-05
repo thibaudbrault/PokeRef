@@ -44,10 +44,7 @@ export function Table({ ability, pokemon }: Props) {
         header: `Name`,
         cell: (info) => (
           <td className="tBold">
-            <Link
-              className="tLink"
-              href={`/pokemon/${info.getValue()}`}
-            >
+            <Link className="tLink" href={`/pokemon/${info.getValue()}`}>
               {removeDash(info.getValue<string>())}
             </Link>
           </td>
