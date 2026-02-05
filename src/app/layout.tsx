@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 
 import '@/styles/globals.scss';
+import { Analytics } from '@vercel/analytics/next';
+
 import Providers from './providers';
 
 type Props = {
