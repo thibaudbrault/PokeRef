@@ -204,6 +204,5 @@ export const getCards = async (name: string) => {
     return results;
   } catch (error) {
     console.error(error);
-    throw error;
   }
 };

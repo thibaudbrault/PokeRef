@@ -14,7 +14,7 @@ export function Sprites({ p }: Props) {
       {p.id < 152 &&
         p.sprites.versions[`generation-i`][`red-blue`].front_transparent && (
           <ImageWithFallback
-            className={styles.sprite}
+            className={`${styles.sprite} ${styles.firstGen}`}
             src={
               p.sprites.versions[`generation-i`][`red-blue`].front_transparent
             }

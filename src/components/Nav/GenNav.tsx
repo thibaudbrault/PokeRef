@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, type Dispatch, type SetStateAction, useEffect } from 'react';
 
 import * as Label from '@radix-ui/react-label';

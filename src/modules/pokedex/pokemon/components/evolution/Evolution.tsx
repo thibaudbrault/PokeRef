@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 import { FaChevronRight } from '@meronex/icons/fa';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
@@ -70,7 +72,7 @@ export function Evolution({ evolution, name }: Props) {
                 >
                   <div>
                     {ee?.evolution_details?.map((eed) => (
-                      <>
+                      <Fragment key={eed.trigger.name}>
                         {eed.gender &&
                           (eed.gender === 1 ? (
                             <p className={styles.text}>
@@ -254,7 +256,7 @@ export function Evolution({ evolution, name }: Props) {
                             without fainting
                           </p>
                         )}
-                      </>
+                      </Fragment>
                     ))}
                     <FaChevronRight />
                   </div>
@@ -287,7 +289,7 @@ export function Evolution({ evolution, name }: Props) {
                         <div className={styles.element}>
                           <div>
                             {eee?.evolution_details?.map((eeed) => (
-                              <>
+                              <Fragment key={eeed.trigger.name}>
                                 {eeed.gender &&
                                   (eeed.gender === 1 ? (
                                     <p className={styles.text}>
@@ -510,7 +512,7 @@ export function Evolution({ evolution, name }: Props) {
                                     fainting
                                   </p>
                                 )}
-                              </>
+                              </Fragment>
                             ))}
                             <FaChevronRight />
                           </div>

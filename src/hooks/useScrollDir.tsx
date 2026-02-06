@@ -1,3 +1,5 @@
+'use cient';
+
 import { useEffect, useState } from 'react';
 
 import { FaAngleDown, FaAngleUp } from '@meronex/icons/fa';

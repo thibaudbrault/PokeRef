@@ -8,10 +8,10 @@
   font-size: 2rem;
   border-radius: 5px;
   z-index: 3;
-    background-color: var(--elementBackground--);
+    background-color: var(--elementBackground);
     border: 1px solid t('border');
 
-  & div {
+  & summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -58,6 +58,10 @@
 
       & a {
         cursor: pointer;
+
+        &:hover {
+          color: $red;
+        }
       }
     }
   }

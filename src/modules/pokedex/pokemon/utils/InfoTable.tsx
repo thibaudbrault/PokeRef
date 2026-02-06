@@ -1,3 +1,5 @@
+import { JSX } from 'react';
+
 import Link from 'next/link';
 
 import { removeDash } from '@/utils';
@@ -90,15 +92,20 @@ export const InfoTable = [
     desc_1: {
       title: `EV yield`,
       value: ({ pokemon }: Pokemon) => {
-        return pokemon.stats
+        const evYields = pokemon.stats
           .filter((ps: IPokemonStat) => ps.effort !== 0)
           .map((ps) => (
             <span key={ps.stat.name}>
-              {ps?.effort}
-              {` `}
-              {removeDash(ps?.stat.name)}
+              {ps?.effort} {removeDash(ps?.stat.name)}
             </span>
           ));
+        return evYields.reduce((acc: JSX.Element[], span, index) => {
+          if (index !== 0) {
+            acc.push(<span key={`sep-${index}`}> / </span>);
+          }
+          acc.push(span);
+          return acc;
+        }, []);
       },
     },
     desc_2: {

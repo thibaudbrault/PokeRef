@@ -148,7 +148,7 @@
   border-radius: 50%;
   background-color: var(--elementBackground);
 
-  &:hover .sprite {
+  &:hover .sprite:not(.firstGen) {
     opacity: 0;
   }
 

@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 
 import { errorToast, SmallLoader } from '@/components';
@@ -167,7 +169,7 @@ export function Effect({ move, version }: Props) {
             <h4 className="h4">Changes</h4>
             <ul className={styles.stat}>
               {move.past_values?.map((mp) => (
-                <>
+                <Fragment key={mp.version_group.name}>
                   {mp.power && (
                     <li>
                       Before{` `}
@@ -224,7 +226,7 @@ export function Effect({ move, version }: Props) {
                       was {mp.type?.name} type
                     </li>
                   )}
-                </>
+                </Fragment>
               ))}
             </ul>
           </>

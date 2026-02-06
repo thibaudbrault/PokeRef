@@ -9,7 +9,9 @@ import {
 } from '@/utils';
 
 export const useFetchPokemon = (name: string) => {
-  const [pokemon, location, cards] = useQueries({
+  const cards: any[] = [];
+  // const [pokemon, location, cards] = useQueries({
+  const [pokemon, location] = useQueries({
     queries: [
       {
         queryKey: [QueryKeys.POKEMON.INDEX, name],
@@ -19,10 +21,10 @@ export const useFetchPokemon = (name: string) => {
         queryKey: [QueryKeys.ENCOUNTER.INDEX, name],
         queryFn: () => getSingle(`${BASE_URL}/pokemon/${name}/encounters`),
       },
-      {
-        queryKey: [QueryKeys.CARDS, name],
-        queryFn: () => getCards(name),
-      },
+      // {
+      //   queryKey: [QueryKeys.CARDS, name],
+      //   queryFn: () => getCards(name),
+      // },
     ],
   });
 

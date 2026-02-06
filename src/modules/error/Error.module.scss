@@ -1,0 +1,39 @@
+@use 'styles/abstracts' as *;
+
+.error {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+
+    & p {
+        font-size: 6rem;
+        font-weight: 700;
+    }
+    
+    & pre {
+        font-size: 3rem;
+        font-weight: 700;
+        color: $red;
+    }
+
+    & button {
+        padding: 1rem 2rem;
+        font-size: 2rem;
+        font-weight: 600;
+        background-color: var(--subtleBackground);
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        color: var(--highContrastText);
+
+        &:hover {
+            background-color: var(--elementHoverBackground);
+        }
+
+        &:active {
+            background-color: var(--elementActiveBackground);
+        }
+    }
+}

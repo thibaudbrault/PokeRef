@@ -8,8 +8,8 @@ import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { Toaster } from 'react-hot-toast';
 
 import { ThemeProvider } from '@/contexts';
-import { useNextCssRemovalPrevention } from '@/hooks';
 import { PageLayout } from '@/layouts';
+import styles from '@/modules/error/Error.module.scss';
 
 import '@/styles/globals.scss';
 
@@ -20,7 +20,7 @@ type Props = {
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   const errorMessage = error instanceof Error ? error.message : 'Unknown error';
   return (
-    <div role="alert">
+    <div role="alert" className={styles.error}>
       <p>Something went wrong:</p>
       <pre>{errorMessage}</pre>
       <button onClick={resetErrorBoundary}>Try again</button>
@@ -53,8 +53,6 @@ function getQueryClient() {
 
 export default function Providers({ children }: Props) {
   const queryClient = getQueryClient();
-
-  // useNextCssRemovalPrevention();
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>

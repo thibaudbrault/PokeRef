@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
 import { FaChevronLeft } from '@meronex/icons/fa';
 import { HiOutlineSpeakerphone } from '@meronex/icons/hi';
@@ -29,7 +29,7 @@ import styles from '@/modules/pokedex/pokemon/Pokemon.module.scss';
 import { IFlavorText } from '@/types';
 import { pokemonFilters, removeDash, removeLongName } from '@/utils';
 
-function PokemonCard() {
+function PokemonPage() {
   const [game, setGame] = useState<string>(``);
   const [version, setVersion] = useState<string>(``);
   const [format, setFormat] = useState<string>(``);
@@ -97,116 +97,123 @@ function PokemonCard() {
     <>
       <Heading name={name} description={getSeoDesc()} />
       <main className="mainBig">
-        <section className={styles.section}>
-          <div className={styles.name}>
-            {pokemon.data?.name?.includes(`mega`) ? (
-              <h2 className="title">
-                {removeDash(pokemon.data?.name).split(` `).reverse().join(` `)}
-              </h2>
-            ) : (
-              <h2 className="title">{removeLongName(removeDash(name))}</h2>
+        <Suspense fallback={<Loader />}>
+          <section className={styles.section}>
+            <div className={styles.name}>
+              {pokemon.data?.name?.includes(`mega`) ? (
+                <h2 className="title">
+                  {removeDash(pokemon.data?.name)
+                    .split(` `)
+                    .reverse()
+                    .join(` `)}
+                </h2>
+              ) : (
+                <h2 className="title">{removeLongName(removeDash(name))}</h2>
+              )}
+              {pokemon.data?.id < 722 && (
+                <div>
+                  <button onClick={play}>
+                    <HiOutlineSpeakerphone />
+                  </button>
+                  <audio
+                    ref={audioRef}
+                    src={`https://raw.githubusercontent.com/thibaudbrault/pokeref_medias/main/cries/${pokemon.data?.id}.ogg`}
+                  />
+                </div>
+              )}
+            </div>
+            {species.data && (
+              <h4 className="subtitle">
+                {removeDash(species.data?.generation?.name)}
+              </h4>
             )}
-            {pokemon.data?.id < 722 && (
-              <div>
-                <button onClick={play}>
-                  <HiOutlineSpeakerphone />
-                </button>
-                <audio
-                  ref={audioRef}
-                  src={`https://raw.githubusercontent.com/thibaudbrault/pokeref_medias/main/cries/${pokemon.data?.id}.ogg`}
-                />
-              </div>
-            )}
-          </div>
-          {species.data && (
-            <h4 className="subtitle">
-              {removeDash(species.data?.generation?.name)}
-            </h4>
-          )}
-        </section>
+          </section>
 
-        <Nav
-          pokemonId={pokemon.data?.id}
-          game={game}
-          setGame={setGame}
-          setVersion={setVersion}
-          setFormat={setFormat}
-        />
-
-        <Content hasForm={pokemon.data.forms.length > 1} />
-
-        <Data pokemon={pokemon.data} species={species.data} game={game} />
-
-        <Separator />
-
-        {evolution.data && <Evolution evolution={evolution.data} name={name} />}
-
-        <Separator />
-
-        {pokemonId && pokemonId < 10000 && (
-          <Info
-            pokemon={pokemon.data}
-            species={species.data}
-            evolution={evolution.data}
+          <Nav
+            pokemonId={pokemon.data?.id}
+            game={game}
+            setGame={setGame}
+            setVersion={setVersion}
+            setFormat={setFormat}
           />
-        )}
 
-        <Separator />
+          <Content hasForm={pokemon.data.forms.length > 1} />
 
-        <Stats pokemon={pokemon.data} />
+          <Data pokemon={pokemon.data} species={species.data} game={game} />
 
-        <Separator />
+          <Separator />
 
-        {types.data && (
-          <>
-            <Types types={types.data} />
-            <Separator />
-          </>
-        )}
+          {evolution.data && (
+            <Evolution evolution={evolution.data} name={name} />
+          )}
 
-        {version && (
-          <>
-            <Moves pokemon={pokemon.data} version={version} name={name} />
-            <Separator />
-          </>
-        )}
+          <Separator />
 
-        {game && (
-          <>
-            <Locations location={location.data} game={game} />
-            <Separator />
-          </>
-        )}
+          {pokemonId && pokemonId < 10000 && (
+            <Info
+              pokemon={pokemon.data}
+              species={species.data}
+              evolution={evolution.data}
+            />
+          )}
 
-        {pokemon.data.forms.length > 1 && (
-          <>
-            <Forms pokemon={pokemon.data} />
-            <Separator />
-          </>
-        )}
+          <Separator />
 
-        {format && (
-          <>
-            <Competitive format={format} name={name} />
-            <Separator />
-          </>
-        )}
+          <Stats pokemon={pokemon.data} />
 
-        <Sprites pokemon={pokemon.data} />
+          <Separator />
 
-        <Separator />
+          {types.data && (
+            <>
+              <Types types={types.data} />
+              <Separator />
+            </>
+          )}
 
-        {cards.data && <Cards cards={cards.data} />}
+          {version && (
+            <>
+              <Moves pokemon={pokemon.data} version={version} name={name} />
+              <Separator />
+            </>
+          )}
 
-        <Button intent="back" size="fit" asChild>
-          <Link href="/">
-            <FaChevronLeft />
-            Back to Pokédex
-          </Link>
-        </Button>
+          {game && (
+            <>
+              <Locations location={location.data} game={game} />
+              <Separator />
+            </>
+          )}
+
+          {pokemon.data.forms.length > 1 && (
+            <>
+              <Forms pokemon={pokemon.data} />
+              <Separator />
+            </>
+          )}
+
+          {format && (
+            <>
+              <Competitive format={format} name={name} />
+              <Separator />
+            </>
+          )}
+
+          <Sprites pokemon={pokemon.data} />
+
+          <Separator />
+
+          {cards.data && <Cards cards={cards.data} />}
+
+          <Button intent="back" size="fit" asChild>
+            <Link href="/">
+              <FaChevronLeft />
+              Back to Pokédex
+            </Link>
+          </Button>
+        </Suspense>
       </main>
     </>
   );
 }
 
-export default PokemonCard;
+export default PokemonPage;

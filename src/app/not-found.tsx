@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import styles from '@/modules/404/NotFound.module.scss';
+import styles from '@/modules/error/404/NotFound.module.scss';
 
 function NotFound() {
   return (

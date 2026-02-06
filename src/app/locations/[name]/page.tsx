@@ -3,6 +3,7 @@
 import { FaChevronLeft } from '@meronex/icons/fa';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { Fragment } from 'react/jsx-runtime';
 
 import { Button, errorToast, GenNav, Loader } from '@/components';
 import { Area, Heading, useSwitchGame } from '@/modules/locations/location';
@@ -53,7 +54,7 @@ function LocationCard() {
         </section>
         <GenNav game={game} setGame={setGame} />
         {areas.map((area: ILocationArea) => (
-          <>
+          <Fragment key={area.id}>
             <h3 className="h3">
               {removeDash(area.name)
                 .replace(/kanto|johto|hoenn|sinnoh|unova|kalos|alola/, ``)
@@ -65,7 +66,7 @@ function LocationCard() {
               method={method}
               game={game}
             />
-          </>
+          </Fragment>
         ))}
         <Button intent="back" size="fit" asChild>
           <Link href="/locations">

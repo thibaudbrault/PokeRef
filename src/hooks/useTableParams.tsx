@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+'use client';
+
+import { Fragment, useEffect, useRef, useState } from 'react';
 
 import { BisChevronDown, BisChevronUp } from '@meronex/icons/bi';
 import {
@@ -100,9 +102,9 @@ export function useTableParams(data, columns) {
             >
               {row.getVisibleCells().map((cell) => {
                 return (
-                  <>
+                  <Fragment key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </>
+                  </Fragment>
                 );
               })}
             </tr>

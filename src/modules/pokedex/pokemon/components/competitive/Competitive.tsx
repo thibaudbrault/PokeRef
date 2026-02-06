@@ -173,22 +173,29 @@ export function Competitive({ format, name }: Props) {
                 <li key={s.name}>
                   <h4 className="h4">{s.name}</h4>
                   <div className={styles.specs}>
-                    <ul
-                      dangerouslySetInnerHTML={{
-                        __html: setSpecs(filteredSets, i, `moves`).map(
-                          (move: string | string[], index: number) =>
-                            wrapMoves(
-                              `li`,
-                              Array.isArray(move)
-                                ? move
-                                    .map((j) => wrapMoves(`span`, j, index))
+                    <ul>
+                      {Array.isArray(setSpecs(filteredSets, i, `moves`))
+                        ? setSpecs(filteredSets, i, `moves`).map(
+                            (move: string | string[], moveIndex: number) => (
+                              <li key={`move-${i}-${moveIndex}`}>
+                                {Array.isArray(move) ? (
+                                  move
+                                    .map((j, subIndex) => (
+                                      <span
+                                        key={`move-${i}-${moveIndex}-${subIndex}`}
+                                      >
+                                        {j}
+                                      </span>
+                                    ))
                                     .join(` / `)
-                                : move,
-                              index,
+                                ) : (
+                                  <span>{move}</span>
+                                )}
+                              </li>
                             ),
-                        ),
-                      }}
-                    />
+                          )
+                        : null}
+                    </ul>
                     {detailedSets.length > 1 &&
                       detailedSets.find(
                         (d: string) => d !== `level` && d !== `moves`,

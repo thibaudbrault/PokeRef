@@ -1,3 +1,5 @@
+'use client';
+
 import { Fragment, useMemo, useRef, useState } from 'react';
 
 import { BisChevronDown, BisChevronUp } from '@meronex/icons/bi';
@@ -14,8 +16,6 @@ import {
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { type AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import ReactPaginate from 'react-paginate';
-
-import { IAbility, IItem, IMove } from '@/types';
 
 // @ts-ignore
 export function usePaginatedTableParams(
